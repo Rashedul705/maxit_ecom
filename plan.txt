@@ -150,30 +150,30 @@ maxitshop/
 - [x] Commit Step 4 to git
 
 ### STEP 5: FRONTEND CUSTOMER SHOP
-- [ ] Initialize Next.js app in `frontend/` with TypeScript & Tailwind CSS
-- [ ] Configure Tailwind CSS tokens matching `DESIGN.md` (colors, fonts, radius, shadows)
-- [ ] Create `lib/types.ts` and unified `lib/api.ts` client
-- [ ] Setup global Cart context & state persistence with localStorage
-- [ ] Build core components: TopBar, Header with live search suggestions, MegaMenu, MobileDrawer, Footer, FloatingSupport, ProductCard
-- [ ] Build Home Page (Hero Banner Slider, Category Icons/Grid, Deals of the Day, New Arrivals, Featured, Specially for You grid with load more)
-- [ ] Build Category Page (`/category/[slug]`) with subcategory links, filter sidebar (price range, brand, stock), sorting, pagination
-- [ ] Build Product Page (`/product/[slug]`) with image gallery, discount tags, stock indicator, quantity selector, specs tabs, related products
-- [ ] Build Search Results Page (`/search?q=`)
-- [ ] Build Cart Drawer & Full Cart Page (`/cart`)
-- [ ] Build Checkout Page (`/checkout`) with Bangladesh division/district/area selection, delivery charge calculation (৳80 Dhaka / ৳130 Outside), COD order placement
-- [ ] Build Track Order Page (`/track-order`)
-- [ ] Build Static Information Pages (About, Contact, FAQ, Shipping & Returns, Privacy Policy, Terms of Service)
-- [ ] Add SEO meta tags, product schema markup, loading skeletons, empty & error states
-- [ ] Commit Step 5 to git
+- [x] Initialize Next.js app in `frontend/` with TypeScript & Tailwind CSS
+- [x] Configure Tailwind CSS tokens matching `DESIGN.md` (colors, fonts, radius, shadows)
+- [x] Create `lib/types.ts` and unified `lib/api.ts` client
+- [x] Setup global Cart context & state persistence with localStorage
+- [x] Build core components: TopBar, Header with live search suggestions, MegaMenu, MobileDrawer, Footer, FloatingSupport, ProductCard
+- [x] Build Home Page (Hero Banner Slider, Category Icons/Grid, Deals of the Day, New Arrivals, Featured, Specially for You grid with load more)
+- [x] Build Category Page (`/category/[slug]`) with subcategory links, filter sidebar (price range, brand, stock), sorting, pagination
+- [x] Build Product Page (`/product/[slug]`) with image gallery, discount tags, stock indicator, quantity selector, specs tabs, related products
+- [x] Build Search Results Page (`/search?q=`)
+- [x] Build Cart Drawer & Full Cart Page (`/cart`)
+- [x] Build Checkout Page (`/checkout`) with Bangladesh division/district/area selection, delivery charge calculation (৳80 Dhaka / ৳130 Outside), COD order placement
+- [x] Build Track Order Page (`/track-order`)
+- [x] Build Static Information Pages (About, Contact, FAQ, Shipping & Returns, Privacy Policy, Terms of Service)
+- [x] Add SEO meta tags, product schema markup, loading skeletons, empty & error states
+- [x] Commit Step 5 to git
 
 ### STEP 6: FRONTEND ADMIN PANEL
-- [ ] Build Admin Layout with sidebar navigation and admin header
-- [ ] Implement Admin Login page and session token storage
-- [ ] Implement Next.js middleware to protect `/admin` routes (redirect unauthorized visitors)
-- [ ] Build Admin Dashboard (KPI stats: total orders, total revenue, low stock alerts, quick links)
-- [ ] Build Admin Products Management (datatable, search, add product modal, edit product, delete)
-- [ ] Build Admin Orders Management (datatable, status filter, status update dropdown, printable invoice view)
-- [ ] Commit Step 6 to git
+- [x] Build Admin Layout with sidebar navigation and admin header
+- [x] Implement Admin Login page and session token storage
+- [x] Implement Next.js middleware to protect `/admin` routes (redirect unauthorized visitors)
+- [x] Build Admin Dashboard (KPI stats: total orders, total revenue, low stock alerts, quick links)
+- [x] Build Admin Products Management (datatable, search, add product modal, edit product, delete)
+- [x] Build Admin Orders Management (datatable, status filter, status update dropdown, printable invoice view)
+- [x] Commit Step 6 to git
 
 ### STEP 7: VERIFICATION & AUDIT
 - [ ] Run both Backend (port 5000) and Frontend (port 3000) concurrently
