@@ -1,0 +1,192 @@
+# maxitshop - E-Commerce Platform Implementation Plan
+
+## Goal
+Build a high-performance, mobile-first e-commerce web application called "maxitshop" tailored for the Bangladesh market, matching the layout, structure, and visual hierarchy of https://bdshop.com/ with custom branding, BDT (৳) currency, Next.js frontend (Customer shop + Admin panel), and Express backend.
+
+## Tech Stack
+- Frontend: Next.js (App Router), TypeScript, Tailwind CSS, Lucide React Icons
+- Backend: Node.js, Express, CORS, Dotenv
+- Architecture: Decoupled Controller/Service/Data Layer ready for MongoDB Mongoose migration
+- Ports: Backend on 5000, Frontend on 3000
+
+## Folder Structure
+```
+maxitshop/
+├── backend/
+│   ├── controllers/
+│   │   ├── adminController.js
+│   │   ├── categoryController.js
+│   │   ├── orderController.js
+│   │   └── productController.js
+│   ├── data/
+│   │   └── mock.js
+│   ├── middleware/
+│   │   ├── auth.js
+│   │   └── errorHandler.js
+│   ├── routes/
+│   │   ├── adminRoutes.js
+│   │   ├── categoryRoutes.js
+│   │   ├── orderRoutes.js
+│   │   └── productRoutes.js
+│   ├── services/
+│   │   ├── adminService.js
+│   │   ├── categoryService.js
+│   │   ├── orderService.js
+│   │   └── productService.js
+│   ├── utils/
+│   │   └── response.js
+│   ├── .env
+│   ├── .env.example
+│   ├── package.json
+│   └── server.js
+├── frontend/
+│   ├── public/
+│   ├── src/
+│   │   ├── app/
+│   │   │   ├── (shop)/
+│   │   │   │   ├── layout.tsx
+│   │   │   │   ├── page.tsx
+│   │   │   │   ├── category/[slug]/page.tsx
+│   │   │   │   ├── product/[slug]/page.tsx
+│   │   │   │   ├── cart/page.tsx
+│   │   │   │   ├── checkout/page.tsx
+│   │   │   │   ├── track-order/page.tsx
+│   │   │   │   ├── search/page.tsx
+│   │   │   │   ├── about/page.tsx
+│   │   │   │   ├── contact/page.tsx
+│   │   │   │   ├── faq/page.tsx
+│   │   │   │   ├── shipping-returns/page.tsx
+│   │   │   │   ├── privacy/page.tsx
+│   │   │   │   └── terms/page.tsx
+│   │   │   ├── admin/
+│   │   │   │   ├── layout.tsx
+│   │   │   │   ├── page.tsx
+│   │   │   │   ├── login/page.tsx
+│   │   │   │   ├── products/page.tsx
+│   │   │   │   └── orders/page.tsx
+│   │   │   ├── layout.tsx
+│   │   │   └── globals.css
+│   │   ├── components/
+│   │   │   ├── shop/
+│   │   │   │   ├── Header.tsx
+│   │   │   │   ├── TopBar.tsx
+│   │   │   │   ├── MegaMenu.tsx
+│   │   │   │   ├── MobileDrawer.tsx
+│   │   │   │   ├── BannerSlider.tsx
+│   │   │   │   ├── ProductCard.tsx
+│   │   │   │   ├── CartDrawer.tsx
+│   │   │   │   ├── Footer.tsx
+│   │   │   │   └── FloatingSupport.tsx
+│   │   │   └── admin/
+│   │   │       ├── AdminSidebar.tsx
+│   │   │       ├── AdminHeader.tsx
+│   │   │       └── InvoiceModal.tsx
+│   │   ├── lib/
+│   │   │   ├── api.ts
+│   │   │   ├── cartContext.tsx
+│   │   │   ├── toastContext.tsx
+│   │   │   └── types.ts
+│   │   └── middleware.ts
+│   ├── .env.local
+│   ├── .env.example
+│   ├── package.json
+│   ├── tsconfig.json
+│   └── tailwind.config.ts
+├── docs/
+│   └── reference/
+├── .gitignore
+├── README.md
+├── AGENTS.md
+├── DESIGN.md
+└── plan.txt
+```
+
+## API Endpoints (/api/v1)
+- GET /health - Service health check
+- GET /categories - Category tree with subcategories
+- GET /banners - Hero carousel banners
+- GET /products - Paginated product list with search, category, brand, price filters, sorting
+- GET /products/deals - Deals of the day
+- GET /products/new - New arrivals
+- GET /products/featured - Featured products
+- GET /products/:slug - Product details with related products
+- GET /search/suggestions?q= - Live search autocomplete suggestions
+- POST /orders - Place new COD order with Dhaka/outside-Dhaka shipping calculation & stock decrement
+- GET /orders/track?orderNumber=&phone= - Customer track order
+- GET /admin/orders - Admin list all orders (Protected by ADMIN_TOKEN)
+- PATCH /admin/orders/:id/status - Admin update order status (Protected by ADMIN_TOKEN)
+- POST /admin/products - Admin create product (Protected by ADMIN_TOKEN)
+- PUT /admin/products/:id - Admin update product (Protected by ADMIN_TOKEN)
+- DELETE /admin/products/:id - Admin delete product (Protected by ADMIN_TOKEN)
+
+## Task List
+
+### STEP 1: WORKSPACE SETUP
+- [x] Initialize git repository in root if not present
+- [x] Verify root directory structure (`frontend/`, `backend/`, `docs/reference/`)
+- [x] Create initial `README.md` and `AGENTS.md`
+- [x] Commit Step 1 to git
+
+### STEP 2: SECURITY & ENVIRONMENT
+- [ ] Configure root `.gitignore` with all rules (node_modules, .next, dist, .env, .env.*, !.env.example, backend/.env, frontend/.env, frontend/.env.local)
+- [ ] Create `backend/.env.example` and local `backend/.env`
+- [ ] Create `frontend/.env.example` and local `frontend/.env.local`
+- [ ] Verify no hardcoded secrets or localhost URLs exist in git-tracked files
+- [ ] Commit Step 2 to git
+
+### STEP 3: DESIGN STUDY (BDSHOP.COM)
+- [ ] Open https://bdshop.com/ via browser subagent and study desktop & mobile layouts (Home, Category, Product, Cart/Checkout, Track Order)
+- [ ] Capture reference screenshots to `docs/reference/`
+- [ ] Create `DESIGN.md` documenting color palette, typography, header, sections, product cards, category page, product page, footer, spacing & shadows
+- [ ] Commit Step 3 to git
+
+### STEP 4: BACKEND DEVELOPMENT
+- [ ] Initialize Express backend in `backend/package.json`
+- [ ] Setup `server.js` with CORS, JSON body parser, request logging, error handling
+- [ ] Create `data/mock.js` (6 categories, 40 realistic products with rich specs, 4 promotional banners)
+- [ ] Implement controllers, services, routes for Categories, Banners, Products, Orders, Search Suggestions
+- [ ] Implement Admin endpoints (orders list, status update, product CRUD) with ADMIN_TOKEN auth middleware
+- [ ] Test all API endpoints to ensure correct contract responses `{ success, data, message }`
+- [ ] Commit Step 4 to git
+
+### STEP 5: FRONTEND CUSTOMER SHOP
+- [ ] Initialize Next.js app in `frontend/` with TypeScript & Tailwind CSS
+- [ ] Configure Tailwind CSS tokens matching `DESIGN.md` (colors, fonts, radius, shadows)
+- [ ] Create `lib/types.ts` and unified `lib/api.ts` client
+- [ ] Setup global Cart context & state persistence with localStorage
+- [ ] Build core components: TopBar, Header with live search suggestions, MegaMenu, MobileDrawer, Footer, FloatingSupport, ProductCard
+- [ ] Build Home Page (Hero Banner Slider, Category Icons/Grid, Deals of the Day, New Arrivals, Featured, Specially for You grid with load more)
+- [ ] Build Category Page (`/category/[slug]`) with subcategory links, filter sidebar (price range, brand, stock), sorting, pagination
+- [ ] Build Product Page (`/product/[slug]`) with image gallery, discount tags, stock indicator, quantity selector, specs tabs, related products
+- [ ] Build Search Results Page (`/search?q=`)
+- [ ] Build Cart Drawer & Full Cart Page (`/cart`)
+- [ ] Build Checkout Page (`/checkout`) with Bangladesh division/district/area selection, delivery charge calculation (৳80 Dhaka / ৳130 Outside), COD order placement
+- [ ] Build Track Order Page (`/track-order`)
+- [ ] Build Static Information Pages (About, Contact, FAQ, Shipping & Returns, Privacy Policy, Terms of Service)
+- [ ] Add SEO meta tags, product schema markup, loading skeletons, empty & error states
+- [ ] Commit Step 5 to git
+
+### STEP 6: FRONTEND ADMIN PANEL
+- [ ] Build Admin Layout with sidebar navigation and admin header
+- [ ] Implement Admin Login page and session token storage
+- [ ] Implement Next.js middleware to protect `/admin` routes (redirect unauthorized visitors)
+- [ ] Build Admin Dashboard (KPI stats: total orders, total revenue, low stock alerts, quick links)
+- [ ] Build Admin Products Management (datatable, search, add product modal, edit product, delete)
+- [ ] Build Admin Orders Management (datatable, status filter, status update dropdown, printable invoice view)
+- [ ] Commit Step 6 to git
+
+### STEP 7: VERIFICATION & AUDIT
+- [ ] Run both Backend (port 5000) and Frontend (port 3000) concurrently
+- [ ] Use browser subagent to execute full customer journey: Home -> Search -> Category filter -> Product view -> Add to cart -> Checkout -> Track order
+- [ ] Use browser subagent to execute Admin journey: Login -> Dashboard -> Product management -> Order status update -> Print invoice
+- [ ] Side-by-side visual comparison between bdshop.com and maxitshop, log visual differences in plan.txt and polish
+- [ ] Run `npm run build` in frontend to guarantee zero compile or TypeScript errors
+- [ ] Update `README.md` with complete documentation, ports, run instructions, and roadmap
+- [ ] Commit Step 7 to git
+
+## Assumptions
+- Subdirectory `C:\Users\Rashedul\.gemini\antigravity-ide\scratch\maxitshop` serves as the project root since no active workspace was bound.
+- Admin token for development is set to `admin_secret_token_123` in `.env` and `NEXT_PUBLIC_ADMIN_TOKEN` or entered in admin login.
+- Delivery charge logic: Inside Dhaka = ৳80, Outside Dhaka = ৳130.
+- Payment method is Cash on Delivery (COD) as requested, with architecture open for bKash/Nagad/SSLCommerz.
+- High-quality SVG/CSS placeholder banners and Unsplash electronics/gadgets images are used to avoid copying copyright material while maintaining realistic aesthetics.
