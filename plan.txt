@@ -141,13 +141,13 @@ maxitshop/
 - [x] Commit Step 3 to git
 
 ### STEP 4: BACKEND DEVELOPMENT
-- [ ] Initialize Express backend in `backend/package.json`
-- [ ] Setup `server.js` with CORS, JSON body parser, request logging, error handling
-- [ ] Create `data/mock.js` (6 categories, 40 realistic products with rich specs, 4 promotional banners)
-- [ ] Implement controllers, services, routes for Categories, Banners, Products, Orders, Search Suggestions
-- [ ] Implement Admin endpoints (orders list, status update, product CRUD) with ADMIN_TOKEN auth middleware
-- [ ] Test all API endpoints to ensure correct contract responses `{ success, data, message }`
-- [ ] Commit Step 4 to git
+- [x] Initialize Express backend in `backend/package.json`
+- [x] Setup `server.js` with CORS, JSON body parser, request logging, error handling
+- [x] Create `data/mock.js` (6 categories, 40 realistic products with rich specs, 4 promotional banners)
+- [x] Implement controllers, services, routes for Categories, Banners, Products, Orders, Search Suggestions
+- [x] Implement Admin endpoints (orders list, status update, product CRUD) with ADMIN_TOKEN auth middleware
+- [x] Test all API endpoints to ensure correct contract responses `{ success, data, message }`
+- [x] Commit Step 4 to git
 
 ### STEP 5: FRONTEND CUSTOMER SHOP
 - [ ] Initialize Next.js app in `frontend/` with TypeScript & Tailwind CSS
