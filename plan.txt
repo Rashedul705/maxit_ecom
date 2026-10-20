@@ -128,11 +128,11 @@ maxitshop/
 - [x] Commit Step 1 to git
 
 ### STEP 2: SECURITY & ENVIRONMENT
-- [ ] Configure root `.gitignore` with all rules (node_modules, .next, dist, .env, .env.*, !.env.example, backend/.env, frontend/.env, frontend/.env.local)
-- [ ] Create `backend/.env.example` and local `backend/.env`
-- [ ] Create `frontend/.env.example` and local `frontend/.env.local`
-- [ ] Verify no hardcoded secrets or localhost URLs exist in git-tracked files
-- [ ] Commit Step 2 to git
+- [x] Configure root `.gitignore` with all rules (node_modules, .next, dist, .env, .env.*, !.env.example, backend/.env, frontend/.env, frontend/.env.local)
+- [x] Create `backend/.env.example` and local `backend/.env`
+- [x] Create `frontend/.env.example` and local `frontend/.env.local`
+- [x] Verify no hardcoded secrets or localhost URLs exist in git-tracked files
+- [x] Commit Step 2 to git
 
 ### STEP 3: DESIGN STUDY (BDSHOP.COM)
 - [ ] Open https://bdshop.com/ via browser subagent and study desktop & mobile layouts (Home, Category, Product, Cart/Checkout, Track Order)
