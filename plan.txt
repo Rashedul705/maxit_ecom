@@ -135,10 +135,10 @@ maxitshop/
 - [x] Commit Step 2 to git
 
 ### STEP 3: DESIGN STUDY (BDSHOP.COM)
-- [ ] Open https://bdshop.com/ via browser subagent and study desktop & mobile layouts (Home, Category, Product, Cart/Checkout, Track Order)
-- [ ] Capture reference screenshots to `docs/reference/`
-- [ ] Create `DESIGN.md` documenting color palette, typography, header, sections, product cards, category page, product page, footer, spacing & shadows
-- [ ] Commit Step 3 to git
+- [x] Open https://bdshop.com/ via browser subagent and study desktop & mobile layouts (Home, Category, Product, Cart/Checkout, Track Order)
+- [x] Capture reference screenshots to `docs/reference/`
+- [x] Create `DESIGN.md` documenting color palette, typography, header, sections, product cards, category page, product page, footer, spacing & shadows
+- [x] Commit Step 3 to git
 
 ### STEP 4: BACKEND DEVELOPMENT
 - [ ] Initialize Express backend in `backend/package.json`
