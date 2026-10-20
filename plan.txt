@@ -15,6 +15,7 @@ maxitshop/
 ├── backend/
 │   ├── controllers/
 │   │   ├── adminController.js
+│   │   ├── bannerController.js
 │   │   ├── categoryController.js
 │   │   ├── orderController.js
 │   │   └── productController.js
@@ -30,6 +31,7 @@ maxitshop/
 │   │   └── productRoutes.js
 │   ├── services/
 │   │   ├── adminService.js
+│   │   ├── bannerService.js
 │   │   ├── categoryService.js
 │   │   ├── orderService.js
 │   │   └── productService.js
@@ -38,7 +40,8 @@ maxitshop/
 │   ├── .env
 │   ├── .env.example
 │   ├── package.json
-│   └── server.js
+│   ├── server.js
+│   └── test_api.js
 ├── frontend/
 │   ├── public/
 │   ├── src/
@@ -57,7 +60,8 @@ maxitshop/
 │   │   │   │   ├── faq/page.tsx
 │   │   │   │   ├── shipping-returns/page.tsx
 │   │   │   │   ├── privacy/page.tsx
-│   │   │   │   └── terms/page.tsx
+│   │   │   │   ├── terms/page.tsx
+│   │   │   │   └── ShopLayoutClient.tsx
 │   │   │   ├── admin/
 │   │   │   │   ├── layout.tsx
 │   │   │   │   ├── page.tsx
@@ -74,6 +78,10 @@ maxitshop/
 │   │   │   │   ├── MobileDrawer.tsx
 │   │   │   │   ├── BannerSlider.tsx
 │   │   │   │   ├── ProductCard.tsx
+│   │   │   │   ├── ProductInteractiveView.tsx
+│   │   │   │   ├── SpeciallyForYou.tsx
+│   │   │   │   ├── CategoryFilterSidebar.tsx
+│   │   │   │   ├── CategorySortBar.tsx
 │   │   │   │   ├── CartDrawer.tsx
 │   │   │   │   ├── Footer.tsx
 │   │   │   │   └── FloatingSupport.tsx
@@ -84,14 +92,13 @@ maxitshop/
 │   │   ├── lib/
 │   │   │   ├── api.ts
 │   │   │   ├── cartContext.tsx
-│   │   │   ├── toastContext.tsx
 │   │   │   └── types.ts
 │   │   └── middleware.ts
 │   ├── .env.local
 │   ├── .env.example
 │   ├── package.json
 │   ├── tsconfig.json
-│   └── tailwind.config.ts
+│   └── next.config.ts
 ├── docs/
 │   └── reference/
 ├── .gitignore
@@ -176,13 +183,60 @@ maxitshop/
 - [x] Commit Step 6 to git
 
 ### STEP 7: VERIFICATION & AUDIT
-- [ ] Run both Backend (port 5000) and Frontend (port 3000) concurrently
-- [ ] Use browser subagent to execute full customer journey: Home -> Search -> Category filter -> Product view -> Add to cart -> Checkout -> Track order
-- [ ] Use browser subagent to execute Admin journey: Login -> Dashboard -> Product management -> Order status update -> Print invoice
-- [ ] Side-by-side visual comparison between bdshop.com and maxitshop, log visual differences in plan.txt and polish
-- [ ] Run `npm run build` in frontend to guarantee zero compile or TypeScript errors
-- [ ] Update `README.md` with complete documentation, ports, run instructions, and roadmap
-- [ ] Commit Step 7 to git
+- [x] Run both Backend (port 5000) and Frontend (port 3000) concurrently
+- [x] Use browser subagent to execute full customer journey: Home -> Search -> Category filter -> Product view -> Add to cart -> Checkout -> Track order
+- [x] Use browser subagent to execute Admin journey: Login -> Dashboard -> Product management -> Order status update -> Print invoice
+- [x] Side-by-side visual comparison between bdshop.com and maxitshop, log visual differences in plan.txt and polish
+- [x] Run `npm run build` in frontend to guarantee zero compile or TypeScript errors
+- [x] Update `README.md` with complete documentation, ports, run instructions, and roadmap
+- [x] Commit Step 7 to git
+
+## Side-by-Side Visual Comparison (bdshop.com vs maxitshop)
+1. **Top Utility Bar**:
+   - bdshop.com: Dark bar with hotline, hours, track order, currency.
+   - maxitshop: Replicated dark slate bar (`#0F172A`) with hotline (`+880 1700-000000`), hours, 100% Genuine trust badge, Track Order link, and BDT (৳) currency indicator.
+   - Status: Aligned and polished.
+2. **Main Header & Search**:
+   - bdshop.com: Logo left, wide search input center with category selector, right cart & account links.
+   - maxitshop: Modern `maxitshop` text logo with blue & orange accents, full-width search bar with real-time debounced suggestions from API, Track Order shortcut, and Cart drawer trigger displaying total item count and live BDT subtotal.
+   - Status: Aligned and polished.
+3. **Mega Menu & Category Navigation**:
+   - bdshop.com: "Shop by Category" dropdown button on left, horizontal links across top.
+   - maxitshop: Replicated with multi-tier flyout subcategories, horizontal navigation (Home, Solar Energy, Phones, Laptops, Watches, Appliances, Accessories), and animated "Flash Deals" / "New In" pills.
+   - Status: Aligned and polished.
+4. **Hero Banner Slider**:
+   - bdshop.com: Carousel banner slider showcasing seasonal consumer promotions.
+   - maxitshop: 16:5 responsive banner slider with smooth autoplay, previous/next controls, pagination indicator dots, promo badges, and direct category links.
+   - Status: Aligned and polished.
+5. **Trust & Value Proposition Bar**:
+   - bdshop.com: 4 icons highlighting COD, delivery, genuine products, and warranty.
+   - maxitshop: Card grid with matching icons (Truck, Zap, ShieldCheck, RefreshCcw) and localized Bangladesh copy.
+   - Status: Aligned and polished.
+6. **Product Card Anatomy**:
+   - bdshop.com: 1:1 image, discount badge top-left, brand uppercase, 2-line clamped title, stock dot, ৳ selling price, old strikethrough price, "Save ৳X" badge, add to cart button.
+   - maxitshop: Identical anatomy with smooth hover zoom, red percentage badge, "Deal"/"New" tags, "In Stock" dot, BDT (৳) price block, "Save ৳X" red badge, and "Add to Order" CTA.
+   - Status: Aligned and polished.
+7. **Mobile Experience (390px)**:
+   - bdshop.com: Mobile header, slide-out drawer with accordion categories, 2-column product grid, floating WhatsApp button.
+   - maxitshop: Identical 2-column mobile layout, responsive hamburger drawer with expandable subcategories, sticky mobile header, and floating WhatsApp & Hotline support pills.
+   - Status: Aligned and polished.
+
+## What is Done
+- Complete folder structure (`frontend/`, `backend/`, `docs/reference/`, `DESIGN.md`, `README.md`, `AGENTS.md`, `plan.txt`).
+- Express REST API running on port 5000 with clean controller/service/data architecture and mock data ready for MongoDB.
+- Full API contract returning `{ success, data, message }` across 15+ endpoints.
+- Next.js (App Router, TypeScript, Tailwind CSS) frontend running on port 3000.
+- Customer shop pages: Home, Category with filters and sorting, Product Detail with tabs and gallery, Search, Full Cart, Checkout with cascading BD divisions/districts/areas, Track Order with timeline, and 6 static information pages.
+- Admin portal: Token authentication, Next.js middleware route protection, KPI dashboard, product management table (add, edit, delete), orders fulfillment table with status update and printable invoice modal.
+- End-to-end verification and successful `npm run build` production compilation.
+
+## What is Next (Production Roadmap)
+1. **MongoDB with Mongoose Migration**: Replace `backend/data/mock.js` by connecting Mongoose models (`Product`, `Category`, `Order`, `Banner`) directly inside `backend/services/` without altering API routes.
+2. **imgbb Image Upload**: Implement real image uploads in `POST /api/v1/admin/products` utilizing `IMGBB_API_KEY`.
+3. **Real Authentication**: Upgrade from `ADMIN_TOKEN` to JWT-based user/admin authentication with bcrypt password hashing and customer profile dashboards.
+4. **Payment Gateway Integration**: Add bKash, Nagad, and SSLCommerz payment gateways alongside Cash on Delivery.
+5. **Courier Logistics API**: Integrate courier APIs (Steadfast, Pathao, RedX) for automated consignment generation and tracking webhook synchronization.
+6. **SMS Notifications**: Integrate Bangladesh SMS gateways (e.g. Greenweb, BulkSMSBD) for instant order confirmation and dispatch alerts to customer phone numbers.
 
 ## Assumptions
 - Subdirectory `C:\Users\Rashedul\.gemini\antigravity-ide\scratch\maxitshop` serves as the project root since no active workspace was bound.
