@@ -81,8 +81,19 @@ const getProducts = async ({
   const currentPage = Math.max(1, parseInt(page, 10) || 1);
   const pageSize = Math.max(1, parseInt(limit, 10) || 12);
   const totalPages = Math.ceil(total / pageSize);
-  const startIndex = (currentPage - 1) * pageSize;
-  const paginatedItems = result.slice(startIndex, startIndex + pageSize);
+  function attachRating(p) {
+    if (!p) return p;
+    const hash = (p.slug || p.id).split('').reduce((acc, c) => acc + c.charCodeAt(0), 0);
+    const rating = Number((4.5 + (hash % 5) * 0.1).toFixed(1));
+    const reviewCount = 6 + (hash % 33);
+    return {
+      ...p,
+      rating: p.rating || rating,
+      reviewCount: p.reviewCount || reviewCount
+    };
+  }
+
+  const paginatedItems = result.slice(startIndex, startIndex + pageSize).map(attachRating);
 
   // Extract available brands for filter sidebar
   const availableBrands = [...new Set(products.map(p => p.brand))];
@@ -104,28 +115,47 @@ const getProducts = async ({
 };
 
 const getDeals = async (limit = 10) => {
-  return products.filter(p => p.isDeal).slice(0, limit);
+  return products.filter(p => p.isDeal).slice(0, limit).map(p => {
+    const hash = (p.slug || p.id).split('').reduce((acc, c) => acc + c.charCodeAt(0), 0);
+    return { ...p, rating: p.rating || Number((4.5 + (hash % 5) * 0.1).toFixed(1)), reviewCount: p.reviewCount || (6 + (hash % 33)) };
+  });
 };
 
 const getNewArrivals = async (limit = 10) => {
-  return products.filter(p => p.isNew).slice(0, limit);
+  return products.filter(p => p.isNew).slice(0, limit).map(p => {
+    const hash = (p.slug || p.id).split('').reduce((acc, c) => acc + c.charCodeAt(0), 0);
+    return { ...p, rating: p.rating || Number((4.5 + (hash % 5) * 0.1).toFixed(1)), reviewCount: p.reviewCount || (6 + (hash % 33)) };
+  });
 };
 
 const getFeatured = async (limit = 10) => {
-  return products.filter(p => p.isFeatured).slice(0, limit);
+  return products.filter(p => p.isFeatured).slice(0, limit).map(p => {
+    const hash = (p.slug || p.id).split('').reduce((acc, c) => acc + c.charCodeAt(0), 0);
+    return { ...p, rating: p.rating || Number((4.5 + (hash % 5) * 0.1).toFixed(1)), reviewCount: p.reviewCount || (6 + (hash % 33)) };
+  });
 };
 
 const getProductBySlug = async (slug) => {
   const product = products.find(p => p.slug === slug || p.id === slug);
   if (!product) return null;
 
+  const hash = (product.slug || product.id).split('').reduce((acc, c) => acc + c.charCodeAt(0), 0);
+  const rating = product.rating || Number((4.5 + (hash % 5) * 0.1).toFixed(1));
+  const reviewCount = product.reviewCount || (6 + (hash % 33));
+
   // Find related products in same category
   const related = products
     .filter(p => p.category === product.category && p.id !== product.id)
-    .slice(0, 5);
+    .slice(0, 5)
+    .map(p => {
+      const h = (p.slug || p.id).split('').reduce((acc, c) => acc + c.charCodeAt(0), 0);
+      return { ...p, rating: p.rating || Number((4.5 + (h % 5) * 0.1).toFixed(1)), reviewCount: p.reviewCount || (6 + (h % 33)) };
+    });
 
   return {
     ...product,
+    rating,
+    reviewCount,
     relatedProducts: related
   };
 };

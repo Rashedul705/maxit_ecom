@@ -7,7 +7,9 @@ import {
   Order,
   DashboardStats,
   AdminAuthResponse,
-  AdminUser
+  AdminUser,
+  Review,
+  ProductReviewsResponse
 } from './types';
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api/v1';
@@ -72,6 +74,16 @@ export const api = {
   getNewArrivals: (limit = 10) => fetchJson<Product[]>(`${API_BASE}/products/new?limit=${limit}`),
   getFeatured: (limit = 10) => fetchJson<Product[]>(`${API_BASE}/products/featured?limit=${limit}`),
   getProduct: (slug: string) => fetchJson<Product>(`${API_BASE}/products/${slug}`),
+  getProductReviews: (slug: string) => fetchJson<ProductReviewsResponse>(`${API_BASE}/products/${slug}/reviews`),
+  submitProductReview: (slug: string, review: { author: string; rating: number; title: string; comment: string }) =>
+    fetchJson<Review>(`${API_BASE}/products/${slug}/reviews`, {
+      method: 'POST',
+      body: JSON.stringify(review)
+    }),
+  voteReviewHelpful: (reviewId: string) =>
+    fetchJson<{ helpfulCount: number }>(`${API_BASE}/products/reviews/${reviewId}/helpful`, {
+      method: 'POST'
+    }),
 
   // Live Search Suggestions
   getSearchSuggestions: (q: string) => {

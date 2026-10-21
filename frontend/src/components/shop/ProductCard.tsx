@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ShoppingBag, Flame, Sparkles } from 'lucide-react';
+import { ShoppingBag, Flame, Sparkles, Star } from 'lucide-react';
 import { Product } from '@/lib/types';
 import { useCart } from '@/lib/cartContext';
 
@@ -84,11 +84,24 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       </div>
 
       {/* Title */}
-      <Link href={`/product/${product.slug}`} className="block mb-2 flex-1">
+      <Link href={`/product/${product.slug}`} className="block mb-1.5 flex-1">
         <h3 className="text-[13px] sm:text-sm font-semibold text-slate-800 line-clamp-2 min-h-[38px] group-hover:text-blue-600 transition-colors">
           {product.title}
         </h3>
       </Link>
+
+      {/* Star Rating & Review Count */}
+      <div className="flex items-center gap-1.5 mb-2 text-[11px]">
+        <div className="flex items-center text-amber-400">
+          <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+        </div>
+        <span className="font-bold text-slate-700">
+          {product.rating ? Number(product.rating).toFixed(1) : '4.8'}
+        </span>
+        <span className="text-[10px] text-slate-400">
+          ({product.reviewCount || 12})
+        </span>
+      </div>
 
       {/* Price Block */}
       <div className="mt-auto pt-2 border-t border-slate-100 flex flex-col gap-1 mb-2.5">

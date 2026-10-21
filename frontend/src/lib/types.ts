@@ -38,10 +38,42 @@ export interface Product {
   isFeatured: boolean;
   isDeal: boolean;
   images: string[];
+  rating?: number;
+  reviewCount?: number;
   shortDescription: string;
   description: string;
   specs: Record<string, string>;
   relatedProducts?: Product[];
+}
+
+export interface Review {
+  id: string;
+  productSlug: string;
+  productId: string;
+  author: string;
+  rating: number;
+  title: string;
+  comment: string;
+  verifiedPurchase: boolean;
+  helpfulCount: number;
+  createdAt: string;
+}
+
+export interface ReviewSummary {
+  averageRating: number;
+  totalReviews: number;
+  distribution: {
+    5: number;
+    4: number;
+    3: number;
+    2: number;
+    1: number;
+  };
+}
+
+export interface ProductReviewsResponse {
+  reviews: Review[];
+  summary: ReviewSummary;
 }
 
 export interface ProductsResponse {

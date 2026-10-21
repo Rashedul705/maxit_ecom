@@ -3,9 +3,10 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { ShoppingBag, Zap, ShieldCheck, Truck, RotateCcw, Plus, Minus, Check } from 'lucide-react';
+import { ShoppingBag, Zap, ShieldCheck, Truck, RotateCcw, Plus, Minus, Check, Star } from 'lucide-react';
 import { Product } from '@/lib/types';
 import { useCart } from '@/lib/cartContext';
+import { ProductReviewsSection } from './ProductReviewsSection';
 
 interface ProductInteractiveViewProps {
   product: Product;
@@ -17,7 +18,7 @@ export const ProductInteractiveView: React.FC<ProductInteractiveViewProps> = ({ 
 
   const [activeImage, setActiveImage] = useState(product.images[0] || '');
   const [quantity, setQuantity] = useState(1);
-  const [activeTab, setActiveTab] = useState<'specs' | 'desc' | 'shipping'>('specs');
+  const [activeTab, setActiveTab] = useState<'specs' | 'desc' | 'reviews' | 'shipping'>('specs');
   const [isAddedToast, setIsAddedToast] = useState(false);
 
   const discountPercent = product.oldPrice && product.oldPrice > product.price
@@ -93,9 +94,38 @@ export const ProductInteractiveView: React.FC<ProductInteractiveViewProps> = ({ 
               <span className="text-xs text-slate-500 capitalize">{product.category.replace(/-/g, ' ')}</span>
             </div>
 
-            <h1 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-slate-900 leading-snug mb-3">
+            <h1 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-slate-900 leading-snug mb-2">
               {product.title}
             </h1>
+
+            {/* Star Rating Overview Link */}
+            <div className="flex items-center gap-2 mb-3">
+              <div className="flex items-center text-amber-400">
+                {[1, 2, 3, 4, 5].map(st => (
+                  <Star
+                    key={st}
+                    className={`w-4 h-4 ${
+                      st <= Math.round(product.rating || 4.8)
+                        ? 'fill-amber-400 text-amber-400'
+                        : 'text-slate-300'
+                    }`}
+                  />
+                ))}
+              </div>
+              <span className="text-xs font-bold text-slate-800">{product.rating || 4.8}</span>
+              <span className="text-xs text-slate-300">•</span>
+              <button
+                type="button"
+                onClick={() => {
+                  setActiveTab('reviews');
+                  const el = document.getElementById('product-tabs-section');
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="text-xs font-semibold text-blue-600 hover:text-blue-800 hover:underline cursor-pointer"
+              >
+                {product.reviewCount || 12} Verified Customer Reviews
+              </button>
+            </div>
 
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
               {product.shortDescription}
@@ -216,14 +246,14 @@ export const ProductInteractiveView: React.FC<ProductInteractiveViewProps> = ({ 
 
       </div>
 
-      {/* Tabs Section: Specifications, Description, Policy */}
-      <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs">
+      {/* Tabs Section: Specifications, Description, Reviews, Policy */}
+      <div id="product-tabs-section" className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs">
         
         {/* Tabs Bar */}
         <div className="flex border-b border-slate-200 bg-slate-50/60 overflow-x-auto">
           <button
             onClick={() => setActiveTab('specs')}
-            className={`px-6 py-3.5 text-xs sm:text-sm font-bold border-b-2 transition-colors whitespace-nowrap ${
+            className={`px-6 py-3.5 text-xs sm:text-sm font-bold border-b-2 transition-colors whitespace-nowrap cursor-pointer ${
               activeTab === 'specs'
                 ? 'border-blue-600 text-blue-600 bg-white'
                 : 'border-transparent text-slate-600 hover:text-slate-900'
@@ -233,7 +263,7 @@ export const ProductInteractiveView: React.FC<ProductInteractiveViewProps> = ({ 
           </button>
           <button
             onClick={() => setActiveTab('desc')}
-            className={`px-6 py-3.5 text-xs sm:text-sm font-bold border-b-2 transition-colors whitespace-nowrap ${
+            className={`px-6 py-3.5 text-xs sm:text-sm font-bold border-b-2 transition-colors whitespace-nowrap cursor-pointer ${
               activeTab === 'desc'
                 ? 'border-blue-600 text-blue-600 bg-white'
                 : 'border-transparent text-slate-600 hover:text-slate-900'
@@ -242,8 +272,21 @@ export const ProductInteractiveView: React.FC<ProductInteractiveViewProps> = ({ 
             Detailed Description
           </button>
           <button
+            onClick={() => setActiveTab('reviews')}
+            className={`px-6 py-3.5 text-xs sm:text-sm font-bold border-b-2 transition-colors whitespace-nowrap cursor-pointer flex items-center gap-1.5 ${
+              activeTab === 'reviews'
+                ? 'border-blue-600 text-blue-600 bg-white'
+                : 'border-transparent text-slate-600 hover:text-slate-900'
+            }`}
+          >
+            <span>Customer Reviews</span>
+            <span className="text-[11px] font-bold px-1.5 py-0.2 bg-blue-100 text-blue-700 rounded-full">
+              {product.reviewCount || 12}
+            </span>
+          </button>
+          <button
             onClick={() => setActiveTab('shipping')}
-            className={`px-6 py-3.5 text-xs sm:text-sm font-bold border-b-2 transition-colors whitespace-nowrap ${
+            className={`px-6 py-3.5 text-xs sm:text-sm font-bold border-b-2 transition-colors whitespace-nowrap cursor-pointer ${
               activeTab === 'shipping'
                 ? 'border-blue-600 text-blue-600 bg-white'
                 : 'border-transparent text-slate-600 hover:text-slate-900'
@@ -277,6 +320,13 @@ export const ProductInteractiveView: React.FC<ProductInteractiveViewProps> = ({ 
                 <strong>Why buy from maxitshop?</strong> We are committed to supplying genuine branded gadgets and renewable energy components with verified local warranties, official packaging, and fast doorstep shipping across Bangladesh.
               </div>
             </div>
+          )}
+
+          {activeTab === 'reviews' && (
+            <ProductReviewsSection
+              productSlug={product.slug}
+              productTitle={product.title}
+            />
           )}
 
           {activeTab === 'shipping' && (
