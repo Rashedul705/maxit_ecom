@@ -11,8 +11,19 @@ interface SpeciallyForYouProps {
   totalAvailable: number;
 }
 
+const PAGE_SIZE = 10;
+
 export const SpeciallyForYou: React.FC<SpeciallyForYouProps> = ({ initialProducts, totalAvailable }) => {
-  const [products, setProducts] = useState<Product[]>(initialProducts);
+  // Deduplicate initialProducts to ensure no duplicate keys
+  const [products, setProducts] = useState<Product[]>(() => {
+    const seen = new Set<string>();
+    return (initialProducts || []).filter(p => {
+      if (seen.has(p.id)) return false;
+      seen.add(p.id);
+      return true;
+    });
+  });
+
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(initialProducts.length < totalAvailable);
@@ -22,15 +33,21 @@ export const SpeciallyForYou: React.FC<SpeciallyForYouProps> = ({ initialProduct
     try {
       setLoading(true);
       const nextPage = page + 1;
-      const res = await api.getProducts({ page: nextPage, limit: 8 });
-      if (res.items.length === 0) {
+      const res = await api.getProducts({ page: nextPage, limit: PAGE_SIZE });
+
+      if (!res.items || res.items.length === 0) {
         setHasMore(false);
       } else {
-        setProducts(prev => [...prev, ...res.items]);
+        setProducts(prev => {
+          const existingIds = new Set(prev.map(p => p.id));
+          const uniqueNew = res.items.filter(p => !existingIds.has(p.id));
+          const updated = [...prev, ...uniqueNew];
+          if (updated.length >= res.pagination.total || !res.pagination.hasNext) {
+            setHasMore(false);
+          }
+          return updated;
+        });
         setPage(nextPage);
-        if (products.length + res.items.length >= res.pagination.total) {
-          setHasMore(false);
-        }
       }
     } catch (err) {
       console.error('Failed to load more products:', err);
@@ -52,7 +69,7 @@ export const SpeciallyForYou: React.FC<SpeciallyForYouProps> = ({ initialProduct
           <button
             onClick={loadMore}
             disabled={loading}
-            className="px-8 py-3 bg-white hover:bg-slate-50 text-blue-600 font-bold text-sm rounded-xl border border-blue-200 hover:border-blue-400 shadow-sm transition-all inline-flex items-center gap-2 hover:shadow-md"
+            className="px-8 py-3 bg-white hover:bg-slate-50 text-blue-600 font-bold text-sm rounded-xl border border-blue-200 hover:border-blue-400 shadow-sm transition-all inline-flex items-center gap-2 hover:shadow-md cursor-pointer disabled:opacity-60"
           >
             {loading ? (
               <>
