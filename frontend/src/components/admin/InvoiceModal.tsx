@@ -54,7 +54,7 @@ export const InvoiceModal: React.FC<InvoiceModalProps> = ({ order, onClose }) =>
                   M
                 </div>
                 <span className="text-xl font-black text-slate-900">
-                  maxit<span className="text-orange-500">shop</span>
+                  MaxiT<span className="text-orange-500">Shop</span>
                 </span>
               </div>
               <p className="text-[11px] text-slate-500">Official E-Commerce Store</p>

@@ -8,10 +8,10 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "maxitshop | Online Shopping in Bangladesh - Solar, Laptops, Gadgets",
-  description: "maxitshop is Bangladesh's trusted e-commerce platform for Solar Panels, Inverters, Laptops, Smartphones, Smart Watches, and Home Appliances with Cash on Delivery nationwide.",
-  keywords: "maxitshop, bdshop, online shopping bangladesh, solar panels bd, laptops bd, smartphones dhaka, cash on delivery",
-  authors: [{ name: "maxitshop" }],
+  title: "MaxiTShop | Online Shopping in Bangladesh - Solar, Laptops, Gadgets",
+  description: "MaxiTShop is Bangladesh's trusted e-commerce platform for Solar Panels, Inverters, Laptops, Smartphones, Smart Watches, and Home Appliances with Cash on Delivery nationwide.",
+  keywords: "MaxiTShop, maxitshop, online shopping bangladesh, solar panels bd, laptops bd, smartphones dhaka, cash on delivery",
+  authors: [{ name: "MaxiTShop" }],
 };
 
 export default function RootLayout({

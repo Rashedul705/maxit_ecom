@@ -12,8 +12,8 @@ interface SearchPageProps {
 export async function generateMetadata({ searchParams }: SearchPageProps): Promise<Metadata> {
   const { q } = await searchParams;
   return {
-    title: q ? `Search results for "${q}" | maxitshop` : 'Search Products | maxitshop',
-    description: 'Find products on maxitshop Bangladesh with best deals and Cash on Delivery.',
+    title: q ? `Search results for "${q}" | MaxiTShop` : 'Search Products | MaxiTShop',
+    description: 'Find products on MaxiTShop Bangladesh with best deals and Cash on Delivery.',
   };
 }
 

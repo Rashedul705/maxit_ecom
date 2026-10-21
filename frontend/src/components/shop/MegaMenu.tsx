@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Menu, ChevronDown, Flame, Sparkles } from 'lucide-react';
+import { Menu, ChevronDown, ChevronRight, Home, Flame, Truck, Sparkles, Folder } from 'lucide-react';
 import { Category } from '@/lib/types';
 
 interface MegaMenuProps {
@@ -11,127 +11,155 @@ interface MegaMenuProps {
 
 export const MegaMenu: React.FC<MegaMenuProps> = ({ categories }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeCategoryId, setActiveCategoryId] = useState<string | null>(
+    categories[0]?.id || null
+  );
+
+  const activeCategory = categories.find((c) => c.id === activeCategoryId) || categories[0];
 
   return (
-    <nav className="hidden lg:block bg-slate-900 text-white border-b border-slate-800">
+    <nav className="hidden lg:block bg-[#1B429B] text-white shadow-md relative z-30">
       <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
         
-        {/* Categories Dropdown Trigger */}
-        <div 
+        {/* Left: Shop by Category Trigger & Full Mega Menu */}
+        <div
           className="relative"
           onMouseEnter={() => setIsOpen(true)}
           onMouseLeave={() => setIsOpen(false)}
         >
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="flex items-center gap-2.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm px-5 py-3 transition-colors"
+            className="flex items-center gap-2.5 px-5 py-3 bg-[#112F75] hover:bg-[#0E2660] text-white font-semibold text-sm transition-colors cursor-pointer"
           >
             <Menu className="w-4 h-4" />
-            <span>Shop By Category</span>
-            <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
+            <span>Shop by Category</span>
+            <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
           </button>
 
-          {/* Mega Menu Dropdown */}
+          {/* Full-featured Mega Menu Dropdown */}
           {isOpen && (
-            <div className="absolute top-full left-0 w-80 bg-white text-slate-800 rounded-b-xl shadow-2xl border border-slate-200 py-2 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
-              {categories.map((cat) => (
-                <div key={cat.id} className="group/item relative px-3 py-2 hover:bg-blue-50 transition-colors">
-                  <Link
-                    href={`/category/${cat.slug}`}
-                    className="flex items-center justify-between font-medium text-sm text-slate-800 group-hover/item:text-blue-600"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    <span>{cat.name}</span>
-                    {cat.subcategories && cat.subcategories.length > 0 && (
-                      <span className="text-slate-400 group-hover/item:text-blue-600 text-xs">›</span>
-                    )}
-                  </Link>
-
-                  {/* Subcategories Flyout */}
-                  {cat.subcategories && cat.subcategories.length > 0 && (
-                    <div className="hidden group-hover/item:block absolute left-full top-0 w-64 bg-white rounded-r-xl shadow-2xl border border-slate-200 py-2 ml-0 z-50">
-                      <div className="px-4 py-1.5 text-xs font-bold text-slate-400 uppercase tracking-wider border-b border-slate-100 mb-1">
-                        {cat.name}
-                      </div>
-                      {cat.subcategories.map((sub) => (
-                        <Link
-                          key={sub.id}
-                          href={`/category/${cat.slug}?sub=${sub.slug}`}
-                          onClick={() => setIsOpen(false)}
-                          className="block px-4 py-2 text-sm text-slate-600 hover:text-blue-600 hover:bg-blue-50 transition-colors"
-                        >
-                          {sub.name}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
+            <div className="absolute top-full left-0 w-[860px] bg-white text-gray-800 rounded-b-xl shadow-2xl border border-gray-200 overflow-hidden z-50 animate-in fade-in slide-in-from-top-1 duration-150 grid grid-cols-12 min-h-[380px]">
+              {/* Left Categories List */}
+              <div className="col-span-4 bg-gray-50 border-r border-gray-100 py-2">
+                <div className="px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wider text-gray-400">
+                  All Categories
                 </div>
-              ))}
+                {categories.map((cat) => {
+                  const isActive = (activeCategory?.id === cat.id);
+                  return (
+                    <div
+                      key={cat.id}
+                      onMouseEnter={() => setActiveCategoryId(cat.id)}
+                      className={`flex items-center justify-between px-3.5 py-2.5 text-xs font-semibold cursor-pointer transition-all ${
+                        isActive
+                          ? 'bg-white text-blue-600 shadow-xs border-l-4 border-blue-600 font-bold'
+                          : 'text-gray-700 hover:bg-gray-100/70 hover:text-blue-600'
+                      }`}
+                    >
+                      <Link
+                        href={`/category/${cat.slug}`}
+                        onClick={() => setIsOpen(false)}
+                        className="flex-1 flex items-center gap-2"
+                      >
+                        <Folder className="w-3.5 h-3.5 text-blue-500 shrink-0" />
+                        <span className="truncate">{cat.name}</span>
+                      </Link>
+                      <ChevronRight className="w-3 h-3 text-gray-400" />
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Right Subcategories Grid */}
+              <div className="col-span-8 p-5 bg-white">
+                {activeCategory && (
+                  <div>
+                    <div className="flex items-center justify-between pb-3 mb-4 border-b border-gray-100">
+                      <h4 className="text-sm font-bold text-gray-900 flex items-center gap-2">
+                        <span>{activeCategory.name}</span>
+                        <span className="text-xs text-blue-600 font-normal">
+                          ({activeCategory.subcategories?.length || 0} subcategories)
+                        </span>
+                      </h4>
+                      <Link
+                        href={`/category/${activeCategory.slug}`}
+                        onClick={() => setIsOpen(false)}
+                        className="text-xs font-semibold text-blue-600 hover:underline flex items-center gap-1"
+                      >
+                        <span>View All</span>
+                        <ChevronRight className="w-3 h-3" />
+                      </Link>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-2.5">
+                      {activeCategory.subcategories && activeCategory.subcategories.length > 0 ? (
+                        activeCategory.subcategories.map((sub) => (
+                          <Link
+                            key={sub.id}
+                            href={`/category/${activeCategory.slug}?sub=${sub.slug}`}
+                            onClick={() => setIsOpen(false)}
+                            className="flex items-center gap-2 p-2 rounded-lg text-xs text-gray-700 hover:bg-blue-50 hover:text-blue-600 font-medium transition-colors group"
+                          >
+                            <ChevronRight className="w-3 h-3 text-blue-500 group-hover:translate-x-0.5 transition-transform" />
+                            <span className="truncate">{sub.name}</span>
+                          </Link>
+                        ))
+                      ) : (
+                        <p className="text-xs text-gray-400 italic col-span-2">No subcategories</p>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           )}
         </div>
 
-        {/* Primary Navigation Links */}
-        <div className="flex items-center space-x-1 text-sm font-medium">
+        {/* Center / Right: Horizontal Navigation Links matching the screenshot */}
+        <div className="flex items-center space-x-1 sm:space-x-2 text-sm font-semibold">
           <Link
             href="/"
-            className="px-3 py-3 text-slate-200 hover:text-white hover:bg-slate-800/80 rounded transition-colors"
+            className="flex items-center gap-1.5 px-3.5 py-3 text-white hover:bg-[#112F75] transition-colors"
           >
-            Home
+            <Home className="w-4 h-4 text-white/90" />
+            <span>Home</span>
           </Link>
-          <Link
-            href="/category/solar-green-energy"
-            className="px-3 py-3 text-slate-200 hover:text-white hover:bg-slate-800/80 rounded transition-colors"
-          >
-            Solar Energy
-          </Link>
-          <Link
-            href="/category/mobile-phones"
-            className="px-3 py-3 text-slate-200 hover:text-white hover:bg-slate-800/80 rounded transition-colors"
-          >
-            Phones
-          </Link>
-          <Link
-            href="/category/laptops"
-            className="px-3 py-3 text-slate-200 hover:text-white hover:bg-slate-800/80 rounded transition-colors"
-          >
-            Laptops
-          </Link>
-          <Link
-            href="/category/smart-watches"
-            className="px-3 py-3 text-slate-200 hover:text-white hover:bg-slate-800/80 rounded transition-colors"
-          >
-            Watches
-          </Link>
-          <Link
-            href="/category/home-appliances"
-            className="px-3 py-3 text-slate-200 hover:text-white hover:bg-slate-800/80 rounded transition-colors"
-          >
-            Home Appliances
-          </Link>
-          <Link
-            href="/category/accessories"
-            className="px-3 py-3 text-slate-200 hover:text-white hover:bg-slate-800/80 rounded transition-colors"
-          >
-            Accessories
-          </Link>
-        </div>
 
-        {/* Highlight Deals & New Badges */}
-        <div className="flex items-center space-x-2 text-xs font-semibold">
           <Link
-            href="/#deals"
-            className="flex items-center gap-1 bg-orange-500/20 text-orange-400 hover:bg-orange-500 hover:text-white px-2.5 py-1.5 rounded-full border border-orange-500/30 transition-all"
+            href="/search?deal=true"
+            className="flex items-center gap-1.5 px-3.5 py-3 text-yellow-300 hover:text-yellow-200 hover:bg-[#112F75] transition-colors"
           >
-            <Flame className="w-3.5 h-3.5 text-orange-400" />
-            <span>Flash Deals</span>
+            <Flame className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+            <span>Hot Deals</span>
           </Link>
+
           <Link
-            href="/#new-arrivals"
-            className="flex items-center gap-1 bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500 hover:text-white px-2.5 py-1.5 rounded-full border border-emerald-500/30 transition-all"
+            href="/search"
+            className="px-3.5 py-3 text-white hover:bg-[#112F75] transition-colors"
           >
-            <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
-            <span>New In</span>
+            All Products
+          </Link>
+
+          <Link
+            href="/about"
+            className="px-3.5 py-3 text-white hover:bg-[#112F75] transition-colors"
+          >
+            About
+          </Link>
+
+          <Link
+            href="/contact"
+            className="px-3.5 py-3 text-white hover:bg-[#112F75] transition-colors"
+          >
+            Contact
+          </Link>
+
+          <Link
+            href="/track-order"
+            className="flex items-center gap-1.5 px-3.5 py-3 text-white hover:bg-[#112F75] transition-colors"
+          >
+            <Truck className="w-4 h-4 text-white/90" />
+            <span>Track Order</span>
           </Link>
         </div>
       </div>

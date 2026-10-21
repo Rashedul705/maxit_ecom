@@ -31,7 +31,7 @@ export const AdminSidebar: React.FC = () => {
             M
           </div>
           <div>
-            <span className="font-extrabold text-base tracking-tight block">maxit<span className="text-orange-500">shop</span></span>
+            <span className="font-extrabold text-base tracking-tight block">MaxiT<span className="text-orange-500">Shop</span></span>
             <span className="text-[10px] font-semibold text-slate-400 block -mt-1">ADMIN CONSOLE</span>
           </div>
         </Link>

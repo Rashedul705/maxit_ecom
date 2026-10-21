@@ -1,8 +1,8 @@
 import React from 'react';
 
 export const metadata = {
-  title: 'Terms and Conditions | maxitshop Bangladesh',
-  description: 'Terms of service, warranty conditions, and purchase guidelines for maxitshop customers in Bangladesh.',
+  title: 'Terms and Conditions | MaxiTShop Bangladesh',
+  description: 'Terms of service, warranty conditions, and purchase guidelines for MaxiTShop customers in Bangladesh.',
 };
 
 export default function TermsPage() {

@@ -43,7 +43,7 @@ function AdminLoginContent() {
             <Lock className="w-7 h-7" />
           </div>
           <h1 className="text-2xl font-black text-slate-900">
-            maxit<span className="text-orange-500">shop</span> Staff Portal
+            MaxiT<span className="text-orange-500">Shop</span> Staff Portal
           </h1>
           <p className="text-xs text-slate-500 mt-1">
             Enter the authorized admin token to access management controls

@@ -56,16 +56,16 @@ export const Footer: React.FC = () => {
         
         {/* Col 1: About & Contact */}
         <div className="space-y-4">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 select-none">
             <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-extrabold text-lg">
               M
             </div>
             <span className="text-2xl font-black text-white">
-              maxit<span className="text-orange-500">shop</span>
+              MaxiT<span className="text-orange-500">Shop</span>
             </span>
           </div>
           <p className="text-xs text-slate-400 leading-relaxed">
-            maxitshop is a leading e-commerce platform in Bangladesh specializing in Green Solar Solutions, Flagship Smartphones, Laptops, Gadgets, and Smart Home Appliances.
+            MaxiTShop is a leading e-commerce platform in Bangladesh specializing in Green Solar Solutions, Flagship Smartphones, Laptops, Gadgets, and Smart Home Appliances.
           </p>
           <div className="space-y-2 text-xs text-slate-300">
             <div className="flex items-start gap-2">
@@ -144,7 +144,7 @@ export const Footer: React.FC = () => {
 
       {/* Bottom Copyright */}
       <div className="max-w-7xl mx-auto px-4 pt-6 border-t border-slate-800 text-center text-xs text-slate-500">
-        <p>© 2026 maxitshop. All rights reserved. Built for Bangladesh with Next.js & Express.</p>
+        <p>© 2026 MaxiiT. All rights reserved.</p>
       </div>
     </footer>
   );

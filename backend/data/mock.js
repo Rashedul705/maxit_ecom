@@ -135,8 +135,7 @@ const products = [
     isFeatured: true,
     isDeal: true,
     images: [
-      'https://images.unsplash.com/photo-1509391365360-2e959784a276?w=600&q=80',
-      'https://images.unsplash.com/photo-1508873696983-2df570464756?w=600&q=80'
+      'https://bdshop.com/assets/images/products/product_1768205736_6964ada8a2043.webp'
     ],
     shortDescription: 'High-efficiency 550W Tier-1 Mono PERC solar panel engineered for high ambient temperatures in Bangladesh.',
     description: 'The MaxitVolt 550W panel features 144 half-cut monocrystalline cells offering up to 21.3% conversion efficiency. Built with anti-reflective tempered glass and robust aluminum anodized frame, ideal for residential rooftops and industrial setups.',
@@ -162,7 +161,7 @@ const products = [
     isFeatured: true,
     isDeal: false,
     images: [
-      'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=80'
+      'https://bdshop.com/assets/images/products/product_1768725627_696c9c7b55d3f.webp'
     ],
     shortDescription: '3500W solar hybrid inverter with built-in 80A MPPT charge controller and LCD telemetry.',
     description: 'Intelligent energy management for load shedding prevention. Supports both grid feedback, battery priority, and solar direct pass-through for running air conditioners, refrigerators, and PCs.',
@@ -187,7 +186,7 @@ const products = [
     isFeatured: true,
     isDeal: false,
     images: [
-      'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=600&q=80'
+      'https://bdshop.com/assets/images/products/product_1769856742_697ddee6a579a.webp'
     ],
     shortDescription: 'Deep cycle 48V 100Ah Lithium Iron Phosphate battery with 6000+ lifecycle and smart BMS.',
     description: 'Wall-mounted lithium battery bank designed for modern hybrid solar systems. High thermal stability, zero maintenance, and compatible with all major hybrid inverters.',
@@ -212,7 +211,7 @@ const products = [
     isFeatured: false,
     isDeal: true,
     images: [
-      'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&q=80'
+      'https://bdshop.com/assets/images/products/product_1771053732_699022a460d40.webp'
     ],
     shortDescription: 'IP65 waterproof outdoor solar light with radar motion sensor and remote controller.',
     description: 'Ideal for rural roads, homestead pathways, gardens, and factory perimeter walls. Dusk to dawn operation with automatic brightness stepping when pedestrians or vehicles approach.',
@@ -237,7 +236,7 @@ const products = [
     isFeatured: false,
     isDeal: true,
     images: [
-      'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=80'
+      'https://bdshop.com/assets/images/products/product_1771130845_69914fdd4e877.webp'
     ],
     shortDescription: 'High precision 99% tracking efficiency MPPT charge controller with back-lit LCD.',
     description: 'Maximizes power harvesting from solar arrays even during cloudy monsoon weather in Bangladesh. Multi-stage battery charging prolongs battery life.',
@@ -261,7 +260,7 @@ const products = [
     isFeatured: false,
     isDeal: false,
     images: [
-      'https://images.unsplash.com/photo-1508873696983-2df570464756?w=600&q=80'
+      'https://bdshop.com/assets/images/products/product_1771517167_699734efa8a55.webp'
     ],
     shortDescription: 'Compact ETFE foldable solar kit with MC4 and DC outputs for portable power stations.',
     description: 'Designed for field workers, travelers, campers, and outdoor adventurers. Easily charges 12V battery banks, power stations, and smartphones via direct USB QC3.0.',

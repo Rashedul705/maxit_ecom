@@ -2,17 +2,17 @@ import React from 'react';
 import { ShieldCheck, Truck, Clock, Sparkles } from 'lucide-react';
 
 export const metadata = {
-  title: 'About Us | maxitshop Bangladesh',
-  description: 'Learn about maxitshop, the leading online e-commerce destination in Bangladesh for green energy, solar, laptops, and gadgets.',
+  title: 'About Us | MaxiTShop Bangladesh',
+  description: 'Learn about MaxiTShop, the leading online e-commerce destination in Bangladesh for green energy, solar, laptops, and gadgets.',
 };
 
 export default function AboutPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-12 space-y-8">
       <div className="bg-white rounded-2xl border border-slate-200 p-8 shadow-xs">
-        <h1 className="text-3xl font-black text-slate-900 mb-4">About maxitshop</h1>
+        <h1 className="text-3xl font-black text-slate-900 mb-4">About MaxiTShop</h1>
         <p className="text-slate-600 leading-relaxed text-sm mb-4">
-          maxitshop is a modern, high-tech e-commerce platform founded with a mission to deliver top-tier consumer electronics, genuine flagship laptops, mobile smartphones, and renewable solar power solutions to consumers and businesses across Bangladesh.
+          MaxiTShop is a modern, high-tech e-commerce platform founded with a mission to deliver top-tier consumer electronics, genuine flagship laptops, mobile smartphones, and renewable solar power solutions to consumers and businesses across Bangladesh.
         </p>
         <p className="text-slate-600 leading-relaxed text-sm mb-6">
           Inspired by the best practices of Bangladesh&apos;s leading retailers like BDShop, we focus on 100% genuine sourcing, honest warranty support, cash on delivery convenience, and swift fulfillment across all 64 districts.

@@ -2,8 +2,8 @@ import React from 'react';
 import { Phone, Mail, MapPin, Clock, MessageCircle } from 'lucide-react';
 
 export const metadata = {
-  title: 'Contact Us | maxitshop Bangladesh',
-  description: 'Reach maxitshop customer helpline, WhatsApp support, and office location in Panthapath, Dhaka.',
+  title: 'Contact Us | MaxiTShop Bangladesh',
+  description: 'Reach MaxiTShop customer helpline, WhatsApp support, and office location in Panthapath, Dhaka.',
 };
 
 export default function ContactPage() {

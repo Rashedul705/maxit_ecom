@@ -42,7 +42,7 @@ apiRouter.get('/health', (req, res) => {
     timestamp: new Date().toISOString(),
     uptime: process.uptime(),
     environment: process.env.NODE_ENV || 'development'
-  }, 'maxitshop API is operational');
+  }, 'MaxiTShop API is operational');
 });
 
 // Categories & Banners
@@ -65,10 +65,10 @@ app.use('/api/v1', apiRouter);
 // Root fallback
 app.get('/', (req, res) => {
   return successResponse(res, {
-    name: 'maxitshop API Server',
+    name: 'MaxiTShop API Server',
     version: '1.0.0',
     documentation: '/api/v1/health'
-  }, 'Welcome to maxitshop API Server');
+  }, 'Welcome to MaxiTShop API Server');
 });
 
 // 404 & Central Error Handling
@@ -78,7 +78,7 @@ app.use(errorHandler);
 // Start Server
 if (require.main === module) {
   app.listen(PORT, () => {
-    console.log(`🚀 maxitshop Express Server running on port ${PORT}`);
+    console.log(`🚀 MaxiTShop Express Server running on port ${PORT}`);
     console.log(`📡 Base API URL: http://localhost:${PORT}/api/v1`);
     console.log(`🔒 Admin Token Configured: ${process.env.ADMIN_TOKEN ? 'YES' : 'DEFAULT'}`);
   });

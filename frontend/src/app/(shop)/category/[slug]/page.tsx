@@ -25,12 +25,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   try {
     const category = await api.getCategory(slug);
     return {
-      title: `${category.name} in Bangladesh | maxitshop`,
-      description: `Buy original ${category.name} at lowest price in Bangladesh. 100% genuine products with Cash on Delivery at maxitshop.`,
+      title: `${category.name} in Bangladesh | MaxiTShop`,
+      description: `Buy original ${category.name} at lowest price in Bangladesh. 100% genuine products with Cash on Delivery at MaxiTShop.`,
     };
   } catch {
     return {
-      title: 'Category | maxitshop Bangladesh',
+      title: 'Category | MaxiTShop Bangladesh',
     };
   }
 }

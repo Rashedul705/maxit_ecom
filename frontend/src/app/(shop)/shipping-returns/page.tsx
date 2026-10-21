@@ -2,8 +2,8 @@ import React from 'react';
 import { Truck, RotateCcw, AlertTriangle, ShieldCheck } from 'lucide-react';
 
 export const metadata = {
-  title: 'Shipping and Returns | maxitshop Bangladesh',
-  description: 'Shipping rates, delivery schedules, and 7-day return guidelines for maxitshop customers in Bangladesh.',
+  title: 'Shipping and Returns | MaxiTShop Bangladesh',
+  description: 'Shipping rates, delivery schedules, and 7-day return guidelines for MaxiTShop customers in Bangladesh.',
 };
 
 export default function ShippingReturnsPage() {

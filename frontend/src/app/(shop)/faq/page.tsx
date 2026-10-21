@@ -1,8 +1,8 @@
 import React from 'react';
 
 export const metadata = {
-  title: 'FAQ | Frequently Asked Questions | maxitshop',
-  description: 'Find answers about ordering, cash on delivery, warranties, and shipping at maxitshop Bangladesh.',
+  title: 'FAQ | Frequently Asked Questions | MaxiTShop',
+  description: 'Find answers about ordering, cash on delivery, warranties, and shipping at MaxiTShop Bangladesh.',
 };
 
 export default function FAQPage() {

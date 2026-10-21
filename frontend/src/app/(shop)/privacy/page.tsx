@@ -1,8 +1,8 @@
 import React from 'react';
 
 export const metadata = {
-  title: 'Privacy Policy | maxitshop Bangladesh',
-  description: 'How maxitshop collects, protects, and respects customer personal information.',
+  title: 'Privacy Policy | MaxiTShop Bangladesh',
+  description: 'How MaxiTShop collects, protects, and respects customer personal information.',
 };
 
 export default function PrivacyPage() {

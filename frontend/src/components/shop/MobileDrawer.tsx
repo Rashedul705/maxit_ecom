@@ -36,11 +36,11 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, onClose, cat
         
         {/* Drawer Header */}
         <div className="p-4 bg-slate-900 text-white flex items-center justify-between">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 select-none">
             <div className="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center font-bold text-white text-base">
               M
             </div>
-            <span className="font-bold text-lg">maxit<span className="text-orange-500">shop</span></span>
+            <span className="font-black text-lg text-[#FF6A00]">MaxiT<span className="text-white">Shop</span></span>
           </div>
           <button
             onClick={onClose}

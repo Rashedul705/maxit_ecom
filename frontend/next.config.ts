@@ -13,6 +13,11 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'via.placeholder.com',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'bdshop.com',
+        pathname: '/**',
       }
     ],
   },

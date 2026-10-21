@@ -16,8 +16,8 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   try {
     const product = await api.getProduct(slug);
     return {
-      title: `${product.title} Price in Bangladesh | maxitshop`,
-      description: `${product.shortDescription} Buy original ${product.title} at best price in BD with Cash on Delivery at maxitshop.`,
+      title: `${product.title} Price in Bangladesh | MaxiTShop`,
+      description: `${product.shortDescription} Buy original ${product.title} at best price in BD with Cash on Delivery at MaxiTShop.`,
       openGraph: {
         title: product.title,
         description: product.shortDescription,
@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
     };
   } catch {
     return {
-      title: 'Product Not Found | maxitshop',
+      title: 'Product Not Found | MaxiTShop',
     };
   }
 }
