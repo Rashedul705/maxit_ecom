@@ -38,11 +38,11 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ categories }) => {
 
           {/* Full-featured Mega Menu Dropdown */}
           {isOpen && (
-            <div className="absolute top-full left-0 w-[860px] bg-white text-gray-800 rounded-b-xl shadow-2xl border border-gray-200 overflow-hidden z-50 animate-in fade-in slide-in-from-top-1 duration-150 grid grid-cols-12 min-h-[380px]">
+            <div className="absolute top-full left-0 w-[920px] bg-white text-gray-800 rounded-b-xl shadow-2xl border border-gray-200 overflow-hidden z-50 animate-in fade-in slide-in-from-top-1 duration-150 grid grid-cols-12 max-h-[500px]">
               {/* Left Categories List */}
-              <div className="col-span-4 bg-gray-50 border-r border-gray-100 py-2">
+              <div className="col-span-4 bg-gray-50 border-r border-gray-100 py-2 overflow-y-auto max-h-[500px]">
                 <div className="px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wider text-gray-400">
-                  All Categories
+                  All Categories ({categories.length})
                 </div>
                 {categories.map((cat) => {
                   const isActive = (activeCategory?.id === cat.id);
@@ -71,7 +71,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ categories }) => {
               </div>
 
               {/* Right Subcategories Grid */}
-              <div className="col-span-8 p-5 bg-white">
+              <div className="col-span-8 p-5 bg-white overflow-y-auto max-h-[500px]">
                 {activeCategory && (
                   <div>
                     <div className="flex items-center justify-between pb-3 mb-4 border-b border-gray-100">
@@ -105,7 +105,17 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ categories }) => {
                           </Link>
                         ))
                       ) : (
-                        <p className="text-xs text-gray-400 italic col-span-2">No subcategories</p>
+                        <div className="col-span-2 py-8 text-center bg-gray-50/70 rounded-xl border border-dashed border-gray-200">
+                          <p className="text-xs text-gray-500 mb-2.5">Browse all products in this category</p>
+                          <Link
+                            href={`/category/${activeCategory.slug}`}
+                            onClick={() => setIsOpen(false)}
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-bold transition-colors"
+                          >
+                            <span>Explore {activeCategory.name}</span>
+                            <ChevronRight className="w-3.5 h-3.5" />
+                          </Link>
+                        </div>
                       )}
                     </div>
                   </div>

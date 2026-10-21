@@ -1,4 +1,4 @@
-const { products } = require('../data/mock');
+const { products, categories } = require('../data/mock');
 
 const getProducts = async ({
   category,
@@ -12,9 +12,28 @@ const getProducts = async ({
 }) => {
   let result = [...products];
 
-  // Category filter (match parent or direct slug)
+  // Category filter (match parent or direct slug or subcategory)
   if (category) {
-    result = result.filter(p => p.category.toLowerCase() === category.toLowerCase());
+    const catSlug = category.toLowerCase().trim();
+    const relatedSlugs = new Set([catSlug]);
+
+    if (catSlug === 'solar-wind-energy' || catSlug === 'solar-green-energy') {
+      relatedSlugs.add('solar-wind-energy');
+      relatedSlugs.add('solar-green-energy');
+    }
+
+    // Add all subcategories under this parent
+    categories
+      .filter(c => c.parent && c.parent.toLowerCase() === catSlug)
+      .forEach(c => relatedSlugs.add(c.slug.toLowerCase()));
+
+    // If catSlug is itself a subcategory, also include parent's products if relevant
+    const found = categories.find(c => c.slug.toLowerCase() === catSlug);
+    if (found && found.parent) {
+      relatedSlugs.add(found.parent.toLowerCase());
+    }
+
+    result = result.filter(p => relatedSlugs.has(p.category.toLowerCase()));
   }
 
   // Search filter
