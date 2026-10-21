@@ -6,6 +6,7 @@ router.get('/', productController.getProducts);
 router.get('/deals', productController.getDeals);
 router.get('/new', productController.getNew);
 router.get('/featured', productController.getFeatured);
+router.get('/search/suggest', productController.getSearchSuggestions);
 router.get('/:slug', productController.getProductBySlug);
 
 module.exports = router;

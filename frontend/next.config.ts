@@ -18,6 +18,11 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'bdshop.com',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.bdshop.com',
+        pathname: '/**',
       }
     ],
   },
