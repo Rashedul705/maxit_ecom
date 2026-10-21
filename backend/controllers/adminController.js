@@ -59,7 +59,31 @@ const getDashboard = async (req, res, next) => {
   }
 };
 
+const login = async (req, res, next) => {
+  try {
+    const result = await adminService.adminLogin(req.body);
+    return successResponse(res, result, 'Admin authenticated successfully');
+  } catch (error) {
+    next(error);
+  }
+};
+
+const verifySession = async (req, res, next) => {
+  try {
+    const authHeader = req.headers['authorization'];
+    const customHeader = req.headers['x-admin-token'];
+    let token = customHeader || (authHeader && authHeader.startsWith('Bearer ') ? authHeader.split(' ')[1] : null);
+
+    const result = await adminService.verifyAdminSession(token);
+    return successResponse(res, result, 'Admin session is valid');
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
+  login,
+  verifySession,
   getOrders,
   updateOrderStatus,
   createProduct,

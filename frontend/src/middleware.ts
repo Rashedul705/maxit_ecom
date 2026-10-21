@@ -15,6 +15,15 @@ export function middleware(request: NextRequest) {
     }
   }
 
+  // If user already has admin_token and visits /admin/login, redirect to /admin
+  if (pathname === '/admin/login') {
+    const adminToken = request.cookies.get('admin_token')?.value;
+    if (adminToken) {
+      const redirectPath = request.nextUrl.searchParams.get('redirect') || '/admin';
+      return NextResponse.redirect(new URL(redirectPath, request.url));
+    }
+  }
+
   return NextResponse.next();
 }
 

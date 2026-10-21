@@ -1,18 +1,33 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { LayoutDashboard, Package, ShoppingCart, ExternalLink, LogOut, ShieldCheck } from 'lucide-react';
+import { AdminUser } from '@/lib/types';
 
 export const AdminSidebar: React.FC = () => {
   const pathname = usePathname();
   const router = useRouter();
+  const [adminUser, setAdminUser] = useState<AdminUser | null>(null);
+
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem('maxitshop_admin_user');
+      if (stored) {
+        setAdminUser(JSON.parse(stored));
+      }
+    } catch {
+      // ignore json parse error
+    }
+  }, []);
 
   const handleLogout = () => {
-    document.cookie = 'admin_token=; path=/; max-age=0';
+    document.cookie = 'admin_token=; path=/; max-age=0; SameSite=Lax';
     localStorage.removeItem('maxitshop_admin_token');
+    localStorage.removeItem('maxitshop_admin_user');
     router.push('/admin/login');
+    router.refresh();
   };
 
   const navItems = [
@@ -82,11 +97,15 @@ export const AdminSidebar: React.FC = () => {
 
       {/* Admin Footer / Logout */}
       <div className="p-4 border-t border-slate-800 space-y-2">
-        <div className="flex items-center gap-2 p-2 bg-slate-800/60 rounded-xl text-xs text-slate-300">
-          <ShieldCheck className="w-4 h-4 text-blue-400 shrink-0" />
+        <div className="flex items-center gap-2.5 p-2.5 bg-slate-800/60 rounded-xl text-xs text-slate-300 border border-slate-700/50">
+          <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
           <div className="min-w-0 flex-1">
-            <p className="font-bold truncate text-[11px]">Administrator</p>
-            <p className="text-[10px] text-slate-400">Authenticated Session</p>
+            <p className="font-bold truncate text-[11px] text-white">
+              {adminUser?.name || 'Administrator'}
+            </p>
+            <p className="text-[10px] text-slate-400 truncate">
+              {adminUser?.email || 'admin@maxitshop.com'}
+            </p>
           </div>
         </div>
 

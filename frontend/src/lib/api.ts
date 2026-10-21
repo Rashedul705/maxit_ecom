@@ -5,10 +5,12 @@ import {
   ProductsResponse,
   SearchSuggestion,
   Order,
-  DashboardStats
+  DashboardStats,
+  AdminAuthResponse,
+  AdminUser
 } from './types';
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001/api/v1';
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api/v1';
 
 async function fetchJson<T>(url: string, options: RequestInit = {}): Promise<T> {
   const defaultHeaders: HeadersInit = {
@@ -99,6 +101,16 @@ export const api = {
     if (phone) query.set('phone', phone);
     return fetchJson<Order[]>(`${API_BASE}/orders/track?${query.toString()}`);
   },
+
+  // Admin Auth APIs
+  adminLogin: (credentials: { email: string; password: string }) => fetchJson<AdminAuthResponse>(`${API_BASE}/admin/login`, {
+    method: 'POST',
+    body: JSON.stringify(credentials)
+  }),
+
+  verifyAdminSession: (token: string) => fetchJson<{ valid: boolean; user: AdminUser }>(`${API_BASE}/admin/verify`, {
+    headers: { 'x-admin-token': token }
+  }),
 
   // Admin APIs (token passed from localStorage or session)
   getAdminDashboard: (token: string) => fetchJson<DashboardStats>(`${API_BASE}/admin/dashboard`, {

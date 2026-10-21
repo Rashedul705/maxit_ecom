@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
+import { useRouter } from 'next/navigation';
 import { api } from '@/lib/api';
 import { Order } from '@/lib/types';
 import { AdminHeader } from '@/components/admin/AdminHeader';
@@ -8,6 +9,7 @@ import { InvoiceModal } from '@/components/admin/InvoiceModal';
 import { Search, Printer, Loader2, CheckCircle2 } from 'lucide-react';
 
 export default function AdminOrdersPage() {
+  const router = useRouter();
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -15,34 +17,60 @@ export default function AdminOrdersPage() {
   const [search, setSearch] = useState('');
   const [selectedInvoiceOrder, setSelectedInvoiceOrder] = useState<Order | null>(null);
 
-  const getToken = () => localStorage.getItem('maxitshop_admin_token') || 'admin_secret_token_123';
+  const handleAuthError = useCallback(() => {
+    document.cookie = 'admin_token=; path=/; max-age=0; SameSite=Lax';
+    localStorage.removeItem('maxitshop_admin_token');
+    localStorage.removeItem('maxitshop_admin_user');
+    router.push('/admin/login');
+  }, [router]);
 
-  const loadOrders = async () => {
+  const getToken = useCallback(() => {
+    const token = localStorage.getItem('maxitshop_admin_token');
+    if (!token) {
+      handleAuthError();
+      return '';
+    }
+    return token;
+  }, [handleAuthError]);
+
+  const loadOrders = useCallback(async () => {
     try {
       setLoading(true);
       const token = getToken();
+      if (!token) return;
       const res = await api.getAdminOrders(token);
       setOrders(res);
     } catch (err: unknown) {
       console.error('Failed to load admin orders:', err);
+      const isAuthError = (err as { status?: number })?.status === 401 || (err instanceof Error && err.message.toLowerCase().includes('unauthorized'));
+      if (isAuthError) {
+        handleAuthError();
+        return;
+      }
       const message = err instanceof Error ? err.message : 'Error fetching orders';
       setError(message);
     } finally {
       setLoading(false);
     }
-  };
+  }, [getToken, handleAuthError]);
 
   useEffect(() => {
     loadOrders();
-  }, []);
+  }, [loadOrders]);
 
   const handleStatusChange = async (orderId: string, newStatus: string) => {
     try {
       const token = getToken();
+      if (!token) return;
       const updated = await api.updateOrderStatus(orderId, newStatus, token);
       setOrders(prev => prev.map(o => (o.id === orderId ? updated : o)));
     } catch (err: unknown) {
       console.error('Failed to update status:', err);
+      const isAuthError = (err as { status?: number })?.status === 401 || (err instanceof Error && err.message.toLowerCase().includes('unauthorized'));
+      if (isAuthError) {
+        handleAuthError();
+        return;
+      }
       const message = err instanceof Error ? err.message : 'Status update failed';
       alert(message);
     }

@@ -1,13 +1,15 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { api } from '@/lib/api';
 import { Product } from '@/lib/types';
 import { AdminHeader } from '@/components/admin/AdminHeader';
 import { Search, Plus, Edit2, Trash2, X, Check, Loader2, AlertCircle } from 'lucide-react';
 
 export default function AdminProductsPage() {
+  const router = useRouter();
   const [products, setProducts] = useState<Product[]>([]);
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
@@ -28,7 +30,22 @@ export default function AdminProductsPage() {
   const [formShortDesc, setFormShortDesc] = useState('');
   const [formImageUrl, setFormImageUrl] = useState('');
 
-  const getToken = () => localStorage.getItem('maxitshop_admin_token') || 'admin_secret_token_123';
+  const getToken = useCallback(() => {
+    const token = localStorage.getItem('maxitshop_admin_token');
+    if (!token) {
+      document.cookie = 'admin_token=; path=/; max-age=0; SameSite=Lax';
+      router.push('/admin/login');
+      return '';
+    }
+    return token;
+  }, [router]);
+
+  const handleAuthError = useCallback(() => {
+    document.cookie = 'admin_token=; path=/; max-age=0; SameSite=Lax';
+    localStorage.removeItem('maxitshop_admin_token');
+    localStorage.removeItem('maxitshop_admin_user');
+    router.push('/admin/login');
+  }, [router]);
 
   const loadProducts = async () => {
     try {
@@ -45,8 +62,10 @@ export default function AdminProductsPage() {
   };
 
   useEffect(() => {
+    const token = getToken();
+    if (!token) return;
     loadProducts();
-  }, []);
+  }, [getToken]);
 
   const openAddModal = () => {
     setEditingProduct(null);
@@ -103,6 +122,11 @@ export default function AdminProductsPage() {
       loadProducts();
     } catch (err: unknown) {
       console.error('Failed to save product:', err);
+      const isAuthError = (err as { status?: number })?.status === 401 || (err instanceof Error && err.message.toLowerCase().includes('unauthorized'));
+      if (isAuthError) {
+        handleAuthError();
+        return;
+      }
       const message = err instanceof Error ? err.message : 'Could not save product';
       alert(message);
     } finally {
@@ -115,10 +139,16 @@ export default function AdminProductsPage() {
 
     try {
       const token = getToken();
+      if (!token) return;
       await api.deleteProduct(id, token);
       loadProducts();
     } catch (err: unknown) {
       console.error('Failed to delete product:', err);
+      const isAuthError = (err as { status?: number })?.status === 401 || (err instanceof Error && err.message.toLowerCase().includes('unauthorized'));
+      if (isAuthError) {
+        handleAuthError();
+        return;
+      }
       const message = err instanceof Error ? err.message : 'Delete failed';
       alert(message);
     }

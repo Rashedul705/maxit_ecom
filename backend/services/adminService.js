@@ -117,7 +117,62 @@ const getDashboardStats = async () => {
   };
 };
 
+const adminLogin = async ({ email, password }) => {
+  const adminEmail = process.env.ADMIN_EMAIL || 'admin@maxitshop.com';
+  const adminPassword = process.env.ADMIN_PASSWORD || 'admin123456';
+  const adminToken = process.env.ADMIN_TOKEN || 'admin_secret_token_123';
+
+  if (!email || !password) {
+    const error = new Error('Email/username and password are required');
+    error.statusCode = 400;
+    throw error;
+  }
+
+  const cleanInput = email.trim().toLowerCase();
+  const validEmail = adminEmail.trim().toLowerCase();
+
+  const isEmailMatch = cleanInput === validEmail || cleanInput === 'admin';
+  const isPasswordMatch = password.trim() === adminPassword || password.trim() === adminToken;
+
+  if (!isEmailMatch || !isPasswordMatch) {
+    const error = new Error('Invalid email or password credentials');
+    error.statusCode = 401;
+    throw error;
+  }
+
+  return {
+    token: adminToken,
+    user: {
+      name: 'MaxiTShop Administrator',
+      email: adminEmail,
+      role: 'admin'
+    }
+  };
+};
+
+const verifyAdminSession = async (token) => {
+  const adminToken = process.env.ADMIN_TOKEN || 'admin_secret_token_123';
+  const adminEmail = process.env.ADMIN_EMAIL || 'admin@maxitshop.com';
+
+  if (!token || token !== adminToken) {
+    const error = new Error('Invalid or expired admin session token');
+    error.statusCode = 401;
+    throw error;
+  }
+
+  return {
+    valid: true,
+    user: {
+      name: 'MaxiTShop Administrator',
+      email: adminEmail,
+      role: 'admin'
+    }
+  };
+};
+
 module.exports = {
+  adminLogin,
+  verifyAdminSession,
   getAdminOrders,
   updateOrderStatus,
   createProduct,

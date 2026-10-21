@@ -2,18 +2,25 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { api } from '@/lib/api';
 import { DashboardStats } from '@/lib/types';
 import { AdminHeader } from '@/components/admin/AdminHeader';
 import { ShoppingCart, DollarSign, Package, AlertTriangle, ArrowRight, Loader2, Plus } from 'lucide-react';
 
 export default function AdminDashboardPage() {
+  const router = useRouter();
   const [stats, setStats] = useState<DashboardStats | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
   useEffect(() => {
-    const token = localStorage.getItem('maxitshop_admin_token') || 'admin_secret_token_123';
+    const token = localStorage.getItem('maxitshop_admin_token');
+    if (!token) {
+      router.push('/admin/login');
+      return;
+    }
+
     api.getAdminDashboard(token)
       .then(data => {
         setStats(data);
@@ -21,10 +28,17 @@ export default function AdminDashboardPage() {
       })
       .catch(err => {
         console.error('Failed to load admin dashboard:', err);
-        setError('Failed to load dashboard statistics. Please verify admin session.');
-        setLoading(false);
+        if (err?.status === 401 || err?.message?.toLowerCase().includes('unauthorized')) {
+          document.cookie = 'admin_token=; path=/; max-age=0; SameSite=Lax';
+          localStorage.removeItem('maxitshop_admin_token');
+          localStorage.removeItem('maxitshop_admin_user');
+          router.push('/admin/login');
+        } else {
+          setError('Failed to load dashboard statistics. Please verify admin session.');
+          setLoading(false);
+        }
       });
-  }, []);
+  }, [router]);
 
   return (
     <div className="flex-1 flex flex-col">

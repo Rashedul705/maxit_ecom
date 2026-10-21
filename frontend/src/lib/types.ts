@@ -122,3 +122,14 @@ export interface DashboardStats {
     price: number;
   }[];
 }
+
+export interface AdminUser {
+  name: string;
+  email: string;
+  role: string;
+}
+
+export interface AdminAuthResponse {
+  token: string;
+  user: AdminUser;
+}
