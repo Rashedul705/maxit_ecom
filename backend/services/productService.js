@@ -93,6 +93,7 @@ const getProducts = async ({
     };
   }
 
+  const startIndex = (currentPage - 1) * pageSize;
   const paginatedItems = result.slice(startIndex, startIndex + pageSize).map(attachRating);
 
   // Extract available brands for filter sidebar
