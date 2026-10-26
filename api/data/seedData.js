@@ -1000,19 +1000,19 @@ const seedData = {
     logo: "",
     footerLogo: "",
     favicon: "",
-    phone: "+880 1733-115391",
+    phone: "+880 1733-272445",
     email: "support@maxitshop.com",
-    address: "Level 4, House 12, Road 4, Dhanmondi, Dhaka - 1205, Bangladesh",
+    address: "2nd Floor, Afroza Tower, Uposhohor New Market, Rajshahi-6000",
     socialLinks: {
       facebook: "https://facebook.com/maxitshop",
       instagram: "https://instagram.com/maxitshop",
       youtube: "https://youtube.com/maxitshop",
-      whatsapp: "+8801733115391",
+      whatsapp: "+8801733272445",
       messenger: "maxitshop"
     },
     deliveryRates: {
-      insideDhaka: 60,
-      outsideDhaka: 120
+      insideDhaka: 70,
+      outsideDhaka: 130
     },
     metaTags: {
       title: "maxitshop - Solar, Battery & Power Engineering Bangladesh",
@@ -1026,9 +1026,9 @@ const seedData = {
       name: "MaxiT Solar Engineering",
       slug: "maxit-solar-engineering",
       logo: "https://images.unsplash.com/photo-1509391365360-2e959784a276?w=200&q=80",
-      phone: "+880 1733-115391",
+      phone: "+880 1733-272445",
       email: "solar@maxitshop.com",
-      address: "Dhaka, Bangladesh",
+      address: "2nd Floor, Afroza Tower, Uposhohor New Market, Rajshahi-6000",
       rating: 4.9,
       totalProducts: 45,
       status: "active"

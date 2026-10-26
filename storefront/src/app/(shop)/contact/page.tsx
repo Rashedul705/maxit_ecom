@@ -3,7 +3,7 @@ import { Phone, Mail, MapPin, Clock, MessageCircle } from 'lucide-react';
 
 export const metadata = {
   title: 'Contact Us | MaxiTShop Bangladesh',
-  description: 'Reach MaxiTShop customer helpline, WhatsApp support, and office location in Panthapath, Dhaka.',
+  description: 'Reach MaxiTShop customer helpline, WhatsApp support, and office location in Rajshahi.',
 };
 
 export default function ContactPage() {
@@ -21,7 +21,9 @@ export default function ContactPage() {
               <Phone className="w-5 h-5 text-[#FF6600] shrink-0 mt-0.5" />
               <div>
                 <h3 className="text-sm font-bold text-slate-900">Direct Hotline</h3>
-                <p className="text-xs text-slate-600 mt-0.5">+880 1711-000000, +880 1811-000000</p>
+                <a href="tel:+8801733272445" className="text-xs font-semibold text-slate-800 hover:text-[#FF6600] mt-0.5 block transition-colors">
+                  +880 1733-272445
+                </a>
                 <p className="text-[11px] text-slate-400">9:00 AM - 10:00 PM (Everyday)</p>
               </div>
             </div>
@@ -30,7 +32,9 @@ export default function ContactPage() {
               <MessageCircle className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
               <div>
                 <h3 className="text-sm font-bold text-slate-900">WhatsApp Helpdesk</h3>
-                <p className="text-xs text-slate-600 mt-0.5">+880 1711-000000</p>
+                <a href="https://wa.me/8801733272445" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold text-slate-800 hover:text-emerald-600 mt-0.5 block transition-colors">
+                  +880 1733-272445
+                </a>
                 <p className="text-[11px] text-slate-400">Instant chat & order tracking</p>
               </div>
             </div>
@@ -39,7 +43,9 @@ export default function ContactPage() {
               <Mail className="w-5 h-5 text-purple-600 shrink-0 mt-0.5" />
               <div>
                 <h3 className="text-sm font-bold text-slate-900">Email Inquiries</h3>
-                <p className="text-xs text-slate-600 mt-0.5">support@maxitshop.com</p>
+                <a href="mailto:support@maxitshop.com" className="text-xs text-slate-600 hover:text-purple-600 mt-0.5 block transition-colors">
+                  support@maxitshop.com
+                </a>
                 <p className="text-[11px] text-slate-400">Response within 24 hours</p>
               </div>
             </div>
@@ -48,7 +54,9 @@ export default function ContactPage() {
               <MapPin className="w-4 h-4 text-[#FF6600] shrink-0 mt-0.5" />
               <div>
                 <h3 className="text-sm font-bold text-slate-900">Head Office</h3>
-                <p className="text-xs text-slate-600 mt-0.5">Level 6, Block B, Panthapath, Dhaka-1205, Bangladesh</p>
+                <p className="text-xs text-slate-600 mt-0.5 leading-relaxed">
+                  2nd Floor, Afroza Tower, Uposhohor New Market, Rajshahi-6000, Bangladesh
+                </p>
               </div>
             </div>
           </div>

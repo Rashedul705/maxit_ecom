@@ -71,7 +71,7 @@ export default async function OrderSuccessPage({ params }: OrderSuccessPageProps
 
         <div className="pt-2 text-xs text-gray-400 flex items-center justify-center gap-1.5">
           <Phone className="w-3.5 h-3.5 text-gray-400" />
-          <span>Hotline Support: +880 1711-000000 (9 AM - 10 PM)</span>
+          <span>Hotline Support: <a href="tel:+8801733272445" className="text-gray-600 hover:text-[#FF6600] font-semibold">+880 1733-272445</a> (9 AM - 10 PM)</span>
         </div>
       </div>
     </div>

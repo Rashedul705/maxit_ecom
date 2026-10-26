@@ -57,15 +57,19 @@ export const Footer: React.FC = () => {
             <div className="space-y-1.5 pt-1 text-gray-300">
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-[#FF6600] shrink-0" />
-                <span className="font-semibold text-white">+880 1711-000000, +880 1811-000000</span>
+                <a href="tel:+8801733272445" className="font-semibold text-white hover:text-[#FF6600] transition-colors">
+                  +880 1733-272445
+                </a>
               </div>
               <div className="flex items-center gap-2 text-gray-400">
                 <Mail className="w-4 h-4 text-gray-400 shrink-0" />
-                <span>support@maxitshop.com</span>
+                <a href="mailto:support@maxitshop.com" className="hover:text-white transition-colors">
+                  support@maxitshop.com
+                </a>
               </div>
               <div className="flex items-center gap-2 text-gray-400">
                 <MapPin className="w-4 h-4 text-gray-400 shrink-0" />
-                <span>Panthapath, Dhaka-1205, Bangladesh</span>
+                <span>2nd Floor, Afroza Tower, Uposhohor New Market, Rajshahi-6000</span>
               </div>
             </div>
 

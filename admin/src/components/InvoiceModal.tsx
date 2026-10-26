@@ -35,8 +35,8 @@ export const InvoiceModal: React.FC<InvoiceModalProps> = ({ order, onClose }) =>
             <div>
               <h1 style={{ fontSize: '26px', fontWeight: 800, color: '#ff6600', letterSpacing: '-0.5px' }}>maxitshop</h1>
               <p style={{ fontSize: '12px', color: '#64748b', marginTop: '4px' }}>Solar & Engineering Solutions Bangladesh</p>
-              <p style={{ fontSize: '12px', color: '#64748b' }}>Level 4, House 12, Road 4, Dhanmondi, Dhaka - 1205</p>
-              <p style={{ fontSize: '12px', color: '#64748b' }}>Phone: +880 1733-115391 | support@maxitshop.com</p>
+              <p style={{ fontSize: '12px', color: '#64748b' }}>2nd Floor, Afroza Tower, Uposhohor New Market, Rajshahi-6000</p>
+              <p style={{ fontSize: '12px', color: '#64748b' }}>Phone: +880 1733-272445 | support@maxitshop.com</p>
             </div>
             <div style={{ textAlign: 'right' }}>
               <span style={{ display: 'inline-block', background: '#0f172a', color: '#fff', padding: '4px 12px', borderRadius: '4px', fontSize: '12px', fontWeight: 700, letterSpacing: '1px' }}>

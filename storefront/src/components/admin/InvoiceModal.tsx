@@ -58,8 +58,8 @@ export const InvoiceModal: React.FC<InvoiceModalProps> = ({ order, onClose }) =>
                 </span>
               </div>
               <p className="text-[11px] text-slate-500">Official E-Commerce Store</p>
-              <p className="text-[11px] text-slate-500">Panthapath, Dhaka-1205, Bangladesh</p>
-              <p className="text-[11px] text-slate-500">Hotline: +880 1700-000000</p>
+              <p className="text-[11px] text-slate-500">2nd Floor, Afroza Tower, Uposhohor New Market, Rajshahi-6000</p>
+              <p className="text-[11px] text-slate-500">Hotline: +880 1733-272445</p>
             </div>
 
             <div className="text-right">

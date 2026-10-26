@@ -143,7 +143,7 @@ function OrderTrackContent() {
               </p>
               <div className="flex items-center justify-center gap-2 text-xs text-gray-600">
                 <Phone className="w-3.5 h-3.5 text-[#FF6600]" />
-                <span>Need help? Call our hotline: <strong>+880 1711-000000</strong></span>
+                <span>Need help? Call our hotline: <a href="tel:+8801733272445" className="font-bold text-gray-900 hover:text-[#FF6600]">+880 1733-272445</a></span>
               </div>
             </div>
           ) : (
