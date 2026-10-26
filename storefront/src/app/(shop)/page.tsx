@@ -19,7 +19,7 @@ export default async function HomePage() {
       api.getCategories().catch(() => []),
       api.getBanners().catch(() => []),
       api.getBrands().catch(() => []),
-      api.getProducts({ limit: 40 }).catch(() => ({ items: [] }))
+      api.getProducts({ limit: 150 }).catch(() => ({ items: [] }))
     ]);
 
     categories = catsData;
@@ -29,16 +29,16 @@ export default async function HomePage() {
 
     // Group products by top categories for "Hot Deal" sections
     if (categories.length > 0 && allProducts.length > 0) {
-      // Pick top 4-5 categories
-      const targetCategories = categories.slice(0, 5);
+      // Pick top 6 categories
+      const targetCategories = categories.slice(0, 6);
       categoryGroups = targetCategories.map((cat) => {
         const catProducts = allProducts.filter(
-          (p) => p.category === cat.slug || p.category === cat.name
+          (p) => p.category === cat.slug || p.category === cat.name || (p as any).categoryName === cat.name
         );
         // Fallback: if category has few products, take slice of all products so cards are displayed
         return {
           category: cat,
-          products: catProducts.length > 0 ? catProducts : allProducts.slice(0, 5)
+          products: catProducts.length > 0 ? catProducts : allProducts.slice(0, 6)
         };
       });
     }

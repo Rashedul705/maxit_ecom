@@ -210,7 +210,14 @@ const db = {
     let list = [...memoryStore.products];
 
     if (category) {
-      list = list.filter(p => p.category === category);
+      const c = category.toLowerCase().trim();
+      list = list.filter(p => {
+        if (!p.category) return false;
+        const pc = p.category.toLowerCase().trim();
+        return pc === c ||
+               pc.replace(/[^a-z0-9]/g, '') === c.replace(/[^a-z0-9]/g, '') ||
+               (p.categoryName && p.categoryName.toLowerCase().trim() === c);
+      });
     }
     if (brand) {
       const bLower = brand.toLowerCase();
@@ -232,7 +239,7 @@ const db = {
       list = list.filter(p => p.price <= Number(maxPrice));
     }
     if (isDeal) {
-      list = list.filter(p => p.isDeal);
+      list = list.filter(p => p.isDeal || p.isHotDeal);
     }
     if (isFeatured) {
       list = list.filter(p => p.isFeatured);
@@ -269,7 +276,14 @@ const db = {
   },
 
   async getProductBySlug(slug) {
-    const product = memoryStore.products.find(p => p.slug === slug || p.id === slug);
+    if (!slug) return null;
+    const s = slug.toLowerCase().trim();
+    const product = memoryStore.products.find(p => 
+      p.slug === slug || 
+      p.id === slug || 
+      p.slug.toLowerCase() === s ||
+      p.id.toLowerCase() === s
+    );
     if (!product) return null;
 
     // Fetch up to 6 related products in same category

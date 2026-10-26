@@ -1,0 +1,112 @@
+[
+  {
+    "id": "cat-battery-bms-charger",
+    "name": "BATTERY-BMS-CHARGER",
+    "slug": "battery-bms-charger",
+    "image": "https://www.nanopowerbd.com/public/uploads/category/1776919212-lithium-ion-battery.webp",
+    "icon": "https://www.nanopowerbd.com/public/uploads/category/1776919212-lithium-ion-battery.webp",
+    "description": "LiFePO4, Lithium Ion Batteries, Active Balancers, Smart BMS & Chargers",
+    "order": 1,
+    "isActive": true
+  },
+  {
+    "id": "cat-customized-circuit-pcb",
+    "name": "CUSTOMIZED CIRCUIT - PCB",
+    "slug": "customized-circuit---pcb",
+    "image": "https://www.nanopowerbd.com/public/uploads/category/1776919114-servo-avr-control-card.webp",
+    "icon": "https://www.nanopowerbd.com/public/uploads/category/1776919114-servo-avr-control-card.webp",
+    "description": "Custom Servo AVR Control Cards, Inverter Motherboards & Circuit Solutions",
+    "order": 2,
+    "isActive": true
+  },
+  {
+    "id": "cat-safety-security",
+    "name": "SAFETY - SECURITY",
+    "slug": "safety---security",
+    "image": "https://www.nanopowerbd.com/public/uploads/category/1776918982-dahua-goods.webp",
+    "icon": "https://www.nanopowerbd.com/public/uploads/category/1776918982-dahua-goods.webp",
+    "description": "IP Cameras, NVR, Smart Door Locks, Fire Extinguishers & Industrial Safety",
+    "order": 3,
+    "isActive": true
+  },
+  {
+    "id": "cat-tools-hardware",
+    "name": "TOOLS - HARDWARE",
+    "slug": "tools---hardware",
+    "image": "https://www.nanopowerbd.com/public/uploads/category/1777472468-0.25-inch-quick-ratchet-wrench-spanner.webp",
+    "icon": "https://www.nanopowerbd.com/public/uploads/category/1777472468-0.25-inch-quick-ratchet-wrench-spanner.webp",
+    "description": "Multimeters, Crimping Tools, Hex Keys, Soldering Stations & Precision Kits",
+    "order": 4,
+    "isActive": true
+  },
+  {
+    "id": "cat-lt-ht-power-goods",
+    "name": "LT-HT POWER GOODS",
+    "slug": "lt-ht-power-goods",
+    "image": "https://www.nanopowerbd.com/public/uploads/category/1776918494-dropout-e3.webp",
+    "icon": "https://www.nanopowerbd.com/public/uploads/category/1776918494-dropout-e3.webp",
+    "description": "Transformers, Drop-out Fuses, Vacuum Circuit Breakers & Switchgear",
+    "order": 5,
+    "isActive": true
+  },
+  {
+    "id": "cat-modules-sensor",
+    "name": "MODULES & SENSOR",
+    "slug": "modules-&-sensor",
+    "image": "https://www.nanopowerbd.com/public/uploads/category/1776918353-18650-2s-bms.webp",
+    "icon": "https://www.nanopowerbd.com/public/uploads/category/1776918353-18650-2s-bms.webp",
+    "description": "Current Sensors, Temperature, Proximity, Relay Modules & Smart Controllers",
+    "order": 6,
+    "isActive": true
+  },
+  {
+    "id": "cat-igbt-fet-diode-transistor",
+    "name": "IGBT-FET-DIODE-TRANSISTOR",
+    "slug": "igbt-fet-diode-transistor",
+    "image": "https://www.nanopowerbd.com/public/uploads/category/1778045900-fet-&amp;-igbt.webp",
+    "icon": "https://www.nanopowerbd.com/public/uploads/category/1778045900-fet-&amp;-igbt.webp",
+    "description": "Power IGBT Modules, Fast Recovery Diodes, MOSFETs & Power Transistors",
+    "order": 7,
+    "isActive": true
+  },
+  {
+    "id": "cat-electronics-parts",
+    "name": "ELECTRONICS PARTS",
+    "slug": "electronics-parts",
+    "image": "https://www.nanopowerbd.com/public/uploads/category/1776918073-atmega328p.webp",
+    "icon": "https://www.nanopowerbd.com/public/uploads/category/1776918073-atmega328p.webp",
+    "description": "Microcontrollers, Capacitors, Resistors, Optocouplers & Connectors",
+    "order": 8,
+    "isActive": true
+  },
+  {
+    "id": "cat-solar-energy",
+    "name": "SOLAR ENERGY",
+    "slug": "solar-energy",
+    "image": "https://www.nanopowerbd.com/public/uploads/category/1776917773-solar-pv.webp",
+    "icon": "https://www.nanopowerbd.com/public/uploads/category/1776917773-solar-pv.webp",
+    "description": "Tier-1 Solar Panels, Hybrid Inverters, Solar Controllers & Mounting",
+    "order": 9,
+    "isActive": true
+  },
+  {
+    "id": "cat-service-maintenance",
+    "name": "SERVICE & MAINTENANCE",
+    "slug": "service-&-maintenance",
+    "image": "https://www.nanopowerbd.com/public/uploads/category/1776919326-inverter-repairing-services-500x500.webp",
+    "icon": "https://www.nanopowerbd.com/public/uploads/category/1776919326-inverter-repairing-services-500x500.webp",
+    "description": "Solar Inverter Repairing, IPS Maintenance & Engineering Service Support",
+    "order": 10,
+    "isActive": true
+  },
+  {
+    "id": "cat-automation-process-cont",
+    "name": "AUTOMATION-PROCESS CONT.",
+    "slug": "automation-process-cont.",
+    "image": "https://www.nanopowerbd.com/public/uploads/category/1776919527-electrical-test-instruments.webp",
+    "icon": "https://www.nanopowerbd.com/public/uploads/category/1776919527-electrical-test-instruments.webp",
+    "description": "Siemens PLC, VFD Drives, HMI Displays & Industrial Automation Cards",
+    "order": 11,
+    "isActive": true
+  }
+]
