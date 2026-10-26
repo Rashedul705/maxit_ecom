@@ -1,30 +1,65 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
+const mongoose = require('mongoose');
 
+// Route imports
+const authRoutes = require('./routes/authRoutes');
 const categoryRoutes = require('./routes/categoryRoutes');
 const productRoutes = require('./routes/productRoutes');
+const brandRoutes = require('./routes/brandRoutes');
+const bannerRoutes = require('./routes/bannerRoutes');
 const orderRoutes = require('./routes/orderRoutes');
+const complaintRoutes = require('./routes/complaintRoutes');
+const sellerRoutes = require('./routes/sellerRoutes');
+const pageRoutes = require('./routes/pageRoutes');
+const settingRoutes = require('./routes/settingRoutes');
+const subscriberRoutes = require('./routes/subscriberRoutes');
+const uploadRoutes = require('./routes/uploadRoutes');
 const adminRoutes = require('./routes/adminRoutes');
-const bannerController = require('./controllers/bannerController');
-const productController = require('./controllers/productController');
 
 const { errorHandler, notFoundHandler } = require('./middleware/errorHandler');
 const { successResponse } = require('./utils/response');
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5002;
 const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:3000';
+const ADMIN_URL = process.env.ADMIN_URL || 'http://localhost:5173';
+
+// MongoDB Connection
+if (process.env.MONGODB_URI) {
+  mongoose.connect(process.env.MONGODB_URI)
+    .then(() => console.log('🍃 MongoDB connected successfully via MONGODB_URI'))
+    .catch(err => console.warn('⚠️ MongoDB connection error (falling back to memory):', err.message));
+} else {
+  console.log('ℹ️ MONGODB_URI not provided; running API in in-memory seed mode.');
+}
 
 // Middlewares
 app.use(cors({
-  origin: [CLIENT_URL, 'http://localhost:3000', 'http://127.0.0.1:3000', 'http://localhost:3001', 'http://127.0.0.1:3001'],
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true);
+    if (
+      origin.includes('localhost') ||
+      origin.includes('127.0.0.1') ||
+      origin.includes('esp32.site') ||
+      origin === CLIENT_URL ||
+      origin === ADMIN_URL
+    ) {
+      return callback(null, true);
+    }
+    return callback(null, true);
+  },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'x-admin-token']
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Static uploads serving
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Request Logger (Development)
 app.use((req, res, next) => {
@@ -45,18 +80,19 @@ apiRouter.get('/health', (req, res) => {
   }, 'MaxiTShop API is operational');
 });
 
-// Categories & Banners
+// Mount Resource Routes under /api/v1
+apiRouter.use('/auth', authRoutes);
 apiRouter.use('/categories', categoryRoutes);
-apiRouter.get('/banners', bannerController.getBanners);
-
-// Search Suggestions
-apiRouter.get('/search/suggestions', productController.getSearchSuggestions);
-
-// Products & Orders
 apiRouter.use('/products', productRoutes);
+apiRouter.use('/brands', brandRoutes);
+apiRouter.use('/banners', bannerRoutes);
 apiRouter.use('/orders', orderRoutes);
-
-// Admin Routes
+apiRouter.use('/complaints', complaintRoutes);
+apiRouter.use('/sellers', sellerRoutes);
+apiRouter.use('/pages', pageRoutes);
+apiRouter.use('/settings', settingRoutes);
+apiRouter.use('/newsletter', subscriberRoutes);
+apiRouter.use('/upload', uploadRoutes);
 apiRouter.use('/admin', adminRoutes);
 
 // Mount under /api/v1

@@ -16,6 +16,55 @@ export interface Category {
   subcategories?: Subcategory[];
 }
 
+export interface Brand {
+  id: string;
+  name: string;
+  slug: string;
+  logo: string;
+  description?: string;
+  isPopular?: boolean;
+}
+
+export interface Seller {
+  id: string;
+  name: string;
+  storeName: string;
+  slug: string;
+  logo?: string;
+  banner?: string;
+  phone: string;
+  email: string;
+  address: string;
+  rating?: number;
+  ratingCount?: number;
+  totalProducts?: number;
+  verified?: boolean;
+}
+
+export interface PageItem {
+  id: string;
+  title: string;
+  slug: string;
+  content: string;
+  updatedAt?: string;
+}
+
+export interface SiteSetting {
+  id?: string;
+  siteName: string;
+  tagline: string;
+  logo: string;
+  footerLogo?: string;
+  phone1: string;
+  phone2?: string;
+  email: string;
+  address: string;
+  facebookUrl?: string;
+  youtubeUrl?: string;
+  instagramUrl?: string;
+  whatsappNumber?: string;
+}
+
 export interface Banner {
   id: string;
   title: string;

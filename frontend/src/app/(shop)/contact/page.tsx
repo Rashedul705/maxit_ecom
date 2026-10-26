@@ -3,7 +3,7 @@ import { Phone, Mail, MapPin, Clock, MessageCircle } from 'lucide-react';
 
 export const metadata = {
   title: 'Contact Us | MaxiTShop Bangladesh',
-  description: 'Reach MaxiTShop customer helpline, WhatsApp support, and office location in Panthapath, Dhaka.',
+  description: 'Reach MaxiTShop customer helpline, WhatsApp support, and office location in Rajshahi.',
 };
 
 export default function ContactPage() {
@@ -18,10 +18,12 @@ export default function ContactPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-4">
             <div className="flex items-start gap-3 p-4 bg-slate-50 rounded-xl border border-slate-200/80">
-              <Phone className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
+              <Phone className="w-5 h-5 text-[#FF6600] shrink-0 mt-0.5" />
               <div>
                 <h3 className="text-sm font-bold text-slate-900">Direct Hotline</h3>
-                <p className="text-xs text-slate-600 mt-0.5">+880 1700-000000</p>
+                <a href="tel:+8801733272445" className="text-xs font-semibold text-slate-800 hover:text-[#FF6600] mt-0.5 block transition-colors">
+                  +880 1733-272445
+                </a>
                 <p className="text-[11px] text-slate-400">9:00 AM - 10:00 PM (Everyday)</p>
               </div>
             </div>
@@ -30,7 +32,9 @@ export default function ContactPage() {
               <MessageCircle className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
               <div>
                 <h3 className="text-sm font-bold text-slate-900">WhatsApp Helpdesk</h3>
-                <p className="text-xs text-slate-600 mt-0.5">+880 1700-000000</p>
+                <a href="https://wa.me/8801733272445" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold text-slate-800 hover:text-emerald-600 mt-0.5 block transition-colors">
+                  +880 1733-272445
+                </a>
                 <p className="text-[11px] text-slate-400">Instant chat & order tracking</p>
               </div>
             </div>
@@ -39,16 +43,20 @@ export default function ContactPage() {
               <Mail className="w-5 h-5 text-purple-600 shrink-0 mt-0.5" />
               <div>
                 <h3 className="text-sm font-bold text-slate-900">Email Inquiries</h3>
-                <p className="text-xs text-slate-600 mt-0.5">support@maxitshop.com</p>
+                <a href="mailto:support@maxitshop.com" className="text-xs text-slate-600 hover:text-purple-600 mt-0.5 block transition-colors">
+                  support@maxitshop.com
+                </a>
                 <p className="text-[11px] text-slate-400">Response within 24 hours</p>
               </div>
             </div>
 
             <div className="flex items-start gap-3 p-4 bg-slate-50 rounded-xl border border-slate-200/80">
-              <MapPin className="w-4 h-4 text-orange-600 shrink-0 mt-0.5" />
+              <MapPin className="w-4 h-4 text-[#FF6600] shrink-0 mt-0.5" />
               <div>
                 <h3 className="text-sm font-bold text-slate-900">Head Office</h3>
-                <p className="text-xs text-slate-600 mt-0.5">Level 6, Block B, Panthapath, Dhaka-1205, Bangladesh</p>
+                <p className="text-xs text-slate-600 mt-0.5 leading-relaxed">
+                  2nd Floor, Afroza Tower, Uposhohor New Market, Rajshahi-6000, Bangladesh
+                </p>
               </div>
             </div>
           </div>
@@ -58,17 +66,17 @@ export default function ContactPage() {
             <form className="space-y-3">
               <div>
                 <label className="block text-xs font-semibold text-slate-700 mb-1">Your Name</label>
-                <input type="text" placeholder="Full name" className="w-full px-3 py-2 text-xs bg-white border border-slate-300 rounded-lg" />
+                <input type="text" placeholder="Full name" className="w-full px-3 py-2 text-xs bg-white border border-slate-300 rounded-lg focus:outline-hidden focus:border-[#FF6600]" />
               </div>
               <div>
                 <label className="block text-xs font-semibold text-slate-700 mb-1">Mobile Number</label>
-                <input type="tel" placeholder="01XXXXXXXXX" className="w-full px-3 py-2 text-xs bg-white border border-slate-300 rounded-lg" />
+                <input type="tel" placeholder="01XXXXXXXXX" className="w-full px-3 py-2 text-xs bg-white border border-slate-300 rounded-lg focus:outline-hidden focus:border-[#FF6600]" />
               </div>
               <div>
                 <label className="block text-xs font-semibold text-slate-700 mb-1">Message</label>
-                <textarea rows={3} placeholder="How can we assist you?" className="w-full px-3 py-2 text-xs bg-white border border-slate-300 rounded-lg"></textarea>
+                <textarea rows={3} placeholder="How can we assist you?" className="w-full px-3 py-2 text-xs bg-white border border-slate-300 rounded-lg focus:outline-hidden focus:border-[#FF6600]"></textarea>
               </div>
-              <button type="button" className="w-full py-2.5 bg-blue-600 text-white rounded-lg text-xs font-bold hover:bg-blue-700">
+              <button type="button" className="w-full py-2.5 bg-[#FF6600] hover:bg-[#e55c00] text-white rounded-lg text-xs font-bold transition-colors cursor-pointer">
                 Submit Message
               </button>
             </form>

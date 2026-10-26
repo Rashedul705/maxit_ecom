@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ShoppingBag, Flame, Sparkles, Star } from 'lucide-react';
+import { ShoppingBag, PhoneCall, Star } from 'lucide-react';
 import { Product } from '@/lib/types';
 import { useCart } from '@/lib/cartContext';
 
@@ -14,25 +14,28 @@ interface ProductCardProps {
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const { addToCart } = useCart();
 
-  const discountPercent = product.oldPrice && product.oldPrice > product.price
-    ? Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100)
-    : 0;
+  const discountPercent =
+    product.oldPrice && product.oldPrice > product.price
+      ? Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100)
+      : 0;
 
-  const savings = product.oldPrice && product.oldPrice > product.price
-    ? product.oldPrice - product.price
-    : 0;
-
-  const handleAddToCart = (e: React.MouseEvent) => {
+  const handleOrderNow = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
+    if (product.price === 0) {
+      window.location.href = 'tel:+8801700000000';
+      return;
+    }
     addToCart(product, 1);
   };
 
   return (
-    <div className="group relative flex flex-col bg-white rounded-xl border border-slate-200 p-3 hover:border-blue-400 hover:shadow-lg transition-all duration-200">
-      
+    <div className="group relative flex flex-col bg-white rounded-lg border border-gray-200/90 p-2.5 sm:p-3 hover:border-[#FF6600] hover:shadow-lg transition-all duration-200">
       {/* Product Image Area */}
-      <Link href={`/product/${product.slug}`} className="relative block w-full aspect-square rounded-lg bg-slate-50 overflow-hidden mb-2.5">
+      <Link
+        href={`/product/${product.slug}`}
+        className="relative block w-full aspect-square rounded-md bg-gray-50 overflow-hidden mb-2"
+      >
         <Image
           src={product.images[0] || 'https://images.unsplash.com/photo-1526738549149-8e07eca6c147?w=600&q=80'}
           alt={product.title}
@@ -42,94 +45,84 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           loading="lazy"
         />
 
-        {/* Top Badges */}
-        <div className="absolute top-2 left-2 flex flex-col gap-1 z-10">
-          {discountPercent > 0 && (
-            <span className="bg-red-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded shadow-xs">
-              -{discountPercent}% OFF
-            </span>
-          )}
-        </div>
-
-        <div className="absolute top-2 right-2 flex flex-col gap-1 z-10">
-          {product.isDeal && (
-            <span className="bg-orange-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded flex items-center gap-0.5 shadow-xs">
-              <Flame className="w-2.5 h-2.5" />
-              <span>Deal</span>
-            </span>
-          )}
-          {product.isNew && !product.isDeal && (
-            <span className="bg-emerald-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded flex items-center gap-0.5 shadow-xs">
-              <Sparkles className="w-2.5 h-2.5" />
-              <span>New</span>
-            </span>
-          )}
-        </div>
+        {/* Discount Badge: e.g. "10% ছাড়" */}
+        {discountPercent > 0 && (
+          <div className="absolute top-2 left-2 z-10 bg-[#E53935] text-white text-[11px] font-bold px-2 py-0.5 rounded-full shadow-xs">
+            {discountPercent}% ছাড়
+          </div>
+        )}
       </Link>
 
-      {/* Brand & Stock Status */}
-      <div className="flex items-center justify-between text-[11px] mb-1">
-        <span className="font-bold text-slate-400 uppercase tracking-wider">{product.brand}</span>
+      {/* Brand & Stock */}
+      <div className="flex items-center justify-between text-[11px] text-gray-500 mb-1">
+        <span className="font-semibold uppercase tracking-wider text-gray-400">
+          {product.brand}
+        </span>
         {product.stock > 0 ? (
-          <span className="flex items-center gap-1 text-emerald-600 font-medium">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-            In Stock
-          </span>
+          <span className="text-emerald-600 font-medium text-[11px]">In Stock</span>
         ) : (
-          <span className="flex items-center gap-1 text-red-500 font-medium">
-            <span className="w-1.5 h-1.5 rounded-full bg-red-500"></span>
-            Out of Stock
-          </span>
+          <span className="text-red-500 font-medium text-[11px]">Out of Stock</span>
         )}
       </div>
 
-      {/* Title */}
+      {/* Truncated Title */}
       <Link href={`/product/${product.slug}`} className="block mb-1.5 flex-1">
-        <h3 className="text-[13px] sm:text-sm font-semibold text-slate-800 line-clamp-2 min-h-[38px] group-hover:text-blue-600 transition-colors">
+        <h3 className="text-xs sm:text-[13px] font-semibold text-gray-800 line-clamp-2 min-h-[36px] group-hover:text-[#FF6600] transition-colors leading-snug">
           {product.title}
         </h3>
       </Link>
 
-      {/* Star Rating & Review Count */}
-      <div className="flex items-center gap-1.5 mb-2 text-[11px]">
+      {/* Star Rating */}
+      <div className="flex items-center gap-1 mb-2 text-[11px] text-gray-500">
         <div className="flex items-center text-amber-400">
-          <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+          <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
         </div>
-        <span className="font-bold text-slate-700">
+        <span className="font-semibold text-gray-700">
           {product.rating ? Number(product.rating).toFixed(1) : '4.8'}
         </span>
-        <span className="text-[10px] text-slate-400">
-          ({product.reviewCount || 12})
+        <span className="text-[10px] text-gray-400">
+          ({product.reviewCount || 10})
         </span>
       </div>
 
-      {/* Price Block */}
-      <div className="mt-auto pt-2 border-t border-slate-100 flex flex-col gap-1 mb-2.5">
-        <div className="flex items-baseline gap-2">
-          <span className="text-base sm:text-lg font-bold text-blue-600">
-            ৳{product.price.toLocaleString()}
-          </span>
-          {product.oldPrice && product.oldPrice > product.price && (
-            <span className="text-xs text-slate-400 line-through">
-              ৳{product.oldPrice.toLocaleString()}
+      {/* Pricing display */}
+      <div className="mt-auto pt-2 border-t border-gray-100 mb-2.5">
+        {product.price === 0 ? (
+          <div className="flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#FF6600]">
+            <PhoneCall className="w-3.5 h-3.5" />
+            <span>Call for price</span>
+          </div>
+        ) : (
+          <div className="flex items-baseline gap-2 flex-wrap">
+            <span className="text-base sm:text-lg font-black text-[#FF6600]">
+              ৳{product.price.toLocaleString()}
             </span>
-          )}
-        </div>
-        {savings > 0 && (
-          <div className="text-[10px] font-bold text-red-600 bg-red-50 w-fit px-1.5 py-0.5 rounded">
-            Save ৳{savings.toLocaleString()}
+            {product.oldPrice && product.oldPrice > product.price && (
+              <del className="text-xs text-gray-400 font-medium">
+                ৳{product.oldPrice.toLocaleString()}
+              </del>
+            )}
           </div>
         )}
       </div>
 
-      {/* Action CTA Button */}
+      {/* "অর্ডার করুন" Button */}
       <button
-        onClick={handleAddToCart}
+        onClick={handleOrderNow}
         disabled={product.stock <= 0}
-        className="w-full py-2 bg-blue-50 hover:bg-blue-600 text-blue-600 hover:text-white rounded-lg text-xs font-bold flex items-center justify-center gap-1.5 transition-colors disabled:opacity-50 disabled:cursor-not-allowed group/btn"
+        className="w-full py-2 px-3 bg-[#FF6600] hover:bg-[#e55c00] active:scale-[0.99] text-white rounded-md text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 transition-all shadow-xs disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
       >
-        <ShoppingBag className="w-3.5 h-3.5 group-hover/btn:scale-110 transition-transform" />
-        <span>Add to Order</span>
+        {product.price === 0 ? (
+          <>
+            <PhoneCall className="w-3.5 h-3.5" />
+            <span>কল করুন</span>
+          </>
+        ) : (
+          <>
+            <ShoppingBag className="w-3.5 h-3.5" />
+            <span>অর্ডার করুন</span>
+          </>
+        )}
       </button>
     </div>
   );

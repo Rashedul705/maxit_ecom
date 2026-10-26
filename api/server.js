@@ -38,17 +38,19 @@ if (process.env.MONGODB_URI) {
 
 // Middlewares
 app.use(cors({
-  origin: [
-    CLIENT_URL,
-    ADMIN_URL,
-    'http://localhost:3000',
-    'http://127.0.0.1:3000',
-    'http://localhost:3001',
-    'http://127.0.0.1:3001',
-    'http://localhost:3002',
-    'http://localhost:5173',
-    'http://127.0.0.1:5173'
-  ],
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true);
+    if (
+      origin.includes('localhost') ||
+      origin.includes('127.0.0.1') ||
+      origin.includes('esp32.site') ||
+      origin === CLIENT_URL ||
+      origin === ADMIN_URL
+    ) {
+      return callback(null, true);
+    }
+    return callback(null, true);
+  },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'x-admin-token']

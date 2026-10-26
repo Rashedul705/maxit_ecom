@@ -132,25 +132,33 @@ export const ProductInteractiveView: React.FC<ProductInteractiveViewProps> = ({ 
             </p>
 
             {/* Price Box */}
-            <div className="bg-slate-50 rounded-xl p-4 border border-slate-200/80 mb-5 flex flex-wrap items-baseline gap-3">
-              <span className="text-2xl sm:text-3xl font-black text-blue-600">
-                ৳{product.price.toLocaleString()}
-              </span>
-              {product.oldPrice && product.oldPrice > product.price && (
-                <span className="text-base text-slate-400 line-through">
-                  ৳{product.oldPrice.toLocaleString()}
+            <div className="bg-gray-50 rounded-xl p-4 border border-gray-200 mb-5 flex flex-wrap items-baseline gap-3">
+              {product.price === 0 ? (
+                <span className="text-2xl sm:text-3xl font-black text-[#FF6600]">
+                  Call for price
                 </span>
-              )}
-              {savings > 0 && (
-                <span className="text-xs font-bold text-red-600 bg-red-100/80 px-2.5 py-1 rounded-full">
-                  Save ৳{savings.toLocaleString()} (-{discountPercent}%)
-                </span>
+              ) : (
+                <>
+                  <span className="text-2xl sm:text-3xl font-black text-[#FF6600]">
+                    ৳{product.price.toLocaleString()}
+                  </span>
+                  {product.oldPrice && product.oldPrice > product.price && (
+                    <del className="text-base text-gray-400 font-medium">
+                      ৳{product.oldPrice.toLocaleString()}
+                    </del>
+                  )}
+                  {savings > 0 && (
+                    <span className="text-xs font-bold text-red-600 bg-red-50 border border-red-200 px-2.5 py-1 rounded-full">
+                      Save ৳{savings.toLocaleString()} ({discountPercent}% ছাড়)
+                    </span>
+                  )}
+                </>
               )}
             </div>
 
             {/* Stock Indicator */}
             <div className="flex items-center gap-2 mb-5 text-sm">
-              <span className="font-semibold text-slate-700">Availability:</span>
+              <span className="font-semibold text-gray-700">Availability:</span>
               {product.stock > 0 ? (
                 <span className="inline-flex items-center gap-1.5 text-emerald-600 font-bold bg-emerald-50 px-2.5 py-0.5 rounded-full text-xs">
                   <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
@@ -164,22 +172,22 @@ export const ProductInteractiveView: React.FC<ProductInteractiveViewProps> = ({ 
             </div>
 
             {/* Quantity Selector & Purchase CTAs */}
-            <div className="space-y-4 pt-4 border-t border-slate-100">
+            <div className="space-y-4 pt-4 border-t border-gray-100">
               <div className="flex items-center gap-4">
-                <span className="text-xs font-bold text-slate-700">Quantity:</span>
-                <div className="flex items-center border border-slate-300 rounded-lg bg-white">
+                <span className="text-xs font-bold text-gray-700">Quantity:</span>
+                <div className="flex items-center border border-gray-300 rounded-lg bg-white">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
                     disabled={quantity <= 1}
-                    className="px-3 py-2 text-slate-600 hover:bg-slate-100 disabled:opacity-30 rounded-l-lg"
+                    className="px-3 py-2 text-gray-600 hover:bg-gray-100 disabled:opacity-30 rounded-l-lg cursor-pointer"
                   >
                     <Minus className="w-3.5 h-3.5" />
                   </button>
-                  <span className="px-4 text-sm font-bold text-slate-800">{quantity}</span>
+                  <span className="px-4 text-sm font-bold text-gray-800">{quantity}</span>
                   <button
                     onClick={() => setQuantity(Math.min(product.stock, quantity + 1))}
                     disabled={quantity >= product.stock}
-                    className="px-3 py-2 text-slate-600 hover:bg-slate-100 disabled:opacity-30 rounded-r-lg"
+                    className="px-3 py-2 text-gray-600 hover:bg-gray-100 disabled:opacity-30 rounded-r-lg cursor-pointer"
                   >
                     <Plus className="w-3.5 h-3.5" />
                   </button>
@@ -191,26 +199,26 @@ export const ProductInteractiveView: React.FC<ProductInteractiveViewProps> = ({ 
                 <button
                   onClick={handleAddToCart}
                   disabled={product.stock <= 0}
-                  className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-sm hover:shadow-blue-500/20 transition-all disabled:opacity-50"
+                  className="w-full py-3 bg-gray-100 hover:bg-gray-200 text-gray-800 border border-gray-300 rounded-lg font-bold text-sm flex items-center justify-center gap-2 transition-all disabled:opacity-50 cursor-pointer"
                 >
                   <ShoppingBag className="w-4 h-4" />
-                  <span>Add to Order</span>
+                  <span>Add to Cart</span>
                 </button>
 
                 <button
                   onClick={handleBuyNow}
                   disabled={product.stock <= 0}
-                  className="w-full py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-sm hover:shadow-orange-500/20 transition-all disabled:opacity-50"
+                  className="w-full py-3 bg-[#FF6600] hover:bg-[#e55c00] text-white rounded-lg font-bold text-sm flex items-center justify-center gap-2 shadow-sm transition-all disabled:opacity-50 cursor-pointer"
                 >
                   <Zap className="w-4 h-4" />
-                  <span>Buy Now</span>
+                  <span>অর্ডার করুন (Order Now)</span>
                 </button>
               </div>
 
               {isAddedToast && (
                 <div className="p-2.5 bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold rounded-lg flex items-center gap-2">
                   <Check className="w-4 h-4 text-emerald-600" />
-                  <span>Added to cart successfully! Check the cart drawer on the right.</span>
+                  <span>কার্টে যোগ করা হয়েছে! (Item added to cart)</span>
                 </div>
               )}
             </div>

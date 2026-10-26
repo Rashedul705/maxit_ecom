@@ -1,6 +1,10 @@
 import {
   Category,
   Banner,
+  Brand,
+  Seller,
+  PageItem,
+  SiteSetting,
   Product,
   ProductsResponse,
   SearchSuggestion,
@@ -12,7 +16,15 @@ import {
   ProductReviewsResponse
 } from './types';
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5002/api/v1';
+const getApiBase = () => {
+  if (process.env.NEXT_PUBLIC_API_URL) return process.env.NEXT_PUBLIC_API_URL;
+  if (typeof window !== 'undefined' && window.location.hostname.includes('esp32.site')) {
+    return 'https://maxitecomapi.maxapi.esp32.site/api/v1';
+  }
+  return 'http://localhost:5002/api/v1';
+};
+
+const API_BASE = getApiBase();
 
 async function fetchJson<T>(url: string, options: RequestInit = {}): Promise<T> {
   const defaultHeaders: HeadersInit = {
@@ -45,6 +57,34 @@ export const api = {
 
   // Banners
   getBanners: () => fetchJson<Banner[]>(`${API_BASE}/banners`),
+
+  // Brands
+  getBrands: () => fetchJson<Brand[]>(`${API_BASE}/brands`),
+  getBrand: (slug: string) => fetchJson<Brand>(`${API_BASE}/brands/${slug}`),
+
+  // Sellers
+  getSellers: () => fetchJson<Seller[]>(`${API_BASE}/sellers`),
+  getSeller: (slug: string) => fetchJson<Seller>(`${API_BASE}/sellers/${slug}`),
+
+  // Pages
+  getPage: (slug: string) => fetchJson<PageItem>(`${API_BASE}/pages/${slug}`),
+
+  // Settings
+  getSettings: () => fetchJson<SiteSetting>(`${API_BASE}/settings`),
+
+  // Complaints
+  submitComplaint: (data: { customerName: string; phone: string; email?: string; orderNumber?: string; category: string; description: string; photo?: string }) =>
+    fetchJson<{ id: string; ticketNumber: string }>(`${API_BASE}/complaints`, {
+      method: 'POST',
+      body: JSON.stringify(data)
+    }),
+
+  // Newsletter
+  subscribeNewsletter: (email: string) =>
+    fetchJson<{ email: string }>(`${API_BASE}/subscribers`, {
+      method: 'POST',
+      body: JSON.stringify({ email })
+    }),
 
   // Products
   getProducts: (params: {

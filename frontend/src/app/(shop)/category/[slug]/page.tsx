@@ -58,8 +58,12 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
     limit: 12
   });
 
-  const { items, pagination, filterMeta } = productsResponse;
-  const availableBrands = filterMeta?.availableBrands || [];
+  const items = productsResponse.items || [];
+  const total = (productsResponse as any).total ?? productsResponse.pagination?.total ?? items.length;
+  const totalPages = (productsResponse as any).totalPages ?? productsResponse.pagination?.totalPages ?? 1;
+  const hasPrev = page > 1;
+  const hasNext = page < totalPages;
+  const availableBrands = productsResponse.filterMeta?.availableBrands || [];
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-6">
@@ -111,7 +115,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
 
         {/* Right Main Grid */}
         <div className="lg:col-span-3 space-y-4">
-          <CategorySortBar total={pagination.total} />
+          <CategorySortBar total={total} />
 
           {items.length === 0 ? (
             <div className="bg-white rounded-xl border border-slate-200 p-12 text-center flex flex-col items-center justify-center">
@@ -122,7 +126,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
               </p>
               <Link
                 href={`/category/${slug}`}
-                className="px-4 py-2 bg-blue-600 text-white text-xs font-semibold rounded-lg hover:bg-blue-700 transition-colors"
+                className="px-4 py-2 bg-[#FF6600] text-white text-xs font-semibold rounded-lg hover:bg-[#e55c00] transition-colors"
               >
                 Clear Filters
               </Link>
@@ -136,9 +140,9 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
           )}
 
           {/* Pagination Controls */}
-          {pagination.totalPages > 1 && (
+          {totalPages > 1 && (
             <div className="pt-6 flex items-center justify-center gap-2">
-              {pagination.hasPrev && (
+              {hasPrev && (
                 <Link
                   href={`/category/${slug}?page=${page - 1}`}
                   className="px-3 py-2 bg-white border border-slate-200 text-slate-700 rounded-lg text-xs font-semibold hover:bg-slate-50 flex items-center gap-1 shadow-xs"
@@ -148,13 +152,13 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                 </Link>
               )}
 
-              {Array.from({ length: pagination.totalPages }, (_, i) => i + 1).map(p => (
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map(p => (
                 <Link
                   key={p}
                   href={`/category/${slug}?page=${p}`}
                   className={`w-8 h-8 rounded-lg text-xs font-bold flex items-center justify-center transition-colors ${
                     p === page
-                      ? 'bg-blue-600 text-white shadow-xs'
+                      ? 'bg-[#FF6600] text-white shadow-xs'
                       : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-50'
                   }`}
                 >
@@ -162,7 +166,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                 </Link>
               ))}
 
-              {pagination.hasNext && (
+              {hasNext && (
                 <Link
                   href={`/category/${slug}?page=${page + 1}`}
                   className="px-3 py-2 bg-white border border-slate-200 text-slate-700 rounded-lg text-xs font-semibold hover:bg-slate-50 flex items-center gap-1 shadow-xs"

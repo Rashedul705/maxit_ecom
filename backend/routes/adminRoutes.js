@@ -1,22 +1,54 @@
 const express = require('express');
 const router = express.Router();
-const adminController = require('../controllers/adminController');
-const { requireAdminAuth } = require('../middleware/auth');
+const db = require('../services/dbStore');
+const { successResponse, errorResponse } = require('../utils/response');
 
-// Public Admin Auth Route
-router.post('/login', adminController.login);
+// POST /api/v1/admin/login
+router.post('/login', async (req, res, next) => {
+  try {
+    const { email, password, token } = req.body;
+    const auth = await db.authenticateAdmin({ email, password, token });
+    if (!auth) {
+      return errorResponse(res, 'Invalid credentials', 401);
+    }
+    return successResponse(res, auth, 'Admin authenticated successfully');
+  } catch (err) {
+    next(err);
+  }
+});
 
-// All subsequent admin routes require ADMIN_TOKEN authorization
-router.use(requireAdminAuth);
+// GET /api/v1/admin/dashboard
+router.get('/dashboard', async (req, res, next) => {
+  try {
+    const stats = await db.getDashboardStats();
+    return successResponse(res, stats);
+  } catch (err) {
+    next(err);
+  }
+});
 
-router.get('/verify', adminController.verifySession);
-router.get('/me', adminController.verifySession);
-router.get('/dashboard', adminController.getDashboard);
-router.get('/orders', adminController.getOrders);
-router.patch('/orders/:id/status', adminController.updateOrderStatus);
+// GET /api/v1/admin/orders
+router.get('/orders', async (req, res, next) => {
+  try {
+    const { status, search, page = 1, limit = 50 } = req.query;
+    const result = await db.getOrders({ status, search, page, limit });
+    return successResponse(res, result.items || result);
+  } catch (err) {
+    next(err);
+  }
+});
 
-router.post('/products', adminController.createProduct);
-router.put('/products/:id', adminController.updateProduct);
-router.delete('/products/:id', adminController.deleteProduct);
+// PATCH /api/v1/admin/orders/:id/status
+router.patch('/orders/:id/status', async (req, res, next) => {
+  try {
+    const { status, note } = req.body;
+    if (!status) return errorResponse(res, 'Status is required', 400);
+    const order = await db.updateOrderStatus(req.params.id, { status, note });
+    if (!order) return errorResponse(res, 'Order not found', 404);
+    return successResponse(res, order, 'Order status updated successfully');
+  } catch (err) {
+    next(err);
+  }
+});
 
 module.exports = router;

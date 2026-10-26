@@ -8,10 +8,24 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "MaxiTShop | Online Shopping in Bangladesh - Solar, Laptops, Gadgets",
-  description: "MaxiTShop is Bangladesh's trusted e-commerce platform for Solar Panels, Inverters, Laptops, Smartphones, Smart Watches, and Home Appliances with Cash on Delivery nationwide.",
-  keywords: "MaxiTShop, maxitshop, online shopping bangladesh, solar panels bd, laptops bd, smartphones dhaka, cash on delivery",
-  authors: [{ name: "MaxiTShop" }],
+  title: "maxitshop | Online Shopping in Bangladesh - Solar, Inverters, Gadgets & Spares",
+  description: "maxitshop is Bangladesh's premier e-commerce platform for Solar Energy, LiFePO4 Batteries, Inverters, Smart Gadgets, and Electronics with Cash on Delivery across all 64 districts.",
+  keywords: "maxitshop, solar panels bd, inverter price bangladesh, lifepo4 battery bd, bms module, electronics parts dhaka, cash on delivery",
+  authors: [{ name: "maxitshop" }],
+  metadataBase: new URL("http://localhost:3001"),
+  openGraph: {
+    title: "maxitshop | Online Shopping in Bangladesh",
+    description: "Authentic solar equipment, inverters, batteries, and electronics with nationwide delivery.",
+    url: "http://localhost:3001",
+    siteName: "maxitshop",
+    locale: "en_BD",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "maxitshop | Bangladesh Trusted Tech & Solar Store",
+    description: "Shop solar systems, batteries, and electronic modules with cash on delivery across BD.",
+  },
 };
 
 export default function RootLayout({
@@ -24,7 +38,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.ico" />
       </head>
-      <body className="min-h-full flex flex-col bg-slate-50 text-slate-900 antialiased selection:bg-blue-500 selection:text-white">
+      <body className="min-h-full flex flex-col bg-[#F8F9FA] text-gray-900 antialiased selection:bg-[#FF6600] selection:text-white">
         {children}
       </body>
     </html>

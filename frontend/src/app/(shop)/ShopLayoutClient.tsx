@@ -1,12 +1,11 @@
 'use client';
 
 import React, { useState } from 'react';
-import { TopBar } from '@/components/shop/TopBar';
 import { Header } from '@/components/shop/Header';
-import { MegaMenu } from '@/components/shop/MegaMenu';
 import { MobileDrawer } from '@/components/shop/MobileDrawer';
 import { CartDrawer } from '@/components/shop/CartDrawer';
 import { FloatingSupport } from '@/components/shop/FloatingSupport';
+import { MobileBottomNav } from '@/components/shop/MobileBottomNav';
 import { Footer } from '@/components/shop/Footer';
 import { Category } from '@/lib/types';
 import { CartProvider } from '@/lib/cartContext';
@@ -21,15 +20,12 @@ export const ShopLayoutClient: React.FC<ShopLayoutClientProps> = ({ children, ca
 
   return (
     <CartProvider>
-      <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 font-sans">
-        {/* Top Utility Bar */}
-        <TopBar />
-
-        {/* Main Header with Search & Cart */}
-        <Header onToggleMobileDrawer={() => setIsMobileDrawerOpen(true)} />
-
-        {/* Mega Menu Bar (Desktop) */}
-        <MegaMenu categories={categories} />
+      <div className="min-h-screen flex flex-col bg-[#F8F9FA] text-gray-900 font-sans">
+        {/* Main Header with Top Header & Main Nav Bar */}
+        <Header
+          categories={categories}
+          onToggleMobileDrawer={() => setIsMobileDrawerOpen(true)}
+        />
 
         {/* Mobile Navigation Drawer */}
         <MobileDrawer
@@ -42,12 +38,15 @@ export const ShopLayoutClient: React.FC<ShopLayoutClientProps> = ({ children, ca
         <CartDrawer />
 
         {/* Main Content Area */}
-        <main className="flex-1">
+        <main className="flex-1 pb-16 lg:pb-0">
           {children}
         </main>
 
-        {/* Floating WhatsApp & Hotline Button */}
+        {/* Floating WhatsApp & Messenger Support Buttons */}
         <FloatingSupport />
+
+        {/* Mobile Fixed Bottom Navigation Bar */}
+        <MobileBottomNav onOpenCategories={() => setIsMobileDrawerOpen(true)} />
 
         {/* Footer */}
         <Footer />

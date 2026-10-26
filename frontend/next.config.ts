@@ -16,6 +16,21 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'www.nanopowerbd.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'nanopowerbd.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i.ibb.co',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
         hostname: 'bdshop.com',
         pathname: '/**',
       },
