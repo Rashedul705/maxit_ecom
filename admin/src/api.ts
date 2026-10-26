@@ -12,7 +12,15 @@ import {
   DashboardStats
 } from './types';
 
-const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5002/api/v1';
+const getApiBase = () => {
+  if (import.meta.env.VITE_API_BASE_URL) return import.meta.env.VITE_API_BASE_URL;
+  if (typeof window !== 'undefined' && window.location.hostname.includes('esp32.site')) {
+    return 'https://maxitecomapi.maxapi.esp32.site/api/v1';
+  }
+  return 'http://localhost:5002/api/v1';
+};
+
+const API_BASE = getApiBase();
 
 function getToken(): string {
   return localStorage.getItem('maxit_admin_token') || 'admin_secret_token_123';
