@@ -18,7 +18,11 @@ import {
 
 const getApiBase = () => {
   if (process.env.NEXT_PUBLIC_API_URL) return process.env.NEXT_PUBLIC_API_URL;
+  if (process.env.API_URL) return process.env.API_URL;
   if (typeof window !== 'undefined' && window.location.hostname.includes('esp32.site')) {
+    return 'https://maxitecomapi.maxapi.esp32.site/api/v1';
+  }
+  if (process.env.NODE_ENV === 'production') {
     return 'https://maxitecomapi.maxapi.esp32.site/api/v1';
   }
   return 'http://localhost:5002/api/v1';
