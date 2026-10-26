@@ -51,7 +51,7 @@ export default function AdminProductsPage() {
     try {
       setLoading(true);
       const res = await api.getProducts({ limit: 50 });
-      setProducts(res.items);
+      setProducts(res?.items || []);
     } catch (err: unknown) {
       console.error('Failed to load products:', err);
       const message = err instanceof Error ? err.message : 'Error loading catalog';

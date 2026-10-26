@@ -636,12 +636,59 @@ const db = {
 
   // --- ADMIN DASHBOARD STATS ---
   async getDashboardStats() {
+    if (isMongo()) {
+      try {
+        const [totalProducts, totalOrders, newComplaints, lowMongo, recentOrders] = await Promise.all([
+          Product.countDocuments(),
+          Order.countDocuments(),
+          Complaint.countDocuments({ status: 'new' }),
+          Product.find({ stock: { $lte: 10 } }).limit(10).lean(),
+          Order.find().sort({ createdAt: -1 }).limit(5).lean()
+        ]);
+
+        const validOrders = await Order.find({ status: { $ne: 'cancelled' } }).lean();
+        const totalRevenue = validOrders.reduce((sum, o) => sum + (o.total || 0), 0);
+        const pendingOrders = validOrders.filter(o => o.status === 'pending').length;
+
+        const lowStockProducts = lowMongo.map(p => ({
+          id: p._id.toString(),
+          title: p.title,
+          category: p.category,
+          price: p.price,
+          stock: p.stock
+        }));
+
+        return {
+          totalOrders,
+          totalRevenue,
+          totalProducts,
+          lowStockCount: lowStockProducts.length,
+          lowStockProducts,
+          pendingOrders,
+          newComplaints,
+          recentOrders
+        };
+      } catch (err) {
+        console.warn('⚠️ MongoDB getDashboardStats error:', err.message);
+      }
+    }
+
     const totalOrders = memoryStore.orders.length;
     const totalRevenue = memoryStore.orders
       .filter(o => o.status !== 'cancelled')
       .reduce((sum, o) => sum + (o.total || 0), 0);
     const totalProducts = memoryStore.products.length;
-    const lowStockCount = memoryStore.products.filter(p => p.stock <= 5).length;
+    const lowStockProducts = memoryStore.products
+      .filter(p => (p.stock || 0) <= 10)
+      .slice(0, 10)
+      .map(p => ({
+        id: p.id,
+        title: p.title,
+        category: p.category,
+        price: p.price,
+        stock: p.stock
+      }));
+    const lowStockCount = lowStockProducts.length;
     const pendingOrders = memoryStore.orders.filter(o => o.status === 'pending').length;
     const newComplaints = memoryStore.complaints.filter(c => c.status === 'new').length;
 
@@ -650,6 +697,7 @@ const db = {
       totalRevenue,
       totalProducts,
       lowStockCount,
+      lowStockProducts,
       pendingOrders,
       newComplaints,
       recentOrders: memoryStore.orders.slice(0, 5)

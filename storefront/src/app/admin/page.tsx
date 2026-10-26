@@ -66,7 +66,7 @@ export default function AdminDashboardPage() {
               <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs flex items-center justify-between">
                 <div>
                   <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Total Orders</span>
-                  <h3 className="text-2xl font-black text-slate-900 mt-1">{stats.totalOrders}</h3>
+                  <h3 className="text-2xl font-black text-slate-900 mt-1">{stats?.totalOrders ?? 0}</h3>
                   <Link href="/admin/orders" className="text-[11px] font-bold text-blue-600 hover:text-blue-800 mt-1 inline-flex items-center gap-1">
                     <span>Manage Orders</span>
                     <ArrowRight className="w-3 h-3" />
@@ -80,7 +80,7 @@ export default function AdminDashboardPage() {
               <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs flex items-center justify-between">
                 <div>
                   <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Total Revenue</span>
-                  <h3 className="text-2xl font-black text-emerald-600 mt-1">৳{stats.totalRevenue.toLocaleString()}</h3>
+                  <h3 className="text-2xl font-black text-emerald-600 mt-1">৳{(stats?.totalRevenue ?? 0).toLocaleString()}</h3>
                   <span className="text-[11px] text-slate-400">From delivered/placed orders</span>
                 </div>
                 <div className="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
@@ -91,7 +91,7 @@ export default function AdminDashboardPage() {
               <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs flex items-center justify-between">
                 <div>
                   <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Active Catalog</span>
-                  <h3 className="text-2xl font-black text-slate-900 mt-1">{stats.totalProducts}</h3>
+                  <h3 className="text-2xl font-black text-slate-900 mt-1">{stats?.totalProducts ?? 0}</h3>
                   <Link href="/admin/products" className="text-[11px] font-bold text-blue-600 hover:text-blue-800 mt-1 inline-flex items-center gap-1">
                     <span>Manage Products</span>
                     <ArrowRight className="w-3 h-3" />
@@ -105,7 +105,7 @@ export default function AdminDashboardPage() {
               <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs flex items-center justify-between">
                 <div>
                   <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Low Stock Items</span>
-                  <h3 className="text-2xl font-black text-red-600 mt-1">{stats.lowStockCount}</h3>
+                  <h3 className="text-2xl font-black text-red-600 mt-1">{stats?.lowStockCount ?? 0}</h3>
                   <span className="text-[11px] text-slate-400">&lt; 10 units in stock</span>
                 </div>
                 <div className="w-12 h-12 rounded-xl bg-red-50 text-red-600 flex items-center justify-center">
@@ -130,7 +130,7 @@ export default function AdminDashboardPage() {
                 </Link>
               </div>
 
-              {stats.lowStockProducts.length === 0 ? (
+              {(!stats?.lowStockProducts || stats.lowStockProducts.length === 0) ? (
                 <div className="p-8 text-center text-xs text-slate-500">
                   All items are adequately stocked (&gt;= 10 units).
                 </div>
@@ -147,11 +147,11 @@ export default function AdminDashboardPage() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-100">
-                      {stats.lowStockProducts.map((p) => (
+                      {(stats.lowStockProducts || []).map((p) => (
                         <tr key={p.id} className="hover:bg-slate-50/60">
                           <td className="py-3 px-4 font-semibold text-slate-800">{p.title}</td>
-                          <td className="py-3 px-4 text-slate-500 capitalize">{p.category.replace(/-/g, ' ')}</td>
-                          <td className="py-3 px-4 font-bold text-slate-900">৳{p.price.toLocaleString()}</td>
+                          <td className="py-3 px-4 text-slate-500 capitalize">{p.category ? p.category.replace(/-/g, ' ') : 'General'}</td>
+                          <td className="py-3 px-4 font-bold text-slate-900">৳{(p.price || 0).toLocaleString()}</td>
                           <td className="py-3 px-4">
                             <span className="inline-flex items-center gap-1 font-bold text-red-600 bg-red-50 px-2 py-0.5 rounded-full text-[11px]">
                               {p.stock} units

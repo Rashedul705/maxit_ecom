@@ -39,7 +39,7 @@ export default function AdminOrdersPage() {
       const token = getToken();
       if (!token) return;
       const res = await api.getAdminOrders(token);
-      setOrders(res);
+      setOrders(Array.isArray(res) ? res : ((res as any)?.items || []));
     } catch (err: unknown) {
       console.error('Failed to load admin orders:', err);
       const isAuthError = (err as { status?: number })?.status === 401 || (err instanceof Error && err.message.toLowerCase().includes('unauthorized'));
