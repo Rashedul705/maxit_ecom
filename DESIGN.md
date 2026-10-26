@@ -1,252 +1,165 @@
-# DESIGN SPECIFICATION: maxitshop (inspired by BDShop.com)
+# DESIGN.md - maxitshop Design System Specification
 
-## 1. Executive Summary & Design Principles
-maxitshop is designed to provide an ultra-fast, mobile-first, conversion-optimized shopping experience tailored for consumers across Bangladesh. Inspired by BDShop's high-density, informative, and trust-oriented e-commerce layout, maxitshop adopts a refined, modern aesthetic with sharp visual hierarchy, clear BDT pricing, and seamless checkout flows.
-
-Reference screenshots are archived in `docs/reference/`:
-- `desktop_home.png`
-- `desktop_category.png`
-- `desktop_product.png`
-- `desktop_cart.png`
-- `mobile_home.png`
+Design specifications, tokens, and aesthetic rules derived from the live study of https://www.nanopowerbd.com/, customized for `maxitshop` with BDT (`৳`) currency and Bangladesh e-commerce ergonomics.
 
 ---
 
-## 2. Color Palette & Design Tokens
+## 1. Color Palette & Tokens
 
-| Token Name | Hex Code | Purpose & Application |
-|---|---|---|
-| `primary` / `brand` | `#2563EB` (Blue-600) | Primary branding, primary CTA buttons, active state highlights, primary links |
-| `primary-hover` | `#1D4ED8` (Blue-700) | Button hover states, active menu hover |
-| `secondary` / `accent` | `#F97316` (Orange-500) | "Buy Now" urgent CTA, hot highlights, notice alerts |
-| `secondary-hover` | `#EA580C` (Orange-600) | Secondary CTA hover states |
-| `deal-accent` | `#F59E0B` (Amber-500) | Flash deals, star ratings, promo tag accents |
-| `background-page` | `#F8FAFC` (Slate-50) | Main background for high contrast card display |
-| `background-surface` | `#FFFFFF` (White) | Card backgrounds, drawer panels, modal surfaces |
-| `background-subtle` | `#F1F5F9` (Slate-100) | Top bar, table headers, inactive filter chips |
-| `text-primary` | `#0F172A` (Slate-900) | Product titles, main headings, critical data |
-| `text-secondary` | `#475569` (Slate-600) | Body copy, descriptions, specifications labels |
-| `text-muted` | `#94A3B8` (Slate-400) | Strikethrough old prices, breadcrumbs, placeholders |
-| `price-current` | `#2563EB` | Prominent current selling price (৳) |
-| `price-discount` | `#DC2626` (Red-600) | Discount percentages (`-17% OFF`), "Save ৳X" tags, stock urgency |
-| `badge-discount-bg`| `#FEF2F2` (Red-50) | Background for percentage discount badge |
-| `badge-discount-text`| `#DC2626` | Text for discount badge |
-| `badge-stock-in` | `#ECFDF5` / `#059669` | "In Stock" pill badge |
-| `border-subtle` | `#E2E8F0` (Slate-200) | Card borders, dividers, table borders |
-| `border-strong` | `#CBD5E1` (Slate-300) | Form input borders, active tabs |
+### 1.1 Brand & Action Colors
+- **Primary Brand / Action (Call to Action)**: `#FF6600` (Vibrant Amber-Orange)
+  - Used for "অর্ডার করুন" (Order Now), "Apply Coupon", Cart badges, and CTA buttons.
+  - Hover: `#E65100` / `#D84315`
+  - Active: `#BF360C`
+- **Secondary Brand / Header Bar**: `#131A22` (Deep Navy / Charcoal Black)
+  - Used for main navigation bar, footer background, and strong header accents.
+  - Surface Variant: `#1A222D` / `#232F3E`
+- **Tertiary Accent (Informational & Badges)**: `#0D6EFD` (Royal Blue)
+  - Used for Track Order truck badge, info pills, and active filter selections.
+  - Messenger Widget: `#0084FF`
+  - WhatsApp Widget: `#25D366`
+- **Sale & Discount Badge**:
+  - Background: `#FF3B30` / `#FF6600` (Bright Crimson Orange)
+  - Text: `#FFFFFF`
+  - Border Radius: `50%` or `12px` rounded pill
 
----
+### 1.2 Neutral & Surface Colors
+- **Page Background**: `#F8F9FA` (Soft warm off-white)
+- **Card & Container Surface**: `#FFFFFF` (Pure White)
+- **Border Default**: `#E5E7EB` / `#EEEEEE` (Subtle 1px divider)
+- **Border Muted / Hover**: `#CBD5E1` / `#D1D5DB`
+- **Header Top Background**: `#FFFFFF`
+- **Footer Background**: `#131A22`
+- **Footer Text**: `#E8E8E8` / `#9CA3AF`
 
-## 3. Typography & Hierarchy
-
-- **Font Family**: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif
-- **Headings**:
-  - `H1` (Page / Hero Titles): 24px - 32px (mobile) to 36px (desktop), font-weight: 700
-  - `H2` (Section Titles): 20px - 24px, font-weight: 700, uppercase letter-spacing: 0.025em, with color accent bar or icon
-  - `H3` (Card / Sub-headings): 15px - 16px, font-weight: 600
-- **Body & Captions**:
-  - Regular Body: 14px (0.875rem), line-height: 1.5, font-weight: 400
-  - Compact Meta / Spec text: 12px - 13px, font-weight: 400 or 500
-- **Pricing & Actions**:
-  - Product Card Price: 16px - 18px, font-weight: 700
-  - Product Detail Main Price: 26px - 30px, font-weight: 800
-  - Buttons: 14px - 15px, font-weight: 600, tracking-wide
+### 1.3 Typography Colors
+- **Heading & Primary Text**: `#111827` / `#222222` (High contrast charcoal)
+- **Secondary / Body Text**: `#4B5563` / `#666666` (Medium contrast gray)
+- **Muted / Subtitle Text**: `#9CA3AF` / `#888888` (Timestamp, placeholder, specs labels)
+- **Strikethrough Old Price**: `#9CA3AF` (Greyed out with line-through)
+- **Current Price**: `#FF6600` / `#D84315` (Bold accent color)
+- **Star Rating Fill**: `#F59E0B` (Amber 500)
 
 ---
 
-## 4. Header & Navigation Architecture
+## 2. Typography
 
-### A. Top Utility Bar
-- Height: 34px - 38px, background `#0F172A` (or light `#F1F5F9`)
-- Content:
-  - Left: Customer Hotline & WhatsApp helpline: `+880 1700-000000` | 9:00 AM - 10:00 PM
-  - Right: "Track Order" link, "About Us", "Contact Us", currency indicator (BDT ৳)
+### 2.1 Font Families
+- **English / Numbers**: `'Poppins', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`
+- **Bengali (Bangla Text)**: `'Hind Siliguri', 'Noto Sans Bengali', sans-serif`
+- **Weights**:
+  - Regular: `400`
+  - Medium: `500`
+  - Semi-Bold: `600`
+  - Bold: `700`
 
-### B. Main Header
-- Sticky on scroll (desktop & mobile) with subtle drop shadow (`shadow-md`)
-- Left: Text Logo `maxitshop` with subtle tech icon/pill badge
-- Center: High-visibility Search Input:
-  - Integrated search category dropdown / placeholder "Search for products, brands, or categories..."
-  - Search button with magnifying icon (brand color)
-  - Live interactive suggestions modal displaying matching products with thumbnails and prices
-- Right:
-  - Track Order shortcut icon
-  - User Account / Login trigger
-  - My Cart trigger with item count badge (e.g. `2`) and total price preview (e.g. `৳1,850`)
-
-### C. Category Navigation Bar (Desktop) & Mega Menu
-- "Shop by Category" button with hamburger icon on left:
-  - Hover or click reveals multi-tier dropdown mega-menu listing all 6 top categories and their respective subcategories
-- Horizontal navigation links:
-  - Home, Deals of the Day (with flame badge), New Arrivals, Featured, Laptops, Mobile Phones, Accessories, Track Order
-
-### D. Mobile Header & Drawer
-- Mobile viewport (<= 768px):
-  - Compact top row: Hamburger button, `maxitshop` logo, Cart button with badge
-  - Full-width search bar underneath
-  - Sliding Drawer navigation triggered by hamburger:
-    - Search input
-    - Category tree with expandable subcategories
-    - Quick links: Track Order, Deals, Customer Support, Contact
-    - Hotline contact button
+### 2.2 Scale & Hierarchy
+| Element | Font Size | Line Height | Font Weight | Letter Spacing |
+|---|---|---|---|---|
+| **H1 (Page Titles)** | `24px` - `28px` | `1.3` | `700` | `-0.01em` |
+| **H2 / Section Title** | `20px` - `22px` | `1.35` | `600` | `0` |
+| **Product Card Title**| `14px` - `15px` | `1.4` | `500` | `0` |
+| **Product Price (Current)**| `16px` - `18px` | `1.2` | `700` | `0` |
+| **Product Old Price** | `13px` - `14px` | `1.2` | `400` | `0` |
+| **Button Text** | `14px` - `15px` | `1` | `600` | `0.02em` |
+| **Category Nav Item** | `13px` - `14px` | `1.4` | `500` | `0` |
+| **Footer Links** | `13px` - `14px` | `1.6` | `400` | `0` |
+| **Small Badges / Hints**| `11px` - `12px` | `1` | `600` | `0.03em` |
 
 ---
 
-## 5. Home Page Sections & Grid Layout
+## 3. Spacing, Elevation & Shapes
 
-The home page follows BDShop's high-conversion section rhythm:
+### 3.1 Border Radii
+- **Buttons (`.order-btn`)**: `6px` - `8px`
+- **Product Cards (`.product_item`)**: `8px` - `10px`
+- **Category Circular Cards**: `12px` or `50%`
+- **Sale Discount Badge**: `6px` or `50%`
+- **Inputs & Form Controls**: `6px` - `8px`
+- **Modal Dialogs & Drawers**: `12px` - `16px`
+- **Mobile Bottom Nav**: `20px 20px 0 0` (Top rounded corners)
 
-1. **Hero Banner & Category Sidebar Section**:
-   - Desktop: Left vertical category list (or full width carousel with quick banner tiles on right).
-   - Mobile: 100% width swipeable responsive banner slider (aspect 16:7).
-2. **Key Selling Points / Trust Badges Bar**:
-   - 4 items: "Cash on Delivery across BD", "Fast 2-3 Days Delivery", "7 Days Replacement Guarantee", "100% Genuine Products".
-3. **Category Icons Quick Bar**:
-   - Circular/Rounded cards of top 6 categories with clear SVG icons and titles.
-4. **Deals of the Day (Hot Deals)**:
-   - Header with flame/countdown timer accent and "View All" link.
-   - Horizontal scroll / grid (2 cols mobile, 3 cols tablet, 5 cols desktop).
-5. **New Arrivals Section**:
-   - Highlighting latest gadgets and consumer electronics.
-   - 2 cols mobile, 3 cols tablet, 5 cols desktop.
-6. **Featured Categories Showcase**:
-   - Section for "Mobile Phones & Gadgets", "Laptops & Computing", "Solar & Green Energy" with mini promo banners alongside product grids.
-7. **"Specially for You" Infinite Grid**:
-   - Curated product discovery feed with a prominent "Load More" button.
+### 3.2 Shadows & Elevation
+- **Card Rest**: `0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03)`
+- **Card Hover**: `0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04)`
+- **Sticky Header**: `0 2px 10px rgba(0, 0, 0, 0.07)`
+- **Mobile Bottom Nav**: `0 -4px 15px rgba(0, 0, 0, 0.08)`
+- **Floating Action Buttons**: `0 4px 14px rgba(37, 211, 102, 0.4)` (WhatsApp), `0 4px 14px rgba(0, 132, 255, 0.4)` (Messenger)
 
 ---
 
-## 6. Product Card Anatomy
+## 4. Key Component Layouts & Specifications
 
-Each product card is designed to maximize click-through and purchase intent:
-- **Card Container**: White background, `rounded-xl`, `border border-slate-200`, `p-3`, transition `hover:shadow-lg hover:border-blue-400 hover:-translate-y-0.5`.
-- **Image Container**: Aspect ratio 1:1 (`aspect-square`), relative position, overflow-hidden, rounded-lg, smooth zoom on hover (`group-hover:scale-105`).
-- **Badges**:
-  - Top-left: Discount percentage pill (`-15% OFF`) in red with white text.
-  - Top-right: "Hot Deal" or "New" badge when applicable.
-- **Brand & Title**:
-  - Brand name: 11px uppercase in slate-400.
-  - Title: 14px slate-800 font-semibold, 2-line clamp (`line-clamp-2`), min-height 40px.
-- **Stock Status**:
-  - Green indicator dot with "In Stock" (or red "Out of Stock").
-- **Price Block**:
-  - Selling Price: 16px - 18px bold text in primary color (`৳1,450`).
-  - Strikethrough Old Price: 13px line-through in slate-400 (`৳1,800`).
-  - "Save ৳X": 11px font-bold text-red-600 bg-red-50 px-1.5 py-0.5 rounded.
-- **Action Button**:
-  - Full-width or compact "Add to Order" / "Add to Cart" button with shopping bag icon.
+### 4.1 Top Header & Logo Area
+- **Height**: `72px` (Desktop), `60px` (Mobile)
+- **Layout**: Flex row, center-aligned, container max-width `1280px`
+- **Search Bar**: Centered, height `42px`, border radius `6px`, orange or dark search button on right with search icon
+- **Track Order Button**: Bordered pill with truck icon and direct text
+- **Cart Widget**: Icon with red/orange badge showing count, right dropdown summary with `সর্বমোট : ৳...` and direct "অর্ডার করুন" link
 
----
+### 4.2 Main Nav Menu
+- **Background**: `#131A22` (Dark bar)
+- **Height**: `46px`
+- **"ALL CATEGORIES" Button**: `#0D6EFD` or `#FF6600` or styled dark tile with list icon, fixed width matching the `col-sm-3` (approx 260px) sidebar
+- **Menu Items**: Horizontal list (`Home`, `Sellers`, `Contact`), white text, hover yellow/orange
+- **Login / Sign Up**: Aligned to the far right with user icon
 
-## 7. Category Page Layout & Filtering
+### 4.3 Left Vertical Category Menu
+- **Width**: `260px` - `280px` (col-3)
+- **Container**: White background, 1px solid `#E5E7EB` border, border-radius `8px`
+- **Item**:
+  - Padding: `10px 14px`
+  - Icon: `22px x 22px` square with clean category thumbnail/icon
+  - Category Name: `13px`, font-weight 500, black text
+  - Right Icon: Small gray chevron `>`
+  - Hover: Background `#F3F4F6`, text color shifts to Primary `#FF6600`
 
-- **Breadcrumbs**: Home > Category > Subcategory
-- **Layout**:
-  - Desktop: 2-column layout (Sidebar 260px + Product Grid 3-4 columns).
-  - Mobile: Full width with sticky "Filter & Sort" bottom bar opening filter drawer.
-- **Sidebar Filters**:
-  - Price Range Slider / Inputs (Min BDT - Max BDT) with Apply button.
-  - Brands Checklist with count.
-  - Availability (In Stock only toggle).
-- **Sort Bar**:
-  - Active filters pills with "Clear All".
-  - Total items found (e.g. "Showing 24 products").
-  - Sort dropdown: Newest First, Price: Low to High, Price: High to Low.
-- **Pagination**: Numbered pagination (1, 2, 3... Next) and items per page indicator.
+### 4.4 Hero Banner Slider
+- **Height**: `380px` - `420px` desktop, `180px` - `220px` mobile
+- **Radius**: `8px`
+- **Autoplay**: 4-5 seconds transition
+- **Controls**: Soft navigation dots and left/right arrows with hover opacity
 
----
+### 4.5 Product Card (`.product_item`)
+- **Structure**:
+  ```
+  +-----------------------------------+
+  | [ 10% ছাড় ]                       |
+  |                                   |
+  |          [ PRODUCT IMAGE ]        |
+  |                                   |
+  | Product Title truncated...        |
+  | ★ ★ ★ ★ ★                         |
+  | <del>৳ 8,000</del>  ৳ 7,200       |
+  | [         অর্ডার করুন          ]   |
+  +-----------------------------------+
+  ```
+- **Image Aspect Ratio**: `1:1` square, object-fit contain, padded
+- **Sale Badge**: Positioned top-right or top-left, circular badge with percentage on top and "ছাড়" underneath
+- **Title**: Truncated at 2 lines (`height: 40px`, overflow hidden, ellipsis)
+- **Rating**: 5 star icons in gold
+- **Pricing**: Strikethrough old price next to bold new price. If price is 0, display "Call for price"
+- **Button ("অর্ডার করুন")**:
+  - Full card width
+  - Background `#FF6600`, text white `#FFF`, font weight 600, height `38px`
+  - On click: adds product to cart and immediately redirects to `/customer/checkout`
 
-## 8. Product Detail Page Layout
-
-- **Breadcrumbs**: Rich hierarchy breadcrumbs with JSON-LD breadcrumb schema.
-- **Two-Column Main Section**:
-  - **Left (45% desktop)**:
-    - Main high-resolution image preview with zoom capability.
-    - Thumbnails carousel underneath for multiple image views.
-  - **Right (55% desktop)**:
-    - Product Title: 22px - 26px font-bold text-slate-900.
-    - SKU / Product ID, Brand link, Customer rating review stars.
-    - Pricing Box:
-      - Current price in 28px bold primary blue (`৳24,500`).
-      - Old price (`৳28,000`) and "Save ৳3,500 (-12%)" badge.
-    - Stock status: In Stock badge with inventory count alert.
-    - Quantity Selector: Minus / input / Plus controls.
-    - Two Key Action Buttons:
-      - Primary CTA: "Add to Order" / "Add to Cart" (Solid Blue).
-      - Immediate CTA: "Buy Now" (Solid Orange - directly navigates to Checkout with this item).
-    - Delivery & Trust Perks Box:
-      - Inside Dhaka: 24-48 Hours (৳80)
-      - Outside Dhaka: 2-4 Days (৳130)
-      - Cash on Delivery available
-      - 7 Days Replacement Warranty
-- **Tabs Section**:
-  - Specification Table (Key-Value pairs, e.g. Processor, RAM, Battery, Warranty).
-  - Detailed Description.
-  - Delivery & Return Policy.
-- **Related Products Carousel / Grid**: 4-5 related products from the same category.
-
----
-
-## 9. Cart & Checkout (BD Localized)
-
-### A. Cart Drawer & /cart Page
-- Guest cart stored in browser `localStorage`.
-- Item row: Thumbnail, title, unit price, quantity increment/decrement, remove icon.
-- Delivery calculation preview.
-- Subtotal, Total, "Proceed to Checkout" button.
-
-### B. Checkout Page (/checkout)
-- Single-page high-converting checkout.
-- Customer Information:
-  - Full Name, Mobile Phone (validated for BD 11-digit format `01XXXXXXXXX`), Detailed Address.
-  - Cascading Location dropdowns:
-    - Division (e.g. Dhaka, Chittagong, Rajshahi, Khulna, Barisal, Sylhet, Rangpur, Mymensingh)
-    - District (e.g. Dhaka, Gazipur, Narayanganj, etc.)
-    - Area / Thana (e.g. Mirpur, Dhanmondi, Gulshan, Uttara, etc.)
-- Delivery Charge Calculation:
-  - Division = Dhaka -> ৳80 Inside Dhaka delivery.
-  - Outside Dhaka -> ৳130 Outside Dhaka delivery.
-- Payment Method:
-  - Cash on Delivery (COD) selected by default with clear instructions: "Pay with cash upon delivery to your doorstep."
-- Order Notes / Instructions.
-- Order Summary Sidebar with items breakdown, subtotal, shipping charge, and grand total.
-- Place Order CTA button -> creates order via `POST /api/v1/orders` and redirects to confirmation.
+### 4.6 Mobile Bottom Navigation
+- **Height**: `60px`
+- **Position**: `fixed; bottom: 0; left: 0; right: 0; z-index: 1000;`
+- **Background**: `#FFFFFF` with top border-radius `16px 16px 0 0` and shadow
+- **5 Tabs**:
+  1. Category (`fa-th`)
+  2. Tracking (`fa-truck`)
+  3. Home (`fa-house`)
+  4. Cart (`fa-cart-shopping` with badge)
+  5. Login (`fa-user`)
+- **Active State**: Primary orange icon with label
 
 ---
 
-## 10. Track Order Page (/track-order)
-- Clean card with: Order Number input (e.g. `ORD-1729456-8291`) and Customer Phone Number.
-- Status Visual Timeline:
-  - Step 1: Order Placed (Time & Date)
-  - Step 2: Processing / Confirmed
-  - Step 3: Shipped / Handed to Courier
-  - Step 4: Delivered
-- Full breakdown of customer details, items ordered, and delivery charge.
-
----
-
-## 11. Footer Structure
-- Background: `#0F172A` (Dark slate) with light text for premium contrast.
-- 4 Columns:
-  1. About maxitshop: Logo, mission statement, hotline, email, trade license info, office address in Dhaka.
-  2. Customer Care: Track Order, Shipping & Delivery, Return Policy, FAQ, Contact Us.
-  3. Quick Links: About Us, Privacy Policy, Terms & Conditions, Deals, New Arrivals.
-  4. Payment & Security: Accepted payment badges (Cash on Delivery, bKash, Nagad, Visa/Mastercard), SSL secure icon.
-- Bottom Bar: Copyright © 2026 maxitshop. All rights reserved.
-
----
-
-## 12. Spacing, Radius, Shadows & Sticky Elements
-- **Border Radius**:
-  - Buttons: `rounded-lg` (8px)
-  - Cards & Panels: `rounded-xl` (12px)
-  - Modals & Drawers: `rounded-2xl` (16px)
-  - Badges & Pills: `rounded-full` (9999px)
-- **Shadows**:
-  - Cards: `shadow-sm` default, `shadow-md` on hover
-  - Dropdowns & Drawers: `shadow-xl`
-  - Sticky Header: `shadow-sm`
-- **Sticky Elements**:
-  - Main Header (top: 0, z-40)
-  - Mobile bottom navigation bar / filter bar on category page
-  - Floating WhatsApp / Customer Support button (bottom-right: 20px, z-50)
+## 5. Responsive Breakpoints
+- **Mobile Small (sm)**: `< 640px` (2 columns of product cards, full width banners, mobile bottom nav visible, desktop sidebar hidden)
+- **Tablet (md)**: `640px - 768px` (2-3 columns of products)
+- **Desktop (lg)**: `769px - 1024px` (3-4 columns of products, category sidebar visible)
+- **Wide Desktop (xl)**: `> 1024px` (4-5 columns of products, 1280px container max-width)

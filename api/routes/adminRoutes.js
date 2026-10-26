@@ -1,0 +1,54 @@
+const express = require('express');
+const router = express.Router();
+const db = require('../services/dbStore');
+const { successResponse, errorResponse } = require('../utils/response');
+
+// POST /api/v1/admin/login
+router.post('/login', async (req, res, next) => {
+  try {
+    const { email, password, token } = req.body;
+    const auth = await db.authenticateAdmin({ email, password, token });
+    if (!auth) {
+      return errorResponse(res, 'Invalid credentials', 401);
+    }
+    return successResponse(res, auth, 'Admin authenticated successfully');
+  } catch (err) {
+    next(err);
+  }
+});
+
+// GET /api/v1/admin/dashboard
+router.get('/dashboard', async (req, res, next) => {
+  try {
+    const stats = await db.getDashboardStats();
+    return successResponse(res, stats);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// GET /api/v1/admin/orders
+router.get('/orders', async (req, res, next) => {
+  try {
+    const { status, search, page = 1, limit = 50 } = req.query;
+    const result = await db.getOrders({ status, search, page, limit });
+    return successResponse(res, result.items || result);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// PATCH /api/v1/admin/orders/:id/status
+router.patch('/orders/:id/status', async (req, res, next) => {
+  try {
+    const { status, note } = req.body;
+    if (!status) return errorResponse(res, 'Status is required', 400);
+    const order = await db.updateOrderStatus(req.params.id, { status, note });
+    if (!order) return errorResponse(res, 'Order not found', 404);
+    return successResponse(res, order, 'Order status updated successfully');
+  } catch (err) {
+    next(err);
+  }
+});
+
+module.exports = router;
