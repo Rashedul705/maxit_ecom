@@ -13,11 +13,15 @@ import {
 } from './types';
 
 const getApiBase = () => {
-  if (import.meta.env.VITE_API_BASE_URL) return import.meta.env.VITE_API_BASE_URL;
-  if (typeof window !== 'undefined' && window.location.hostname.includes('esp32.site')) {
-    return 'https://maxitecomapi.maxapi.esp32.site/api/v1';
+  if (typeof window !== 'undefined') {
+    if (window.location.hostname.includes('esp32.site')) {
+      return 'https://maxitecomapi.maxapi.esp32.site/api/v1';
+    }
+    if (window.location.port === '5002' || window.location.pathname.startsWith('/admin')) {
+      return `${window.location.origin}/api/v1`;
+    }
   }
-  return 'http://localhost:5002/api/v1';
+  return import.meta.env.VITE_API_BASE_URL || 'http://localhost:5002/api/v1';
 };
 
 const API_BASE = getApiBase();

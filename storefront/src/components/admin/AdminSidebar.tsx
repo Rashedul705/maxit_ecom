@@ -78,7 +78,24 @@ export const AdminSidebar: React.FC = () => {
           );
         })}
 
-        <div className="pt-6 px-3 py-2 text-[10px] uppercase font-bold text-slate-500 tracking-wider">
+        <div className="pt-4 px-3 py-2 text-[10px] uppercase font-bold text-orange-400 tracking-wider">
+          Master Suite
+        </div>
+
+        <a
+          href="https://maxitecomapi.maxapi.esp32.site/admin"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-between px-3 py-2.5 rounded-xl bg-orange-500/10 border border-orange-500/20 text-orange-400 hover:bg-orange-500/20 hover:text-orange-300 transition-colors"
+        >
+          <div className="flex items-center gap-2.5">
+            <ShieldCheck className="w-4 h-4 text-orange-400" />
+            <span className="font-bold">Master Control (SPA)</span>
+          </div>
+          <ExternalLink className="w-3.5 h-3.5" />
+        </a>
+
+        <div className="pt-4 px-3 py-2 text-[10px] uppercase font-bold text-slate-500 tracking-wider">
           Storefront
         </div>
 

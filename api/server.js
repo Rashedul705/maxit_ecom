@@ -98,11 +98,19 @@ apiRouter.use('/admin', adminRoutes);
 // Mount under /api/v1
 app.use('/api/v1', apiRouter);
 
+// Admin Dashboard SPA
+const adminDistPath = path.join(__dirname, 'admin-dist');
+app.use('/admin', express.static(adminDistPath));
+app.get(['/admin', '/admin/*'], (req, res) => {
+  res.sendFile(path.join(adminDistPath, 'index.html'));
+});
+
 // Root fallback
 app.get('/', (req, res) => {
   return successResponse(res, {
     name: 'MaxiTShop API Server',
     version: '1.0.0',
+    adminDashboard: '/admin',
     documentation: '/api/v1/health'
   }, 'Welcome to MaxiTShop API Server');
 });
