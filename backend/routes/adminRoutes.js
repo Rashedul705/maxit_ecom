@@ -1,13 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../services/dbStore');
+const { requireAdminAuth } = require('../middleware/auth');
 const { successResponse, errorResponse } = require('../utils/response');
 
 // POST /api/v1/admin/login
 router.post('/login', async (req, res, next) => {
   try {
-    const { email, password, token } = req.body;
-    const auth = await db.authenticateAdmin({ email, password, token });
+    const { email, password } = req.body;
+    if (!email || !password) {
+      return errorResponse(res, 'Email and password are required', 400);
+    }
+    const auth = await db.authenticateAdmin({ email, password });
     if (!auth) {
       return errorResponse(res, 'Invalid credentials', 401);
     }
@@ -16,6 +20,9 @@ router.post('/login', async (req, res, next) => {
     next(err);
   }
 });
+
+// Enforce admin authentication for all routes below
+router.use(requireAdminAuth);
 
 // GET /api/v1/admin/dashboard
 router.get('/dashboard', async (req, res, next) => {

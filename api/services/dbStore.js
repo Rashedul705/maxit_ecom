@@ -107,19 +107,24 @@ mongoose.connection.on('connected', () => {
 
 const db = {
   // --- AUTHENTICATION ---
-  async authenticateAdmin({ email, password, token }) {
-    if (token && token === ADMIN_TOKEN) {
-      const jwtToken = jwt.sign({ role: 'admin', email: ADMIN_EMAIL }, JWT_SECRET, { expiresIn: '7d' });
-      return {
-        token: jwtToken,
-        user: { name: 'MaxiTShop Administrator', email: ADMIN_EMAIL, role: 'admin' }
-      };
+  async authenticateAdmin({ email, password }) {
+    const adminEmail = process.env.ADMIN_EMAIL;
+    const adminPassword = process.env.ADMIN_PASSWORD;
+    const jwtSecret = process.env.JWT_SECRET;
+
+    if (!adminEmail || !adminPassword || !jwtSecret) {
+      throw new Error('Server authentication error: ADMIN_EMAIL, ADMIN_PASSWORD or JWT_SECRET is not configured in environment');
     }
-    if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
-      const jwtToken = jwt.sign({ role: 'admin', email: ADMIN_EMAIL }, JWT_SECRET, { expiresIn: '7d' });
+
+    if (
+      email &&
+      email.trim().toLowerCase() === adminEmail.trim().toLowerCase() &&
+      password === adminPassword
+    ) {
+      const jwtToken = jwt.sign({ role: 'admin', email: adminEmail }, jwtSecret, { expiresIn: '7d' });
       return {
         token: jwtToken,
-        user: { name: 'MaxiTShop Administrator', email: ADMIN_EMAIL, role: 'admin' }
+        user: { name: 'MaxiTShop Administrator', email: adminEmail, role: 'admin' }
       };
     }
     return null;

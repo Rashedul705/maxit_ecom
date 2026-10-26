@@ -118,12 +118,19 @@ const getDashboardStats = async () => {
 };
 
 const adminLogin = async ({ email, password }) => {
-  const adminEmail = process.env.ADMIN_EMAIL || 'admin@maxitshop.com';
-  const adminPassword = process.env.ADMIN_PASSWORD || 'admin123456';
-  const adminToken = process.env.ADMIN_TOKEN || 'admin_secret_token_123';
+  const jwt = require('jsonwebtoken');
+  const adminEmail = process.env.ADMIN_EMAIL;
+  const adminPassword = process.env.ADMIN_PASSWORD;
+  const jwtSecret = process.env.JWT_SECRET;
+
+  if (!adminEmail || !adminPassword || !jwtSecret) {
+    const error = new Error('Server configuration error: ADMIN_EMAIL, ADMIN_PASSWORD or JWT_SECRET is not configured');
+    error.statusCode = 500;
+    throw error;
+  }
 
   if (!email || !password) {
-    const error = new Error('Email/username and password are required');
+    const error = new Error('Email and password are required');
     error.statusCode = 400;
     throw error;
   }
@@ -131,17 +138,16 @@ const adminLogin = async ({ email, password }) => {
   const cleanInput = email.trim().toLowerCase();
   const validEmail = adminEmail.trim().toLowerCase();
 
-  const isEmailMatch = cleanInput === validEmail || cleanInput === 'admin';
-  const isPasswordMatch = password.trim() === adminPassword || password.trim() === adminToken;
-
-  if (!isEmailMatch || !isPasswordMatch) {
+  if (cleanInput !== validEmail || password !== adminPassword) {
     const error = new Error('Invalid email or password credentials');
     error.statusCode = 401;
     throw error;
   }
 
+  const jwtToken = jwt.sign({ role: 'admin', email: adminEmail }, jwtSecret, { expiresIn: '7d' });
+
   return {
-    token: adminToken,
+    token: jwtToken,
     user: {
       name: 'MaxiTShop Administrator',
       email: adminEmail,
@@ -151,23 +157,30 @@ const adminLogin = async ({ email, password }) => {
 };
 
 const verifyAdminSession = async (token) => {
-  const adminToken = process.env.ADMIN_TOKEN || 'admin_secret_token_123';
-  const adminEmail = process.env.ADMIN_EMAIL || 'admin@maxitshop.com';
+  const jwt = require('jsonwebtoken');
+  const jwtSecret = process.env.JWT_SECRET;
 
-  if (!token || token !== adminToken) {
+  if (!token || !jwtSecret) {
     const error = new Error('Invalid or expired admin session token');
     error.statusCode = 401;
     throw error;
   }
 
-  return {
-    valid: true,
-    user: {
-      name: 'MaxiTShop Administrator',
-      email: adminEmail,
-      role: 'admin'
-    }
-  };
+  try {
+    const decoded = jwt.verify(token, jwtSecret);
+    return {
+      valid: true,
+      user: {
+        name: 'MaxiTShop Administrator',
+        email: decoded.email,
+        role: decoded.role
+      }
+    };
+  } catch (err) {
+    const error = new Error('Invalid or expired admin session token');
+    error.statusCode = 401;
+    throw error;
+  }
 };
 
 module.exports = {

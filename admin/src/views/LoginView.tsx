@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { adminApi } from '../api';
-import { Lock, Mail, Key } from 'lucide-react';
+import { Lock, Mail } from 'lucide-react';
 
 interface LoginViewProps {
   onLoginSuccess: (user: any) => void;
 }
 
 export const LoginView: React.FC<LoginViewProps> = ({ onLoginSuccess }) => {
-  const [email, setEmail] = useState('admin@maxitshop.com');
-  const [password, setPassword] = useState('admin123456');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -18,20 +18,6 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLoginSuccess }) => {
     try {
       setLoading(true);
       const res = await adminApi.login({ email, password });
-      localStorage.setItem('maxit_admin_token', res.token);
-      localStorage.setItem('maxit_admin_user', JSON.stringify(res.user));
-      onLoginSuccess(res.user);
-    } catch (err: any) {
-      setError(err.message || 'Login failed');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleQuickDemoLogin = async () => {
-    try {
-      setLoading(true);
-      const res = await adminApi.login({ token: 'admin_secret_token_123' });
       localStorage.setItem('maxit_admin_token', res.token);
       localStorage.setItem('maxit_admin_user', JSON.stringify(res.user));
       onLoginSuccess(res.user);
@@ -115,27 +101,10 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLoginSuccess }) => {
           <button
             type="submit"
             className="btn btn-primary"
-            style={{ width: '100%', padding: '11px', fontSize: '14px', justifyContent: 'center', marginTop: '8px' }}
+            style={{ width: '100%', padding: '11px', fontSize: '14px', justifyContent: 'center', marginTop: '16px' }}
             disabled={loading}
           >
             {loading ? 'Authenticating...' : 'Sign In to Dashboard'}
-          </button>
-
-          <div style={{ textAlign: 'center', margin: '20px 0 10px', position: 'relative' }}>
-            <span style={{ background: '#fff', padding: '0 10px', fontSize: '12px', color: '#94a3b8', position: 'relative', zIndex: 1 }}>
-              OR DEMO ACCESS
-            </span>
-            <div style={{ position: 'absolute', top: '50%', left: 0, right: 0, borderTop: '1px solid #e2e8f0' }} />
-          </div>
-
-          <button
-            type="button"
-            className="btn btn-secondary"
-            style={{ width: '100%', padding: '10px', fontSize: '13px', justifyContent: 'center' }}
-            onClick={handleQuickDemoLogin}
-            disabled={loading}
-          >
-            <Key size={15} /> 1-Click Demo Login
           </button>
         </form>
       </div>

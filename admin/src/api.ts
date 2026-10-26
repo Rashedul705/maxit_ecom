@@ -14,11 +14,12 @@ import {
 
 const getApiBase = () => {
   if (typeof window !== 'undefined') {
+    // When served under /admin (either backend origin or proxied by Next.js rewrite), relative /api/v1 works universally
+    if (window.location.pathname.startsWith('/admin')) {
+      return '/api/v1';
+    }
     if (window.location.hostname.includes('esp32.site')) {
       return 'https://maxitecomapi.maxapi.esp32.site/api/v1';
-    }
-    if (window.location.port === '5002' || window.location.pathname.startsWith('/admin')) {
-      return `${window.location.origin}/api/v1`;
     }
   }
   return import.meta.env.VITE_API_BASE_URL || 'http://localhost:5002/api/v1';
@@ -27,7 +28,7 @@ const getApiBase = () => {
 const API_BASE = getApiBase();
 
 function getToken(): string {
-  return localStorage.getItem('maxit_admin_token') || 'admin_secret_token_123';
+  return localStorage.getItem('maxit_admin_token') || '';
 }
 
 async function request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
@@ -53,7 +54,7 @@ async function request<T>(endpoint: string, options: RequestInit = {}): Promise<
 
 export const adminApi = {
   // Auth
-  login: async (creds: { email?: string; password?: string; token?: string }) => {
+  login: async (creds: { email: string; password: string }) => {
     return request<{ token: string; user: { name: string; email: string; role: string } }>('/admin/login', {
       method: 'POST',
       body: JSON.stringify(creds)

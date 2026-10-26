@@ -261,7 +261,7 @@ export const Footer: React.FC = () => {
 
         {/* Copyright notice */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-gray-500 text-[11px]">
-          <p>© 2026 maxitshop. All rights reserved. Powered by MaxiT Technologies. · <a href="https://maxitecomapi.maxapi.esp32.site/admin" target="_blank" rel="noopener noreferrer" className="hover:text-[#FF6600] transition-colors underline">Admin Portal</a></p>
+          <p>© 2026 maxitshop. All rights reserved. Powered by MaxiT Technologies. · <Link href="/admin" className="hover:text-[#FF6600] transition-colors underline">Admin Portal</Link></p>
           <p>Payment Methods: Cash on Delivery (COD), bKash, Nagad, Rocket</p>
         </div>
 

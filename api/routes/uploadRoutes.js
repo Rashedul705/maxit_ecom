@@ -4,6 +4,7 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 const https = require('https');
+const { requireAdminAuth } = require('../middleware/auth');
 const { successResponse, errorResponse } = require('../utils/response');
 
 // Ensure local uploads directory exists
@@ -18,8 +19,8 @@ const upload = multer({
   limits: { fileSize: 10 * 1024 * 1024 } // 10MB limit
 });
 
-// POST /api/v1/upload
-router.post('/', upload.single('image'), async (req, res, next) => {
+// POST /api/v1/upload (Protected)
+router.post('/', requireAdminAuth, upload.single('image'), async (req, res, next) => {
   try {
     if (!req.file) {
       return errorResponse(res, 'No image file uploaded', 400);

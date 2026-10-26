@@ -100,7 +100,7 @@ app.use('/api/v1', apiRouter);
 
 // Admin Dashboard SPA
 const adminDistPath = path.join(__dirname, 'admin-dist');
-app.use('/admin', express.static(adminDistPath));
+app.use('/admin', express.static(adminDistPath, { redirect: false }));
 app.get(['/admin', '/admin/*'], (req, res) => {
   res.sendFile(path.join(adminDistPath, 'index.html'));
 });
