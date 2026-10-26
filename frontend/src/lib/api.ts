@@ -12,7 +12,7 @@ import {
   ProductReviewsResponse
 } from './types';
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api/v1';
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5002/api/v1';
 
 async function fetchJson<T>(url: string, options: RequestInit = {}): Promise<T> {
   const defaultHeaders: HeadersInit = {
