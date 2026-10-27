@@ -50,11 +50,15 @@ const nextConfig: NextConfig = {
     },
   },
   async rewrites() {
+    const defaultBackend = process.env.NODE_ENV === 'development'
+      ? 'http://localhost:5002'
+      : 'https://maxitecomapi.maxapi.esp32.site';
+
     const backend = (
       process.env.BACKEND_URL ||
       process.env.API_URL?.replace(/\/api\/v1\/?$/, '') ||
       process.env.NEXT_PUBLIC_API_URL?.replace(/\/api\/v1\/?$/, '') ||
-      'https://maxitecomapi.maxapi.esp32.site'
+      defaultBackend
     ).replace(/\/$/, '');
 
     return [
