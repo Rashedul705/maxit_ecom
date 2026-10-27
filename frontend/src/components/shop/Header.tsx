@@ -218,7 +218,7 @@ export const Header: React.FC<HeaderProps> = ({ categories = [], onToggleMobileD
 
             {/* Cart Icon with Item Count & Total in Taka */}
             <button
-              onClick={openCart}
+              onClick={() => openCart()}
               className="flex items-center gap-2.5 bg-gray-100 hover:bg-gray-200/80 px-3 py-2 rounded-lg transition-colors cursor-pointer"
               aria-label="View Shopping Cart"
             >

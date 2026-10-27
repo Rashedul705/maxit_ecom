@@ -120,7 +120,12 @@ export const ProductInteractiveView: React.FC<ProductInteractiveViewProps> = ({
       brand: 'MaxiT',
       rating: 4.8,
       stock: 25,
-      shortDescription: 'Premium silicone wire with gold-plated pins'
+      shortDescription: 'Premium silicone wire with gold-plated pins',
+      description: '',
+      isNew: false,
+      isFeatured: false,
+      isDeal: false,
+      specs: {}
     },
     {
       id: 'rel-2',
@@ -132,7 +137,12 @@ export const ProductInteractiveView: React.FC<ProductInteractiveViewProps> = ({
       brand: 'MaxiT',
       rating: 4.9,
       stock: 40,
-      shortDescription: '99.6% pure nickel strip for spot welding'
+      shortDescription: '99.6% pure nickel strip for spot welding',
+      description: '',
+      isNew: false,
+      isFeatured: false,
+      isDeal: false,
+      specs: {}
     },
     {
       id: 'rel-3',
@@ -144,7 +154,12 @@ export const ProductInteractiveView: React.FC<ProductInteractiveViewProps> = ({
       brand: 'MaxiT',
       rating: 4.7,
       stock: 100,
-      shortDescription: 'Heat resistant and shockproof cell protection'
+      shortDescription: 'Heat resistant and shockproof cell protection',
+      description: '',
+      isNew: false,
+      isFeatured: false,
+      isDeal: false,
+      specs: {}
     },
     {
       id: 'rel-4',
@@ -156,7 +171,12 @@ export const ProductInteractiveView: React.FC<ProductInteractiveViewProps> = ({
       brand: 'MaxiT',
       rating: 5.0,
       stock: 15,
-      shortDescription: 'Heavy duty copper pins with integrated trigger'
+      shortDescription: 'Heavy duty copper pins with integrated trigger',
+      description: '',
+      isNew: false,
+      isFeatured: false,
+      isDeal: false,
+      specs: {}
     }
   ];
 

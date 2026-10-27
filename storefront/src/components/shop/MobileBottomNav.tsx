@@ -57,7 +57,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({ onOpenCategori
 
         {/* 4. Cart */}
         <button
-          onClick={openCart}
+          onClick={() => openCart()}
           className="flex flex-col items-center justify-center text-gray-600 hover:text-[#FF6600] relative transition-colors"
           aria-label="Shopping Cart"
         >
