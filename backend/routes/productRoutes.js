@@ -67,6 +67,50 @@ router.get('/new', async (req, res, next) => {
   }
 });
 
+// GET /api/v1/products/search/suggestions
+router.get('/search/suggestions', async (req, res, next) => {
+  try {
+    const suggestions = await db.getSearchSuggestions(req.query.q);
+    return successResponse(res, suggestions);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// POST /api/v1/products/reviews/:id/helpful
+router.post('/reviews/:id/helpful', async (req, res, next) => {
+  try {
+    const result = await db.voteReviewHelpful(req.params.id);
+    return successResponse(res, result, 'Vote recorded');
+  } catch (err) {
+    next(err);
+  }
+});
+
+// GET /api/v1/products/:slug/reviews
+router.get('/:slug/reviews', async (req, res, next) => {
+  try {
+    const data = await db.getProductReviews(req.params.slug);
+    return successResponse(res, data);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// POST /api/v1/products/:slug/reviews
+router.post('/:slug/reviews', async (req, res, next) => {
+  try {
+    const { author, rating, title, comment } = req.body;
+    if (!comment) {
+      return errorResponse(res, 'Review comment is required', 400);
+    }
+    const review = await db.submitProductReview(req.params.slug, { author, rating, title, comment });
+    return successResponse(res, review, 'Review submitted successfully', 201);
+  } catch (err) {
+    next(err);
+  }
+});
+
 // GET /api/v1/products/:slug
 router.get('/:slug', async (req, res, next) => {
   try {

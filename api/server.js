@@ -21,6 +21,7 @@ const adminRoutes = require('./routes/adminRoutes');
 
 const { errorHandler, notFoundHandler } = require('./middleware/errorHandler');
 const { successResponse } = require('./utils/response');
+const db = require('./services/dbStore');
 
 const app = express();
 const PORT = process.env.PORT || 5002;
@@ -95,6 +96,16 @@ apiRouter.use('/newsletter', subscriberRoutes);
 apiRouter.use('/subscribers', subscriberRoutes);
 apiRouter.use('/upload', uploadRoutes);
 apiRouter.use('/admin', adminRoutes);
+
+// Search suggestions
+apiRouter.get('/search/suggestions', async (req, res, next) => {
+  try {
+    const suggestions = await db.getSearchSuggestions(req.query.q);
+    return successResponse(res, suggestions);
+  } catch (err) {
+    next(err);
+  }
+});
 
 // Mount under /api/v1
 app.use('/api/v1', apiRouter);
