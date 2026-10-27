@@ -73,10 +73,10 @@ export default async function ProductPage({ params }: ProductPageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* Breadcrumb styled like reference image: হোম / [ক্যাটাগরি] / [পণ্যের নাম] */}
+      {/* Breadcrumb: Home / [Category] / [Product Name] */}
       <nav className="flex items-center text-xs text-slate-500 mb-6 gap-2 overflow-x-auto whitespace-nowrap">
         <Link href="/" className="hover:text-[#DC2626] transition-colors font-medium">
-          হোম
+          Home
         </Link>
         <span className="text-slate-300">/</span>
         <Link href={`/category/${product.category}`} className="hover:text-[#DC2626] capitalize transition-colors font-medium">

@@ -45,10 +45,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           loading="lazy"
         />
 
-        {/* Discount Badge: e.g. "10% ছাড়" */}
+        {/* Discount Badge: e.g. "10% OFF" */}
         {discountPercent > 0 && (
           <div className="absolute top-2 left-2 z-10 bg-[#E53935] text-white text-[11px] font-bold px-2 py-0.5 rounded-full shadow-xs">
-            {discountPercent}% ছাড়
+            {discountPercent}% OFF
           </div>
         )}
       </Link>
@@ -106,7 +106,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         )}
       </div>
 
-      {/* "অর্ডার করুন" Button */}
+      {/* Order Now Button */}
       <button
         onClick={handleOrderNow}
         disabled={product.stock <= 0}
@@ -115,12 +115,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         {product.price === 0 ? (
           <>
             <PhoneCall className="w-3.5 h-3.5" />
-            <span>কল করুন</span>
+            <span>Call Now</span>
           </>
         ) : (
           <>
             <ShoppingBag className="w-3.5 h-3.5" />
-            <span>অর্ডার করুন</span>
+            <span>Order Now</span>
           </>
         )}
       </button>
