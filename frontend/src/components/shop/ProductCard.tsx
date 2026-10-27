@@ -26,7 +26,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       window.location.href = 'tel:+8801700000000';
       return;
     }
-    addToCart(product, 1);
+    addToCart(product, 1, false);
     openCheckout();
   };
 

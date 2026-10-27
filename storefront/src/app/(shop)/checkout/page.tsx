@@ -45,7 +45,7 @@ export default function CheckoutPage() {
   const [customThana, setCustomThana] = useState('');
   const [address, setAddress] = useState('');
   const [note, setNote] = useState('');
-  const [paymentMethod, setPaymentMethod] = useState<'cod' | 'bkash'>('cod');
+  const [paymentMethod, setPaymentMethod] = useState<'cod' | 'bkash' | 'sslcommerz'>('cod');
 
   // Coupon State
   const [couponInput, setCouponInput] = useState('');
@@ -200,7 +200,11 @@ export default function CheckoutPage() {
             <div className="flex justify-between items-center pb-2 border-b border-gray-200">
               <span className="text-xs font-medium text-gray-500">Payment Method</span>
               <span className="text-xs font-bold text-gray-900 uppercase">
-                {confirmedOrder.paymentMethod === 'bkash' ? 'bKash Online Payment' : 'Cash on Delivery (COD)'}
+                {confirmedOrder.paymentMethod === 'bkash'
+                  ? 'bKash Online Payment'
+                  : confirmedOrder.paymentMethod === 'sslcommerz'
+                  ? 'SSLCommerz (Cards & Online Banking)'
+                  : 'Cash on Delivery (COD)'}
               </span>
             </div>
 
@@ -515,6 +519,74 @@ export default function CheckoutPage() {
                       bKash
                     </span>
                   </label>
+
+                  {/* SSLCommerz Payment (Cards, MFS & Net Banking) */}
+                  <div
+                    onClick={() => setPaymentMethod('sslcommerz')}
+                    className={`p-4 rounded-2xl cursor-pointer transition-all ${
+                      paymentMethod === 'sslcommerz'
+                        ? 'border-2 border-blue-600 bg-blue-50/25 shadow-2xs'
+                        : 'border border-gray-200 hover:border-gray-300 bg-white'
+                    }`}
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="flex items-start gap-3">
+                        <div className="pt-0.5">
+                          <div
+                            className={`w-4 h-4 rounded-full border flex items-center justify-center transition-colors ${
+                              paymentMethod === 'sslcommerz'
+                                ? 'border-blue-600 bg-blue-600'
+                                : 'border-gray-300 bg-white'
+                            }`}
+                          >
+                            {paymentMethod === 'sslcommerz' && (
+                              <div className="w-1.5 h-1.5 rounded-full bg-white" />
+                            )}
+                          </div>
+                        </div>
+                        <div>
+                          <p className="text-sm sm:text-base font-bold text-gray-900">
+                            SSLCommerz (Cards & Online Banking)
+                          </p>
+                          <p className="text-xs text-gray-500 mt-0.5">
+                            Visa, MasterCard, Amex, Nagad, Rocket, Upay & Net Banking.
+                          </p>
+                        </div>
+                      </div>
+                      <span className="shrink-0 text-xs font-bold text-blue-700 bg-blue-50 border border-blue-100 px-2.5 py-1 rounded-full">
+                        SSLCommerz
+                      </span>
+                    </div>
+
+                    {/* Channel Badges & Security Tag */}
+                    <div className="mt-3 pt-3 border-t border-gray-100 flex flex-wrap items-center justify-between gap-2">
+                      <div className="flex items-center gap-1.5 flex-wrap">
+                        <span className="px-2 py-0.5 bg-gray-100 text-gray-700 rounded text-[10px] font-bold tracking-wider">
+                          VISA
+                        </span>
+                        <span className="px-2 py-0.5 bg-gray-100 text-gray-700 rounded text-[10px] font-bold tracking-wider">
+                          MasterCard
+                        </span>
+                        <span className="px-2 py-0.5 bg-gray-100 text-gray-700 rounded text-[10px] font-bold tracking-wider">
+                          AMEX
+                        </span>
+                        <span className="px-2 py-0.5 bg-[#f7941d]/15 text-[#f7941d] rounded text-[10px] font-bold">
+                          Nagad
+                        </span>
+                        <span className="px-2 py-0.5 bg-[#8c3494]/15 text-[#8c3494] rounded text-[10px] font-bold">
+                          Rocket
+                        </span>
+                        <span className="px-2 py-0.5 bg-gray-100 text-gray-600 rounded text-[10px] font-semibold">
+                          Net Banking
+                        </span>
+                      </div>
+
+                      <div className="flex items-center gap-1 text-[11px] text-gray-400 font-medium">
+                        <ShieldCheck className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+                        <span>128-bit SSL Secure</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -677,7 +749,13 @@ export default function CheckoutPage() {
                   ) : (
                     <>
                       <ShoppingBag className="w-5 h-5" />
-                      <span>Order Now</span>
+                      <span>
+                        {paymentMethod === 'bkash'
+                          ? 'Pay with bKash'
+                          : paymentMethod === 'sslcommerz'
+                          ? 'Pay via SSLCommerz'
+                          : 'Order Now'}
+                      </span>
                     </>
                   )}
                 </button>
@@ -686,10 +764,16 @@ export default function CheckoutPage() {
                 <div className="pt-2 text-center">
                   <div className="flex items-center justify-center gap-1.5 text-xs font-bold text-emerald-700">
                     <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                    <span>No advance payment required</span>
+                    <span>
+                      {paymentMethod === 'cod'
+                        ? 'No advance payment required'
+                        : '100% Safe & Encrypted Payment'}
+                    </span>
                   </div>
                   <p className="text-[11px] text-gray-400 mt-1">
-                    Pay only after receiving and checking your product with the delivery agent.
+                    {paymentMethod === 'cod'
+                      ? 'Pay only after receiving and checking your product with the delivery agent.'
+                      : 'Your transaction is processed through PCI-DSS compliant secure servers.'}
                   </p>
                 </div>
 

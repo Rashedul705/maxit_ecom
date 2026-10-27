@@ -1,11 +1,12 @@
 'use client';
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { CartItem, Product } from './types';
 
 interface CartContextType {
   items: CartItem[];
-  addToCart: (product: Product, quantity?: number) => void;
+  addToCart: (product: Product, quantity?: number, openDrawer?: boolean) => void;
   removeFromCart: (id: string) => void;
   updateQuantity: (id: string, quantity: number) => void;
   clearCart: () => void;
@@ -24,6 +25,7 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 const CART_STORAGE_KEY = 'maxitshop_cart_v1';
 
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const router = useRouter();
   const [items, setItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartView, setCartView] = useState<'cart' | 'checkout'>('cart');
@@ -54,7 +56,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   }, [items, isLoaded]);
 
-  const addToCart = (product: Product, quantity = 1) => {
+  const addToCart = (product: Product, quantity = 1, openDrawer = true) => {
     setItems(prev => {
       const existing = prev.find(item => item.id === product.id);
       if (existing) {
@@ -78,8 +80,10 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         ];
       }
     });
-    setCartView('cart');
-    setIsCartOpen(true);
+    if (openDrawer) {
+      setCartView('cart');
+      setIsCartOpen(true);
+    }
   };
 
   const removeFromCart = (id: string) => {
@@ -101,13 +105,20 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const openCart = (initialView: 'cart' | 'checkout' = 'cart') => {
-    setCartView(initialView);
+    if (initialView === 'checkout') {
+      setIsCartOpen(false);
+      router.push('/checkout');
+      return;
+    }
+    setCartView('cart');
     setIsCartOpen(true);
   };
+
   const openCheckout = () => {
-    setCartView('checkout');
-    setIsCartOpen(true);
+    setIsCartOpen(false);
+    router.push('/checkout');
   };
+
   const closeCart = () => setIsCartOpen(false);
 
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);

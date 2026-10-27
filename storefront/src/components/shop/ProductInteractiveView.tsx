@@ -216,7 +216,7 @@ export const ProductInteractiveView: React.FC<ProductInteractiveViewProps> = ({
       ...product,
       title: `${product.title} (${currentVariant.title})`,
       price: unitPrice
-    }, quantity);
+    }, quantity, false);
     openCheckout();
   };
 
