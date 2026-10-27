@@ -55,7 +55,9 @@ export interface SiteSetting {
   tagline: string;
   logo: string;
   footerLogo?: string;
-  phone1: string;
+  favicon?: string;
+  phone?: string;
+  phone1?: string;
   phone2?: string;
   email: string;
   address: string;
@@ -63,6 +65,63 @@ export interface SiteSetting {
   youtubeUrl?: string;
   instagramUrl?: string;
   whatsappNumber?: string;
+  socialLinks?: {
+    facebook?: string;
+    instagram?: string;
+    youtube?: string;
+    whatsapp?: string;
+    messenger?: string;
+    linkedin?: string;
+  };
+  deliveryRates?: {
+    insideDhaka: number;
+    outsideDhaka: number;
+    freeDeliveryThreshold?: number;
+    insideDhakaTime?: string;
+    outsideDhakaTime?: string;
+    codAvailable?: boolean;
+    codNote?: string;
+  };
+  header?: {
+    showAnnouncement: boolean;
+    announcementText: string;
+    announcementLink: string;
+    hotline: string;
+    supportHours: string;
+  };
+  navLinks?: Array<{ label: string; url: string; isExternal?: boolean }>;
+  hero?: {
+    badge: string;
+    headline: string;
+    subheadline: string;
+    primaryBtnText: string;
+    primaryBtnUrl: string;
+    secondaryBtnText: string;
+    secondaryBtnUrl: string;
+    trustFeatures: Array<{ title: string; description: string; icon: string }>;
+  };
+  footer?: {
+    aboutText: string;
+    copyrightText: string;
+    newsletterTitle: string;
+    newsletterSubtitle: string;
+    paymentBannerText: string;
+  };
+  contact?: {
+    phone: string;
+    whatsapp: string;
+    email: string;
+    address: string;
+    googleMapsUrl: string;
+    supportHours: string;
+  };
+  policies?: {
+    terms?: string;
+    privacy?: string;
+    returnPolicy?: string;
+    warranty?: string;
+    shipping?: string;
+  };
 }
 
 export interface Banner {

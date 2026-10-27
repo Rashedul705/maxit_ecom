@@ -1253,8 +1253,105 @@ const db = {
   // --- SETTINGS ---
   async getSettings() {
     if (isMongo()) {
-      const s = await Setting.findOne().lean();
-      if (s) return s;
+      let s = await Setting.findOne().lean();
+      if (!s) {
+        s = await Setting.create(seedData.settings || {});
+        s = s.toObject ? s.toObject() : s;
+      }
+
+      // Ensure defaults for all tabs
+      s.deliveryRates = {
+        insideDhaka: 70,
+        outsideDhaka: 130,
+        freeDeliveryThreshold: 0,
+        insideDhakaTime: '24 - 48 Hours',
+        outsideDhakaTime: '2 - 4 Days',
+        codAvailable: true,
+        codNote: 'Cash on delivery available across all 64 districts of Bangladesh.',
+        ...(s.deliveryRates || {})
+      };
+
+      s.header = {
+        showAnnouncement: true,
+        announcementText: '⚡ Special Discount on LiFePO4 & Solar Inverters - Fast Delivery Across Bangladesh 🇧🇩',
+        announcementLink: '/#deals',
+        hotline: s.phone || '+880 1733-115391',
+        supportHours: 'Sat - Thu: 9:00 AM - 8:00 PM',
+        ...(s.header || {})
+      };
+
+      s.navLinks = Array.isArray(s.navLinks) && s.navLinks.length > 0 ? s.navLinks : [
+        { label: 'All Products', url: '/category/all', isExternal: false },
+        { label: 'LiFePO4 Batteries', url: '/category/lifepo4', isExternal: false },
+        { label: 'Smart BMS', url: '/category/bms', isExternal: false },
+        { label: 'Solar Inverters', url: '/category/solar-inverters', isExternal: false },
+        { label: 'Hot Deals', url: '/#deals', isExternal: false },
+        { label: 'Brand Directory', url: '/#brands', isExternal: false },
+        { label: 'Verified Sellers', url: '/sellers', isExternal: false },
+        { label: 'Track Order', url: '/track-order', isExternal: false }
+      ];
+
+      s.hero = {
+        badge: '🇧🇩 Premier Solar & LiFePO4 Energy Store in Bangladesh',
+        headline: 'Powering Bangladesh With High-Performance Solar & Battery Systems',
+        subheadline: 'Explore genuine Grade-A LiFePO4 cells, active balance smart BMS, MPPT solar controllers, pure sine wave inverters, and industrial equipment.',
+        primaryBtnText: 'Shop Best Deals',
+        primaryBtnUrl: '/#deals',
+        secondaryBtnText: 'Track Your Order',
+        secondaryBtnUrl: '/track-order',
+        trustFeatures: [
+          { title: '100% Genuine Cells', description: 'Tested Grade-A with guaranteed capacity', icon: 'ShieldCheck' },
+          { title: 'Fast BD Delivery', description: 'Inside Dhaka in 24h, nationwide in 48h', icon: 'Truck' },
+          { title: 'Technical Support', description: 'Expert engineering advice on WhatsApp', icon: 'Wrench' },
+          { title: 'Official Warranty', description: 'Authentic manufacturer replacement backup', icon: 'Award' }
+        ],
+        ...(s.hero || {})
+      };
+
+      s.footer = {
+        aboutText: 'MaxiTShop is Bangladesh\'s leading store for high-capacity LiFePO4 battery cells, solar inverters, smart BMS modules, and industrial electronics with authentic manufacturer warranties.',
+        copyrightText: '© 2026 MaxiTShop. All rights reserved. Trusted Engineering & Green Energy Solutions.',
+        newsletterTitle: 'Stay Updated On New Arrivals & Technical Guides',
+        newsletterSubtitle: 'Subscribe to receive exclusive deals, technical data sheets, and battery building tutorials.',
+        paymentBannerText: 'Cash on Delivery Available Nationwide • bKash • Nagad • Bank Transfer',
+        ...(s.footer || {})
+      };
+
+      s.contact = {
+        phone: s.phone || '+880 1733-115391',
+        whatsapp: (s.socialLinks && s.socialLinks.whatsapp) || '+8801733115391',
+        email: s.email || 'support@maxitshop.com',
+        address: s.address || 'House 45, Road 7, Dhanmondi, Dhaka, Bangladesh',
+        googleMapsUrl: 'https://maps.google.com',
+        supportHours: 'Saturday - Thursday: 9:00 AM - 8:00 PM (Friday Closed)',
+        ...(s.contact || {})
+      };
+
+      s.socialLinks = {
+        facebook: 'https://facebook.com/maxitshop',
+        instagram: 'https://instagram.com/maxitshop',
+        youtube: 'https://youtube.com/@maxitshop',
+        whatsapp: '+8801733115391',
+        messenger: 'maxitshop',
+        linkedin: 'https://linkedin.com/company/maxitshop',
+        ...(s.socialLinks || {})
+      };
+
+      // Populate policies from Page collection if empty
+      if (!s.policies || !s.policies.terms || !s.policies.privacy) {
+        const pages = await Page.find().lean();
+        const getP = (slug) => pages.find(p => p.slug === slug)?.content || '';
+        s.policies = {
+          terms: s.policies?.terms || getP('terms-conditions') || getP('terms') || getP('order-procedure'),
+          privacy: s.policies?.privacy || getP('privacy-policy'),
+          returnPolicy: s.policies?.returnPolicy || getP('return-policy'),
+          warranty: s.policies?.warranty || getP('warranty-policy'),
+          shipping: s.policies?.shipping || getP('shipping-info') || getP('delivery-rules'),
+          ...(s.policies || {})
+        };
+      }
+
+      return s;
     }
     return memoryStore.settings;
   },
@@ -1266,6 +1363,28 @@ const db = {
         { ...data, updatedAt: new Date() },
         { new: true, upsert: true }
       ).lean();
+
+      // Synchronize policies with MongoDB Page collection
+      if (data.policies) {
+        const policyMapping = [
+          { slug: 'terms-conditions', title: 'Terms & Conditions', content: data.policies.terms },
+          { slug: 'privacy-policy', title: 'Privacy Policy', content: data.policies.privacy },
+          { slug: 'return-policy', title: 'Return & Refund Policy', content: data.policies.returnPolicy },
+          { slug: 'warranty-policy', title: 'Warranty & Guarantee Policy', content: data.policies.warranty },
+          { slug: 'shipping-info', title: 'Shipping & Delivery Info', content: data.policies.shipping }
+        ];
+
+        for (const item of policyMapping) {
+          if (item.content !== undefined && item.content !== null) {
+            await Page.findOneAndUpdate(
+              { slug: item.slug },
+              { title: item.title, content: item.content, updatedAt: new Date() },
+              { upsert: true }
+            );
+          }
+        }
+      }
+
       memoryStore.settings = { ...memoryStore.settings, ...data };
       return updated;
     }
