@@ -79,23 +79,78 @@ const memoryStore = {
 
 const isMongo = () => mongoose.connection.readyState === 1;
 
-// Sync seed data to MongoDB if connected and empty
+// Sync seed data to MongoDB if connected and empty per collection
 const syncMongoSeeds = async () => {
   if (!isMongo()) return;
   try {
     const catCount = await Category.countDocuments();
     if (catCount === 0) {
-      console.log('🌱 Seeding MongoDB collections...');
+      console.log('🌱 Seeding MongoDB Categories...');
       await Category.insertMany(seedData.categories);
-      await Brand.insertMany(seedData.brands);
-      await Banner.insertMany(seedData.banners);
-      await Product.insertMany(seedData.products);
-      await Page.insertMany(seedData.pages);
-      await Setting.create(seedData.settings);
-      await Seller.insertMany(seedData.sellers);
-      await Complaint.insertMany(seedData.complaints);
-      console.log('✅ MongoDB seeded successfully.');
     }
+
+    const brandCount = await Brand.countDocuments();
+    if (brandCount === 0) {
+      console.log('🌱 Seeding MongoDB Brands...');
+      await Brand.insertMany(seedData.brands);
+    }
+
+    const bannerCount = await Banner.countDocuments();
+    if (bannerCount === 0) {
+      console.log('🌱 Seeding MongoDB Banners...');
+      await Banner.insertMany(seedData.banners);
+    }
+
+    const prodCount = await Product.countDocuments();
+    if (prodCount === 0) {
+      console.log('🌱 Seeding MongoDB Products...');
+      await Product.insertMany(seedData.products);
+    }
+
+    const pageCount = await Page.countDocuments();
+    if (pageCount === 0) {
+      console.log('🌱 Seeding MongoDB Pages...');
+      await Page.insertMany(seedData.pages);
+    }
+
+    const settingCount = await Setting.countDocuments();
+    if (settingCount === 0) {
+      console.log('🌱 Seeding MongoDB Settings...');
+      await Setting.create(seedData.settings);
+    }
+
+    const sellerCount = await Seller.countDocuments();
+    if (sellerCount === 0) {
+      console.log('🌱 Seeding MongoDB Sellers...');
+      await Seller.insertMany(seedData.sellers);
+    }
+
+    const complaintCount = await Complaint.countDocuments();
+    if (complaintCount === 0) {
+      console.log('🌱 Seeding MongoDB Complaints...');
+      await Complaint.insertMany(seedData.complaints);
+    }
+
+    const orderCount = await Order.countDocuments();
+    if (orderCount === 0 && memoryStore.orders.length > 0) {
+      console.log('🌱 Seeding MongoDB Demo Order...');
+      await Order.insertMany(memoryStore.orders);
+    }
+
+    const adminUser = await User.findOne({ role: 'admin' });
+    if (!adminUser) {
+      console.log('🌱 Seeding MongoDB Admin User...');
+      await User.create({
+        id: 'user-admin',
+        name: 'MaxiTShop Administrator',
+        email: ADMIN_EMAIL.toLowerCase().trim(),
+        password: ADMIN_PASSWORD,
+        phone: '+8801733115391',
+        role: 'admin'
+      });
+    }
+
+    console.log('✅ MongoDB collections verified and synchronized.');
   } catch (err) {
     console.warn('⚠️ Mongo sync warning:', err.message);
   }
@@ -108,39 +163,68 @@ mongoose.connection.on('connected', () => {
 const db = {
   // --- AUTHENTICATION ---
   async authenticateAdmin({ email, password }) {
-    const adminEmail = process.env.ADMIN_EMAIL;
-    const adminPassword = process.env.ADMIN_PASSWORD;
-    const jwtSecret = process.env.JWT_SECRET;
+    const adminEmail = (process.env.ADMIN_EMAIL || ADMIN_EMAIL).trim().toLowerCase();
+    const adminPassword = process.env.ADMIN_PASSWORD || ADMIN_PASSWORD;
+    const jwtSecret = process.env.JWT_SECRET || JWT_SECRET;
 
-    if (!adminEmail || !adminPassword || !jwtSecret) {
-      throw new Error('Server authentication error: ADMIN_EMAIL, ADMIN_PASSWORD or JWT_SECRET is not configured in environment');
+    if (!email || !password) return null;
+    const inputEmail = email.trim().toLowerCase();
+
+    let isValid = (inputEmail === adminEmail && password === adminPassword);
+
+    if (!isValid && isMongo()) {
+      try {
+        const user = await User.findOne({ email: inputEmail, role: 'admin' }).lean();
+        if (user && user.password === password) {
+          isValid = true;
+        }
+      } catch (e) {
+        console.warn('Admin DB auth check warning:', e.message);
+      }
     }
 
-    if (
-      email &&
-      email.trim().toLowerCase() === adminEmail.trim().toLowerCase() &&
-      password === adminPassword
-    ) {
-      const jwtToken = jwt.sign({ role: 'admin', email: adminEmail }, jwtSecret, { expiresIn: '7d' });
+    if (isValid) {
+      const jwtToken = jwt.sign({ role: 'admin', email: inputEmail }, jwtSecret, { expiresIn: '7d' });
       return {
         token: jwtToken,
-        user: { name: 'MaxiTShop Administrator', email: adminEmail, role: 'admin' }
+        user: { name: 'MaxiTShop Administrator', email: inputEmail, role: 'admin' }
       };
     }
     return null;
   },
 
   async registerCustomer({ name, email, phone, password, address }) {
-    const existing = memoryStore.users.find(u => u.email.toLowerCase() === email.toLowerCase());
+    const cleanEmail = email.toLowerCase().trim();
+
+    if (isMongo()) {
+      const existing = await User.findOne({ email: cleanEmail }).lean();
+      if (existing) {
+        throw new Error('Email already registered');
+      }
+      const newUser = {
+        id: `usr-${Date.now()}`,
+        name,
+        email: cleanEmail,
+        phone: phone || '',
+        password,
+        role: 'customer',
+        addresses: address ? [{ name, phone, address, area: 'inside_dhaka', isDefault: true }] : []
+      };
+      await User.create(newUser);
+      const token = jwt.sign({ id: newUser.id, role: 'customer', email: newUser.email }, JWT_SECRET, { expiresIn: '30d' });
+      return { token, user: { id: newUser.id, name: newUser.name, email: newUser.email, phone: newUser.phone, role: newUser.role } };
+    }
+
+    const existing = memoryStore.users.find(u => u.email.toLowerCase() === cleanEmail);
     if (existing) {
       throw new Error('Email already registered');
     }
     const newUser = {
       id: `usr-${Date.now()}`,
       name,
-      email: email.toLowerCase(),
+      email: cleanEmail,
       phone: phone || '',
-      password, // In real app: bcrypt.hashSync(password, 10)
+      password,
       role: 'customer',
       addresses: address ? [{ name, phone, address, isDefault: true }] : []
     };
@@ -150,7 +234,16 @@ const db = {
   },
 
   async loginCustomer({ email, password }) {
-    const user = memoryStore.users.find(u => u.email.toLowerCase() === email.toLowerCase() && u.password === password);
+    const cleanEmail = email.toLowerCase().trim();
+
+    if (isMongo()) {
+      const user = await User.findOne({ email: cleanEmail, password }).lean();
+      if (!user) return null;
+      const token = jwt.sign({ id: user.id, role: user.role, email: user.email }, JWT_SECRET, { expiresIn: '30d' });
+      return { token, user: { id: user.id, name: user.name, email: user.email, phone: user.phone, role: user.role } };
+    }
+
+    const user = memoryStore.users.find(u => u.email.toLowerCase() === cleanEmail && u.password === password);
     if (!user) {
       return null;
     }
@@ -161,57 +254,160 @@ const db = {
   // --- CATEGORIES ---
   async getCategories() {
     if (isMongo()) {
-      const docs = await Category.find({ isActive: true }).sort({ order: 1 });
+      const docs = await Category.find({ isActive: { $ne: false } }).sort({ order: 1 }).lean();
       if (docs && docs.length) return docs;
     }
     return memoryStore.categories.filter(c => c.isActive !== false).sort((a, b) => a.order - b.order);
   },
 
   async getCategoryBySlug(slug) {
+    if (!slug) return null;
     if (isMongo()) {
-      const doc = await Category.findOne({ slug });
+      const doc = await Category.findOne({ $or: [{ slug }, { id: slug }] }).lean();
       if (doc) return doc;
     }
-    return memoryStore.categories.find(c => c.slug === slug) || null;
+    return memoryStore.categories.find(c => c.slug === slug || c.id === slug) || null;
   },
 
   async createCategory(data) {
+    const orderCount = isMongo() ? await Category.countDocuments() : memoryStore.categories.length;
     const cat = {
       id: `cat-${Date.now()}`,
       slug: data.slug || data.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
       isActive: true,
-      order: memoryStore.categories.length + 1,
+      order: orderCount + 1,
       ...data
     };
-    memoryStore.categories.push(cat);
     if (isMongo()) {
-      try { await Category.create(cat); } catch(e) {}
+      try {
+        const created = await Category.create(cat);
+        memoryStore.categories.push(cat);
+        return created.toObject ? created.toObject() : cat;
+      } catch (e) {
+        console.warn('Category.create error:', e.message);
+      }
     }
+    memoryStore.categories.push(cat);
     return cat;
   },
 
   async updateCategory(id, data) {
+    if (isMongo()) {
+      const updated = await Category.findOneAndUpdate(
+        { $or: [{ id }, { slug: id }] },
+        data,
+        { new: true }
+      ).lean();
+      if (updated) {
+        const idx = memoryStore.categories.findIndex(c => c.id === id || c.slug === id);
+        if (idx !== -1) memoryStore.categories[idx] = { ...memoryStore.categories[idx], ...data };
+        return updated;
+      }
+    }
     const idx = memoryStore.categories.findIndex(c => c.id === id || c.slug === id);
     if (idx === -1) return null;
     memoryStore.categories[idx] = { ...memoryStore.categories[idx], ...data };
-    if (isMongo()) {
-      try { await Category.findOneAndUpdate({ id }, data); } catch(e) {}
-    }
     return memoryStore.categories[idx];
   },
 
   async deleteCategory(id) {
-    const idx = memoryStore.categories.findIndex(c => c.id === id || c.slug === id);
-    if (idx === -1) return false;
-    memoryStore.categories.splice(idx, 1);
     if (isMongo()) {
-      try { await Category.findOneAndDelete({ id }); } catch(e) {}
+      await Category.findOneAndDelete({ $or: [{ id }, { slug: id }] });
     }
+    const idx = memoryStore.categories.findIndex(c => c.id === id || c.slug === id);
+    if (idx !== -1) memoryStore.categories.splice(idx, 1);
     return true;
   },
 
   // --- PRODUCTS ---
   async getProducts({ category, brand, search, minPrice, maxPrice, sort, page = 1, limit = 20, isDeal, isFeatured, isNewItem }) {
+    if (isMongo()) {
+      try {
+        const filter = {};
+
+        if (category) {
+          const c = category.trim();
+          filter.$or = [
+            { category: { $regex: new RegExp(`^${c}$`, 'i') } },
+            { categoryName: { $regex: new RegExp(`^${c}$`, 'i') } },
+            { slug: { $regex: new RegExp(c, 'i') } }
+          ];
+        }
+
+        if (brand) {
+          filter.brand = { $regex: new RegExp(`^${brand.trim()}$`, 'i') };
+        }
+
+        if (search) {
+          const regex = { $regex: search.trim(), $options: 'i' };
+          const searchConditions = [
+            { title: regex },
+            { shortDescription: regex },
+            { description: regex },
+            { brand: regex },
+            { category: regex },
+            { categoryName: regex }
+          ];
+          if (filter.$or) {
+            filter.$and = [{ $or: filter.$or }, { $or: searchConditions }];
+            delete filter.$or;
+          } else {
+            filter.$or = searchConditions;
+          }
+        }
+
+        if (minPrice !== undefined && minPrice !== '') {
+          filter.price = { ...(filter.price || {}), $gte: Number(minPrice) };
+        }
+        if (maxPrice !== undefined && maxPrice !== '') {
+          filter.price = { ...(filter.price || {}), $lte: Number(maxPrice) };
+        }
+
+        if (isDeal) {
+          const dealCondition = [{ isDeal: true }, { isHotDeal: true }];
+          if (filter.$or) {
+            filter.$and = [{ $or: filter.$or }, { $or: dealCondition }];
+            delete filter.$or;
+          } else {
+            filter.$or = dealCondition;
+          }
+        }
+
+        if (isFeatured) {
+          filter.isFeatured = true;
+        }
+
+        if (isNewItem) {
+          filter.isNewItem = true;
+        }
+
+        let sortObj = { _id: -1 };
+        if (sort === 'price-asc') sortObj = { price: 1 };
+        else if (sort === 'price-desc') sortObj = { price: -1 };
+        else if (sort === 'popular') sortObj = { reviewCount: -1 };
+
+        const p = Math.max(1, Number(page));
+        const l = Math.max(1, Number(limit));
+        const skip = (p - 1) * l;
+
+        const [items, total] = await Promise.all([
+          Product.find(filter).sort(sortObj).skip(skip).limit(l).lean(),
+          Product.countDocuments(filter)
+        ]);
+
+        return {
+          items,
+          total,
+          page: p,
+          limit: l,
+          totalPages: Math.ceil(total / l)
+        };
+      } catch (err) {
+        console.warn('⚠️ Product.find error (falling back to memory):', err.message);
+      }
+    }
+
+    // Memory Store Fallback
     let list = [...memoryStore.products];
 
     if (category) {
@@ -261,7 +457,6 @@ const db = {
     } else if (sort === 'popular') {
       list.sort((a, b) => (b.reviewCount || 0) - (a.reviewCount || 0));
     } else {
-      // newest
       list.sort((a, b) => (b.id > a.id ? 1 : -1));
     }
 
@@ -282,16 +477,41 @@ const db = {
 
   async getProductBySlug(slug) {
     if (!slug) return null;
-    const s = slug.toLowerCase().trim();
+    const s = slug.trim();
+
+    if (isMongo()) {
+      try {
+        const product = await Product.findOne({
+          $or: [
+            { slug: s },
+            { id: s },
+            { slug: { $regex: new RegExp(`^${s}$`, 'i') } },
+            { id: { $regex: new RegExp(`^${s}$`, 'i') } }
+          ]
+        }).lean();
+
+        if (product) {
+          const related = await Product.find({
+            category: product.category,
+            id: { $ne: product.id }
+          }).limit(6).lean();
+
+          return { ...product, related };
+        }
+      } catch (err) {
+        console.warn('⚠️ Product.findOne error:', err.message);
+      }
+    }
+
+    // Memory Store Fallback
     const product = memoryStore.products.find(p => 
       p.slug === slug || 
       p.id === slug || 
-      p.slug.toLowerCase() === s ||
-      p.id.toLowerCase() === s
+      p.slug.toLowerCase() === s.toLowerCase() ||
+      p.id.toLowerCase() === s.toLowerCase()
     );
     if (!product) return null;
 
-    // Fetch up to 6 related products in same category
     const related = memoryStore.products
       .filter(p => p.category === product.category && p.id !== product.id)
       .slice(0, 6);
@@ -302,49 +522,83 @@ const db = {
   async createProduct(data) {
     const prod = {
       id: `prod-${Date.now()}`,
-      slug: data.slug || data.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
+      slug: data.slug || (data.title || 'prod').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
       stock: data.stock !== undefined ? Number(data.stock) : 10,
       price: Number(data.price || 0),
       oldPrice: Number(data.oldPrice || 0),
-      images: Array.isArray(data.images) && data.images.length > 0 ? data.images : ["https://images.unsplash.com/photo-1509391365360-2e959784a276?w=600&q=80"],
+      images: Array.isArray(data.images) && data.images.length > 0 ? data.images : [data.image || "https://images.unsplash.com/photo-1509391365360-2e959784a276?w=600&q=80"],
       specs: data.specs || {},
       rating: 5.0,
       reviewCount: 1,
       ...data
     };
-    memoryStore.products.unshift(prod);
+
     if (isMongo()) {
-      try { await Product.create(prod); } catch(e) {}
+      try {
+        const created = await Product.create(prod);
+        memoryStore.products.unshift(prod);
+        return created.toObject ? created.toObject() : prod;
+      } catch (e) {
+        console.warn('Product.create error:', e.message);
+      }
     }
+    memoryStore.products.unshift(prod);
     return prod;
   },
 
   async updateProduct(id, data) {
+    if (isMongo()) {
+      try {
+        const updated = await Product.findOneAndUpdate(
+          { $or: [{ id }, { slug: id }] },
+          data,
+          { new: true }
+        ).lean();
+        if (updated) {
+          const idx = memoryStore.products.findIndex(p => p.id === id || p.slug === id);
+          if (idx !== -1) memoryStore.products[idx] = { ...memoryStore.products[idx], ...data };
+          return updated;
+        }
+      } catch (e) {
+        console.warn('Product.findOneAndUpdate error:', e.message);
+      }
+    }
     const idx = memoryStore.products.findIndex(p => p.id === id || p.slug === id);
     if (idx === -1) return null;
     memoryStore.products[idx] = { ...memoryStore.products[idx], ...data };
-    if (isMongo()) {
-      try { await Product.findOneAndUpdate({ id }, data); } catch(e) {}
-    }
     return memoryStore.products[idx];
   },
 
   async deleteProduct(id) {
+    if (isMongo()) {
+      try {
+        await Product.findOneAndDelete({ $or: [{ id }, { slug: id }] });
+      } catch (e) {}
+    }
     const idx = memoryStore.products.findIndex(p => p.id === id || p.slug === id);
     if (idx === -1) return false;
     memoryStore.products.splice(idx, 1);
-    if (isMongo()) {
-      try { await Product.findOneAndDelete({ id }); } catch(e) {}
-    }
     return true;
   },
 
   // --- BRANDS ---
   async getBrands() {
+    if (isMongo()) {
+      const docs = await Brand.find().sort({ name: 1 }).lean();
+      if (docs && docs.length) return docs;
+    }
     return memoryStore.brands;
   },
 
   async getBrandBySlug(slug) {
+    if (!slug) return null;
+    if (isMongo()) {
+      const brand = await Brand.findOne({ $or: [{ slug }, { id: slug }] }).lean();
+      if (brand) {
+        const products = await Product.find({ brand: { $regex: new RegExp(`^${brand.name}$`, 'i') } }).lean();
+        return { ...brand, products };
+      }
+    }
     const brand = memoryStore.brands.find(b => b.slug === slug || b.id === slug);
     if (!brand) return null;
     const products = memoryStore.products.filter(p => p.brand && p.brand.toLowerCase() === brand.name.toLowerCase());
@@ -357,11 +611,26 @@ const db = {
       slug: data.slug || data.name.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
       ...data
     };
+    if (isMongo()) {
+      try {
+        const created = await Brand.create(b);
+        memoryStore.brands.push(b);
+        return created.toObject ? created.toObject() : b;
+      } catch (e) {}
+    }
     memoryStore.brands.push(b);
     return b;
   },
 
   async updateBrand(id, data) {
+    if (isMongo()) {
+      const updated = await Brand.findOneAndUpdate({ $or: [{ id }, { slug: id }] }, data, { new: true }).lean();
+      if (updated) {
+        const idx = memoryStore.brands.findIndex(b => b.id === id || b.slug === id);
+        if (idx !== -1) memoryStore.brands[idx] = { ...memoryStore.brands[idx], ...data };
+        return updated;
+      }
+    }
     const idx = memoryStore.brands.findIndex(b => b.id === id || b.slug === id);
     if (idx === -1) return null;
     memoryStore.brands[idx] = { ...memoryStore.brands[idx], ...data };
@@ -369,6 +638,9 @@ const db = {
   },
 
   async deleteBrand(id) {
+    if (isMongo()) {
+      try { await Brand.findOneAndDelete({ $or: [{ id }, { slug: id }] }); } catch (e) {}
+    }
     const idx = memoryStore.brands.findIndex(b => b.id === id || b.slug === id);
     if (idx === -1) return false;
     memoryStore.brands.splice(idx, 1);
@@ -377,21 +649,41 @@ const db = {
 
   // --- BANNERS ---
   async getBanners() {
+    if (isMongo()) {
+      const docs = await Banner.find({ active: { $ne: false } }).sort({ order: 1 }).lean();
+      if (docs && docs.length) return docs;
+    }
     return memoryStore.banners.filter(b => b.active !== false).sort((a, b) => a.order - b.order);
   },
 
   async createBanner(data) {
+    const count = isMongo() ? await Banner.countDocuments() : memoryStore.banners.length;
     const banner = {
       id: `banner-${Date.now()}`,
-      order: memoryStore.banners.length + 1,
+      order: count + 1,
       active: true,
       ...data
     };
+    if (isMongo()) {
+      try {
+        const created = await Banner.create(banner);
+        memoryStore.banners.push(banner);
+        return created.toObject ? created.toObject() : banner;
+      } catch (e) {}
+    }
     memoryStore.banners.push(banner);
     return banner;
   },
 
   async updateBanner(id, data) {
+    if (isMongo()) {
+      const updated = await Banner.findOneAndUpdate({ id }, data, { new: true }).lean();
+      if (updated) {
+        const idx = memoryStore.banners.findIndex(b => b.id === id);
+        if (idx !== -1) memoryStore.banners[idx] = { ...memoryStore.banners[idx], ...data };
+        return updated;
+      }
+    }
     const idx = memoryStore.banners.findIndex(b => b.id === id);
     if (idx === -1) return null;
     memoryStore.banners[idx] = { ...memoryStore.banners[idx], ...data };
@@ -399,6 +691,9 @@ const db = {
   },
 
   async deleteBanner(id) {
+    if (isMongo()) {
+      try { await Banner.findOneAndDelete({ id }); } catch (e) {}
+    }
     const idx = memoryStore.banners.findIndex(b => b.id === id);
     if (idx === -1) return false;
     memoryStore.banners.splice(idx, 1);
@@ -414,19 +709,27 @@ const db = {
       throw new Error('Order must contain at least one item');
     }
 
-    // Resolve products from store
-    const resolvedItems = items.map(item => {
+    // Resolve products from store/db
+    const resolvedItems = [];
+    for (const item of items) {
       const prodId = item.productId || item.id;
-      const prod = memoryStore.products.find(p => p.id === prodId || p.slug === prodId);
-      return {
-        id: prod ? prod.id : (item.id || item.productId),
-        productId: prod ? prod.id : (item.productId || item.id),
+      let prod = null;
+      if (isMongo()) {
+        try {
+          prod = await Product.findOne({ $or: [{ id: prodId }, { slug: prodId }] }).lean();
+        } catch (e) {}
+      }
+      if (!prod) {
+        prod = memoryStore.products.find(p => p.id === prodId || p.slug === prodId);
+      }
+      resolvedItems.push({
+        productId: prod ? prod.id : prodId,
         title: item.title || (prod ? prod.title : 'Product Item'),
         price: Number(item.price !== undefined ? item.price : (prod ? prod.price : 0)),
         quantity: Math.max(1, Number(item.quantity) || 1),
-        image: item.image || (prod && prod.images ? prod.images[0] : '')
-      };
-    });
+        image: item.image || (prod && prod.images && prod.images[0]) || (prod && prod.image) || ''
+      });
+    }
 
     const orderNumber = `ORD-${Math.floor(10000 + Math.random() * 90000)}`;
     const subtotal = resolvedItems.reduce((sum, item) => sum + (Number(item.price) * Number(item.quantity)), 0);
@@ -438,49 +741,91 @@ const db = {
     const newOrder = {
       id: `ord-${Date.now()}`,
       orderNumber,
-      customerName: customer.name,
-      phone: customer.phone,
-      address: customer.address,
-      division: customer.division || 'Dhaka',
-      district: customer.district || 'Dhaka',
-      area: customer.area || 'City',
-      customer,
+      customer: {
+        name: customer.name,
+        phone: customer.phone,
+        address: customer.address,
+        area: customer.area || (isInsideDhaka ? 'inside_dhaka' : 'outside_dhaka'),
+        notes: customer.notes || customer.note || ''
+      },
       items: resolvedItems,
       subtotal,
       deliveryCharge,
       discount,
       total,
       paymentMethod,
-      note: customer.note || '',
       status: 'pending',
       timeline: [
         {
           status: 'pending',
           note: 'Order submitted by customer',
-          timestamp: new Date().toISOString()
+          timestamp: new Date()
         }
       ],
-      createdAt: new Date().toISOString()
+      createdAt: new Date()
     };
 
-    memoryStore.orders.unshift(newOrder);
+    if (isMongo()) {
+      try {
+        const created = await Order.create(newOrder);
+        // Decrement stock in MongoDB
+        for (const item of resolvedItems) {
+          await Product.findOneAndUpdate(
+            { id: item.productId, stock: { $gt: 0 } },
+            { $inc: { stock: -item.quantity } }
+          );
+        }
+        memoryStore.orders.unshift(newOrder);
+        return created.toObject ? created.toObject() : newOrder;
+      } catch (e) {
+        console.warn('Order.create error:', e.message);
+      }
+    }
 
-    // Decrement stock in memory
+    memoryStore.orders.unshift(newOrder);
     for (const item of resolvedItems) {
       const prod = memoryStore.products.find(p => p.id === item.productId || p.slug === item.productId);
       if (prod && prod.stock > 0) {
         prod.stock = Math.max(0, prod.stock - item.quantity);
       }
     }
-
-    if (isMongo()) {
-      try { await Order.create(newOrder); } catch(e) {}
-    }
-
     return newOrder;
   },
 
   async getOrders({ status, search, page = 1, limit = 20 } = {}) {
+    if (isMongo()) {
+      try {
+        const query = {};
+        if (status) query.status = status;
+        if (search) {
+          const regex = { $regex: search.trim(), $options: 'i' };
+          query.$or = [
+            { orderNumber: regex },
+            { 'customer.name': regex },
+            { 'customer.phone': regex }
+          ];
+        }
+        const p = Math.max(1, Number(page));
+        const l = Math.max(1, Number(limit));
+        const skip = (p - 1) * l;
+
+        const [items, total] = await Promise.all([
+          Order.find(query).sort({ createdAt: -1 }).skip(skip).limit(l).lean(),
+          Order.countDocuments(query)
+        ]);
+
+        return {
+          items,
+          total,
+          page: p,
+          limit: l,
+          totalPages: Math.ceil(total / l)
+        };
+      } catch (err) {
+        console.warn('Order.find error:', err.message);
+      }
+    }
+
     let list = [...memoryStore.orders];
     if (status) {
       list = list.filter(o => o.status === status);
@@ -489,8 +834,8 @@ const db = {
       const q = search.toLowerCase();
       list = list.filter(o =>
         o.orderNumber.toLowerCase().includes(q) ||
-        o.customer.name.toLowerCase().includes(q) ||
-        o.customer.phone.includes(q)
+        (o.customer && o.customer.name && o.customer.name.toLowerCase().includes(q)) ||
+        (o.customer && o.customer.phone && o.customer.phone.includes(q))
       );
     }
     list.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
@@ -510,15 +855,36 @@ const db = {
   },
 
   async getOrderById(id) {
+    if (!id) return null;
+    if (isMongo()) {
+      try {
+        const doc = await Order.findOne({ $or: [{ id }, { orderNumber: id }] }).lean();
+        if (doc) return doc;
+      } catch (e) {}
+    }
     return memoryStore.orders.find(o => o.id === id || o.orderNumber === id) || null;
   },
 
   async trackOrder({ phone, orderNumber, invoiceId }) {
     const cleanPhone = phone ? phone.replace(/[^0-9]/g, '') : '';
-    const targetOrderNo = orderNumber || invoiceId;
+    const targetOrderNo = (orderNumber || invoiceId || '').trim();
+
+    if (isMongo()) {
+      try {
+        const query = {};
+        if (cleanPhone) {
+          query['customer.phone'] = { $regex: cleanPhone };
+        }
+        if (targetOrderNo) {
+          query.orderNumber = { $regex: new RegExp(`^${targetOrderNo}$`, 'i') };
+        }
+        const docs = await Order.find(query).sort({ createdAt: -1 }).lean();
+        if (docs && docs.length) return docs;
+      } catch (e) {}
+    }
 
     const matched = memoryStore.orders.filter(o => {
-      const pMatch = cleanPhone ? o.customer.phone.replace(/[^0-9]/g, '').includes(cleanPhone) : true;
+      const pMatch = cleanPhone ? (o.customer && o.customer.phone ? o.customer.phone.replace(/[^0-9]/g, '').includes(cleanPhone) : false) : true;
       const oMatch = targetOrderNo ? o.orderNumber.toLowerCase() === targetOrderNo.toLowerCase() : true;
       return pMatch && oMatch;
     });
@@ -527,22 +893,47 @@ const db = {
   },
 
   async updateOrderStatus(id, { status, note }) {
+    const newTimelineItem = {
+      status,
+      note: note || `Order marked as ${status}`,
+      timestamp: new Date()
+    };
+
+    if (isMongo()) {
+      try {
+        const updated = await Order.findOneAndUpdate(
+          { $or: [{ id }, { orderNumber: id }] },
+          {
+            status,
+            $push: { timeline: newTimelineItem }
+          },
+          { new: true }
+        ).lean();
+
+        if (updated) {
+          const order = memoryStore.orders.find(o => o.id === id || o.orderNumber === id);
+          if (order) {
+            order.status = status;
+            order.timeline.push(newTimelineItem);
+          }
+          return updated;
+        }
+      } catch (e) {}
+    }
+
     const order = memoryStore.orders.find(o => o.id === id || o.orderNumber === id);
     if (!order) return null;
     order.status = status;
-    order.timeline.push({
-      status,
-      note: note || `Order marked as ${status}`,
-      timestamp: new Date().toISOString()
-    });
-    if (isMongo()) {
-      try { await Order.findOneAndUpdate({ id: order.id }, { status, $push: { timeline: { status, note, timestamp: new Date() } } }); } catch(e) {}
-    }
+    order.timeline.push(newTimelineItem);
     return order;
   },
 
   // --- COMPLAINTS ---
   async getComplaints() {
+    if (isMongo()) {
+      const docs = await Complaint.find().sort({ createdAt: -1 }).lean();
+      if (docs && docs.length) return docs;
+    }
     return memoryStore.complaints;
   },
 
@@ -559,16 +950,38 @@ const db = {
       image: image || '',
       status: 'new',
       adminNotes: '',
-      createdAt: new Date().toISOString()
+      createdAt: new Date()
     };
-    memoryStore.complaints.unshift(comp);
     if (isMongo()) {
-      try { await Complaint.create(comp); } catch(e) {}
+      try {
+        const created = await Complaint.create(comp);
+        memoryStore.complaints.unshift(comp);
+        return created.toObject ? created.toObject() : comp;
+      } catch (e) {}
     }
+    memoryStore.complaints.unshift(comp);
     return comp;
   },
 
   async updateComplaintStatus(id, { status, adminNotes }) {
+    const updateFields = {};
+    if (status) updateFields.status = status;
+    if (adminNotes !== undefined) updateFields.adminNotes = adminNotes;
+
+    if (isMongo()) {
+      try {
+        const updated = await Complaint.findOneAndUpdate({ id }, updateFields, { new: true }).lean();
+        if (updated) {
+          const c = memoryStore.complaints.find(comp => comp.id === id);
+          if (c) {
+            if (status) c.status = status;
+            if (adminNotes !== undefined) c.adminNotes = adminNotes;
+          }
+          return updated;
+        }
+      } catch (e) {}
+    }
+
     const comp = memoryStore.complaints.find(c => c.id === id);
     if (!comp) return null;
     if (status) comp.status = status;
@@ -578,6 +991,10 @@ const db = {
 
   // --- SELLERS ---
   async getSellers() {
+    if (isMongo()) {
+      const docs = await Seller.find().sort({ rating: -1 }).lean();
+      if (docs && docs.length) return docs;
+    }
     return memoryStore.sellers;
   },
 
@@ -590,20 +1007,44 @@ const db = {
       status: 'active',
       ...data
     };
+    if (isMongo()) {
+      try {
+        const created = await Seller.create(seller);
+        memoryStore.sellers.push(seller);
+        return created.toObject ? created.toObject() : seller;
+      } catch (e) {}
+    }
     memoryStore.sellers.push(seller);
     return seller;
   },
 
   // --- STATIC PAGES ---
   async getPage(slug) {
+    if (!slug) return null;
+    if (isMongo()) {
+      const page = await Page.findOne({ slug }).lean();
+      if (page) return page;
+    }
     return memoryStore.pages.find(p => p.slug === slug) || null;
   },
 
   async getAllPages() {
+    if (isMongo()) {
+      const pages = await Page.find({}, 'slug title metaTitle metaDescription').lean();
+      if (pages && pages.length) return pages;
+    }
     return memoryStore.pages.map(({ slug, title, metaTitle, metaDescription }) => ({ slug, title, metaTitle, metaDescription }));
   },
 
   async updatePage(slug, data) {
+    if (isMongo()) {
+      const updated = await Page.findOneAndUpdate(
+        { slug },
+        { ...data, updatedAt: new Date() },
+        { new: true, upsert: true }
+      ).lean();
+      return updated;
+    }
     const idx = memoryStore.pages.findIndex(p => p.slug === slug);
     if (idx === -1) {
       const newPage = { slug, title: data.title || slug, content: data.content || '', ...data };
@@ -616,18 +1057,43 @@ const db = {
 
   // --- SETTINGS ---
   async getSettings() {
+    if (isMongo()) {
+      const s = await Setting.findOne().lean();
+      if (s) return s;
+    }
     return memoryStore.settings;
   },
 
   async updateSettings(data) {
+    if (isMongo()) {
+      const updated = await Setting.findOneAndUpdate(
+        {},
+        { ...data, updatedAt: new Date() },
+        { new: true, upsert: true }
+      ).lean();
+      memoryStore.settings = { ...memoryStore.settings, ...data };
+      return updated;
+    }
     memoryStore.settings = { ...memoryStore.settings, ...data, updatedAt: new Date().toISOString() };
     return memoryStore.settings;
   },
 
-  // --- NEWSLETTER ---
+  // --- NEWSLETTER / SUBSCRIBERS ---
   async addSubscriber(email) {
     if (!email || !email.includes('@')) throw new Error('Valid email address is required');
     const clean = email.toLowerCase().trim();
+
+    if (isMongo()) {
+      try {
+        const existing = await Subscriber.findOne({ email: clean }).lean();
+        if (existing) return existing;
+        const sub = await Subscriber.create({ email: clean, subscribedAt: new Date() });
+        return sub.toObject ? sub.toObject() : sub;
+      } catch (e) {
+        console.warn('Subscriber.create error:', e.message);
+      }
+    }
+
     const existing = memoryStore.subscribers.find(s => s.email === clean);
     if (existing) return existing;
     const sub = { email: clean, subscribedAt: new Date().toISOString() };
@@ -636,6 +1102,10 @@ const db = {
   },
 
   async getSubscribers() {
+    if (isMongo()) {
+      const docs = await Subscriber.find().sort({ subscribedAt: -1 }).lean();
+      if (docs && docs.length) return docs;
+    }
     return memoryStore.subscribers;
   },
 
@@ -655,8 +1125,8 @@ const db = {
         const totalRevenue = validOrders.reduce((sum, o) => sum + (o.total || 0), 0);
         const pendingOrders = validOrders.filter(o => o.status === 'pending').length;
 
-        const lowStockProducts = lowMongo.map(p => ({
-          id: p._id.toString(),
+        const lowStockProducts = (lowMongo || []).map(p => ({
+          id: p.id || p._id.toString(),
           title: p.title,
           category: p.category,
           price: p.price,
@@ -671,7 +1141,7 @@ const db = {
           lowStockProducts,
           pendingOrders,
           newComplaints,
-          recentOrders
+          recentOrders: recentOrders || []
         };
       } catch (err) {
         console.warn('⚠️ MongoDB getDashboardStats error:', err.message);

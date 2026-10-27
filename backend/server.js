@@ -92,6 +92,7 @@ apiRouter.use('/sellers', sellerRoutes);
 apiRouter.use('/pages', pageRoutes);
 apiRouter.use('/settings', settingRoutes);
 apiRouter.use('/newsletter', subscriberRoutes);
+apiRouter.use('/subscribers', subscriberRoutes);
 apiRouter.use('/upload', uploadRoutes);
 apiRouter.use('/admin', adminRoutes);
 
