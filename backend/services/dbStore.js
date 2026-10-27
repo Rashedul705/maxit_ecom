@@ -493,12 +493,19 @@ const db = {
         }).lean();
 
         if (product) {
-          const related = await Product.find({
+          let related = await Product.find({
             category: product.category,
             id: { $ne: product.id }
-          }).limit(6).lean();
+          }).limit(4).lean();
 
-          return { ...product, related };
+          if (related.length < 4) {
+            const more = await Product.find({
+              id: { $ne: product.id, $nin: related.map(r => r.id) }
+            }).limit(4 - related.length).lean();
+            related = [...related, ...more];
+          }
+
+          return { ...product, related, relatedProducts: related };
         }
       } catch (err) {
         console.warn('⚠️ Product.findOne error:', err.message);
@@ -514,11 +521,18 @@ const db = {
     );
     if (!product) return null;
 
-    const related = memoryStore.products
+    let related = memoryStore.products
       .filter(p => p.category === product.category && p.id !== product.id)
-      .slice(0, 6);
+      .slice(0, 4);
 
-    return { ...product, related };
+    if (related.length < 4) {
+      const more = memoryStore.products
+        .filter(p => p.id !== product.id && !related.some(r => r.id === p.id))
+        .slice(0, 4 - related.length);
+      related = [...related, ...more];
+    }
+
+    return { ...product, related, relatedProducts: related };
   },
 
   async createProduct(data) {

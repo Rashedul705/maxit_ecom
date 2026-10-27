@@ -3,8 +3,6 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { api } from '@/lib/api';
 import { ProductInteractiveView } from '@/components/shop/ProductInteractiveView';
-import { ProductCard } from '@/components/shop/ProductCard';
-import { ChevronRight, Home } from 'lucide-react';
 import type { Metadata } from 'next';
 
 interface ProductPageProps {
@@ -41,6 +39,8 @@ export default async function ProductPage({ params }: ProductPageProps) {
     notFound();
   }
 
+  const settings = await api.getSettings().catch(() => null);
+
   // Schema.org Product structured data
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -65,7 +65,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-6">
+    <div className="max-w-7xl mx-auto px-4 py-4 sm:py-6">
       
       {/* JSON-LD for SEO */}
       <script
@@ -73,48 +73,21 @@ export default async function ProductPage({ params }: ProductPageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* Breadcrumb */}
-      <nav className="flex items-center text-xs text-slate-500 mb-5 gap-1.5 overflow-x-auto whitespace-nowrap">
-        <Link href="/" className="hover:text-blue-600 flex items-center gap-1">
-          <Home className="w-3.5 h-3.5" />
-          <span>Home</span>
+      {/* Breadcrumb styled like reference image: হোম / [ক্যাটাগরি] / [পণ্যের নাম] */}
+      <nav className="flex items-center text-xs text-slate-500 mb-6 gap-2 overflow-x-auto whitespace-nowrap">
+        <Link href="/" className="hover:text-[#DC2626] transition-colors font-medium">
+          হোম
         </Link>
-        <ChevronRight className="w-3 h-3 text-slate-400" />
-        <Link href={`/category/${product.category}`} className="hover:text-blue-600 capitalize">
+        <span className="text-slate-300">/</span>
+        <Link href={`/category/${product.category}`} className="hover:text-[#DC2626] capitalize transition-colors font-medium">
           {product.category.replace(/-/g, ' ')}
         </Link>
-        <ChevronRight className="w-3 h-3 text-slate-400" />
-        <span className="font-semibold text-slate-900 line-clamp-1">{product.title}</span>
+        <span className="text-slate-300">/</span>
+        <span className="font-semibold text-slate-800 line-clamp-1">{product.title}</span>
       </nav>
 
       {/* Main Interactive Product View */}
-      <ProductInteractiveView product={product} />
-
-      {/* Related Products Section */}
-      {product.relatedProducts && product.relatedProducts.length > 0 && (
-        <section className="mt-12 pt-8 border-t border-slate-200">
-          <div className="flex items-center justify-between mb-6">
-            <div>
-              <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900">
-                Related Products
-              </h2>
-              <p className="text-xs text-slate-500">Other popular items from {product.category.replace(/-/g, ' ')}</p>
-            </div>
-            <Link
-              href={`/category/${product.category}`}
-              className="text-xs font-bold text-blue-600 hover:text-blue-800"
-            >
-              View Full Category →
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
-            {product.relatedProducts.map(rel => (
-              <ProductCard key={rel.id} product={rel} />
-            ))}
-          </div>
-        </section>
-      )}
+      <ProductInteractiveView product={product} settings={settings} />
 
     </div>
   );
