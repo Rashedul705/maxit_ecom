@@ -14,12 +14,12 @@ export const FloatingSupport: React.FC = () => {
         href="https://wa.me/8801733272445"
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white px-3.5 py-2.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 group"
+        className="flex items-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white px-4 py-2.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 group font-bold text-xs sm:text-sm"
         title="Chat on WhatsApp (+880 1733-272445)"
         aria-label="Chat on WhatsApp"
       >
-        <MessageCircle className="w-5 h-5 fill-current" />
-        <span className="text-xs font-bold hidden sm:inline">WhatsApp</span>
+        <MessageCircle className="w-5 h-5 fill-current shrink-0" />
+        <span>Chat on WhatsApp</span>
       </a>
 
       {/* Messenger Button */}

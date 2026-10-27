@@ -73,7 +73,7 @@ const createOrder = async ({
 
   // 3. Delivery charge calculation
   // Inside Dhaka = ৳80, Outside Dhaka = ৳130
-  const isDhaka = division.trim().toLowerCase() === 'dhaka';
+  const isDhaka = (division && division.trim().toLowerCase() === 'dhaka') || (district && district.trim().toLowerCase() === 'dhaka');
   const deliveryCharge = isDhaka ? 80 : 130;
   const total = subtotal + deliveryCharge;
 
