@@ -12,7 +12,7 @@ interface ProductCardProps {
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  const { addToCart } = useCart();
+  const { addToCart, openCheckout } = useCart();
 
   const discountPercent =
     product.oldPrice && product.oldPrice > product.price
@@ -27,6 +27,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       return;
     }
     addToCart(product, 1);
+    openCheckout();
   };
 
   return (

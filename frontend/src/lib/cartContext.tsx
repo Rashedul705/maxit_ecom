@@ -12,8 +12,11 @@ interface CartContextType {
   totalItems: number;
   subtotal: number;
   isCartOpen: boolean;
-  openCart: () => void;
+  openCart: (initialView?: 'cart' | 'checkout') => void;
+  openCheckout: () => void;
   closeCart: () => void;
+  cartView: 'cart' | 'checkout';
+  setCartView: (view: 'cart' | 'checkout') => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -23,6 +26,7 @@ const CART_STORAGE_KEY = 'maxitshop_cart_v1';
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [items, setItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [cartView, setCartView] = useState<'cart' | 'checkout'>('cart');
   const [isLoaded, setIsLoaded] = useState(false);
 
   // Load from localStorage on mount
@@ -74,6 +78,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         ];
       }
     });
+    setCartView('cart');
     setIsCartOpen(true);
   };
 
@@ -95,7 +100,14 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setItems([]);
   };
 
-  const openCart = () => setIsCartOpen(true);
+  const openCart = (initialView: 'cart' | 'checkout' = 'cart') => {
+    setCartView(initialView);
+    setIsCartOpen(true);
+  };
+  const openCheckout = () => {
+    setCartView('checkout');
+    setIsCartOpen(true);
+  };
   const closeCart = () => setIsCartOpen(false);
 
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
@@ -113,7 +125,10 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         subtotal,
         isCartOpen,
         openCart,
-        closeCart
+        openCheckout,
+        closeCart,
+        cartView,
+        setCartView
       }}
     >
       {children}

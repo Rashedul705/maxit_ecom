@@ -225,7 +225,7 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
+    <div className="max-w-5xl mx-auto px-4 py-8">
       
       <div className="pb-4 border-b border-slate-200 mb-8">
         <h1 className="text-2xl sm:text-3xl font-black text-slate-900">

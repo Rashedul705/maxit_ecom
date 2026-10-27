@@ -36,7 +36,7 @@ export const ProductInteractiveView: React.FC<ProductInteractiveViewProps> = ({
   settings
 }) => {
   const router = useRouter();
-  const { addToCart } = useCart();
+  const { addToCart, openCheckout } = useCart();
 
   // Active gallery media
   const [activeMediaIndex, setActiveMediaIndex] = useState<number>(0);
@@ -217,7 +217,7 @@ export const ProductInteractiveView: React.FC<ProductInteractiveViewProps> = ({
       title: `${product.title} (${currentVariant.title})`,
       price: unitPrice
     }, quantity);
-    router.push('/checkout');
+    openCheckout();
   };
 
   const handleAddComboToCart = () => {

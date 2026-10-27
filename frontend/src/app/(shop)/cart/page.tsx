@@ -31,7 +31,7 @@ export default function CartPage() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
+    <div className="max-w-5xl mx-auto px-4 py-8">
       
       {/* Title */}
       <div className="flex items-center justify-between pb-4 border-b border-slate-200 mb-6">
