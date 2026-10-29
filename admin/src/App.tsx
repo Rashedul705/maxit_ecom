@@ -13,6 +13,7 @@ import { PagesView } from './views/PagesView';
 import { SubscribersView } from './views/SubscribersView';
 import { SettingsView } from './views/SettingsView';
 import { LoginView } from './views/LoginView';
+import { CouponsView } from './views/CouponsView';
 
 export function App() {
   const [user, setUser] = useState<any>(null);
@@ -58,6 +59,8 @@ export function App() {
         return <BrandsView />;
       case 'banners':
         return <BannersView />;
+      case 'coupons':
+        return <CouponsView />;
       case 'complaints':
         return <ComplaintsView />;
       case 'sellers':

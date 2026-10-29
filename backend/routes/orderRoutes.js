@@ -7,7 +7,7 @@ const { requireAdminAuth } = require('../middleware/auth');
 // POST /api/v1/orders - Place order (Public for customers)
 router.post('/', async (req, res, next) => {
   try {
-    let { customer, customerName, phone, address, division, district, area, items, paymentMethod = 'cod', note } = req.body;
+    let { customer, customerName, phone, address, division, district, area, items, paymentMethod = 'cod', note, couponCode, coupon } = req.body;
     
     // Normalize customer object
     if (!customer) {
@@ -22,7 +22,8 @@ router.post('/', async (req, res, next) => {
       };
     }
 
-    const order = await db.createOrder({ customer, items, paymentMethod });
+    const resolvedCoupon = (couponCode || coupon || '').trim();
+    const order = await db.createOrder({ customer, items, paymentMethod, couponCode: resolvedCoupon });
     return successResponse(res, order, 'Order placed successfully', 201);
   } catch (err) {
     return errorResponse(res, err.message, 400);

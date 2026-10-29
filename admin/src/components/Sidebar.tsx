@@ -12,7 +12,8 @@ import {
   Mail,
   Settings,
   LogOut,
-  ExternalLink
+  ExternalLink,
+  Tag
 } from 'lucide-react';
 
 interface SidebarProps {
@@ -29,6 +30,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentTab, onSelectTab, onLog
     { id: 'categories', label: 'Categories', icon: Layers },
     { id: 'brands', label: 'Brands', icon: Award },
     { id: 'banners', label: 'Hero Banners', icon: ImageIcon },
+    { id: 'coupons', label: 'Coupons & Deals', icon: Tag },
     { id: 'complaints', label: 'Complaints', icon: MessageSquare },
     { id: 'sellers', label: 'Sellers', icon: Users },
     { id: 'pages', label: 'Policy Pages', icon: FileText },

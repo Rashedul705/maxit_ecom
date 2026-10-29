@@ -146,9 +146,24 @@ export const api = {
     items: { id: string; quantity: number }[];
     paymentMethod: string;
     note?: string;
+    couponCode?: string;
   }) => fetchJson<Order>(`${API_BASE}/orders`, {
     method: 'POST',
     body: JSON.stringify(orderData)
+  }),
+
+  // Coupons
+  verifyCoupon: (code: string, subtotal: number = 0) => fetchJson<{
+    valid: boolean;
+    code: string;
+    description?: string;
+    discountType: 'percent' | 'fixed';
+    discountValue: number;
+    discountAmount: number;
+    message?: string;
+  }>(`${API_BASE}/coupons/verify`, {
+    method: 'POST',
+    body: JSON.stringify({ code, subtotal })
   }),
 
   trackOrder: (orderNumber?: string, phone?: string) => {

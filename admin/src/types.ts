@@ -216,6 +216,22 @@ export interface Subscriber {
   subscribedAt: string;
 }
 
+export interface Coupon {
+  id: string;
+  code: string;
+  description?: string;
+  discountType: 'percent' | 'fixed';
+  discountValue: number;
+  minOrderAmount: number;
+  maxDiscountAmount: number;
+  startDate?: string;
+  expiryDate?: string;
+  usageLimit: number;
+  usedCount: number;
+  isActive: boolean;
+  createdAt?: string;
+}
+
 export interface DashboardStats {
   totalOrders: number;
   totalRevenue: number;
@@ -237,4 +253,5 @@ export const Seller = {};
 export const PageContent = {};
 export const SiteSettings = {};
 export const Subscriber = {};
+export const Coupon = {};
 export const DashboardStats = {};

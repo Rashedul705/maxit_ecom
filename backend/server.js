@@ -18,6 +18,7 @@ const settingRoutes = require('./routes/settingRoutes');
 const subscriberRoutes = require('./routes/subscriberRoutes');
 const uploadRoutes = require('./routes/uploadRoutes');
 const adminRoutes = require('./routes/adminRoutes');
+const couponRoutes = require('./routes/couponRoutes');
 
 const { errorHandler, notFoundHandler } = require('./middleware/errorHandler');
 const { successResponse } = require('./utils/response');
@@ -96,6 +97,7 @@ apiRouter.use('/newsletter', subscriberRoutes);
 apiRouter.use('/subscribers', subscriberRoutes);
 apiRouter.use('/upload', uploadRoutes);
 apiRouter.use('/admin', adminRoutes);
+apiRouter.use('/coupons', couponRoutes);
 
 // Search suggestions
 apiRouter.get('/search/suggestions', async (req, res, next) => {

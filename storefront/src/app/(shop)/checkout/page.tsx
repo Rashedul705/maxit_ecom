@@ -23,9 +23,10 @@ import {
 
 interface AvailableCoupon {
   code: string;
-  type: 'percent' | 'flat';
+  type: 'percent' | 'flat' | 'fixed';
   value: number;
-  label: string;
+  label?: string;
+  description?: string;
 }
 
 const AVAILABLE_COUPONS: Record<string, AvailableCoupon> = {
@@ -79,7 +80,8 @@ export default function CheckoutPage() {
   };
 
   // Handle Coupon Apply
-  const handleApplyCoupon = (codeToApply?: string) => {
+  const [isVerifyingCoupon, setIsVerifyingCoupon] = useState(false);
+  const handleApplyCoupon = async (codeToApply?: string) => {
     const rawCode = (codeToApply || couponInput).trim().toUpperCase();
     setCouponError('');
 
@@ -88,13 +90,22 @@ export default function CheckoutPage() {
       return;
     }
 
-    const found = AVAILABLE_COUPONS[rawCode];
-    if (found) {
-      setAppliedCoupon(found);
-      setCouponInput(found.code);
+    try {
+      setIsVerifyingCoupon(true);
+      const res = await api.verifyCoupon(rawCode, subtotal);
+      setAppliedCoupon({
+        code: res.code,
+        type: res.discountType,
+        value: res.discountValue,
+        description: res.description || `${res.discountValue}${res.discountType === 'percent' ? '%' : '৳'} discount`
+      });
+      setCouponInput(res.code);
       setCouponError('');
-    } else {
-      setCouponError('Invalid coupon code. Try RONG10, FREE60, or FIRSTORDER.');
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : 'Invalid or expired coupon code.';
+      setCouponError(msg);
+    } finally {
+      setIsVerifyingCoupon(false);
     }
   };
 
@@ -154,7 +165,8 @@ export default function CheckoutPage() {
         area: resolvedThana.trim(),
         items: items.map(item => ({ id: item.id, quantity: item.quantity })),
         paymentMethod,
-        note: note.trim()
+        note: note.trim(),
+        couponCode: appliedCoupon ? appliedCoupon.code : ''
       };
 
       const result = await api.createOrder(orderPayload);

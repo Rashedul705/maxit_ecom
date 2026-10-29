@@ -273,3 +273,28 @@ export interface AdminAuthResponse {
   token: string;
   user: AdminUser;
 }
+
+export interface CouponVerifyResult {
+  valid: boolean;
+  code: string;
+  description?: string;
+  discountType: 'percent' | 'fixed';
+  discountValue: number;
+  discountAmount: number;
+  message?: string;
+}
+
+export interface Coupon {
+  id: string;
+  code: string;
+  description: string;
+  discountType: 'percent' | 'fixed';
+  discountValue: number;
+  minOrderAmount: number;
+  maxDiscountAmount: number;
+  startDate?: string;
+  expiryDate?: string;
+  usageLimit: number;
+  usedCount: number;
+  isActive: boolean;
+}

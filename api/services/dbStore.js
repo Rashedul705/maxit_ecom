@@ -16,6 +16,7 @@ const Setting = require('../models/Setting');
 const Subscriber = require('../models/Subscriber');
 const User = require('../models/User');
 const Review = require('../models/Review');
+const Coupon = require('../models/Coupon');
 
 const JWT_SECRET = process.env.JWT_SECRET || 'supersecretjwtkey_maxitshop_2026';
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'admin@maxitshop.com';
@@ -34,6 +35,44 @@ const memoryStore = {
   complaints: JSON.parse(JSON.stringify(seedData.complaints)),
   subscribers: JSON.parse(JSON.stringify(seedData.subscribers)),
   reviews: [],
+  coupons: [
+    {
+      id: "cp-1",
+      code: "RONG10",
+      description: "10% off storewide",
+      discountType: "percent",
+      discountValue: 10,
+      minOrderAmount: 0,
+      maxDiscountAmount: 500,
+      isActive: true,
+      usedCount: 0,
+      usageLimit: 500
+    },
+    {
+      id: "cp-2",
+      code: "FIRSTORDER",
+      description: "৳100 off on first purchase",
+      discountType: "fixed",
+      discountValue: 100,
+      minOrderAmount: 1000,
+      maxDiscountAmount: 0,
+      isActive: true,
+      usedCount: 0,
+      usageLimit: 200
+    },
+    {
+      id: "cp-3",
+      code: "FREE60",
+      description: "৳60 off on orders over ৳500",
+      discountType: "fixed",
+      discountValue: 60,
+      minOrderAmount: 500,
+      maxDiscountAmount: 0,
+      isActive: true,
+      usedCount: 0,
+      usageLimit: 300
+    }
+  ],
   orders: [
     {
       id: "ord-1001",
@@ -137,6 +176,12 @@ const syncMongoSeeds = async () => {
     if (orderCount === 0 && memoryStore.orders.length > 0) {
       console.log('🌱 Seeding MongoDB Demo Order...');
       await Order.insertMany(memoryStore.orders);
+    }
+
+    const couponCount = await Coupon.countDocuments();
+    if (couponCount === 0 && memoryStore.coupons.length > 0) {
+      console.log('🌱 Seeding MongoDB Coupons...');
+      await Coupon.insertMany(memoryStore.coupons);
     }
 
     const adminUser = await User.findOne({ role: 'admin' });
@@ -916,7 +961,7 @@ const db = {
   },
 
   // --- ORDERS & TRACKING ---
-  async createOrder({ customer, items, paymentMethod = 'cod' }) {
+  async createOrder({ customer, items, paymentMethod = 'cod', couponCode = '' }) {
     if (!customer || !customer.name || !customer.phone || !customer.address) {
       throw new Error('Customer name, phone, and address are required');
     }
@@ -964,8 +1009,20 @@ const db = {
       (customer.division && customer.division.toLowerCase() === 'dhaka') ||
       (customer.district && customer.district.toLowerCase() === 'dhaka');
     const deliveryCharge = isInsideDhaka ? 80 : 130;
-    const discount = 0;
-    const total = subtotal + deliveryCharge - discount;
+
+    // Server-side Coupon verification
+    let discount = 0;
+    let verifiedCoupon = null;
+    if (couponCode && typeof couponCode === 'string' && couponCode.trim()) {
+      try {
+        verifiedCoupon = await this.verifyCoupon({ code: couponCode, subtotal });
+        discount = verifiedCoupon.discountAmount;
+      } catch (couponErr) {
+        console.warn('Coupon verification warning during order creation:', couponErr.message);
+      }
+    }
+
+    const total = Math.max(0, subtotal + deliveryCharge - discount);
 
     const newOrder = {
       id: `ord-${Date.now()}`,
@@ -988,6 +1045,10 @@ const db = {
       total,
       paymentMethod,
       paymentStatus: 'unpaid',
+      appliedCoupon: verifiedCoupon ? {
+        code: verifiedCoupon.code,
+        discountAmount: discount
+      } : { code: '', discountAmount: 0 },
       courier: {
         provider: '',
         trackingCode: '',
@@ -1015,6 +1076,9 @@ const db = {
             { $inc: { stock: -item.quantity } }
           );
         }
+        if (verifiedCoupon) {
+          await Coupon.updateOne({ code: verifiedCoupon.code }, { $inc: { usedCount: 1 } });
+        }
         memoryStore.orders.unshift(newOrder);
         return created.toObject ? created.toObject() : newOrder;
       } catch (e) {
@@ -1028,6 +1092,10 @@ const db = {
       if (prod && prod.stock > 0) {
         prod.stock = Math.max(0, prod.stock - item.quantity);
       }
+    }
+    if (verifiedCoupon) {
+      const memCp = memoryStore.coupons.find(c => c.code === verifiedCoupon.code);
+      if (memCp) memCp.usedCount = (memCp.usedCount || 0) + 1;
     }
     return newOrder;
   },
@@ -1536,6 +1604,151 @@ const db = {
       newComplaints,
       recentOrders: memoryStore.orders.slice(0, 5)
     };
+  },
+
+  // --- COUPONS & VOUCHERS ---
+  async verifyCoupon({ code, subtotal = 0 }) {
+    if (!code || !code.trim()) {
+      throw new Error('Coupon code is required');
+    }
+    const cleanCode = code.trim().toUpperCase();
+    let coupon = null;
+
+    if (isMongo()) {
+      try {
+        coupon = await Coupon.findOne({ code: cleanCode, isActive: true }).lean();
+      } catch (err) {}
+    }
+    if (!coupon) {
+      coupon = memoryStore.coupons.find(c => c.code === cleanCode && c.isActive);
+    }
+
+    if (!coupon) {
+      throw new Error(`Invalid or inactive coupon code: ${cleanCode}`);
+    }
+
+    const now = new Date();
+    if (coupon.startDate && new Date(coupon.startDate) > now) {
+      throw new Error('This coupon is not active yet');
+    }
+    if (coupon.expiryDate && new Date(coupon.expiryDate) < now) {
+      throw new Error('This coupon has expired');
+    }
+    if (coupon.usageLimit && coupon.usageLimit > 0 && coupon.usedCount >= coupon.usageLimit) {
+      throw new Error('This coupon has reached its maximum usage limit');
+    }
+
+    const minSpend = Number(coupon.minOrderAmount || 0);
+    if (subtotal < minSpend) {
+      throw new Error(`Minimum order amount of ৳${minSpend.toLocaleString()} required for coupon ${cleanCode}`);
+    }
+
+    let discountAmount = 0;
+    if (coupon.discountType === 'percent') {
+      discountAmount = Math.round(subtotal * (Number(coupon.discountValue) / 100));
+      if (coupon.maxDiscountAmount && coupon.maxDiscountAmount > 0) {
+        discountAmount = Math.min(discountAmount, Number(coupon.maxDiscountAmount));
+      }
+    } else {
+      discountAmount = Math.min(Number(coupon.discountValue), subtotal);
+    }
+
+    return {
+      valid: true,
+      code: coupon.code,
+      description: coupon.description,
+      discountType: coupon.discountType,
+      discountValue: coupon.discountValue,
+      discountAmount,
+      message: `Coupon ${coupon.code} applied successfully!`
+    };
+  },
+
+  async getCoupons() {
+    if (isMongo()) {
+      try {
+        const list = await Coupon.find().sort({ createdAt: -1 }).lean();
+        if (list && list.length) return list;
+      } catch (err) {}
+    }
+    return memoryStore.coupons;
+  },
+
+  async createCoupon(data) {
+    const cleanCode = (data.code || '').trim().toUpperCase();
+    if (!cleanCode) throw new Error('Coupon code is required');
+
+    const couponObj = {
+      id: `cp-${Date.now()}`,
+      code: cleanCode,
+      description: data.description || '',
+      discountType: data.discountType === 'fixed' ? 'fixed' : 'percent',
+      discountValue: Number(data.discountValue || 0),
+      minOrderAmount: Number(data.minOrderAmount || 0),
+      maxDiscountAmount: Number(data.maxDiscountAmount || 0),
+      startDate: data.startDate ? new Date(data.startDate) : new Date(),
+      expiryDate: data.expiryDate ? new Date(data.expiryDate) : null,
+      usageLimit: Number(data.usageLimit || 0),
+      usedCount: 0,
+      isActive: data.isActive !== false
+    };
+
+    if (isMongo()) {
+      try {
+        const created = await Coupon.create(couponObj);
+        memoryStore.coupons.unshift(couponObj);
+        return created.toObject ? created.toObject() : couponObj;
+      } catch (err) {
+        console.warn('Coupon.create fallback error:', err.message);
+      }
+    }
+    memoryStore.coupons.unshift(couponObj);
+    return couponObj;
+  },
+
+  async updateCoupon(id, data) {
+    if (data.code) {
+      data.code = data.code.trim().toUpperCase();
+    }
+    if (isMongo()) {
+      try {
+        const updated = await Coupon.findOneAndUpdate(
+          { $or: [{ id }, { _id: mongoose.isValidObjectId(id) ? id : null }] },
+          { $set: data },
+          { new: true }
+        ).lean();
+        if (updated) {
+          const idx = memoryStore.coupons.findIndex(c => c.id === id);
+          if (idx !== -1) memoryStore.coupons[idx] = { ...memoryStore.coupons[idx], ...data };
+          return updated;
+        }
+      } catch (err) {}
+    }
+    const idx = memoryStore.coupons.findIndex(c => c.id === id);
+    if (idx !== -1) {
+      memoryStore.coupons[idx] = { ...memoryStore.coupons[idx], ...data };
+      return memoryStore.coupons[idx];
+    }
+    return null;
+  },
+
+  async deleteCoupon(id) {
+    if (isMongo()) {
+      try {
+        const res = await Coupon.findOneAndDelete({
+          $or: [{ id }, { _id: mongoose.isValidObjectId(id) ? id : null }]
+        });
+        const idx = memoryStore.coupons.findIndex(c => c.id === id);
+        if (idx !== -1) memoryStore.coupons.splice(idx, 1);
+        return !!res;
+      } catch (err) {}
+    }
+    const idx = memoryStore.coupons.findIndex(c => c.id === id);
+    if (idx !== -1) {
+      memoryStore.coupons.splice(idx, 1);
+      return true;
+    }
+    return false;
   }
 };
 

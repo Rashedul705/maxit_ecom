@@ -9,6 +9,7 @@ import {
   PageContent,
   SiteSettings,
   Subscriber,
+  Coupon,
   DashboardStats
 } from './types';
 
@@ -129,6 +130,20 @@ export const adminApi = {
 
   // Newsletter Subscribers
   getSubscribers: () => request<Subscriber[]>('/newsletter/subscribers'),
+
+  // Coupons & Vouchers
+  getCoupons: () => request<Coupon[]>('/coupons'),
+  createCoupon: (data: Partial<Coupon>) => request<Coupon>('/coupons', {
+    method: 'POST',
+    body: JSON.stringify(data)
+  }),
+  updateCoupon: (id: string, data: Partial<Coupon>) => request<Coupon>(`/coupons/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify(data)
+  }),
+  deleteCoupon: (id: string) => request<{ deleted: boolean }>(`/coupons/${id}`, {
+    method: 'DELETE'
+  }),
 
   // Image Upload
   uploadImage: async (file: File): Promise<string> => {
