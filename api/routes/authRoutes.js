@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../services/dbStore');
 const { successResponse, errorResponse } = require('../utils/response');
+const { requireCustomerAuth } = require('../middleware/auth');
 
 // POST /api/v1/auth/admin/login
 router.post('/admin/login', async (req, res, next) => {
@@ -37,11 +38,31 @@ router.post('/customer/login', async (req, res, next) => {
     const { email, password } = req.body;
     const result = await db.loginCustomer({ email, password });
     if (!result) {
-      return errorResponse(res, 'Invalid credentials', 401);
+      return errorResponse(res, 'Invalid email or password', 401);
     }
     return successResponse(res, result, 'Login successful');
   } catch (err) {
     next(err);
+  }
+});
+
+// GET /api/v1/auth/customer/profile
+router.get('/customer/profile', requireCustomerAuth, async (req, res, next) => {
+  try {
+    const data = await db.getCustomerProfile(req.user.id);
+    return successResponse(res, data);
+  } catch (err) {
+    return errorResponse(res, err.message, 404);
+  }
+});
+
+// PUT /api/v1/auth/customer/profile
+router.put('/customer/profile', requireCustomerAuth, async (req, res, next) => {
+  try {
+    const updated = await db.updateCustomerProfile(req.user.id, req.body);
+    return successResponse(res, updated, 'Profile updated successfully');
+  } catch (err) {
+    return errorResponse(res, err.message, 400);
   }
 });
 

@@ -173,6 +173,43 @@ export const api = {
     return fetchJson<Order[]>(`${API_BASE}/orders/track?${query.toString()}`);
   },
 
+  // Customer Auth
+  customerRegister: (data: { name: string; email: string; phone?: string; password: string; address?: string }) => fetchJson<{ token: string; user: any }>(`${API_BASE}/auth/customer/register`, {
+    method: 'POST',
+    body: JSON.stringify(data)
+  }),
+
+  customerLogin: (data: { email: string; password: string }) => fetchJson<{ token: string; user: any }>(`${API_BASE}/auth/customer/login`, {
+    method: 'POST',
+    body: JSON.stringify(data)
+  }),
+
+  getCustomerProfile: (token: string) => fetchJson<{ user: any; orders: Order[] }>(`${API_BASE}/auth/customer/profile`, {
+    headers: { 'Authorization': `Bearer ${token}` }
+  }),
+
+  updateCustomerProfile: (data: { name?: string; phone?: string; addresses?: any[] }, token: string) => fetchJson<any>(`${API_BASE}/auth/customer/profile`, {
+    method: 'PUT',
+    headers: { 'Authorization': `Bearer ${token}` },
+    body: JSON.stringify(data)
+  }),
+
+  // Wishlist
+  getWishlist: (token: string) => fetchJson<Product[]>(`${API_BASE}/wishlist`, {
+    headers: { 'Authorization': `Bearer ${token}` }
+  }),
+
+  addToWishlist: (productId: string, token: string) => fetchJson<string[]>(`${API_BASE}/wishlist`, {
+    method: 'POST',
+    headers: { 'Authorization': `Bearer ${token}` },
+    body: JSON.stringify({ productId })
+  }),
+
+  removeFromWishlist: (productId: string, token: string) => fetchJson<string[]>(`${API_BASE}/wishlist/${productId}`, {
+    method: 'DELETE',
+    headers: { 'Authorization': `Bearer ${token}` }
+  }),
+
   // Admin Auth APIs
   adminLogin: (credentials: { email: string; password: string }) => fetchJson<AdminAuthResponse>(`${API_BASE}/admin/login`, {
     method: 'POST',

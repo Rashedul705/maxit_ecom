@@ -3,36 +3,58 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { LogIn, UserPlus, Phone, Lock, Home, ChevronRight, CheckCircle2 } from 'lucide-react';
+import { LogIn, UserPlus, Phone, Lock, Home, ChevronRight, CheckCircle2, Mail, AlertCircle } from 'lucide-react';
+import { api } from '@/lib/api';
 
 export default function CustomerLoginPage() {
   const router = useRouter();
   const [isRegister, setIsRegister] = useState(false);
   const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrorMsg('');
+    setSuccessMsg('');
     setIsLoading(true);
 
-    setTimeout(() => {
+    try {
+      if (isRegister) {
+        if (!name.trim()) throw new Error('Please enter your full name');
+        if (!email.trim()) throw new Error('Please enter your email address');
+        if (!password || password.length < 6) throw new Error('Password must be at least 6 characters');
+
+        const res = await api.customerRegister({
+          name: name.trim(),
+          email: email.trim().toLowerCase(),
+          phone: phone.trim(),
+          password
+        });
+        localStorage.setItem('maxitshop_customer', JSON.stringify({ token: res.token, ...res.user }));
+        setSuccessMsg('Account created successfully! Redirecting...');
+        setTimeout(() => router.push('/customer/account'), 800);
+      } else {
+        if (!email.trim() || !password) throw new Error('Please enter both email and password');
+
+        const res = await api.customerLogin({
+          email: email.trim().toLowerCase(),
+          password
+        });
+        localStorage.setItem('maxitshop_customer', JSON.stringify({ token: res.token, ...res.user }));
+        setSuccessMsg('Signed in successfully! Redirecting...');
+        setTimeout(() => router.push('/customer/account'), 800);
+      }
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Authentication failed. Please check your credentials.';
+      setErrorMsg(message);
+    } finally {
       setIsLoading(false);
-      // Save customer session in localStorage
-      const user = {
-        name: isRegister ? name : (name || 'Valued Customer'),
-        phone: phone || '01700000000',
-        email: 'customer@maxitshop.com',
-        token: 'customer_demo_token'
-      };
-      localStorage.setItem('maxitshop_customer', JSON.stringify(user));
-      setSuccessMsg(isRegister ? 'Account created successfully! Redirecting...' : 'Logged in successfully! Redirecting...');
-      setTimeout(() => {
-        router.push('/customer/account');
-      }, 1000);
-    }, 600);
+    }
   };
 
   return (
@@ -83,10 +105,17 @@ export default function CustomerLoginPage() {
           </div>
         )}
 
+        {errorMsg && (
+          <div className="mb-4 p-3 bg-red-50 border border-red-200 text-red-700 text-xs font-semibold rounded-lg flex items-center gap-2">
+            <AlertCircle className="w-4 h-4 text-red-600 shrink-0" />
+            <span>{errorMsg}</span>
+          </div>
+        )}
+
         <form onSubmit={handleSubmit} className="space-y-4">
           {isRegister && (
             <div>
-              <label className="block text-xs font-bold text-gray-700 mb-1">Full Name</label>
+              <label className="block text-xs font-bold text-gray-700 mb-1">Full Name *</label>
               <input
                 type="text"
                 required
@@ -99,11 +128,27 @@ export default function CustomerLoginPage() {
           )}
 
           <div>
-            <label className="block text-xs font-bold text-gray-700 mb-1">Mobile Phone Number</label>
+            <label className="block text-xs font-bold text-gray-700 mb-1">Email Address *</label>
+            <div className="relative">
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="e.g. arif@example.com"
+                className="w-full pl-9 pr-3.5 py-2.5 bg-gray-50 border border-gray-300 rounded-lg text-xs sm:text-sm text-gray-900 focus:bg-white focus:outline-hidden focus:border-[#FF6600]"
+              />
+              <Mail className="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-xs font-bold text-gray-700 mb-1">
+              Mobile Phone Number {isRegister ? '(Optional)' : ''}
+            </label>
             <div className="relative">
               <input
                 type="tel"
-                required
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder="017XXXXXXXX"

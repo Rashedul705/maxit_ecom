@@ -13,9 +13,11 @@ import {
   X,
   Sparkles,
   User,
-  LogIn
+  LogIn,
+  Heart
 } from 'lucide-react';
 import { useCart } from '@/lib/cartContext';
+import { useWishlist } from '@/lib/wishlistContext';
 import { api } from '@/lib/api';
 import { Category, SearchSuggestion } from '@/lib/types';
 
@@ -27,7 +29,9 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ categories = [], onToggleMobileDrawer }) => {
   const router = useRouter();
   const { totalItems, subtotal, openCart } = useCart();
+  const { wishlistCount } = useWishlist();
 
+  const [customer, setCustomer] = useState<{ name?: string; email?: string } | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [suggestions, setSuggestions] = useState<SearchSuggestion[]>([]);
   const [isLoadingSuggestions, setIsLoadingSuggestions] = useState(false);
@@ -35,6 +39,15 @@ export const Header: React.FC<HeaderProps> = ({ categories = [], onToggleMobileD
   const [showCatDropdown, setShowCatDropdown] = useState(false);
   const searchContainerRef = useRef<HTMLDivElement>(null);
   const catDropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem('maxitshop_customer');
+      if (raw) {
+        setCustomer(JSON.parse(raw));
+      }
+    } catch (e) {}
+  }, []);
 
   // Debounced search suggestions
   useEffect(() => {
@@ -205,8 +218,25 @@ export const Header: React.FC<HeaderProps> = ({ categories = [], onToggleMobileD
             )}
           </div>
 
-          {/* Right Header Controls: Track Order & Cart Icon with Taka */}
-          <div className="flex items-center gap-4 sm:gap-6 shrink-0">
+          {/* Right Header Controls: Wishlist, Track Order & Cart Icon with Taka */}
+          <div className="flex items-center gap-3 sm:gap-5 shrink-0">
+            {/* Wishlist Direct Link */}
+            <Link
+              href="/wishlist"
+              className="flex items-center gap-1.5 p-2 text-gray-700 hover:text-[#FF6600] transition-colors relative"
+              aria-label="View Wishlist"
+            >
+              <div className="relative">
+                <Heart className="w-5 h-5 text-gray-800 hover:text-[#FF6600] transition-colors" />
+                {wishlistCount > 0 && (
+                  <span className="absolute -top-1.5 -right-2 bg-[#FF6600] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center animate-in zoom-in">
+                    {wishlistCount}
+                  </span>
+                )}
+              </div>
+              <span className="hidden xl:inline text-xs font-semibold text-gray-700">Wishlist</span>
+            </Link>
+
             {/* Track Order Direct Link */}
             <Link
               href="/customer/order-track"
@@ -317,15 +347,25 @@ export const Header: React.FC<HeaderProps> = ({ categories = [], onToggleMobileD
             </div>
           </div>
 
-          {/* Right Side: Customer Login / Sign Up */}
-          <div className="flex items-center gap-3">
-            <Link
-              href="/customer/login"
-              className="flex items-center gap-1.5 text-xs font-semibold text-gray-200 hover:text-[#FF6600] transition-colors py-3"
-            >
-              <LogIn className="w-3.5 h-3.5" />
-              <span>Login / Sign Up</span>
-            </Link>
+          {/* Right Side: Customer Account / Login */}
+          <div className="flex items-center gap-4">
+            {customer ? (
+              <Link
+                href="/customer/account"
+                className="flex items-center gap-1.5 text-xs font-semibold text-gray-200 hover:text-[#FF6600] transition-colors py-3"
+              >
+                <User className="w-3.5 h-3.5 text-[#FF6600]" />
+                <span className="max-w-[120px] truncate">{customer.name || 'My Account'}</span>
+              </Link>
+            ) : (
+              <Link
+                href="/customer/login"
+                className="flex items-center gap-1.5 text-xs font-semibold text-gray-200 hover:text-[#FF6600] transition-colors py-3"
+              >
+                <LogIn className="w-3.5 h-3.5" />
+                <span>Login / Sign Up</span>
+              </Link>
+            )}
           </div>
 
         </div>

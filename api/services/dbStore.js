@@ -17,6 +17,7 @@ const Subscriber = require('../models/Subscriber');
 const User = require('../models/User');
 const Review = require('../models/Review');
 const Coupon = require('../models/Coupon');
+const Wishlist = require('../models/Wishlist');
 
 const JWT_SECRET = process.env.JWT_SECRET || 'supersecretjwtkey_maxitshop_2026';
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'admin@maxitshop.com';
@@ -302,6 +303,130 @@ const db = {
     if (!isMatch) return null;
     const token = jwt.sign({ id: user.id, role: user.role, email: user.email }, JWT_SECRET, { expiresIn: '30d' });
     return { token, user: { id: user.id, name: user.name, email: user.email, phone: user.phone, role: user.role } };
+  },
+
+  async getCustomerProfile(userId) {
+    let user = null;
+    if (isMongo()) {
+      user = await User.findOne({ $or: [{ id: userId }, { _id: mongoose.isValidObjectId(userId) ? userId : null }] })
+        .select('-password')
+        .lean();
+    }
+    if (!user) {
+      user = memoryStore.users.find(u => u.id === userId);
+      if (user) {
+        const { password, ...safeUser } = user;
+        user = safeUser;
+      }
+    }
+    if (!user) throw new Error('Customer profile not found');
+
+    // Fetch customer past orders
+    let customerOrders = [];
+    if (isMongo()) {
+      try {
+        customerOrders = await Order.find({
+          $or: [
+            { 'customer.phone': user.phone },
+            { 'customer.email': user.email }
+          ]
+        }).sort({ createdAt: -1 }).limit(20).lean();
+      } catch (e) {}
+    } else {
+      customerOrders = memoryStore.orders.filter(o =>
+        (user.phone && o.customer?.phone === user.phone) ||
+        (user.email && o.customer?.email === user.email)
+      );
+    }
+
+    return { user, orders: customerOrders };
+  },
+
+  async updateCustomerProfile(userId, { name, phone, addresses }) {
+    const updateObj = {};
+    if (name) updateObj.name = name.trim();
+    if (phone) updateObj.phone = phone.trim();
+    if (addresses && Array.isArray(addresses)) updateObj.addresses = addresses;
+
+    if (isMongo()) {
+      const updated = await User.findOneAndUpdate(
+        { $or: [{ id: userId }, { _id: mongoose.isValidObjectId(userId) ? userId : null }] },
+        { $set: updateObj },
+        { new: true }
+      ).select('-password').lean();
+      if (updated) return updated;
+    }
+
+    const idx = memoryStore.users.findIndex(u => u.id === userId);
+    if (idx !== -1) {
+      memoryStore.users[idx] = { ...memoryStore.users[idx], ...updateObj };
+      const { password, ...safeUser } = memoryStore.users[idx];
+      return safeUser;
+    }
+    throw new Error('User not found');
+  },
+
+  // --- WISHLIST ---
+  async getWishlist(userId) {
+    let productIds = [];
+    if (isMongo()) {
+      const w = await Wishlist.findOne({ userId }).lean();
+      if (w) productIds = w.products || [];
+    } else {
+      productIds = memoryStore.wishlists ? (memoryStore.wishlists[userId] || []) : [];
+    }
+
+    if (!productIds.length) return [];
+
+    let items = [];
+    if (isMongo()) {
+      items = await Product.find({
+        $or: [
+          { id: { $in: productIds } },
+          { slug: { $in: productIds } }
+        ]
+      }).lean();
+    } else {
+      items = memoryStore.products.filter(p => productIds.includes(p.id) || productIds.includes(p.slug));
+    }
+    return items;
+  },
+
+  async addToWishlist(userId, productId) {
+    if (!productId) throw new Error('Product ID is required');
+
+    if (isMongo()) {
+      const w = await Wishlist.findOneAndUpdate(
+        { userId },
+        { $addToSet: { products: productId } },
+        { upsert: true, new: true }
+      ).lean();
+      return (w && w.products) || [];
+    }
+
+    if (!memoryStore.wishlists) memoryStore.wishlists = {};
+    if (!memoryStore.wishlists[userId]) memoryStore.wishlists[userId] = [];
+    if (!memoryStore.wishlists[userId].includes(productId)) {
+      memoryStore.wishlists[userId].push(productId);
+    }
+    return memoryStore.wishlists[userId];
+  },
+
+  async removeFromWishlist(userId, productId) {
+    if (isMongo()) {
+      const w = await Wishlist.findOneAndUpdate(
+        { userId },
+        { $pull: { products: productId } },
+        { new: true }
+      ).lean();
+      return (w && w.products) || [];
+    }
+
+    if (memoryStore.wishlists && memoryStore.wishlists[userId]) {
+      memoryStore.wishlists[userId] = memoryStore.wishlists[userId].filter(id => id !== productId);
+      return memoryStore.wishlists[userId];
+    }
+    return [];
   },
 
   // --- CATEGORIES ---

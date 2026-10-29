@@ -3,9 +3,10 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ShoppingBag, PhoneCall, Star } from 'lucide-react';
+import { ShoppingBag, PhoneCall, Star, Heart } from 'lucide-react';
 import { Product } from '@/lib/types';
 import { useCart } from '@/lib/cartContext';
+import { useWishlist } from '@/lib/wishlistContext';
 
 interface ProductCardProps {
   product: Product;
@@ -13,6 +14,7 @@ interface ProductCardProps {
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const { addToCart, openCheckout } = useCart();
+  const { isInWishlist, toggleWishlist } = useWishlist();
 
   const discountPercent =
     product.oldPrice && product.oldPrice > product.price
@@ -30,29 +32,48 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     openCheckout();
   };
 
+  const inWishlist = isInWishlist(product.id);
+
   return (
     <div className="group relative flex flex-col bg-white rounded-lg border border-gray-200/90 p-2.5 sm:p-3 hover:border-[#FF6600] hover:shadow-lg transition-all duration-200">
       {/* Product Image Area */}
-      <Link
-        href={`/product/${product.slug}`}
-        className="relative block w-full aspect-square rounded-md bg-gray-50 overflow-hidden mb-2"
-      >
-        <Image
-          src={product.images[0] || 'https://images.unsplash.com/photo-1526738549149-8e07eca6c147?w=600&q=80'}
-          alt={product.title}
-          fill
-          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
-          className="object-cover group-hover:scale-105 transition-transform duration-300"
-          loading="lazy"
-        />
+      <div className="relative block w-full aspect-square rounded-md bg-gray-50 overflow-hidden mb-2">
+        <Link href={`/product/${product.slug}`} className="block w-full h-full">
+          <Image
+            src={product.images[0] || 'https://images.unsplash.com/photo-1526738549149-8e07eca6c147?w=600&q=80'}
+            alt={product.title}
+            fill
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
+            className="object-cover group-hover:scale-105 transition-transform duration-300"
+            loading="lazy"
+          />
+        </Link>
 
         {/* Discount Badge: e.g. "10% OFF" */}
         {discountPercent > 0 && (
-          <div className="absolute top-2 left-2 z-10 bg-[#E53935] text-white text-[11px] font-bold px-2 py-0.5 rounded-full shadow-xs">
+          <div className="absolute top-2 left-2 z-10 bg-[#E53935] text-white text-[11px] font-bold px-2 py-0.5 rounded-full shadow-xs pointer-events-none">
             {discountPercent}% OFF
           </div>
         )}
-      </Link>
+
+        {/* Wishlist Heart Button */}
+        <button
+          type="button"
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleWishlist(product);
+          }}
+          className={`absolute top-2 right-2 z-10 w-7 h-7 rounded-full flex items-center justify-center transition-all cursor-pointer ${
+            inWishlist
+              ? 'bg-pink-50 text-pink-600 shadow-xs'
+              : 'bg-white/90 text-gray-400 hover:text-pink-600 hover:bg-white shadow-2xs'
+          }`}
+          title={inWishlist ? 'Remove from Wishlist' : 'Add to Wishlist'}
+        >
+          <Heart className={`w-3.5 h-3.5 ${inWishlist ? 'fill-current text-pink-600' : ''}`} />
+        </button>
+      </div>
 
       {/* Brand & Stock */}
       <div className="flex items-center justify-between text-[11px] text-gray-500 mb-1">

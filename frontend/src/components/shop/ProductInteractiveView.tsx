@@ -20,10 +20,13 @@ import {
   HelpCircle,
   X,
   Sparkles,
-  ShieldAlert
+  ShieldAlert,
+  Heart,
+  Share2
 } from 'lucide-react';
 import { Product, SiteSetting } from '@/lib/types';
 import { useCart } from '@/lib/cartContext';
+import { useWishlist } from '@/lib/wishlistContext';
 import { ProductReviewsSection } from './ProductReviewsSection';
 
 interface ProductInteractiveViewProps {
@@ -37,6 +40,29 @@ export const ProductInteractiveView: React.FC<ProductInteractiveViewProps> = ({
 }) => {
   const router = useRouter();
   const { addToCart, openCheckout } = useCart();
+  const { isInWishlist, toggleWishlist } = useWishlist();
+  const [copiedLink, setCopiedLink] = useState(false);
+  const inWishlist = isInWishlist(product.id);
+
+  const handleShare = async () => {
+    if (typeof window === 'undefined') return;
+    const url = window.location.href;
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: product.title,
+          text: `Check out ${product.title} on maxitshop!`,
+          url
+        });
+        return;
+      } catch (err) {}
+    }
+    try {
+      await navigator.clipboard.writeText(url);
+      setCopiedLink(true);
+      setTimeout(() => setCopiedLink(false), 2500);
+    } catch (err) {}
+  };
 
   // Active gallery media
   const [activeMediaIndex, setActiveMediaIndex] = useState<number>(0);
@@ -497,6 +523,32 @@ export const ProductInteractiveView: React.FC<ProductInteractiveViewProps> = ({
             >
               <ShoppingBag className="w-5 h-5" />
               <span>Add to Cart</span>
+            </button>
+          </div>
+
+          {/* Wishlist & Share Action Bar */}
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={() => toggleWishlist(product)}
+              className={`flex-1 py-2.5 px-4 rounded-xl border font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all cursor-pointer ${
+                inWishlist
+                  ? 'bg-rose-50 border-rose-200 text-rose-600 hover:bg-rose-100'
+                  : 'bg-white border-slate-200 text-slate-700 hover:border-slate-300 hover:bg-slate-50'
+              }`}
+            >
+              <Heart className={`w-4 h-4 ${inWishlist ? 'fill-rose-500 text-rose-500' : 'text-slate-400'}`} />
+              <span>{inWishlist ? 'Saved in Wishlist' : 'Add to Wishlist'}</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={handleShare}
+              className="py-2.5 px-4 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all cursor-pointer shrink-0"
+              title="Share this product"
+            >
+              <Share2 className="w-4 h-4 text-slate-500" />
+              <span>{copiedLink ? 'Link Copied!' : 'Share'}</span>
             </button>
           </div>
 

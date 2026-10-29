@@ -490,3 +490,4 @@ export const CouponsView: React.FC = () => {
     </div>
   );
 };
+
