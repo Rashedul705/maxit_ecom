@@ -83,6 +83,8 @@ export const adminApi = {
   },
   createProduct: (data: Partial<Product>) => request<Product>('/products', { method: 'POST', body: JSON.stringify(data) }),
   updateProduct: (id: string, data: Partial<Product>) => request<Product>(`/products/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
+  quickUpdateProduct: (id: string, data: { price?: number; oldPrice?: number; stock?: number }) =>
+    request<Product>(`/products/${id}`, { method: 'PATCH', body: JSON.stringify(data) }),
   deleteProduct: (id: string) => request<{ deleted: boolean }>(`/products/${id}`, { method: 'DELETE' }),
 
   // Brands
@@ -109,6 +111,22 @@ export const adminApi = {
   getOrderById: (id: string) => request<Order>(`/orders/${id}`),
   updateOrderStatus: (id: string, status: string, note?: string) =>
     request<Order>(`/orders/${id}/status`, { method: 'PATCH', body: JSON.stringify({ status, note }) }),
+  bulkUpdateOrderStatus: (ids: string[], status: string, note?: string) =>
+    request<{ updatedCount: number; status: string }>('/orders/bulk-status', {
+      method: 'POST',
+      body: JSON.stringify({ ids, status, note })
+    }),
+  dispatchToCourier: (orderId: string, courier = 'Steadfast') =>
+    request<{ orderId: string; courier: any; status: string; consignmentPayload: any }>(`/orders/${orderId}/courier-dispatch`, {
+      method: 'POST',
+      body: JSON.stringify({ courier })
+    }),
+  exportOrders: (params: { status?: string; search?: string } = {}) => {
+    const q = new URLSearchParams();
+    if (params.status) q.set('status', params.status);
+    if (params.search) q.set('search', params.search);
+    return request<Order[]>(`/orders/export?${q.toString()}`);
+  },
 
   // Complaints
   getComplaints: () => request<Complaint[]>('/complaints'),

@@ -150,6 +150,17 @@ router.put('/:id', requireAdminAuth, async (req, res, next) => {
   }
 });
 
+// PATCH /api/v1/products/:id - Quick in-line stock & price update
+router.patch('/:id', requireAdminAuth, async (req, res, next) => {
+  try {
+    const product = await db.updateProduct(req.params.id, req.body);
+    if (!product) return errorResponse(res, 'Product not found', 404);
+    return successResponse(res, product, 'Product updated successfully');
+  } catch (err) {
+    next(err);
+  }
+});
+
 // DELETE /api/v1/products/:id
 router.delete('/:id', requireAdminAuth, async (req, res, next) => {
   try {

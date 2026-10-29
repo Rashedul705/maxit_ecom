@@ -55,6 +55,45 @@ router.get('/', requireAdminAuth, async (req, res, next) => {
   }
 });
 
+// GET /api/v1/orders/export - Export orders list for warehouse fulfillment
+router.get('/export', requireAdminAuth, async (req, res, next) => {
+  try {
+    const { status, search } = req.query;
+    const orders = await db.getAllOrdersForExport({ status, search });
+    return successResponse(res, orders);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// POST /api/v1/orders/bulk-status - Bulk update orders status
+router.post('/bulk-status', requireAdminAuth, async (req, res, next) => {
+  try {
+    const { ids, status, note } = req.body;
+    if (!ids || !Array.isArray(ids) || ids.length === 0) {
+      return errorResponse(res, 'ids must be a non-empty array of order IDs', 400);
+    }
+    if (!status) {
+      return errorResponse(res, 'status is required', 400);
+    }
+    const result = await db.bulkUpdateOrderStatus({ ids, status, note });
+    return successResponse(res, result, `Updated ${result.updatedCount} orders to ${status}`);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// POST /api/v1/orders/:id/courier-dispatch - Dispatch order via Steadfast / Pathao
+router.post('/:id/courier-dispatch', requireAdminAuth, async (req, res, next) => {
+  try {
+    const { courier = 'Steadfast' } = req.body;
+    const result = await db.dispatchToCourier({ orderId: req.params.id, courier });
+    return successResponse(res, result, `Order dispatched via ${courier}`);
+  } catch (err) {
+    return errorResponse(res, err.message, 400);
+  }
+});
+
 // GET /api/v1/orders/:id - Order details
 router.get('/:id', requireAdminAuth, async (req, res, next) => {
   try {

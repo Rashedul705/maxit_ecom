@@ -58,7 +58,11 @@ export interface OrderItem {
 export interface OrderCustomer {
   name: string;
   phone: string;
+  email?: string;
   address: string;
+  thana?: string;
+  district?: string;
+  division?: string;
   area: string;
   notes?: string;
 }
@@ -67,6 +71,13 @@ export interface OrderTimeline {
   status: string;
   note: string;
   timestamp: string;
+}
+
+export interface OrderCourier {
+  provider?: string;
+  trackingCode?: string;
+  consignmentId?: string;
+  status?: string;
 }
 
 export interface Order {
@@ -79,6 +90,8 @@ export interface Order {
   discount: number;
   total: number;
   paymentMethod: string;
+  paymentStatus?: 'unpaid' | 'paid' | 'partially_paid' | 'refunded';
+  courier?: OrderCourier;
   status: 'pending' | 'confirmed' | 'shipped' | 'delivered' | 'cancelled';
   timeline: OrderTimeline[];
   createdAt: string;

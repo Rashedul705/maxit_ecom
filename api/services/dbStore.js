@@ -1400,6 +1400,135 @@ const db = {
     return order;
   },
 
+  async bulkUpdateOrderStatus({ ids = [], status, note }) {
+    if (!ids.length || !status) throw new Error('ids array and status are required');
+    const newTimelineItem = {
+      status,
+      note: note || `Bulk status update to ${status}`,
+      timestamp: new Date()
+    };
+
+    if (isMongo()) {
+      try {
+        await Order.updateMany(
+          { $or: [{ id: { $in: ids } }, { orderNumber: { $in: ids } }] },
+          {
+            $set: { status },
+            $push: { timeline: newTimelineItem }
+          }
+        );
+      } catch (err) {
+        console.warn('bulkUpdateOrderStatus Mongo error:', err.message);
+      }
+    }
+
+    ids.forEach(id => {
+      const order = memoryStore.orders.find(o => o.id === id || o.orderNumber === id);
+      if (order) {
+        order.status = status;
+        if (!order.timeline) order.timeline = [];
+        order.timeline.push(newTimelineItem);
+      }
+    });
+
+    return { updatedCount: ids.length, status };
+  },
+
+  async dispatchToCourier({ orderId, courier = 'Steadfast' }) {
+    const order = await this.getOrderById(orderId);
+    if (!order) throw new Error('Order not found');
+
+    const prefix = courier.toUpperCase().substring(0, 3);
+    const trackingCode = `${prefix}-${Math.floor(100000 + Math.random() * 900000)}`;
+    const consignmentId = `CN-${Date.now().toString().slice(-6)}`;
+
+    const newTimelineItem = {
+      status: 'shipped',
+      note: `Dispatched to ${courier}. Consignment ID: ${consignmentId}, Tracking Code: ${trackingCode}`,
+      timestamp: new Date()
+    };
+
+    const courierObj = {
+      provider: courier,
+      trackingCode,
+      consignmentId,
+      status: 'in_transit'
+    };
+
+    if (isMongo()) {
+      try {
+        await Order.updateOne(
+          { $or: [{ id: orderId }, { orderNumber: orderId }] },
+          {
+            $set: {
+              status: 'shipped',
+              courier: courierObj
+            },
+            $push: { timeline: newTimelineItem }
+          }
+        );
+      } catch (e) {}
+    }
+
+    const memOrder = memoryStore.orders.find(o => o.id === orderId || o.orderNumber === orderId);
+    if (memOrder) {
+      memOrder.status = 'shipped';
+      memOrder.courier = courierObj;
+      if (!memOrder.timeline) memOrder.timeline = [];
+      memOrder.timeline.push(newTimelineItem);
+    }
+
+    return {
+      orderId,
+      courier: courierObj,
+      status: 'shipped',
+      consignmentPayload: {
+        recipient_name: order.customer?.name,
+        recipient_phone: order.customer?.phone,
+        recipient_address: [
+          order.customer?.address,
+          order.customer?.thana,
+          order.customer?.district,
+          order.customer?.division
+        ].filter(Boolean).join(', '),
+        cod_amount: order.paymentMethod === 'cod' ? order.total : 0,
+        note: order.customer?.notes || `Order #${order.orderNumber}`
+      }
+    };
+  },
+
+  async getAllOrdersForExport({ status, search } = {}) {
+    let query = {};
+    if (status) query.status = status;
+    if (search) {
+      const q = search.trim();
+      query.$or = [
+        { orderNumber: { $regex: q, $options: 'i' } },
+        { 'customer.name': { $regex: q, $options: 'i' } },
+        { 'customer.phone': { $regex: q, $options: 'i' } }
+      ];
+    }
+
+    if (isMongo()) {
+      try {
+        const docs = await Order.find(query).sort({ createdAt: -1 }).lean();
+        if (docs && docs.length) return docs;
+      } catch (e) {}
+    }
+
+    let list = [...memoryStore.orders];
+    if (status) list = list.filter(o => o.status === status);
+    if (search) {
+      const q = search.toLowerCase();
+      list = list.filter(o =>
+        o.orderNumber.toLowerCase().includes(q) ||
+        (o.customer?.name && o.customer.name.toLowerCase().includes(q)) ||
+        (o.customer?.phone && o.customer.phone.includes(q))
+      );
+    }
+    return list;
+  },
+
   // --- COMPLAINTS ---
   async getComplaints() {
     if (isMongo()) {
