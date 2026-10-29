@@ -14,6 +14,10 @@ const OrderSchema = new mongoose.Schema({
   customer: {
     name: { type: String, required: true },
     phone: { type: String, required: true },
+    email: { type: String, default: '' },
+    division: { type: String, default: '' },
+    district: { type: String, default: '' },
+    thana: { type: String, default: '' },
     address: { type: String, required: true },
     area: { type: String, required: true },
     notes: { type: String, default: '' }
@@ -24,6 +28,17 @@ const OrderSchema = new mongoose.Schema({
   discount: { type: Number, default: 0 },
   total: { type: Number, required: true },
   paymentMethod: { type: String, default: 'cod' },
+  paymentStatus: {
+    type: String,
+    enum: ['unpaid', 'paid', 'partially_paid', 'refunded'],
+    default: 'unpaid'
+  },
+  courier: {
+    provider: { type: String, default: '' },
+    trackingCode: { type: String, default: '' },
+    consignmentId: { type: String, default: '' },
+    status: { type: String, default: '' }
+  },
   status: {
     type: String,
     enum: ['pending', 'confirmed', 'shipped', 'delivered', 'cancelled'],

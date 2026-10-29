@@ -177,8 +177,11 @@ const db = {
     if (!isValid && isMongo()) {
       try {
         const user = await User.findOne({ email: inputEmail, role: 'admin' }).lean();
-        if (user && user.password === password) {
-          isValid = true;
+        if (user) {
+          const isBcrypt = await bcrypt.compare(password, user.password).catch(() => false);
+          if (isBcrypt || user.password === password) {
+            isValid = true;
+          }
         }
       } catch (e) {
         console.warn('Admin DB auth check warning:', e.message);
@@ -197,6 +200,7 @@ const db = {
 
   async registerCustomer({ name, email, phone, password, address }) {
     const cleanEmail = email.toLowerCase().trim();
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     if (isMongo()) {
       const existing = await User.findOne({ email: cleanEmail }).lean();
@@ -208,7 +212,7 @@ const db = {
         name,
         email: cleanEmail,
         phone: phone || '',
-        password,
+        password: hashedPassword,
         role: 'customer',
         addresses: address ? [{ name, phone, address, area: 'inside_dhaka', isDefault: true }] : []
       };
@@ -226,7 +230,7 @@ const db = {
       name,
       email: cleanEmail,
       phone: phone || '',
-      password,
+      password: hashedPassword,
       role: 'customer',
       addresses: address ? [{ name, phone, address, isDefault: true }] : []
     };
@@ -239,16 +243,18 @@ const db = {
     const cleanEmail = email.toLowerCase().trim();
 
     if (isMongo()) {
-      const user = await User.findOne({ email: cleanEmail, password }).lean();
+      const user = await User.findOne({ email: cleanEmail }).lean();
       if (!user) return null;
+      const isMatch = await bcrypt.compare(password, user.password).catch(() => false) || (user.password === password);
+      if (!isMatch) return null;
       const token = jwt.sign({ id: user.id, role: user.role, email: user.email }, JWT_SECRET, { expiresIn: '30d' });
       return { token, user: { id: user.id, name: user.name, email: user.email, phone: user.phone, role: user.role } };
     }
 
-    const user = memoryStore.users.find(u => u.email.toLowerCase() === cleanEmail && u.password === password);
-    if (!user) {
-      return null;
-    }
+    const user = memoryStore.users.find(u => u.email.toLowerCase() === cleanEmail);
+    if (!user) return null;
+    const isMatch = await bcrypt.compare(password, user.password).catch(() => false) || (user.password === password);
+    if (!isMatch) return null;
     const token = jwt.sign({ id: user.id, role: user.role, email: user.email }, JWT_SECRET, { expiresIn: '30d' });
     return { token, user: { id: user.id, name: user.name, email: user.email, phone: user.phone, role: user.role } };
   },
@@ -493,12 +499,19 @@ const db = {
         }).lean();
 
         if (product) {
-          const related = await Product.find({
+          let related = await Product.find({
             category: product.category,
             id: { $ne: product.id }
-          }).limit(6).lean();
+          }).limit(4).lean();
 
-          return { ...product, related };
+          if (related.length < 4) {
+            const more = await Product.find({
+              id: { $ne: product.id, $nin: related.map(r => r.id) }
+            }).limit(4 - related.length).lean();
+            related = [...related, ...more];
+          }
+
+          return { ...product, related, relatedProducts: related };
         }
       } catch (err) {
         console.warn('⚠️ Product.findOne error:', err.message);
@@ -514,11 +527,18 @@ const db = {
     );
     if (!product) return null;
 
-    const related = memoryStore.products
+    let related = memoryStore.products
       .filter(p => p.category === product.category && p.id !== product.id)
-      .slice(0, 6);
+      .slice(0, 4);
 
-    return { ...product, related };
+    if (related.length < 4) {
+      const more = memoryStore.products
+        .filter(p => p.id !== product.id && !related.some(r => r.id === p.id))
+        .slice(0, 4 - related.length);
+      related = [...related, ...more];
+    }
+
+    return { ...product, related, relatedProducts: related };
   },
 
   async createProduct(data) {
@@ -917,19 +937,33 @@ const db = {
       if (!prod) {
         prod = memoryStore.products.find(p => p.id === prodId || p.slug === prodId);
       }
+      if (!prod) {
+        throw new Error(`Product not found: ${prodId}`);
+      }
+
+      const qty = Math.max(1, Number(item.quantity) || 1);
+      if (prod.stock !== undefined && prod.stock < qty) {
+        throw new Error(`Insufficient stock for "${prod.title}". Only ${prod.stock} available.`);
+      }
+
+      // Strictly enforce verified server price to eliminate client price-tampering
+      const verifiedPrice = Number(prod.price || 0);
+
       resolvedItems.push({
-        productId: prod ? prod.id : prodId,
-        title: item.title || (prod ? prod.title : 'Product Item'),
-        price: Number(item.price !== undefined ? item.price : (prod ? prod.price : 0)),
-        quantity: Math.max(1, Number(item.quantity) || 1),
-        image: item.image || (prod && prod.images && prod.images[0]) || (prod && prod.image) || ''
+        productId: prod.id,
+        title: prod.title,
+        price: verifiedPrice,
+        quantity: qty,
+        image: (prod.images && prod.images[0]) || prod.image || ''
       });
     }
 
     const orderNumber = `ORD-${Math.floor(10000 + Math.random() * 90000)}`;
     const subtotal = resolvedItems.reduce((sum, item) => sum + (Number(item.price) * Number(item.quantity)), 0);
-    const isInsideDhaka = customer.area === 'inside_dhaka' || (customer.division && customer.division.toLowerCase() === 'dhaka');
-    const deliveryCharge = isInsideDhaka ? 70 : 130;
+    const isInsideDhaka = customer.area === 'inside_dhaka' ||
+      (customer.division && customer.division.toLowerCase() === 'dhaka') ||
+      (customer.district && customer.district.toLowerCase() === 'dhaka');
+    const deliveryCharge = isInsideDhaka ? 80 : 130;
     const discount = 0;
     const total = subtotal + deliveryCharge - discount;
 
@@ -939,6 +973,10 @@ const db = {
       customer: {
         name: customer.name,
         phone: customer.phone,
+        email: customer.email || '',
+        division: customer.division || '',
+        district: customer.district || '',
+        thana: customer.thana || customer.area || '',
         address: customer.address,
         area: customer.area || (isInsideDhaka ? 'inside_dhaka' : 'outside_dhaka'),
         notes: customer.notes || customer.note || ''
@@ -949,6 +987,13 @@ const db = {
       discount,
       total,
       paymentMethod,
+      paymentStatus: 'unpaid',
+      courier: {
+        provider: '',
+        trackingCode: '',
+        consignmentId: '',
+        status: 'pending'
+      },
       status: 'pending',
       timeline: [
         {

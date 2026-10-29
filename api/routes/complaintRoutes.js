@@ -2,9 +2,10 @@ const express = require('express');
 const router = express.Router();
 const db = require('../services/dbStore');
 const { successResponse, errorResponse } = require('../utils/response');
+const { requireAdminAuth } = require('../middleware/auth');
 
-// GET /api/v1/complaints
-router.get('/', async (req, res, next) => {
+// GET /api/v1/complaints - Admin only
+router.get('/', requireAdminAuth, async (req, res, next) => {
   try {
     const complaints = await db.getComplaints();
     return successResponse(res, complaints);
@@ -13,7 +14,7 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-// POST /api/v1/complaints
+// POST /api/v1/complaints - Public for customers
 router.post('/', async (req, res, next) => {
   try {
     const { name, phone, orderId, description, image } = req.body;
@@ -24,8 +25,8 @@ router.post('/', async (req, res, next) => {
   }
 });
 
-// PATCH /api/v1/complaints/:id/status
-router.patch('/:id/status', async (req, res, next) => {
+// PATCH /api/v1/complaints/:id/status - Admin only
+router.patch('/:id/status', requireAdminAuth, async (req, res, next) => {
   try {
     const { status, adminNotes } = req.body;
     const complaint = await db.updateComplaintStatus(req.params.id, { status, adminNotes });

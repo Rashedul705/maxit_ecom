@@ -2,8 +2,9 @@ const express = require('express');
 const router = express.Router();
 const db = require('../services/dbStore');
 const { successResponse, errorResponse } = require('../utils/response');
+const { requireAdminAuth } = require('../middleware/auth');
 
-// POST /api/v1/orders - Place order
+// POST /api/v1/orders - Place order (Public for customers)
 router.post('/', async (req, res, next) => {
   try {
     let { customer, customerName, phone, address, division, district, area, items, paymentMethod = 'cod', note } = req.body;
@@ -28,7 +29,7 @@ router.post('/', async (req, res, next) => {
   }
 });
 
-// GET /api/v1/orders/track - Track order by phone or orderNumber
+// GET /api/v1/orders/track - Track order by phone or orderNumber (Public)
 router.get('/track', async (req, res, next) => {
   try {
     const { phone, orderNumber, invoiceId } = req.query;
@@ -43,7 +44,7 @@ router.get('/track', async (req, res, next) => {
 });
 
 // GET /api/v1/orders - Admin list with filtering
-router.get('/', async (req, res, next) => {
+router.get('/', requireAdminAuth, async (req, res, next) => {
   try {
     const { status, search, page = 1, limit = 20 } = req.query;
     const result = await db.getOrders({ status, search, page, limit });
@@ -54,7 +55,7 @@ router.get('/', async (req, res, next) => {
 });
 
 // GET /api/v1/orders/:id - Order details
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', requireAdminAuth, async (req, res, next) => {
   try {
     const order = await db.getOrderById(req.params.id);
     if (!order) return errorResponse(res, 'Order not found', 404);
@@ -65,7 +66,7 @@ router.get('/:id', async (req, res, next) => {
 });
 
 // PATCH /api/v1/orders/:id/status - Update order status
-router.patch('/:id/status', async (req, res, next) => {
+router.patch('/:id/status', requireAdminAuth, async (req, res, next) => {
   try {
     const { status, note } = req.body;
     if (!status) return errorResponse(res, 'Status is required', 400);

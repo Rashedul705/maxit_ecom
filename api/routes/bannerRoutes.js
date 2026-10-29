@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../services/dbStore');
 const { successResponse, errorResponse } = require('../utils/response');
+const { requireAdminAuth } = require('../middleware/auth');
 
 // GET /api/v1/banners
 router.get('/', async (req, res, next) => {
@@ -14,7 +15,7 @@ router.get('/', async (req, res, next) => {
 });
 
 // POST /api/v1/banners
-router.post('/', async (req, res, next) => {
+router.post('/', requireAdminAuth, async (req, res, next) => {
   try {
     const { title, image } = req.body;
     if (!title || !image) return errorResponse(res, 'Title and image are required', 400);
@@ -26,7 +27,7 @@ router.post('/', async (req, res, next) => {
 });
 
 // PUT /api/v1/banners/:id
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', requireAdminAuth, async (req, res, next) => {
   try {
     const banner = await db.updateBanner(req.params.id, req.body);
     if (!banner) return errorResponse(res, 'Banner not found', 404);
@@ -37,7 +38,7 @@ router.put('/:id', async (req, res, next) => {
 });
 
 // DELETE /api/v1/banners/:id
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', requireAdminAuth, async (req, res, next) => {
   try {
     const ok = await db.deleteBanner(req.params.id);
     if (!ok) return errorResponse(res, 'Banner not found', 404);

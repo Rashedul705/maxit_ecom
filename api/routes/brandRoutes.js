@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../services/dbStore');
 const { successResponse, errorResponse } = require('../utils/response');
+const { requireAdminAuth } = require('../middleware/auth');
 
 // GET /api/v1/brands
 router.get('/', async (req, res, next) => {
@@ -25,7 +26,7 @@ router.get('/:slug', async (req, res, next) => {
 });
 
 // POST /api/v1/brands
-router.post('/', async (req, res, next) => {
+router.post('/', requireAdminAuth, async (req, res, next) => {
   try {
     const { name, logo } = req.body;
     if (!name) return errorResponse(res, 'Brand name is required', 400);
@@ -37,7 +38,7 @@ router.post('/', async (req, res, next) => {
 });
 
 // PUT /api/v1/brands/:id
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', requireAdminAuth, async (req, res, next) => {
   try {
     const b = await db.updateBrand(req.params.id, req.body);
     if (!b) return errorResponse(res, 'Brand not found', 404);
@@ -48,7 +49,7 @@ router.put('/:id', async (req, res, next) => {
 });
 
 // DELETE /api/v1/brands/:id
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', requireAdminAuth, async (req, res, next) => {
   try {
     const ok = await db.deleteBrand(req.params.id);
     if (!ok) return errorResponse(res, 'Brand not found', 404);

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../services/dbStore');
 const { successResponse, errorResponse } = require('../utils/response');
+const { requireAdminAuth } = require('../middleware/auth');
 
 // GET /api/v1/categories
 router.get('/', async (req, res, next) => {
@@ -25,7 +26,7 @@ router.get('/:slug', async (req, res, next) => {
 });
 
 // POST /api/v1/categories
-router.post('/', async (req, res, next) => {
+router.post('/', requireAdminAuth, async (req, res, next) => {
   try {
     const { name } = req.body;
     if (!name) return errorResponse(res, 'Category name is required', 400);
@@ -37,7 +38,7 @@ router.post('/', async (req, res, next) => {
 });
 
 // PUT /api/v1/categories/:id
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', requireAdminAuth, async (req, res, next) => {
   try {
     const cat = await db.updateCategory(req.params.id, req.body);
     if (!cat) return errorResponse(res, 'Category not found', 404);
@@ -48,7 +49,7 @@ router.put('/:id', async (req, res, next) => {
 });
 
 // DELETE /api/v1/categories/:id
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', requireAdminAuth, async (req, res, next) => {
   try {
     const ok = await db.deleteCategory(req.params.id);
     if (!ok) return errorResponse(res, 'Category not found', 404);
