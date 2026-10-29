@@ -13,6 +13,7 @@ router.get('/', async (req, res, next) => {
       search,
       minPrice,
       maxPrice,
+      inStock,
       sort,
       page = 1,
       limit = 20
@@ -24,6 +25,7 @@ router.get('/', async (req, res, next) => {
       search,
       minPrice,
       maxPrice,
+      inStock,
       sort,
       page,
       limit

@@ -97,6 +97,7 @@ export const api = {
     brand?: string;
     minPrice?: number | string;
     maxPrice?: number | string;
+    inStock?: boolean | string;
     sort?: string;
     page?: number;
     limit?: number;
@@ -107,6 +108,7 @@ export const api = {
     if (params.brand) query.set('brand', params.brand);
     if (params.minPrice !== undefined && params.minPrice !== '') query.set('minPrice', String(params.minPrice));
     if (params.maxPrice !== undefined && params.maxPrice !== '') query.set('maxPrice', String(params.maxPrice));
+    if (params.inStock !== undefined && params.inStock !== '') query.set('inStock', String(params.inStock));
     if (params.sort) query.set('sort', params.sort);
     if (params.page) query.set('page', String(params.page));
     if (params.limit) query.set('limit', String(params.limit));

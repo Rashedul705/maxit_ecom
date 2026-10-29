@@ -26,4 +26,15 @@ const ProductSchema = new mongoose.Schema({
   sourceUrl: { type: String, default: '' }
 }, { timestamps: true });
 
+ProductSchema.index({ category: 1, brand: 1, price: 1 });
+ProductSchema.index({ price: 1 });
+ProductSchema.index({ stock: 1 });
+ProductSchema.index({ createdAt: -1 });
+ProductSchema.index({
+  title: 'text',
+  shortDescription: 'text',
+  description: 'text',
+  brand: 'text'
+});
+
 module.exports = mongoose.models.Product || mongoose.model('Product', ProductSchema);

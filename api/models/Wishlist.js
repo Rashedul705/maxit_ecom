@@ -6,3 +6,4 @@ const WishlistSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 module.exports = mongoose.models.Wishlist || mongoose.model('Wishlist', WishlistSchema);
+

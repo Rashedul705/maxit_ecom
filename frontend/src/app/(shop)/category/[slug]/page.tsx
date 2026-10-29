@@ -14,6 +14,7 @@ interface CategoryPageProps {
     brand?: string;
     minPrice?: string;
     maxPrice?: string;
+    inStock?: string;
     sort?: string;
     page?: string;
     sub?: string;
@@ -53,6 +54,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
     brand: search.brand,
     minPrice: search.minPrice,
     maxPrice: search.maxPrice,
+    inStock: search.inStock,
     sort: search.sort || 'newest',
     page,
     limit: 12

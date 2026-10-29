@@ -39,3 +39,4 @@ router.delete('/:productId', requireCustomerAuth, async (req, res, next) => {
 });
 
 module.exports = router;
+

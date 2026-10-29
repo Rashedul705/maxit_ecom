@@ -498,7 +498,7 @@ const db = {
   },
 
   // --- PRODUCTS ---
-  async getProducts({ category, brand, search, minPrice, maxPrice, sort, page = 1, limit = 20, isDeal, isFeatured, isNewItem }) {
+  async getProducts({ category, brand, search, minPrice, maxPrice, inStock, sort, page = 1, limit = 20, isDeal, isFeatured, isNewItem }) {
     if (isMongo()) {
       try {
         const filter = {};
@@ -513,7 +513,12 @@ const db = {
         }
 
         if (brand) {
-          filter.brand = { $regex: new RegExp(`^${brand.trim()}$`, 'i') };
+          const brandList = brand.split(',').map(b => b.trim()).filter(Boolean);
+          if (brandList.length === 1) {
+            filter.brand = { $regex: new RegExp(`^${brandList[0]}$`, 'i') };
+          } else if (brandList.length > 1) {
+            filter.brand = { $in: brandList.map(b => new RegExp(`^${b}$`, 'i')) };
+          }
         }
 
         if (search) {
@@ -541,6 +546,10 @@ const db = {
           filter.price = { ...(filter.price || {}), $lte: Number(maxPrice) };
         }
 
+        if (inStock === 'true' || inStock === true || inStock === '1') {
+          filter.stock = { $gt: 0 };
+        }
+
         if (isDeal) {
           const dealCondition = [{ isDeal: true }, { isHotDeal: true }];
           if (filter.$or) {
@@ -562,7 +571,9 @@ const db = {
         let sortObj = { _id: -1 };
         if (sort === 'price-asc') sortObj = { price: 1 };
         else if (sort === 'price-desc') sortObj = { price: -1 };
-        else if (sort === 'popular') sortObj = { reviewCount: -1 };
+        else if (sort === 'popular') sortObj = { reviewCount: -1, rating: -1 };
+        else if (sort === 'rating') sortObj = { rating: -1, reviewCount: -1 };
+        else if (sort === 'newest') sortObj = { createdAt: -1, _id: -1 };
 
         const p = Math.max(1, Number(page));
         const l = Math.max(1, Number(limit));
@@ -573,12 +584,23 @@ const db = {
           Product.countDocuments(filter)
         ]);
 
+        // Compute distinct brands for filter facet
+        let availableBrands = [];
+        try {
+          const brandFilter = { ...filter };
+          delete brandFilter.brand;
+          availableBrands = await Product.distinct('brand', brandFilter);
+        } catch (e) {}
+
         return {
           items,
           total,
           page: p,
           limit: l,
-          totalPages: Math.ceil(total / l)
+          totalPages: Math.ceil(total / l),
+          filterMeta: {
+            availableBrands: (availableBrands || []).filter(b => b && typeof b === 'string' && b.trim())
+          }
         };
       } catch (err) {
         console.warn('⚠️ Product.find error (falling back to memory):', err.message);
@@ -599,8 +621,8 @@ const db = {
       });
     }
     if (brand) {
-      const bLower = brand.toLowerCase();
-      list = list.filter(p => p.brand && p.brand.toLowerCase() === bLower);
+      const brandList = brand.split(',').map(b => b.toLowerCase().trim()).filter(Boolean);
+      list = list.filter(p => p.brand && brandList.includes(p.brand.toLowerCase().trim()));
     }
     if (search) {
       const q = search.toLowerCase().trim();
@@ -616,6 +638,9 @@ const db = {
     }
     if (maxPrice !== undefined && maxPrice !== '') {
       list = list.filter(p => p.price <= Number(maxPrice));
+    }
+    if (inStock === 'true' || inStock === true || inStock === '1') {
+      list = list.filter(p => (p.stock || 0) > 0);
     }
     if (isDeal) {
       list = list.filter(p => p.isDeal || p.isHotDeal);
@@ -634,6 +659,10 @@ const db = {
       list.sort((a, b) => b.price - a.price);
     } else if (sort === 'popular') {
       list.sort((a, b) => (b.reviewCount || 0) - (a.reviewCount || 0));
+    } else if (sort === 'rating') {
+      list.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+    } else if (sort === 'newest') {
+      list.sort((a, b) => (new Date(b.createdAt || 0).getTime()) - (new Date(a.createdAt || 0).getTime()));
     } else {
       list.sort((a, b) => (b.id > a.id ? 1 : -1));
     }
@@ -644,12 +673,22 @@ const db = {
     const startIndex = (p - 1) * l;
     const paginatedItems = list.slice(startIndex, startIndex + l);
 
+    const distinctBrands = Array.from(new Set(
+      memoryStore.products
+        .filter(p => !category || p.category === category)
+        .map(p => p.brand)
+        .filter(Boolean)
+    ));
+
     return {
       items: paginatedItems,
       total,
       page: p,
       limit: l,
-      totalPages: Math.ceil(total / l)
+      totalPages: Math.ceil(total / l),
+      filterMeta: {
+        availableBrands: distinctBrands
+      }
     };
   },
 
