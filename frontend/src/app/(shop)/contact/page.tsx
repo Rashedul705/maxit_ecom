@@ -295,46 +295,46 @@ export default function ContactPage() {
             </div>
 
           </div>
-        </div>
-      </section>
-{/* 3. Google Map Interactive Location Section matching mockup 1-to-1 */}
-      <section className="pb-20 sm:pb-28 bg-white relative z-10">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-[1.75rem] sm:rounded-3xl border border-gray-100 overflow-hidden shadow-xl">
-            <div className="p-6 sm:p-8 bg-white flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+
+          {/* Google Maps Location Section matching https://www.m4xit.com/contact */}
+          <div className="mt-16 bg-white rounded-[2rem] shadow-xl overflow-hidden border border-gray-100">
+            <div className="p-6 md:p-8 bg-gray-50/80 border-b border-gray-100 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
               <div>
-                <p className="text-[11px] sm:text-xs font-bold tracking-wider text-[#0468D3] uppercase mb-1">
-                  LIVE LOCATION
-                </p>
-                <h2 className="text-2xl sm:text-3xl font-bold font-heading text-[#0468D3]">
+                <span className="text-xs font-bold text-[#0468D3] tracking-widest uppercase mb-1 block">
+                  Live Location
+                </span>
+                <h3 className="text-2xl md:text-3xl font-bold font-heading text-[#0468D3]">
                   Find Us on Google Maps
-                </h2>
-                <p className="text-xs sm:text-sm text-gray-600 mt-1">
+                </h3>
+                <p className="text-sm md:text-base text-gray-600 mt-1">
                   Afroza Tower, Uposhohor Newmarket, Rajshahi (Head Office: 4th Floor | LAB Office: 2nd Floor)
                 </p>
               </div>
 
               <a
-                href="https://maps.app.goo.gl/x2pDnHPwUuXDFnpc8"
+                href="https://maps.app.goo.gl/2N1mLA8RwpcaohFs6"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-[#0468D3] hover:bg-[#0356b0] text-white font-semibold rounded-xl transition-all shadow-md shadow-[#0468D3]/20 shrink-0 text-xs sm:text-sm cursor-pointer"
+                className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#0468D3] hover:bg-[#0468D3]/90 text-white font-bold text-sm shadow-md hover:shadow-lg transition-all self-start sm:self-auto group shrink-0"
               >
-                <MapPin className="w-4 h-4" />
+                <MapPin className="w-4 h-4 text-white group-hover:scale-110 transition-transform" />
                 <span>Open Navigation</span>
-                <ExternalLink className="w-3.5 h-3.5" />
+                <ExternalLink className="w-4 h-4 text-white/80 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </a>
             </div>
 
             {/* Embedded Google Map */}
-            <div className="w-full h-80 sm:h-96 md:h-[450px] bg-gray-100 relative">
+            <div className="w-full h-[420px] md:h-[480px] bg-gray-100 relative">
               <iframe
-                title="Max iT Solution Location Map"
+                title="Max iT Solution Google Maps Location"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3634.103439609135!2d88.59531817559223!3d24.377704764404523!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14644734df7254d%3A0x9ca140a46bae1fa1!2sMax%20iT%20Solution!5e0!3m2!1sen!2sbd!4v1793392757385!5m2!1sen!2sbd"
-                className="w-full h-full border-0"
-                loading="lazy"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
                 allowFullScreen={true}
+                loading="lazy"
                 referrerPolicy="strict-origin-when-cross-origin"
+                className="w-full h-full"
               />
             </div>
           </div>
