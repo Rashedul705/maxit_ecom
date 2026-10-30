@@ -17,46 +17,57 @@ export default function ContactPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-4">
+            {/* Contact Details Cards */}
             <div className="flex items-start gap-3 p-4 bg-slate-50 rounded-xl border border-slate-200/80">
               <Phone className="w-5 h-5 text-[#FF6600] shrink-0 mt-0.5" />
               <div>
-                <h3 className="text-sm font-bold text-slate-900">Direct Hotline</h3>
-                <a href="tel:+8801733272445" className="text-xs font-semibold text-slate-800 hover:text-[#FF6600] mt-0.5 block transition-colors">
-                  +880 1733-272445
+                <h3 className="text-sm font-bold text-slate-900">Phone / Contact</h3>
+                <a href="tel:+8801733272445" className="text-sm font-bold text-slate-800 hover:text-[#FF6600] mt-0.5 block transition-colors">
+                  +8801733-272445
                 </a>
                 <p className="text-[11px] text-slate-400">9:00 AM - 10:00 PM (Everyday)</p>
               </div>
             </div>
 
             <div className="flex items-start gap-3 p-4 bg-slate-50 rounded-xl border border-slate-200/80">
+              <Mail className="w-5 h-5 text-purple-600 shrink-0 mt-0.5" />
+              <div>
+                <h3 className="text-sm font-bold text-slate-900">Email</h3>
+                <a href="mailto:sales@m4xit.com" className="text-sm font-semibold text-slate-800 hover:text-purple-600 mt-0.5 block transition-colors">
+                  sales@m4xit.com
+                </a>
+                <p className="text-[11px] text-slate-400">Inquiries and Quotations</p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-3 p-4 bg-slate-50 rounded-xl border border-slate-200/80">
+              <MapPin className="w-5 h-5 text-[#FF6600] shrink-0 mt-0.5" />
+              <div>
+                <h3 className="text-sm font-bold text-slate-900">Head Office</h3>
+                <p className="text-xs text-slate-700 mt-0.5 leading-relaxed font-medium">
+                  Afroza Tower, 4th Floor, Uposhohor Newmarket, Rajshahi
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-3 p-4 bg-slate-50 rounded-xl border border-slate-200/80">
+              <MapPin className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
+              <div>
+                <h3 className="text-sm font-bold text-slate-900">LAB Office</h3>
+                <p className="text-xs text-slate-700 mt-0.5 leading-relaxed font-medium">
+                  Afroza Tower, 2nd Floor, Uposhohor Newmarket, Rajshahi
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-3 p-4 bg-emerald-50/50 rounded-xl border border-emerald-200/80">
               <MessageCircle className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
               <div>
                 <h3 className="text-sm font-bold text-slate-900">WhatsApp Helpdesk</h3>
                 <a href="https://wa.me/8801733272445" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold text-slate-800 hover:text-emerald-600 mt-0.5 block transition-colors">
-                  +880 1733-272445
+                  +8801733-272445
                 </a>
                 <p className="text-[11px] text-slate-400">Instant chat & order tracking</p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3 p-4 bg-slate-50 rounded-xl border border-slate-200/80">
-              <Mail className="w-5 h-5 text-purple-600 shrink-0 mt-0.5" />
-              <div>
-                <h3 className="text-sm font-bold text-slate-900">Email Inquiries</h3>
-                <a href="mailto:support@maxitshop.com" className="text-xs text-slate-600 hover:text-purple-600 mt-0.5 block transition-colors">
-                  support@maxitshop.com
-                </a>
-                <p className="text-[11px] text-slate-400">Response within 24 hours</p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3 p-4 bg-slate-50 rounded-xl border border-slate-200/80">
-              <MapPin className="w-4 h-4 text-[#FF6600] shrink-0 mt-0.5" />
-              <div>
-                <h3 className="text-sm font-bold text-slate-900">Head Office</h3>
-                <p className="text-xs text-slate-600 mt-0.5 leading-relaxed">
-                  2nd Floor, Afroza Tower, Uposhohor New Market, Rajshahi-6000, Bangladesh
-                </p>
               </div>
             </div>
           </div>

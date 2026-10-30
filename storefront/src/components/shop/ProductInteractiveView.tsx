@@ -20,7 +20,8 @@ import {
   HelpCircle,
   X,
   Sparkles,
-  ShieldAlert
+  ShieldAlert,
+  MessageCircle
 } from 'lucide-react';
 import { Product, SiteSetting } from '@/lib/types';
 import { useCart } from '@/lib/cartContext';
@@ -57,8 +58,9 @@ export const ProductInteractiveView: React.FC<ProductInteractiveViewProps> = ({
   const [comboAddedToast, setComboAddedToast] = useState(false);
 
   // Dynamic values from settings or sensible defaults
-  const hotline = settings?.contact?.phone || settings?.phone || '+880 1733-115391';
-  const whatsappNum = (settings?.socialLinks?.whatsapp || settings?.contact?.whatsapp || '+8801733115391').replace(/[^0-9]/g, '');
+  const CALL_FOR_PRICE = true; // Temporary: call for price on all products
+  const hotline = settings?.contact?.phone || settings?.phone || '+8801733-272445';
+  const whatsappNum = (settings?.socialLinks?.whatsapp || settings?.contact?.whatsapp || '+8801733272445').replace(/[^0-9]/g, '');
   const insideDhakaFee = settings?.deliveryRates?.insideDhaka ?? 70;
   const outsideDhakaFee = settings?.deliveryRates?.outsideDhaka ?? 130;
 
@@ -386,14 +388,29 @@ export const ProductInteractiveView: React.FC<ProductInteractiveViewProps> = ({
           </div>
 
           {/* Price Row */}
-          <div className="flex items-baseline gap-3">
-            <span className="text-3xl sm:text-4xl font-black text-[#DC2626]">
-              ৳{unitPrice.toLocaleString()}
-            </span>
-            <del className="text-sm sm:text-base text-slate-400 font-medium">
-              ৳{baseOldPrice.toLocaleString()} [Regular Price]
-            </del>
-          </div>
+          {CALL_FOR_PRICE ? (
+            <div className="flex flex-wrap items-center gap-3">
+              <div className="inline-flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-[#FF6600] to-[#E55C00] text-white rounded-xl shadow-xs font-black text-xl sm:text-2xl">
+                <PhoneCall className="w-5 h-5 animate-pulse" />
+                <span>Call for Price</span>
+              </div>
+              <a
+                href={`tel:${hotline.replace(/[^0-9+]/g, '')}`}
+                className="text-base sm:text-lg font-black text-slate-800 hover:text-[#FF6600] transition-colors"
+              >
+                {hotline}
+              </a>
+            </div>
+          ) : (
+            <div className="flex items-baseline gap-3">
+              <span className="text-3xl sm:text-4xl font-black text-[#DC2626]">
+                ৳{unitPrice.toLocaleString()}
+              </span>
+              <del className="text-sm sm:text-base text-slate-400 font-medium">
+                ৳{baseOldPrice.toLocaleString()} [Regular Price]
+              </del>
+            </div>
+          )}
 
           {/* Variant / Set Selector matching reference image */}
           <div className="space-y-2.5 pt-2">
@@ -412,7 +429,7 @@ export const ProductInteractiveView: React.FC<ProductInteractiveViewProps> = ({
                     onClick={() => setSelectedVariantIndex(idx)}
                     className={`relative p-3.5 rounded-xl text-left border-2 transition-all cursor-pointer ${
                       isSelected
-                        ? 'border-[#DC2626] bg-[#FEF2F2]/40 shadow-xs'
+                        ? 'border-[#FF6600] bg-orange-50/40 shadow-xs'
                         : 'border-slate-200 bg-white hover:border-slate-300'
                     }`}
                   >
@@ -421,7 +438,7 @@ export const ProductInteractiveView: React.FC<ProductInteractiveViewProps> = ({
                         {v.title}
                       </span>
                       {isSelected ? (
-                        <CheckCircle2 className="w-4 h-4 text-[#DC2626] shrink-0" />
+                        <CheckCircle2 className="w-4 h-4 text-[#FF6600] shrink-0" />
                       ) : (
                         <span className="w-4 h-4 rounded-full border border-slate-300 shrink-0 inline-block"></span>
                       )}
@@ -432,8 +449,8 @@ export const ProductInteractiveView: React.FC<ProductInteractiveViewProps> = ({
                     </p>
 
                     <div className="flex items-center justify-between pt-1 border-t border-slate-100">
-                      <span className="text-xs sm:text-sm font-extrabold text-[#DC2626]">
-                        ৳{v.price.toLocaleString()}
+                      <span className="text-xs sm:text-sm font-extrabold text-[#FF6600]">
+                        {CALL_FOR_PRICE ? 'Call for Price' : `৳${v.price.toLocaleString()}`}
                       </span>
                       <span className="text-[10px] font-bold text-[#059669]">
                         {v.badge}
@@ -473,32 +490,58 @@ export const ProductInteractiveView: React.FC<ProductInteractiveViewProps> = ({
               <span className="text-[11px] text-slate-500 block">
                 {currentVariant.title} x {quantity}
               </span>
-              <span className="text-lg sm:text-xl font-black text-slate-900">
-                Total: ৳{totalPrice.toLocaleString()}
+              <span className="text-base sm:text-lg font-black text-slate-900">
+                {CALL_FOR_PRICE ? (
+                  <span className="text-[#FF6600] font-bold">Call for Quotation</span>
+                ) : (
+                  `Total: ৳${totalPrice.toLocaleString()}`
+                )}
               </span>
             </div>
           </div>
 
-          {/* Action Buttons Row matching reference image */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1">
-            <button
-              type="button"
-              onClick={handleOrderNow}
-              className="w-full py-3.5 bg-[#DC2626] hover:bg-[#B91C1C] text-white rounded-xl font-bold text-base flex items-center justify-center gap-2 shadow-sm transition-all cursor-pointer"
-            >
-              <Zap className="w-5 h-5 fill-white" />
-              <span>Order Now</span>
-            </button>
+          {/* Action Buttons Row */}
+          {CALL_FOR_PRICE ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1">
+              <a
+                href={`tel:${hotline.replace(/[^0-9+]/g, '')}`}
+                className="w-full py-3.5 bg-[#FF6600] hover:bg-[#e55c00] text-white rounded-xl font-bold text-sm sm:text-base flex items-center justify-center gap-2 shadow-sm transition-all cursor-pointer"
+              >
+                <PhoneCall className="w-5 h-5 fill-white" />
+                <span>Call for Price: {hotline}</span>
+              </a>
 
-            <button
-              type="button"
-              onClick={handleAddToCart}
-              className="w-full py-3.5 bg-white hover:bg-slate-50 text-[#DC2626] border-2 border-[#DC2626] rounded-xl font-bold text-base flex items-center justify-center gap-2 shadow-2xs transition-all cursor-pointer"
-            >
-              <ShoppingBag className="w-5 h-5" />
-              <span>Add to Cart</span>
-            </button>
-          </div>
+              <a
+                href={`https://wa.me/${whatsappNum}?text=${encodeURIComponent(`Hello, I want to inquire about the price for: ${product.title}`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-3.5 bg-[#25D366] hover:bg-[#20ba5a] text-white rounded-xl font-bold text-sm sm:text-base flex items-center justify-center gap-2 shadow-2xs transition-all cursor-pointer"
+              >
+                <MessageCircle className="w-5 h-5" />
+                <span>WhatsApp Inquiry</span>
+              </a>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1">
+              <button
+                type="button"
+                onClick={handleOrderNow}
+                className="w-full py-3.5 bg-[#DC2626] hover:bg-[#B91C1C] text-white rounded-xl font-bold text-base flex items-center justify-center gap-2 shadow-sm transition-all cursor-pointer"
+              >
+                <Zap className="w-5 h-5 fill-white" />
+                <span>Order Now</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={handleAddToCart}
+                className="w-full py-3.5 bg-white hover:bg-slate-50 text-[#DC2626] border-2 border-[#DC2626] rounded-xl font-bold text-base flex items-center justify-center gap-2 shadow-2xs transition-all cursor-pointer"
+              >
+                <ShoppingBag className="w-5 h-5" />
+                <span>Add to Cart</span>
+              </button>
+            </div>
+          )}
 
           {/* Added to cart toast */}
           {isAddedToast && (
@@ -515,7 +558,7 @@ export const ProductInteractiveView: React.FC<ProductInteractiveViewProps> = ({
                 Need Help Ordering?
               </p>
               <p className="text-[11px] sm:text-xs text-slate-600 mt-0.5">
-                Our representatives are ready to assist you with order and delivery details.
+                Call our hotline {hotline} or email sales@m4xit.com for live price quotes and stock availability.
               </p>
             </div>
 
@@ -525,6 +568,7 @@ export const ProductInteractiveView: React.FC<ProductInteractiveViewProps> = ({
                 onClick={handleWhatsAppOrder}
                 className="px-3.5 py-2 bg-[#25D366] hover:bg-[#20ba5a] text-white text-xs font-bold rounded-lg flex items-center gap-1.5 shadow-2xs transition-colors cursor-pointer"
               >
+                <MessageCircle className="w-3.5 h-3.5" />
                 <span>WhatsApp</span>
               </button>
 
@@ -802,17 +846,33 @@ export const ProductInteractiveView: React.FC<ProductInteractiveViewProps> = ({
         </div>
 
         <div className="flex items-center gap-4 shrink-0 w-full md:w-auto justify-between md:justify-end">
-          <span className="text-2xl sm:text-3xl font-black text-[#DC2626]">
-            ৳{comboPrice.toLocaleString()}
-          </span>
+          {CALL_FOR_PRICE ? (
+            <span className="text-lg sm:text-xl font-bold text-[#FF6600]">
+              Call for Bundle Quote
+            </span>
+          ) : (
+            <span className="text-2xl sm:text-3xl font-black text-[#DC2626]">
+              ৳{comboPrice.toLocaleString()}
+            </span>
+          )}
 
-          <button
-            type="button"
-            onClick={handleAddComboToCart}
-            className="px-5 py-2.5 bg-[#DC2626] hover:bg-[#B91C1C] text-white text-xs sm:text-sm font-bold rounded-xl shadow-xs transition-colors cursor-pointer"
-          >
-            Add Combo to Cart
-          </button>
+          {CALL_FOR_PRICE ? (
+            <a
+              href={`tel:${hotline.replace(/[^0-9+]/g, '')}`}
+              className="px-5 py-2.5 bg-[#FF6600] hover:bg-[#e55c00] text-white text-xs sm:text-sm font-bold rounded-xl shadow-xs transition-colors cursor-pointer flex items-center gap-1.5"
+            >
+              <PhoneCall className="w-4 h-4" />
+              <span>Call Now</span>
+            </a>
+          ) : (
+            <button
+              type="button"
+              onClick={handleAddComboToCart}
+              className="px-5 py-2.5 bg-[#DC2626] hover:bg-[#B91C1C] text-white text-xs sm:text-sm font-bold rounded-xl shadow-xs transition-colors cursor-pointer"
+            >
+              Add Combo to Cart
+            </button>
+          )}
         </div>
       </div>
 
@@ -832,7 +892,7 @@ export const ProductInteractiveView: React.FC<ProductInteractiveViewProps> = ({
             </h2>
             <Link
               href={`/category/${product.category}`}
-              className="text-xs font-bold text-[#DC2626] hover:underline"
+              className="text-xs font-bold text-[#FF6600] hover:underline"
             >
               View All →
             </Link>
@@ -842,7 +902,7 @@ export const ProductInteractiveView: React.FC<ProductInteractiveViewProps> = ({
             {relatedList.slice(0, 4).map((rel) => (
               <div
                 key={rel.id}
-                className="group bg-white rounded-xl border border-slate-200 hover:border-[#DC2626] overflow-hidden p-3 transition-all hover:shadow-md flex flex-col justify-between"
+                className="group bg-white rounded-xl border border-slate-200 hover:border-[#FF6600] overflow-hidden p-3 transition-all hover:shadow-md flex flex-col justify-between"
               >
                 <Link href={`/product/${rel.slug}`} className="block">
                   <div className="relative aspect-square w-full rounded-lg bg-[#FFFBEB] border border-[#FEF08A] overflow-hidden mb-2.5 flex items-center justify-center p-3">
@@ -855,24 +915,34 @@ export const ProductInteractiveView: React.FC<ProductInteractiveViewProps> = ({
                     />
                   </div>
 
-                  <h3 className="text-xs font-bold text-slate-800 line-clamp-2 leading-tight group-hover:text-[#DC2626] transition-colors">
+                  <h3 className="text-xs font-bold text-slate-800 line-clamp-2 leading-tight group-hover:text-[#FF6600] transition-colors">
                     {rel.title}
                   </h3>
                 </Link>
 
                 <div className="mt-3 flex items-center justify-between pt-2 border-t border-slate-100">
-                  <span className="text-sm sm:text-base font-extrabold text-[#DC2626]">
-                    ৳{rel.price.toLocaleString()}
+                  <span className="text-xs sm:text-sm font-bold text-[#FF6600]">
+                    {CALL_FOR_PRICE ? 'Call for price' : `৳${rel.price.toLocaleString()}`}
                   </span>
 
-                  <button
-                    type="button"
-                    onClick={() => addToCart(rel, 1)}
-                    className="p-1.5 rounded-lg bg-slate-100 hover:bg-[#DC2626] hover:text-white text-slate-700 transition-colors cursor-pointer"
-                    title="Add to Cart"
-                  >
-                    <ShoppingBag className="w-4 h-4" />
-                  </button>
+                  {CALL_FOR_PRICE ? (
+                    <a
+                      href={`tel:${hotline.replace(/[^0-9+]/g, '')}`}
+                      className="p-1.5 rounded-lg bg-orange-50 hover:bg-[#FF6600] hover:text-white text-[#FF6600] transition-colors cursor-pointer"
+                      title="Call for Price"
+                    >
+                      <PhoneCall className="w-4 h-4" />
+                    </a>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => addToCart(rel, 1)}
+                      className="p-1.5 rounded-lg bg-slate-100 hover:bg-[#DC2626] hover:text-white text-slate-700 transition-colors cursor-pointer"
+                      title="Add to Cart"
+                    >
+                      <ShoppingBag className="w-4 h-4" />
+                    </button>
+                  )}
                 </div>
               </div>
             ))}

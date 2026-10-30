@@ -53,23 +53,36 @@ export const Footer: React.FC = () => {
               Maxitshop - Your trusted online shopping destination in Bangladesh for solar equipment, gadgets, inverters, and premium smart devices.
             </p>
 
-            {/* Phone numbers */}
-            <div className="space-y-1.5 pt-1 text-gray-300">
+            {/* Contact Details */}
+            <div className="space-y-2 pt-1 text-gray-300">
+              <p className="text-xs font-bold text-white uppercase tracking-wider">Contact</p>
+
+              <div className="flex items-center gap-2 text-gray-300">
+                <Mail className="w-4 h-4 text-[#FF6600] shrink-0" />
+                <a href="mailto:sales@m4xit.com" className="hover:text-[#FF6600] transition-colors">
+                  sales@m4xit.com
+                </a>
+              </div>
+
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-[#FF6600] shrink-0" />
                 <a href="tel:+8801733272445" className="font-semibold text-white hover:text-[#FF6600] transition-colors">
-                  +880 1733-272445
+                  +8801733-272445
                 </a>
               </div>
-              <div className="flex items-center gap-2 text-gray-400">
-                <Mail className="w-4 h-4 text-gray-400 shrink-0" />
-                <a href="mailto:support@maxitshop.com" className="hover:text-white transition-colors">
-                  support@maxitshop.com
-                </a>
-              </div>
-              <div className="flex items-center gap-2 text-gray-400">
-                <MapPin className="w-4 h-4 text-gray-400 shrink-0" />
-                <span>2nd Floor, Afroza Tower, Uposhohor New Market, Rajshahi-6000</span>
+
+              <div className="flex items-start gap-2 text-gray-300 text-xs">
+                <MapPin className="w-4 h-4 text-[#FF6600] shrink-0 mt-0.5" />
+                <div className="space-y-1">
+                  <p>
+                    <span className="font-bold text-white">Head Office: </span>
+                    <span className="text-gray-300">Afroza Tower, 4th Floor, Uposhohor Newmarket, Rajshahi</span>
+                  </p>
+                  <p>
+                    <span className="font-bold text-white">LAB Office: </span>
+                    <span className="text-gray-300">Afroza Tower, 2nd Floor, Uposhohor Newmarket, Rajshahi</span>
+                  </p>
+                </div>
               </div>
             </div>
 

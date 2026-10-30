@@ -15,12 +15,17 @@ export default async function ShopLayout({
     console.error('Failed to prefetch categories in ShopLayout:', err);
     // Fallback categories for resilient rendering
     categories = [
-      { id: 'cat-solar', name: 'Solar & Green Energy', slug: 'solar-green-energy', parent: null },
-      { id: 'cat-mobile', name: 'Mobile Phones', slug: 'mobile-phones', parent: null },
-      { id: 'cat-laptops', name: 'Laptops', slug: 'laptops', parent: null },
-      { id: 'cat-watches', name: 'Smart Watches', slug: 'smart-watches', parent: null },
-      { id: 'cat-home', name: 'Home Appliances', slug: 'home-appliances', parent: null },
-      { id: 'cat-accessories', name: 'Accessories', slug: 'accessories', parent: null }
+      { id: 'cat-solar-energy', name: 'SOLAR ENERGY', slug: 'solar-energy', parent: null },
+      { id: 'cat-battery-bms-charger', name: 'BATTERY-BMS-CHARGER', slug: 'battery-bms-charger', parent: null },
+      { id: 'cat-service-maintenance', name: 'SERVICE & MAINTENANCE', slug: 'service-&-maintenance', parent: null },
+      { id: 'cat-customized-circuit-pcb', name: 'CUSTOMIZED CIRCUIT - PCB', slug: 'customized-circuit---pcb', parent: null },
+      { id: 'cat-lt-ht-power-goods', name: 'LT-HT POWER GOODS', slug: 'lt-ht-power-goods', parent: null },
+      { id: 'cat-modules-sensor', name: 'MODULES & SENSOR', slug: 'modules-&-sensor', parent: null },
+      { id: 'cat-igbt-fet-diode-transistor', name: 'IGBT-FET-DIODE-TRANSISTOR', slug: 'igbt-fet-diode-transistor', parent: null },
+      { id: 'cat-electronics-parts', name: 'ELECTRONICS PARTS', slug: 'electronics-parts', parent: null },
+      { id: 'cat-safety-security', name: 'SAFETY - SECURITY', slug: 'safety---security', parent: null },
+      { id: 'cat-tools-hardware', name: 'TOOLS - HARDWARE', slug: 'tools---hardware', parent: null },
+      { id: 'cat-automation-process-cont', name: 'AUTOMATION-PROCESS CONT.', slug: 'automation-process-cont.', parent: null }
     ];
   }
 
