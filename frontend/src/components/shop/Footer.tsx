@@ -297,6 +297,38 @@ export const Footer: React.FC = () => {
 
         </div>
 
+        {/* Google Map Embedded Location */}
+        <div className="py-6 border-b border-[#1C2739]">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+            <div className="flex items-center gap-2">
+              <MapPin className="w-4 h-4 text-[#FF6600]" />
+              <span className="text-xs font-bold text-white uppercase tracking-wider">Store &amp; Office Location</span>
+              <span className="text-gray-400 text-xs hidden sm:inline">— Afroza Tower, Uposhohor Newmarket, Rajshahi</span>
+            </div>
+            <a
+              href="https://maps.app.goo.gl/x2pDnHPwUuXDFnpc8"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#0468D3] hover:text-[#0356b0] hover:underline text-xs font-semibold inline-flex items-center gap-1"
+            >
+              <span>Open in Google Maps</span>
+              <span className="text-[10px]">↗</span>
+            </a>
+          </div>
+          <div className="w-full h-48 sm:h-60 rounded-xl overflow-hidden border border-[#1C2739] shadow-inner bg-[#101C33]">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3634.103439609135!2d88.59531817559223!3d24.377704764404523!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14644734df7254d%3A0x9ca140a46bae1fa1!2sMax%20iT%20Solution!5e0!3m2!1sen!2sbd!4v1793392757385!5m2!1sen!2sbd"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen={true}
+              loading="lazy"
+              referrerPolicy="strict-origin-when-cross-origin"
+              title="Max iT Solution Google Maps Location"
+            />
+          </div>
+        </div>
+
         {/* Copyright notice */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-gray-500 text-[11px]">
           <p>© 2026 Max iT Solution. All rights reserved. · <Link href="/admin" className="hover:text-[#FF6600] transition-colors underline">Admin Portal</Link></p>
