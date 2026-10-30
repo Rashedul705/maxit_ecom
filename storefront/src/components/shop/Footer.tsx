@@ -74,39 +74,14 @@ export const Footer: React.FC = () => {
               <div className="flex items-start gap-2 text-gray-300 text-xs">
                 <MapPin className="w-4 h-4 text-[#FF6600] shrink-0 mt-0.5" />
                 <div className="space-y-1">
-                  <a
-                    href="https://maps.app.goo.gl/x2pDnHPwUuXDFnpc8"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block group hover:text-white transition-colors"
-                  >
-                    <p>
-                      <span className="font-bold text-white group-hover:text-[#0468D3] transition-colors">Head Office: </span>
-                      <span className="text-gray-300 group-hover:text-white transition-colors">Afroza Tower, 4th Floor, Uposhohor Newmarket, Rajshahi</span>
-                    </p>
-                  </a>
-                  <a
-                    href="https://maps.app.goo.gl/x2pDnHPwUuXDFnpc8"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block group hover:text-white transition-colors"
-                  >
-                    <p>
-                      <span className="font-bold text-white group-hover:text-[#0468D3] transition-colors">LAB Office: </span>
-                      <span className="text-gray-300 group-hover:text-white transition-colors">Afroza Tower, 2nd Floor, Uposhohor Newmarket, Rajshahi</span>
-                    </p>
-                  </a>
-                  <div className="pt-0.5">
-                    <a
-                      href="https://maps.app.goo.gl/x2pDnHPwUuXDFnpc8"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#0468D3] hover:text-[#0356b0] hover:underline"
-                    >
-                      <MapPin className="w-3 h-3" />
-                      <span>Google Map Location ↗</span>
-                    </a>
-                  </div>
+                  <p>
+                    <span className="font-bold text-white">Head Office: </span>
+                    <span className="text-gray-300">Afroza Tower, 4th Floor, Uposhohor Newmarket, Rajshahi</span>
+                  </p>
+                  <p>
+                    <span className="font-bold text-white">LAB Office: </span>
+                    <span className="text-gray-300">Afroza Tower, 2nd Floor, Uposhohor Newmarket, Rajshahi</span>
+                  </p>
                 </div>
               </div>
             </div>
@@ -299,21 +274,10 @@ export const Footer: React.FC = () => {
 
         {/* Google Map Embedded Location */}
         <div className="py-6 border-b border-[#1C2739]">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
-            <div className="flex items-center gap-2">
-              <MapPin className="w-4 h-4 text-[#FF6600]" />
-              <span className="text-xs font-bold text-white uppercase tracking-wider">Store &amp; Office Location</span>
-              <span className="text-gray-400 text-xs hidden sm:inline">— Afroza Tower, Uposhohor Newmarket, Rajshahi</span>
-            </div>
-            <a
-              href="https://maps.app.goo.gl/x2pDnHPwUuXDFnpc8"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#0468D3] hover:text-[#0356b0] hover:underline text-xs font-semibold inline-flex items-center gap-1"
-            >
-              <span>Open in Google Maps</span>
-              <span className="text-[10px]">↗</span>
-            </a>
+          <div className="flex items-center gap-2 mb-3">
+            <MapPin className="w-4 h-4 text-[#FF6600]" />
+            <span className="text-xs font-bold text-white uppercase tracking-wider">Store &amp; Office Location</span>
+            <span className="text-gray-400 text-xs hidden sm:inline">— Afroza Tower, Uposhohor Newmarket, Rajshahi</span>
           </div>
           <div className="w-full h-48 sm:h-60 rounded-xl overflow-hidden border border-[#1C2739] shadow-inner bg-[#101C33]">
             <iframe
