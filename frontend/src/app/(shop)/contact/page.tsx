@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Phone, Mail, MapPin, Send, CheckCircle2 } from 'lucide-react';
+import { Phone, Mail, MapPin, Send, CheckCircle2, ExternalLink } from 'lucide-react';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -297,25 +297,37 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-{/* 3. Google Map Interactive Location Section */}
+{/* 3. Google Map Interactive Location Section matching mockup 1-to-1 */}
       <section className="pb-20 sm:pb-28 bg-white relative z-10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-3xl border border-gray-200 overflow-hidden shadow-xl">
-            <div className="p-6 sm:p-8 bg-gray-50 border-b border-gray-200">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#0468D3]/10 text-[#0468D3] mb-2">
-                <MapPin className="w-3.5 h-3.5" />
-                Our Location
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-bold font-heading text-gray-900">
-                Find Us on Google Maps
-              </h2>
-              <p className="text-sm text-gray-600 mt-1">
-                Afroza Tower, Uposhohor Newmarket, Rajshahi-6000, Bangladesh
-              </p>
+          <div className="bg-white rounded-[1.75rem] sm:rounded-3xl border border-gray-100 overflow-hidden shadow-xl">
+            <div className="p-6 sm:p-8 bg-white flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <p className="text-[11px] sm:text-xs font-bold tracking-wider text-[#0468D3] uppercase mb-1">
+                  LIVE LOCATION
+                </p>
+                <h2 className="text-2xl sm:text-3xl font-bold font-heading text-[#0468D3]">
+                  Find Us on Google Maps
+                </h2>
+                <p className="text-xs sm:text-sm text-gray-600 mt-1">
+                  Afroza Tower, Uposhohor Newmarket, Rajshahi (Head Office: 4th Floor | LAB Office: 2nd Floor)
+                </p>
+              </div>
+
+              <a
+                href="https://maps.app.goo.gl/x2pDnHPwUuXDFnpc8"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-[#0468D3] hover:bg-[#0356b0] text-white font-semibold rounded-xl transition-all shadow-md shadow-[#0468D3]/20 shrink-0 text-xs sm:text-sm cursor-pointer"
+              >
+                <MapPin className="w-4 h-4" />
+                <span>Open Navigation</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
             </div>
 
             {/* Embedded Google Map */}
-            <div className="w-full h-80 sm:h-96 md:h-[420px] bg-gray-100 relative">
+            <div className="w-full h-80 sm:h-96 md:h-[450px] bg-gray-100 relative">
               <iframe
                 title="Max iT Solution Location Map"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3634.103439609135!2d88.59531817559223!3d24.377704764404523!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14644734df7254d%3A0x9ca140a46bae1fa1!2sMax%20iT%20Solution!5e0!3m2!1sen!2sbd!4v1793392757385!5m2!1sen!2sbd"
