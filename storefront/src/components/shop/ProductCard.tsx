@@ -15,6 +15,7 @@ interface ProductCardProps {
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const { addToCart, openCheckout } = useCart();
   const { isInWishlist, toggleWishlist } = useWishlist();
+  const CALL_FOR_PRICE = true; // Temporary: call for price on all products
 
   const discountPercent =
     product.oldPrice && product.oldPrice > product.price
@@ -24,8 +25,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const handleOrderNow = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    if (product.price === 0) {
-      window.location.href = 'tel:+8801700000000';
+    if (CALL_FOR_PRICE || product.price === 0) {
+      window.location.href = 'tel:+8801733272445';
       return;
     }
     addToCart(product, 1, false);
@@ -50,7 +51,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </Link>
 
         {/* Discount Badge: e.g. "10% OFF" */}
-        {discountPercent > 0 && (
+        {!CALL_FOR_PRICE && discountPercent > 0 && (
           <div className="absolute top-2 left-2 z-10 bg-[#E53935] text-white text-[11px] font-bold px-2 py-0.5 rounded-full shadow-xs pointer-events-none">
             {discountPercent}% OFF
           </div>
@@ -109,7 +110,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
       {/* Pricing display */}
       <div className="mt-auto pt-2 border-t border-gray-100 mb-2.5">
-        {product.price === 0 ? (
+        {CALL_FOR_PRICE || product.price === 0 ? (
           <div className="flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#FF6600]">
             <PhoneCall className="w-3.5 h-3.5" />
             <span>Call for price</span>
@@ -131,20 +132,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       {/* Order Now Button */}
       <button
         onClick={handleOrderNow}
-        disabled={product.stock <= 0}
-        className="w-full py-2 px-3 bg-[#FF6600] hover:bg-[#e55c00] active:scale-[0.99] text-white rounded-md text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 transition-all shadow-xs disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+        className="w-full py-2 px-3 bg-[#FF6600] hover:bg-[#e55c00] active:scale-[0.99] text-white rounded-md text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 transition-all shadow-xs cursor-pointer"
       >
-        {product.price === 0 ? (
-          <>
-            <PhoneCall className="w-3.5 h-3.5" />
-            <span>Call Now</span>
-          </>
-        ) : (
-          <>
-            <ShoppingBag className="w-3.5 h-3.5" />
-            <span>Order Now</span>
-          </>
-        )}
+        <PhoneCall className="w-3.5 h-3.5" />
+        <span>Call for Price</span>
       </button>
     </div>
   );

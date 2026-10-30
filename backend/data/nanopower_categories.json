@@ -1,12 +1,32 @@
 [
   {
+    "id": "cat-solar-energy",
+    "name": "SOLAR ENERGY",
+    "slug": "solar-energy",
+    "image": "https://www.nanopowerbd.com/public/uploads/category/1776917773-solar-pv.webp",
+    "icon": "https://www.nanopowerbd.com/public/uploads/category/1776917773-solar-pv.webp",
+    "description": "Tier-1 Solar Panels, Hybrid Inverters, Solar Controllers & Mounting",
+    "order": 1,
+    "isActive": true
+  },
+  {
     "id": "cat-battery-bms-charger",
     "name": "BATTERY-BMS-CHARGER",
     "slug": "battery-bms-charger",
     "image": "https://www.nanopowerbd.com/public/uploads/category/1776919212-lithium-ion-battery.webp",
     "icon": "https://www.nanopowerbd.com/public/uploads/category/1776919212-lithium-ion-battery.webp",
     "description": "LiFePO4, Lithium Ion Batteries, Active Balancers, Smart BMS & Chargers",
-    "order": 1,
+    "order": 2,
+    "isActive": true
+  },
+  {
+    "id": "cat-service-maintenance",
+    "name": "SERVICE & MAINTENANCE",
+    "slug": "service-&-maintenance",
+    "image": "https://www.nanopowerbd.com/public/uploads/category/1776919326-inverter-repairing-services-500x500.webp",
+    "icon": "https://www.nanopowerbd.com/public/uploads/category/1776919326-inverter-repairing-services-500x500.webp",
+    "description": "Solar Inverter Repairing, IPS Maintenance & Engineering Service Support",
+    "order": 3,
     "isActive": true
   },
   {
@@ -16,26 +36,6 @@
     "image": "https://www.nanopowerbd.com/public/uploads/category/1776919114-servo-avr-control-card.webp",
     "icon": "https://www.nanopowerbd.com/public/uploads/category/1776919114-servo-avr-control-card.webp",
     "description": "Custom Servo AVR Control Cards, Inverter Motherboards & Circuit Solutions",
-    "order": 2,
-    "isActive": true
-  },
-  {
-    "id": "cat-safety-security",
-    "name": "SAFETY - SECURITY",
-    "slug": "safety---security",
-    "image": "https://www.nanopowerbd.com/public/uploads/category/1776918982-dahua-goods.webp",
-    "icon": "https://www.nanopowerbd.com/public/uploads/category/1776918982-dahua-goods.webp",
-    "description": "IP Cameras, NVR, Smart Door Locks, Fire Extinguishers & Industrial Safety",
-    "order": 3,
-    "isActive": true
-  },
-  {
-    "id": "cat-tools-hardware",
-    "name": "TOOLS - HARDWARE",
-    "slug": "tools---hardware",
-    "image": "https://www.nanopowerbd.com/public/uploads/category/1777472468-0.25-inch-quick-ratchet-wrench-spanner.webp",
-    "icon": "https://www.nanopowerbd.com/public/uploads/category/1777472468-0.25-inch-quick-ratchet-wrench-spanner.webp",
-    "description": "Multimeters, Crimping Tools, Hex Keys, Soldering Stations & Precision Kits",
     "order": 4,
     "isActive": true
   },
@@ -80,22 +80,22 @@
     "isActive": true
   },
   {
-    "id": "cat-solar-energy",
-    "name": "SOLAR ENERGY",
-    "slug": "solar-energy",
-    "image": "https://www.nanopowerbd.com/public/uploads/category/1776917773-solar-pv.webp",
-    "icon": "https://www.nanopowerbd.com/public/uploads/category/1776917773-solar-pv.webp",
-    "description": "Tier-1 Solar Panels, Hybrid Inverters, Solar Controllers & Mounting",
+    "id": "cat-safety-security",
+    "name": "SAFETY - SECURITY",
+    "slug": "safety---security",
+    "image": "https://www.nanopowerbd.com/public/uploads/category/1776918982-dahua-goods.webp",
+    "icon": "https://www.nanopowerbd.com/public/uploads/category/1776918982-dahua-goods.webp",
+    "description": "IP Cameras, NVR, Smart Door Locks, Fire Extinguishers & Industrial Safety",
     "order": 9,
     "isActive": true
   },
   {
-    "id": "cat-service-maintenance",
-    "name": "SERVICE & MAINTENANCE",
-    "slug": "service-&-maintenance",
-    "image": "https://www.nanopowerbd.com/public/uploads/category/1776919326-inverter-repairing-services-500x500.webp",
-    "icon": "https://www.nanopowerbd.com/public/uploads/category/1776919326-inverter-repairing-services-500x500.webp",
-    "description": "Solar Inverter Repairing, IPS Maintenance & Engineering Service Support",
+    "id": "cat-tools-hardware",
+    "name": "TOOLS - HARDWARE",
+    "slug": "tools---hardware",
+    "image": "https://www.nanopowerbd.com/public/uploads/category/1777472468-0.25-inch-quick-ratchet-wrench-spanner.webp",
+    "icon": "https://www.nanopowerbd.com/public/uploads/category/1777472468-0.25-inch-quick-ratchet-wrench-spanner.webp",
+    "description": "Multimeters, Crimping Tools, Hex Keys, Soldering Stations & Precision Kits",
     "order": 10,
     "isActive": true
   },
