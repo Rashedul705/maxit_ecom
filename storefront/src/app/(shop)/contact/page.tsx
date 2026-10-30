@@ -135,34 +135,54 @@ export default function ContactPage() {
                   </div>
 
                   {/* Head Office */}
-                  <div className="flex items-start group">
-                    <div className="shrink-0 w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center mr-6 border border-white/20 group-hover:bg-white/20 transition-colors shadow-lg">
+                  <a
+                    href="https://maps.app.goo.gl/x2pDnHPwUuXDFnpc8"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-start group hover:opacity-95 transition-opacity"
+                  >
+                    <div className="shrink-0 w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center mr-6 border border-white/20 group-hover:bg-white/20 group-hover:scale-105 transition-all shadow-lg">
                       <MapPin className="w-7 h-7 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold mb-1 text-white tracking-wide">
-                        Head Office
-                      </h3>
-                      <p className="text-white/80 leading-relaxed font-medium whitespace-pre-line">
+                      <div className="flex items-center gap-2">
+                        <h3 className="text-lg font-semibold mb-1 text-white tracking-wide">
+                          Head Office
+                        </h3>
+                        <span className="text-[11px] bg-white/20 text-white font-medium px-2 py-0.5 rounded-full mb-1 group-hover:bg-white group-hover:text-[#0468D3] transition-colors">
+                          View Map ↗
+                        </span>
+                      </div>
+                      <p className="text-white/80 leading-relaxed font-medium whitespace-pre-line group-hover:text-white transition-colors">
                         Afroza Tower, 4th Floor, Uposhohor Newmarket, Rajshahi
                       </p>
                     </div>
-                  </div>
+                  </a>
 
                   {/* LAB Office */}
-                  <div className="flex items-start group">
-                    <div className="shrink-0 w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center mr-6 border border-white/20 group-hover:bg-white/20 transition-colors shadow-lg">
+                  <a
+                    href="https://maps.app.goo.gl/x2pDnHPwUuXDFnpc8"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-start group hover:opacity-95 transition-opacity"
+                  >
+                    <div className="shrink-0 w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center mr-6 border border-white/20 group-hover:bg-white/20 group-hover:scale-105 transition-all shadow-lg">
                       <MapPin className="w-7 h-7 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold mb-1 text-white tracking-wide">
-                        LAB Office
-                      </h3>
-                      <p className="text-white/80 leading-relaxed font-medium whitespace-pre-line">
+                      <div className="flex items-center gap-2">
+                        <h3 className="text-lg font-semibold mb-1 text-white tracking-wide">
+                          LAB Office
+                        </h3>
+                        <span className="text-[11px] bg-white/20 text-white font-medium px-2 py-0.5 rounded-full mb-1 group-hover:bg-white group-hover:text-[#0468D3] transition-colors">
+                          View Map ↗
+                        </span>
+                      </div>
+                      <p className="text-white/80 leading-relaxed font-medium whitespace-pre-line group-hover:text-white transition-colors">
                         Afroza Tower, 2nd Floor, Uposhohor Newmarket, Rajshahi
                       </p>
                     </div>
-                  </div>
+                  </a>
                 </div>
               </div>
 
@@ -294,6 +314,50 @@ export default function ContactPage() {
               )}
             </div>
 
+          </div>
+        </div>
+      </section>
+{/* 3. Google Map Interactive Location Section */}
+      <section className="pb-20 sm:pb-28 bg-white relative z-10">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white rounded-3xl border border-gray-200 overflow-hidden shadow-xl">
+            <div className="p-6 sm:p-8 bg-gray-50 border-b border-gray-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#0468D3]/10 text-[#0468D3] mb-2">
+                  <MapPin className="w-3.5 h-3.5" />
+                  Our Location
+                </span>
+                <h2 className="text-2xl sm:text-3xl font-bold font-heading text-gray-900">
+                  Find Us on Google Maps
+                </h2>
+                <p className="text-sm text-gray-600 mt-1">
+                  Afroza Tower, Uposhohor Newmarket, Rajshahi-6000, Bangladesh
+                </p>
+              </div>
+
+              <a
+                href="https://maps.app.goo.gl/x2pDnHPwUuXDFnpc8"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#0468D3] hover:bg-[#0356b0] text-white font-semibold rounded-xl transition-all shadow-md shadow-[#0468D3]/20 shrink-0 text-sm cursor-pointer"
+              >
+                <MapPin className="w-4 h-4" />
+                <span>Open in Google Maps</span>
+                <span className="text-xs">↗</span>
+              </a>
+            </div>
+
+            {/* Embedded Google Map */}
+            <div className="w-full h-80 sm:h-96 md:h-[420px] bg-gray-100 relative">
+              <iframe
+                title="Max iT Solution Location Map"
+                src="https://maps.google.com/maps?q=Afroza+Tower,+Uposhohor+Newmarket,+Rajshahi&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                className="w-full h-full border-0"
+                loading="lazy"
+                allowFullScreen
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
           </div>
         </div>
       </section>

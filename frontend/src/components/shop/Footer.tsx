@@ -35,11 +35,11 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-[#131A22] text-gray-300 pt-12 pb-20 lg:pb-8 border-t border-gray-800 text-xs">
+    <footer className="bg-[#0B1528] text-gray-300 pt-12 pb-20 lg:pb-8 border-t border-[#1C2739] text-xs [background-image:radial-gradient(rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:24px_24px]">
       <div className="max-w-7xl mx-auto px-4">
         
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 pb-10 border-b border-gray-800">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 pb-10 border-b border-[#1C2739]">
           
           {/* Column 1 & 2: Brand, Tagline, Contact & App Badges */}
           <div className="lg:col-span-2 space-y-4">
@@ -74,14 +74,39 @@ export const Footer: React.FC = () => {
               <div className="flex items-start gap-2 text-gray-300 text-xs">
                 <MapPin className="w-4 h-4 text-[#FF6600] shrink-0 mt-0.5" />
                 <div className="space-y-1">
-                  <p>
-                    <span className="font-bold text-white">Head Office: </span>
-                    <span className="text-gray-300">Afroza Tower, 4th Floor, Uposhohor Newmarket, Rajshahi</span>
-                  </p>
-                  <p>
-                    <span className="font-bold text-white">LAB Office: </span>
-                    <span className="text-gray-300">Afroza Tower, 2nd Floor, Uposhohor Newmarket, Rajshahi</span>
-                  </p>
+                  <a
+                    href="https://maps.app.goo.gl/x2pDnHPwUuXDFnpc8"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block group hover:text-white transition-colors"
+                  >
+                    <p>
+                      <span className="font-bold text-white group-hover:text-[#0468D3] transition-colors">Head Office: </span>
+                      <span className="text-gray-300 group-hover:text-white transition-colors">Afroza Tower, 4th Floor, Uposhohor Newmarket, Rajshahi</span>
+                    </p>
+                  </a>
+                  <a
+                    href="https://maps.app.goo.gl/x2pDnHPwUuXDFnpc8"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block group hover:text-white transition-colors"
+                  >
+                    <p>
+                      <span className="font-bold text-white group-hover:text-[#0468D3] transition-colors">LAB Office: </span>
+                      <span className="text-gray-300 group-hover:text-white transition-colors">Afroza Tower, 2nd Floor, Uposhohor Newmarket, Rajshahi</span>
+                    </p>
+                  </a>
+                  <div className="pt-0.5">
+                    <a
+                      href="https://maps.app.goo.gl/x2pDnHPwUuXDFnpc8"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#0468D3] hover:text-[#0356b0] hover:underline"
+                    >
+                      <MapPin className="w-3 h-3" />
+                      <span>Google Map Location ↗</span>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -93,7 +118,7 @@ export const Footer: React.FC = () => {
               </p>
               <div className="flex items-center gap-2.5">
                 {/* Google Play Badge Placeholder */}
-                <div className="flex items-center gap-2 bg-gray-900 border border-gray-700 px-3 py-1.5 rounded-md hover:border-gray-500 cursor-pointer transition-colors">
+                <div className="flex items-center gap-2 bg-[#101C33] border border-[#1C2739] px-3 py-1.5 rounded-md hover:border-[#0468D3]/50 cursor-pointer transition-colors">
                   <Smartphone className="w-5 h-5 text-emerald-400" />
                   <div className="text-left">
                     <p className="text-[9px] text-gray-400 leading-none">GET IT ON</p>
@@ -102,7 +127,7 @@ export const Footer: React.FC = () => {
                 </div>
 
                 {/* App Store Badge Placeholder */}
-                <div className="flex items-center gap-2 bg-gray-900 border border-gray-700 px-3 py-1.5 rounded-md hover:border-gray-500 cursor-pointer transition-colors">
+                <div className="flex items-center gap-2 bg-[#101C33] border border-[#1C2739] px-3 py-1.5 rounded-md hover:border-[#0468D3]/50 cursor-pointer transition-colors">
                   <Smartphone className="w-5 h-5 text-blue-400" />
                   <div className="text-left">
                     <p className="text-[9px] text-gray-400 leading-none">Download on the</p>
@@ -115,7 +140,7 @@ export const Footer: React.FC = () => {
 
           {/* Column 3: Useful Link */}
           <div>
-            <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-4 pb-1 border-b border-gray-800">
+            <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-4 pb-1 border-b border-[#1C2739]">
               Useful Link
             </h3>
             <ul className="space-y-2.5 text-gray-400">
@@ -149,7 +174,7 @@ export const Footer: React.FC = () => {
 
           {/* Column 4: Link (Policies) */}
           <div>
-            <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-4 pb-1 border-b border-gray-800">
+            <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-4 pb-1 border-b border-[#1C2739]">
               Link
             </h3>
             <ul className="space-y-2.5 text-gray-400">
@@ -183,7 +208,7 @@ export const Footer: React.FC = () => {
 
           {/* Column 5: Newsletter Subscribe Box & Social Icons */}
           <div>
-            <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-4 pb-1 border-b border-gray-800">
+            <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-4 pb-1 border-b border-[#1C2739]">
               Newsletter
             </h3>
             <p className="text-gray-400 text-xs mb-3">
@@ -203,7 +228,7 @@ export const Footer: React.FC = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email address"
                   required
-                  className="w-full px-3 py-2 bg-gray-900 border border-gray-700 rounded-md text-xs text-white placeholder-gray-500 focus:outline-hidden focus:border-[#FF6600]"
+                  className="w-full px-3 py-2 bg-[#101C33] border border-[#1C2739] rounded-md text-xs text-white placeholder-gray-400 focus:outline-hidden focus:border-[#0468D3]"
                 />
                 <button
                   type="submit"
@@ -226,7 +251,7 @@ export const Footer: React.FC = () => {
                   href="https://facebook.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-full bg-gray-800 hover:bg-[#1877F2] text-gray-300 hover:text-white flex items-center justify-center transition-colors"
+                  className="w-8 h-8 rounded-full bg-[#1C2739] hover:bg-[#1877F2] text-gray-300 hover:text-white flex items-center justify-center transition-colors"
                   aria-label="Facebook"
                 >
                   <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -237,7 +262,7 @@ export const Footer: React.FC = () => {
                   href="https://youtube.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-full bg-gray-800 hover:bg-[#FF0000] text-gray-300 hover:text-white flex items-center justify-center transition-colors"
+                  className="w-8 h-8 rounded-full bg-[#1C2739] hover:bg-[#FF0000] text-gray-300 hover:text-white flex items-center justify-center transition-colors"
                   aria-label="YouTube"
                 >
                   <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -245,21 +270,21 @@ export const Footer: React.FC = () => {
                   </svg>
                 </a>
                 <a
-                  href="https://instagram.com"
+                  href="https://wa.me/8801733272445"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-full bg-gray-800 hover:bg-[#E4405F] text-gray-300 hover:text-white flex items-center justify-center transition-colors"
-                  aria-label="Instagram"
+                  className="w-8 h-8 rounded-full bg-[#1C2739] hover:bg-[#25D366] text-gray-300 hover:text-white flex items-center justify-center transition-colors"
+                  aria-label="WhatsApp"
                 >
                   <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.634.058-1.776-.367-1.428-.532-2.348-1.954-2.42-2.048-.07-.095-.568-.756-.568-1.442 0-.685.358-1.023.486-1.163.128-.14.281-.175.375-.175.093 0 .188.001.27.006.088.004.205-.034.32.245.12.289.41 1.002.446 1.075.036.073.06.158.01.256-.048.098-.073.158-.145.244-.073.085-.153.19-.219.255-.073.072-.15.15-.064.298.086.147.382.63.818 1.019.561.5 1.034.655 1.18.728.147.073.233.061.32-.037.086-.098.375-.436.475-.586.1-.15.201-.125.337-.075.137.05.867.41 1.016.485.15.074.25.111.287.174.037.063.037.368-.107.773zM12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.98-1.399C8.423 21.493 10.153 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/>
                   </svg>
                 </a>
                 <a
                   href="https://linkedin.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-full bg-gray-800 hover:bg-[#0A66C2] text-gray-300 hover:text-white flex items-center justify-center transition-colors"
+                  className="w-8 h-8 rounded-full bg-[#1C2739] hover:bg-[#0A66C2] text-gray-300 hover:text-white flex items-center justify-center transition-colors"
                   aria-label="LinkedIn"
                 >
                   <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -274,7 +299,7 @@ export const Footer: React.FC = () => {
 
         {/* Copyright notice */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-gray-500 text-[11px]">
-          <p>© 2026 maxitshop. All rights reserved. Powered by MaxiT Technologies. · <Link href="/admin" className="hover:text-[#FF6600] transition-colors underline">Admin Portal</Link></p>
+          <p>© 2026 Max iT Solution. All rights reserved. · <Link href="/admin" className="hover:text-[#FF6600] transition-colors underline">Admin Portal</Link></p>
           <p>Payment Methods: Cash on Delivery (COD), bKash, Nagad, Rocket</p>
         </div>
 
