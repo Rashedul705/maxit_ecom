@@ -74,14 +74,39 @@ export const Footer: React.FC = () => {
               <div className="flex items-start gap-2 text-gray-300 text-xs">
                 <MapPin className="w-4 h-4 text-[#FF6600] shrink-0 mt-0.5" />
                 <div className="space-y-1">
-                  <p>
-                    <span className="font-bold text-white">Head Office: </span>
-                    <span className="text-gray-300">Afroza Tower, 4th Floor, Uposhohor Newmarket, Rajshahi</span>
-                  </p>
-                  <p>
-                    <span className="font-bold text-white">LAB Office: </span>
-                    <span className="text-gray-300">Afroza Tower, 2nd Floor, Uposhohor Newmarket, Rajshahi</span>
-                  </p>
+                  <a
+                    href="https://maps.app.goo.gl/x2pDnHPwUuXDFnpc8"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block group hover:text-white transition-colors"
+                  >
+                    <p>
+                      <span className="font-bold text-white group-hover:text-[#0468D3] transition-colors">Head Office: </span>
+                      <span className="text-gray-300 group-hover:text-white transition-colors">Afroza Tower, 4th Floor, Uposhohor Newmarket, Rajshahi</span>
+                    </p>
+                  </a>
+                  <a
+                    href="https://maps.app.goo.gl/x2pDnHPwUuXDFnpc8"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block group hover:text-white transition-colors"
+                  >
+                    <p>
+                      <span className="font-bold text-white group-hover:text-[#0468D3] transition-colors">LAB Office: </span>
+                      <span className="text-gray-300 group-hover:text-white transition-colors">Afroza Tower, 2nd Floor, Uposhohor Newmarket, Rajshahi</span>
+                    </p>
+                  </a>
+                  <div className="pt-0.5">
+                    <a
+                      href="https://maps.app.goo.gl/x2pDnHPwUuXDFnpc8"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#0468D3] hover:text-[#0356b0] hover:underline"
+                    >
+                      <MapPin className="w-3 h-3" />
+                      <span>Google Map Location ↗</span>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
