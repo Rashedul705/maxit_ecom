@@ -1,0 +1,1063 @@
+{
+  "source": "https://www.startech.com.bd/solar-battery",
+  "sourceName": "source_4_solar_battery",
+  "scrapedAt": "2026-10-31T12:54:00.203Z",
+  "totalCrawledPages": 1,
+  "totalProductsFound": 16,
+  "categoriesToCreate": [
+    {
+      "id": "cat-solar-battery",
+      "name": "SOLAR BATTERY",
+      "slug": "solar-battery",
+      "order": 15,
+      "isActive": true,
+      "image": "https://i.ibb.co/w10z5hL/Hithium-Hero-EE-16-16k-Wh-Lithiu.webp",
+      "icon": "BatteryCharging",
+      "description": "High performance LiFePO4 lithium and deep cycle solar batteries for residential, industrial, and off-grid solar energy systems."
+    }
+  ],
+  "categoriesExisting": [],
+  "stats": {
+    "total": 16,
+    "withPrice": 13,
+    "withoutPrice": 3,
+    "descriptionsCleaned": 16,
+    "totalImagesUploaded": 35,
+    "imageUploadFailures": 0
+  },
+  "products": [
+    {
+      "id": "st-53597",
+      "title": "Hithium HeroEE 16 16kWh Lithium Solar Battery",
+      "slug": "hithium-heroee-16-16kwh-lithium-battery",
+      "price": 324500,
+      "oldPrice": 335500,
+      "discountPercentage": 3,
+      "category": "solar-battery",
+      "categoryName": "SOLAR BATTERY",
+      "brand": "Hithium",
+      "productCode": "53597",
+      "stock": 10,
+      "image": "https://i.ibb.co/w10z5hL/Hithium-Hero-EE-16-16k-Wh-Lithiu.webp",
+      "images": [
+        "https://i.ibb.co/w10z5hL/Hithium-Hero-EE-16-16k-Wh-Lithiu.webp"
+      ],
+      "shortDescription": "Model: HeroEE 16\nOutput Capacity: 10240W\nInverter Capacity: 10 kVA, Inverter Type: Pure Sine Wave\nBattery Backup: 5 Hours\n10x Lights, 6x Fans, Fridge, Oven, 4 Air Coolers or 2 ACs",
+      "keyFeatures": [
+        "Model: HeroEE 16",
+        "Output Capacity: 10240W",
+        "Inverter Capacity: 10 kVA, Inverter Type: Pure Sine Wave",
+        "Battery Backup: 5 Hours",
+        "10x Lights, 6x Fans, Fridge, Oven, 4 Air Coolers or 2 ACs"
+      ],
+      "warranty": "5 Years",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Hithium HeroEE 16 16kWh Lithium Solar Battery</h2><p>The Hithium <strong>HeroEE 16</strong> 16kWh Lithium Solar Battery is a premium-grade power backup solution engineered for both residential and small commercial applications, offering unmatched performance, reliability, and energy efficiency. With an output capacity of 10240W and an advanced 10 kVA inverter, this system can simultaneously run a wide range of household and office appliances, including 10 LED lights, 6 ceiling fans, a refrigerator, microwave oven, 4 air coolers or 2 air conditioners, as well as laptops, desktops, smart TVs, washing machines, irons, kettles, printers, CCTV systems, Wi-Fi routers, sound systems, and even residential lifts. Designed for extended use, the Hithium HeroEE 16 16kWh Lithium Battery features a high-capacity 16000Wh battery that delivers up to 5 hours of uninterrupted backup time, making it ideal for areas with frequent power outages. Built with longevity in mind, the Hithium HeroEE 16 Lithium Battery utilizes ultra-durable battery cells with an outstanding 11,000 cycle life and an expected minimum lifespan of 25 years, significantly reducing long-term replacement and maintenance costs. The system supports dual charging options both solar and AC electricity allowing flexible and eco-friendly energy sourcing in any environment. For added peace of mind, the Hithium HeroEE 16 10240W Solar Battery includes comprehensive safety features such as overcharge and over-discharge protection, overcurrent protection, overload protection, short circuit protection, and full fault detection systems, ensuring both device and user safety at all times. Whether you’re looking to secure your home from outages or power your small business with a sustainable energy solution, the Hithium HeroEE 16 10240W 16kWh delivers industrial-grade power in a smart, compact, and highly efficient design.</p></div>",
+      "specs": {
+        "Main Feature": {
+          "Capacity": "Output Load: 10240W",
+          "Battery": "Cell cycle life: 11,000 cycles Battery Lifetime: Minimum 25 Years",
+          "Others": "Total Capacity: 16000 Wh Inverter Capacity: 10 kVA Supports: 10 Lights, 6 Ceiling Fans, Fridge, Oven, 4 Air Coolers or 2 ACs Charging System: Solar and AC Electricity Protection: Overcharge and over-discharge protection / Overcurrent protection, Overload protection, Short circuit protection / Fault protection Extended Power for Homes and Small Businesses Small/Medium Residential Type: LED Lights, Ceiling Fans, Wi-Fi Router, Laptop, Desktop Computer, Television, Refrigerator, Microwave Oven, Electric Kettle, Washing Machine, Iron, Air Conditioner, Air Coolers, Printer, CCTV System, Sound System, Internet Switch/Modem, Lift"
+        },
+        "Output Features": {
+          "Backup Time": "5 Hours"
+        },
+        "Manufacture Warranty": {
+          "Warranty": "5 Years"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/hithium-heroee-16-16kwh-lithium-battery",
+      "audit": {
+        "sourcePrice": 295000,
+        "sourceRegularPrice": 305000,
+        "calculatedPrice": 324500,
+        "calculatedOldPrice": 335500,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T12:53:14.919Z"
+      }
+    },
+    {
+      "id": "st-53577",
+      "title": "MARSARIVA MR-LFP48-200-WMD 51.2V 204Ah Lithium Solar Battery",
+      "slug": "marsariva-mr-lfp48-200-wmd-204ah-lithium-battery",
+      "price": 236500,
+      "oldPrice": 258500,
+      "discountPercentage": 9,
+      "category": "solar-battery",
+      "categoryName": "SOLAR BATTERY",
+      "brand": "MARSRIVA",
+      "productCode": "53577",
+      "stock": 10,
+      "image": "https://i.ibb.co/tw3f48kB/MARSARIVA-MR-LFP48-200-WMD-51.webp",
+      "images": [
+        "https://i.ibb.co/tw3f48kB/MARSARIVA-MR-LFP48-200-WMD-51.webp",
+        "https://i.ibb.co/3mk2Jvcr/MARSARIVA-MR-LFP48-200-WMD-51.webp",
+        "https://i.ibb.co/twBhbxrH/MARSARIVA-MR-LFP48-200-WMD-51.webp",
+        "https://i.ibb.co/DPX57dRm/MARSARIVA-MR-LFP48-200-WMD-51.webp"
+      ],
+      "shortDescription": "Model: MR-LFP48-200-WMD\nBattery Type: LiFePO4\nRated Capacity: 204Ah, Cycle Life: ≥6000\nNominal Energy: 10.44kWh, Voltage: 51.2V\nBuilt-in BMS, 4.3-inch Touch Screen, Built-in Fire Extinguisher",
+      "keyFeatures": [
+        "Model: MR-LFP48-200-WMD",
+        "Battery Type: LiFePO4",
+        "Rated Capacity: 204Ah, Cycle Life: ≥6000",
+        "Nominal Energy: 10.44kWh, Voltage: 51.2V",
+        "Built-in BMS, 4.3-inch Touch Screen, Built-in Fire Extinguisher"
+      ],
+      "warranty": "5 Year warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>MARSARIVA MR-LFP48-200-WMD 51.2V 204Ah Lithium Solar Battery</h2>\n<p>The <strong>MARSARIVA MR-LFP48-200-WMD 51.2V 204Ah Lithium Battery</strong> is designed for reliable energy storage. With 10.44kWh storage capacity, it provides extended backup for solar power systems. This Lithium battery uses Grade A LiFePO4 cells for stable performance. Its high energy density supports longer backup periods for demanding applications.</p>\n<p>This 204Ah battery supports more than 6,000 cycles at 25°C, reaching 70% end-of-life capacity. It has a design life of at least 10 years and operates across a wide temperature range. The built-in BMS protects and monitors the battery operation. RS485 and CAN communication enable integration with compatible energy systems and equipment.</p>\n<p>The MARSARIVA MR-LFP48-200-WMD battery supports up to 15 units connected in parallel for higher storage capacity. Its floor-standing or wall-mount design simplifies installation in different spaces. A 4.3-inch touch screen provides convenient system monitoring and operation. SPCC cold-rolled steel construction provides strong physical support, while the built-in aerosol fire extinguisher adds an extra safety feature.</p>\n<p>This solar battery suits residential solar systems, backup power setups, off-grid installations, and small commercial energy storage. MARSARIVA MR-LFP48-200-WMD battery can support homes, offices, shops, telecom sites, and remote facilities requiring extended backup. With 210A maximum charging and discharging current, it supports high-power applications. The BMS-included battery also suits expandable solar storage projects requiring long service life.</p>\n\n</div>",
+      "specs": {
+        "General Information": {
+          "Type": "LiFePO4 Battery (Grade A)",
+          "Capacity": "204Ah",
+          "Input Voltage": "Nominal Voltage: 51.2V",
+          "Max. Charging Current": "210A",
+          "Resistance": "≤13.9mΩ",
+          "Max. Discharge Current": "210A",
+          "Operating Temperature": "Charge Ambient Temperature 0°C to 55°C Discharge Ambient Temperature -20°C to 55°C Storage Temperature 0°C to 40°C Humidity 5% – 95%",
+          "Others": "Number of Parallel Connections Up to 15 units Built-in BMS Support connected in parallel mode for expansion Floor standing or wall mount for simple installation 4.3-inch touch screen for easy operation Built-in aerosol fire extinguisher"
+        },
+        "Physical Information": {
+          "Material": "Constructed with SPCC high-quality cold-rolled steel for robust support",
+          "Dimension": "485 × 200 × 850mm",
+          "Weight": "86kg"
+        },
+        "Warranty Information": {
+          "Warranty": "5 Year warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/marsariva-mr-lfp48-200-wmd-204ah-lithium-battery",
+      "audit": {
+        "sourcePrice": 215000,
+        "sourceRegularPrice": 235000,
+        "calculatedPrice": 236500,
+        "calculatedOldPrice": 258500,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T12:53:19.233Z"
+      }
+    },
+    {
+      "id": "st-53579",
+      "title": "MARSARIVA MR-LFP48-314-FSD 51.2V 314Ah Lithium Solar Battery",
+      "slug": "marsariva-mr-lfp48-314-fsd-314ah-lithium-battery",
+      "price": 291500,
+      "oldPrice": 302500,
+      "discountPercentage": 4,
+      "category": "solar-battery",
+      "categoryName": "SOLAR BATTERY",
+      "brand": "MARSRIVA",
+      "productCode": "53579",
+      "stock": 10,
+      "image": "https://i.ibb.co/nMcJK6Jn/MARSARIVA-MR-LFP48-314-FSD-51.webp",
+      "images": [
+        "https://i.ibb.co/nMcJK6Jn/MARSARIVA-MR-LFP48-314-FSD-51.webp",
+        "https://i.ibb.co/3mk2Jvcr/MARSARIVA-MR-LFP48-200-WMD-51.webp",
+        "https://i.ibb.co/d0rhpYgK/MARSARIVA-MR-LFP48-314-FSD-51.webp",
+        "https://i.ibb.co/DBbm3bM/MARSARIVA-MR-LFP48-314-FSD-51.webp"
+      ],
+      "shortDescription": "Model: MR-LFP48-314-FSD\nBattery Type: LiFePO4\nRated Capacity: 314Ah, Cycle Life: ≥8000\nNominal Energy: 16.07kWh, Voltage: 51.2V\nBuilt-in BMS, 3.5-inch Touch Screen, Built-in Fire Extinguisher",
+      "keyFeatures": [
+        "Model: MR-LFP48-314-FSD",
+        "Battery Type: LiFePO4",
+        "Rated Capacity: 314Ah, Cycle Life: ≥8000",
+        "Nominal Energy: 16.07kWh, Voltage: 51.2V",
+        "Built-in BMS, 3.5-inch Touch Screen, Built-in Fire Extinguisher"
+      ],
+      "warranty": "5 Year warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>MARSARIVA MR-LFP48-314-FSD 51.2V 314Ah Lithium Solar Battery</h2><p>The <strong>MARSARIVA MR-LFP48-314-FSD 51.2V 314Ah Lithium Battery</strong> is designed for reliable energy storage and extended backup performance. It provides 16.07kWh nominal energy capacity for demanding power applications. This Iron phosphate lithium battery supports over 8,000 cycles at 25°C, reaching 70% end-of-life capacity. Its high energy density helps deliver longer backup periods while supporting efficient residential and commercial energy storage systems.</p><p>This solar battery features a built-in BMS for battery monitoring, protection, and management. Communication options include RS485, CAN, RS232, Bluetooth, and WiFi modules for convenient system integration. Users can monitor performance through PC software or a mobile app. The MARSARIVA MR-LFP48-314-FSD battery supports passive cell balancing and parallel connection of up to 15 units. This expansion capability allows storage capacity to grow with changing energy requirements.</p><p>The MARSARIVA MR-LFP48-314-FSD battery supports 160A nominal charging and 200A nominal discharging currents. Maximum charging and discharging currents reach 210A, with over-current protection at 215A. Charging operates from 0°C to 55°C, while discharging supports temperatures from -20°C to 55°C. A 3.5-inch touchscreen simplifies operation and provides system information. Built-in aerosol fire suppression adds another safety feature for energy storage installations.</p><p>The MR-LFP48-314-FSD suits homes, solar power systems, commercial buildings, telecom backup, and off-grid installations. It can support solar energy storage, emergency power, and backup systems requiring substantial capacity. The floor-standing or wall-mount design supports flexible installation options. Constructed with SPCC cold-rolled steel, this bms included battery weighs approximately 125kg. Its 51.2V architecture makes it suitable for high-capacity energy storage applications requiring long service life.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "LiFePO4 Battery (Grade A)",
+          "Capacity": "314Ah",
+          "Current": "Nominal Charge Current 160A Nominal Discharge Current 200A",
+          "Input Voltage": "Nominal Voltage: 51.2V",
+          "Max. Charging Current": "210A",
+          "Max. Discharge Current": "210A",
+          "Self Discharge": "≤200µA",
+          "Operating Temperature": "Charge Ambient Temperature 0°C to 55°C Discharge Ambient Temperature -20°C to 55°C Storage Temperature 0°C to 40°C Humidity 5% – 95%",
+          "Others": "Number of Parallel Connections Up to 15 units Built-in BMS Support connected in parallel mode for expansion Floor standing or wall mount for simple installation 3.5-inch touch screen for easy operation Built-in aerosol fire extinguisher"
+        },
+        "Physical Information": {
+          "Material": "Constructed with SPCC high-quality cold-rolled steel for robust support",
+          "Dimension": "428 × 238 × 825 (900) mm",
+          "Weight": "125kg"
+        },
+        "Warranty Information": {
+          "Warranty": "5 Year warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/marsariva-mr-lfp48-314-fsd-314ah-lithium-battery",
+      "audit": {
+        "sourcePrice": 265000,
+        "sourceRegularPrice": 275000,
+        "calculatedPrice": 291500,
+        "calculatedOldPrice": 302500,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T12:53:22.701Z"
+      }
+    },
+    {
+      "id": "st-53582",
+      "title": "MARSARIVA MR-LFP48-100-WMD 51.2V 102Ah Lithium Solar Battery",
+      "slug": "marsariva-mr-lfp48-100-wmd-102ah-lithium-battery",
+      "price": 126500,
+      "oldPrice": 132000,
+      "discountPercentage": 4,
+      "category": "solar-battery",
+      "categoryName": "SOLAR BATTERY",
+      "brand": "MARSRIVA",
+      "productCode": "53582",
+      "stock": 10,
+      "image": "https://i.ibb.co/nsDTJJ3j/MARSARIVA-MR-LFP48-100-WMD-51.webp",
+      "images": [
+        "https://i.ibb.co/nsDTJJ3j/MARSARIVA-MR-LFP48-100-WMD-51.webp",
+        "https://i.ibb.co/VWTyx73W/MARSARIVA-MR-LFP48-100-WMD-51.webp",
+        "https://i.ibb.co/1tdRbc5B/MARSARIVA-MR-LFP48-100-WMD-51.webp",
+        "https://i.ibb.co/LD1ncdVQ/MARSARIVA-MR-LFP48-100-WMD-51.webp"
+      ],
+      "shortDescription": "Model: MR-LFP48-314-FSD\nBattery Type: LiFePO4\nRated Capacity: 102Ah, Cycle Life: ≥6000\nNominal Energy: 5.22kWh, Voltage: 51.2V\nBuilt-in BMS, 4.3-inch Touch Screen, Built-in Fire Extinguisher",
+      "keyFeatures": [
+        "Model: MR-LFP48-314-FSD",
+        "Battery Type: LiFePO4",
+        "Rated Capacity: 102Ah, Cycle Life: ≥6000",
+        "Nominal Energy: 5.22kWh, Voltage: 51.2V",
+        "Built-in BMS, 4.3-inch Touch Screen, Built-in Fire Extinguisher"
+      ],
+      "warranty": "5 Year warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>MARSARIVA MR-LFP48-100-WMD 51.2V 102Ah Solar Battery</h2>\n<p>The <span style=\"font-weight: bold;\">MARSARIVA MR-LFP48-100-WMD 51.2V 102Ah </span><span style=\"font-weight: 700;\">Solar </span><span style=\"font-weight: bold;\">Battery</span> is engineered for reliable energy storage and extended backup power or solar systems. This LiFePO4 battery uses Grade A cells with 5.22kWh storage capacity. Its iron phosphate lithium chemistry supports 6000+ cycles at 25°C. The battery also provides a design life of more than 10 years.</p>\n<p>This 102Ah battery supports a wide operating temperature range for charging and discharging. MARSARIVA MR-LFP48-100-WMD battery delivers up to 105A charging current and 120A continuous discharge current. Peak charging reaches 110A for 2 seconds, while peak discharge reaches 125A. The built-in BMS provides battery monitoring and protection, while RS485 and CAN support system communication.</p>\n<p>The MARSARIVA MR-LFP48-100-WMD battery supports up to 15 units connected in parallel for higher storage capacity. Its 4.3-inch touch screen provides straightforward system control and monitoring. SPCC cold-rolled steel construction provides strong housing support. A built-in aerosol fire extinguisher adds another safety feature. Wall mounting or floor installation supports flexible placement.</p>\n<p>This Lithium battery suits residential solar systems, backup power installations, telecom systems, small commercial energy storage, and off-grid applications. MARSARIVA MR-LFP48-100-WMD battery also works well for solar inverter systems requiring expandable storage. As a bms included battery, it provides integrated battery management without requiring a separate BMS. Its 5.22kWh capacity supports longer backup periods for homes, offices, shops, and remote power systems.</p>\n\n</div>",
+      "specs": {
+        "General Information": {
+          "Type": "LiFePO4 Battery (Grade A)",
+          "Capacity": "102Ah",
+          "Input Voltage": "Nominal Voltage: 51.2V",
+          "Max. Charging Current": "105A",
+          "Resistance": "≤13.9mΩ",
+          "Max. Discharge Current": "120A",
+          "Operating Temperature": "Charge Ambient Temperature 0°C to 55°C Discharge Ambient Temperature -20°C to 55°C Storage Temperature 0°C to 40°C Humidity 5% – 95%",
+          "Others": "Number of Parallel Connections Up to 15 units Built-in BMS Support connected in parallel mode for expansion Floor standing or wall mount for simple installation 4.3-inch touch screen for easy operation Built-in aerosol fire extinguisher"
+        },
+        "Physical Information": {
+          "Material": "Constructed with SPCC high-quality cold-rolled steel for robust support",
+          "Dimension": "398 × 198.5 × 598.5mm",
+          "Weight": "44.5kg"
+        },
+        "Warranty Information": {
+          "Warranty": "5 Year warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/marsariva-mr-lfp48-100-wmd-102ah-lithium-battery",
+      "audit": {
+        "sourcePrice": 115000,
+        "sourceRegularPrice": 120000,
+        "calculatedPrice": 126500,
+        "calculatedOldPrice": 132000,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T12:53:26.875Z"
+      }
+    },
+    {
+      "id": "st-53607",
+      "title": "MARSARIVA MR-LFP24-100-WMT 25.6V 100Ah Lithium Solar Battery",
+      "slug": "marsariva-mr-lfp24-100-wmt-100ah-lithium-battery",
+      "price": 74800,
+      "oldPrice": 82500,
+      "discountPercentage": 9,
+      "category": "solar-battery",
+      "categoryName": "SOLAR BATTERY",
+      "brand": "MARSRIVA",
+      "productCode": "53607",
+      "stock": 10,
+      "image": "https://i.ibb.co/fzS4gG5Q/MARSARIVA-MR-LFP24-100-WMT-25.webp",
+      "images": [
+        "https://i.ibb.co/fzS4gG5Q/MARSARIVA-MR-LFP24-100-WMT-25.webp",
+        "https://i.ibb.co/Xkzcd99f/MARSARIVA-MR-LFP24-100-WMT-25.webp",
+        "https://i.ibb.co/nskt4pMd/MARSARIVA-MR-LFP24-100-WMT-25.webp",
+        "https://i.ibb.co/jkHLBrcJ/MARSARIVA-MR-LFP24-100-WMT-25.webp"
+      ],
+      "shortDescription": "Model: MR-LFP24-200-WMT\nBattery Type: LiFePO4\nRated Capacity: 100Ah, Cycle Life: ≥6000\nNominal Energy: 2.56kWh, Voltage: 25.6V\nMax. Charge Current: 105A, Max. Discharge Current: 120A",
+      "keyFeatures": [
+        "Model: MR-LFP24-200-WMT",
+        "Battery Type: LiFePO4",
+        "Rated Capacity: 100Ah, Cycle Life: ≥6000",
+        "Nominal Energy: 2.56kWh, Voltage: 25.6V",
+        "Max. Charge Current: 105A, Max. Discharge Current: 120A"
+      ],
+      "warranty": "5 Year warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>MARSARIVA MR-LFP24-100-WMT 25.6V 100Ah Lithium Solar Battery</h2><p>The <strong>MARSARIVA MR-LFP24-100-WMT 25.6V 100Ah Lithium Solar  Battery</strong> is designed for reliable energy storage applications. It uses LiFePO4 battery technology with 2.56kWh nominal energy capacity. The Iron phosphate battery supports high energy density and extended backup performance. Its ≥6000 cycle life at 25°C supports long-term energy storage requirements.</p><p>With a 100Ah Battery capacity, the MARSARIVA MR-LFP24-100-WMT supports 50A nominal charging and 100A nominal discharging. Maximum charging current reaches 105A, while maximum discharge current reaches 120A. The integrated BMS provides protection against over-voltage, under-voltage, and excessive current conditions. Passive cell balancing helps maintain battery performance during operation.</p><p>The MARSARIVA MR-LFP24-100-WMT supports parallel connection for system expansion up to 15 units. Communication options include RS485, CAN, RS232, Bluetooth, and WiFi. Users can monitor system performance through PC software or a mobile APP. This Solar Battery supports charging from 0°C to 55°C and discharging from -20°C to 55°C.</p><p>Built with SPCC high-quality cold-rolled steel, the MARSARIVA MR-LFP24-100-WMT supports floor-standing or wall-mounted installation. Its 3.5-inch touchscreen provides convenient system control and monitoring. A built-in aerosol fire extinguisher adds an additional safety feature. The battery measures 360 × 150 × 400mm and weighs approximately 28kg.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "LiFePO4 Battery",
+          "Capacity": "100Ah",
+          "Current": "Nominal Charge Current: 50A Nominal Discharge Current: 100A Charge Over-current Protection: 110 A Discharge Over-current Protection: 125A",
+          "Input Voltage": "Nominal Voltage: 25.6V Over-voltage Protection: 29.2V Under-voltage Protection: 21.6V",
+          "Max. Charging Current": "105A",
+          "Max. Discharge Current": "120A",
+          "Self Discharge": "≤200µA",
+          "Operating Temperature": "Charge Ambient Temperature 0°C to 55°C Discharge Ambient Temperature -20°C to 55°C Storage Temperature 0°C to 40°C Humidity 5% – 95%",
+          "Others": "Monitoring: PC Software, Mobile APP"
+        },
+        "Physical Information": {
+          "Dimension": "360 × 150 × 400 (437) mm",
+          "Weight": "28kg"
+        },
+        "Warranty Information": {
+          "Warranty": "5 Year warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/marsariva-mr-lfp24-100-wmt-100ah-lithium-battery",
+      "audit": {
+        "sourcePrice": 68000,
+        "sourceRegularPrice": 75000,
+        "calculatedPrice": 74800,
+        "calculatedOldPrice": 82500,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T12:53:31.133Z"
+      }
+    },
+    {
+      "id": "st-53656",
+      "title": "Solis IntelliHome-5kWh-OD 51.2V 100Ah Lithium Solar Battery",
+      "slug": "solis-intellihome-5kwh-od-512v-100ah-lithium-battery",
+      "price": 140800,
+      "oldPrice": 148500,
+      "discountPercentage": 5,
+      "category": "solar-battery",
+      "categoryName": "SOLAR BATTERY",
+      "brand": "Solis",
+      "productCode": "53656",
+      "stock": 10,
+      "image": "https://i.ibb.co/gZsgSyc6/Solis-Intelli-Home-5k-Wh-OD-51-2.webp",
+      "images": [
+        "https://i.ibb.co/gZsgSyc6/Solis-Intelli-Home-5k-Wh-OD-51-2.webp"
+      ],
+      "shortDescription": "Model: IntelliHome-5kWh-OD\nBattery Type: LiFePO4\nRated Capacity: 100Ah, Cycle Life: ≥6000\nNominal Energy: 2.56kWh, Voltage: 51.2V\nMax. Charge Current: 50A, Max. Discharge Current: 100A",
+      "keyFeatures": [
+        "Model: IntelliHome-5kWh-OD",
+        "Battery Type: LiFePO4",
+        "Rated Capacity: 100Ah, Cycle Life: ≥6000",
+        "Nominal Energy: 2.56kWh, Voltage: 51.2V",
+        "Max. Charge Current: 50A, Max. Discharge Current: 100A"
+      ],
+      "warranty": "5 Year warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Solis IntelliHome-5kWh-OD 51.2V 100Ah Solar Battery</h2>\n<p>The Solis IntelliHome-5kWh-OD 51.2V 100Ah Solar Battery is an advanced Solar Battery designed for residential and commercial solar energy storage systems. This 5kWh LiFePO4 Battery features a 51.2V nominal voltage and 100Ah capacity. With a maximum 100% depth of discharge (DOD), it provides access to its full rated energy capacity. Its lithium iron phosphate chemistry offers enhanced thermal stability, improved safety, and an extended cycle life. This Inverter Battery supports efficient energy storage with compatible solar power systems.</p>\n<p>The Solis IntelliHome-5kWh-OD LiFePO4 Battery features an IP66-rated enclosure and C5M corrosion protection for demanding outdoor environments. Its integrated battery management system (BMS) monitors battery operation and supports CAN and RS485 communication. These interfaces enable communication with compatible inverters and parallel battery systems. Natural convection cooling supports quiet operation without active cooling fans. This Lithium Battery offers wall-mounted and floor-standing installation options for suitable residential and commercial applications.</p>\n<p>With over 6,000 charge cycles and a specified service life of up to 10 years, the Solis IntelliHome-5kWh-OD 100AH battery supports long-term solar energy storage. Its intelligent heating function enables charging at temperatures as low as -20°C. The battery supports a continuous charging current of 50A and a continuous discharge current of 100A. Users can connect up to eight units in parallel, expanding total storage capacity to 40kWh. This scalable Solar Battery helps accommodate increasing energy storage requirements.</p>\n<p>The Solis IntelliHome-5kWh-OD 51.2V Inverter Battery measures 470 × 650 × 150mm and weighs 50kg. It operates within an ambient temperature range of -20°C to 55°C, subject to specified temperature-related derating. The battery meets several recognized safety and transportation standards, including IEC 62619 and UN 38.3. It supports selected Solis inverters, so compatibility should be confirmed before installation. For customers seeking a durable Lithium Battery, this 100AH battery offers expandable capacity, intelligent battery management, and reliable energy storage for compatible solar installations.</p>\n\n</div>",
+      "specs": {
+        "General Information": {
+          "Type": "LiFePO4 Battery",
+          "Capacity": "100Ah",
+          "Current": "Recommended Charge & Discharge Current DC 50A",
+          "Input Voltage": "Nominal Voltage DC 51.2V Operating Voltage DC 44.8 – 57.6V",
+          "Max. Charging Current": "50A",
+          "Max. Discharge Current": "100A",
+          "Operating Temperature": "Charge Ambient Temperature -20~55°C Discharge Ambient Temperature -20~55°C",
+          "Others": "Compatible Inverters S6-EH1P(3-6)K-L-EU/S5-EH1P(3-6)K-L(Smart)/S6-EH1P(3-10)K-L-PLUS/S6-EH1P(9.9-18)K03-NV-YD-L/S6-EH2P(5-8)K02-SV-YD-L/S6-EH2P(9.6-16)K03-SV-YD-L-US/S6-EH3P(8-18)K02-NV-YD-L/S6-EH3P(7-10)K02-LV-YD-L/SS-EA1P3K-L/S6-EA1P(3.6-6)K-L/S6-E01P(4-6)K-48/S6-E01P(4-5)K-48-EU"
+        },
+        "Physical Information": {
+          "Dimension": "470 × 650 × 150 mm",
+          "Weight": "50kg"
+        },
+        "Warranty Information": {
+          "Warranty": "5 Year warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/solis-intellihome-5kwh-od-512v-100ah-lithium-battery",
+      "audit": {
+        "sourcePrice": 128000,
+        "sourceRegularPrice": 135000,
+        "calculatedPrice": 140800,
+        "calculatedOldPrice": 148500,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T12:53:33.231Z"
+      }
+    },
+    {
+      "id": "st-53667",
+      "title": "Solis IntelliHome-16kWh-OD 51.2V 314Ah Lithium Solar Battery",
+      "slug": "solis-intellihome-16kwh-od-512v-314ah-lithium-battery",
+      "price": 363000,
+      "oldPrice": 385000,
+      "discountPercentage": 6,
+      "category": "solar-battery",
+      "categoryName": "SOLAR BATTERY",
+      "brand": "Solis",
+      "productCode": "53667",
+      "stock": 10,
+      "image": "https://i.ibb.co/wZJx8fdF/Solis-Intelli-Home-16k-Wh-OD-51.webp",
+      "images": [
+        "https://i.ibb.co/wZJx8fdF/Solis-Intelli-Home-16k-Wh-OD-51.webp",
+        "https://i.ibb.co/gZyVvRtf/Solis-Intelli-Home-16k-Wh-OD-51.webp",
+        "https://i.ibb.co/2033Gy17/Solis-Intelli-Home-16k-Wh-OD-51.webp"
+      ],
+      "shortDescription": "Model: IntelliHome-16kWh-OD\nBattery Type: LiFePO4\nRated Capacity: 314Ah, Cycle Life: ≥6000\nNominal Energy: 16kWh, Voltage: 51.2V\nMax. Charge Current: 157A, Max. Discharge Current: 157A",
+      "keyFeatures": [
+        "Model: IntelliHome-16kWh-OD",
+        "Battery Type: LiFePO4",
+        "Rated Capacity: 314Ah, Cycle Life: ≥6000",
+        "Nominal Energy: 16kWh, Voltage: 51.2V",
+        "Max. Charge Current: 157A, Max. Discharge Current: 157A"
+      ],
+      "warranty": "5 Year warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Solis IntelliHome-16kWh-OD 51.2V 314Ah Solar&nbsp; Battery</h2>\n<p>The <span style=\"font-weight: bold;\">Solis IntelliHome-16kWh-OD </span>51.2V 314Ah Lithium Battery stores extra solar energy for use at night. It uses LiFePO4 chemistry, which is known for safe and stable performance. This deep cycle lithium battery suits homes that need dependable residential energy storage. You get 16kWh of nominal energy, so appliances keep running during outages. It helps lower your reliance on the grid and reduces electricity bills. Setup is easy with compatible Solis hybrid inverters in most modern solar homes. The unit carries a five-year warranty for added long-term peace of mind.</p>\n<h3>Powerful 16kWh Capacity Keeps Homes Running</h3>\n<p>The Solis IntelliHome-16kWh-OD 314Ah Lithium Battery offers 16kWh of nominal energy. Its 314Ah rated capacity works with a 51.2V nominal voltage. That means lights, fans, and fridges can stay powered through long power outages. The operating voltage range of 44.8–57.6V keeps output steady as charge levels change. Nominal energy and capacity figures are clear, so sizing your home system is easier.</p>\n<h3>Strong Current Support for Daily Solar Use</h3>\n<p>The Solis IntelliHome-16kWh-OD 51.2V 314Ah Lithium Battery supports 157A maximum charging current. It also delivers 157A maximum discharge current for heavy household loads. The LiFePO4 cells are rated for 6000 or more charge cycles. Charging and discharging both work from -20 to 55°C ambient temperature. This wide range suits changing weather and daily solar cycling. Strong current handling helps the battery respond when demand rises.</p>\n<h3>Wide Inverter Compatibility and Certified Safety</h3>\n<p>The Solis IntelliHome-16kWh-OD 314Ah Lithium Battery pairs with many Solis S6, S5, and SS inverters. Always check your inverter model against the official compatibility list first. It meets IEC 62619 and UN 38.3 standards for safer use and transport. Other listed approvals include IEC 63056, VDE 2510-50, and IEC 60529 for IP protection. At 121.5kg, the unit feels solid and needs proper handling during installation.</p>\n\n</div>",
+      "specs": {
+        "General Information": {
+          "Type": "LiFePO4 Battery",
+          "Capacity": "314Ah",
+          "Current": "Recommended Charge & Discharge Current DC 157A",
+          "Input Voltage": "Nominal Voltage: DC 51.2V Operating Voltage: DC 44.8 – 57.6V",
+          "Max. Charging Current": "157A",
+          "Max. Discharge Current": "157A",
+          "Operating Temperature": "Charge Ambient Temperature -20~55°C Discharge Ambient Temperature -20~55°C",
+          "Others": "Compatible Inverters: S6-EH1P(3-6)K-L-EU/S5-EH1P(3-6)K-L(Smart)/S6-EH1P(3-10)K-L-PLUS/S6-EH1P(9.9-18)K03-NV-YD-L/S6-EH2P(5-8)K02-SV-YD-L/S6-EH2P(9.6-16)K03-SV-YD-L-US/S6-EH3P(8-18)K02-NV-YD-L/S6-EH3P(7-10)K02-LV-YD-L/SS-EA1P3K-L/S6-EA1P(3.6-6)K-L/S6-E01P(4-6)K-48/S6-E01P(4-5)K-48-EU Certifications & Safety Standards: IEC 62619, IEC 63056, ISO13849, VDE 2510-50, UN 38.3, EN/IEC61000-6-1/2/3/4, IEC 60730-1, IEC 60529 (IP), SA TS 5389, IEC62040, UV test, CEC list"
+        },
+        "Physical Information": {
+          "Dimension": "470 × 950 × 240 mm",
+          "Weight": "121.5kg"
+        },
+        "Warranty Information": {
+          "Warranty": "5 Year warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/solis-intellihome-16kwh-od-512v-314ah-lithium-battery",
+      "audit": {
+        "sourcePrice": 330000,
+        "sourceRegularPrice": 350000,
+        "calculatedPrice": 363000,
+        "calculatedOldPrice": 385000,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T12:53:36.814Z"
+      }
+    },
+    {
+      "id": "st-54341",
+      "title": "Solis FlexCore-ID 60kWh Lithium Solar Battery",
+      "slug": "solis-flexcore-id-60kwh-solar-battery",
+      "price": 1837000,
+      "oldPrice": 1993200,
+      "discountPercentage": 8,
+      "category": "solar-battery",
+      "categoryName": "SOLAR BATTERY",
+      "brand": "Solis",
+      "productCode": "54341",
+      "stock": 10,
+      "image": "https://i.ibb.co/jZkKnQNB/Solis-Flex-Core-ID-60k-Wh-Lithiu.webp",
+      "images": [
+        "https://i.ibb.co/jZkKnQNB/Solis-Flex-Core-ID-60k-Wh-Lithiu.webp"
+      ],
+      "shortDescription": "Model: FlexCore-ID 60kWh\nBattery Type: LiFePO4\nCycle Life: ≥8000\nRated voltage: 64V\nMax. Charge/Discharge  Current: 157 A",
+      "keyFeatures": [
+        "Model: FlexCore-ID 60kWh",
+        "Battery Type: LiFePO4",
+        "Cycle Life: ≥8000",
+        "Rated voltage: 64V",
+        "Max. Charge/Discharge  Current: 157 A"
+      ],
+      "warranty": "5 Year warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Solis FlexCore-ID 60kWh Lithium Solar Battery</h2>The <strong>Solis FlexCore-ID 60kWh Lithium Solar Battery</strong> is designed to support efficient solar energy storage for residential and commercial applications. Featuring advanced LiFePO4 Battery technology, it offers a 60kWh storage capacity. This Solar Battery provides a 64V output voltage for consistent energy delivery and effective power management. Built with lithium iron phosphate technology, the Solis FlexCore-ID 60kWh Lithium Battery supports a maximum charging current of 157A. It also delivers a maximum discharge current of 157A for efficient energy transfer. This LiFePO4 Battery supports high-capacity solar storage requirements while maintaining stable charging and discharging performance. With a floating life of at least 8,000 cycles, the Solis FlexCore-ID 60kWh Solar Battery supports long-term energy storage applications. Its operating temperature range is -20°C to 55°C for both charging and discharging. This temperature tolerance allows the Lithium Battery to function across different environmental conditions. The Solis FlexCore-ID 60kWh Lithium Solar Battery measures 532 × 308 × 955 mm and weighs 154 kg. Its compact structural design supports organised installation in suitable battery storage spaces. Combining 60kWh capacity, LiFePO4 Battery technology, and high current performance, this Solar Battery offers an effective solution for large-scale solar energy storage systems.</div>",
+      "specs": {
+        "General Information": {
+          "Type": "LiFePO4 Battery",
+          "Capacity": "60kWh",
+          "Output Voltage": "64 V",
+          "Max. Charging Current": "157 A",
+          "Max. Discharge Current": "157 A",
+          "Floating Life": "≥8000",
+          "Operating Temperature": "Charge Ambient Temperature -20~55°C Discharge Ambient Temperature -20~55°C"
+        },
+        "Physical Information": {
+          "Dimension": "532× 308 x 955 mm",
+          "Weight": "154 kg"
+        },
+        "Warranty Information": {
+          "Warranty": "5 Year warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/solis-flexcore-id-60kwh-solar-battery",
+      "audit": {
+        "sourcePrice": 1670000,
+        "sourceRegularPrice": 1812000,
+        "calculatedPrice": 1837000,
+        "calculatedOldPrice": 1993200,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T12:53:39.031Z"
+      }
+    },
+    {
+      "id": "st-46029",
+      "title": "Must LP16-24100 25.6V 100Ah Solar Battery",
+      "slug": "must-lp16-24100-ups-battery",
+      "price": 0,
+      "oldPrice": 0,
+      "discountPercentage": 0,
+      "category": "solar-battery",
+      "categoryName": "SOLAR BATTERY",
+      "brand": "Must",
+      "productCode": "46029",
+      "stock": 0,
+      "image": "https://i.ibb.co/CKhyvdyY/Must-LP16-24100-25-6-V-100-Ah-So.webp",
+      "images": [
+        "https://i.ibb.co/CKhyvdyY/Must-LP16-24100-25-6-V-100-Ah-So.webp",
+        "https://i.ibb.co/qLsgM8zM/Must-LP16-24100-25-6-V-100-Ah-So.webp"
+      ],
+      "shortDescription": "Model: LP16-24100\nNominal Voltage: 25.6V\nNominal Capacity: 100Ah/ 2560Wh\nLife Cycles: 6000 cycles @ 80% DOD, 25°C\nWall-mounted, Stacked, or Rack-mounted",
+      "keyFeatures": [
+        "Model: LP16-24100",
+        "Nominal Voltage: 25.6V",
+        "Nominal Capacity: 100Ah/ 2560Wh",
+        "Life Cycles: 6000 cycles @ 80% DOD, 25°C",
+        "Wall-mounted, Stacked, or Rack-mounted"
+      ],
+      "warranty": "1 Years",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Must LP16-24100 25.6V 100Ah Solar Battery</h2><p>The Must <strong>LP16-24100</strong> 25.6V 100Ah UPS Battery is a high-capacity lithium power source. Designed to provide high performance, a long lifespan, and exceptional dependability in modern power systems. This Must LP16-24100 25.6V 100Ah UPS Battery is designed with superior lithium iron phosphate (LiFePO4) technology for safety, stability, and efficiency, making it excellent for domestic solar systems, business energy storage, and backup power applications. With a nominal voltage of 25.6V and a capacity of 100Ah, it provides 2560Wh of clean energy at a maximum output power of 2.5KW. The battery is designed for endurance, with over 6000 cycles at 80% depth of discharge (DOD) at 25°C, ensuring long-term value and constant performance for years. The Must LP16-24100 25.6V UPS Battery supports a variety of installation modes, including wall-mounted, stacked, and rack-mounted configurations, allowing users to create efficient energy storage systems that are specific to their requirements. Its modular architecture enables for the parallel connection of up to 40 units, effortlessly extending total capacity. This Must LP16-24100 UPS Battery comes with a sophisticated WiFi-enabled Battery Management System (BMS) with an LCD display that provides real-time monitoring and protection against overcharge, over-discharge, over-current, short circuits, and temperature changes. It also supports the CAN2.0, RS232, and RS485 communication protocols, ensuring interoperability with hybrid inverters and advanced energy management solutions. The Must LP16-24100 100Ah UPS Battery is designed for adaptability and performance, with a rugged SPCC steel casing and an IP21 protection grade that ensures long-lasting durability and heat resistance. It operates optimally throughout a wide temperature range, charging from 0°C to 50°C and discharging from -20°C to 60°C. The suggested charge voltage is 29.2V, with a discharge cutoff of 22V, to ensure safe and efficient energy consumption. This Must Battery for UPS provides outstanding reliability with little maintenance, making it suitable for applications such as domestic solar ESS, commercial backup power, and off-grid systems.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "LiFePO4 Battery",
+          "Capacity": "100Ah/ 2560Wh",
+          "Input Voltage": "25.6V",
+          "Max. Charging Current": "100A",
+          "Max. Discharge Current": "100A",
+          "Operating Temperature": "Charge: 0℃ ~50℃ Discharging: -20℃ ~60℃ Storage: -5~35°C",
+          "Others": "Safety Function: Over-charge, Over-discharge, Over-current, Low/High-temperature, Short-circuit Protections Module Parallel: Up to 40 units Communication: CAN2.0/RS232/RS485 IP Protection level: IP21 Installation Mode: Wall-mounted, Stacked-mounted, Rack-mounted(optional) Long lifespan: 6000+ cycles @ 80% DOD, 25°C Ideal For: Residential solar ESS, Commercial backup systems, Off-grid power stations, Modular rack systems and hybrid inverter setups"
+        },
+        "Physical Information": {
+          "Material": "SPCC",
+          "Dimension": "442*485.5*177mm",
+          "Weight": "27 kg"
+        },
+        "Warranty Information": {
+          "Warranty": "1 Years"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/must-lp16-24100-ups-battery",
+      "audit": {
+        "sourcePrice": 0,
+        "sourceRegularPrice": 0,
+        "calculatedPrice": 0,
+        "calculatedOldPrice": 0,
+        "priceMultiplier": 1.1,
+        "status": "Up Coming",
+        "scrapedAt": "2026-10-31T12:53:41.817Z"
+      }
+    },
+    {
+      "id": "st-48126",
+      "title": "Marsriva MR-LBP12-200-LAR 12.8V 200Ah LiFePO4 Solar Battery",
+      "slug": "marsriva-mr-lbp12-200-lar-ups-battery",
+      "price": 53350,
+      "oldPrice": 62920,
+      "discountPercentage": 15,
+      "category": "solar-battery",
+      "categoryName": "SOLAR BATTERY",
+      "brand": "MARSRIVA",
+      "productCode": "48126",
+      "stock": 10,
+      "image": "https://i.ibb.co/39pydS7J/Marsriva-MR-LBP12-200-LAR-12-8.webp",
+      "images": [
+        "https://i.ibb.co/39pydS7J/Marsriva-MR-LBP12-200-LAR-12-8.webp",
+        "https://i.ibb.co/5gFtdPvj/Marsriva-MR-LBP12-200-LAR-12-8.webp",
+        "https://i.ibb.co/h52cCKc/Marsriva-MR-LBP12-200-LAR-12-8.webp",
+        "https://i.ibb.co/NnNv4bfZ/Marsriva-MR-LBP12-200-LAR-12-8.webp"
+      ],
+      "shortDescription": "Model: MR-LBP12-100-LAR\nNominal Voltage: 12.8V (4S4P), Nominal Capacity: 200Ah\nBattery Type: LiFePO4 Battery, Self Discharging: <3% per month\nSupport using under wide temperature range, 6000 cycle life\nBuilt-in BMS, Support connected in parallel mode",
+      "keyFeatures": [
+        "Model: MR-LBP12-100-LAR",
+        "Nominal Voltage: 12.8V (4S4P), Nominal Capacity: 200Ah",
+        "Battery Type: LiFePO4 Battery, Self Discharging: <3% per month",
+        "Support using under wide temperature range, 6000 cycle life",
+        "Built-in BMS, Support connected in parallel mode"
+      ],
+      "warranty": "5 Years warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Marsriva MR-LBP12-200-LAR 12.8V 200Ah LiFePO4 Solar Battery</h2><p>The Marsriva <strong>MR-LBP12-200-LAR</strong> 12.8V 200Ah UPS Battery uses iron phosphate lithium cells for enhanced safety and thermal stability. With a nominal voltage of 12.8V in a 4S4P configuration, the Marsriva MR-LBP12-200-LAR Solar Battery ensures consistent output. It provides a large 200Ah capacity and 2.56kWh storage capacity for extended discharge time and heavy load support. Marsriva Solar Battery technology offers high energy density and efficient power delivery for Solar systems and solar backup solutions. The battery supports up to 6000 cycles to 70 percent EOL at 25 degrees Celsius for long service life. Users can connect up to four units in series and four groups in parallel for scalable system expansion. The Marsriva MR-LBP12-200-LAR 12.8V 200Ah LiFePO4 Battery features a built in BMS for intelligent protection. It safeguards against overcharge, over discharge, short circuit, and temperature fluctuations for reliable daily operation. Self discharging remains below three percent per month, preserving stored energy during standby conditions. Charging voltage ranges from 14.2V to 14.6V for optimal charging performance. Maximum charging current reaches 100A to reduce downtime during energy replenishment. Discharging cut off voltage is set at 10.8V to protect battery health and longevity. Maximum discharging current supports up to 100A for demanding equipment loads. The Marsriva MR-LBP12-200-LAR 12.8V 200Ah Lithium Battery operates between 0℃ and 55℃ during charging. During discharging, it performs reliably from minus 20℃ to 55℃ across diverse environments.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "LiFePO4 Battery",
+          "Capacity": "200Ah",
+          "Input Voltage": "12.8V (4S4P)",
+          "Max. Charging Current": "Max. 100A",
+          "Terminal": "M8",
+          "Max. Discharge Current": "Max. 100A",
+          "Self Discharge": "＜3% per month",
+          "Operating Temperature": "-20℃ to 45℃"
+        },
+        "Physical Information": {
+          "Material": "ABS",
+          "Dimension": "485 x 172 x 240mm",
+          "Weight": "20.5kg"
+        },
+        "Warranty Information": {
+          "Warranty": "5 Years warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/marsriva-mr-lbp12-200-lar-ups-battery",
+      "audit": {
+        "sourcePrice": 48500,
+        "sourceRegularPrice": 57200,
+        "calculatedPrice": 53350,
+        "calculatedOldPrice": 62920,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T12:53:46.109Z"
+      }
+    },
+    {
+      "id": "st-54335",
+      "title": "AKAIYAI A51R205-W 10.24kWh Lithium Solar Battery",
+      "slug": "akaiyai-a51r205-w-solar-battery",
+      "price": 115500,
+      "oldPrice": 0,
+      "discountPercentage": 0,
+      "category": "solar-battery",
+      "categoryName": "SOLAR BATTERY",
+      "brand": "Others",
+      "productCode": "54335",
+      "stock": 10,
+      "image": "https://i.ibb.co/LdspwyfB/AKAIYAI-A51-R205-W-10-24k-Wh-Lit.webp",
+      "images": [
+        "https://i.ibb.co/LdspwyfB/AKAIYAI-A51-R205-W-10-24k-Wh-Lit.webp",
+        "https://i.ibb.co/jv5SvV3B/AKAIYAI-A51-R205-W-10-24k-Wh-Lit.webp"
+      ],
+      "shortDescription": "Model: A51R205-W\nNominal Voltage: 51.2V\nNominal Capacity: 200Ah/ 10240Wh\nLife Cycles: >6000 cycles\nWall-mounted, BMS System, LCD Screen",
+      "keyFeatures": [
+        "Model: A51R205-W",
+        "Nominal Voltage: 51.2V",
+        "Nominal Capacity: 200Ah/ 10240Wh",
+        "Life Cycles: >6000 cycles",
+        "Wall-mounted, BMS System, LCD Screen"
+      ],
+      "warranty": "5 Years",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>AKAIYAI A51R205-W 10.24kWh Lithium Solar Battery</h2><p>The <strong>AKAIYAI A51R205-W 10.24kWh Lithium Solar Battery</strong> delivers efficient energy storage for residential solar power systems. Featuring advanced LiFePO4 battery technology, it provides 205Ah capacity and 51.2V output voltage. This Solar Battery supports up to 6,000 charge cycles, offering extended service life. Its intelligent BMS enhances battery protection, while the 10,496Wh storage capacity supports household electricity needs and emergency backup power.</p><p>Designed for efficient energy management, the AKAIYAI A51R205-W LiFePO4 Battery features a 50A continuous charging current and 100A continuous discharge current. It supports a maximum charging current of 100A for effective energy replenishment. This Lithium Battery also includes CAN, RS485, and RS232 communication ports, enabling convenient system integration. The built-in LCD screen displays real-time operating information for easier monitoring.</p><p>The AKAIYAI A51R205-W Wall Mounted Battery features a space-saving design suitable for garages, utility rooms, and basements. Measuring 562 × 435 × 242 mm and weighing 82.2kg, it offers substantial storage capacity. Its 120A quick plug connector simplifies electrical connections. Additionally, the battery provides IP20 protection and low self-discharge of 3% or less per month at 25°C.</p><p>For households seeking reliable solar energy storage, the AKAIYAI A51R205-W 200Ah Solar Battery offers a high-capacity solution with 205Ah actual capacity. Its operating temperature ranges from -10°C to 55°C during charging and -20°C to 55°C during discharging. This 10.24kWh Solar Battery supports solar energy storage, household power consumption, and emergency electricity backup.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "LiFePO4 Lithium Battery",
+          "Capacity": "205Ah/ 10496Wh",
+          "Current": "Charge Continuous Current: 50 A Discharge Continuous Current: 100 A",
+          "Output Voltage": "51.2V",
+          "Max. Charging Current": "100A",
+          "Resistance": "≤10mQ@50%SOC",
+          "Terminal": "120A Quick Plug Connector",
+          "Max. Discharge Current": "100A",
+          "Self Discharge": "Months Self Discharge ≤3% (25C)",
+          "Operating Temperature": "Charge: -10~55 C Discharging: -20~55 C Storage: 0~30C",
+          "Others": "IP Grade IP20"
+        },
+        "Physical Information": {
+          "Dimension": "562*435*242",
+          "Weight": "82.2 kg"
+        },
+        "Warranty Information": {
+          "Warranty": "5 Years"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/akaiyai-a51r205-w-solar-battery",
+      "audit": {
+        "sourcePrice": 105000,
+        "sourceRegularPrice": 0,
+        "calculatedPrice": 115500,
+        "calculatedOldPrice": 0,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T12:53:49.320Z"
+      }
+    },
+    {
+      "id": "st-54338",
+      "title": "AKAIYAI A51R314-W 16kWh Lithium Solar Battery",
+      "slug": "akaiyai-a51r314-w-solar-battery",
+      "price": 286000,
+      "oldPrice": 302500,
+      "discountPercentage": 5,
+      "category": "solar-battery",
+      "categoryName": "SOLAR BATTERY",
+      "brand": "Others",
+      "productCode": "54338",
+      "stock": 10,
+      "image": "https://i.ibb.co/xqk7VwSw/AKAIYAI-A51-R314-W-16k-Wh-Lithiu.webp",
+      "images": [
+        "https://i.ibb.co/xqk7VwSw/AKAIYAI-A51-R314-W-16k-Wh-Lithiu.webp"
+      ],
+      "shortDescription": "Model: A51R314-W\nNominal Voltage: 51.2V\nNominal Capacity: 314Ah/ 16076.8Wh\nLife Cycles: >6000 cycles\nWall-mounted, BMS System, LCD Screen",
+      "keyFeatures": [
+        "Model: A51R314-W",
+        "Nominal Voltage: 51.2V",
+        "Nominal Capacity: 314Ah/ 16076.8Wh",
+        "Life Cycles: >6000 cycles",
+        "Wall-mounted, BMS System, LCD Screen"
+      ],
+      "warranty": "5 Years",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>AKAIYAI A51R314-W 16kWh Lithium Solar Battery</h2><p>The <strong>AKAIYAI A51R314-W 16kWh Lithium Solar Battery</strong> delivers reliable energy storage for residential and solar power systems. This LiFePO4 Battery features a 51.2V nominal voltage and 314Ah capacity, providing 16,076.8Wh of stored energy. Its advanced lithium battery technology supports efficient energy management and consistent power delivery. The wall-mounted design helps organize installation spaces while offering convenient access. Designed for high-capacity energy storage, the AKAIYAI A51R314-W supports continuous charging and discharging currents of 150A. Its maximum charging and discharging currents also reach 150A, supporting demanding power requirements. This 314Ah Solar Battery features a 150A quick plug connector for secure electrical connections. Additionally, its low self-discharge rate of 3% or less per month at 25°C helps preserve stored energy. Long-term performance is another key feature of the AKAIYAI A51R314-W LiFePO4 Battery. It offers more than 6,000 life cycles, supporting extended use across solar energy applications. The integrated Battery Management System (BMS) monitors battery operation, while the built-in LCD screen displays important system information. These features support convenient monitoring and battery management. With dimensions of 838 × 389 × 230mm and a weight of 82.2kg, the AKAIYAI A51R314-W Wall Mounted Battery supports organized installation. It operates within charging temperatures of -10°C to 55°C and discharging temperatures of -20°C to 55°C. Its IP20 protection rating suits indoor installation environments. This 16kWh Solar Battery provides substantial storage capacity for residential solar energy systems.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "LiFePO4 Lithium Battery",
+          "Capacity": "314Ah/ 16076.8Wh",
+          "Current": "Charge Continuous Current: 150A Discharge Continuous Current: 150A",
+          "Output Voltage": "51.2V",
+          "Max. Charging Current": "150A",
+          "Resistance": "≤8mQ@ 50% SOC",
+          "Terminal": "150A Quick Plug Connector",
+          "Max. Discharge Current": "150A",
+          "Self Discharge": "Months Self Discharge ≤3% (25C)",
+          "Operating Temperature": "Charge: -10~55 C Discharging: -20~55 C Storage: 0~30C",
+          "Others": "IP Grade IP20"
+        },
+        "Physical Information": {
+          "Dimension": "838*389*230 mm",
+          "Weight": "82.2 kg"
+        },
+        "Warranty Information": {
+          "Warranty": "5 Years"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/akaiyai-a51r314-w-solar-battery",
+      "audit": {
+        "sourcePrice": 260000,
+        "sourceRegularPrice": 275000,
+        "calculatedPrice": 286000,
+        "calculatedOldPrice": 302500,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T12:53:51.419Z"
+      }
+    },
+    {
+      "id": "st-53555",
+      "title": "Hithium HeroEE NeoPower 4 G2 12.8V 314Ah LiFePO₄ Lithium Solar Battery",
+      "slug": "hithium-heroee-neopower-4-g2-lithium-battery",
+      "price": 72600,
+      "oldPrice": 79200,
+      "discountPercentage": 8,
+      "category": "solar-battery",
+      "categoryName": "SOLAR BATTERY",
+      "brand": "Hithium",
+      "productCode": "53555",
+      "stock": 10,
+      "image": "https://i.ibb.co/yFsQ9gfc/Hithium-Hero-EE-Neo-Power-4-G2-1.webp",
+      "images": [
+        "https://i.ibb.co/yFsQ9gfc/Hithium-Hero-EE-Neo-Power-4-G2-1.webp"
+      ],
+      "shortDescription": "Model: HeroEE NeoPower 4 G2\nNominal Voltage: 12.8V, Nominal Capacity: 314Ah\nBattery Type: LiFePO4 Lithium Battery, Self Discharging: 3% per month\n11000 Cycle Life, Support Using Under Wide Temperature Range\nSmart BMS, Grade-A Cells, IP65 Dust and Water Resistance",
+      "keyFeatures": [
+        "Model: HeroEE NeoPower 4 G2",
+        "Nominal Voltage: 12.8V, Nominal Capacity: 314Ah",
+        "Battery Type: LiFePO4 Lithium Battery, Self Discharging: 3% per month",
+        "11000 Cycle Life, Support Using Under Wide Temperature Range",
+        "Smart BMS, Grade-A Cells, IP65 Dust and Water Resistance"
+      ],
+      "warranty": "5 Year warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Hithium HeroEE NeoPower 4 G2 12.8V 314Ah LiFePO₄ Lithium Solar Battery</h2>\n<p>The <span style=\"font-weight: bold;\">Hithium HeroEE NeoPower 4 G2</span> 12.8V 314Ah LiFePO₄ Lithium Battery uses LiFePO₄ for energy storage. It has 314Ah capacity with 12.8V input voltage for compatible systems. The Hithium Battery uses CC-CV charging for controlled battery charging. Its ABS plastic material forms the main physical construction. A 29.25kg weight indicates a substantial battery unit. The LiFePO₄ Battery suits storage systems requiring rechargeable energy.</p>\n<h3>Charging Performance And Current Capacity</h3>\n<p>For charging performance, Hithium HeroEE NeoPower 4 G2 Lithium Battery uses CC-CV charging. It accepts 12.8V input voltage for its charging process. The Hithium Battery has a maximum discharge current of 150A. Its monthly self-discharge rate ranges from 2% to 3%. This Rechargeable Battery retains stored capacity between regular usage periods. The Lithium Battery supports charging from 0°C to 55°C temperature. These specifications help users understand its charging and discharge capabilities. This 12V Lithium Battery fits compatible energy storage applications.</p>\n<h3>Temperature Range And Protection Performance</h3>\n<p>During operation, Hithium HeroEE NeoPower 4 G2 12.8V 314Ah LiFePO₄ Lithium Battery handles defined temperature ranges. It supports charging from 0°C to 55°C during regular charging and discharging works from -20°C to 55°C. The Hithium Battery has IP65 resistance for specified protection. Its maximum discharge current reaches 150A during connected operation. ABS plastic forms the battery housing for physical protection. This Deep Cycle Battery suits repeated energy storage applications. It can also work as a Solar Battery in compatible systems.</p>\n<h3>Capacity And Long-Term Storage Applications</h3>\n<p>With its high capacity, Hithium HeroEE NeoPower 4 G2 Lithium Battery fits several storage applications. The Hithium Battery can serve as a UPS Battery for compatible backup systems. Its LiFePO4 Lithium Battery supports rechargeable energy storage applications. Hithium specifies high corrosion resistance for this battery. Its 29.25kg weight indicates a substantial battery unit for installation. The Hithium Battery provides 314Ah capacity for compatible power storage.</p>\n\n</div>",
+      "specs": {
+        "General Information": {
+          "Type": "LiFePO₄ Lithium Battery",
+          "Capacity": "314Ah",
+          "Input Voltage": "12.8V",
+          "Charge Method": "CC-CV",
+          "Resistance": "IP65",
+          "Max. Discharge Current": "150A",
+          "Self Discharge": "2% to 3% per Month",
+          "Operating Temperature": "0°C to 55°C for charging -20°C to 55°C for discharging"
+        },
+        "Physical Information": {
+          "Material": "ABS Plastic",
+          "Dimension": "502 × 186 × 243mm",
+          "Weight": "29.25kg"
+        },
+        "Warranty Information": {
+          "Warranty": "5 Year warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/hithium-heroee-neopower-4-g2-lithium-battery",
+      "audit": {
+        "sourcePrice": 66000,
+        "sourceRegularPrice": 72000,
+        "calculatedPrice": 72600,
+        "calculatedOldPrice": 79200,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T12:53:53.489Z"
+      }
+    },
+    {
+      "id": "st-53913",
+      "title": "Growatt Hope 5.5L-A1 5.5kWh Lithium Solar Battery",
+      "slug": "growatt-hope-55l-a1-55kwh-solar-battery",
+      "price": 0,
+      "oldPrice": 0,
+      "discountPercentage": 0,
+      "category": "solar-battery",
+      "categoryName": "SOLAR BATTERY",
+      "brand": "Growatt",
+      "productCode": "53913",
+      "stock": 0,
+      "image": "https://i.ibb.co/ZzQBvbFR/Growatt-Hope-5-5-L-A1-5-5k-Wh-Li.webp",
+      "images": [
+        "https://i.ibb.co/ZzQBvbFR/Growatt-Hope-5-5-L-A1-5-5k-Wh-Li.webp"
+      ],
+      "shortDescription": "Model: Hope 5.5L-A1\nNominal Voltage: 51.2V, Rated Capacity: 5.5kWh\nBattery Type: LiFePO4 Lithium Battery\nCycle Life: >6000  at 25°C, 0.2C\nMax. discharging current: 100A",
+      "keyFeatures": [
+        "Model: Hope 5.5L-A1",
+        "Nominal Voltage: 51.2V, Rated Capacity: 5.5kWh",
+        "Battery Type: LiFePO4 Lithium Battery",
+        "Cycle Life: >6000  at 25°C, 0.2C",
+        "Max. discharging current: 100A"
+      ],
+      "warranty": "5 Year warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Growatt Hope 5.5L-A1 5.5kWh Solar Battery</h2>\n<p>The <strong>Growatt Hope 5.5L-A1 5.5kWh Lithium Solar Battery</strong> offers reliable energy storage for residential solar power systems. This LiFePO4 battery features a nominal voltage of 51.2V and a rated capacity of 5.5kWh. Its usable capacity of 5.12kWh supports efficient energy storage for household electricity needs. Designed for solar applications, this Lithium Battery helps store surplus solar energy for later use. It provides an effective solution for improving solar energy utilization and supporting backup power requirements.</p>\n<p>With a 93% depth of discharge (DOD), the Growatt Hope 5.5L-A1 delivers substantial usable energy from its storage capacity. This Solar Battery supports a maximum charging current of 100A and a maximum discharging current of 100A. Its peak discharging current reaches 120A for 35 seconds. The operating voltage ranges from 40V to 58.4V, supporting compatible solar inverter battery systems. These specifications help manage stored electricity for various residential energy requirements.</p>\n<p>Durability is another important feature of the Growatt Hope 5.5L-A1 5.5kWh Lithium Solar Battery. It offers a cycle life exceeding 6,000 cycles under specified test conditions of 25°C and 0.2C. The battery operates within charging temperatures of 0°C to +55°C and discharging temperatures of -20°C to +55°C. Its CAN and RS485 communication ports support integration with compatible energy management equipment. Users can connect up to 12 battery packs in parallel for increased storage capacity.</p>\n<p>For installation planning, the Growatt Hope 5.5L-A1 measures 440 × 540 × 130.5mm and weighs approximately 45kg. Its IP20 protection rating suits appropriate indoor installation environments. This LiFePO4 battery offers a 51.2V configuration for compatible solar energy storage setups. Whether upgrading a home solar system or expanding existing storage, this Lithium Battery provides useful capacity and scalable performance. Choose this Solar Battery for compatible solar inverter battery applications requiring efficient energy storage and long cycle life.</p>\n\n</div>",
+      "specs": {
+        "General Information": {
+          "Type": "LiFePO₄ Lithium Battery",
+          "Capacity": "5.5kWh",
+          "Output Voltage": "Operating voltage 40 ~ 58.4V",
+          "Max. Charging Current": "100A",
+          "Resistance": "IP20",
+          "Max. Discharge Current": "100A",
+          "Operating Temperature": "0°C to 55°C for charging -20°C to 55°C for discharging",
+          "Others": "Communication port CAN/RS485 Parallel connection Max.12 packs Cycle life >6000 (25°C, 0.2C,)"
+        },
+        "Physical Information": {
+          "Dimension": "440/540/130.5mm",
+          "Weight": "45±1Kg"
+        },
+        "Warranty Information": {
+          "Warranty": "5 Year warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/growatt-hope-55l-a1-55kwh-solar-battery",
+      "audit": {
+        "sourcePrice": 0,
+        "sourceRegularPrice": 0,
+        "calculatedPrice": 0,
+        "calculatedOldPrice": 0,
+        "priceMultiplier": 1.1,
+        "status": "Out Of Stock",
+        "scrapedAt": "2026-10-31T12:53:55.670Z"
+      }
+    },
+    {
+      "id": "st-53914",
+      "title": "Growatt Hope 5.0L-B1 5kWh Lithium Solar Battery",
+      "slug": "growatt-hope-5-0l-b1-5kwh-solar-battery",
+      "price": 0,
+      "oldPrice": 0,
+      "discountPercentage": 0,
+      "category": "solar-battery",
+      "categoryName": "SOLAR BATTERY",
+      "brand": "Growatt",
+      "productCode": "53914",
+      "stock": 0,
+      "image": "https://i.ibb.co/CKp2PKwV/Growatt-Hope-5-0-L-B1-5k-Wh-Lith.webp",
+      "images": [
+        "https://i.ibb.co/CKp2PKwV/Growatt-Hope-5-0-L-B1-5k-Wh-Lith.webp"
+      ],
+      "shortDescription": "Model: Hope 5.0L-B1\nNominal Voltage: 51.2V, Rated Capacity: 5.12kWh\nBattery Type: LiFePO4 Lithium Battery\nCycle Life: >6000  at 25°C, 0.2C\nMax. discharging current: 100A",
+      "keyFeatures": [
+        "Model: Hope 5.0L-B1",
+        "Nominal Voltage: 51.2V, Rated Capacity: 5.12kWh",
+        "Battery Type: LiFePO4 Lithium Battery",
+        "Cycle Life: >6000  at 25°C, 0.2C",
+        "Max. discharging current: 100A"
+      ],
+      "warranty": "5 Year warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Growatt Hope 5.0L-B1 5kWh Lithium Solar Battery</h2><p>The <strong>Growatt Hope 5.0L-B1 5kWh Lithium Solar Battery</strong> offers efficient energy storage for residential solar power systems. This LiFePO4 battery features a nominal voltage of 51.2V and a rated capacity of 5.12kWh. With 5.0kWh of usable capacity, it stores solar energy for use when sunlight is limited. Its advanced lithium battery technology supports reliable energy management and helps households maximize solar power utilization.</p><p>Designed for solar energy applications, the Growatt Hope 5.0L-B1 solar inverter battery operates within a voltage range of 40–58.4V. It supports maximum charging and discharging currents of 100A, with a peak discharge current of 250A for 150 milliseconds. These specifications support efficient energy delivery for compatible inverter systems. The battery also features a 98% depth of discharge (DOD), allowing users to access a high proportion of its stored energy.</p><p>Durability is another key feature of the Growatt Hope 5.0L-B1 5kWh solar battery. It offers more than 6,000 charge cycles under specified test conditions of 25°C and a 0.20C rate. The operating temperature ranges from 0°C to 55°C during charging and -20°C to 55°C during discharging. Measuring 440 × 480 × 130.5mm and weighing approximately 43 ± 2kg, this Lithium Battery features an IP20 protection rating for suitable indoor installations.</p><p>For larger energy storage requirements, the Growatt Hope 5.0L-B1 supports parallel connection of up to 48 battery packs. CAN and RS485 communication ports enable communication with compatible solar inverters and energy management systems. Its 5.0kWh usable capacity makes this LiFePO4 battery a suitable option for homes seeking expanded solar storage. Whether upgrading an existing installation or planning a new solar power system, this 5kWh solar battery provides scalable storage with high usable capacity and long cycle life.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "LiFePO₄ Lithium Battery",
+          "Capacity": "5.12kWh",
+          "Output Voltage": "Operating voltage 40 ~ 58.4V",
+          "Max. Charging Current": "100A",
+          "Resistance": "IP20",
+          "Max. Discharge Current": "100A",
+          "Operating Temperature": "0°C to 55°C for charging -20°C to 55°C for discharging",
+          "Others": "Communication port CAN/RS485 Parallel connection Max 48 packs Cycle life >6000 (25°C, 0.2C,)"
+        },
+        "Physical Information": {
+          "Dimension": "440/540/130.5mm",
+          "Weight": "45±1Kg"
+        },
+        "Warranty Information": {
+          "Warranty": "5 Year warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/growatt-hope-5-0l-b1-5kwh-solar-battery",
+      "audit": {
+        "sourcePrice": 0,
+        "sourceRegularPrice": 0,
+        "calculatedPrice": 0,
+        "calculatedOldPrice": 0,
+        "priceMultiplier": 1.1,
+        "status": "Out Of Stock",
+        "scrapedAt": "2026-10-31T12:53:58.048Z"
+      }
+    },
+    {
+      "id": "st-53915",
+      "title": "Growatt Hope 16.0LM-A1 16kWh Lithium Solar Battery",
+      "slug": "growatt-hope-16-0lm-a1-16kwh-solar-battery",
+      "price": 347600,
+      "oldPrice": 357500,
+      "discountPercentage": 3,
+      "category": "solar-battery",
+      "categoryName": "SOLAR BATTERY",
+      "brand": "Growatt",
+      "productCode": "53915",
+      "stock": 10,
+      "image": "https://i.ibb.co/d0YwKmMc/Growatt-Hope-16-0-LM-A1-16k-Wh-L.webp",
+      "images": [
+        "https://i.ibb.co/d0YwKmMc/Growatt-Hope-16-0-LM-A1-16k-Wh-L.webp"
+      ],
+      "shortDescription": "Model: Hope 16.0LM-A1\nNominal Voltage: 51.2V, Rated Capacity: 16kWh\nBattery Type: LiFePO4 Lithium Battery\nCycle Life: >6000  at 25°C, 0.2C\nMax. discharging current: 100A",
+      "keyFeatures": [
+        "Model: Hope 16.0LM-A1",
+        "Nominal Voltage: 51.2V, Rated Capacity: 16kWh",
+        "Battery Type: LiFePO4 Lithium Battery",
+        "Cycle Life: >6000  at 25°C, 0.2C",
+        "Max. discharging current: 100A"
+      ],
+      "warranty": "5 Year warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Growatt Hope 16.0LM-A1 16kWh Lithium Solar Battery</h2>\n<p>The <strong>Growatt Hope 16.0LM-A1 16kWh Lithium Solar Battery</strong> provides reliable energy storage for residential and solar power systems. This LiFePO4 battery features a nominal voltage of 51.2V and a total capacity of 16kWh. With 15.3kWh of usable energy and a 95% depth of discharge, it supports efficient solar energy storage. Its advanced lithium battery technology helps manage stored electricity for use when solar generation decreases.</p>\n<p>Designed for solar energy applications, the Growatt Hope 16.0LM-A1 operates within a voltage range of 40–58.4V. It supports maximum charging and discharging currents of 150A and 200A, respectively. The peak current reaches 700A for 200 microseconds. These specifications make this solar inverter battery suitable for compatible systems requiring substantial energy storage and controlled power delivery. CAN and RS485 communication ports support integration with compatible equipment.</p>\n<p>The Growatt Hope 16.0LM-A1 16kWh solar battery features a cycle life of up to 6,000 cycles under specified test conditions. These conditions include 80% depth of discharge, a 0.5C rate, and a temperature of 25°C. Natural convection cooling helps regulate operating temperatures without forced-air cooling. The battery supports charging temperatures from 0°C to 60°C and discharging temperatures from -20°C to 60°C. Its floor-standing design measures 440 × 894 × 265mm and weighs 120kg.</p>\n<p>For larger energy storage requirements, the Growatt Hope 16.0LM-A1 supports parallel connections of up to 48 battery units. This expansion capability allows systems to accommodate higher storage demands when properly configured. Its LiFePO4 chemistry, 15.3kWh usable capacity, and 16kWh nominal rating make it a strong option for solar installations. With IP20 protection and a specified operating altitude below 2,000 metres, this Lithium Battery suits appropriate indoor installation environments.</p>\n\n</div>",
+      "specs": {
+        "General Information": {
+          "Type": "LiFePO₄ Lithium Battery",
+          "Capacity": "16kWh",
+          "Output Voltage": "Operating voltage 40 ~ 58.4V",
+          "Max. Charging Current": "150A",
+          "Resistance": "IP20",
+          "Max. Discharge Current": "200A",
+          "Operating Temperature": "0°C to 55°C for charging -20°C to 55°C for discharging",
+          "Others": "Communication port CAN/RS485 Parallel connection Max.48 packs Cycle life >6000 (25°C, 0.2C,) Floor Standing"
+        },
+        "Physical Information": {
+          "Dimension": "440x894x265mm",
+          "Weight": "120±1Kg"
+        },
+        "Warranty Information": {
+          "Warranty": "5 Year warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/growatt-hope-16-0lm-a1-16kwh-solar-battery",
+      "audit": {
+        "sourcePrice": 316000,
+        "sourceRegularPrice": 325000,
+        "calculatedPrice": 347600,
+        "calculatedOldPrice": 357500,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T12:54:00.203Z"
+      }
+    }
+  ]
+}
