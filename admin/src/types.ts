@@ -21,12 +21,16 @@ export interface Product {
   images: string[];
   shortDescription?: string;
   description?: string;
-  specs: Record<string, string>;
+  productCode?: string;
+  keyFeatures?: string[];
+  warranty?: string;
+  specs: Record<string, any>;
   rating?: number;
   reviewCount?: number;
   isDeal?: boolean;
   isFeatured?: boolean;
   isNewItem?: boolean;
+  isHotDeal?: boolean;
 }
 
 export interface Brand {

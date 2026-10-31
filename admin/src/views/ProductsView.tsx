@@ -3,6 +3,7 @@ import { Product, Category, Brand } from '../types';
 import { adminApi } from '../api';
 import { Plus, Search, Edit2, Trash2, ChevronLeft, ChevronRight, Check, X, AlertCircle, CheckCircle2 } from 'lucide-react';
 import { ProductModal } from '../components/ProductModal';
+import { ProductEditorView } from '../components/ProductEditorView';
 
 export const ProductsView: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -15,6 +16,7 @@ export const ProductsView: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [viewMode, setViewMode] = useState<'list' | 'editor'>('list');
 
   // In-line Quick Editing State
   const [inlineEditing, setInlineEditing] = useState<{ id: string; field: 'price' | 'stock'; value: string } | null>(null);
@@ -123,6 +125,24 @@ export const ProductsView: React.FC = () => {
     }
   };
 
+  if (viewMode === 'editor') {
+    return (
+      <ProductEditorView
+        product={editingProduct}
+        categories={categories}
+        brands={brands}
+        onDiscard={() => {
+          setEditingProduct(null);
+          setViewMode('list');
+        }}
+        onSave={async (data) => {
+          await handleSaveProduct(data);
+          setViewMode('list');
+        }}
+      />
+    );
+  }
+
   return (
     <div>
       {/* Header */}
@@ -135,7 +155,7 @@ export const ProductsView: React.FC = () => {
         </div>
         <button
           className="btn btn-primary"
-          onClick={() => { setEditingProduct(null); setIsModalOpen(true); }}
+          onClick={() => { setEditingProduct(null); setViewMode('editor'); }}
         >
           <Plus size={16} /> Add Product
         </button>
@@ -361,7 +381,7 @@ export const ProductsView: React.FC = () => {
                       <div style={{ display: 'flex', gap: '6px' }}>
                         <button
                           className="btn btn-secondary btn-sm"
-                          onClick={() => { setEditingProduct(p); setIsModalOpen(true); }}
+                          onClick={() => { setEditingProduct(p); setViewMode('editor'); }}
                           title="Full Edit"
                         >
                           <Edit2 size={13} />

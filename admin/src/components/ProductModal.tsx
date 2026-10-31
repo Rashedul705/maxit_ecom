@@ -24,6 +24,9 @@ export const ProductModal: React.FC<ProductModalProps> = ({
   const [category, setCategory] = useState(product?.category || (categories[0]?.slug || ''));
   const [brand, setBrand] = useState(product?.brand || (brands[0]?.name || 'Nano Power'));
   const [stock, setStock] = useState(product?.stock !== undefined ? product.stock : 10);
+  const [productCode, setProductCode] = useState(product?.productCode || '');
+  const [warranty, setWarranty] = useState(product?.warranty || '');
+  const [keyFeaturesText, setKeyFeaturesText] = useState((product?.keyFeatures || []).join('\n'));
   const [shortDescription, setShortDescription] = useState(product?.shortDescription || '');
   const [description, setDescription] = useState(product?.description || '');
   const [images, setImages] = useState<string[]>(product?.images && product.images.length > 0 ? product.images : ['']);
@@ -83,6 +86,10 @@ export const ProductModal: React.FC<ProductModalProps> = ({
     });
 
     const cleanImages = images.filter(img => img.trim() !== '');
+    const cleanKeyFeatures = keyFeaturesText
+      .split('\n')
+      .map(k => k.trim())
+      .filter(k => k.length > 0);
 
     await onSave({
       title,
@@ -91,6 +98,9 @@ export const ProductModal: React.FC<ProductModalProps> = ({
       category,
       brand,
       stock: Number(stock),
+      productCode: productCode.trim(),
+      warranty: warranty.trim(),
+      keyFeatures: cleanKeyFeatures,
       shortDescription,
       description,
       images: cleanImages.length > 0 ? cleanImages : ['https://images.unsplash.com/photo-1509391365360-2e959784a276?w=600&q=80'],
@@ -177,6 +187,40 @@ export const ProductModal: React.FC<ProductModalProps> = ({
                   ))}
                 </select>
               </div>
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}>
+              <div className="form-group">
+                <label className="form-label">Product Code</label>
+                <input
+                  type="text"
+                  className="form-input"
+                  placeholder="e.g. 51939"
+                  value={productCode}
+                  onChange={e => setProductCode(e.target.value)}
+                />
+              </div>
+              <div className="form-group">
+                <label className="form-label">Warranty</label>
+                <input
+                  type="text"
+                  className="form-input"
+                  placeholder="e.g. 5 Years Official Warranty"
+                  value={warranty}
+                  onChange={e => setWarranty(e.target.value)}
+                />
+              </div>
+            </div>
+
+            <div className="form-group">
+              <label className="form-label">Key Features (One bullet per line)</label>
+              <textarea
+                className="form-textarea"
+                rows={3}
+                placeholder={"Rated Power: 6000W\nMax Charge Current: 100A\nIP65 Protection Grade"}
+                value={keyFeaturesText}
+                onChange={e => setKeyFeaturesText(e.target.value)}
+              />
             </div>
 
             {/* Badges / Checkboxes */}

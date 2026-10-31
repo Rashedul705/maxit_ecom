@@ -15,13 +15,10 @@ import {
 
 const getApiBase = () => {
   if (typeof window !== 'undefined') {
-    // When served under /admin (either backend origin or proxied by Next.js rewrite), relative /api/v1 works universally
-    if (window.location.pathname.startsWith('/admin')) {
-      return '/api/v1';
-    }
     if (window.location.hostname.includes('esp32.site')) {
       return 'https://maxitecomapi.maxapi.esp32.site/api/v1';
     }
+    return '/api/v1';
   }
   return import.meta.env.VITE_API_BASE_URL || 'http://localhost:5002/api/v1';
 };

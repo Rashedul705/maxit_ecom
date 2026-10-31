@@ -1,246 +1,52 @@
-# maxitshop - E-Commerce Platform Implementation Plan
+MAXITSHOP PLAN
 
-## Goal
-Build a high-performance, mobile-first e-commerce web application called "maxitshop" tailored for the Bangladesh market, matching the layout, structure, and visual hierarchy of https://bdshop.com/ with custom branding, BDT (৳) currency, Next.js frontend (Customer shop + Admin panel), and Express backend.
+0. OVERVIEW
+Phase 1: Implement two designs: (1A) the Startech-style storefront product page and (1B) a new admin Add/Edit Product page.
+Phase 2: Import products from Startech into maxitshop (data only).
+Phase 2 starts ONLY after Phase 1 is complete, reviewed, committed and deployed by me, and I say "start Phase 2".
 
-## Tech Stack
-- Frontend: Next.js (App Router), TypeScript, Tailwind CSS, Lucide React Icons
-- Backend: Node.js, Express, CORS, Dotenv
-- Architecture: Decoupled Controller/Service/Data Layer ready for MongoDB Mongoose migration
-- Ports: Backend on 5000, Frontend on 3000
+1. PROJECT FACTS
+- Root: /Users/rashedulislam/MAXIT/Maxit_Ecom/maxit_ecom
+- Apps: backend (Express, port 5002), storefront (Next.js, port 3001), admin (Vite React, port 5173, base path /admin/).
+- Mirrored folders: api/ mirrors backend/, frontend/ mirrors storefront/. Make changes in the folder that is actually used, mirror them identically into the other, and list changed files per folder.
+- Production: Coolify with a frontend app and a backend app. The admin must also be served at https://maxitshop.com/admin.
+- Database: MongoDB Atlas (MONGODB_URI may point to the production database). Images are uploaded to imgbb (IMGBB_API_KEY in .env).
+- Product model fields: id (unique), title, slug (unique), price, oldPrice, discountPercentage, category (slug), categoryName, brand, stock, image, images[], shortDescription, description, specs (Mixed), rating, reviewCount, reviewsCount, isNewItem, isFeatured, isDeal, isHotDeal, sourceUrl, plus optional productCode, keyFeatures[], warranty (added in an earlier step; check what actually exists and add only what is missing).
+- Category model is flat: id, name, slug, image, icon, description, order, isActive. No parent/child.
+- Existing data: 117 products and 11 categories. These must NEVER be modified or deleted.
 
-## Folder Structure
-```
-maxitshop/
-├── backend/
-│   ├── controllers/
-│   │   ├── adminController.js
-│   │   ├── bannerController.js
-│   │   ├── categoryController.js
-│   │   ├── orderController.js
-│   │   └── productController.js
-│   ├── data/
-│   │   └── mock.js
-│   ├── middleware/
-│   │   ├── auth.js
-│   │   └── errorHandler.js
-│   ├── routes/
-│   │   ├── adminRoutes.js
-│   │   ├── categoryRoutes.js
-│   │   ├── orderRoutes.js
-│   │   └── productRoutes.js
-│   ├── services/
-│   │   ├── adminService.js
-│   │   ├── bannerService.js
-│   │   ├── categoryService.js
-│   │   ├── orderService.js
-│   │   └── productService.js
-│   ├── utils/
-│   │   └── response.js
-│   ├── .env
-│   ├── .env.example
-│   ├── package.json
-│   ├── server.js
-│   └── test_api.js
-├── frontend/
-│   ├── public/
-│   ├── src/
-│   │   ├── app/
-│   │   │   ├── (shop)/
-│   │   │   │   ├── layout.tsx
-│   │   │   │   ├── page.tsx
-│   │   │   │   ├── category/[slug]/page.tsx
-│   │   │   │   ├── product/[slug]/page.tsx
-│   │   │   │   ├── cart/page.tsx
-│   │   │   │   ├── checkout/page.tsx
-│   │   │   │   ├── track-order/page.tsx
-│   │   │   │   ├── search/page.tsx
-│   │   │   │   ├── about/page.tsx
-│   │   │   │   ├── contact/page.tsx
-│   │   │   │   ├── faq/page.tsx
-│   │   │   │   ├── shipping-returns/page.tsx
-│   │   │   │   ├── privacy/page.tsx
-│   │   │   │   ├── terms/page.tsx
-│   │   │   │   └── ShopLayoutClient.tsx
-│   │   │   ├── admin/
-│   │   │   │   ├── layout.tsx
-│   │   │   │   ├── page.tsx
-│   │   │   │   ├── login/page.tsx
-│   │   │   │   ├── products/page.tsx
-│   │   │   │   └── orders/page.tsx
-│   │   │   ├── layout.tsx
-│   │   │   └── globals.css
-│   │   ├── components/
-│   │   │   ├── shop/
-│   │   │   │   ├── Header.tsx
-│   │   │   │   ├── TopBar.tsx
-│   │   │   │   ├── MegaMenu.tsx
-│   │   │   │   ├── MobileDrawer.tsx
-│   │   │   │   ├── BannerSlider.tsx
-│   │   │   │   ├── ProductCard.tsx
-│   │   │   │   ├── ProductInteractiveView.tsx
-│   │   │   │   ├── SpeciallyForYou.tsx
-│   │   │   │   ├── CategoryFilterSidebar.tsx
-│   │   │   │   ├── CategorySortBar.tsx
-│   │   │   │   ├── CartDrawer.tsx
-│   │   │   │   ├── Footer.tsx
-│   │   │   │   └── FloatingSupport.tsx
-│   │   │   └── admin/
-│   │   │       ├── AdminSidebar.tsx
-│   │   │       ├── AdminHeader.tsx
-│   │   │       └── InvoiceModal.tsx
-│   │   ├── lib/
-│   │   │   ├── api.ts
-│   │   │   ├── cartContext.tsx
-│   │   │   └── types.ts
-│   │   └── middleware.ts
-│   ├── .env.local
-│   ├── .env.example
-│   ├── package.json
-│   ├── tsconfig.json
-│   └── next.config.ts
-├── docs/
-│   └── reference/
-├── .gitignore
-├── README.md
-├── AGENTS.md
-├── DESIGN.md
-└── plan.txt
-```
+2. GLOBAL RULES (apply to every step)
+1. Do NOT run git pull, merge, commit, push or any git write command. I handle git.
+2. Work ONE step at a time. After each step give a short report with real evidence (screenshots or a clear description, test results, counts) and any problem or doubt, then STOP and ask: "Step X is done and verified. Shall I proceed to Step Y?" Wait for me to say "go". If I say "fix: ...", fix it first. Never combine steps.
+3. Never modify, delete or overwrite any existing product or category.
+4. Phase 1 may change code but must NOT write to the database. Test with mock data or a "Preview JSON" panel. If one real test save is truly needed, ask me first, name it "ZZ TEST - DELETE ME", and delete only that product afterwards.
+5. Do not touch unrelated areas (home page, header, footer, checkout logic, admin layout outside the product pages).
+6. Branding: use maxitshop's own logo, colors and fonts. Copy Startech's LAYOUT and FEATURES only. Never copy their logo, images, CSS, HTML or text.
+7. Run technical steps (installing packages, running scripts) without asking. Stop only at the checkpoints in this plan.
+8. Be honest in every report. Tell me if something does not work.
 
-## API Endpoints (/api/v1)
-- GET /health - Service health check
-- GET /categories - Category tree with subcategories
-- GET /banners - Hero carousel banners
-- GET /products - Paginated product list with search, category, brand, price filters, sorting
-- GET /products/deals - Deals of the day
-- GET /products/new - New arrivals
-- GET /products/featured - Featured products
-- GET /products/:slug - Product details with related products
-- GET /search/suggestions?q= - Live search autocomplete suggestions
-- POST /orders - Place new COD order with Dhaka/outside-Dhaka shipping calculation & stock decrement
-- GET /orders/track?orderNumber=&phone= - Customer track order
-- GET /admin/orders - Admin list all orders (Protected by ADMIN_TOKEN)
-- PATCH /admin/orders/:id/status - Admin update order status (Protected by ADMIN_TOKEN)
-- POST /admin/products - Admin create product (Protected by ADMIN_TOKEN)
-- PUT /admin/products/:id - Admin update product (Protected by ADMIN_TOKEN)
-- DELETE /admin/products/:id - Admin delete product (Protected by ADMIN_TOKEN)
+3. PHASE 1A: STOREFRONT PRODUCT PAGE
+Reference: https://www.startech.com.bd/goodwe-gw10k-sdt-30-10kw-solar-inverter plus the design screenshots I will attach. A product page redesign already exists; compare it with the target below and close the gaps.
 
-## Task List
+Step A1: Audit the current product page and cards against the target, list the gaps, the files you will change, and a short plan. STOP.
 
-### STEP 1: WORKSPACE SETUP
-- [x] Initialize git repository in root if not present
-- [x] Verify root directory structure (`frontend/`, `backend/`, `docs/reference/`)
-- [x] Create initial `README.md` and `AGENTS.md`
-- [x] Commit Step 1 to git
+Step A2: Top section.
+- Breadcrumb (Home > Category > Product).
+- Two columns: image gallery with clickable thumbnails (left), product info (right).
+- Title, then Save (wishlist), Add to Compare and Share buttons. Share copies the link or uses the native share sheet.
+- Info table: Price, Regular Price (struck through, shown only when oldPrice > price), Status (In Stock if stock > 0, else Out of Stock), Product Code (hide if empty), Brand.
+- Key Features bullet list with a "View More Info" link that scrolls smoothly to Specification. If keyFeatures is empty, fall back to shortDescription split by new lines.
+- Payment box: "Cash Discount Price" (the current price). Optional EMI part: "0% EMI for up to 12 months: price / 12 per month" (rounded to the nearest taka). Optional reward points line: floor(price / 1000) points.
+- EMI and reward points are CALCULATED, with no database fields. Put them in one config object (storeConfig: emiEnabled, emiMonths, pointsEnabled, pointsDivisor). Both flags must default to FALSE, because I must confirm I really offer EMI and a points program before they are shown. Do not show them while the flags are false.
+- Quantity selector and Buy Now button using the existing cart and checkout flow.
+STOP after reporting.
 
-### STEP 2: SECURITY & ENVIRONMENT
-- [x] Configure root `.gitignore` with all rules (node_modules, .next, dist, .env, .env.*, !.env.example, backend/.env, frontend/.env, frontend/.env.local)
-- [x] Create `backend/.env.example` and local `backend/.env`
-- [x] Create `frontend/.env.example` and local `frontend/.env.local`
-- [x] Verify no hardcoded secrets or localhost URLs exist in git-tracked files
-- [x] Commit Step 2 to git
+Step A3: Lower section.
+- Sticky tab menu: Specification, Description, and Questions and Reviews ONLY if the storefront already supports them (otherwise leave them out).
+- Specification as grouped tables (group heading row, then key/value rows). Support both formats: flat {"Key": "Value"} (existing products) and grouped {"Group": {"Key": "Value"}} (new products).
+- Description renders sanitized HTML.
+- Right sidebar: "Similar Product" (same category, up to 4: small image, name, price) and a Support card (phone, opening hours, store locator link; use existing site settings, otherwise placeholders, and tell me).
+- Fully responsive: on mobile the gallery stacks above the info and Buy Now stays easy to reach, and the sidebar moves below.
+STOP after reporting.
 
-### STEP 3: DESIGN STUDY (BDSHOP.COM)
-- [x] Open https://bdshop.com/ via browser subagent and study desktop & mobile layouts (Home, Category, Product, Cart/Checkout, Track Order)
-- [x] Capture reference screenshots to `docs/reference/`
-- [x] Create `DESIGN.md` documenting color palette, typography, header, sections, product cards, category page, product page, footer, spacing & shadows
-- [x] Commit Step 3 to git
-
-### STEP 4: BACKEND DEVELOPMENT
-- [x] Initialize Express backend in `backend/package.json`
-- [x] Setup `server.js` with CORS, JSON body parser, request logging, error handling
-- [x] Create `data/mock.js` (6 categories, 40 realistic products with rich specs, 4 promotional banners)
-- [x] Implement controllers, services, routes for Categories, Banners, Products, Orders, Search Suggestions
-- [x] Implement Admin endpoints (orders list, status update, product CRUD) with ADMIN_TOKEN auth middleware
-- [x] Test all API endpoints to ensure correct contract responses `{ success, data, message }`
-- [x] Commit Step 4 to git
-
-### STEP 5: FRONTEND CUSTOMER SHOP
-- [x] Initialize Next.js app in `frontend/` with TypeScript & Tailwind CSS
-- [x] Configure Tailwind CSS tokens matching `DESIGN.md` (colors, fonts, radius, shadows)
-- [x] Create `lib/types.ts` and unified `lib/api.ts` client
-- [x] Setup global Cart context & state persistence with localStorage
-- [x] Build core components: TopBar, Header with live search suggestions, MegaMenu, MobileDrawer, Footer, FloatingSupport, ProductCard
-- [x] Build Home Page (Hero Banner Slider, Category Icons/Grid, Deals of the Day, New Arrivals, Featured, Specially for You grid with load more)
-- [x] Build Category Page (`/category/[slug]`) with subcategory links, filter sidebar (price range, brand, stock), sorting, pagination
-- [x] Build Product Page (`/product/[slug]`) with image gallery, discount tags, stock indicator, quantity selector, specs tabs, related products
-- [x] Build Search Results Page (`/search?q=`)
-- [x] Build Cart Drawer & Full Cart Page (`/cart`)
-- [x] Build Checkout Page (`/checkout`) with Bangladesh division/district/area selection, delivery charge calculation (৳80 Dhaka / ৳130 Outside), COD order placement
-- [x] Build Track Order Page (`/track-order`)
-- [x] Build Static Information Pages (About, Contact, FAQ, Shipping & Returns, Privacy Policy, Terms of Service)
-- [x] Add SEO meta tags, product schema markup, loading skeletons, empty & error states
-- [x] Commit Step 5 to git
-
-### STEP 6: FRONTEND ADMIN PANEL
-- [x] Build Admin Layout with sidebar navigation and admin header
-- [x] Implement Admin Login page and session token storage
-- [x] Implement Next.js middleware to protect `/admin` routes (redirect unauthorized visitors)
-- [x] Build Admin Dashboard (KPI stats: total orders, total revenue, low stock alerts, quick links)
-- [x] Build Admin Products Management (datatable, search, add product modal, edit product, delete)
-- [x] Build Admin Orders Management (datatable, status filter, status update dropdown, printable invoice view)
-- [x] Commit Step 6 to git
-
-### STEP 7: VERIFICATION & AUDIT
-- [x] Run both Backend (port 5000) and Frontend (port 3000) concurrently
-- [x] Use browser subagent to execute full customer journey: Home -> Search -> Category filter -> Product view -> Add to cart -> Checkout -> Track order
-- [x] Use browser subagent to execute Admin journey: Login -> Dashboard -> Product management -> Order status update -> Print invoice
-- [x] Side-by-side visual comparison between bdshop.com and maxitshop, log visual differences in plan.txt and polish
-- [x] Run `npm run build` in frontend to guarantee zero compile or TypeScript errors
-- [x] Update `README.md` with complete documentation, ports, run instructions, and roadmap
-- [x] Commit Step 7 to git
-
-## Side-by-Side Visual Comparison (bdshop.com vs maxitshop)
-1. **Top Utility Bar**:
-   - bdshop.com: Dark bar with hotline, hours, track order, currency.
-   - maxitshop: Replicated dark slate bar (`#0F172A`) with hotline (`+880 1700-000000`), hours, 100% Genuine trust badge, Track Order link, and BDT (৳) currency indicator.
-   - Status: Aligned and polished.
-2. **Main Header & Search**:
-   - bdshop.com: Logo left, wide search input center with category selector, right cart & account links.
-   - maxitshop: Modern `maxitshop` text logo with blue & orange accents, full-width search bar with real-time debounced suggestions from API, Track Order shortcut, and Cart drawer trigger displaying total item count and live BDT subtotal.
-   - Status: Aligned and polished.
-3. **Mega Menu & Category Navigation**:
-   - bdshop.com: "Shop by Category" dropdown button on left, horizontal links across top.
-   - maxitshop: Replicated with multi-tier flyout subcategories, horizontal navigation (Home, Solar Energy, Phones, Laptops, Watches, Appliances, Accessories), and animated "Flash Deals" / "New In" pills.
-   - Status: Aligned and polished.
-4. **Hero Banner Slider**:
-   - bdshop.com: Carousel banner slider showcasing seasonal consumer promotions.
-   - maxitshop: 16:5 responsive banner slider with smooth autoplay, previous/next controls, pagination indicator dots, promo badges, and direct category links.
-   - Status: Aligned and polished.
-5. **Trust & Value Proposition Bar**:
-   - bdshop.com: 4 icons highlighting COD, delivery, genuine products, and warranty.
-   - maxitshop: Card grid with matching icons (Truck, Zap, ShieldCheck, RefreshCcw) and localized Bangladesh copy.
-   - Status: Aligned and polished.
-6. **Product Card Anatomy**:
-   - bdshop.com: 1:1 image, discount badge top-left, brand uppercase, 2-line clamped title, stock dot, ৳ selling price, old strikethrough price, "Save ৳X" badge, add to cart button.
-   - maxitshop: Identical anatomy with smooth hover zoom, red percentage badge, "Deal"/"New" tags, "In Stock" dot, BDT (৳) price block, "Save ৳X" red badge, and "Add to Order" CTA.
-   - Status: Aligned and polished.
-7. **Mobile Experience (390px)**:
-   - bdshop.com: Mobile header, slide-out drawer with accordion categories, 2-column product grid, floating WhatsApp button.
-   - maxitshop: Identical 2-column mobile layout, responsive hamburger drawer with expandable subcategories, sticky mobile header, and floating WhatsApp & Hotline support pills.
-   - Status: Aligned and polished.
-
-## What is Done
-- Complete folder structure (`frontend/`, `backend/`, `docs/reference/`, `DESIGN.md`, `README.md`, `AGENTS.md`, `plan.txt`).
-- Express REST API running on port 5000 with clean controller/service/data architecture and mock data ready for MongoDB.
-- Full API contract returning `{ success, data, message }` across 15+ endpoints.
-- Next.js (App Router, TypeScript, Tailwind CSS) frontend running on port 3000.
-- Customer shop pages: Home, Category with filters and sorting, Product Detail with tabs and gallery, Search, Full Cart, Checkout with cascading BD divisions/districts/areas, Track Order with timeline, and 6 static information pages.
-- Admin portal: Token authentication, Next.js middleware route protection, KPI dashboard, product management table (add, edit, delete), orders fulfillment table with status update and printable invoice modal.
-- End-to-end verification and successful `npm run build` production compilation.
-
-## What is Next (Production Roadmap)
-1. **MongoDB with Mongoose Migration**: Replace `backend/data/mock.js` by connecting Mongoose models (`Product`, `Category`, `Order`, `Banner`) directly inside `backend/services/` without altering API routes.
-2. **imgbb Image Upload**: Implement real image uploads in `POST /api/v1/admin/products` utilizing `IMGBB_API_KEY`.
-3. **Real Authentication**: Upgrade from `ADMIN_TOKEN` to JWT-based user/admin authentication with bcrypt password hashing and customer profile dashboards.
-4. **Payment Gateway Integration**: Add bKash, Nagad, and SSLCommerz payment gateways alongside Cash on Delivery.
-5. **Courier Logistics API**: Integrate courier APIs (Steadfast, Pathao, RedX) for automated consignment generation and tracking webhook synchronization.
-6. **SMS Notifications**: Integrate Bangladesh SMS gateways (e.g. Greenweb, BulkSMSBD) for instant order confirmation and dispatch alerts to customer phone numbers.
-
-## Assumptions
-- Subdirectory `C:\Users\Rashedul\.gemini\antigravity-ide\scratch\maxitshop` serves as the project root since no active workspace was bound.
-- Admin token for development is set to `admin_secret_token_123` in `.env` and `NEXT_PUBLIC_ADMIN_TOKEN` or entered in admin login.
-- Delivery charge logic: Inside Dhaka = ৳80, Outside Dhaka = ৳130.
-- Payment method is Cash on Delivery (COD) as requested, with architecture open for bKash/Nagad/SSLCommerz.
-- High-quality SVG/CSS placeholder banners and Unsplash electronics/gadgets images are used to avoid copying copyright material while maintaining realistic aesthetics.
+Step A4: Product cards in listings. Show image, title (2 lines max), 3 to 4 key feature bullets, current price with the old price struck through, a "Save: X taka" badge when oldPrice > price, and Buy Now and Add to Compare buttons. Keep the existing grid and page structure. Regression check: all 117 existing products must still render

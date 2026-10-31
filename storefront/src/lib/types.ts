@@ -124,6 +124,20 @@ export interface SiteSetting {
   };
 }
 
+export interface StoreConfig {
+  emiEnabled: boolean;
+  emiMonths: number;
+  pointsEnabled: boolean;
+  pointsDivisor: number;
+}
+
+export const defaultStoreConfig: StoreConfig = {
+  emiEnabled: false,
+  emiMonths: 12,
+  pointsEnabled: false,
+  pointsDivisor: 1000,
+};
+
 export interface Banner {
   id: string;
   title: string;
@@ -140,6 +154,7 @@ export interface Product {
   price: number;
   oldPrice?: number;
   category: string;
+  categoryName?: string;
   brand: string;
   stock: number;
   isNew: boolean;
@@ -150,7 +165,10 @@ export interface Product {
   reviewCount?: number;
   shortDescription: string;
   description: string;
-  specs: Record<string, string>;
+  productCode?: string;
+  keyFeatures?: string[];
+  warranty?: string;
+  specs: Record<string, any>;
   relatedProducts?: Product[];
 }
 
@@ -207,6 +225,7 @@ export interface SearchSuggestion {
   oldPrice?: number;
   image: string;
   category: string;
+  categoryName?: string;
   brand: string;
 }
 
