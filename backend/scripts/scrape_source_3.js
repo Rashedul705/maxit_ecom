@@ -488,3 +488,4 @@ scrapeSource3().catch(err => {
   console.error('Fatal scrape error:', err);
   process.exit(1);
 });
+

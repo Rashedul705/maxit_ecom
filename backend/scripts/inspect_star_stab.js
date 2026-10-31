@@ -12,3 +12,4 @@ async function test() {
   console.log('Specification section:', $('#specification').html());
 }
 test();
+
