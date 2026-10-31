@@ -1,0 +1,3412 @@
+{
+  "source": "https://www.startech.com.bd/ups-battery",
+  "sourceName": "source_7_ups_battery",
+  "scrapedAt": "2026-10-31T15:58:09.047Z",
+  "totalCrawledPages": 3,
+  "totalProductsFound": 57,
+  "categoriesToCreate": [
+    {
+      "id": "cat-ups-battery",
+      "name": "UPS BATTERY",
+      "slug": "ups-battery",
+      "order": 18,
+      "isActive": true,
+      "image": "https://i.ibb.co/0pkxfYkm/KENSON-KS4-4-V-4-5-AH-Rechargeab.jpg",
+      "icon": "Battery",
+      "description": "Replacement lead-acid, AGM, gel, and lithium batteries for offline and online UPS systems."
+    }
+  ],
+  "categoriesExisting": [],
+  "stats": {
+    "total": 57,
+    "withPrice": 39,
+    "withoutPrice": 18,
+    "descriptionsCleaned": 48,
+    "totalImagesUploaded": 75,
+    "imageUploadFailures": 0
+  },
+  "products": [
+    {
+      "id": "st-35243",
+      "title": "KENSON KS4 4V 4.5AH Rechargeable Sealed Lead Acid Battery",
+      "slug": "kenson-ks4-sealed-lead-acid-battery",
+      "price": 390,
+      "oldPrice": 480,
+      "discountPercentage": 19,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "KENSON",
+      "productCode": "35243",
+      "stock": 10,
+      "image": "https://i.ibb.co/0pkxfYkm/KENSON-KS4-4-V-4-5-AH-Rechargeab.jpg",
+      "images": [
+        "https://i.ibb.co/0pkxfYkm/KENSON-KS4-4-V-4-5-AH-Rechargeab.jpg"
+      ],
+      "shortDescription": "Model: KS4-4.5AH\nNominal Voltage: 4V\nCapacity: 4.5 Ah\nStandby Use: 4.50V-4.60V\nCycle Use: 4.80V-5.0V",
+      "keyFeatures": [
+        "Model: KS4-4.5AH",
+        "Nominal Voltage: 4V",
+        "Capacity: 4.5 Ah",
+        "Standby Use: 4.50V-4.60V",
+        "Cycle Use: 4.80V-5.0V"
+      ],
+      "warranty": "3 months Warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>KENSON KS4 4V 4.5AH Rechargeable Sealed Lead Acid Battery</h2><p>The KENSON <span style=\"font-weight: bold;\">KS4-4.5AH</span> 4V 4.5 Ah Rechargeable Sealed Lead Acid UPS Battery is a versatile power solution suitable for a range of applications, including uninterruptible power supply (UPS) systems, emergency lighting, and security systems. Boasting a nominal voltage of 4V and a capacity of 4.5 Ah, this battery delivers dependable performance in both standby and cycle use scenarios. Its advantages as a Valve Regulated Lead Acid (VRLA) Absorbent Glass Mat (AGM) battery include a long design life, maximum charge efficiency, high oxygen recombination efficiency, low self-discharge rate, wide temperature tolerance, and easy handling and installation. Featuring positive plates with flat pasted plate and lead-calcium-tin grid alloy, negative plates with flat pasted plate and lead-calcium grid alloy, and micro-porous AGM separators, this UPS battery ensures reliable operation. The container, made of high-strength ABS, provides durability, while the absorbed sulfuric acid electrolyte and high-conductivity terminal posts contribute to stable performance. With a double-sealing structure and a high-efficiency low-pressure venting system, this battery prioritizes safety and longevity. In essence, the KENSON KS4-4.5AH battery combines robust construction, efficient design, and reliable performance to meet the demands of critical power applications where uninterrupted power supply is paramount.<br></p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "Sealed Lead Acid (SLA)",
+          "Capacity": "4.5AH",
+          "Input Voltage": "4V",
+          "Terminal": "F1/F2"
+        },
+        "Warranty Information": {
+          "Warranty": "3 months Warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/kenson-ks4-sealed-lead-acid-battery",
+      "audit": {
+        "sourcePrice": 350,
+        "sourceRegularPrice": 440,
+        "calculatedPrice": 390,
+        "calculatedOldPrice": 480,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T15:55:45.310Z"
+      }
+    },
+    {
+      "id": "st-53692",
+      "title": "PC Power 12V 8.5AH UPS Battery",
+      "slug": "pc-power-12v-8-5ah-ups-battery",
+      "price": 1430,
+      "oldPrice": 1540,
+      "discountPercentage": 7,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "PC Power",
+      "productCode": "53692",
+      "stock": 10,
+      "image": "https://i.ibb.co/fLBr5fX/PC-Power-12-V-8-5-AH-UPS-Battery.webp",
+      "images": [
+        "https://i.ibb.co/fLBr5fX/PC-Power-12-V-8-5-AH-UPS-Battery.webp"
+      ],
+      "shortDescription": "Model: 12V 8.5AH\nType: Lead Acid Battery\nNominal Voltage (V): 12V\nNominal Capacity: 8.5AH\nCyclic use :14.5-14.9v/25°c",
+      "keyFeatures": [
+        "Model: 12V 8.5AH",
+        "Type: Lead Acid Battery",
+        "Nominal Voltage (V): 12V",
+        "Nominal Capacity: 8.5AH",
+        "Cyclic use :14.5-14.9v/25°c"
+      ],
+      "warranty": "6 Months warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>PC Power 12V 8.5AH UPS Battery</h2><p>The <strong>PC Power 12V 8.5AH</strong> UPS Battery is a rechargeable lead acid battery built for UPS systems, giving your computers, networking equipment, and other devices dependable backup power during outages. With a 12V output and 8.5AH capacity, this PC Power 12V UPS Battery provides steady energy to keep your system running long enough to save your work and shut down safely. It is a practical replacement battery for home offices, shops, and small businesses that rely on a UPS for uninterrupted power.</p> <h3>12V 8.5AH Lead Acid Battery for Reliable Backup</h3> <p>The PC Power 8.5AH Lead Acid Battery delivers dependable performance for standby and backup use, making it a suitable replacement for compatible 12V UPS units, security systems, and other low-power equipment. Its 8.5AH capacity supports longer backup time than smaller batteries, while the lead acid design offers stable, consistent power delivery. For cyclic use, the recommended charging voltage is 14.5-14.9V at 25°C, which supports proper charging and helps maintain battery life over repeated charge and discharge cycles.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "Lead Acid Batter",
+          "Capacity": "8.5AH",
+          "Input Voltage": "12V",
+          "Others": "Cyclic use :14.5-14.9v/25°c"
+        },
+        "Warranty Information": {
+          "Warranty": "6 Months warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/pc-power-12v-8-5ah-ups-battery",
+      "audit": {
+        "sourcePrice": 1300,
+        "sourceRegularPrice": 1400,
+        "calculatedPrice": 1430,
+        "calculatedOldPrice": 1540,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T15:55:48.502Z"
+      }
+    },
+    {
+      "id": "st-43977",
+      "title": "Voltan 12V 7.5AH UPS Battery",
+      "slug": "voltan-12v-ups-battery",
+      "price": 1490,
+      "oldPrice": 1820,
+      "discountPercentage": 18,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "Voltan",
+      "productCode": "43977",
+      "stock": 10,
+      "image": "https://i.ibb.co/YF8xnPJw/Voltan-12-V-7-5-AH-UPS-Battery.webp",
+      "images": [
+        "https://i.ibb.co/YF8xnPJw/Voltan-12-V-7-5-AH-UPS-Battery.webp"
+      ],
+      "shortDescription": "Model: Voltan 12V 7.5AH\nNominal Voltage (V): 12V\nNominal Capacity: 7.5AH\nInternal Resistance: Approx. 28mΩ\nTerminal Material: Copper",
+      "keyFeatures": [
+        "Model: Voltan 12V 7.5AH",
+        "Nominal Voltage (V): 12V",
+        "Nominal Capacity: 7.5AH",
+        "Internal Resistance: Approx. 28mΩ",
+        "Terminal Material: Copper"
+      ],
+      "warranty": "6 Months warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Voltan 12V 7.5AH UPS Battery</h2><p>The Voltan <strong>12V 7.5AH</strong> UPS Battery is a compact yet powerful sealed lead-acid battery engineered to deliver exceptional backup performance in a variety of power-critical applications, such as home and office UPS systems, medical devices, emergency lighting, and telecom equipment. With a nominal voltage of 12V and a nominal capacity of 7.5AH, the Voltan 12V UPS Battery ensures steady and reliable power delivery during outages or voltage fluctuations. Its internal resistance of approximately 28 milliohms (fully charged at 25°C) minimizes energy loss and maximizes efficiency during operation. The battery features a T1 terminal type made of high-conductivity copper, which reduces heat generation and improves long-term durability. Designed for high-demand scenarios, the Voltan 12V 7.5AH UPS Battery supports a maximum discharge current of 105A for 5 seconds, making it ideal for systems requiring quick surge loads, while its maximum charging current of 2.1A supports faster recharge cycles. This maintenance-free battery is optimized for long shelf life, retaining 91% of its capacity after 3 months, 82% after 6 months, and 65% after 12 months at 25°C, ensuring dependable performance even after extended storage. The battery's float charging voltage ranges from 13.60V to 13.80V at 25°C, with a temperature compensation rate of -18mV/°C, allowing stable operation across fluctuating thermal environments. Operating within a wide temperature range—discharge between -15°C to 50°C, charge from -10°C to 50°C, and storage from -20°C to 50°C—the Voltan 12V 7.5AH UPS Battery is built to withstand both harsh winter and high-heat conditions. Physically, the battery is designed for space efficiency, measuring 152±1.5mm in length, 67±1mm in width, 99±1mm in height, and 105±1mm in total height, with a manageable weight of approximately 2.0kg (±5%). Combining robust design, thermal adaptability, and high-efficiency power delivery, the Voltan 12V 7.5AH UPS Battery is an ideal solution for those seeking a compact, long-lasting, and high-performance Voltan 12V UPS Battery for critical energy backup needs.</p></div>",
+      "specs": {
+        "General Information": {
+          "Capacity": "7.5AH",
+          "Input Voltage": "12V",
+          "Max. Charging Current": "2.1A",
+          "Resistance": "Approx. 28mΩ (Fully charged, 25oC)",
+          "Terminal": "T1",
+          "Max. Discharge Current": "105A(5 sec.)",
+          "Self Discharge": "3 month: Remaining Capacity: 91% (25°C) 6 month: Remaining Capacity: 82% (25°C) 12 month: Remaining Capacity: 65% (25°C)",
+          "Operating Temperature": "Discharge: -15°C~50°C(5°F~122°F) Charge: -10°C~50°C(14°F~122°F) Storage: -20°C~50°C(-4°F~122°F)",
+          "Others": "Float Charging Voltage (25°C): 13.60 to 13.80V Temperature compensation: -18mV/oC"
+        },
+        "Physical Information": {
+          "Material": "Terminal: Copper",
+          "Dimension": "Length: 152±1.5mm (5.98inch) Width: 67±1mm (2.64inch) Height: 99±1mm (3.90inch) Total Height: 105±1mm (4.13inch)",
+          "Weight": "2.0kg (4.41lbs)±5%"
+        },
+        "Warranty Information": {
+          "Warranty": "6 Months warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/voltan-12v-ups-battery",
+      "audit": {
+        "sourcePrice": 1350,
+        "sourceRegularPrice": 1650,
+        "calculatedPrice": 1490,
+        "calculatedOldPrice": 1820,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T15:55:50.737Z"
+      }
+    },
+    {
+      "id": "st-28257",
+      "title": "KENSON KS12-7.5AH 12V 7.5AH UPS Battery",
+      "slug": "kenson-ks12-7-5ah-ups-battery",
+      "price": 1600,
+      "oldPrice": 1750,
+      "discountPercentage": 9,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "KENSON",
+      "productCode": "28257",
+      "stock": 10,
+      "image": "https://i.ibb.co/xSV20Jw9/KENSON-KS12-7-5-AH-12-V-7-5-AH-UP.webp",
+      "images": [
+        "https://i.ibb.co/xSV20Jw9/KENSON-KS12-7-5-AH-12-V-7-5-AH-UP.webp"
+      ],
+      "shortDescription": "Model: KS12-7.5AH\nNominal Voltage: 12 V\nCapacity: 7.5 Ah\nStandby Use: 13.50V-13.80V\nCycle Use: 14.50V-15.0V",
+      "keyFeatures": [
+        "Model: KS12-7.5AH",
+        "Nominal Voltage: 12 V",
+        "Capacity: 7.5 Ah",
+        "Standby Use: 13.50V-13.80V",
+        "Cycle Use: 14.50V-15.0V"
+      ],
+      "warranty": "06 Months Warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2 style=\"\">KENSON KS12-7.5AH 12V 7.5AH UPS Battery</h2><p style=\"\">The KENSON KS12-7.5AH 12V 7.5AH UPS Battery is a high-quality battery designed specifically for Online/Offline UPS systems. It features a 12V voltage and 7.5AH capacity, providing reliable power backup. Made with Korean Standard Technology, this battery ensures superior performance and durability. It is a sealed lead acid (SMF) battery, known for its reliability and maintenance-free operation. The battery has a compact design with dimensions of approximately 15.1cm x 6.5cm x 10cm and a weight of approximately 2.00 kg. With a charging time of 20 hours, it offers an efficient power supply for various applications. Whether for professional or personal use, the KENSON KS12-7.5AH UPS Battery is a dependable choice to ensure an uninterrupted power supply.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "Sealed Lead Acid (SLA)",
+          "Capacity": "7.5AH",
+          "Input Voltage": "12V",
+          "Terminal": "F1/F2"
+        },
+        "Warranty Information": {
+          "Warranty": "06 Months Warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/kenson-ks12-7-5ah-ups-battery",
+      "audit": {
+        "sourcePrice": 1450,
+        "sourceRegularPrice": 1595,
+        "calculatedPrice": 1600,
+        "calculatedOldPrice": 1750,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T15:55:53.032Z"
+      }
+    },
+    {
+      "id": "st-28258",
+      "title": "KENSON KS12-9AH 12V 9AH UPS Battery",
+      "slug": "kenson-ks12-9ah-ups-battery",
+      "price": 1820,
+      "oldPrice": 2260,
+      "discountPercentage": 19,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "KENSON",
+      "productCode": "28258",
+      "stock": 10,
+      "image": "https://i.ibb.co/gbXy3y8r/KENSON-KS12-9-AH-12-V-9-AH-UPS-Ba.webp",
+      "images": [
+        "https://i.ibb.co/gbXy3y8r/KENSON-KS12-9-AH-12-V-9-AH-UPS-Ba.webp"
+      ],
+      "shortDescription": "Model: KS12-9AH\nNominal Voltage: 12 V\nCapacity: 9 Ah\nStandby Use: 13.50V-13.80V\nCycle Use: 14.50V-15.0V",
+      "keyFeatures": [
+        "Model: KS12-9AH",
+        "Nominal Voltage: 12 V",
+        "Capacity: 9 Ah",
+        "Standby Use: 13.50V-13.80V",
+        "Cycle Use: 14.50V-15.0V"
+      ],
+      "warranty": "06 Months Warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2 style=\"\">KENSON KS12-9AH 12V 9AH UPS Battery</h2><p style=\"\">The KENSON KS12-9AH 12V 9AH UPS Battery is a high-quality battery designed specifically for Online/Offline UPS systems. It features a 12V voltage and 9AH capacity, providing reliable power backup. Made with Korean Standard Technology, this battery ensures superior performance and durability. It is a sealed lead acid (SMF) battery, known for its reliability and maintenance-free operation. The battery has a compact design with dimensions of approximately 15.1cm x 6.5cm x 10cm and a weight of approximately 2.40 kg. With a charging time of 20 hours, it offers an efficient power supply for various applications. Whether for professional or personal use, the KENSON KS12-9AH UPS Battery is a dependable choice to ensure an uninterrupted power supply.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "Sealed Lead Acid (SLA)",
+          "Capacity": "9AH",
+          "Input Voltage": "12V",
+          "Terminal": "F1/F2"
+        },
+        "Warranty Information": {
+          "Warranty": "06 Months Warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/kenson-ks12-9ah-ups-battery",
+      "audit": {
+        "sourcePrice": 1650,
+        "sourceRegularPrice": 2050,
+        "calculatedPrice": 1820,
+        "calculatedOldPrice": 2260,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T15:55:55.180Z"
+      }
+    },
+    {
+      "id": "st-28746",
+      "title": "MaxGreen MG12-7.5 12V 7.5A UPS Battery",
+      "slug": "maxgreen-mg12-7-5-12v-7-5a-ups-battery",
+      "price": 1600,
+      "oldPrice": 1930,
+      "discountPercentage": 17,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "MaxGreen",
+      "productCode": "28746",
+      "stock": 10,
+      "image": "https://i.ibb.co/Y4gy08S3/Max-Green-MG12-7-5-12-V-7-5-A-UPS.jpg",
+      "images": [
+        "https://i.ibb.co/Y4gy08S3/Max-Green-MG12-7-5-12-V-7-5-A-UPS.jpg"
+      ],
+      "shortDescription": "Model: MG12-7.5\nNominal Voltage: 12 V\nCapacity: 7.5 Ah\nAbsorbent glass mat technology\nABS container",
+      "keyFeatures": [
+        "Model: MG12-7.5",
+        "Nominal Voltage: 12 V",
+        "Capacity: 7.5 Ah",
+        "Absorbent glass mat technology",
+        "ABS container"
+      ],
+      "warranty": "06 Months Warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2 style=\"text-align: justify; \">MaxGreen MG12-7.5 12V 7.5A UPS Battery</h2><p style=\"\">MaxGreen MG12-7.5 12V 7.5A UPS Battery has a nominal voltage of 12 V. It comes with a capacity of 7.5Ah for 20HR(10.5V), 8.4Ah for 10HR(10.5V), and 5.8Ah 1HR(9.60V). This UPS Battery is equipped with High-performance plates and electrolytes to give extra power output for a common power backup system. This UPS battery offers Heavy Duty Grid and mechanized assembly. It has a non-spillable construction and can deliver high reliability and stability. It has a high-quality AGM separator that extends cycle life and prevents micro short circuits. ABS material help increases the strength of the battery container. High-purity raw material ensures a low self-discharge rate.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "Sealed Lead Acid (SLA)",
+          "Capacity": "7.5 Ah",
+          "Input Voltage": "12V"
+        },
+        "Physical Information": {
+          "Weight": "Approx 2.10 kg"
+        },
+        "Warranty Information": {
+          "Warranty": "06 Months Warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/maxgreen-mg12-7-5-12v-7-5a-ups-battery",
+      "audit": {
+        "sourcePrice": 1450,
+        "sourceRegularPrice": 1750,
+        "calculatedPrice": 1600,
+        "calculatedOldPrice": 1930,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T15:55:57.386Z"
+      }
+    },
+    {
+      "id": "st-25674",
+      "title": "MaxGreen MG12-9 12V 9A UPS Battery",
+      "slug": "maxgreen-mg12-9-12v-9a-ups-battery",
+      "price": 1760,
+      "oldPrice": 2060,
+      "discountPercentage": 15,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "MaxGreen",
+      "productCode": "25674",
+      "stock": 10,
+      "image": "https://i.ibb.co/dws7tyWG/Max-Green-MG12-9-12-V-9-A-UPS-Bat.webp",
+      "images": [
+        "https://i.ibb.co/dws7tyWG/Max-Green-MG12-9-12-V-9-A-UPS-Bat.webp"
+      ],
+      "shortDescription": "Model: MG12-9\nNominal Voltage: 12 V\nCapacity: 9 Ah\nAbsorbent glass mat technology\nABS container",
+      "keyFeatures": [
+        "Model: MG12-9",
+        "Nominal Voltage: 12 V",
+        "Capacity: 9 Ah",
+        "Absorbent glass mat technology",
+        "ABS container"
+      ],
+      "warranty": "06 Months Warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2 style=\"text-align: justify; \">MaxGreen MG12-9 12V 9A UPS Battery</h2><p style=\"text-align: justify; \">MaxGreen MG12-9 12V 9A UPS Battery has a nominal voltage of 12 V. It comes with a capacity of 9Ah for 20HR(10.5V), 8.4Ah for 10HR(10.5V), and 5.8Ah 1HR(9.60V). This UPS Battery is equipped with High-performance plates and electrolytes to give extra power output for a common power backup system. This UPS battery offers Heavy Duty Grid and mechanized assembly. It has a non-spillable construction and can deliver high reliability and stability. It has a high-quality AGM separator that extends cycle life and prevents micro short circuits. ABS material help increases the strength of the battery container. High-purity raw material ensures a low self-discharge rate. The MaxGreen MG12-9 12V 9A UPS Battery comes with 6 months of warranty.<br></p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "Sealed Lead Acid (SLA)",
+          "Capacity": "9Ah",
+          "Input Voltage": "12V",
+          "Operating Temperature": "-15°C to 50°C"
+        },
+        "Physical Information": {
+          "Dimension": "151mm x 65mm x 94mm",
+          "Weight": "2.4kg"
+        },
+        "Warranty Information": {
+          "Warranty": "06 Months Warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/maxgreen-mg12-9-12v-9a-ups-battery",
+      "audit": {
+        "sourcePrice": 1600,
+        "sourceRegularPrice": 1870,
+        "calculatedPrice": 1760,
+        "calculatedOldPrice": 2060,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T15:55:59.543Z"
+      }
+    },
+    {
+      "id": "st-23372",
+      "title": "LONG WP12-12 12V 12Ah Rechargeable Sealed Lead Acid Battery",
+      "slug": "long-wp12-12-12v-12ah-sealed-lead-acid-battery",
+      "price": 5830,
+      "oldPrice": 6410,
+      "discountPercentage": 9,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "LONG",
+      "productCode": "23372",
+      "stock": 10,
+      "image": "https://i.ibb.co/m5yJWW9r/LONG-WP12-12-12-V-12-Ah-Recharge.jpg",
+      "images": [
+        "https://i.ibb.co/m5yJWW9r/LONG-WP12-12-12-V-12-Ah-Recharge.jpg"
+      ],
+      "shortDescription": "Model: WP12-12\nNominal Voltage (V): 12V\nNominal Capacity: 12Ah\nMax Discharge Current for 5 seconds: 180A\nWeight: Approx. 3.68kg",
+      "keyFeatures": [
+        "Model: WP12-12",
+        "Nominal Voltage (V): 12V",
+        "Nominal Capacity: 12Ah",
+        "Max Discharge Current for 5 seconds: 180A",
+        "Weight: Approx. 3.68kg"
+      ],
+      "warranty": "06 months Warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2 style=\"text-align: justify; \">LONG WP12-12 12V 12Ah Rechargeable Sealed Lead Acid Battery</h2><p style=\"text-align: justify; \">The&nbsp;LONG WP12-12 is a 12V 12Ah Rechargeable Sealed Lead Acid Battery. The LONG WP12-12 battery is the best and smart choice for UPS, telecommunication systems, emergency lighting, electronic cash registers, medical equipment and systems, fire alarm systems, powered tools, children’s toys, electric vehicles, and electric scooters. This gel battery is durable and long-lasting. The internal battery fluid is gel-shaped and has a high moisture retention capacity and it is relatively effective for use in high-temperature environments. It is a Trusted and Quality Product for Electric cars, medical equipment and systems, and fire alarm system.&nbsp;The LONG WP12-12 12V 12Ah Rechargeable SLA Battery can be charged and discharged. It is a fully sealed type that does not emit gas at normal times and can be used safely indoors as a power supply for a variety of devices. The&nbsp;LONG WP12-12 is highly durable and cost-effective for repeated charging and discharging making it perfect for sub batteries in campers and marines. The&nbsp;LONG WP12-12 Battery comes with 6 month warranty.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "Sealed Lead Acid (SLA)",
+          "Capacity": "12Ah",
+          "Input Voltage": "12V",
+          "Max. Discharge Current": "180A (for 5 sec)"
+        },
+        "Physical Information": {
+          "Dimension": "Length: Approx. 5.98″ Width: Approx. 3.90″ Height: Approx. 3.70″",
+          "Weight": "Approx. 3.68kg"
+        },
+        "Warranty Information": {
+          "Warranty": "06 months Warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/long-wp12-12-12v-12ah-sealed-lead-acid-battery",
+      "audit": {
+        "sourcePrice": 5300,
+        "sourceRegularPrice": 5830,
+        "calculatedPrice": 5830,
+        "calculatedOldPrice": 6410,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T15:56:01.900Z"
+      }
+    },
+    {
+      "id": "st-38572",
+      "title": "LONG LG7-12 12V 9Ah Rechargeable Sealed Lead Acid Battery",
+      "slug": "long-lg7-12-12v-9ah-rechargeable-sla-battery",
+      "price": 3960,
+      "oldPrice": 4360,
+      "discountPercentage": 9,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "LONG",
+      "productCode": "38572",
+      "stock": 10,
+      "image": "https://i.ibb.co/XfbZpbwS/LONG-LG7-12-12-V-9-Ah-Rechargeab.webp",
+      "images": [
+        "https://i.ibb.co/XfbZpbwS/LONG-LG7-12-12-V-9-Ah-Rechargeab.webp"
+      ],
+      "shortDescription": "Model: LG7-12\nNominal Voltage (V): 12V\nNominal Capacity: 9Ah\nMax Discharge Current for 5 seconds: 135A\nWeight: Approx. 2.7kg",
+      "keyFeatures": [
+        "Model: LG7-12",
+        "Nominal Voltage (V): 12V",
+        "Nominal Capacity: 9Ah",
+        "Max Discharge Current for 5 seconds: 135A",
+        "Weight: Approx. 2.7kg"
+      ],
+      "warranty": "06 months warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>LONG LG7-12 12V 9Ah Rechargeable Sealed Lead Acid Battery</h2><p>The LONG <strong>LG7-12 12V 9Ah</strong> Rechargeable Sealed Lead Acid Battery is a reliable and high-performance power solution designed for a variety of applications. With a nominal voltage of 12V and a capacity of 9Ah, this battery is ideal for use in electric vehicles, medical equipment, fire alarm systems, and other critical devices that require a steady and dependable power source. Its sealed lead acid design ensures that it is maintenance-free and safe for indoor use, as it does not emit gases under normal operating conditions. This battery is built to last, featuring a durable construction that can withstand repeated charging and discharging cycles. The internal gel electrolyte provides excellent moisture retention and is effective in high-temperature environments, making it suitable for both indoor and outdoor use. The LONG LG7-12 battery also boasts a high discharge rate, capable of delivering up to 135A for 5 seconds, ensuring that it can handle high power demands when needed. It includes a metal-reinforced casing that adds to its durability and protects it from physical damage. The battery's design allows for versatile mounting options, making it a flexible choice for various applications. Whether you need a reliable power source for your electric vehicle, medical equipment, or emergency systems, the LONG LG7-12 12V 9Ah Rechargeable Sealed Lead Acid Battery offers the performance and reliability you need. Its combination of high capacity, durability, and safety features makes it an excellent choice for both professional and personal use.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "Sealed Lead Acid (SLA)",
+          "Capacity": "9Ah",
+          "Input Voltage": "12V",
+          "Self Discharge": "Low self-discharge rate",
+          "Operating Temperature": "-20°C to 50°C"
+        },
+        "Physical Information": {
+          "Dimension": "151mm x 65mm x 94mm",
+          "Weight": "2.6 kg"
+        },
+        "Warranty Information": {
+          "Warranty": "06 months warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/long-lg7-12-12v-9ah-rechargeable-sla-battery",
+      "audit": {
+        "sourcePrice": 3600,
+        "sourceRegularPrice": 3960,
+        "calculatedPrice": 3960,
+        "calculatedOldPrice": 4360,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T15:56:04.715Z"
+      }
+    },
+    {
+      "id": "st-50239",
+      "title": "Voltan 12V 9AH UPS Battery",
+      "slug": "voltan-12v-9ah-ups-battery",
+      "price": 2480,
+      "oldPrice": 2720,
+      "discountPercentage": 9,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "Voltan",
+      "productCode": "50239",
+      "stock": 10,
+      "image": "https://i.ibb.co/cSsnXRHF/Voltan-12-V-9-AH-UPS-Battery.webp",
+      "images": [
+        "https://i.ibb.co/cSsnXRHF/Voltan-12-V-9-AH-UPS-Battery.webp"
+      ],
+      "shortDescription": "Model: 12V 9AH\nNominal Voltage (V): 12V\nNominal Capacity: 9AH\nInternal Resistance: Approx. 19mΩ\nTerminal Material: Copper",
+      "keyFeatures": [
+        "Model: 12V 9AH",
+        "Nominal Voltage (V): 12V",
+        "Nominal Capacity: 9AH",
+        "Internal Resistance: Approx. 19mΩ",
+        "Terminal Material: Copper"
+      ],
+      "warranty": "6 Months warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Voltan 12V 9AH UPS Battery</h2><p>The <strong>Voltan 12V 9AH UPS Battery</strong> is engineered to deliver consistent backup power with a nominal voltage of 12V and a rated capacity of 9Ah at 25°C. Compact in design, it measures 152mm in length, 67mm in width, and 105mm in total height, making it suitable for multiple power applications. Weighing approximately 2.40kg, this battery features T1/T2 terminals crafted from copper, ensuring efficient conductivity. The internal resistance of about 19mΩ supports stable performance, while its discharge capacity adapts to varying temperatures, maintaining 102% at 40°C and 65% at -15°C. The Voltan 12V 9AH UPS Battery retains 91% capacity after three months of storage at 25°C, highlighting its strong self-discharge control. Designed for a floating life of over five years, it provides reliable energy for long-term use. Operating within a wide temperature range, it supports discharge from -15°C to 50°C and charging from -10°C to 50°C. Float charging voltage ranges between 13.60V and 13.80V, while cyclic charging voltage ranges between 14.50V and 14.90V, with precise temperature compensation. The maximum charging current of 2.7A and discharge current of 135A for 5 seconds ensure efficient handling of power demands. The Voltan 12V 9AH UPS Battery is crafted for consistent performance across diverse environments, offering strong resilience and dependable energy flow. Its compact build and efficient design make it a practical solution for uninterrupted power supply systems. With optimized durability and stable output, the Voltan 12V 9AH UPS Battery stands as a trusted choice for maintaining backup power in critical applications.</p></div>",
+      "specs": {
+        "General Information": {
+          "Capacity": "20HR(10.5V): 9Ah 10HR(10.5V): 8.4Ah 1HR(9.60V): 5.8Ah",
+          "Input Voltage": "12V",
+          "Max. Charging Current": "2.7A",
+          "Resistance": "19mΩ",
+          "Terminal": "T1/T2",
+          "Max. Discharge Current": "135A(5 sec.)",
+          "Self Discharge": "3-month: Remaining Capacity: 91% 6-month: Remaining Capacity: 82% 12-month: Remaining Capacity: 65%",
+          "Operating Temperature": "Discharge: -15oC~50oC(5oF~122oF) Charge: -10oC~50oC(14oF~122oF) Storage: -20oC~50oC(-4oF~122oF)",
+          "Others": "Float Charging Voltage (25°C): 13.60 to 13.80V Temperature compensation: -18mV/oC compensation: -18mV/oC"
+        },
+        "Physical Information": {
+          "Material": "Terminal: Copper",
+          "Dimension": "Length: 152±1.5mm (5.98inch) Width: 67±1mm (2.64inch) Height: 99±1mm (3.90inch) Total Height: 105±1mm (4.13inch)",
+          "Weight": "2.40kg (5.30lbs)±5%"
+        },
+        "Warranty Information": {
+          "Warranty": "6 Months warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/voltan-12v-9ah-ups-battery",
+      "audit": {
+        "sourcePrice": 2250,
+        "sourceRegularPrice": 2475,
+        "calculatedPrice": 2480,
+        "calculatedOldPrice": 2720,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T15:56:06.889Z"
+      }
+    },
+    {
+      "id": "st-35261",
+      "title": "KENSON KS12 12V 12AH UPS Battery",
+      "slug": "kenson-ks12-12v-12ah-ups-battery",
+      "price": 2750,
+      "oldPrice": 3030,
+      "discountPercentage": 9,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "KENSON",
+      "productCode": "35261",
+      "stock": 10,
+      "image": "https://i.ibb.co/zTVXXGN1/KENSON-KS12-12-V-12-AH-UPS-Batte.webp",
+      "images": [
+        "https://i.ibb.co/zTVXXGN1/KENSON-KS12-12-V-12-AH-UPS-Batte.webp"
+      ],
+      "shortDescription": "Model: KS12 12V 12AH\nNominal Voltage: 12V\nCapacity: 12Ah\nStandby Use: 13.50V-13.80V\nCycle Use: 14.50V-15.0V",
+      "keyFeatures": [
+        "Model: KS12 12V 12AH",
+        "Nominal Voltage: 12V",
+        "Capacity: 12Ah",
+        "Standby Use: 13.50V-13.80V",
+        "Cycle Use: 14.50V-15.0V"
+      ],
+      "warranty": "6 months warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>KENSON KS12 12V 12AH UPS Battery</h2><p>The KENSON <span style=\"font-weight: bold;\">KS12 12V 12AH</span> UPS Battery, a reliable power backup solution designed for a variety of applications. With its sturdy construction and advanced technology, this battery ensures uninterrupted performance, offering peace of mind during power outages or fluctuations. Featuring a nominal voltage of 12V and a capacity of 12Ah, it delivers consistent power when you need it most. The battery operates within specific parameters: for standby use, it maintains a voltage range of 13.50V to 13.80V, making it ideal for applications where the battery remains on standby, ready to provide instant backup power. For cyclic use, it operates between 14.50V and 15.0V, ensuring optimal performance during regular charge and discharge cycles. Whether deployed in emergency lighting systems, security equipment, telecommunications, or other critical devices, the KENSON KS12 12V 12AH UPS Battery offers durability, efficiency, and dependable power support. Trust KENSON for your backup power needs.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "Sealed Lead Acid (SLA)",
+          "Capacity": "12AH",
+          "Input Voltage": "12V",
+          "Terminal": "F1/F2"
+        },
+        "Warranty Information": {
+          "Warranty": "6 months warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/kenson-ks12-12v-12ah-ups-battery",
+      "audit": {
+        "sourcePrice": 2500,
+        "sourceRegularPrice": 2750,
+        "calculatedPrice": 2750,
+        "calculatedOldPrice": 3030,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T15:56:09.067Z"
+      }
+    },
+    {
+      "id": "st-35265",
+      "title": "KENSON KS12 12V 18AH UPS Battery",
+      "slug": "kenson-ks12-12v-18ah-ups-battery",
+      "price": 4400,
+      "oldPrice": 4840,
+      "discountPercentage": 9,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "KENSON",
+      "productCode": "35265",
+      "stock": 10,
+      "image": "https://i.ibb.co/4QFvkgz/KENSON-KS12-12-V-18-AH-UPS-Batte.webp",
+      "images": [
+        "https://i.ibb.co/4QFvkgz/KENSON-KS12-12-V-18-AH-UPS-Batte.webp"
+      ],
+      "shortDescription": "Model: KS12 12V 18AH\nNominal Voltage: 12V\nCapacity: 18Ah\nStandby Use: 13.50V-13.80V\nCycle Use: 14.50V-15.0V",
+      "keyFeatures": [
+        "Model: KS12 12V 18AH",
+        "Nominal Voltage: 12V",
+        "Capacity: 18Ah",
+        "Standby Use: 13.50V-13.80V",
+        "Cycle Use: 14.50V-15.0V"
+      ],
+      "warranty": "06 Months Warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>KENSON KS12 12V 18AH UPS Battery</h2><p>The KENSON <span style=\"font-weight: bold;\">KS12 12V 18AH</span> UPS Battery is a reliable power source designed for uninterrupted power supply (UPS) applications. With a nominal voltage of 12 volts and a capacity of 18 ampere-hours (Ah), this battery offers a balance of power and longevity suitable for various electronic devices and backup systems. In standby use, the battery maintains a voltage range of 13.50V to 13.80V, ensuring a stable and consistent power supply during idle periods or standby mode. This standby voltage range is crucial for devices that require continuous monitoring or occasional usage without draining the battery excessively. For cycle use, the battery can handle higher voltage demands, ranging from 14.50V to 15.0V. This range is ideal for applications where the battery is frequently discharged and recharged, such as in cyclic UPS systems or backup power for renewable energy systems. The KENSON KS12 12V 18AH UPS Battery is a great choice for backup power needs in both residential and business settings because of its adaptable design and reliable performance. Whether it is used to power renewable energy systems or safeguard critical equipment during blackouts, this battery offers comfort and dependability.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "Sealed Lead Acid (SLA)",
+          "Capacity": "18AH",
+          "Input Voltage": "12V",
+          "Terminal": "F1/F2"
+        },
+        "Physical Information": {
+          "Weight": "Approx 5KG"
+        },
+        "Warranty Information": {
+          "Warranty": "06 Months Warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/kenson-ks12-12v-18ah-ups-battery",
+      "audit": {
+        "sourcePrice": 4000,
+        "sourceRegularPrice": 4400,
+        "calculatedPrice": 4400,
+        "calculatedOldPrice": 4840,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T15:56:11.259Z"
+      }
+    },
+    {
+      "id": "st-25459",
+      "title": "MaxGreen MG12-18 12V 18A UPS Battery",
+      "slug": "maxgreen-mg12-18-12v-18a-ups-battery",
+      "price": 5280,
+      "oldPrice": 5810,
+      "discountPercentage": 9,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "MaxGreen",
+      "productCode": "25459",
+      "stock": 10,
+      "image": "https://i.ibb.co/PsVVWDP7/Max-Green-MG12-18-12-V-18-A-UPS-B.webp",
+      "images": [
+        "https://i.ibb.co/PsVVWDP7/Max-Green-MG12-18-12-V-18-A-UPS-B.webp"
+      ],
+      "shortDescription": "Model: MG12-18\nNominal Voltage: 12 V\nCapacity: 18 Ah\nAbsorbent glass mat technology\nABS container",
+      "keyFeatures": [
+        "Model: MG12-18",
+        "Nominal Voltage: 12 V",
+        "Capacity: 18 Ah",
+        "Absorbent glass mat technology",
+        "ABS container"
+      ],
+      "warranty": "06 Months",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2 style=\"text-align: justify; \">MaxGreen MG12-18 12V 18A UPS Battery</h2><p style=\"text-align: justify; \">MaxGreen MG12-18 12V 18A UPS Battery has a nominal voltage of 12 V. It comes with a capacity of 18Ah for20HR(10.5V), 16.7Ah for 10HR(10.5V), and 11.7Ah 1HR(9.60V). This UPS Battery is equipped with High-performance plates and electrolytes to give extra power output for a common power backup system. This UPS battery offers Heavy Duty Grid and mechanized assembly. It has a non-spillable construction and can deliver high reliability and stability. It has a high-quality AGM separator that extends cycle life and prevents micro short circuits. ABS material help increases the strength of the battery container. High-purity raw material ensures a low self-discharge rate. The MaxGreen MG12-18 12V 18A UPS Battery comes with 6 months of warranty.<br></p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "Sealed Lead Acid (SLA)",
+          "Capacity": "18Ah",
+          "Input Voltage": "12V",
+          "Terminal": "F2",
+          "Operating Temperature": "-15°C to 50°C"
+        },
+        "Physical Information": {
+          "Dimension": "181mm x 77mm x 167mm",
+          "Weight": "Approx. 5.3 kg"
+        },
+        "Warranty Information": {
+          "Warranty": "06 Months"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/maxgreen-mg12-18-12v-18a-ups-battery",
+      "audit": {
+        "sourcePrice": 4800,
+        "sourceRegularPrice": 5280,
+        "calculatedPrice": 5280,
+        "calculatedOldPrice": 5810,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T15:56:13.387Z"
+      }
+    },
+    {
+      "id": "st-34672",
+      "title": "Power Guard SS18-12 12V 18Ah UPS Battery",
+      "slug": "power-guard-ss18-12-ups-battery",
+      "price": 0,
+      "oldPrice": 0,
+      "discountPercentage": 0,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "Power Guard",
+      "productCode": "34672",
+      "stock": 0,
+      "image": "https://i.ibb.co/YFgmSH2F/Power-Guard-SS18-12-12-V-18-Ah-U.webp",
+      "images": [
+        "https://i.ibb.co/YFgmSH2F/Power-Guard-SS18-12-12-V-18-Ah-U.webp"
+      ],
+      "shortDescription": "Model: SS18-12\nBattery Capacity: 18Ah\nNominal Voltage: 12V\nCharging Current: 5.4A Max.\nTerminal Material: Copper",
+      "keyFeatures": [
+        "Model: SS18-12",
+        "Battery Capacity: 18Ah",
+        "Nominal Voltage: 12V",
+        "Charging Current: 5.4A Max.",
+        "Terminal Material: Copper"
+      ],
+      "warranty": "6 month warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Power Guard SS18-12 12V 18Ah UPS Battery</h2><p>The Power Guard <strong>SS18-12</strong> 12V 18Ah UPS Battery has improved backup power capabilities with a nominal voltage of 12V and a greater capacity of 18Ah, assuring long-term assistance during power outages. When needed, its maximum discharge current of 270A for up to 5 seconds delivers a significant power surge that meets vital requirements during blackouts. The copper terminal material of the Power Guard SS18-12 12V 18Ah UPS Battery guarantees effective conductivity and endurance, maximizing performance over extended periods. Weighing about 5 kg, it strikes a compromise between durability and usability, making it appropriate for a range of uses. Additionally, the maximum charging current of 5.4A for this Power Guard SS18-12 12V 18Ah UPS Battery enables quick and efficient recharge, guaranteeing preparedness for upcoming power outages. This Power Guard SS18-12 12V UPS Battery provides dependable and robust power backup for both residential and commercial applications, allowing you to confidently protect important electronic devices and systems.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "Sealed Lead Acid (SLA)",
+          "Capacity": "18Ah",
+          "Input Voltage": "12V",
+          "Max. Charging Current": "5.4A",
+          "Max. Discharge Current": "270A(5 sec.)"
+        },
+        "Physical Information": {
+          "Weight": "Approx. Weight: 5 Kg"
+        },
+        "Warranty Information": {
+          "Warranty": "6 month warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/power-guard-ss18-12-ups-battery",
+      "audit": {
+        "sourcePrice": 0,
+        "sourceRegularPrice": 0,
+        "calculatedPrice": 0,
+        "calculatedOldPrice": 0,
+        "priceMultiplier": 1.1,
+        "status": "Out Of Stock",
+        "scrapedAt": "2026-10-31T15:56:15.660Z"
+      }
+    },
+    {
+      "id": "st-28259",
+      "title": "KENSON KS12-26AH 12V 26AH UPS Battery",
+      "slug": "kenson-ks12-26ah-ups-battery",
+      "price": 5830,
+      "oldPrice": 6660,
+      "discountPercentage": 12,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "KENSON",
+      "productCode": "28259",
+      "stock": 10,
+      "image": "https://i.ibb.co/qL5ZCWkd/KENSON-KS12-26-AH-12-V-26-AH-UPS.webp",
+      "images": [
+        "https://i.ibb.co/qL5ZCWkd/KENSON-KS12-26-AH-12-V-26-AH-UPS.webp"
+      ],
+      "shortDescription": "Model: KS12-26AH\nNominal Voltage: 12 V\nCapacity: 26 Ah\nStandby Use: 13.50V-13.80V\nCycle Use: 14.50V-15.0V",
+      "keyFeatures": [
+        "Model: KS12-26AH",
+        "Nominal Voltage: 12 V",
+        "Capacity: 26 Ah",
+        "Standby Use: 13.50V-13.80V",
+        "Cycle Use: 14.50V-15.0V"
+      ],
+      "warranty": "6 months warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2 style=\"\">KENSON KS12-26AH 12V 26AH UPS Battery</h2><p style=\"\">The KENSON KS12-26AH 12V 26AH UPS Battery is a high-quality battery designed specifically for Online/Offline UPS systems. It features a 12V voltage and 26AH capacity, providing reliable power backup. Made with Korean Standard Technology, this battery ensures superior performance and durability. It is a sealed lead acid (SMF) battery, known for its reliability and maintenance-free operation. The battery has a compact design with dimensions of approximately 181 x 166 x 125mm and a weight of approximately 7.30 kg. With a charging time of 20 hours, it offers an efficient power supply for various applications. Whether for professional or personal use, the KENSON KS12-26AH UPS Battery is a dependable choice to ensure an uninterrupted power supply.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "Sealed Lead Acid (SLA)",
+          "Capacity": "26AH",
+          "Current": "12V",
+          "Terminal": "F1/F2"
+        },
+        "Warranty Information": {
+          "Warranty": "6 months warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/kenson-ks12-26ah-ups-battery",
+      "audit": {
+        "sourcePrice": 5300,
+        "sourceRegularPrice": 6050,
+        "calculatedPrice": 5830,
+        "calculatedOldPrice": 6660,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T15:56:17.773Z"
+      }
+    },
+    {
+      "id": "st-25675",
+      "title": "MaxGreen MG12-26 12V 26A UPS Battery",
+      "slug": "maxgreen-mg12-26-12v-26a-ups-battery",
+      "price": 6710,
+      "oldPrice": 7500,
+      "discountPercentage": 11,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "MaxGreen",
+      "productCode": "25675",
+      "stock": 10,
+      "image": "https://i.ibb.co/LzJbBKgC/Max-Green-MG12-26-12-V-26-A-UPS-B.webp",
+      "images": [
+        "https://i.ibb.co/LzJbBKgC/Max-Green-MG12-26-12-V-26-A-UPS-B.webp"
+      ],
+      "shortDescription": "Model: MG12-26\nNominal Voltage: 12 V\nCapacity: 26 Ah\nAbsorbent glass mat technology\nABS container",
+      "keyFeatures": [
+        "Model: MG12-26",
+        "Nominal Voltage: 12 V",
+        "Capacity: 26 Ah",
+        "Absorbent glass mat technology",
+        "ABS container"
+      ],
+      "warranty": "06 months Warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2 style=\"text-align: justify; \">MaxGreen MG12-26 12V 26A UPS Battery</h2><p style=\"text-align: justify; \">MaxGreen MG12-26 12V 26A UPS Battery has a nominal voltage of 12 V. It comes with a capacity of 26Ah for 20HR(10.5V), 24.2Ah for 10HR(10.5V), and 16.3Ah 1HR(9.60V). This UPS Battery is equipped with High-performance plates and electrolytes to give extra power output for a common power backup system. This UPS battery offers Heavy Duty Grid and mechanized assembly. It has a non-spillable construction and can deliver high reliability and stability. It has a high-quality AGM separator that extends cycle life and prevents micro short circuits. ABS material help increases the strength of the battery container. High-purity raw material ensures a low self-discharge rate. The MaxGreen MG12-26 12V 26A UPS Battery comes with 06months of warranty.<br></p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "Sealed Lead Acid (SLA)",
+          "Capacity": "26Ah",
+          "Input Voltage": "12V",
+          "Operating Temperature": "-15°C to 50°C",
+          "Others": "Cycle Life: 500-800 cycles"
+        },
+        "Physical Information": {
+          "Dimension": "181mm x 76mm x 167mm",
+          "Weight": "7.4kg"
+        },
+        "Warranty Information": {
+          "Warranty": "06 months Warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/maxgreen-mg12-26-12v-26a-ups-battery",
+      "audit": {
+        "sourcePrice": 6100,
+        "sourceRegularPrice": 6820,
+        "calculatedPrice": 6710,
+        "calculatedOldPrice": 7500,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T15:56:19.959Z"
+      }
+    },
+    {
+      "id": "st-23373",
+      "title": "LONG WP18-12SHR 12V 18Ah Rechargeable Sealed Lead Acid Battery",
+      "slug": "long-wp18-12shr-12v-18ah-sealed-lead-acid-battery",
+      "price": 9240,
+      "oldPrice": 10160,
+      "discountPercentage": 9,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "LONG",
+      "productCode": "23373",
+      "stock": 10,
+      "image": "https://i.ibb.co/210vvhfC/LONG-WP18-12-SHR-12-V-18-Ah-Recha.jpg",
+      "images": [
+        "https://i.ibb.co/210vvhfC/LONG-WP18-12-SHR-12-V-18-Ah-Recha.jpg"
+      ],
+      "shortDescription": "Model: WP18-12SHR\nNominal Voltage (V): 12V\nNominal Capacity: 18Ah\nMax Discharge Current for 5 seconds: 270A\nWeight: Approx. 5.6kg",
+      "keyFeatures": [
+        "Model: WP18-12SHR",
+        "Nominal Voltage (V): 12V",
+        "Nominal Capacity: 18Ah",
+        "Max Discharge Current for 5 seconds: 270A",
+        "Weight: Approx. 5.6kg"
+      ],
+      "warranty": "06 months Warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2 style=\"text-align: justify; \">LONG WP18-12SHR 12V 18Ah Rechargeable Sealed Lead Acid Battery</h2><p style=\"text-align: justify; \">The LONG WP18-12SHR is a 12V 18Ah Rechargeable Sealed Lead Acid Battery. The LONG WP18-12SHR battery is the best and smart choice for UPS, telecommunication systems, emergency lighting, electronic cash registers, medical equipment and systems, fire alarm systems, powered tools, children’s toys, electric vehicles, and electric scooters. This gel battery is durable and long-lasting. The internal battery fluid is gel-shaped and has a high moisture retention capacity and it is relatively effective for use in high-temperature environments. It is a Trusted and Quality Product for Electric cars, medical equipment and systems, and fire alarm system. The LONG WP18-12SHR 12V 18Ah Rechargeable SLA Battery can be charged and discharged. It is a fully sealed type that does not emit gas at normal times and can be used safely indoors as a power supply for a variety of devices. The LONG WP18-12SHR is highly durable and cost-effective for repeated charging and discharging making it perfect for sub batteries in campers and marines. The LONG WP18-12SHR Battery comes with 6 month warranty.</p></div>",
+      "specs": {
+        "General Information": {
+          "Capacity": "18Ah",
+          "Input Voltage": "12V",
+          "Max. Discharge Current": "270A (for 5 sec)"
+        },
+        "Physical Information": {
+          "Dimension": "Length: 181 mm (7.125”) Width: 76 mm (2.99”) Height: 167 mm (6.92”)",
+          "Weight": "Approx. 5.6kg"
+        },
+        "Warranty Information": {
+          "Warranty": "06 months Warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/long-wp18-12shr-12v-18ah-sealed-lead-acid-battery",
+      "audit": {
+        "sourcePrice": 8400,
+        "sourceRegularPrice": 9240,
+        "calculatedPrice": 9240,
+        "calculatedOldPrice": 10160,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T15:56:22.354Z"
+      }
+    },
+    {
+      "id": "st-49364",
+      "title": "KENSON KS12 12V 80AH UPS Battery",
+      "slug": "kenson-ks12-12v-80ah-ups-battery",
+      "price": 16500,
+      "oldPrice": 18150,
+      "discountPercentage": 9,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "KENSON",
+      "productCode": "49364",
+      "stock": 10,
+      "image": "https://i.ibb.co/TqpR9qF5/KENSON-KS12-12-V-80-AH-UPS-Batte.webp",
+      "images": [
+        "https://i.ibb.co/TqpR9qF5/KENSON-KS12-12-V-80-AH-UPS-Batte.webp"
+      ],
+      "shortDescription": "Model: KS12 12V 80AH\nNominal Voltage: 12V\nCapacity: 80AH\nLong-lasting performance\nIdeal for UPS systems",
+      "keyFeatures": [
+        "Model: KS12 12V 80AH",
+        "Nominal Voltage: 12V",
+        "Capacity: 80AH",
+        "Long-lasting performance",
+        "Ideal for UPS systems"
+      ],
+      "warranty": "01 Year Warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>KENSON KS12 12V 80AH UPS Battery</h2><p>The KENSON <strong>KS12 12V 80AH</strong> UPS Battery is a durable and high‑capacity backup power solution designed to deliver consistent performance for UPS systems, inverters, and critical applications. With its robust 80AH capacity, this KENSON 80AH UPS Battery ensures extended runtime and reliable power supply during outages, making it ideal for homes, offices, and industrial setups. Engineered with advanced technology, the KENSON UPS Battery provides stable output under heavy load conditions while maintaining safety and efficiency. Compact yet powerful, the KENSON KS12 12V Battery offers long service life, dependable performance, and cost‑effective backup power, making it the perfect choice for users seeking a trusted 12V 80AH UPS Battery for uninterrupted energy support.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "Sealed Lead Acid (SLA)",
+          "Capacity": "80AH",
+          "Input Voltage": "12V",
+          "Terminal": "F1/F2"
+        },
+        "Physical Information": {
+          "Weight": "Approx : ~22KG"
+        },
+        "Warranty Information": {
+          "Warranty": "01 Year Warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/kenson-ks12-12v-80ah-ups-battery",
+      "audit": {
+        "sourcePrice": 15000,
+        "sourceRegularPrice": 16500,
+        "calculatedPrice": 16500,
+        "calculatedOldPrice": 18150,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T15:56:24.851Z"
+      }
+    },
+    {
+      "id": "st-35271",
+      "title": "KENSON KS12 12V 40AH UPS Battery",
+      "slug": "kenson-ks12-12v-40ah-ups-battery",
+      "price": 8800,
+      "oldPrice": 9680,
+      "discountPercentage": 9,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "KENSON",
+      "productCode": "35271",
+      "stock": 10,
+      "image": "https://i.ibb.co/39Q06kR7/KENSON-KS12-12-V-40-AH-UPS-Batte.webp",
+      "images": [
+        "https://i.ibb.co/39Q06kR7/KENSON-KS12-12-V-40-AH-UPS-Batte.webp"
+      ],
+      "shortDescription": "Model: KS12 12V 40AH\nNominal Voltage: 12V\nCapacity: 40AH\nStandby Use: 13.50V-13.80V\nCycle Use: 14.50V-15.0V",
+      "keyFeatures": [
+        "Model: KS12 12V 40AH",
+        "Nominal Voltage: 12V",
+        "Capacity: 40AH",
+        "Standby Use: 13.50V-13.80V",
+        "Cycle Use: 14.50V-15.0V"
+      ],
+      "warranty": "01 Year Warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>KENSON KS12 12V 40AH&nbsp;UPS Battery</h2><p>The KENSON <span style=\"font-weight: bold;\">KS12 12V&nbsp;</span><span style=\"font-weight: 700;\">40AH </span>UPS Battery is a reliable power source designed for uninterrupted power supply (UPS) applications. With a nominal voltage of 12 volts and a capacity of 18 ampere-hours (Ah), this battery offers a balance of power and longevity suitable for various electronic devices and backup systems. In standby use, the battery maintains a voltage range of 13.50V to 13.80V, ensuring a stable and consistent power supply during idle periods or standby mode. This standby voltage range is crucial for devices that require continuous monitoring or occasional usage without draining the battery excessively. For cycle use, the battery can handle higher voltage demands, ranging from 14.50V to 15.0V. This range is ideal for applications where the battery is frequently discharged and recharged, such as in cyclic UPS systems or backup power for renewable energy systems. The KENSON KS12 12V 40AH&nbsp;UPS Battery is a great choice for backup power needs in both residential and business settings because of its adaptable design and reliable performance. Whether it is used to power renewable energy systems or safeguard critical equipment during blackouts, this battery offers comfort and dependability.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "Sealed Lead Acid (SLA)",
+          "Capacity": "40AH",
+          "Input Voltage": "12V",
+          "Terminal": "F1/F2"
+        },
+        "Physical Information": {
+          "Weight": "Approx : ~14KG"
+        },
+        "Warranty Information": {
+          "Warranty": "01 Year Warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/kenson-ks12-12v-40ah-ups-battery",
+      "audit": {
+        "sourcePrice": 8000,
+        "sourceRegularPrice": 8800,
+        "calculatedPrice": 8800,
+        "calculatedOldPrice": 9680,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T15:56:26.959Z"
+      }
+    },
+    {
+      "id": "st-23374",
+      "title": "LONG WPS26-12N 12V 26Ah Rechargeable Sealed Lead Acid Battery",
+      "slug": "long-wps26-12n-12v-26ah-sealed-lead-acid-battery",
+      "price": 12650,
+      "oldPrice": 13860,
+      "discountPercentage": 9,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "LONG",
+      "productCode": "23374",
+      "stock": 10,
+      "image": "https://i.ibb.co/pBJnDxBg/LONG-WPS26-12-N-12-V-26-Ah-Rechar.jpg",
+      "images": [
+        "https://i.ibb.co/pBJnDxBg/LONG-WPS26-12-N-12-V-26-Ah-Rechar.jpg"
+      ],
+      "shortDescription": "Model: WPS26-12N\nNominal Voltage (V): 12V\nNominal Capacity: 26Ah\nMax Discharge Current for 5 seconds: 390A\nWeight: Approx. 8.0kg",
+      "keyFeatures": [
+        "Model: WPS26-12N",
+        "Nominal Voltage (V): 12V",
+        "Nominal Capacity: 26Ah",
+        "Max Discharge Current for 5 seconds: 390A",
+        "Weight: Approx. 8.0kg"
+      ],
+      "warranty": "06 months Warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2 style=\"text-align: justify; \">LONG WPS26-12N 12V 26Ah Rechargeable Sealed Lead Acid Battery</h2><p style=\"text-align: justify; \">The LONG WPS26-12N is a 12V 26Ah Rechargeable Sealed Lead Acid Battery. The LONG WPS26-12N battery is the best and smart choice for UPS, telecommunication systems, emergency lighting, medical equipment and systems, and fire alarm systems. This gel battery is durable and long-lasting. The internal battery fluid is gel-shaped and has a high moisture retention capacity and it is relatively effective for use in high-temperature environments. It is a Trusted and Quality Product for Electric cars, medical equipment and systems, and fire alarm system. The LONG WPS26-12N 12V 26Ah Rechargeable SLA Battery can be charged and discharged. It is a fully sealed type that does not emit gas at normal times and can be used safely indoors as a power supply for a variety of devices. The LONG WPS26-12N is highly durable and cost-effective for repeated charging and discharging making it perfect for sub batteries in campers and marines. The LONG WPS26-12N Battery comes with 6 month warranty.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "Sealed Lead Acid (SLA)",
+          "Capacity": "26Ah",
+          "Input Voltage": "12V",
+          "Terminal": "F2",
+          "Operating Temperature": "-20°C to 50°C"
+        },
+        "Physical Information": {
+          "Dimension": "165mm x 125mm x 175mm",
+          "Weight": "Approx. 8.1 kg"
+        },
+        "Warranty Information": {
+          "Warranty": "06 months Warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/long-wps26-12n-12v-26ah-sealed-lead-acid-battery",
+      "audit": {
+        "sourcePrice": 11500,
+        "sourceRegularPrice": 12600,
+        "calculatedPrice": 12650,
+        "calculatedOldPrice": 13860,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T15:56:29.245Z"
+      }
+    },
+    {
+      "id": "st-23376",
+      "title": "LONG WPS40-12N 12V 40Ah Rechargeable Sealed Lead Acid Battery",
+      "slug": "long-wps40-12n-12v-40ah-sealed-lead-acid-battery",
+      "price": 17050,
+      "oldPrice": 18700,
+      "discountPercentage": 9,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "LONG",
+      "productCode": "23376",
+      "stock": 10,
+      "image": "https://i.ibb.co/LD3RJSbz/LONG-WPS40-12-N-12-V-40-Ah-Rechar.jpg",
+      "images": [
+        "https://i.ibb.co/LD3RJSbz/LONG-WPS40-12-N-12-V-40-Ah-Rechar.jpg"
+      ],
+      "shortDescription": "Model: WPS40-12N\nNominal Voltage (V): 12V\nNominal Capacity: 40Ah\nMax Discharge Current for 5 seconds: 480A\nWeight: Approx. 12.6kg",
+      "keyFeatures": [
+        "Model: WPS40-12N",
+        "Nominal Voltage (V): 12V",
+        "Nominal Capacity: 40Ah",
+        "Max Discharge Current for 5 seconds: 480A",
+        "Weight: Approx. 12.6kg"
+      ],
+      "warranty": "01 Year",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2 style=\"text-align: justify; \">LONG WPS40-12N 12V 40Ah Rechargeable Sealed Lead Acid Battery</h2><p style=\"text-align: justify; \">The LONG WPS40-12N is a 12V 40Ah Rechargeable Sealed Lead Acid Battery. The LONG WPS40-12N battery is the best and smart choice for UPS, telecommunication systems, emergency lighting, medical equipment and systems, and fire alarm systems. This gel battery is durable and long-lasting. The internal battery fluid is gel-shaped and has a high moisture retention capacity and it is relatively effective for use in high-temperature environments. It is a Trusted and Quality Product for Electric cars, medical equipment and systems, and fire alarm system. The LONG WPS40-12N 12V 40Ah Rechargeable SLA Battery can be charged and discharged. It is a fully sealed type that does not emit gas at normal times and can be used safely indoors as a power supply for a variety of devices. The LONG WPS40-12N is highly durable and cost-effective for repeated charging and discharging making it perfect for sub batteries in campers and marines. The LONG WPS40-12N Battery comes with 1 year warranty.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "Sealed Lead Acid (SLA)",
+          "Capacity": "40Ah",
+          "Input Voltage": "12V",
+          "Terminal": "F2",
+          "Operating Temperature": "-20°C to 50°C"
+        },
+        "Physical Information": {
+          "Dimension": "197mm x 165mm x 175mm",
+          "Weight": "Approx. 12 kg"
+        },
+        "Warranty Information": {
+          "Warranty": "01 Year"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/long-wps40-12n-12v-40ah-sealed-lead-acid-battery",
+      "audit": {
+        "sourcePrice": 15500,
+        "sourceRegularPrice": 17000,
+        "calculatedPrice": 17050,
+        "calculatedOldPrice": 18700,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T15:56:31.350Z"
+      }
+    },
+    {
+      "id": "st-35286",
+      "title": "KENSON KS12 12V 65AH UPS Battery",
+      "slug": "kenson-ks12-12v-65ah-ups-battery",
+      "price": 14850,
+      "oldPrice": 16280,
+      "discountPercentage": 9,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "KENSON",
+      "productCode": "35286",
+      "stock": 10,
+      "image": "https://i.ibb.co/rRtX1tH3/KENSON-KS12-12-V-65-AH-UPS-Batte.webp",
+      "images": [
+        "https://i.ibb.co/rRtX1tH3/KENSON-KS12-12-V-65-AH-UPS-Batte.webp"
+      ],
+      "shortDescription": "Model: KS12 12V 65AH\nNominal Voltage: 12V\nCapacity: 65AH\nStandby Use: 13.50V-13.80V\nCycle Use: 14.50V-15.0V",
+      "keyFeatures": [
+        "Model: KS12 12V 65AH",
+        "Nominal Voltage: 12V",
+        "Capacity: 65AH",
+        "Standby Use: 13.50V-13.80V",
+        "Cycle Use: 14.50V-15.0V"
+      ],
+      "warranty": "01 Year Warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>KENSON KS12 12V 65AH UPS Battery</h2><p>The KENSON <span style=\"font-weight: bold;\">KS12 12V 65AH</span> UPS Battery is a reliable power solution designed to provide seamless backup power in various applications. With a nominal voltage of 12 volts and a capacity of 65 ampere-hours (AH), this battery offers a balance of performance and longevity. The battery operates within a voltage range of 13.50V to 13.80V, ensuring steady and consistent power delivery during idle periods. This makes it ideal for uninterrupted power supply (UPS) systems, where reliability is paramount. For cyclic use, such as in renewable energy systems or electric vehicles, the battery can handle voltages ranging from 14.50V to 15.0V. This higher voltage range allows for efficient charging and discharging cycles, maximizing the battery's lifespan and performance in demanding applications. Whether it's for backup power in critical systems or as part of a renewable energy setup, the KENSON KS12 12V 65AH UPS Battery offers durability, efficiency, and reliability to meet various power needs.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "Sealed Lead Acid (SLA)",
+          "Capacity": "65Ah",
+          "Resistance": "≤ 7.5mΩ",
+          "Terminal": "F1/F2",
+          "Operating Temperature": "Discharge: -20°C to 60°C (-4°F to 140°F) Charge: 0°C to 50°C (32°F to 122°F) Storage: -20°C to 60°C (-4°F to 140°F)"
+        },
+        "Physical Information": {
+          "Dimension": "350mm x 166mm x 174mm",
+          "Weight": "Approximately 23.5 kg"
+        },
+        "Warranty Information": {
+          "Warranty": "01 Year Warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/kenson-ks12-12v-65ah-ups-battery",
+      "audit": {
+        "sourcePrice": 13500,
+        "sourceRegularPrice": 14800,
+        "calculatedPrice": 14850,
+        "calculatedOldPrice": 16280,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T15:56:33.473Z"
+      }
+    },
+    {
+      "id": "st-37178",
+      "title": "MaxGreen MG12-65 12V 65Ah UPS Battery",
+      "slug": "maxgreen-mg12-65-12v-65ah-ups-battery",
+      "price": 13960,
+      "oldPrice": 17550,
+      "discountPercentage": 20,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "MaxGreen",
+      "productCode": "37178",
+      "stock": 10,
+      "image": "https://i.ibb.co/M56ty8cJ/Max-Green-MG12-65-12-V-65-Ah-UPS.webp",
+      "images": [
+        "https://i.ibb.co/M56ty8cJ/Max-Green-MG12-65-12-V-65-Ah-UPS.webp"
+      ],
+      "shortDescription": "Model: MG12-65\nCapacity: 65Ah\nNominal Voltage: 12V\nInternal Resistance: Approx. 6.5mΩ\nMaximum Discharge Current: 21A",
+      "keyFeatures": [
+        "Model: MG12-65",
+        "Capacity: 65Ah",
+        "Nominal Voltage: 12V",
+        "Internal Resistance: Approx. 6.5mΩ",
+        "Maximum Discharge Current: 21A"
+      ],
+      "warranty": "12 Months Warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>MaxGreen MG12-65 12V 65Ah UPS Battery</h2><p>The MaxGreen <strong>MG12-65</strong> is a powerful 12V UPS battery with a 65Ah capacity, engineered for long-lasting performance. It has copper T5/T9 terminal types, which provide effective conductivity. The battery is appropriate for high-demand applications since it can withstand a maximum discharge current of 700A for five seconds. It guarantees durability with a planned floating life of 10 to 15 years. The battery has the following dimensions: it is 348±2 mm long, 167±2 mm wide, and 178±2 mm tall. It weighs around 17.5 kg ±4%. When completely charged at 25°C, the MaxGreen MG12-65 12V 65Ah UPS Battery has an internal resistance of roughly 6.5mΩ and can support a maximum charging current of 21A. Temperature has an impact on capacity; it maintains 102% at 40°C, 100% at 25°C, 85% at 0°C, and 65% at -15°C. 91% of the capacity remains after three months, 82% after six months, and 65% after a year at a self-discharge rate of 25°C. The operational temperature range for discharge is between -15°C and 50°C, for charging it is between -10°C and 50°C, and for storage it is between -20°C and 50°C. The nominal operating temperature is 25°C±3°C. The cyclic charging voltage of the MaxGreen MG12-65 12V 65Ah UPS Battery varies from 14.50 to 14.90V with a temperature adjustment of -30mV/°C, while the float charging voltage at 25°C ranges from 13.50 to 13.80V. With its extensive feature set, the MaxGreen MG12-65 is a dependable option for a range of UPS applications, guaranteeing continuous operation under a variety of environmental circumstances.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "Sealed Lead Acid (SLA)",
+          "Capacity": "65Ah",
+          "Input Voltage": "12V",
+          "Max. Charging Current": "700A",
+          "Resistance": "Approx. 6.5mΩ",
+          "Operating Temperature": "-15°C to 50°C",
+          "Others": "Life Cycle: 500-800 cycles"
+        },
+        "Physical Information": {
+          "Dimension": "331mm x 173mm x 220mm",
+          "Weight": "18.5kg"
+        },
+        "Warranty Information": {
+          "Warranty": "12 Months Warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/maxgreen-mg12-65-12v-65ah-ups-battery",
+      "audit": {
+        "sourcePrice": 12690,
+        "sourceRegularPrice": 15950,
+        "calculatedPrice": 13960,
+        "calculatedOldPrice": 17550,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T15:56:35.678Z"
+      }
+    },
+    {
+      "id": "st-35287",
+      "title": "KENSON KS12 12V 70AH UPS Battery",
+      "slug": "kenson-ks12-12v-70ah-ups-battery",
+      "price": 15950,
+      "oldPrice": 18150,
+      "discountPercentage": 12,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "KENSON",
+      "productCode": "35287",
+      "stock": 10,
+      "image": "https://i.ibb.co/PZPm6nQJ/KENSON-KS12-12-V-70-AH-UPS-Batte.webp",
+      "images": [
+        "https://i.ibb.co/PZPm6nQJ/KENSON-KS12-12-V-70-AH-UPS-Batte.webp"
+      ],
+      "shortDescription": "Model: KS12 12V 70AH\nNominal Voltage: 12V\nCapacity: 70AH\nStandby Use: 13.50V-13.80V\nCycle Use: 14.50V-15.0V",
+      "keyFeatures": [
+        "Model: KS12 12V 70AH",
+        "Nominal Voltage: 12V",
+        "Capacity: 70AH",
+        "Standby Use: 13.50V-13.80V",
+        "Cycle Use: 14.50V-15.0V"
+      ],
+      "warranty": "01 Year Warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>KENSON KS12 12V 70AH&nbsp;UPS Battery</h2><p>The KENSON <span style=\"font-weight: bold;\">KS12 12V&nbsp;</span><span style=\"font-weight: 700;\">70AH </span>UPS Battery is a reliable power solution designed to provide seamless backup power in various applications. With a nominal voltage of 12 volts and a capacity of 65 ampere-hours (AH), this battery offers a balance of performance and longevity. Power delivery during idle times is stable and consistent since the battery runs within the voltage range of 13.50V to 13.80V. Because of this, it's perfect for systems that rely heavily on uninterrupted power supplies (UPS). The battery supports voltages between 14.50V and 15.0V for cyclic use, such as in electric vehicles or renewable energy systems. To maximize the battery's longevity and performance in demanding applications, this greater voltage range enables efficient cycles of charging and discharging. Whether it's for backup power in critical systems or as part of a renewable energy setup, the KENSON KS12 12V 70AH&nbsp;UPS Battery offers durability, efficiency, and reliability to meet various power needs.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "Sealed Lead Acid (SLA",
+          "Capacity": "70AH",
+          "Input Voltage": "12V",
+          "Terminal": "F1/F2"
+        },
+        "Physical Information": {
+          "Weight": "Approx : ~25KG"
+        },
+        "Warranty Information": {
+          "Warranty": "01 Year Warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/kenson-ks12-12v-70ah-ups-battery",
+      "audit": {
+        "sourcePrice": 14500,
+        "sourceRegularPrice": 16500,
+        "calculatedPrice": 15950,
+        "calculatedOldPrice": 18150,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T15:56:37.855Z"
+      }
+    },
+    {
+      "id": "st-44774",
+      "title": "SANTAK CASTLE C12V 12V-26Ah UPS Battery",
+      "slug": "santak-castle-c12v-26ah-ups-battery",
+      "price": 8800,
+      "oldPrice": 9680,
+      "discountPercentage": 9,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "SANTAK",
+      "productCode": "44774",
+      "stock": 10,
+      "image": "https://i.ibb.co/B5stwpfw/SANTAK-CASTLE-C12-V-12-V-26-Ah-UP.webp",
+      "images": [
+        "https://i.ibb.co/B5stwpfw/SANTAK-CASTLE-C12-V-12-V-26-Ah-UP.webp"
+      ],
+      "shortDescription": "Model: CASTLE C12V\nNominal Voltage (V): 12V\nNominal Capacity: 26AH\nLow Self-discharge Rate\nFlame Retardant: ABS materials",
+      "keyFeatures": [
+        "Model: CASTLE C12V",
+        "Nominal Voltage (V): 12V",
+        "Nominal Capacity: 26AH",
+        "Low Self-discharge Rate",
+        "Flame Retardant: ABS materials"
+      ],
+      "warranty": "2 Years",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>SANTAK CASTLE C12V 12V-26Ah UPS Battery</h2><p>The SANTAK <span style=\"font-weight: bold;\">CASTLE C12V</span> Series 12V-26Ah battery is built for reliable backup power. It uses advanced technology to deliver strong performance and long life. This battery works especially well with UPS systems, thanks to its low internal resistance and stable discharge rate. It is easy to install and maintain because of its embedded terminal design. The SANTAK CASTLE 12V-26Ah UPS Battery is designed to last and perform well in both hot and cold environments. It supports a wide range of applications like telecom, security systems, medical devices, and emergency backup. The C12-26 offers 26Ah capacity, 89.1W/cell output, and weighs only 7.8kg—making it compact yet powerful. Monthly and yearly maintenance is simple, and the battery has a low self-discharge rate of less than 3% per month. With high consistency and strong compatibility, this SANTAK 12V-26Ah UPS Battery is a smart choice for anyone needing dependable power backup.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "VRLA",
+          "Capacity": "312 Wh",
+          "Input Voltage": "12V",
+          "Max. Charging Current": "0.3CA",
+          "Self Discharge": "less than 3% per month (25℃ )",
+          "Floating Life": "13.5V - 13.8V; Recom. 13.65V",
+          "Operating Temperature": "Charge: 0℃ ~40℃ Discharging: -20℃ ~55℃ Storage: -15℃ ~50℃"
+        },
+        "Physical Information": {
+          "Dimension": "166*175*125",
+          "Weight": "7.8kg"
+        },
+        "Warranty Information": {
+          "Warranty": "2 Years"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/santak-castle-c12v-26ah-ups-battery",
+      "audit": {
+        "sourcePrice": 8000,
+        "sourceRegularPrice": 8800,
+        "calculatedPrice": 8800,
+        "calculatedOldPrice": 9680,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T15:56:40.836Z"
+      }
+    },
+    {
+      "id": "st-38573",
+      "title": "LONG LG7-12 12V 65Ah Rechargeable Sealed Lead Acid Battery",
+      "slug": "long-lg7-12-12v-65ah-sealed-lead-acid-battery-battery",
+      "price": 25300,
+      "oldPrice": 27720,
+      "discountPercentage": 9,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "LONG",
+      "productCode": "38573",
+      "stock": 10,
+      "image": "https://i.ibb.co/yxTgfqC/LONG-LG7-12-12-V-65-Ah-Rechargea.webp",
+      "images": [
+        "https://i.ibb.co/yxTgfqC/LONG-LG7-12-12-V-65-Ah-Rechargea.webp"
+      ],
+      "shortDescription": "Model: LG7-12\nNominal Voltage (V): 12V\nNominal Capacity: 65Ah\nMaximum Discharge Current for 5 Secord: 780A\nMaximum Charging Current: 19.5A",
+      "keyFeatures": [
+        "Model: LG7-12",
+        "Nominal Voltage (V): 12V",
+        "Nominal Capacity: 65Ah",
+        "Maximum Discharge Current for 5 Secord: 780A",
+        "Maximum Charging Current: 19.5A"
+      ],
+      "warranty": "6 months warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>LONG LG7-12 12V 65Ah Rechargeable Sealed Lead Acid Battery</h2><p>The <strong>LONG LG7-12 12V 65Ah</strong> Rechargeable Sealed Lead Acid Battery is a robust and high-capacity power solution designed to meet the demands of various applications. With a nominal voltage of 12V and a capacity of 65Ah, this battery is perfect for use in electric vehicles, medical equipment, fire alarm systems, and other critical devices that require a reliable and consistent power source. Its sealed lead acid design ensures it is maintenance-free and safe for indoor use, as it does not emit gases under normal operating conditions. This battery is engineered for durability, featuring a construction that can withstand repeated charging and discharging cycles. The internal gel electrolyte provides excellent moisture retention and performs well in high-temperature environments, making it suitable for both indoor and outdoor use. The LONG LG7-12 battery boasts a high discharge rate, capable of delivering up to 780A for 5 seconds, ensuring it can handle high power demands when needed. It also features a low internal resistance of approximately 5 mΩ, which contributes to its efficient performance. The battery supports various charging methods, with a cycle use charging voltage of 14.4 to 15.0V and a maximum charging current of 19.5A. For standby use, the float charging voltage ranges from 13.5 to 13.8V. The battery operates effectively within a wide temperature range, from -15℃ to 40℃ for charging, -15℃ to 50℃ for discharging, and -15℃ to 40℃ for storage. It also offers excellent charge retention, maintaining 98% capacity after one month, 94% after three months, and 85% after six months at 20℃. Whether you need a dependable power source for your electric vehicle, medical equipment, or emergency systems, the LONG LG7-12 12V 65Ah Rechargeable Sealed Lead Acid Battery provides the performance and reliability you need. Its combination of high capacity, durability, and safety features makes it an excellent choice for both professional and personal use.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "Sealed Lead Acid",
+          "Capacity": "65Ah",
+          "Input Voltage": "12V",
+          "Max. Charging Current": "19.5A",
+          "Max. Discharge Current": "For 5 Sec: 780A",
+          "Self Discharge": "Low self-discharge",
+          "Operating Temperature": "-20°C to 50°C"
+        },
+        "Physical Information": {
+          "Dimension": "350mm x 167mm x 173mm",
+          "Weight": "Approx. 20.5 kg"
+        },
+        "Warranty Information": {
+          "Warranty": "6 months warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/long-lg7-12-12v-65ah-sealed-lead-acid-battery-battery",
+      "audit": {
+        "sourcePrice": 23000,
+        "sourceRegularPrice": 25200,
+        "calculatedPrice": 25300,
+        "calculatedOldPrice": 27720,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T15:56:43.407Z"
+      }
+    },
+    {
+      "id": "st-43731",
+      "title": "Marsriva MR-PBL12-150 12V 150Ah Sealed Lead-Acid UPS Battery",
+      "slug": "marsriva-mr-pbl12-150-ups-battery",
+      "price": 30140,
+      "oldPrice": 34490,
+      "discountPercentage": 13,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "MARSRIVA",
+      "productCode": "43731",
+      "stock": 10,
+      "image": "https://i.ibb.co/vxCTHPr5/Marsriva-MR-PBL12-150-12-V-150-A.webp",
+      "images": [
+        "https://i.ibb.co/vxCTHPr5/Marsriva-MR-PBL12-150-12-V-150-A.webp",
+        "https://i.ibb.co/LdSgMrhy/Marsriva-MR-PBL12-150-12-V-150-A.webp",
+        "https://i.ibb.co/4wshw3vm/Marsriva-MR-PBL12-150-12-V-150-A.webp",
+        "https://i.ibb.co/H01dZ97/Marsriva-MR-PBL12-150-12-V-150-A.webp"
+      ],
+      "shortDescription": "Model: MR-PBL12-150\nNominal Voltage (V): 12V\nNominal Capacity: 150Ah\nMaximum Discharge Current for 5 Seconds: 1800A\nHigh Corrosion-Resistant Performance",
+      "keyFeatures": [
+        "Model: MR-PBL12-150",
+        "Nominal Voltage (V): 12V",
+        "Nominal Capacity: 150Ah",
+        "Maximum Discharge Current for 5 Seconds: 1800A",
+        "High Corrosion-Resistant Performance"
+      ],
+      "warranty": "1 Year warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Marsriva MR-PBL12-150 12V 150Ah Sealed Lead-Acid UPS Battery</h2><p>The Marsriva <strong>MR-PBL12-150</strong> 12V 150Ah Sealed Lead-Acid UPS Battery is a premium-grade, deep-cycle power solution engineered for consistent and long-lasting performance across critical backup systems such as UPS units, solar power banks, and industrial energy storage. Featuring a nominal voltage of 12V and a high capacity of 150Ah, the Marsriva MR-PBL12-150 12V 150Ah UPS Battery ensures stable and reliable power delivery during outages or high-load demands. It supports a maximum discharge current of 1800A for 5 seconds, enabling instant high-current discharging without compromising performance. The battery is designed with advanced Pb-Ca multi-alloy grid technology, providing high corrosion-resistant performance and exceptional durability over time, even under heavy use. Constructed from tough, impact-resistant ABS material, the battery weighs approximately 42.5kg, ensuring both safety and structural integrity. The Marsriva MR-PBL12-150 12V Battery features low internal resistance (approx. 3.8 mΩ) for efficient power transfer and reduced energy loss, while the M8 terminal design ensures tight and secure connections. This battery is maintenance-free, thanks to its valve-regulated and precision-sealed construction, eliminating the need to replenish electrolyte and enhancing user safety. It performs optimally within a temperature range of 25℃±5℃, and supports a float charging voltage between 13.5V and 13.8V, as well as a cycle use voltage between 14.4V and 15V, providing flexible charging options suited to a variety of applications. Additionally, the Marsriva MR-PBL12-150 12V UPS Battery offers a very low self-discharge rate of only 3% per month at 25℃, making it ideal for standby usage without frequent recharging. Its high energy density and power density, combined with an excellent deep cycle discharge ability and outstanding charge acceptance, make this battery a reliable and efficient choice for both commercial and residential use. Whether you're building an off-grid solar system or need a dependable UPS backup, the Marsriva MR-PBL12-150 12V 150Ah Sealed Lead-Acid UPS Battery delivers uncompromised power, longevity, and performance that meets modern energy demands.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "Sealed Lead Acid",
+          "Capacity": "150Ah",
+          "Input Voltage": "12V",
+          "Resistance": "Approx. 3.8 mΩ",
+          "Terminal": "M8",
+          "Max. Discharge Current": "For 5 Sec: 1800A",
+          "Self Discharge": "3% of capacity declined per month at 25℃",
+          "Operating Temperature": "25℃±5℃",
+          "Others": "Float Charging Voltage: 13.5V – 13.8V @25℃ Cycle Use Voltage: 14.4V – 15V @25℃"
+        },
+        "Physical Information": {
+          "Material": "ABS",
+          "Weight": "42.5kg"
+        },
+        "Warranty Information": {
+          "Warranty": "1 Year warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/marsriva-mr-pbl12-150-ups-battery",
+      "audit": {
+        "sourcePrice": 27400,
+        "sourceRegularPrice": 31350,
+        "calculatedPrice": 30140,
+        "calculatedOldPrice": 34490,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T15:56:48.780Z"
+      }
+    },
+    {
+      "id": "st-50416",
+      "title": "SANTAK CASTLE C12V 12V-18Ah UPS Battery",
+      "slug": "santak-castle-c12v-18ah-ups-battery",
+      "price": 0,
+      "oldPrice": 0,
+      "discountPercentage": 0,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "SANTAK",
+      "productCode": "50416",
+      "stock": 0,
+      "image": "https://i.ibb.co/HDjmtPKf/SANTAK-CASTLE-C12-V-12-V-18-Ah-UP.webp",
+      "images": [
+        "https://i.ibb.co/HDjmtPKf/SANTAK-CASTLE-C12-V-12-V-18-Ah-UP.webp"
+      ],
+      "shortDescription": "Model: CASTLE C12V\nNominal Voltage (V): 12V\nNominal Capacity: 18Ah\nLow Self-discharge Rate\nFlame Retardant: ABS materials",
+      "keyFeatures": [
+        "Model: CASTLE C12V",
+        "Nominal Voltage (V): 12V",
+        "Nominal Capacity: 18Ah",
+        "Low Self-discharge Rate",
+        "Flame Retardant: ABS materials"
+      ],
+      "warranty": "2 Years",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>SANTAK CASTLE C12V 12V-18Ah UPS Battery</h2><p>The SANTAK <strong>CASTLE C12V</strong> Series 12V-18Ah battery is built for reliable backup power. It uses advanced technology to deliver strong performance and long life. This battery works especially well with UPS systems, thanks to its low internal resistance and stable discharge rate. It is easy to install and maintain because of its embedded terminal design. The SANTAK CASTLE 12V-18Ah UPS Battery is designed to last and perform well in both hot and cold environments. It supports a wide range of applications like telecom, security systems, medical devices, and emergency backup. The C12-26 offers 18Ah capacity, 89.1W/cell output, it compact yet powerful. Monthly and yearly maintenance is simple, and the battery has a low self-discharge rate of less than 3% per month. With high consistency and strong compatibility, this SANTAK 12V-18Ah UPS Battery is a smart choice for anyone needing power backup.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "Lead-acid battery",
+          "Capacity": "18Ah",
+          "Input Voltage": "12V"
+        },
+        "Physical Information": {
+          "Dimension": "181.5*77*167.5mm",
+          "Weight": "5.4kg"
+        },
+        "Warranty Information": {
+          "Warranty": "2 Years"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/santak-castle-c12v-18ah-ups-battery",
+      "audit": {
+        "sourcePrice": 0,
+        "sourceRegularPrice": 0,
+        "calculatedPrice": 0,
+        "calculatedOldPrice": 0,
+        "priceMultiplier": 1.1,
+        "status": "Out Of Stock",
+        "scrapedAt": "2026-10-31T15:56:50.940Z"
+      }
+    },
+    {
+      "id": "st-50417",
+      "title": "SANTAK CASTLE C12V 12V-38Ah UPS Battery",
+      "slug": "santak-castle-c12v-38ah-ups-battery",
+      "price": 14300,
+      "oldPrice": 15730,
+      "discountPercentage": 9,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "SANTAK",
+      "productCode": "50417",
+      "stock": 10,
+      "image": "https://i.ibb.co/bR1BkGCL/SANTAK-CASTLE-C12-V-12-V-38-Ah-UP.webp",
+      "images": [
+        "https://i.ibb.co/bR1BkGCL/SANTAK-CASTLE-C12-V-12-V-38-Ah-UP.webp"
+      ],
+      "shortDescription": "Model: CASTLE C12V\nNominal Voltage (V): 12V\nNominal Capacity: 38Ah\nLow Self-discharge Rate\nFlame Retardant: ABS materials",
+      "keyFeatures": [
+        "Model: CASTLE C12V",
+        "Nominal Voltage (V): 12V",
+        "Nominal Capacity: 38Ah",
+        "Low Self-discharge Rate",
+        "Flame Retardant: ABS materials"
+      ],
+      "warranty": "2 Years",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>SANTAK CASTLE C12V 12V-38Ah UPS Battery</h2>\n<p>The SANTAK <span style=\"font-weight: bold;\">CASTLE C12V</span> Series 12V-38Ah battery is built for reliable backup power. It uses advanced technology to deliver strong performance and long life. This battery works especially well with UPS systems, thanks to its low internal resistance and stable discharge rate. It is easy to install and maintain because of its embedded terminal design. The SANTAK CASTLE 12V-38Ah UPS Battery is designed to last and perform well in both hot and cold environments. It supports a wide range of applications like telecom, security systems, medical devices, and emergency backup. The C12-26 offers 38Ah capacity, 89.1W/cell output, and weighs only 7.8kg making it compact yet powerful. Monthly and yearly maintenance is simple, and the battery has a low self-discharge rate of less than 3% per month. With high consistency and strong compatibility, this SANTAK 12V-38Ah UPS Battery is a smart choice for anyone needing power backup.</p>\n\n</div>",
+      "specs": {
+        "General Information": {
+          "Type": "Lead-acid battery",
+          "Capacity": "38Ah",
+          "Input Voltage": "12V"
+        },
+        "Physical Information": {
+          "Dimension": "197*165*170mm",
+          "Weight": "11.4kg"
+        },
+        "Warranty Information": {
+          "Warranty": "2 Years"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/santak-castle-c12v-38ah-ups-battery",
+      "audit": {
+        "sourcePrice": 13000,
+        "sourceRegularPrice": 14300,
+        "calculatedPrice": 14300,
+        "calculatedOldPrice": 15730,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T15:56:53.143Z"
+      }
+    },
+    {
+      "id": "st-50418",
+      "title": "SANTAK CASTLE C12V 12V-65Ah UPS Battery",
+      "slug": "santak-castle-c12v-65ah-ups-battery",
+      "price": 20350,
+      "oldPrice": 22390,
+      "discountPercentage": 9,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "SANTAK",
+      "productCode": "50418",
+      "stock": 10,
+      "image": "https://i.ibb.co/My9T8V5Y/SANTAK-CASTLE-C12-V-12-V-65-Ah-UP.webp",
+      "images": [
+        "https://i.ibb.co/My9T8V5Y/SANTAK-CASTLE-C12-V-12-V-65-Ah-UP.webp"
+      ],
+      "shortDescription": "Model: CASTLE C12V\nNominal Voltage (V): 12V\nNominal Capacity: 65Ah\nLow Self-discharge Rate\nFlame Retardant: ABS materials",
+      "keyFeatures": [
+        "Model: CASTLE C12V",
+        "Nominal Voltage (V): 12V",
+        "Nominal Capacity: 65Ah",
+        "Low Self-discharge Rate",
+        "Flame Retardant: ABS materials"
+      ],
+      "warranty": "2 Years",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>SANTAK CASTLE C12V 12V-65Ah UPS Battery</h2>\n<p>The SANTAK <span style=\"font-weight: bold;\">CASTLE C12V</span> Series 12V-65Ah battery is built for reliable backup power. It uses advanced technology to deliver strong performance and long life. This battery works especially well with UPS systems, thanks to its low internal resistance and stable discharge rate. It is easy to install and maintain because of its embedded terminal design. The SANTAK CASTLE 12V-65Ah UPS Battery is designed to last and perform well in both hot and cold environments. It supports a wide range of applications like telecom, security systems, medical devices, and emergency backup. The C12-26 offers 65Ah capacity, 89.1W/cell output, and weighs only 7.8kg making it compact yet powerful. Monthly and yearly maintenance is simple, and the battery has a low self-discharge rate of less than 3% per month. With high consistency and strong compatibility, this SANTAK 12V-65Ah UPS Battery is a smart choice for anyone needing power backup.</p>\n\n</div>",
+      "specs": {
+        "General Information": {
+          "Type": "Lead-acid battery",
+          "Capacity": "65Ah",
+          "Input Voltage": "12V"
+        },
+        "Physical Information": {
+          "Dimension": "325*167*174mm",
+          "Weight": "19.2kg"
+        },
+        "Warranty Information": {
+          "Warranty": "2 Years"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/santak-castle-c12v-65ah-ups-battery",
+      "audit": {
+        "sourcePrice": 18500,
+        "sourceRegularPrice": 20350,
+        "calculatedPrice": 20350,
+        "calculatedOldPrice": 22390,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T15:56:56.608Z"
+      }
+    },
+    {
+      "id": "st-50419",
+      "title": "SANTAK CASTLE C12V 12V-100Ah UPS Battery",
+      "slug": "santak-castle-c12v-100ah-ups-battery",
+      "price": 28050,
+      "oldPrice": 30800,
+      "discountPercentage": 9,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "SANTAK",
+      "productCode": "50419",
+      "stock": 10,
+      "image": "https://i.ibb.co/TDbLsYb4/SANTAK-CASTLE-C12-V-12-V-100-Ah-U.webp",
+      "images": [
+        "https://i.ibb.co/TDbLsYb4/SANTAK-CASTLE-C12-V-12-V-100-Ah-U.webp"
+      ],
+      "shortDescription": "Model: CASTLE C12V\nNominal Voltage (V): 12V\nNominal Capacity: 100Ah\nLow Self-discharge Rate\nFlame Retardant: ABS materials",
+      "keyFeatures": [
+        "Model: CASTLE C12V",
+        "Nominal Voltage (V): 12V",
+        "Nominal Capacity: 100Ah",
+        "Low Self-discharge Rate",
+        "Flame Retardant: ABS materials"
+      ],
+      "warranty": "2 Years",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>SANTAK CASTLE C12V 12V-100Ah UPS Battery</h2>\n<p>The SANTAK <span style=\"font-weight: bold;\">CASTLE C12V</span> Series 12V-100Ah battery is built for reliable backup power. It uses advanced technology to deliver strong performance and long life. This battery works especially well with UPS systems, thanks to its low internal resistance and stable discharge rate. It is easy to install and maintain because of its embedded terminal design. The SANTAK CASTLE 12V-100Ah UPS Battery is designed to last and perform well in both hot and cold environments. It supports a wide range of applications like telecom, security systems, medical devices, and emergency backup. The C12-26 offers 100Ah capacity, 89.1W/cell output, and weighs only 7.8kg making it compact yet powerful. Monthly and yearly maintenance is simple, and the battery has a low self-discharge rate of less than 3% per month. With high consistency and strong compatibility, this SANTAK 12V-100Ah UPS Battery is a smart choice for anyone needing power backup.</p>\n\n</div>",
+      "specs": {
+        "General Information": {
+          "Type": "Lead-acid battery",
+          "Capacity": "100Ah",
+          "Input Voltage": "12V"
+        },
+        "Physical Information": {
+          "Dimension": "330*173*213mm",
+          "Weight": "28kg"
+        },
+        "Warranty Information": {
+          "Warranty": "2 Years"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/santak-castle-c12v-100ah-ups-battery",
+      "audit": {
+        "sourcePrice": 25500,
+        "sourceRegularPrice": 28000,
+        "calculatedPrice": 28050,
+        "calculatedOldPrice": 30800,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T15:56:58.743Z"
+      }
+    },
+    {
+      "id": "st-35289",
+      "title": "KENSON KS12 12V 100AH UPS Battery",
+      "slug": "kenson-ks12-12v-100ah-ups-battery",
+      "price": 21450,
+      "oldPrice": 24200,
+      "discountPercentage": 11,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "KENSON",
+      "productCode": "35289",
+      "stock": 10,
+      "image": "https://i.ibb.co/7NXY6zs3/KENSON-KS12-12-V-100-AH-UPS-Batt.webp",
+      "images": [
+        "https://i.ibb.co/7NXY6zs3/KENSON-KS12-12-V-100-AH-UPS-Batt.webp"
+      ],
+      "shortDescription": "Model: KS12 12V 100AH\nNominal Voltage: 12V\nCapacity: 100AH\nStandby Use: 13.50V-13.80V\nCycle Use: 14.50V-15.0V",
+      "keyFeatures": [
+        "Model: KS12 12V 100AH",
+        "Nominal Voltage: 12V",
+        "Capacity: 100AH",
+        "Standby Use: 13.50V-13.80V",
+        "Cycle Use: 14.50V-15.0V"
+      ],
+      "warranty": "01 year Warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>KENSON KS12 12V 100AH&nbsp;UPS Battery</h2><p>The KENSON <span style=\"font-weight: bold;\">KS12 12V&nbsp;</span><span style=\"font-weight: 700;\">100AH </span>UPS Battery is a reliable power solution designed to provide seamless backup power in various applications. This battery offers a good mix of lifespan and performance, with a nominal voltage of 12 volts and a capacity of 65 ampere-hours (AH). The battery operates between 13.50V and 13.80V, thus power delivery is steady and reliable during idle periods. It is therefore ideal for systems that significantly depend on uninterruptible power sources (UPS). The voltage range that the battery can withstand for cyclic applications, such as electric cars or renewable energy systems, is 14.50V to 15.0V. This wider voltage range allows for more effective cycles of charging and discharging, maximizing the battery's lifespan and performance in demanding applications. Whether it's for backup power in critical systems or as part of a renewable energy setup, the KENSON KS12 12V 100AH&nbsp;UPS Battery offers durability, efficiency, and reliability to meet various power needs.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "Sealed Lead Acid (SLA)",
+          "Capacity": "100AH",
+          "Input Voltage": "12V",
+          "Terminal": "F1/F2"
+        },
+        "Physical Information": {
+          "Weight": "Aprrox: ~36 KG"
+        },
+        "Warranty Information": {
+          "Warranty": "01 year Warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/kenson-ks12-12v-100ah-ups-battery",
+      "audit": {
+        "sourcePrice": 19500,
+        "sourceRegularPrice": 22000,
+        "calculatedPrice": 21450,
+        "calculatedOldPrice": 24200,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T15:57:01.923Z"
+      }
+    },
+    {
+      "id": "st-35308",
+      "title": "KENSON KS12 12V 120AH UPS Battery",
+      "slug": "kenson-ks12-12v-120ah-ups-battery",
+      "price": 27280,
+      "oldPrice": 29900,
+      "discountPercentage": 9,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "KENSON",
+      "productCode": "35308",
+      "stock": 10,
+      "image": "https://i.ibb.co/WNJmW0qS/KENSON-KS12-12-V-120-AH-UPS-Batt.png",
+      "images": [
+        "https://i.ibb.co/WNJmW0qS/KENSON-KS12-12-V-120-AH-UPS-Batt.png"
+      ],
+      "shortDescription": "Model: KS12 12V 120AH\nNominal Voltage: 12V\nCapacity: 120AH\nStandby Use: 13.50V-13.80V\nCycle Use: 14.50V-15.0V",
+      "keyFeatures": [
+        "Model: KS12 12V 120AH",
+        "Nominal Voltage: 12V",
+        "Capacity: 120AH",
+        "Standby Use: 13.50V-13.80V",
+        "Cycle Use: 14.50V-15.0V"
+      ],
+      "warranty": "01 Year Warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>KENSON KS12 12V 120AH&nbsp;UPS Battery</h2><p>The KENSON <span style=\"font-weight: bold;\">KS12 12V&nbsp;</span><span style=\"font-weight: 700;\">120AH </span>UPS Battery is a reliable power solution designed to provide seamless backup power in various applications. This battery offers a good mix of lifespan and performance, with a nominal voltage of 12 volts and a capacity of 65 ampere-hours (AH). The battery operates between 13.50V and 13.80V, thus power delivery is steady and reliable during idle periods. It is therefore ideal for systems that significantly depend on uninterruptible power sources (UPS). The voltage range that the battery can withstand for cyclic applications, such as electric cars or renewable energy systems, is 14.50V to 15.0V. This wider voltage range allows for more effective cycles of charging and discharging, maximizing the battery's lifespan and performance in demanding applications. Whether it's for backup power in critical systems or as part of a renewable energy setup, the KENSON KS12 12V 120AH&nbsp;UPS Battery offers durability, efficiency, and reliability to meet various power needs.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "Sealed Lead Acid (SLA)",
+          "Capacity": "120AH",
+          "Input Voltage": "12V",
+          "Terminal": "F1/F2"
+        },
+        "Physical Information": {
+          "Weight": "Approx.34.50kg"
+        },
+        "Warranty Information": {
+          "Warranty": "01 Year Warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/kenson-ks12-12v-120ah-ups-battery",
+      "audit": {
+        "sourcePrice": 24800,
+        "sourceRegularPrice": 27180,
+        "calculatedPrice": 27280,
+        "calculatedOldPrice": 29900,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T15:57:04.623Z"
+      }
+    },
+    {
+      "id": "st-23378",
+      "title": "LONG WPL100-12RN 12V 100Ah Rechargeable Sealed Lead Acid Battery",
+      "slug": "long-wpl100-12rn-12v-100ah-sealed-lead-acid-battery",
+      "price": 38500,
+      "oldPrice": 42020,
+      "discountPercentage": 8,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "LONG",
+      "productCode": "23378",
+      "stock": 10,
+      "image": "https://i.ibb.co/G4HVF1qM/LONG-WPL100-12-RN-12-V-100-Ah-Rec.jpg",
+      "images": [
+        "https://i.ibb.co/G4HVF1qM/LONG-WPL100-12-RN-12-V-100-Ah-Rec.jpg"
+      ],
+      "shortDescription": "Model: WPL100-12RN\nNominal Voltage (V): 12V\nNominal Capacity: 100Ah\nMax Discharge Current for 5 seconds: 1200A\nWeight: Approx. 30.0kg",
+      "keyFeatures": [
+        "Model: WPL100-12RN",
+        "Nominal Voltage (V): 12V",
+        "Nominal Capacity: 100Ah",
+        "Max Discharge Current for 5 seconds: 1200A",
+        "Weight: Approx. 30.0kg"
+      ],
+      "warranty": "1 year",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2 style=\"text-align: justify; \">LONG WPL100-12RN 12V 100Ah Rechargeable Sealed Lead Acid Battery</h2>\n<p style=\"text-align: justify; \">The LONG WPL100-12RN is a 12V 100Ah Rechargeable Sealed Lead Acid Battery. The LONG WPL100-12RN battery is the best and smart choice for telecommunications bases, substation systems, backup power systems, disaster prevention and security systems, Tele-communication central station, and Network communication including data transmission which can ensure a quality product at a reasonable price for a customer. This gel battery is durable and long-lasting. The internal battery fluid is gel-shaped and has a high moisture retention capacity and it is relatively effective for use in high-temperature environments. It is a Trusted and Quality Product for Electric cars, medical equipment and systems, and fire alarm system. The LONG WPL100-12RN 12V 100Ah Rechargeable SLA Battery can be charged and discharged. It is a fully sealed type that does not emit gas at normal times and can be used safely indoors as a power supply for a variety of devices. The LONG WPL100-12RN is highly durable and cost-effective for repeated charging and discharging making it perfect for sub batteries in campers and marines. The LONG WPL100-12RN Battery comes with 1 year warranty.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "Sealed Lead Acid (SLA)",
+          "Capacity": "100Ah",
+          "Input Voltage": "12V",
+          "Terminal": "F12",
+          "Operating Temperature": "-20°C to 50°C"
+        },
+        "Physical Information": {
+          "Dimension": "330mm x 172mm x 220mm",
+          "Weight": "Approx. 30 kg"
+        },
+        "Warranty Information": {
+          "Warranty": "1 year"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/long-wpl100-12rn-12v-100ah-sealed-lead-acid-battery",
+      "audit": {
+        "sourcePrice": 35000,
+        "sourceRegularPrice": 38200,
+        "calculatedPrice": 38500,
+        "calculatedOldPrice": 42020,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T15:57:06.890Z"
+      }
+    },
+    {
+      "id": "st-35328",
+      "title": "KENSON KS12-150AH 12V UPS Battery",
+      "slug": "kenson-ks12-150ah-12v-ups-battery",
+      "price": 30800,
+      "oldPrice": 34490,
+      "discountPercentage": 11,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "KENSON",
+      "productCode": "35328",
+      "stock": 10,
+      "image": "https://i.ibb.co/QFkvJJBq/KENSON-KS12-150-AH-12-V-UPS-Batt.webp",
+      "images": [
+        "https://i.ibb.co/QFkvJJBq/KENSON-KS12-150-AH-12-V-UPS-Batt.webp"
+      ],
+      "shortDescription": "Model: KS12-150AH\nNominal Voltage: 12V\nCapacity: 150AH\nStandby Use: 13.50V-13.80V\nCycle Use: 14.50V-15.0V",
+      "keyFeatures": [
+        "Model: KS12-150AH",
+        "Nominal Voltage: 12V",
+        "Capacity: 150AH",
+        "Standby Use: 13.50V-13.80V",
+        "Cycle Use: 14.50V-15.0V"
+      ],
+      "warranty": "01 Year Warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>KENSON KS12-150AH 12V UPS Battery</h2><p>The KENSON <span style=\"font-weight: bold;\">KS12-150AH</span> 12V UPS Battery is a reliable power solution designed to provide uninterrupted power supply in various applications. With a nominal voltage of 12 volts and a high capacity of 150 ampere-hours (AH), this battery offers ample power to keep your devices running smoothly. In standby use, the battery operates within the voltage range of 13.50 volts to 13.80 volts, ensuring a stable power supply during periods of idle or standby operation. This range is optimal for maintaining charge while the battery awaits the need for power backup. For cyclic use, such as in applications where the battery undergoes frequent charge and discharge cycles, the voltage range extends from 14.50 volts to 15.0 volts. This higher voltage range supports the demands of cyclic operations, providing reliable power delivery even during repeated charging and discharging cycles. Whether utilized in standby or cyclic applications, the KENSON KS12-150AH 12V UPS Battery offers consistent performance and dependable power backup, making it an ideal choice for a wide range of electronic devices and systems.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "Sealed Lead Acid (SLA)",
+          "Capacity": "150AH",
+          "Input Voltage": "12V"
+        },
+        "Warranty Information": {
+          "Warranty": "01 Year Warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/kenson-ks12-150ah-12v-ups-battery",
+      "audit": {
+        "sourcePrice": 28000,
+        "sourceRegularPrice": 31350,
+        "calculatedPrice": 30800,
+        "calculatedOldPrice": 34490,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T15:57:09.269Z"
+      }
+    },
+    {
+      "id": "st-23380",
+      "title": "LONG WPL150-12N 12V 150Ah Rechargeable Sealed Lead Acid Battery",
+      "slug": "long-wpl150-12n-12v-150ah-sealed-lead-acid-battery",
+      "price": 52800,
+      "oldPrice": 58080,
+      "discountPercentage": 9,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "LONG",
+      "productCode": "23380",
+      "stock": 10,
+      "image": "https://i.ibb.co/vxhB4D7F/LONG-WPL150-12-N-12-V-150-Ah-Rech.jpg",
+      "images": [
+        "https://i.ibb.co/vxhB4D7F/LONG-WPL150-12-N-12-V-150-Ah-Rech.jpg"
+      ],
+      "shortDescription": "Model: WPL150-12N\nNominal Voltage (V): 12V\nNominal Capacity: 150Ah\nMax Discharge Current for 5 seconds: 1500A\nWeight: Approx. 46.0kg",
+      "keyFeatures": [
+        "Model: WPL150-12N",
+        "Nominal Voltage (V): 12V",
+        "Nominal Capacity: 150Ah",
+        "Max Discharge Current for 5 seconds: 1500A",
+        "Weight: Approx. 46.0kg"
+      ],
+      "warranty": "6 Months",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2 style=\"text-align: justify; \">LONG WPL150-12N 12V 150Ah Rechargeable Sealed Lead Acid Battery</h2><p style=\"text-align: justify; \">The LONG WPL150-12N is a 12V 150Ah Rechargeable Sealed Lead Acid Battery. The LONG WPL150-12N battery is the best and smart choice for telecommunications bases, substation systems, backup power systems, disaster prevention and security systems, Tele-communication central station, and Network communication including data transmission. This gel battery is durable and long-lasting. The internal battery fluid is gel-shaped and has a high moisture retention capacity and it is relatively effective for use in high-temperature environments. It is a Trusted and Quality Product for Electric cars, medical equipment and systems, and fire alarm system. The LONG WPL150-12N 12V 150Ah Rechargeable SLA Battery can be charged and discharged. It is a fully sealed type that does not emit gas at normal times and can be used safely indoors as a power supply for a variety of devices. The LONG WPL150-12N is highly durable and cost-effective for repeated charging and discharging making it perfect for sub batteries in campers and marines. The LONG WPL150-12N Battery comes with 1 year warranty.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "Sealed Lead Acid",
+          "Capacity": "150Ah",
+          "Input Voltage": "12V",
+          "Max. Discharge Current": "1500A (5 Sec)"
+        },
+        "Physical Information": {
+          "Dimension": "483L x 170W x 240H (mm)"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/long-wpl150-12n-12v-150ah-sealed-lead-acid-battery",
+      "audit": {
+        "sourcePrice": 48000,
+        "sourceRegularPrice": 52800,
+        "calculatedPrice": 52800,
+        "calculatedOldPrice": 58080,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T15:57:11.420Z"
+      }
+    },
+    {
+      "id": "st-23379",
+      "title": "LONG WPL120-12RN 12V 120Ah Rechargeable Sealed Lead Acid Battery",
+      "slug": "long-wpl120-12rn-12v-120ah-sealed-lead-acid-battery",
+      "price": 44000,
+      "oldPrice": 48400,
+      "discountPercentage": 9,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "LONG",
+      "productCode": "23379",
+      "stock": 10,
+      "image": "https://i.ibb.co/rKQ9MhFy/LONG-WPL120-12-RN-12-V-120-Ah-Rec.jpg",
+      "images": [
+        "https://i.ibb.co/rKQ9MhFy/LONG-WPL120-12-RN-12-V-120-Ah-Rec.jpg"
+      ],
+      "shortDescription": "Model: WPL120-12RN\nNominal Voltage (V): 12V\nNominal Capacity: 120Ah\nMax Discharge Current for 5 seconds: 1200A\nWeight: Approx. 35.5kg",
+      "keyFeatures": [
+        "Model: WPL120-12RN",
+        "Nominal Voltage (V): 12V",
+        "Nominal Capacity: 120Ah",
+        "Max Discharge Current for 5 seconds: 1200A",
+        "Weight: Approx. 35.5kg"
+      ],
+      "warranty": "1 year warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2 style=\"text-align: justify; \">LONG WPL120-12RN 12V 120Ah Rechargeable Sealed Lead Acid Battery</h2>\n<p style=\"text-align: justify; \">The LONG WPL120-12RN is a 12V 120Ah Rechargeable Sealed Lead Acid Battery. The LONG WPL120-12RN battery is the best and smart choice for telecommunications bases, substation systems, backup power systems, disaster prevention and security systems, Tele-communication central station, and Network communication including data transmission which can ensure a quality product at a reasonable price for a customer. This gel battery is durable and long-lasting. The internal battery fluid is gel-shaped and has a high moisture retention capacity and it is relatively effective for use in high-temperature environments. It is a Trusted and Quality Product for Electric cars, medical equipment and systems, and fire alarm system. The LONG WPL120-12RN 12V 120Ah Rechargeable SLA Battery can be charged and discharged. It is a fully sealed type that does not emit gas at normal times and can be used safely indoors as a power supply for a variety of devices. The LONG WPL120-12RN is highly durable and cost-effective for repeated charging and discharging making it perfect for sub batteries in campers and marines. The LONG WPL120-12RN Battery comes with 1 year warranty.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "Sealed Lead Acid (SLA)",
+          "Capacity": "120Ah",
+          "Input Voltage": "12V",
+          "Terminal": "F12",
+          "Operating Temperature": "-20°C to 50°C"
+        },
+        "Physical Information": {
+          "Dimension": "406mm x 174mm x 209mm",
+          "Weight": "approx : 35.5KG"
+        },
+        "Warranty Information": {
+          "Warranty": "1 year warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/long-wpl120-12rn-12v-120ah-sealed-lead-acid-battery",
+      "audit": {
+        "sourcePrice": 40000,
+        "sourceRegularPrice": 44000,
+        "calculatedPrice": 44000,
+        "calculatedOldPrice": 48400,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T15:57:13.637Z"
+      }
+    },
+    {
+      "id": "st-35330",
+      "title": "KENSON KS12-200AH 12V UPS Battery",
+      "slug": "kenson-ks12-200ah-12v-ups-battery",
+      "price": 34650,
+      "oldPrice": 37950,
+      "discountPercentage": 9,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "KENSON",
+      "productCode": "35330",
+      "stock": 10,
+      "image": "https://i.ibb.co/60j0T0FX/KENSON-KS12-200-AH-12-V-UPS-Batt.webp",
+      "images": [
+        "https://i.ibb.co/60j0T0FX/KENSON-KS12-200-AH-12-V-UPS-Batt.webp"
+      ],
+      "shortDescription": "Model: KS12-200AH\nNominal Voltage: 12V\nCapacity: 200AH\nStandby Use: 13.50V-13.80V\nCycle Use: 14.50V-15.0V",
+      "keyFeatures": [
+        "Model: KS12-200AH",
+        "Nominal Voltage: 12V",
+        "Capacity: 200AH",
+        "Standby Use: 13.50V-13.80V",
+        "Cycle Use: 14.50V-15.0V"
+      ],
+      "warranty": "01 Year warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>KENSON KS12-200AH 12V UPS Battery</h2><p>The KENSON <span style=\"font-weight: bold;\">KS12-</span><span style=\"font-weight: 700;\">200AH </span>12V UPS Battery is a reliable power solution designed to provide uninterrupted power supply in various applications. With a nominal voltage of 12 volts and a high capacity of 150 ampere-hours (AH), this battery offers ample power to keep your devices running smoothly. In standby use, the battery operates within the voltage range of 13.50 volts to 13.80 volts, ensuring a stable power supply during periods of idle or standby operation. This range is optimal for maintaining charge while the battery awaits the need for power backup. For cyclic use, such as in applications where the battery undergoes frequent charge and discharge cycles, the voltage range extends from 14.50 volts to 15.0 volts. This higher voltage range supports the demands of cyclic operations, providing reliable power delivery even during repeated charging and discharging cycles. Whether utilized in standby or cyclic applications, the KENSON KS12-200AH&nbsp;12V UPS Battery offers consistent performance and dependable power backup, making it an ideal choice for a wide range of electronic devices and systems.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "Sealed Lead Acid (SLA)",
+          "Capacity": "200AH",
+          "Input Voltage": "12 V"
+        },
+        "Warranty Information": {
+          "Warranty": "01 Year warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/kenson-ks12-200ah-12v-ups-battery",
+      "audit": {
+        "sourcePrice": 31500,
+        "sourceRegularPrice": 34500,
+        "calculatedPrice": 34650,
+        "calculatedOldPrice": 37950,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T15:57:15.808Z"
+      }
+    },
+    {
+      "id": "st-23381",
+      "title": "LONG WPL200-12BN 12V 200Ah Rechargeable Sealed Lead Acid Battery",
+      "slug": "long-wpl200-12bn-12v-200ah-sealed-lead-acid-battery",
+      "price": 66000,
+      "oldPrice": 72600,
+      "discountPercentage": 9,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "LONG",
+      "productCode": "23381",
+      "stock": 10,
+      "image": "https://i.ibb.co/3msRD6Gt/LONG-WPL200-12-BN-12-V-200-Ah-Rec.jpg",
+      "images": [
+        "https://i.ibb.co/3msRD6Gt/LONG-WPL200-12-BN-12-V-200-Ah-Rec.jpg"
+      ],
+      "shortDescription": "Model: WPL200-12BN\nNominal Voltage (V): 12V\nNominal Capacity: 200Ah\nMax Discharge Current for 5 seconds: 1600A\nWeight: Approx. 66.5kg",
+      "keyFeatures": [
+        "Model: WPL200-12BN",
+        "Nominal Voltage (V): 12V",
+        "Nominal Capacity: 200Ah",
+        "Max Discharge Current for 5 seconds: 1600A",
+        "Weight: Approx. 66.5kg"
+      ],
+      "warranty": "1 year warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2 style=\"text-align: justify; \">LONG WPL200-12BN 12V 200Ah Rechargeable Sealed Lead Acid Battery</h2><p style=\"text-align: justify; \">The LONG WPL200-12BN is a 12V 200Ah Rechargeable Sealed Lead Acid Battery. The LONG WPL200-12BN battery is the best and smart choice for telecommunications bases, substation systems, backup power systems, disaster prevention and security systems, Tele-communication central station, and Network communication including data transmission. This gel battery is durable and long-lasting. The internal battery fluid is gel-shaped and has a high moisture retention capacity and it is relatively effective for use in high-temperature environments. It is a Trusted and Quality Product for Electric cars, medical equipment and systems, and fire alarm system. The LONG WPL200-12BN 12V 200Ah Rechargeable SLA Battery can be charged and discharged. It is a fully sealed type that does not emit gas at normal times and can be used safely indoors as a power supply for a variety of devices. The LONG WPL200-12BN is highly durable and cost-effective for repeated charging and discharging making it perfect for sub batteries in campers and marines. The LONG WPL200-12BN Battery comes with 1 year warranty.</p></div>",
+      "specs": {
+        "General Information": {
+          "Capacity": "10 hour rate: (20A to 10.80V) 200Ah",
+          "Input Voltage": "12V",
+          "Max. Discharge Current": "5 seconds: 1600A"
+        },
+        "Physical Information": {
+          "Weight": "Approx 66.5kg"
+        },
+        "Warranty Information": {
+          "Warranty": "1 year warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/long-wpl200-12bn-12v-200ah-sealed-lead-acid-battery",
+      "audit": {
+        "sourcePrice": 60000,
+        "sourceRegularPrice": 66000,
+        "calculatedPrice": 66000,
+        "calculatedOldPrice": 72600,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T15:57:18.021Z"
+      }
+    },
+    {
+      "id": "st-43978",
+      "title": "Voltan 12V 8.2AH UPS Battery",
+      "slug": "voltan-12v-8-2ah-ups-battery",
+      "price": 1650,
+      "oldPrice": 1940,
+      "discountPercentage": 15,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "Voltan",
+      "productCode": "43978",
+      "stock": 10,
+      "image": "https://i.ibb.co/Z6fmpKvK/Voltan-12-V-8-2-AH-UPS-Battery.webp",
+      "images": [
+        "https://i.ibb.co/Z6fmpKvK/Voltan-12-V-8-2-AH-UPS-Battery.webp"
+      ],
+      "shortDescription": "Model: 12V 8.2AH\nNominal Voltage (V): 12V\nNominal Capacity: 8.2AH\nInternal Resistance: Approx. 28mΩ\nTerminal Material: Copper",
+      "keyFeatures": [
+        "Model: 12V 8.2AH",
+        "Nominal Voltage (V): 12V",
+        "Nominal Capacity: 8.2AH",
+        "Internal Resistance: Approx. 28mΩ",
+        "Terminal Material: Copper"
+      ],
+      "warranty": "6 Months warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Voltan 12V 8.2AH UPS Battery</h2><p>The Voltan <strong>12V 8.2AH</strong> UPS Battery is a premium sealed lead-acid battery engineered to deliver consistent backup power for UPS systems, security devices, telecommunication equipment, and emergency lighting. Designed with a nominal voltage of 12V and a nominal capacity of 8.2 ampere-hours (AH), it ensures dependable energy storage and discharge performance. Its high-conductivity T1 copper terminals reduce resistance and increase overall electrical efficiency, while the battery’s internal resistance of approximately 28 milliohms (mΩ)—when fully charged at 25°C—contributes to stable power output under demanding conditions. The Voltan 12V 8.2AH UPS Battery features advanced charge cycle management, supporting a maximum charging current of 2.1A and maintaining ideal performance through a float charging voltage range of 13.60V to 13.80V, with intelligent temperature compensation at -18mV/°C to prevent overcharging or thermal degradation. This battery adapts to different discharge rates, offering 8.2Ah at 20HR (10.5V cut-off), 6.6Ah at 10HR, and 4.58Ah at 1HR (9.6V), making it suitable for both long-duration and high-drain usage. It can handle a maximum discharge current of 105A for 5 seconds, making it ideal for devices with high inrush current needs. The Voltan 12V 8.2AH UPS Battery also demonstrates excellent self-discharge performance, retaining 91% capacity after 3 months, 82% after 6 months, and 65% after 12 months of storage at 25°C, thereby minimizing maintenance and replacement frequency. Built to withstand diverse environmental conditions, its operating temperature ranges from -15°C to 50°C during discharge, -10°C to 50°C during charging, and -20°C to 50°C during storage, ensuring consistent functionality in extreme climates. Physically compact yet powerful, the battery measures 152mm in length, 67mm in width, 99mm in height, and 105mm total height, with a lightweight design of 2.10kg (±5%), making it easy to install in confined UPS compartments or portable power devices. Whether for home, commercial, or industrial backup power needs, the Voltan 12V 8.2AH UPS Battery stands out with its reliable capacity, low maintenance, thermal resilience, and long cycle life—making it a trusted solution for critical power continuity.</p></div>",
+      "specs": {
+        "General Information": {
+          "Capacity": "20HR(10.5V): 8.2Ah 10HR(10.5V): 6.6Ah 1HR(9.60V): 4.58Ah",
+          "Input Voltage": "12V",
+          "Max. Charging Current": "2.1A",
+          "Resistance": "Approx. 28mΩ (Fully charged, 25oC)",
+          "Terminal": "T1",
+          "Max. Discharge Current": "105A(5 sec.)",
+          "Self Discharge": "3 month: Remaining Capacity: 91% (25°C) 6 month: Remaining Capacity: 82% (25°C) 12 month: Remaining Capacity: 65% (25°C)",
+          "Operating Temperature": "Discharge: -15°C~50°C(5°F~122°F) Charge: -10°C~50°C(14°F~122°F) Storage: -20°C~50°C(-4°F~122°F)",
+          "Others": "Float Charging Voltage (25°C): 13.60 to 13.80V Temperature compensation: -18mV/oC"
+        },
+        "Physical Information": {
+          "Material": "Terminal: Copper",
+          "Dimension": "Length: 152±1.5mm (5.98inch) Width: 67±1mm (2.64inch) Height: 99±1mm (3.90inch) Total Height: 105±1mm (4.13inch)",
+          "Weight": "2.10kg (4.63lbs)±5%"
+        },
+        "Warranty Information": {
+          "Warranty": "6 Months warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/voltan-12v-8-2ah-ups-battery",
+      "audit": {
+        "sourcePrice": 1500,
+        "sourceRegularPrice": 1760,
+        "calculatedPrice": 1650,
+        "calculatedOldPrice": 1940,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T15:57:20.130Z"
+      }
+    },
+    {
+      "id": "st-49922",
+      "title": "KSTAR 12V 8.5AH UPS Battery",
+      "slug": "kstar-12v-8-5ah-ups-battery",
+      "price": 1540,
+      "oldPrice": 1690,
+      "discountPercentage": 9,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "KSTAR",
+      "productCode": "49922",
+      "stock": 10,
+      "image": "https://i.ibb.co/gLdQjV5j/KSTAR-12-V-8-5-AH-UPS-Battery.webp",
+      "images": [
+        "https://i.ibb.co/gLdQjV5j/KSTAR-12-V-8-5-AH-UPS-Battery.webp"
+      ],
+      "shortDescription": "Model: 12V 8.5AH\nNominal Voltage (V): 12V\nNominal Capacity: 8.5AH\nLow self-discharge rate\nOperating Temperature: 25℃±3℃(77F±5F)",
+      "keyFeatures": [
+        "Model: 12V 8.5AH",
+        "Nominal Voltage (V): 12V",
+        "Nominal Capacity: 8.5AH",
+        "Low self-discharge rate",
+        "Operating Temperature: 25℃±3℃(77F±5F)"
+      ],
+      "warranty": "6 Months warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>KSTAR 12V 8.5AH UPS Battery</h2><p>The KSTAR <strong>12V 8.5AH</strong> UPS Battery is a dependable backup power solution designed to deliver consistent performance for UPS systems and critical devices. With a nominal voltage of 12V and a capacity of 8.5AH, it ensures stable energy supply during outages, making it ideal for home, office, and industrial applications. Engineered with a low self-discharge rate, this KSTAR UPS Battery maintains efficiency and readiness even during extended standby periods. Operating at an optimal temperature range of 25℃±3℃ (77F±5F), it provides reliable performance under standard conditions. Compact, durable, and cost-effective, the KSTAR 12V 8.5AH Battery is the perfect choice for users seeking long-lasting backup power with trusted quality.</p></div>",
+      "specs": {
+        "General Information": {
+          "Capacity": "8.5Ah",
+          "Input Voltage": "12V",
+          "Max. Charging Current": "2.1A",
+          "Self Discharge": "Low self-discharge rate",
+          "Operating Temperature": "25℃±3℃(77F±5F)"
+        },
+        "Warranty Information": {
+          "Warranty": "6 Months warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/kstar-12v-8-5ah-ups-battery",
+      "audit": {
+        "sourcePrice": 1400,
+        "sourceRegularPrice": 1540,
+        "calculatedPrice": 1540,
+        "calculatedOldPrice": 1690,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T15:57:22.274Z"
+      }
+    },
+    {
+      "id": "st-23377",
+      "title": "LONG KPH80-12N 12V 80Ah Rechargeable Sealed Lead Acid Battery",
+      "slug": "long-kph80-12n-12v-80ah-sealed-lead-acid-battery",
+      "price": 0,
+      "oldPrice": 0,
+      "discountPercentage": 0,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "LONG",
+      "productCode": "23377",
+      "stock": 0,
+      "image": "https://i.ibb.co/TB3Y2fDS/LONG-KPH80-12-N-12-V-80-Ah-Rechar.jpg",
+      "images": [
+        "https://i.ibb.co/TB3Y2fDS/LONG-KPH80-12-N-12-V-80-Ah-Rechar.jpg"
+      ],
+      "shortDescription": "Model: KPH80-12N\nNominal Voltage (V): 12V\nNominal Capacity: 80Ah\nMax Discharge Current for 5 seconds: 960A\nWeight: Approx. 24.2kg",
+      "keyFeatures": [
+        "Model: KPH80-12N",
+        "Nominal Voltage (V): 12V",
+        "Nominal Capacity: 80Ah",
+        "Max Discharge Current for 5 seconds: 960A",
+        "Weight: Approx. 24.2kg"
+      ],
+      "warranty": "No Warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>LONG KPH80-12N 12V 80Ah Rechargeable Sealed Lead Acid Battery</h2><p>The <strong>LONG 12V 80Ah</strong> Battery is a highly dependable and efficient 12V battery developed for a wide range of applications, including telecommunications bases, substation systems, backup power setups, electric scooters, automatic guided vehicles, solar energy storage, and deep-cycle systems. This LONG battery, designed with a 12V nominal voltage and 80Ah capacity, provides robust and consistent energy output, making it an excellent choice for important backup solutions. With a maximum discharge current of 960A for 5 seconds, it performs well even under heavy load situations. The sealed lead-acid architecture ensures safe indoor use by avoiding gas emissions during normal operation, while the gel-based internal fluid improves moisture retention and allows for effective performance in high-temperature conditions. This LONG 12V Battery, which is widely used in electric vehicles, medical equipment, fire alarm systems, and renewable energy storage, is designed for deep-cycle operation, allowing for repeated charging and discharging with little loss of efficiency. It weighs about 24.2kg and has a sturdy ABS UL94 HB casing that provides greater protection against external variables and mechanical stress, ensuring longevity and reliability. Whether used as a primary power source or a backup energy solution, the LONG 12V 80Ah Battery is a reliable and high-performance option for industrial, commercial, and residential applications, providing continuous and long-lasting power support.</p></div>",
+      "specs": {
+        "Main Feature": {
+          "Capacity": "10 hour rate: (8A to 10.80V) 80Ah 5 hour rate: (13.6A to 10.20V) 68Ah 1 C: (48A to 9.60V) 48Ah 3 C: (80A to 9.60V) 50.67Ah",
+          "Input Voltage": "12V"
+        },
+        "Manufacture Warranty": {
+          "Warranty": "No Warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/long-kph80-12n-12v-80ah-sealed-lead-acid-battery",
+      "audit": {
+        "sourcePrice": 0,
+        "sourceRegularPrice": 0,
+        "calculatedPrice": 0,
+        "calculatedOldPrice": 0,
+        "priceMultiplier": 1.1,
+        "status": "Out Of Stock",
+        "scrapedAt": "2026-10-31T15:57:24.530Z"
+      }
+    },
+    {
+      "id": "st-34662",
+      "title": "Power Guard SS8.2-12 12V 8.2Ah UPS Battery",
+      "slug": "power-guard-ss8-2-12-ups-battery",
+      "price": 0,
+      "oldPrice": 0,
+      "discountPercentage": 0,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "Power Guard",
+      "productCode": "34662",
+      "stock": 0,
+      "image": "https://i.ibb.co/5xhFn0wW/Power-Guard-SS8-2-12-12-V-8-2-Ah.webp",
+      "images": [
+        "https://i.ibb.co/5xhFn0wW/Power-Guard-SS8-2-12-12-V-8-2-Ah.webp"
+      ],
+      "shortDescription": "Model: SS8.2-12\nBattery Capacity: 8.2 Ah\nNominal Voltage: 12V\nCharging Current: 2.1A Max.\nTerminal Material: Copper",
+      "keyFeatures": [
+        "Model: SS8.2-12",
+        "Battery Capacity: 8.2 Ah",
+        "Nominal Voltage: 12V",
+        "Charging Current: 2.1A Max.",
+        "Terminal Material: Copper"
+      ],
+      "warranty": "06 months warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Power Guard SS8.2-12 12V 8.2Ah UPS Battery</h2><p>The Power Guard <strong>SS8.2-12</strong> UPS Battery provides a dependable and efficient power supply for a variety of backup requirements. It has a nominal voltage of 12V and a battery capacity of 8.2 Ah, which is sufficient to power devices and gadgets during blackouts. The 2.1A maximum charging current guarantees quick and efficient recharge, cutting down on downtime and guaranteeing preparedness for upcoming power disruptions. This Power Guard SS8.2-12 12V 8.2Ah UPS Battery's copper terminal construction provides maximum conductivity and endurance, ensuring a steady and secure connection over extended operation. The Power Guard SS8.2-12 UPS Battery is a great option for both home and business settings where consistent backup power is crucial, as it performs dependably whether used in UPS systems or independent backup applications.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "Sealed Lead Acid (SLA)",
+          "Capacity": "8.2 Ah",
+          "Input Voltage": "12V",
+          "Max. Charging Current": "2.1A"
+        },
+        "Warranty Information": {
+          "Warranty": "06 months warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/power-guard-ss8-2-12-ups-battery",
+      "audit": {
+        "sourcePrice": 0,
+        "sourceRegularPrice": 0,
+        "calculatedPrice": 0,
+        "calculatedOldPrice": 0,
+        "priceMultiplier": 1.1,
+        "status": "Out Of Stock",
+        "scrapedAt": "2026-10-31T15:57:26.689Z"
+      }
+    },
+    {
+      "id": "st-23368",
+      "title": "LONG LG7-12 12V 7Ah Rechargeable Sealed Lead Acid Battery",
+      "slug": "long-lg7-12-12v-7ah-sealed-lead-acid-battery",
+      "price": 0,
+      "oldPrice": 0,
+      "discountPercentage": 0,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "LONG",
+      "productCode": "23368",
+      "stock": 0,
+      "image": "https://i.ibb.co/mC9B5tSS/LONG-LG7-12-12-V-7-Ah-Rechargeab.jpg",
+      "images": [
+        "https://i.ibb.co/mC9B5tSS/LONG-LG7-12-12-V-7-Ah-Rechargeab.jpg"
+      ],
+      "shortDescription": "Model: LG7-12\nNominal Voltage (V): 12V\nNominal Capacity: 7Ah\nMax Discharge Current for 5 seconds: 105A\nWeight: Approx. 2.45kg",
+      "keyFeatures": [
+        "Model: LG7-12",
+        "Nominal Voltage (V): 12V",
+        "Nominal Capacity: 7Ah",
+        "Max Discharge Current for 5 seconds: 105A",
+        "Weight: Approx. 2.45kg"
+      ],
+      "warranty": "06 Months Warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2 style=\"text-align: justify; \">LONG LG7-12 12V 7Ah Rechargeable Sealed Lead Acid Battery</h2><p style=\"text-align: justify; \">The&nbsp;LONG LG7-12 is a 12V 7Ah Rechargeable Sealed Lead Acid Battery. This gel battery is durable and long-lasting. The internal battery fluid is gel-shaped and has a high moisture retention capacity and it is relatively effective for use in high-temperature environments. It is a Trusted and Quality Product for Electric cars, medical equipment and systems, and fire alarm system.&nbsp;The LONG LG7-12 12V 7Ah Rechargeable SLA Battery can be charged and discharged. It is a fully sealed type that does not emit gas at normal times and can be used safely indoors as a power supply for a variety of devices. The&nbsp;LONG LG7-12&nbsp;is highly durable and cost-effective for repeated charging and discharging making it perfect for sub batteries in campers and marines. The&nbsp;LONG LG7-12 Battery comes with 6 months warranty.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "Sealed Lead Acid (SLA)",
+          "Capacity": "7Ah",
+          "Input Voltage": "12V",
+          "Terminal": "F1/F2",
+          "Operating Temperature": "-20°C to 50°C"
+        },
+        "Physical Information": {
+          "Dimension": "151mm x 65mm x 94mm",
+          "Weight": "Approx. 2.4 kg"
+        },
+        "Warranty Information": {
+          "Warranty": "06 Months Warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/long-lg7-12-12v-7ah-sealed-lead-acid-battery",
+      "audit": {
+        "sourcePrice": 0,
+        "sourceRegularPrice": 0,
+        "calculatedPrice": 0,
+        "calculatedOldPrice": 0,
+        "priceMultiplier": 1.1,
+        "status": "Out Of Stock",
+        "scrapedAt": "2026-10-31T15:57:29.252Z"
+      }
+    },
+    {
+      "id": "st-34673",
+      "title": "Power Guard SS26-12 12V 26Ah UPS Battery",
+      "slug": "power-guard-ss26-12-ups-battery",
+      "price": 0,
+      "oldPrice": 0,
+      "discountPercentage": 0,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "Power Guard",
+      "productCode": "34673",
+      "stock": 0,
+      "image": "https://i.ibb.co/YFgmSH2F/Power-Guard-SS18-12-12-V-18-Ah-U.webp",
+      "images": [
+        "https://i.ibb.co/YFgmSH2F/Power-Guard-SS18-12-12-V-18-Ah-U.webp"
+      ],
+      "shortDescription": "Model: SS26-12\nBattery Capacity: 26Ah\nNominal Voltage: 12V\nCharging Current: 7.8A Max.\nTerminal Material: Copper",
+      "keyFeatures": [
+        "Model: SS26-12",
+        "Battery Capacity: 26Ah",
+        "Nominal Voltage: 12V",
+        "Charging Current: 7.8A Max.",
+        "Terminal Material: Copper"
+      ],
+      "warranty": "06 months Warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Power Guard SS26-12 12V 26Ah UPS Battery</h2><p>The Power Guard <strong>SS26-12</strong> 12V 26Ah UPS Battery is a reliable solution for your uninterrupted power supply demands, with a nominal voltage of 12V and an amazing capacity of 26Ah. It ensures dependable operation even in high-demand situations by providing a significant power surge during crucial moments with a maximum discharge current of 390A for up to 5 seconds. The copper used in the construction of the terminal material of this Power Guard SS26-12 12V 26Ah UPS Battery ensures effective conductivity and durability, extending the battery's lifespan and performance. Its estimated weight of 8 kg allows it to be used in a variety of situations while maintaining a significant capacity and manageable weight. The maximum 7.8A charging current of the Power Guard SS26-12 12V 26Ah UPS Battery enables quick recharge and reduces the amount of downtime between power outages. The Power Guard SS26-12 12V UPS Battery offers trustworthy backup power for both home and business applications, confidently and dependably protecting important electronics.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "Sealed Lead Acid (SLA)",
+          "Capacity": "26Ah",
+          "Input Voltage": "12V",
+          "Max. Charging Current": "7.8A Max.",
+          "Max. Discharge Current": "390A(5 sec)"
+        },
+        "Physical Information": {
+          "Weight": "Approx. Weight: 8 Kg"
+        },
+        "Warranty Information": {
+          "Warranty": "06 months Warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/power-guard-ss26-12-ups-battery",
+      "audit": {
+        "sourcePrice": 0,
+        "sourceRegularPrice": 0,
+        "calculatedPrice": 0,
+        "calculatedOldPrice": 0,
+        "priceMultiplier": 1.1,
+        "status": "Out Of Stock",
+        "scrapedAt": "2026-10-31T15:57:30.687Z"
+      }
+    },
+    {
+      "id": "st-34675",
+      "title": "Power Guard SS40-12 12V 40Ah UPS Battery",
+      "slug": "power-guard-ss40-12-ups-battery",
+      "price": 0,
+      "oldPrice": 0,
+      "discountPercentage": 0,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "Power Guard",
+      "productCode": "34675",
+      "stock": 0,
+      "image": "https://i.ibb.co/YFgmSH2F/Power-Guard-SS18-12-12-V-18-Ah-U.webp",
+      "images": [
+        "https://i.ibb.co/YFgmSH2F/Power-Guard-SS18-12-12-V-18-Ah-U.webp"
+      ],
+      "shortDescription": "Model: SS40-12\nBattery Capacity: 40Ah\nNominal Voltage: 12V\nCharging Current: 12A Max.\nTerminal Material: Copper",
+      "keyFeatures": [
+        "Model: SS40-12",
+        "Battery Capacity: 40Ah",
+        "Nominal Voltage: 12V",
+        "Charging Current: 12A Max.",
+        "Terminal Material: Copper"
+      ],
+      "warranty": "01 year Warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Power Guard SS40-12 12V 40Ah UPS Battery</h2><p>The Power Guard <strong>SS40-12</strong> 12V 40Ah UPS Battery provides dependable power backup with a nominal voltage of 12V and a substantial capacity of 40Ah, allowing for longer operation during outages. By charging at a maximum current of 12A, it effectively restores its power reserves. Superior conductivity and longevity are guaranteed by the copper construction of the termination material. With a weight of about 12.5 kg, the Power Guard SS40-12 12V 40Ah UPS Battery finds a compromise between portability and significant energy storage. With a maximum discharge current of 400A for five seconds, the Power Guard SS40-12 12V 40Ah UPS Battery guarantees a power surge when required, making it appropriate for demanding applications where rapid energy bursts are essential for continuous operations. Whether for home, office, or industrial use, the Power Guard SS40-12 12V UPS Battery excels in providing reliable backup power with its versatile features and robust construction.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "Sealed Lead Acid (SLA)",
+          "Capacity": "40Ah",
+          "Input Voltage": "12V",
+          "Max. Charging Current": "12A",
+          "Max. Discharge Current": "400A(5 sec.)"
+        },
+        "Physical Information": {
+          "Weight": "Approx. Weight: 12.5 Kg"
+        },
+        "Warranty Information": {
+          "Warranty": "01 year Warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/power-guard-ss40-12-ups-battery",
+      "audit": {
+        "sourcePrice": 0,
+        "sourceRegularPrice": 0,
+        "calculatedPrice": 0,
+        "calculatedOldPrice": 0,
+        "priceMultiplier": 1.1,
+        "status": "Out Of Stock",
+        "scrapedAt": "2026-10-31T15:57:32.192Z"
+      }
+    },
+    {
+      "id": "st-34676",
+      "title": "Power Guard SS65-12 12V 65Ah UPS Battery",
+      "slug": "power-guard-ss65-12-ups-battery",
+      "price": 0,
+      "oldPrice": 0,
+      "discountPercentage": 0,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "Power Guard",
+      "productCode": "34676",
+      "stock": 0,
+      "image": "https://i.ibb.co/YFgmSH2F/Power-Guard-SS18-12-12-V-18-Ah-U.webp",
+      "images": [
+        "https://i.ibb.co/YFgmSH2F/Power-Guard-SS18-12-12-V-18-Ah-U.webp"
+      ],
+      "shortDescription": "Model: SS65-12\nBattery Capacity: 65Ah\nNominal Voltage: 12V\nCharging Current: 21A Max.\nTerminal Material: Copper",
+      "keyFeatures": [
+        "Model: SS65-12",
+        "Battery Capacity: 65Ah",
+        "Nominal Voltage: 12V",
+        "Charging Current: 21A Max.",
+        "Terminal Material: Copper"
+      ],
+      "warranty": "01 Year warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Power Guard SS65-12 12V 65Ah UPS Battery</h2><p>The Power Guard <strong>SS65-12</strong> 12V 65Ah UPS Battery is an excellent solution for continuous power supply demands, with a nominal voltage of 12V and an amazing capacity of 65Ah, ensuring long-term backup during power outages. It quickly becomes ready for future power outages by effectively replenishing its energy reserves with a maximum charging current of 21A. Because the Power Guard SS65-12 12V 65Ah UPS Battery is built with premium copper terminals, its overall reliability is increased, and maximum conductivity and longevity are guaranteed. At about 21 kg, it provides a good mix of strength and portability, making it appropriate in a variety of situations. When necessary, the Power Guard SS65-12 12V 65Ah UPS Battery's maximum discharge current of 700A for 5 seconds delivers a significant power surge, which makes it perfect for demanding applications where quick energy bursts are crucial for continuous operation. With its adaptable features and robust design, the Power Guard SS65-12 12V UPS Battery excels in providing stable backup power for home, commercial, or industrial applications.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "Sealed Lead Acid (SLA)",
+          "Capacity": "65Ah",
+          "Input Voltage": "12V",
+          "Max. Charging Current": "21A",
+          "Max. Discharge Current": "700A(5 sec.)"
+        },
+        "Physical Information": {
+          "Weight": "Approx ~21KG"
+        },
+        "Warranty Information": {
+          "Warranty": "01 Year warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/power-guard-ss65-12-ups-battery",
+      "audit": {
+        "sourcePrice": 0,
+        "sourceRegularPrice": 0,
+        "calculatedPrice": 0,
+        "calculatedOldPrice": 0,
+        "priceMultiplier": 1.1,
+        "status": "Out Of Stock",
+        "scrapedAt": "2026-10-31T15:57:33.614Z"
+      }
+    },
+    {
+      "id": "st-46027",
+      "title": "Must LP15-12100 12.8V 100Ah UPS Battery",
+      "slug": "must-lp15-12100-ups-battery",
+      "price": 0,
+      "oldPrice": 0,
+      "discountPercentage": 0,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "Must",
+      "productCode": "46027",
+      "stock": 0,
+      "image": "https://i.ibb.co/SDKq1Fg8/Must-LP15-12100-12-8-V-100-Ah-UP.webp",
+      "images": [
+        "https://i.ibb.co/SDKq1Fg8/Must-LP15-12100-12-8-V-100-Ah-UP.webp"
+      ],
+      "shortDescription": "Model: LP15-12100\nNominal Voltage: 12.8V\nNominal Capacity: 100Ah/ 1280Wh\nLife Cycles: 6000 cycles @ 80% DOD, 25°C\nSupport Series or Parallel Connection",
+      "keyFeatures": [
+        "Model: LP15-12100",
+        "Nominal Voltage: 12.8V",
+        "Nominal Capacity: 100Ah/ 1280Wh",
+        "Life Cycles: 6000 cycles @ 80% DOD, 25°C",
+        "Support Series or Parallel Connection"
+      ],
+      "warranty": "1 Years",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Must LP15-12100 12.8V 100Ah UPS Battery</h2><p>The Must <strong>LP15-12100</strong> 12.8V 100Ah UPS Battery provides high-performance energy storage and long-term reliability. This&nbsp;UPS Battery, made with lithium iron phosphate (LiFePO4) chemistry, offers exceptional safety, longevity, and efficiency, making it an excellent choice for backup power systems, renewable energy sets, and industrial applications. With a nominal voltage of 12.8V and a capacity of 100Ah, it provides 1280Wh of consistent energy production and can handle a maximum discharge power of 1.2KW. This Must LP15-12100 12.8V UPS Battery has an excellent cycle life of over 6000 cycles at 80% depth of discharge (DOD) at 25°C, considerably lowering long-term replacement and maintenance costs. The Must LP15-12100 UPS Battery has an advanced Battery Management System (BMS) that prevents overcharging, overdischarging, and short circuits, ensuring optimal safety and performance. It allows both series and parallel connections, allowing for bigger power arrangements. It is designed for maximum efficiency and functions efficiently across a wide temperature range, charging from 0°C to 45°C and discharging from -10°C to 55°C. The suggested charge voltage for the Must LP15-12100 12.8V 100Ah UPS Battery is 14.6V, with an end-of-discharge value of 10V for best battery health. The battery can handle a continuous discharge current of up to 100A and a maximum charge current of 50A, making it ideal for high-demand UPS and inverter systems. The Must UPS Battery's sturdy ABS+PC shell allows it to survive harsh situations while retaining good thermal stability and performance. The Must LP15-12100 12.8V 100Ah UPS Battery has higher energy density, providing more watt-hours per kilogram than typical sealed lead-acid batteries while being up to one-third lighter.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "Lead Acid",
+          "Capacity": "1280Wh",
+          "Input Voltage": "12.8V",
+          "Max. Charging Current": "20A",
+          "Max. Discharge Current": "50A",
+          "Operating Temperature": "Charge: 0℃ ~45℃ Discharging: -10℃ ~55℃ Storage: -5~35°C"
+        },
+        "Physical Information": {
+          "Material": "ABS+PC",
+          "Dimension": "339*185*218mm",
+          "Weight": "12 kg"
+        },
+        "Warranty Information": {
+          "Warranty": "1 Years"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/must-lp15-12100-ups-battery",
+      "audit": {
+        "sourcePrice": 0,
+        "sourceRegularPrice": 0,
+        "calculatedPrice": 0,
+        "calculatedOldPrice": 0,
+        "priceMultiplier": 1.1,
+        "status": "Up Coming",
+        "scrapedAt": "2026-10-31T15:57:37.176Z"
+      }
+    },
+    {
+      "id": "st-43728",
+      "title": "Marsriva MR-PBU12-9 12V 9Ah Sealed Lead-acid UPS Battery",
+      "slug": "marsriva-mr-pbu12-9-12v-9ah-ups-battery",
+      "price": 0,
+      "oldPrice": 0,
+      "discountPercentage": 0,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "MARSRIVA",
+      "productCode": "43728",
+      "stock": 0,
+      "image": "https://i.ibb.co/60kQj1Gd/Marsriva-MR-PBU12-9-12-V-9-Ah-Se.webp",
+      "images": [
+        "https://i.ibb.co/60kQj1Gd/Marsriva-MR-PBU12-9-12-V-9-Ah-Se.webp",
+        "https://i.ibb.co/gZMBfCGJ/Marsriva-MR-PBU12-9-12-V-9-Ah-Se.webp",
+        "https://i.ibb.co/39dkC22k/Marsriva-MR-PBU12-9-12-V-9-Ah-Se.webp",
+        "https://i.ibb.co/wrxDFLbZ/Marsriva-MR-PBU12-9-12-V-9-Ah-Se.webp"
+      ],
+      "shortDescription": "Model: MR-PBU12-9\nNominal Voltage (V): 12V\nNominal Capacity: 9.0Ah\nMaximum Discharge Current for 5 Secord: 135A\nPrecision Sealing Technology and a Valve-Sealed Design",
+      "keyFeatures": [
+        "Model: MR-PBU12-9",
+        "Nominal Voltage (V): 12V",
+        "Nominal Capacity: 9.0Ah",
+        "Maximum Discharge Current for 5 Secord: 135A",
+        "Precision Sealing Technology and a Valve-Sealed Design"
+      ],
+      "warranty": "6 months warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Marsriva MR-PBU12-9 12V 9Ah Sealed Lead-acid UPS Battery</h2>\n<p>The Marsriva <strong>MR-PBU12-9</strong> 12V 9Ah Sealed Lead-acid Battery is a premium-grade, maintenance-free AGM battery engineered for consistent performance in both standby and cyclic applications. With a nominal voltage of 12V and capacity of 9.0Ah, the Marsriva MR-PBU12-9 12V 9Ah Battery is widely used in UPS systems, emergency lighting, alarm systems, telecommunication equipment, and other high-demand electronics requiring dependable backup power. This battery is equipped with advanced precision sealing technology and a valve-regulated sealed design, ensuring it remains spill-proof, leak-resistant, and safe in enclosed environments. The internal Pb-Ca multi-alloy grid structure ensures excellent corrosion resistance, boosting its cycle life and making it ideal for frequent charge and discharge scenarios. One of the key features of the Marsriva MR-PBU12-9 12V 9Ah UPS Battery is its ability to deliver a maximum discharge current of 135A for 5 seconds, offering optimized high-current discharge capability, which is critical during power surges or emergency startup needs. The battery also exhibits high energy and power density, allowing more efficient use of space while delivering reliable power output. With an internal resistance of approximately 20.0mΩ and support for both F1 and F2 terminal types, it integrates easily into a wide range of systems. It features a float charging voltage of 13.5V–13.8V and a cycle use voltage of 14.4V–15V at 25°C, enhancing its charge acceptance performance. Additionally, its low self-discharge rate of just 3% per month at 25°C ensures the battery retains its charge during storage or infrequent use, while its excellent deep cycle discharge capability supports long-term durability. Weighing just 2.53kg and housed in a rugged ABS casing, the Marsriva MR-PBU12-9 12V Battery is not only portable but also impact-resistant and thermally stable. This makes it an excellent solution for mobile equipment and temperature-sensitive installations. Whether you're upgrading a UPS system or need a reliable battery for solar setups, medical devices, or industrial applications, the Marsriva MR-PBU12-9 12V 9Ah Sealed Lead-acid Battery delivers outstanding value, resilience, and performance—making it a smart choice for professionals who demand reliability in critical power situations.</p>\n\n</div>",
+      "specs": {
+        "General Information": {
+          "Type": "Sealed Lead Acid",
+          "Capacity": "9.0Ah",
+          "Input Voltage": "12V",
+          "Resistance": "Approx. 20.0mΩ",
+          "Terminal": "F1 / F2",
+          "Max. Discharge Current": "For 5 Sec: 135A",
+          "Self Discharge": "3% of capacity declined per month at 25℃",
+          "Operating Temperature": "25℃±5℃",
+          "Others": "Float Charging Voltage: 13.5V – 13.8V @25℃ Cycle Use Voltage: 14.4V – 15V @25℃"
+        },
+        "Physical Information": {
+          "Material": "ABS",
+          "Weight": "2.53kg"
+        },
+        "Warranty Information": {
+          "Warranty": "6 months warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/marsriva-mr-pbu12-9-12v-9ah-ups-battery",
+      "audit": {
+        "sourcePrice": 0,
+        "sourceRegularPrice": 0,
+        "calculatedPrice": 0,
+        "calculatedOldPrice": 0,
+        "priceMultiplier": 1.1,
+        "status": "Out Of Stock",
+        "scrapedAt": "2026-10-31T15:57:41.635Z"
+      }
+    },
+    {
+      "id": "st-43726",
+      "title": "Marsriva MR-PBU12-7 12V 7Ah Sealed Lead-acid UPS Battery",
+      "slug": "marsriva-mr-pbu12-7-12v-7ah-ups-battery",
+      "price": 0,
+      "oldPrice": 0,
+      "discountPercentage": 0,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "MARSRIVA",
+      "productCode": "43726",
+      "stock": 0,
+      "image": "https://i.ibb.co/BHsJj8NG/Marsriva-MR-PBU12-7-12-V-7-Ah-Se.webp",
+      "images": [
+        "https://i.ibb.co/BHsJj8NG/Marsriva-MR-PBU12-7-12-V-7-Ah-Se.webp",
+        "https://i.ibb.co/mCJvGGRn/Marsriva-MR-PBU12-7-12-V-7-Ah-Se.webp",
+        "https://i.ibb.co/rL9rFbT/Marsriva-MR-PBU12-7-12-V-7-Ah-Se.webp",
+        "https://i.ibb.co/NgpCH0ky/Marsriva-MR-PBU12-7-12-V-7-Ah-Se.webp"
+      ],
+      "shortDescription": "Model: MR-PBU12-7\nNominal Voltage (V): 12V\nNominal Capacity: 7.0Ah\nMaximum Discharge Current for 5 Secord: 105A\nPrecision Sealing Technology and a Valve-Sealed Design",
+      "keyFeatures": [
+        "Model: MR-PBU12-7",
+        "Nominal Voltage (V): 12V",
+        "Nominal Capacity: 7.0Ah",
+        "Maximum Discharge Current for 5 Secord: 105A",
+        "Precision Sealing Technology and a Valve-Sealed Design"
+      ],
+      "warranty": "6 months warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Marsriva MR-PBU12-7 12V 7Ah Sealed Lead-acid UPS Battery</h2>\n<p>The Marsriva <strong>MR-PBU12-7</strong> 12V 7Ah Sealed Lead-acid Battery is a premium-quality, maintenance-free AGM (Absorbent Glass Mat) battery designed to deliver long-lasting and dependable backup power for a wide range of applications. Featuring a nominal voltage of 12V and a capacity of 7.0Ah, this high-performance battery is ideal for use in UPS systems, emergency lighting, alarm and security systems, medical devices, and solar-powered equipment. The Marsriva MR-PBU12-7 12V 7Ah Battery is engineered with precision sealing technology and a valve-regulated design, ensuring leak-proof operation and maximum safety even under demanding conditions. Built with a Pb-Ca multi-alloy grid, it offers high corrosion resistance, longer service life, and better conductivity. Its maximum discharge current of 105A for 5 seconds allows it to handle high-energy demands with ease, making it suitable for instant power surge requirements. The battery has an internal resistance of approximately 42.0mΩ, contributing to efficient power output and minimal energy loss. With a low self-discharge rate of only 3% per month at 25℃, the Marsriva MR-PBU12-7 12V 7Ah UPS Battery retains charge over extended periods of storage. It supports float charging voltages between 13.5V to 13.8V and cycle use voltages ranging from 14.4V to 15V at 25℃, ensuring optimal charging performance in both standby and cyclic applications. The Marsriva MR-PBU12-7 12V Battery is housed in a durable ABS casing that is both heat and impact-resistant, and it weighs just 2.0kg, making it easy to install and maintain. Equipped with F1/F2 terminal options, this battery ensures flexible connectivity for various systems. Thanks to its high energy density, powerful discharge capability, excellent charge acceptance, and deep cycle performance, the Marsriva MR-PBU12-7 12V 7Ah Sealed Lead-acid Battery stands out as a top-tier solution for anyone needing reliable backup power with consistent performance and long service life.</p>\n\n</div>",
+      "specs": {
+        "General Information": {
+          "Type": "Sealed Lead Acid",
+          "Capacity": "7.0Ah",
+          "Input Voltage": "12V",
+          "Resistance": "Approx. 42.0mΩ",
+          "Terminal": "F1 / F2",
+          "Max. Discharge Current": "For 5 Sec: 105A",
+          "Self Discharge": "3% of capacity declined per month at 25℃",
+          "Operating Temperature": "25℃±5℃",
+          "Others": "Float Charging Voltage: 13.5V – 13.8V @25℃ Cycle Use Voltage: 14.4V – 15V @25℃"
+        },
+        "Physical Information": {
+          "Material": "ABS",
+          "Weight": "2.0kg"
+        },
+        "Warranty Information": {
+          "Warranty": "6 months warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/marsriva-mr-pbu12-7-12v-7ah-ups-battery",
+      "audit": {
+        "sourcePrice": 0,
+        "sourceRegularPrice": 0,
+        "calculatedPrice": 0,
+        "calculatedOldPrice": 0,
+        "priceMultiplier": 1.1,
+        "status": "Out Of Stock",
+        "scrapedAt": "2026-10-31T15:57:48.291Z"
+      }
+    },
+    {
+      "id": "st-48125",
+      "title": "Marsriva MR-LBP12-100-LAR 12.8V 100Ah LiFePO4 UPS Battery",
+      "slug": "marsriva-mr-lbp12-100-lar-ups-battery",
+      "price": 0,
+      "oldPrice": 0,
+      "discountPercentage": 0,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "MARSRIVA",
+      "productCode": "48125",
+      "stock": 0,
+      "image": "https://i.ibb.co/60CMfPYL/Marsriva-MR-LBP12-100-LAR-12-8.webp",
+      "images": [
+        "https://i.ibb.co/60CMfPYL/Marsriva-MR-LBP12-100-LAR-12-8.webp",
+        "https://i.ibb.co/mFPYvK3y/Marsriva-MR-LBP12-100-LAR-12-8.webp",
+        "https://i.ibb.co/216hG6Y6/Marsriva-MR-LBP12-100-LAR-12-8.webp",
+        "https://i.ibb.co/dsp4k0xw/Marsriva-MR-LBP12-100-LAR-12-8.webp"
+      ],
+      "shortDescription": "Model: MR-LBP12-100-LAR\nNominal Voltage: 12.8V (4S4P), Nominal Capacity: 100Ah\nBattery Type: LiFePO4 Battery, Self Discharging: <3% per month\nSupport using under wide temperature range, 6000 cycle life\nBuilt-in BMS, Support connected in parallel mode",
+      "keyFeatures": [
+        "Model: MR-LBP12-100-LAR",
+        "Nominal Voltage: 12.8V (4S4P), Nominal Capacity: 100Ah",
+        "Battery Type: LiFePO4 Battery, Self Discharging: <3% per month",
+        "Support using under wide temperature range, 6000 cycle life",
+        "Built-in BMS, Support connected in parallel mode"
+      ],
+      "warranty": "5 Years warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Marsriva MR-LBP12-100-LAR 12.8V 100Ah LiFePO4 UPS Battery</h2>\n<p>The Marsriva <strong>MR-LBP12-100-LAR</strong> 12.8V 100Ah UPS Battery uses Grade A iron phosphate lithium cells for enhanced safety and stability. With a nominal voltage of 12.8V in a 4S4P configuration, the Marsriva MR-LBP12-100-LAR UPS Battery ensures consistent energy output. It offers a high capacity of 100Ah and 1.28kWh storage, supporting extended discharge time for demanding applications. Marsriva UPS Battery technology provides high energy density and efficient power delivery for UPS systems and solar setups. The battery supports up to 6000 cycles to 70% EOL at 25°C, ensuring long term value. Users can connect up to four units in series and four groups in parallel for scalable expansion. The Marsriva MR-LBP12-100-LAR 12.8V 100Ah LiFePO4 UPS Battery features a built in BMS for advanced protection. It safeguards against overcharge, over discharge, and abnormal conditions while maintaining balanced performance. Self discharging remains below three percent per month, preserving stored energy during standby periods. Charging voltage ranges from 14.2V to 14.6V for optimal efficiency. Standard charging current is 50A, while maximum charging current reaches 100A for faster replenishment. Discharging cut off voltage is set at 10.8V to protect battery health. Maximum discharging current supports up to 100A for high load demands. The Marsriva MR-LBP12-100-LAR 12.8V 100Ah UPS Battery operates between 0℃ and 55℃ during charging. During discharging, it performs reliably from minus 20℃ to 55℃. General operating temperature ranges from minus 20℃ to 45℃ with humidity tolerance between five and ninety five percent non condensing. An IP30 rating and durable ABS plastic case enhance protection. M8 connectors ensure secure installation and stable electrical connections.</p>\n\n</div>",
+      "specs": {
+        "General Information": {
+          "Type": "LiFePO4 Battery",
+          "Capacity": "100Ah",
+          "Input Voltage": "12.8V (4S4P)",
+          "Max. Charging Current": "Std. 50A; Max. 100A",
+          "Terminal": "M8",
+          "Max. Discharge Current": "Max. 100A",
+          "Self Discharge": "＜3% per month",
+          "Operating Temperature": "-20℃ to 45℃"
+        },
+        "Physical Information": {
+          "Material": "ABS",
+          "Dimension": "300 x 173 x 221mm",
+          "Weight": "10.5kg"
+        },
+        "Warranty Information": {
+          "Warranty": "5 Years warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/marsriva-mr-lbp12-100-lar-ups-battery",
+      "audit": {
+        "sourcePrice": 0,
+        "sourceRegularPrice": 0,
+        "calculatedPrice": 0,
+        "calculatedOldPrice": 0,
+        "priceMultiplier": 1.1,
+        "status": "Out Of Stock",
+        "scrapedAt": "2026-10-31T15:57:52.767Z"
+      }
+    },
+    {
+      "id": "st-34671",
+      "title": "Power Guard SS12-12 12V 12Ah UPS Battery",
+      "slug": "power-guard-ss12-12-ups-battery",
+      "price": 0,
+      "oldPrice": 0,
+      "discountPercentage": 0,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "Power Guard",
+      "productCode": "34671",
+      "stock": 0,
+      "image": "https://i.ibb.co/YFgmSH2F/Power-Guard-SS18-12-12-V-18-Ah-U.webp",
+      "images": [
+        "https://i.ibb.co/YFgmSH2F/Power-Guard-SS18-12-12-V-18-Ah-U.webp"
+      ],
+      "shortDescription": "Model: SS12-12\nBattery Capacity: 12Ah\nNominal Voltage: 12V\nCharging Current: 3.6A Max.\nTerminal Material: Copper",
+      "keyFeatures": [
+        "Model: SS12-12",
+        "Battery Capacity: 12Ah",
+        "Nominal Voltage: 12V",
+        "Charging Current: 3.6A Max.",
+        "Terminal Material: Copper"
+      ],
+      "warranty": "06 Months Warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Power Guard SS12-12 12V 12Ah UPS Battery</h2><p>The Power Guard <strong>SS12-12</strong> 12V 12Ah UPS Battery ensures longer runtime during power outages by providing dependable backup power with a nominal voltage of 12V and a capacity of 12Ah. It delivers a power boost when needed most, with a maximum discharge current of 180A for up to 5 seconds. Because it is composed of copper, the terminal material guarantees long-term durability and effective conductivity. The Power Guard SS12-12 12V UPS Battery, weighing about 3.5 to 3.8 kg, is a good mix between portability and durability. Its 3.6A maximum charging current further guarantees secure and effective recharging. This Power Guard SS12-12 12V 12Ah UPS Battery is a great option for protecting important electronic equipment and systems because it performs dependably whether used at home or in the workplace.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "Sealed Lead Acid (SLA)",
+          "Capacity": "12Ah",
+          "Input Voltage": "12V",
+          "Max. Charging Current": "3.6A",
+          "Max. Discharge Current": "180A(5 sec.)"
+        },
+        "Physical Information": {
+          "Weight": "Approx: 3.5 to 3.8 Kg"
+        },
+        "Warranty Information": {
+          "Warranty": "06 Months Warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/power-guard-ss12-12-ups-battery",
+      "audit": {
+        "sourcePrice": 0,
+        "sourceRegularPrice": 0,
+        "calculatedPrice": 0,
+        "calculatedOldPrice": 0,
+        "priceMultiplier": 1.1,
+        "status": "Out Of Stock",
+        "scrapedAt": "2026-10-31T15:57:54.212Z"
+      }
+    },
+    {
+      "id": "st-34661",
+      "title": "Power Guard SS7.2-12 12V 7.2Ah UPS Battery",
+      "slug": "power-guard-ss7-2-12-ups-battery",
+      "price": 0,
+      "oldPrice": 0,
+      "discountPercentage": 0,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "Power Guard",
+      "productCode": "34661",
+      "stock": 0,
+      "image": "https://i.ibb.co/YFgmSH2F/Power-Guard-SS18-12-12-V-18-Ah-U.webp",
+      "images": [
+        "https://i.ibb.co/YFgmSH2F/Power-Guard-SS18-12-12-V-18-Ah-U.webp"
+      ],
+      "shortDescription": "Model: SS7.2-12\nBattery Capacity: 7.2 Ah\nNominal Voltage: 12V\nCharging Current: 2.1A Max.\nTerminal Material: Copper",
+      "keyFeatures": [
+        "Model: SS7.2-12",
+        "Battery Capacity: 7.2 Ah",
+        "Nominal Voltage: 12V",
+        "Charging Current: 2.1A Max.",
+        "Terminal Material: Copper"
+      ],
+      "warranty": "06 months Warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Power Guard SS7.2-12 12V 7.2Ah UPS Battery</h2><p>The Power Guard <strong>SS7.2-12</strong> UPS Battery is a compact yet dependable power supply that is excellent for a variety of backup applications. It has a nominal voltage of 12V and a battery capacity of 7.2 Ah, which provides enough power to run small-scale electronics and equipment during blackouts. The maximum charging current of 2.1A for the Power Guard SS7.2-12 12V 7.2Ah UPS Battery guarantees effective and prompt recharge, reducing downtime in between usages. Copper, the material used for the terminal, improves conductivity and longevity, guaranteeing a stable and safe connection throughout extended use. The Power Guard SS7.2-12 UPS Battery is a useful option for both home and office settings since it offers consistent power backup, whether it is utilized in compact UPS systems or standalone backup configurations.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "Sealed Lead Acid (SLA)",
+          "Capacity": "7.2Ah",
+          "Input Voltage": "12V",
+          "Max. Charging Current": "2.1A"
+        },
+        "Warranty Information": {
+          "Warranty": "06 months Warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/power-guard-ss7-2-12-ups-battery",
+      "audit": {
+        "sourcePrice": 0,
+        "sourceRegularPrice": 0,
+        "calculatedPrice": 0,
+        "calculatedOldPrice": 0,
+        "priceMultiplier": 1.1,
+        "status": "Out Of Stock",
+        "scrapedAt": "2026-10-31T15:57:56.453Z"
+      }
+    },
+    {
+      "id": "st-34663",
+      "title": "Power Guard SS9-12 12V 9Ah UPS Battery",
+      "slug": "power-guard-ss9-12-ups-battery",
+      "price": 0,
+      "oldPrice": 0,
+      "discountPercentage": 0,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "Power Guard",
+      "productCode": "34663",
+      "stock": 0,
+      "image": "https://i.ibb.co/YFgmSH2F/Power-Guard-SS18-12-12-V-18-Ah-U.webp",
+      "images": [
+        "https://i.ibb.co/YFgmSH2F/Power-Guard-SS18-12-12-V-18-Ah-U.webp"
+      ],
+      "shortDescription": "Model: SS9-12\nBattery Capacity: 9 Ah\nNominal Voltage: 12V\nCharging Current: 2.1A Max.\nTerminal Material: Copper",
+      "keyFeatures": [
+        "Model: SS9-12",
+        "Battery Capacity: 9 Ah",
+        "Nominal Voltage: 12V",
+        "Charging Current: 2.1A Max.",
+        "Terminal Material: Copper"
+      ],
+      "warranty": "06 Months Warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Power Guard SS9-12 12V 9Ah UPS Battery</h2><p>The Power Guard <strong>SS9-12</strong> UPS Battery is a dependable and effective power source intended for a range of backup uses. With a 9Ah capacity and a nominal voltage of 12V, it provides enough power to run equipment and electronic devices during blackouts or other power disruptions. The maximum charging current of 2.1A for the Power Guard SS9-12 12V 9Ah UPS Battery guarantees quick and efficient recharging, reducing downtime and guaranteeing preparedness for upcoming power outages. This Power Guard SS9-12 12V 9Ah UPS Battery's copper terminal construction offers maximum conductivity and endurance, guaranteeing a safe and steady connection throughout extended operation. It is lightweight and manageable, weighing only 2.4 kg, which makes installation and maintenance simple. Furthermore, the Power Guard SS9-12 UPS Battery can withstand abrupt surges in power demand with a maximum discharge current of 125A for up to 5 seconds, providing dependable performance in difficult circumstances. This battery is a sensible option for both residential and business settings where stable backup power is crucial, whether it is used in UPS systems or standalone backup arrangements.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "Sealed Lead Acid (SLA)",
+          "Capacity": "9Ah",
+          "Input Voltage": "12V",
+          "Max. Charging Current": "2.1A",
+          "Max. Discharge Current": "125A (5 sec)"
+        },
+        "Physical Information": {
+          "Weight": "Approx 2.4 Kg"
+        },
+        "Warranty Information": {
+          "Warranty": "06 Months Warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/power-guard-ss9-12-ups-battery",
+      "audit": {
+        "sourcePrice": 0,
+        "sourceRegularPrice": 0,
+        "calculatedPrice": 0,
+        "calculatedOldPrice": 0,
+        "priceMultiplier": 1.1,
+        "status": "Out Of Stock",
+        "scrapedAt": "2026-10-31T15:57:57.915Z"
+      }
+    },
+    {
+      "id": "st-49955",
+      "title": "KSTAR 12V 9AH UPS Battery",
+      "slug": "kstar-12v-9ah-ups-battery",
+      "price": 0,
+      "oldPrice": 0,
+      "discountPercentage": 0,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "KSTAR",
+      "productCode": "49955",
+      "stock": 0,
+      "image": "https://i.ibb.co/BHh3sqNk/KSTAR-12-V-9-AH-UPS-Battery.webp",
+      "images": [
+        "https://i.ibb.co/BHh3sqNk/KSTAR-12-V-9-AH-UPS-Battery.webp"
+      ],
+      "shortDescription": "Model: 12V 9AH\nNominal Voltage (V): 12V\nNominal Capacity: 9AH\nLow self-discharge rate\nOperating Temperature: 25℃±3℃(77F±5F)",
+      "keyFeatures": [
+        "Model: 12V 9AH",
+        "Nominal Voltage (V): 12V",
+        "Nominal Capacity: 9AH",
+        "Low self-discharge rate",
+        "Operating Temperature: 25℃±3℃(77F±5F)"
+      ],
+      "warranty": "6 Months warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>KSTAR 12V 9AH UPS Battery</h2><p>The <strong>KSTAR 12V 9AH</strong> UPS Battery is a reliable backup power solution designed to deliver consistent performance for UPS systems and critical devices. With a nominal voltage of 12V and a capacity of 9AH, it ensures stable energy supply during power outages, making it ideal for home, office, and industrial applications. Engineered with a low self-discharge rate, this KSTAR UPS Battery maintains efficiency and readiness even during extended standby periods. Operating at an optimal temperature range of 25℃±3℃ (77F±5F), it provides dependable performance under standard conditions. Compact, durable, and cost-effective, the KSTAR 12V 9AH Battery is the perfect choice for users seeking long-lasting backup power with trusted quality.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "AGM (Absorbent Glass Mat)",
+          "Capacity": "9Ah",
+          "Input Voltage": "12V",
+          "Max. Charging Current": "2.1A",
+          "Self Discharge": "Low self-discharge rate",
+          "Operating Temperature": "25℃±3℃(77F±5F)",
+          "Others": "Cycle Use: 14.50V-15.0V Cycle Life: up to 500-600 cycles Standby Use: 13.50V-13.80V"
+        },
+        "Physical Information": {
+          "Weight": "2.4 Kg"
+        },
+        "Warranty Information": {
+          "Warranty": "6 Months warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/kstar-12v-9ah-ups-battery",
+      "audit": {
+        "sourcePrice": 0,
+        "sourceRegularPrice": 0,
+        "calculatedPrice": 0,
+        "calculatedOldPrice": 0,
+        "priceMultiplier": 1.1,
+        "status": "Out Of Stock",
+        "scrapedAt": "2026-10-31T15:58:00.117Z"
+      }
+    },
+    {
+      "id": "st-43736",
+      "title": "Marsriva MR-PBL12-200 12V 200Ah Sealed Lead-Acid UPS Battery",
+      "slug": "marsriva-mr-pbl12-200-12v-200ah-ups-battery",
+      "price": 0,
+      "oldPrice": 0,
+      "discountPercentage": 0,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "MARSRIVA",
+      "productCode": "43736",
+      "stock": 0,
+      "image": "https://i.ibb.co/3mv7h6Gq/Marsriva-MR-PBL12-200-12-V-200-A.webp",
+      "images": [
+        "https://i.ibb.co/3mv7h6Gq/Marsriva-MR-PBL12-200-12-V-200-A.webp",
+        "https://i.ibb.co/LdSgMrhy/Marsriva-MR-PBL12-150-12-V-150-A.webp",
+        "https://i.ibb.co/4wshw3vm/Marsriva-MR-PBL12-150-12-V-150-A.webp",
+        "https://i.ibb.co/H01dZ97/Marsriva-MR-PBL12-150-12-V-150-A.webp"
+      ],
+      "shortDescription": "Model: MR-PBL12-200\nNominal Voltage (V): 12V\nNominal Capacity: 200Ah\nMaximum Discharge Current for 5 Seconds: 2400A\nHigh Corrosion-Resistant Performance",
+      "keyFeatures": [
+        "Model: MR-PBL12-200",
+        "Nominal Voltage (V): 12V",
+        "Nominal Capacity: 200Ah",
+        "Maximum Discharge Current for 5 Seconds: 2400A",
+        "High Corrosion-Resistant Performance"
+      ],
+      "warranty": "1 Year warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Marsriva MR-PBL12-200 12V 200Ah Sealed Lead-Acid UPS Battery</h2><p>The Marsriva <strong>MR-PBL12-200</strong> 12V 200Ah Sealed Lead-Acid UPS Battery stands out as a premium energy storage solution for critical backup power applications. This Marsriva MR-PBL12-200 12V 200Ah UPS Battery offers a powerful nominal capacity of 200Ah, making it perfectly suited for uninterrupted power supply (UPS) systems, telecom setups, and renewable energy storage. Designed with a sealed lead-acid chemistry, the battery ensures maintenance-free operation and exceptional safety. The Marsriva MR-PBL12-200 12V Battery features a high maximum discharge current of 2400A for short bursts of 5 seconds, providing reliable surge capacity to protect sensitive electronics during power interruptions. Its superior corrosion-resistant design, combined with a rugged ABS casing, guarantees long-term durability and resistance against harsh environmental factors. Equipped with M8 terminals and an internal resistance of about 4.0 mΩ, this Marsriva MR-PBL12-200 12V UPS Battery delivers efficient and stable power transfer. The battery exhibits a low self-discharge rate of only 3% per month at the standard operating temperature of 25℃, ensuring it retains charge well during periods of inactivity. Operating best within a temperature range of 20℃ to 30℃ (25℃ ±5℃), it supports float charging voltages between 13.5V and 13.8V and cycle use voltages from 14.4V up to 15V, optimizing battery lifespan and performance in cyclic usage. Weighing 57 kg, it balances solid build quality with manageable installation weight. Whether you are looking for a dependable power source for your UPS system or backup energy storage, the Marsriva MR-PBL12-200 12V 200Ah Sealed Lead-Acid UPS Battery delivers unmatched reliability, corrosion resistance, and high performance to meet your critical power needs.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "Sealed Lead Acid",
+          "Capacity": "200Ah",
+          "Input Voltage": "12V",
+          "Resistance": "Approx. 4.0 mΩ",
+          "Terminal": "M8",
+          "Max. Discharge Current": "For 5 Sec: 2400A",
+          "Self Discharge": "3% of capacity declined per month at 25℃",
+          "Operating Temperature": "25℃±5℃",
+          "Others": "Float Charging Voltage: 13.5V – 13.8V @25℃ Cycle Use Voltage: 14.4V – 15V @25℃"
+        },
+        "Physical Information": {
+          "Material": "ABS",
+          "Weight": "57.0kg"
+        },
+        "Warranty Information": {
+          "Warranty": "1 Year warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/marsriva-mr-pbl12-200-12v-200ah-ups-battery",
+      "audit": {
+        "sourcePrice": 0,
+        "sourceRegularPrice": 0,
+        "calculatedPrice": 0,
+        "calculatedOldPrice": 0,
+        "priceMultiplier": 1.1,
+        "status": "Out Of Stock",
+        "scrapedAt": "2026-10-31T15:58:02.562Z"
+      }
+    },
+    {
+      "id": "st-43729",
+      "title": "Marsriva MR-PBL12-100 12V 100Ah Sealed Lead-Acid UPS Battery",
+      "slug": "marsriva-mr-pbl12-100-12v-ups-battery",
+      "price": 0,
+      "oldPrice": 0,
+      "discountPercentage": 0,
+      "category": "ups-battery",
+      "categoryName": "UPS BATTERY",
+      "brand": "MARSRIVA",
+      "productCode": "43729",
+      "stock": 0,
+      "image": "https://i.ibb.co/HDThvCzM/Marsriva-MR-PBL12-100-12-V-100-A.webp",
+      "images": [
+        "https://i.ibb.co/HDThvCzM/Marsriva-MR-PBL12-100-12-V-100-A.webp",
+        "https://i.ibb.co/7Jsgp09P/Marsriva-MR-PBL12-100-12-V-100-A.webp",
+        "https://i.ibb.co/DH2J805M/Marsriva-MR-PBL12-100-12-V-100-A.webp",
+        "https://i.ibb.co/ycX9XxNt/Marsriva-MR-PBL12-100-12-V-100-A.webp"
+      ],
+      "shortDescription": "Model: MR-PBL12-100\nNominal Voltage (V): 12V\nNominal Capacity: 100Ah\nMaximum Discharge Current for 5 Seconds: 1200A\nHigh Corrosion-Resistant Performance",
+      "keyFeatures": [
+        "Model: MR-PBL12-100",
+        "Nominal Voltage (V): 12V",
+        "Nominal Capacity: 100Ah",
+        "Maximum Discharge Current for 5 Seconds: 1200A",
+        "High Corrosion-Resistant Performance"
+      ],
+      "warranty": "6 months warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Marsriva MR-PBL12-100 12V 100Ah Sealed Lead-Acid UPS Battery</h2><p>The Marsriva <strong>MR-PBL12-100</strong> 12V 100Ah Sealed Lead-Acid UPS Battery is a premium-grade, deep-cycle backup battery engineered for consistent, long-term energy storage in UPS systems, solar power setups, telecom infrastructure, and emergency power applications. This Marsriva MR-PBL12-100 12V 100Ah UPS Battery features a nominal voltage of 12V and a nominal capacity of 100Ah, providing high energy output and ensuring uninterrupted operation during power outages or high-demand usage. With a maximum discharge current of 1200A for 5 seconds, this battery is optimized for high-load startup conditions and supports equipment that requires instant, high-current delivery. The Marsriva MR-PBL12-100 12V Battery is built using sealed lead-acid (SLA) technology, featuring a maintenance-free design with precision valve regulation that prevents electrolyte leakage and extends operational lifespan. Its rugged ABS casing provides durability and safety, while the Pb-Ca multi-alloy grid structure enhances corrosion resistance and extends deep-cycle performance. Weighing 28.0 kg, the battery includes M8 terminals for secure, high-conductivity connections. It also features low internal resistance (approx. 5.2 mΩ), excellent charge acceptance, and rapid recovery from deep discharges—making it highly reliable for demanding power scenarios. Designed for temperature stability, the Marsriva MR-PBL12-100 12V UPS Battery operates efficiently within 25℃±5℃, and has a low self-discharge rate of only 3% per month at 25℃, ensuring prolonged standby readiness. It supports a float charging voltage of 13.5V – 13.8V @25℃ and a cycle use voltage of 14.4V – 15V @25℃, suitable for various usage modes and charging systems. With its high energy density, optimized high-current discharge capability, and outstanding deep-cycle durability, the Marsriva MR-PBL12-100 12V 100Ah Sealed Lead-Acid UPS Battery is an ideal, cost-effective solution for anyone seeking dependable, high-capacity backup power in both residential and industrial settings.</p></div>",
+      "specs": {
+        "General Information": {
+          "Type": "Sealed Lead Acid",
+          "Capacity": "100Ah",
+          "Input Voltage": "12V",
+          "Resistance": "Approx. 5.2 mΩ",
+          "Terminal": "M8",
+          "Max. Discharge Current": "For 5 Sec: 1200A",
+          "Self Discharge": "3% of capacity declined per month at 25℃",
+          "Operating Temperature": "25℃±5℃",
+          "Others": "Float Charging Voltage: 13.5V – 13.8V @25℃ Cycle Use Voltage: 14.4V – 15V @25℃"
+        },
+        "Physical Information": {
+          "Material": "ABS",
+          "Weight": "28.0kg"
+        },
+        "Warranty Information": {
+          "Warranty": "6 months warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/marsriva-mr-pbl12-100-12v-ups-battery",
+      "audit": {
+        "sourcePrice": 0,
+        "sourceRegularPrice": 0,
+        "calculatedPrice": 0,
+        "calculatedOldPrice": 0,
+        "priceMultiplier": 1.1,
+        "status": "Out Of Stock",
+        "scrapedAt": "2026-10-31T15:58:09.047Z"
+      }
+    }
+  ]
+}
