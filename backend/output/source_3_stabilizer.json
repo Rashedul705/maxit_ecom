@@ -1,0 +1,592 @@
+{
+  "source": "https://www.startech.com.bd/stabilizer",
+  "sourceName": "source_3_stabilizer",
+  "scrapedAt": "2026-10-31T09:38:46.803Z",
+  "totalCrawledPages": 1,
+  "totalProductsFound": 10,
+  "categoriesToCreate": [
+    {
+      "id": "cat-voltage-stabilizer",
+      "name": "VOLTAGE STABILIZER",
+      "slug": "voltage-stabilizer",
+      "order": 14,
+      "isActive": true,
+      "image": "https://i.ibb.co/DPt7VtGc/Tecnoware-FSTEL75-KT-75-KVA-Elec.jpg",
+      "icon": "Activity",
+      "description": "Automatic voltage regulators and servo stabilizers for sensitive industrial and residential appliances."
+    }
+  ],
+  "categoriesExisting": [],
+  "stats": {
+    "total": 10,
+    "withPrice": 0,
+    "withoutPrice": 10,
+    "descriptionsCleaned": 0,
+    "totalImagesUploaded": 21,
+    "imageUploadFailures": 0
+  },
+  "products": [
+    {
+      "id": "st-13506",
+      "title": "Tecnoware FSTEL75KT 75KVA Electronic Three Phase Stabilizer (Origin Italy)",
+      "slug": "tecnoware-75kva-electronic-three-phase-stabilizer",
+      "price": 0,
+      "oldPrice": 0,
+      "discountPercentage": 0,
+      "category": "voltage-stabilizer",
+      "categoryName": "VOLTAGE STABILIZER",
+      "brand": "Tecnoware",
+      "productCode": "13506",
+      "stock": 0,
+      "image": "https://i.ibb.co/DPt7VtGc/Tecnoware-FSTEL75-KT-75-KVA-Elec.jpg",
+      "images": [
+        "https://i.ibb.co/DPt7VtGc/Tecnoware-FSTEL75-KT-75-KVA-Elec.jpg",
+        "https://i.ibb.co/PztpSLXH/Tecnoware-FSTEL75-KT-75-KVA-Elec.jpg",
+        "https://i.ibb.co/8Ddc7F2y/Tecnoware-FSTEL75-KT-75-KVA-Elec.jpg"
+      ],
+      "shortDescription": "Model: FSTEL75KT\nCapacity: 75KVA\nHigh Efficiency\nOutput stabilization 3%\nNo brownouts stabilization",
+      "keyFeatures": [
+        "Model: FSTEL75KT",
+        "Capacity: 75KVA",
+        "High Efficiency",
+        "Output stabilization 3%",
+        "No brownouts stabilization"
+      ],
+      "warranty": "02 Years Warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2><span style=\"font-weight: bold;\">Tecnoware&nbsp;FSTEL75KT 75KVA <span style=\"color: inherit; font-family: inherit;\">Electronic Three Phase Stabilizer (Origin Italy)</span></span></h2><p>The Electronic stabilizer is of three-phase version with power 75KVA, along high stabilization precision (3% output) and sinusoidal waveform, insensitivity to load and power factor. It does not introduce harmonic distortions, weight 85 kg dimensions 33 x 64.1 x 58 cm.</p><p>This Tecnoware 75KVA Stabilizer comes with 02 years of warranty.</p></div>",
+      "specs": {
+        "Main Feature": {
+          "Capacity": "75KVA",
+          "Display Type": "Number of phases: 3Ph+N",
+          "Output Voltage": "50/60 Hz"
+        },
+        "Input Features": {
+          "Frequency": "Nominal frequency: 50/60 Hz",
+          "Voltage Range": "Nominal voltage: 400Vac Input voltage range: 280Vac-480Vac"
+        },
+        "Output Features": {
+          "Voltage Range": "Nominal voltage: 400Vac Voltage regulation: ±3%",
+          "Power Factor": "0.8",
+          "Type of Wave": "Sinusoidal waveform"
+        },
+        "Manufacture Warranty": {
+          "Warranty": "02 Years Warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/tecnoware-75kva-electronic-three-phase-stabilizer",
+      "audit": {
+        "sourcePrice": 0,
+        "sourceRegularPrice": 0,
+        "calculatedPrice": 0,
+        "calculatedOldPrice": 0,
+        "priceMultiplier": 1.1,
+        "status": "Call for Price",
+        "scrapedAt": "2026-10-31T09:38:24.036Z"
+      }
+    },
+    {
+      "id": "st-3473",
+      "title": "Star 600VA Stabilizer",
+      "slug": "star-600va-meter-display-stabilizer",
+      "price": 0,
+      "oldPrice": 0,
+      "discountPercentage": 0,
+      "category": "voltage-stabilizer",
+      "categoryName": "VOLTAGE STABILIZER",
+      "brand": "Star",
+      "productCode": "3473",
+      "stock": 0,
+      "image": "https://i.ibb.co/40zJS1N/Star-600-VA-Stabilizer.jpg",
+      "images": [
+        "https://i.ibb.co/40zJS1N/Star-600-VA-Stabilizer.jpg"
+      ],
+      "shortDescription": "Model: Star 600VA Meter\nTime of delay can be selected\nProtecting over voltage\nLow Electric Consumption",
+      "keyFeatures": [
+        "Model: Star 600VA Meter",
+        "Time of delay can be selected",
+        "Protecting over voltage",
+        "Low Electric Consumption"
+      ],
+      "warranty": "1 Year",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><p><span style=\"font-weight: bold;\">Star 600VA Meter Display Stabilizer</span></p><ul><li>While Starting the machine there is no impact<br></li><li>Time of delay can be selected&nbsp;<br></li><li>Automatically protecting over voltage and overload&nbsp;<br></li><li>Low Electric Consumption&nbsp;</li></ul>01 Year Warranty<p><span style=\"font-weight: bold;\">Note: Image of the product might differ in case of actual one.</span><br></p>\n</div>",
+      "specs": {},
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/Star-600VA-Meter-Display-Stabilizer",
+      "audit": {
+        "sourcePrice": 0,
+        "sourceRegularPrice": 0,
+        "calculatedPrice": 0,
+        "calculatedOldPrice": 0,
+        "priceMultiplier": 1.1,
+        "status": "Out Of Stock",
+        "scrapedAt": "2026-10-31T09:38:26.209Z"
+      }
+    },
+    {
+      "id": "st-3469",
+      "title": "Star 600VA LED Display Stabilizer",
+      "slug": "star-600-va-led-display-stabilizer",
+      "price": 0,
+      "oldPrice": 0,
+      "discountPercentage": 0,
+      "category": "voltage-stabilizer",
+      "categoryName": "VOLTAGE STABILIZER",
+      "brand": "Star",
+      "productCode": "3469",
+      "stock": 0,
+      "image": "https://i.ibb.co/XxpBYSCC/Star-600-VA-LED-Display-Stabili.jpg",
+      "images": [
+        "https://i.ibb.co/XxpBYSCC/Star-600-VA-LED-Display-Stabili.jpg"
+      ],
+      "shortDescription": "Model: Star 600VA LED\nTime of delay can be selected\nProtecting over voltage\nLow Electric Consumption",
+      "keyFeatures": [
+        "Model: Star 600VA LED",
+        "Time of delay can be selected",
+        "Protecting over voltage",
+        "Low Electric Consumption"
+      ],
+      "warranty": "1 Year",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><p><span style=\"font-weight: bold;\">Star 600VA LED Display Stabilizer</span><br></p><ul><li>While Starting the machine there is no impact<br></li><li>Time of delay can be selected&nbsp;<br></li><li>Automatically protecting over voltage and overload&nbsp;<br></li><li>Low Electric Consumption&nbsp;</li></ul>01 Year Warranty<p><span style=\"font-weight: bold;\">Note: Image of the product might differ in case of actual one.</span></p>\n</div>",
+      "specs": {},
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/Star-600-VA-LED-Display-Stabilizer",
+      "audit": {
+        "sourcePrice": 0,
+        "sourceRegularPrice": 0,
+        "calculatedPrice": 0,
+        "calculatedOldPrice": 0,
+        "priceMultiplier": 1.1,
+        "status": "Out Of Stock",
+        "scrapedAt": "2026-10-31T09:38:28.889Z"
+      }
+    },
+    {
+      "id": "st-3472",
+      "title": "Star 1000VA Meter Display Stabilizer",
+      "slug": "star-1000va-meter-display-stabilizer",
+      "price": 0,
+      "oldPrice": 0,
+      "discountPercentage": 0,
+      "category": "voltage-stabilizer",
+      "categoryName": "VOLTAGE STABILIZER",
+      "brand": "Star",
+      "productCode": "3472",
+      "stock": 0,
+      "image": "https://i.ibb.co/LX1zRc4G/Star-1000-VA-Meter-Display-Stab.jpg",
+      "images": [
+        "https://i.ibb.co/LX1zRc4G/Star-1000-VA-Meter-Display-Stab.jpg"
+      ],
+      "shortDescription": "Model: Star 1000VA Meter\nTime of delay can be selected\nProtecting over voltage\nLow Electric Consumption",
+      "keyFeatures": [
+        "Model: Star 1000VA Meter",
+        "Time of delay can be selected",
+        "Protecting over voltage",
+        "Low Electric Consumption"
+      ],
+      "warranty": "1 Year",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><p><span style=\"font-weight: bold;\">Star 1000VA Meter Display Stabilizer</span><br></p><ul><li>While Starting the machine there is no impact<br></li><li>Time of delay can be selected&nbsp;<br></li><li>Automatically protecting over voltage and overload&nbsp;<br></li><li>Low Electric Consumption&nbsp;</li></ul>01 Year Warranty<p><span style=\"font-weight: bold;\">Note: Image of the product might differ in case of actual one.</span><br></p>\n</div>",
+      "specs": {},
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/Star-1000VA-Meter-Display-Stabilizer",
+      "audit": {
+        "sourcePrice": 0,
+        "sourceRegularPrice": 0,
+        "calculatedPrice": 0,
+        "calculatedOldPrice": 0,
+        "priceMultiplier": 1.1,
+        "status": "Out Of Stock",
+        "scrapedAt": "2026-10-31T09:38:31.207Z"
+      }
+    },
+    {
+      "id": "st-3474",
+      "title": "Star 2000VA Meter Display Stabilizer",
+      "slug": "star-2000va-meter-display-stabilizer",
+      "price": 0,
+      "oldPrice": 0,
+      "discountPercentage": 0,
+      "category": "voltage-stabilizer",
+      "categoryName": "VOLTAGE STABILIZER",
+      "brand": "Star",
+      "productCode": "3474",
+      "stock": 0,
+      "image": "https://i.ibb.co/LX1zRc4G/Star-1000-VA-Meter-Display-Stab.jpg",
+      "images": [
+        "https://i.ibb.co/LX1zRc4G/Star-1000-VA-Meter-Display-Stab.jpg"
+      ],
+      "shortDescription": "Model: Star 2000VA Meter\nTime of delay can be selected\nProtecting over voltage\nLow Electric Consumption",
+      "keyFeatures": [
+        "Model: Star 2000VA Meter",
+        "Time of delay can be selected",
+        "Protecting over voltage",
+        "Low Electric Consumption"
+      ],
+      "warranty": "1 Year",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><p><span style=\"font-weight: bold;\">Star 2000VA Meter Display Stabilizer</span><br></p><ul><li>While Starting the machine there is no impact<br></li><li>Time of delay can be selected&nbsp;<br></li><li>Automatically protecting over voltage and overload&nbsp;<br></li><li>Low Electric Consumption&nbsp;</li></ul>01 Year Warranty<p><span style=\"font-weight: bold;\">Note: Image of the product might differ in case of actual one.</span><br></p>\n</div>",
+      "specs": {},
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/Star-2000VA-Meter-Display-Stabilizer",
+      "audit": {
+        "sourcePrice": 0,
+        "sourceRegularPrice": 0,
+        "calculatedPrice": 0,
+        "calculatedOldPrice": 0,
+        "priceMultiplier": 1.1,
+        "status": "Out Of Stock",
+        "scrapedAt": "2026-10-31T09:38:32.609Z"
+      }
+    },
+    {
+      "id": "st-13488",
+      "title": "Tecnoware 3000VA Power Reg Stabilizer",
+      "slug": "tecnoware-3000va-power-reg-stabilizer",
+      "price": 0,
+      "oldPrice": 0,
+      "discountPercentage": 0,
+      "category": "voltage-stabilizer",
+      "categoryName": "VOLTAGE STABILIZER",
+      "brand": "Tecnoware",
+      "productCode": "13488",
+      "stock": 0,
+      "image": "https://i.ibb.co/21BvPpVx/Tecnoware-3000-VA-Power-Reg-Sta.jpg",
+      "images": [
+        "https://i.ibb.co/21BvPpVx/Tecnoware-3000-VA-Power-Reg-Sta.jpg",
+        "https://i.ibb.co/Q7ZNb7g8/Tecnoware-3000-VA-Power-Reg-Sta.jpg"
+      ],
+      "shortDescription": "Model: Tecnoware\nHigh Efficiency\nManagement changes from 0 to 100% load\nNo brownouts stabilization",
+      "keyFeatures": [
+        "Model: Tecnoware",
+        "High Efficiency",
+        "Management changes from 0 to 100% load",
+        "No brownouts stabilization"
+      ],
+      "warranty": "01 Year Warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2><span style=\"font-weight: bold;\">Tecnoware 3000VA Power Reg Stabilizer</span></h2><p>Electronic stabilizer Power REG is of single phase aloong with power 3000VA, stabilization 8%, cable input with UK plug, 1 Universal output and 1 ICE 320 C19 output. It is quipped with lCD display for viewing operating parameters, weight 8.6 kg and dimensions 29.7x15x19.9 cm. Owns high stabilization speed enabling no micro interruptions and high efficiency.</p><p>This Tecnoware 3000VA Stabilizer comes with 01 year of warranty.</p></div>",
+      "specs": {
+        "Main Feature": {
+          "Capacity": "3000VA",
+          "Display Type": "Number of phases: 1Ph+N"
+        },
+        "Input Features": {
+          "Frequency": "Nominal frequency: 50/60 Hz",
+          "Voltage Range": "Input voltage range: 110Vac-280Vac o 150Vac-270Vac (selectable)"
+        },
+        "Output Features": {
+          "Voltage Range": "Nominal voltage: 230Vac",
+          "Power Factor": "0.8"
+        },
+        "Manufacture Warranty": {
+          "Warranty": "01 Year Warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/tecnoware-3000va-power-reg-stabilizer",
+      "audit": {
+        "sourcePrice": 0,
+        "sourceRegularPrice": 0,
+        "calculatedPrice": 0,
+        "calculatedOldPrice": 0,
+        "priceMultiplier": 1.1,
+        "status": "Out Of Stock",
+        "scrapedAt": "2026-10-31T09:38:36.806Z"
+      }
+    },
+    {
+      "id": "st-13496",
+      "title": "Tecnoware 9KVA Electronic Single Phase Stabilizer",
+      "slug": "tecnoware-9kva-electronic-single-phase-stabilizer",
+      "price": 0,
+      "oldPrice": 0,
+      "discountPercentage": 0,
+      "category": "voltage-stabilizer",
+      "categoryName": "VOLTAGE STABILIZER",
+      "brand": "Tecnoware",
+      "productCode": "13496",
+      "stock": 0,
+      "image": "https://i.ibb.co/0ppnsDkR/Tecnoware-9-KVA-Electronic-Sing.jpg",
+      "images": [
+        "https://i.ibb.co/0ppnsDkR/Tecnoware-9-KVA-Electronic-Sing.jpg",
+        "https://i.ibb.co/QFC65bbc/Tecnoware-9-KVA-Electronic-Sing.jpg",
+        "https://i.ibb.co/5hvmHCMF/Tecnoware-9-KVA-Electronic-Sing.jpg"
+      ],
+      "shortDescription": "Model: Tecnoware\nHigh stabilization speed\nHigh Efficiency\nManagement changes from 0 to 100% load\nNo brownouts stabilization",
+      "keyFeatures": [
+        "Model: Tecnoware",
+        "High stabilization speed",
+        "High Efficiency",
+        "Management changes from 0 to 100% load",
+        "No brownouts stabilization"
+      ],
+      "warranty": "02 Years Warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2><span style=\"font-weight: bold;\">Tecnoware 9KVA Electronic Single Phase Stabilizer</span></h2>\n<p>Electronic stabilizer owns a single-phased version, power of 9KVA, with high stabilization precision (3% output) along sinusoidal waveform, insensitivity to load and power factor. It does not introduce harmonic distortions, weighs 39kg and dimension is of 33 x 51.2 x 40cm.</p>\n<p>This Tecnoware 9KVA Stabilizer comes with 02 years of warranty.</p></div>",
+      "specs": {
+        "Main Feature": {
+          "Capacity": "9000VA",
+          "Display Type": "Number of phases: 1Ph+N",
+          "Output Voltage": "50/60 Hz"
+        },
+        "Input Features": {
+          "Frequency": "Nominal frequency: 50/60 Hz",
+          "Voltage Range": "Nominal voltage: 230Vac Input voltage range: 145Vac-280Vac"
+        },
+        "Output Features": {
+          "Voltage Range": "Nominal voltage: 230Vac Voltage regulation: ±3%",
+          "Power Factor": "0.8",
+          "Type of Wave": "Sinusoidal waveform"
+        },
+        "Manufacture Warranty": {
+          "Warranty": "02 Years Warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/tecnoware-9kva-electronic-single-phase-stabilizer",
+      "audit": {
+        "sourcePrice": 0,
+        "sourceRegularPrice": 0,
+        "calculatedPrice": 0,
+        "calculatedOldPrice": 0,
+        "priceMultiplier": 1.1,
+        "status": "Out Of Stock",
+        "scrapedAt": "2026-10-31T09:38:42.173Z"
+      }
+    },
+    {
+      "id": "st-13497",
+      "title": "Tecnoware 12KVA Electronic Single Phase Stabilizer",
+      "slug": "tecnoware-12kva-electronic-single-phase-stabilizer",
+      "price": 0,
+      "oldPrice": 0,
+      "discountPercentage": 0,
+      "category": "voltage-stabilizer",
+      "categoryName": "VOLTAGE STABILIZER",
+      "brand": "Tecnoware",
+      "productCode": "13497",
+      "stock": 0,
+      "image": "https://i.ibb.co/0ppnsDkR/Tecnoware-9-KVA-Electronic-Sing.jpg",
+      "images": [
+        "https://i.ibb.co/0ppnsDkR/Tecnoware-9-KVA-Electronic-Sing.jpg",
+        "https://i.ibb.co/QFC65bbc/Tecnoware-9-KVA-Electronic-Sing.jpg",
+        "https://i.ibb.co/5hvmHCMF/Tecnoware-9-KVA-Electronic-Sing.jpg"
+      ],
+      "shortDescription": "Model: Tecnoware\nHigh stabilization speed\nHigh Efficiency\nManagement changes from 0 to 100% load\nNo brownouts stabilization",
+      "keyFeatures": [
+        "Model: Tecnoware",
+        "High stabilization speed",
+        "High Efficiency",
+        "Management changes from 0 to 100% load",
+        "No brownouts stabilization"
+      ],
+      "warranty": "02 Years Warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2><span style=\"font-weight: bold;\">Tecnoware </span><span style=\"font-weight: 700;\">12KVA </span><span style=\"font-weight: bold;\">Electronic Single Phase Stabilizer</span></h2>\n<p>Electronic stabilizer owns a single-phased version, power of 12KVA&nbsp;, with high stabilization precision (3% output) along sinusoidal waveform, insensitivity to load and power factor. It does not introduce harmonic distortions, weighs 50kg and dimension is of 33 x 51.2 x 40cm.</p>\n<p>This Tecnoware 12KVA&nbsp;Stabilizer comes with 02 years of warranty.</p></div>",
+      "specs": {
+        "Main Feature": {
+          "Capacity": "12000VA",
+          "Display Type": "Number of phases: 1Ph+N",
+          "Output Voltage": "50/60 Hz"
+        },
+        "Input Features": {
+          "Frequency": "Nominal frequency: 50/60 Hz",
+          "Voltage Range": "Nominal voltage: 230Vac Input voltage range: 145Vac-280Vac"
+        },
+        "Output Features": {
+          "Voltage Range": "Nominal voltage: 230Vac Voltage regulation: ±3%",
+          "Power Factor": "0.8",
+          "Type of Wave": "Sinusoidal waveform"
+        },
+        "Manufacture Warranty": {
+          "Warranty": "02 Years Warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/tecnoware-12kva-electronic-single-phase-stabilizer",
+      "audit": {
+        "sourcePrice": 0,
+        "sourceRegularPrice": 0,
+        "calculatedPrice": 0,
+        "calculatedOldPrice": 0,
+        "priceMultiplier": 1.1,
+        "status": "Out Of Stock",
+        "scrapedAt": "2026-10-31T09:38:43.666Z"
+      }
+    },
+    {
+      "id": "st-13503",
+      "title": "Tecnoware 25KVA Electronic Three Phase Stabilizer (Origin Italy)",
+      "slug": "tecnoware-25kva-electronic-three-phase-stabilizer",
+      "price": 0,
+      "oldPrice": 0,
+      "discountPercentage": 0,
+      "category": "voltage-stabilizer",
+      "categoryName": "VOLTAGE STABILIZER",
+      "brand": "Tecnoware",
+      "productCode": "13503",
+      "stock": 0,
+      "image": "https://i.ibb.co/DPt7VtGc/Tecnoware-FSTEL75-KT-75-KVA-Elec.jpg",
+      "images": [
+        "https://i.ibb.co/DPt7VtGc/Tecnoware-FSTEL75-KT-75-KVA-Elec.jpg",
+        "https://i.ibb.co/PztpSLXH/Tecnoware-FSTEL75-KT-75-KVA-Elec.jpg",
+        "https://i.ibb.co/8Ddc7F2y/Tecnoware-FSTEL75-KT-75-KVA-Elec.jpg"
+      ],
+      "shortDescription": "Model: Tecnoware\nCapacity: 25KVA\nHigh Efficiency\nOutput stabilization 3%\nNo brownouts stabilization",
+      "keyFeatures": [
+        "Model: Tecnoware",
+        "Capacity: 25KVA",
+        "High Efficiency",
+        "Output stabilization 3%",
+        "No brownouts stabilization"
+      ],
+      "warranty": "02 Years Warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2><span style=\"font-weight: bold;\">Tecnoware </span><span style=\"font-weight: 700;\">25KVA </span><span style=\"font-weight: bold;\">Electronic Three Phase Stabilizer (Origin Italy)</span></h2><p>The Electronic stabilizer is of three-phase version with power 25KVA, along high stabilization precision (3% output) and sinusoidal waveform, insensitivity to load and power factor. It does not introduce harmonic distortions, weight 85 kg dimensions 33 x 64.1 x 58 cm.</p><p>This Tecnoware 25KVA&nbsp;Stabilizer comes with 02 years of warranty.</p></div>",
+      "specs": {
+        "Main Feature": {
+          "Capacity": "25KVA",
+          "Display Type": "Number of phases: 3Ph+N",
+          "Output Voltage": "50/60 Hz"
+        },
+        "Input Features": {
+          "Frequency": "Nominal frequency: 50/60 Hz",
+          "Voltage Range": "Nominal voltage: 400Vac Input voltage range: 251Vac-480Vac"
+        },
+        "Output Features": {
+          "Voltage Range": "Nominal voltage: 400Vac Voltage regulation: ±3%",
+          "Power Factor": "0.8",
+          "Type of Wave": "Sinusoidal waveform"
+        },
+        "Manufacture Warranty": {
+          "Warranty": "02 Years Warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/tecnoware-25kva-electronic-three-phase-stabilizer",
+      "audit": {
+        "sourcePrice": 0,
+        "sourceRegularPrice": 0,
+        "calculatedPrice": 0,
+        "calculatedOldPrice": 0,
+        "priceMultiplier": 1.1,
+        "status": "Out Of Stock",
+        "scrapedAt": "2026-10-31T09:38:45.169Z"
+      }
+    },
+    {
+      "id": "st-13505",
+      "title": "Tecnoware 35KVA Electronic Three Phase Stabilizer (Origin Italy)",
+      "slug": "tecnoware-35kva-electronic-three-phase-stabilizer",
+      "price": 0,
+      "oldPrice": 0,
+      "discountPercentage": 0,
+      "category": "voltage-stabilizer",
+      "categoryName": "VOLTAGE STABILIZER",
+      "brand": "Tecnoware",
+      "productCode": "13505",
+      "stock": 0,
+      "image": "https://i.ibb.co/DPt7VtGc/Tecnoware-FSTEL75-KT-75-KVA-Elec.jpg",
+      "images": [
+        "https://i.ibb.co/DPt7VtGc/Tecnoware-FSTEL75-KT-75-KVA-Elec.jpg",
+        "https://i.ibb.co/PztpSLXH/Tecnoware-FSTEL75-KT-75-KVA-Elec.jpg",
+        "https://i.ibb.co/8Ddc7F2y/Tecnoware-FSTEL75-KT-75-KVA-Elec.jpg"
+      ],
+      "shortDescription": "Model: Tecnoware\nCapacity: 35KVA\nHigh Efficiency\nOutput stabilization 3%\nNo brownouts stabilization",
+      "keyFeatures": [
+        "Model: Tecnoware",
+        "Capacity: 35KVA",
+        "High Efficiency",
+        "Output stabilization 3%",
+        "No brownouts stabilization"
+      ],
+      "warranty": "02 Years Warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2 style=\"text-align: justify; \"><span style=\"font-weight: bold;\">Tecnoware&nbsp;</span><span style=\"font-weight: 700;\">35KVA </span><span style=\"font-weight: bold;\">Electronic Three Phase Stabilizer (Origin Italy)</span></h2>\n<p style=\"text-align: justify; \">The Electronic stabilizer is of a three-phase version with power 35KVA, along with high stabilization precision (3% output) and sinusoidal waveform, insensitivity to load and power factor. It does not introduce harmonic distortions, weight 96kg dimensions 33 x 64.1 x 58 cm.</p>\n<p style=\"text-align: justify; \">This Tecnoware 35KVA&nbsp;Stabilizer comes with 02 years of warranty.</p></div>",
+      "specs": {
+        "Main Feature": {
+          "Capacity": "35KVA",
+          "Display Type": "Number of phases: 3Ph+N",
+          "Output Voltage": "50/60 Hz"
+        },
+        "Input Features": {
+          "Frequency": "Nominal frequency: 50/60 Hz",
+          "Voltage Range": "Nominal voltage: 400Vac Input voltage range: 280Vac-480Vac"
+        },
+        "Output Features": {
+          "Voltage Range": "Nominal voltage: 400Vac Voltage regulation: ±3%",
+          "Power Factor": "0.8",
+          "Type of Wave": "Sinusoidal waveform"
+        },
+        "Manufacture Warranty": {
+          "Warranty": "02 Years Warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/tecnoware-35kva-electronic-three-phase-stabilizer",
+      "audit": {
+        "sourcePrice": 0,
+        "sourceRegularPrice": 0,
+        "calculatedPrice": 0,
+        "calculatedOldPrice": 0,
+        "priceMultiplier": 1.1,
+        "status": "Out Of Stock",
+        "scrapedAt": "2026-10-31T09:38:46.803Z"
+      }
+    }
+  ]
+}

@@ -1,0 +1,901 @@
+{
+  "capturedAt": "2026-10-31T08:39:17.701Z",
+  "databaseName": "maxitshop",
+  "productsCount": 117,
+  "categoriesCount": 11,
+  "productIds": [
+    "np-9",
+    "np-35",
+    "np-39",
+    "np-71",
+    "np-77",
+    "np-90",
+    "np-18",
+    "np-45",
+    "np-46",
+    "np-55",
+    "np-64",
+    "np-65",
+    "np-78",
+    "np-87",
+    "np-21",
+    "np-26",
+    "np-34",
+    "np-58",
+    "np-5",
+    "np-36",
+    "np-67",
+    "np-7",
+    "np-19",
+    "np-28",
+    "np-41",
+    "np-44",
+    "np-57",
+    "np-8",
+    "np-20",
+    "np-33",
+    "np-59",
+    "np-69",
+    "np-88",
+    "np-93",
+    "np-12",
+    "np-27",
+    "np-75",
+    "np-85",
+    "np-89",
+    "np-92",
+    "np-14",
+    "np-24",
+    "np-40",
+    "np-62",
+    "np-80",
+    "np-15",
+    "np-22",
+    "np-23",
+    "np-49",
+    "np-79",
+    "np-86",
+    "np-91",
+    "np-1",
+    "np-4",
+    "np-16",
+    "np-47",
+    "np-48",
+    "np-52",
+    "np-3",
+    "np-31",
+    "np-38",
+    "np-50",
+    "np-56",
+    "np-94",
+    "np-6",
+    "np-63",
+    "np-74",
+    "np-82",
+    "np-17",
+    "np-37",
+    "np-42",
+    "np-51",
+    "np-61",
+    "np-72",
+    "np-76",
+    "np-83",
+    "np-2",
+    "np-43",
+    "np-81",
+    "np-10",
+    "np-29",
+    "np-30",
+    "np-32",
+    "np-53",
+    "np-60",
+    "np-68",
+    "np-73",
+    "np-11",
+    "np-13",
+    "np-25",
+    "np-54",
+    "np-66",
+    "np-70",
+    "np-84",
+    "np-96",
+    "np-100",
+    "np-116",
+    "np-114",
+    "np-115",
+    "np-97",
+    "np-110",
+    "np-108",
+    "np-99",
+    "np-102",
+    "np-101",
+    "np-117",
+    "np-95",
+    "np-103",
+    "np-105",
+    "np-112",
+    "np-113",
+    "np-106",
+    "np-98",
+    "np-109",
+    "np-104",
+    "np-111",
+    "np-107"
+  ],
+  "productSlugs": [
+    "12v-100ah-lifepo4-lithium-battery-with-6000-deep-cycles-smart-100a-bms-287",
+    "distribution-transformer-11kv-33kv---440v---220v-259",
+    "esp32-nodemcu-358",
+    "irfb4110-276",
+    "cd4049-333",
+    "atmega328p-255",
+    "aneng-a3005d-digital-multimeter-pen-type-6000-counts-professional-meter-336",
+    "float-switch-water-level-sensor-342",
+    "pir-motion-sensor-detector-module-hc-sr501-341",
+    "neo-6m-gps-module-281",
+    "mbr20100c-20a-100v-schottky-diode-324",
+    "bc327--28100pcs-pack-29-311",
+    "ir2110-330",
+    "pic16f73-309",
+    "welding-rod-12-no--28100pcs-box-pack-29-305",
+    "lightening-arrester-268",
+    "dropout-fuse---arrester-260",
+    "ds1302-rtc-module-278",
+    "15ah-3-2v-life-po4-battery-356",
+    "step-up---step-down-transformer-258",
+    "ms5n100ft-mosfet-1000v5a-302",
+    "12v-10a-digital-display-intelligent-battery-charger-100v-240v-317",
+    "royal-bolt---10---12-no-308",
+    "single-phase-stabilizer---1000va---220v-266",
+    "ir-infrared-obstacle-avoidance-sensor-346",
+    "microwave-radar-sensor-module--28rcwl-0516-29-343",
+    "buck-converter-lm2596-279",
+    "handheld-spot-welding-machine-portable-289",
+    "welding-protecting-glass-306",
+    "heat-shrink-11kv-cable-termination-out-door-261",
+    "mbr4060pt-schottky-diode-355",
+    "irfb4110-300",
+    "viper-12a-270",
+    "all-brand-solar-pv-335",
+    "ips-ups-circuit-board--28modified-sine-wave-29-274",
+    "11kv-isolator-267",
+    "zme1915007bf-ct-coil-349",
+    "10k-resistor--1-4w---100pcs--315",
+    "cd4094-269",
+    "solar-hybrid-inverter-complete-pcb-352",
+    "heat-aerosol-fire-extinguishing-device-din-rail-mounted--for-electricity-meter-box-mcb-box-and-solar-distribution-box-304",
+    "pfi-plant-303",
+    "arduino-uno-r3-with-cable-347",
+    "mbq60t65pes---igbt-327",
+    "lm358-op-amp-328",
+    "abc-dry-powder-fire-extinguisher-284",
+    "metal-cutting-disc--10pcs-pack-286",
+    "hook-knife-for-plastic---acrylic-cutter-285",
+    "ldr---5pcs--320",
+    "sg3525-pwm-329",
+    "1k-resistor---1-4w---100pcs--314",
+    "dspic30f2010-254",
+    "lifepo4-3-2v-173ah-grade-a-battery-6000-cycle-life-cells-for-diy-12v-24v-36v-48v-solar-rv-ev-363",
+    "1-5v-aaa-rechargeable-battery-282pcs-pack-29-357",
+    "led-warning-light-282",
+    "acs712-current-sensor---20a-340",
+    "arduino-pro-mini-328-5v-16mhz-338",
+    "smart-motion-sensor-light-holder-for-indoor-and-outddor-293",
+    "jk-smart-bluetooth-bms-8s---20s-100a-361",
+    "acb-263",
+    "esp8266-ch340-nodemcu-wifi-module-lua-v3-359",
+    "hc-sr04-319",
+    "touch-sensor-280",
+    "dc-spd-for-solar-protection--28dc1000v-29-332",
+    "eve-230ah-3-2v-lifepo4-battery-cells-318",
+    "1n4007--28100pcs-pack-29-325",
+    "ir2110-smd-converter-350",
+    "4n35-optocoupler-322",
+    "aneng-m113-automatic-professional-digital-multimeter-1999-counts-auto-ac-dc-voltage-tester-ohm-current-ammeter-detector-tool-337",
+    "stm32-360",
+    "rain-drop-detction-sensor-345",
+    "10k-temp-sensor-312",
+    "fqpf-5n100-351",
+    "irf3205-256",
+    "pic16f690-334",
+    "pc817-321",
+    "4a-active-balancing-current-4s-8s-16s-24s-active-equalizer-bms-for-lithium-ion-battery-362",
+    "esp32-camera-wifi---bluetooth-camera-module-344",
+    "moc3021-323",
+    "solar-vfd-1kw--10kw-348",
+    "3phase-avr-stabilizer-265",
+    "electrical-distribution-panel-264",
+    "dropout-fuse-wire-cutout-262",
+    "i2c-16x2-lcd-module-292",
+    "12v-13v---1w-zener-diode-28100pcs-pack-29-354",
+    "irf2807-301",
+    "illuminated-push-button-switch-353",
+    "servo-avr-stabilizer-control-card-288",
+    "ezviz-home-ip-camera---2mp-307",
+    "dc-voltage-regulator-3v-to-24v---5a-271",
+    "16x2-lcd-display-291",
+    "bc337--28100pcs-pack-29-310",
+    "irf2807-277",
+    "10k-vr---screw-type--10pcs--316",
+    "mc4-conncector-313",
+    "solar-offgrid---hybrid-inverter-252",
+    "timing-switch-accurate-to-seconds-220v-timer-294",
+    "ht-distribution-transformer-service---maintence-257",
+    "vfd-motor-drive-299",
+    "micno-solar-pump---wind-power-vfd-298",
+    "ips-inverter-service-296",
+    "vfd---motor-drive-repair-331",
+    "solar-on-grid---grid-tie-inverter-253",
+    "solar-hybrid-inverter-250",
+    "solar-refrigerator-251",
+    "siemens-logo-8-plc-275",
+    "solar-on-grid-power-plant-326",
+    "solar-street-light-249",
+    "solar-outboat-247",
+    "pc---laptop-service---maintenance-273",
+    "dc-ac-inverter-service---maintenance-272",
+    "solar-water-pump---vfd-246",
+    "ut673pv-photovoltaic-module-power-tester-solar-panel-mppt-290",
+    "steel---metal-fabrication-297",
+    "flexible-solar-panel-248",
+    "servo-stabilizer-avr-service---maintenance-283phase---single-phase-29-295",
+    "solar-pv-module-245"
+  ],
+  "categorySlugs": [
+    "tools---hardware",
+    "battery-bms-charger",
+    "modules-&-sensor",
+    "electronics-parts",
+    "igbt-fet-diode-transistor",
+    "lt-ht-power-goods",
+    "solar-energy",
+    "service-&-maintenance",
+    "automation-process-cont.",
+    "safety---security",
+    "customized-circuit---pcb"
+  ],
+  "products": [
+    {
+      "id": "np-9",
+      "title": "12V 100Ah LiFePO4 Lithium Battery with 6000+Deep Cycles,Smart 100A BMS",
+      "slug": "12v-100ah-lifepo4-lithium-battery-with-6000-deep-cycles-smart-100a-bms-287"
+    },
+    {
+      "id": "np-35",
+      "title": "Distribution Transformer 11KV/33KV - 440V - 220V",
+      "slug": "distribution-transformer-11kv-33kv---440v---220v-259"
+    },
+    {
+      "id": "np-39",
+      "title": "ESP32 NodeMCU",
+      "slug": "esp32-nodemcu-358"
+    },
+    {
+      "id": "np-71",
+      "title": "IRFB4110",
+      "slug": "irfb4110-276"
+    },
+    {
+      "id": "np-77",
+      "title": "CD4049",
+      "slug": "cd4049-333"
+    },
+    {
+      "id": "np-90",
+      "title": "Atmega328p",
+      "slug": "atmega328p-255"
+    },
+    {
+      "id": "np-18",
+      "title": "ANENG A3005D Digital Multimeter Pen Type 6000 Counts Professional Meter",
+      "slug": "aneng-a3005d-digital-multimeter-pen-type-6000-counts-professional-meter-336"
+    },
+    {
+      "id": "np-45",
+      "title": "FLOAT SWITCH Water Level Sensor",
+      "slug": "float-switch-water-level-sensor-342"
+    },
+    {
+      "id": "np-46",
+      "title": "PIR Motion Sensor Detector Module HC-SR501",
+      "slug": "pir-motion-sensor-detector-module-hc-sr501-341"
+    },
+    {
+      "id": "np-55",
+      "title": "NEO 6M GPS Module",
+      "slug": "neo-6m-gps-module-281"
+    },
+    {
+      "id": "np-64",
+      "title": "MBR20100C 20A 100V Schottky Diode",
+      "slug": "mbr20100c-20a-100v-schottky-diode-324"
+    },
+    {
+      "id": "np-65",
+      "title": "BC327 (100pcs pack)",
+      "slug": "bc327--28100pcs-pack-29-311"
+    },
+    {
+      "id": "np-78",
+      "title": "IR2110",
+      "slug": "ir2110-330"
+    },
+    {
+      "id": "np-87",
+      "title": "PIC16F73",
+      "slug": "pic16f73-309"
+    },
+    {
+      "id": "np-21",
+      "title": "Welding rod 12 no (100pcs Box/Pack)",
+      "slug": "welding-rod-12-no--28100pcs-box-pack-29-305"
+    },
+    {
+      "id": "np-26",
+      "title": "Lightening arrester",
+      "slug": "lightening-arrester-268"
+    },
+    {
+      "id": "np-34",
+      "title": "Dropout Fuse & Arrester",
+      "slug": "dropout-fuse---arrester-260"
+    },
+    {
+      "id": "np-58",
+      "title": "DS1302 RTC Module",
+      "slug": "ds1302-rtc-module-278"
+    },
+    {
+      "id": "np-5",
+      "title": "15Ah-3.2V Life Po4 Battery",
+      "slug": "15ah-3-2v-life-po4-battery-356"
+    },
+    {
+      "id": "np-36",
+      "title": "Step up & Step down Transformer",
+      "slug": "step-up---step-down-transformer-258"
+    },
+    {
+      "id": "np-67",
+      "title": "MS5N100FT MOSFET 1000V5A",
+      "slug": "ms5n100ft-mosfet-1000v5a-302"
+    },
+    {
+      "id": "np-7",
+      "title": "12V 10A Digital Display Intelligent Battery Charger 100V-240V",
+      "slug": "12v-10a-digital-display-intelligent-battery-charger-100v-240v-317"
+    },
+    {
+      "id": "np-19",
+      "title": "Royal Bolt - 10 & 12 no",
+      "slug": "royal-bolt---10---12-no-308"
+    },
+    {
+      "id": "np-28",
+      "title": "Single Phase Stabilizer - 1000VA - 220V",
+      "slug": "single-phase-stabilizer---1000va---220v-266"
+    },
+    {
+      "id": "np-41",
+      "title": "IR Infrared Obstacle Avoidance Sensor",
+      "slug": "ir-infrared-obstacle-avoidance-sensor-346"
+    },
+    {
+      "id": "np-44",
+      "title": "Microwave-Radar-Sensor-Module-(RCWL-0516)",
+      "slug": "microwave-radar-sensor-module--28rcwl-0516-29-343"
+    },
+    {
+      "id": "np-57",
+      "title": "Buck Converter LM2596",
+      "slug": "buck-converter-lm2596-279"
+    },
+    {
+      "id": "np-8",
+      "title": "Handheld Spot Welding Machine Portable",
+      "slug": "handheld-spot-welding-machine-portable-289"
+    },
+    {
+      "id": "np-20",
+      "title": "welding Protecting Glass",
+      "slug": "welding-protecting-glass-306"
+    },
+    {
+      "id": "np-33",
+      "title": "heat-shrink-11kv-cable-termination-out-door",
+      "slug": "heat-shrink-11kv-cable-termination-out-door-261"
+    },
+    {
+      "id": "np-59",
+      "title": "MBR4060PT Schottky Diode",
+      "slug": "mbr4060pt-schottky-diode-355"
+    },
+    {
+      "id": "np-69",
+      "title": "IRFB4110",
+      "slug": "irfb4110-300"
+    },
+    {
+      "id": "np-88",
+      "title": "Viper 12A",
+      "slug": "viper-12a-270"
+    },
+    {
+      "id": "np-93",
+      "title": "ALL Brand Solar PV",
+      "slug": "all-brand-solar-pv-335"
+    },
+    {
+      "id": "np-12",
+      "title": "IPS-UPS Circuit Board (Modified sine wave)",
+      "slug": "ips-ups-circuit-board--28modified-sine-wave-29-274"
+    },
+    {
+      "id": "np-27",
+      "title": "11KV Isolator",
+      "slug": "11kv-isolator-267"
+    },
+    {
+      "id": "np-75",
+      "title": "ZME1915007BF CT Coil",
+      "slug": "zme1915007bf-ct-coil-349"
+    },
+    {
+      "id": "np-85",
+      "title": "10K Resistor -1/4W - 100pcs.",
+      "slug": "10k-resistor--1-4w---100pcs--315"
+    },
+    {
+      "id": "np-89",
+      "title": "CD4094",
+      "slug": "cd4094-269"
+    },
+    {
+      "id": "np-92",
+      "title": "Solar Hybrid Inverter Complete PCB",
+      "slug": "solar-hybrid-inverter-complete-pcb-352"
+    },
+    {
+      "id": "np-14",
+      "title": "Heat Aerosol Fire Extinguishing Device,Din-Rail-Mounted, for Electricity Meter Box,MCB Box and Solar Distribution Box",
+      "slug": "heat-aerosol-fire-extinguishing-device-din-rail-mounted--for-electricity-meter-box-mcb-box-and-solar-distribution-box-304"
+    },
+    {
+      "id": "np-24",
+      "title": "PFI Plant",
+      "slug": "pfi-plant-303"
+    },
+    {
+      "id": "np-40",
+      "title": "Arduino Uno R3 with cable",
+      "slug": "arduino-uno-r3-with-cable-347"
+    },
+    {
+      "id": "np-62",
+      "title": "MBQ60T65PES - IGBT",
+      "slug": "mbq60t65pes---igbt-327"
+    },
+    {
+      "id": "np-80",
+      "title": "LM358 OP-AMP",
+      "slug": "lm358-op-amp-328"
+    },
+    {
+      "id": "np-15",
+      "title": "ABC Dry Powder Fire extinguisher",
+      "slug": "abc-dry-powder-fire-extinguisher-284"
+    },
+    {
+      "id": "np-22",
+      "title": "Metal Cutting Disc -10pcs pack",
+      "slug": "metal-cutting-disc--10pcs-pack-286"
+    },
+    {
+      "id": "np-23",
+      "title": "Hook Knife For Plastic & Acrylic Cutter",
+      "slug": "hook-knife-for-plastic---acrylic-cutter-285"
+    },
+    {
+      "id": "np-49",
+      "title": "LDR - 5pcs.",
+      "slug": "ldr---5pcs--320"
+    },
+    {
+      "id": "np-79",
+      "title": "SG3525 PWM",
+      "slug": "sg3525-pwm-329"
+    },
+    {
+      "id": "np-86",
+      "title": "1K Resistor - 1/4W - 100pcs.",
+      "slug": "1k-resistor---1-4w---100pcs--314"
+    },
+    {
+      "id": "np-91",
+      "title": "DSPIC30F2010",
+      "slug": "dspic30f2010-254"
+    },
+    {
+      "id": "np-1",
+      "title": "Lifepo4 3.2V 173Ah Grade A Battery 6000+Cycle life Cells For DIY 12V 24V 36V 48V Solar RV EV",
+      "slug": "lifepo4-3-2v-173ah-grade-a-battery-6000-cycle-life-cells-for-diy-12v-24v-36v-48v-solar-rv-ev-363"
+    },
+    {
+      "id": "np-4",
+      "title": "1.5V AAA rechargeable battery(2pcs pack)",
+      "slug": "1-5v-aaa-rechargeable-battery-282pcs-pack-29-357"
+    },
+    {
+      "id": "np-16",
+      "title": "LED warning light",
+      "slug": "led-warning-light-282"
+    },
+    {
+      "id": "np-47",
+      "title": "ACS712 current sensor - 20A",
+      "slug": "acs712-current-sensor---20a-340"
+    },
+    {
+      "id": "np-48",
+      "title": "Arduino Pro Mini 328 5V 16MHz",
+      "slug": "arduino-pro-mini-328-5v-16mhz-338"
+    },
+    {
+      "id": "np-52",
+      "title": "Smart-Motion-Sensor-Light-Holder-for-Indoor-and-Outddor",
+      "slug": "smart-motion-sensor-light-holder-for-indoor-and-outddor-293"
+    },
+    {
+      "id": "np-3",
+      "title": "JK Smart Bluetooth BMS 8S  - 20S 100A",
+      "slug": "jk-smart-bluetooth-bms-8s---20s-100a-361"
+    },
+    {
+      "id": "np-31",
+      "title": "ACB",
+      "slug": "acb-263"
+    },
+    {
+      "id": "np-38",
+      "title": "ESP8266 CH340 NodeMCU Wifi Module Lua V3",
+      "slug": "esp8266-ch340-nodemcu-wifi-module-lua-v3-359"
+    },
+    {
+      "id": "np-50",
+      "title": "HC-SR04",
+      "slug": "hc-sr04-319"
+    },
+    {
+      "id": "np-56",
+      "title": "Touch Sensor",
+      "slug": "touch-sensor-280"
+    },
+    {
+      "id": "np-94",
+      "title": "DC SPD for Solar Protection (DC1000V)",
+      "slug": "dc-spd-for-solar-protection--28dc1000v-29-332"
+    },
+    {
+      "id": "np-6",
+      "title": "EVE 230AH 3.2V LiFePO4 Battery Cells",
+      "slug": "eve-230ah-3-2v-lifepo4-battery-cells-318"
+    },
+    {
+      "id": "np-63",
+      "title": "1N4007 (100pcs pack)",
+      "slug": "1n4007--28100pcs-pack-29-325"
+    },
+    {
+      "id": "np-74",
+      "title": "IR2110 SMD Converter",
+      "slug": "ir2110-smd-converter-350"
+    },
+    {
+      "id": "np-82",
+      "title": "4N35 Optocoupler",
+      "slug": "4n35-optocoupler-322"
+    },
+    {
+      "id": "np-17",
+      "title": "ANENG M113 Automatic Professional Digital Multimeter 1999 Counts Auto AC/DC Voltage Tester Ohm Current Ammeter Detector Tool",
+      "slug": "aneng-m113-automatic-professional-digital-multimeter-1999-counts-auto-ac-dc-voltage-tester-ohm-current-ammeter-detector-tool-337"
+    },
+    {
+      "id": "np-37",
+      "title": "STM32",
+      "slug": "stm32-360"
+    },
+    {
+      "id": "np-42",
+      "title": "Rain drop detction sensor",
+      "slug": "rain-drop-detction-sensor-345"
+    },
+    {
+      "id": "np-51",
+      "title": "10K Temp Sensor",
+      "slug": "10k-temp-sensor-312"
+    },
+    {
+      "id": "np-61",
+      "title": "FQPF 5N100",
+      "slug": "fqpf-5n100-351"
+    },
+    {
+      "id": "np-72",
+      "title": "IRF3205",
+      "slug": "irf3205-256"
+    },
+    {
+      "id": "np-76",
+      "title": "PIC16F690",
+      "slug": "pic16f690-334"
+    },
+    {
+      "id": "np-83",
+      "title": "PC817",
+      "slug": "pc817-321"
+    },
+    {
+      "id": "np-2",
+      "title": "4A Active Balancing Current 4s 8s 16s 24s Active Equalizer BMS for Lithium Ion Battery",
+      "slug": "4a-active-balancing-current-4s-8s-16s-24s-active-equalizer-bms-for-lithium-ion-battery-362"
+    },
+    {
+      "id": "np-43",
+      "title": "ESP32-CAMERA WiFi + Bluetooth Camera Module",
+      "slug": "esp32-camera-wifi---bluetooth-camera-module-344"
+    },
+    {
+      "id": "np-81",
+      "title": "MOC3021",
+      "slug": "moc3021-323"
+    },
+    {
+      "id": "np-10",
+      "title": "Solar VFD 1KW -10KW",
+      "slug": "solar-vfd-1kw--10kw-348"
+    },
+    {
+      "id": "np-29",
+      "title": "3Phase AVR/Stabilizer",
+      "slug": "3phase-avr-stabilizer-265"
+    },
+    {
+      "id": "np-30",
+      "title": "Electrical Distribution Panel",
+      "slug": "electrical-distribution-panel-264"
+    },
+    {
+      "id": "np-32",
+      "title": "Dropout fuse wire-cutout",
+      "slug": "dropout-fuse-wire-cutout-262"
+    },
+    {
+      "id": "np-53",
+      "title": "I2C 16X2 LCD Module",
+      "slug": "i2c-16x2-lcd-module-292"
+    },
+    {
+      "id": "np-60",
+      "title": "12V/13V - 1w zener diode(100pcs pack)",
+      "slug": "12v-13v---1w-zener-diode-28100pcs-pack-29-354"
+    },
+    {
+      "id": "np-68",
+      "title": "IRF2807",
+      "slug": "irf2807-301"
+    },
+    {
+      "id": "np-73",
+      "title": "Illuminated Push Button Switch",
+      "slug": "illuminated-push-button-switch-353"
+    },
+    {
+      "id": "np-11",
+      "title": "Servo AVR-stabilizer Control card",
+      "slug": "servo-avr-stabilizer-control-card-288"
+    },
+    {
+      "id": "np-13",
+      "title": "Ezviz Home IP Camera - 2MP",
+      "slug": "ezviz-home-ip-camera---2mp-307"
+    },
+    {
+      "id": "np-25",
+      "title": "DC Voltage Regulator 3V to 24V - 5A",
+      "slug": "dc-voltage-regulator-3v-to-24v---5a-271"
+    },
+    {
+      "id": "np-54",
+      "title": "16X2 LCD display",
+      "slug": "16x2-lcd-display-291"
+    },
+    {
+      "id": "np-66",
+      "title": "BC337 (100pcs pack)",
+      "slug": "bc337--28100pcs-pack-29-310"
+    },
+    {
+      "id": "np-70",
+      "title": "IRF2807",
+      "slug": "irf2807-277"
+    },
+    {
+      "id": "np-84",
+      "title": "10K VR - Screw Type -10pcs.",
+      "slug": "10k-vr---screw-type--10pcs--316"
+    },
+    {
+      "id": "np-96",
+      "title": "MC4 Conncector",
+      "slug": "mc4-conncector-313"
+    },
+    {
+      "id": "np-100",
+      "title": "Solar Offgrid & Hybrid Inverter",
+      "slug": "solar-offgrid---hybrid-inverter-252"
+    },
+    {
+      "id": "np-116",
+      "title": "Timing Switch Accurate to Seconds 220V Timer",
+      "slug": "timing-switch-accurate-to-seconds-220v-timer-294"
+    },
+    {
+      "id": "np-114",
+      "title": "HT Distribution Transformer Service & Maintence",
+      "slug": "ht-distribution-transformer-service---maintence-257"
+    },
+    {
+      "id": "np-115",
+      "title": "VFD Motor drive",
+      "slug": "vfd-motor-drive-299"
+    },
+    {
+      "id": "np-97",
+      "title": "Micno Solar Pump & wind power VFD",
+      "slug": "micno-solar-pump---wind-power-vfd-298"
+    },
+    {
+      "id": "np-110",
+      "title": "IPS-Inverter Service",
+      "slug": "ips-inverter-service-296"
+    },
+    {
+      "id": "np-108",
+      "title": "VFD - Motor drive repair",
+      "slug": "vfd---motor-drive-repair-331"
+    },
+    {
+      "id": "np-99",
+      "title": "Solar ON Grid - Grid tie inverter",
+      "slug": "solar-on-grid---grid-tie-inverter-253"
+    },
+    {
+      "id": "np-102",
+      "title": "Solar Hybrid Inverter",
+      "slug": "solar-hybrid-inverter-250"
+    },
+    {
+      "id": "np-101",
+      "title": "Solar Refrigerator",
+      "slug": "solar-refrigerator-251"
+    },
+    {
+      "id": "np-117",
+      "title": "Siemens Logo 8 PLC",
+      "slug": "siemens-logo-8-plc-275"
+    },
+    {
+      "id": "np-95",
+      "title": "Solar ON Grid Power Plant",
+      "slug": "solar-on-grid-power-plant-326"
+    },
+    {
+      "id": "np-103",
+      "title": "Solar Street Light",
+      "slug": "solar-street-light-249"
+    },
+    {
+      "id": "np-105",
+      "title": "Solar Outboat",
+      "slug": "solar-outboat-247"
+    },
+    {
+      "id": "np-112",
+      "title": "PC & Laptop Service & Maintenance",
+      "slug": "pc---laptop-service---maintenance-273"
+    },
+    {
+      "id": "np-113",
+      "title": "DC AC Inverter Service & Maintenance",
+      "slug": "dc-ac-inverter-service---maintenance-272"
+    },
+    {
+      "id": "np-106",
+      "title": "Solar Water pump & VFD",
+      "slug": "solar-water-pump---vfd-246"
+    },
+    {
+      "id": "np-98",
+      "title": "Ut673Pv Photovoltaic Module Power Tester Solar Panel Mppt",
+      "slug": "ut673pv-photovoltaic-module-power-tester-solar-panel-mppt-290"
+    },
+    {
+      "id": "np-109",
+      "title": "Steel & Metal Fabrication",
+      "slug": "steel---metal-fabrication-297"
+    },
+    {
+      "id": "np-104",
+      "title": "Flexible Solar panel",
+      "slug": "flexible-solar-panel-248"
+    },
+    {
+      "id": "np-111",
+      "title": "Servo Stabilizer/AVR Service & Maintenance(3Phase & Single Phase)",
+      "slug": "servo-stabilizer-avr-service---maintenance-283phase---single-phase-29-295"
+    },
+    {
+      "id": "np-107",
+      "title": "Solar PV Module",
+      "slug": "solar-pv-module-245"
+    }
+  ],
+  "categories": [
+    {
+      "id": "cat-tools-hardware",
+      "name": "TOOLS - HARDWARE",
+      "slug": "tools---hardware"
+    },
+    {
+      "id": "cat-battery-bms-charger",
+      "name": "BATTERY-BMS-CHARGER",
+      "slug": "battery-bms-charger"
+    },
+    {
+      "id": "cat-modules-sensor",
+      "name": "MODULES & SENSOR",
+      "slug": "modules-&-sensor"
+    },
+    {
+      "id": "cat-electronics-parts",
+      "name": "ELECTRONICS PARTS",
+      "slug": "electronics-parts"
+    },
+    {
+      "id": "cat-igbt-fet-diode-transistor",
+      "name": "IGBT-FET-DIODE-TRANSISTOR",
+      "slug": "igbt-fet-diode-transistor"
+    },
+    {
+      "id": "cat-lt-ht-power-goods",
+      "name": "LT-HT POWER GOODS",
+      "slug": "lt-ht-power-goods"
+    },
+    {
+      "id": "cat-solar-energy",
+      "name": "SOLAR ENERGY",
+      "slug": "solar-energy"
+    },
+    {
+      "id": "cat-service-maintenance",
+      "name": "SERVICE & MAINTENANCE",
+      "slug": "service-&-maintenance"
+    },
+    {
+      "id": "cat-automation-process-cont",
+      "name": "AUTOMATION-PROCESS CONT.",
+      "slug": "automation-process-cont."
+    },
+    {
+      "id": "cat-safety-security",
+      "name": "SAFETY - SECURITY",
+      "slug": "safety---security"
+    },
+    {
+      "id": "cat-customized-circuit-pcb",
+      "name": "CUSTOMIZED CIRCUIT - PCB",
+      "slug": "customized-circuit---pcb"
+    }
+  ]
+}

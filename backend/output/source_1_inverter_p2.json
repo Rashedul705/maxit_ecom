@@ -1,0 +1,1490 @@
+{
+  "source": "https://www.startech.com.bd/inverter?page=2",
+  "sourceName": "source_1_inverter_p2",
+  "scrapedAt": "2026-10-31T08:55:46.979Z",
+  "totalCrawledPages": 1,
+  "totalProductsFound": 20,
+  "categoriesToCreate": [
+    {
+      "id": "cat-solar-inverter",
+      "name": "SOLAR INVERTER",
+      "slug": "solar-inverter",
+      "order": 12,
+      "isActive": true,
+      "image": "https://i.ibb.co/HLPnBnQ8/Growatt-SPF-6000-ES-Plus-6k-W-H.webp",
+      "icon": "Sun",
+      "description": "High efficiency on-grid, off-grid and hybrid solar inverters."
+    }
+  ],
+  "categoriesExisting": [],
+  "stats": {
+    "total": 20,
+    "withPrice": 20,
+    "withoutPrice": 0,
+    "descriptionsCleaned": 20,
+    "totalImagesUploaded": 79,
+    "imageUploadFailures": 0
+  },
+  "products": [
+    {
+      "id": "st-54079",
+      "title": "Growatt SPF 6000 ES Plus 6kW Hybrid Solar Inverter",
+      "slug": "growatt-spf-6000-es-plus-6kw-solar-inverter",
+      "price": 60500,
+      "oldPrice": 66000,
+      "discountPercentage": 8,
+      "category": "solar-inverter",
+      "categoryName": "SOLAR INVERTER",
+      "brand": "Growatt",
+      "productCode": "54079",
+      "stock": 10,
+      "image": "https://i.ibb.co/HLPnBnQ8/Growatt-SPF-6000-ES-Plus-6k-W-H.webp",
+      "images": [
+        "https://i.ibb.co/HLPnBnQ8/Growatt-SPF-6000-ES-Plus-6k-W-H.webp"
+      ],
+      "shortDescription": "Model: SPF 6000 ES Plus\nInverter Type: Single-Phase Off-Grid Hybrid\nRated Output Power: 6kW, Max. Efficiency: 93%\nMax. input voltage: 450V DC(PV Side), Max. input current: 100A (PV Side)\nIP20, MPPT Charge Controller, Two AC Input Terminals",
+      "keyFeatures": [
+        "Model: SPF 6000 ES Plus",
+        "Inverter Type: Single-Phase Off-Grid Hybrid",
+        "Rated Output Power: 6kW, Max. Efficiency: 93%",
+        "Max. input voltage: 450V DC(PV Side), Max. input current: 100A (PV Side)",
+        "IP20, MPPT Charge Controller, Two AC Input Terminals"
+      ],
+      "warranty": "2 Year Warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Growatt SPF 6000 ES Plus 6kW Hybrid Solar Inverter</h2><p>The <strong>Growatt SPF 6000 ES Plus 6kW Hybrid Solar Inverter</strong> is designed for off-grid solar power systems requiring efficient energy conversion and reliable performance. This Off-Grid Solar Inverter delivers 6kW rated output power with maximum efficiency of 93%. Its single-phase hybrid design supports residential and small commercial installations. The inverter produces pure sine wave AC output at 220V or 230V in battery mode, supporting stable power delivery for compatible electrical appliances.</p><p>Featuring an integrated MPPT charge controller, the Growatt SPF 6000 ES Plus 6kW Solar Inverter optimizes solar energy conversion. It supports a recommended maximum PV array size of 8kW, with an MPPT operating voltage range of 120–450V DC. The maximum PV input voltage is 450V DC, while the maximum open-circuit voltage reaches 500V DC. This MPPT solar inverter also provides a maximum solar charging current of 100A for efficient battery charging.</p><p>The Growatt SPF 6000 ES Plus Hybrid Solar Inverter supports both lithium and lead-acid batteries with a 48V DC battery system. Its built-in AC charger delivers up to 80A charging current at 230V AC. Two AC input terminals provide additional input flexibility, while the typical UPS transfer time of 10ms helps maintain power continuity. With 12,000VA surge capacity, this 6kW Solar Inverter handles temporary increases in power demand. It also supports parallel operation with up to six units.</p><p>Designed for demanding environments, the Growatt SPF 6000 ES Plus Off-Grid Solar Inverter operates across temperatures from -25°C to +60°C. Its IP20-rated enclosure suits protected indoor installations. Measuring 460 × 395 × 132mm and weighing approximately 13kg, the white inverter offers a compact installation profile. Combining solar charging, battery compatibility, and parallel expansion, this Hybrid Solar Inverter supports flexible off-grid power system configurations.</p></div>",
+      "specs": {
+        "General Information": {
+          "Battery Type": "Supports Lithium/Lead-acid",
+          "Rated AC Output Power": "Voltage 48VDC",
+          "UPS Transfer Time": "10ms typical, 20ms Max"
+        },
+        "Output": {
+          "AC Output": "Output AC (Inverter) Rated output power: 6 kW Rated voltage battery mode: 220 V / 230 V Surge power: 12000VA Parallel Capability: 6 units max",
+          "Output Waveform": "Pure Sine Wave"
+        },
+        "Input (Charging)": {
+          "AC Input": "Input(AC Charger) Charge Current: 80A Voltage: 230VAC",
+          "Solar Input": "Input (PV Side) Recommended max. PV array size: 8 kW MPPT Operating voltage Range: 120-450VDC Max. open-circuit voltage: 500VDC Max. Solar Charge Current: 100A"
+        },
+        "Environment": {
+          "Operating Temperature": "-25°C to +60°C"
+        },
+        "Physical Information": {
+          "Color": "White",
+          "Dimension": "460×395×132mm",
+          "Weight": "Approx. 13 kg"
+        },
+        "Warranty Information": {
+          "Warranty": "2 Year Warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/growatt-spf-6000-es-plus-6kw-solar-inverter",
+      "audit": {
+        "sourcePrice": 55000,
+        "sourceRegularPrice": 60000,
+        "calculatedPrice": 60500,
+        "calculatedOldPrice": 66000,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T08:54:49.968Z"
+      }
+    },
+    {
+      "id": "st-51939",
+      "title": "Gospower GPEX-6KL1 6kW Hybrid Solar Inverter",
+      "slug": "gospower-gpex-6kl1-6kw-hybrid-solar-inverter",
+      "price": 60500,
+      "oldPrice": 68750,
+      "discountPercentage": 12,
+      "category": "solar-inverter",
+      "categoryName": "SOLAR INVERTER",
+      "brand": "Gospower",
+      "productCode": "51939",
+      "stock": 10,
+      "image": "https://i.ibb.co/JjD7FSMY/8f027cbbb188.webp",
+      "images": [
+        "https://i.ibb.co/JjD7FSMY/8f027cbbb188.webp",
+        "https://i.ibb.co/0ynKZJ4B/Gospower-GPEX-6-KL1-6k-W-Hybrid.webp",
+        "https://i.ibb.co/DHmBPJgy/Gospower-GPEX-6-KL1-6k-W-Hybrid.webp",
+        "https://i.ibb.co/WvhtHQvM/Gospower-GPEX-6-KL1-6k-W-Hybrid.webp"
+      ],
+      "shortDescription": "Model: GPEX-6KL1\nRated Power: 6000W/6000VA\nSurge Power: Up to 9000VA, 1s\nMax Charge/ Discharge Current: 100A\nIP65 Protection Grade; 94% Peak Efficiency",
+      "keyFeatures": [
+        "Model: GPEX-6KL1",
+        "Rated Power: 6000W/6000VA",
+        "Surge Power: Up to 9000VA, 1s",
+        "Max Charge/ Discharge Current: 100A",
+        "IP65 Protection Grade; 94% Peak Efficiency"
+      ],
+      "warranty": "3 years",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Gospower 6kW Hybrid Solar Inverter</h2>\n<p>The <strong>Gospower 6kW</strong> Hybrid Solar Inverter is a high‑capacity renewable energy solution engineered for households and businesses that require reliable backup and efficient solar integration. Supporting 48V DC SLA and LiFePO4 batteries, this Gospower Hybrid Solar Inverter delivers a rated AC output of 6000W / 6000VA with surge capacity up to 9000VA for 1 second, ensuring stable performance even during heavy loads. With IP65 protection grade, DC switch, and multiple safety features including PV reverse connection protection, battery reverse connection protection, output short‑circuit protection, and anti‑island protection, the Gospower Off Grid Solar Inverter guarantees safe and durable operation in diverse environments.</p>\n<p>Built for efficiency, the GosPower PV Inverter achieves up to 94% peak battery charging/discharging efficiency, helping maximize energy utilization while extending battery life. It supports a maximum charge/discharge current of 100A and delivers clean power with THDv under 3% and switching time below 10ms. The inverter provides a rated output current of 26.1A at 230V (L,N,PE) with frequency support for both 50Hz and 60Hz systems. Equipped with Wi‑Fi, RS485, CAN, and GPRS connectivity, along with app control and LCD display, the Gospower Inverter offers real‑time monitoring, smart management, and remote access for complete control over your energy system.</p>\n<p>On the solar input side, the Gospower 6kW Hybrid Solar Inverter supports up to 8000W PV input power with a maximum voltage of 580V and an MPPT operating range of 120–550V. With dual MPPTs, each supporting up to 13A input current and 20A short‑circuit current, it ensures efficient solar harvesting across multiple panel configurations. This advanced design allows flexible installation while optimizing energy output, making it ideal for large residential and commercial setups.</p>\n<p>Designed to withstand extreme conditions, the Gospower 6kW Hybrid Solar Inverter operates reliably within a wide temperature range of –25°C to 60°C. Combining robust build quality, advanced safety protections, and high efficiency, this inverter is the perfect solution for households and businesses looking to reduce electricity costs, ensure backup power, and maximize solar output. Whether you need a Gospower Off Grid Solar Inverter or a smart GosPower PV Inverter, this model delivers innovation, safety, and long‑term reliability for sustainable energy systems.</p>\n\n</div>",
+      "specs": {
+        "General Information": {
+          "Battery Type": "48VDC SLA &LiFePO4",
+          "Rated AC Output Power": "6000W / 6000 VA",
+          "AC Peak/ Surge Output Power": "Surge Power: 6300VA,10min, 7500VA,1min 9000VA,1s",
+          "Connectivity": "Wi-Fi; R485; CAN; GPRS",
+          "App Control": "Yes",
+          "Protection": "IP65 Protection Grade DC switch PV reverse connection protection Battery reverse connection protection Output short-circuit protection Output overvoltage protection Insulation impedance detection Residual current detection Anti-island protection",
+          "Others": "Max Charge/Discharge Current: 100A Battery charging/discharging efficiency: 94% Peak Efficiency LCD Display."
+        },
+        "Output": {
+          "AC Output": "Rated output power: 6000W/6000VA Rated output current: 26.1A Rated output voltage: 230V(L,N,PE)50/60Hz THDv(@linear load): < 3% switching time: <10ms"
+        },
+        "Input (Charging)": {
+          "DC Input": "Recommended max. PV input power: 8000W Max.input voltage(Voc): 580V MPPT operating voltage range: 120-550V Number of MPPT: 2 Max.number of input string perr MPPT: 1 Max.input current per MPPT: 13/13A Max.short-circuit current per MPPT: 20A"
+        },
+        "Environment": {
+          "Operating Temperature": "-25~60℃"
+        },
+        "Physical Information": {
+          "Dimension": "535*485*198.5",
+          "Weight": "Net weight 12.4 Kg Gross weight 12.7 kg"
+        },
+        "Warranty Information": {
+          "Warranty": "3 years"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/gospower-gpex-6kl1-6kw-hybrid-solar-inverter",
+      "audit": {
+        "sourcePrice": 55000,
+        "sourceRegularPrice": 62500,
+        "calculatedPrice": 60500,
+        "calculatedOldPrice": 68750,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T08:54:53.713Z"
+      }
+    },
+    {
+      "id": "st-51779",
+      "title": "Marsriva MR-SPF6.5K-LP1-TL54E 6.5kW Hybrid Solar Inverter",
+      "slug": "marsriva-mr-spf6-5k-lp1-tl54e-6-5kw-solar-inverter",
+      "price": 61600,
+      "oldPrice": 67760,
+      "discountPercentage": 9,
+      "category": "solar-inverter",
+      "categoryName": "SOLAR INVERTER",
+      "brand": "MARSRIVA",
+      "productCode": "51779",
+      "stock": 10,
+      "image": "https://i.ibb.co/qMNz2CRJ/Marsriva-MR-SPF6-5-K-LP1-TL54-E.webp",
+      "images": [
+        "https://i.ibb.co/qMNz2CRJ/Marsriva-MR-SPF6-5-K-LP1-TL54-E.webp",
+        "https://i.ibb.co/4gCTvP7g/Marsriva-MR-SPF6-5-K-LP1-TL54-E.webp",
+        "https://i.ibb.co/dwT21hLp/Marsriva-MR-SPF6-5-K-LP1-TL54-E.webp",
+        "https://i.ibb.co/G4h6nShz/Marsriva-MR-SPF6-5-K-LP1-TL54-E.webp",
+        "https://i.ibb.co/677FxkqS/Marsriva-MR-SPF6-5-K-LP1-TL54-E.webp",
+        "https://i.ibb.co/HDN099sd/Marsriva-MR-SPF6-5-K-LP1-TL54-E.webp"
+      ],
+      "shortDescription": "Model: MR-SPF6.5K-LP1-TL54E\nRated Power: 6.5kW, power factor 1\nMPPT ranges 60V~450V, 500Voc\nSolar & Grid Power Loads at Same Time\nIP54 Protection, WIFl module for monitoring",
+      "keyFeatures": [
+        "Model: MR-SPF6.5K-LP1-TL54E",
+        "Rated Power: 6.5kW, power factor 1",
+        "MPPT ranges 60V~450V, 500Voc",
+        "Solar & Grid Power Loads at Same Time",
+        "IP54 Protection, WIFl module for monitoring"
+      ],
+      "warranty": "2 years",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Marsriva MR-SPF6.5K-LP1-TL54E 6.5kW Hybrid Solar Inverter</h2>\n\n<p>The Marsriva <strong>MR-SPF6.5K-LP1-TL54E</strong> 6.5kW Hybrid Solar Inverter delivers powerful, flexible solar energy management for homes and commercial installations. This Marsriva 6.5kW Solar Inverter provides 6.5kVA rated power with a power factor of 1 for maximum efficiency. Pure sine wave AC output ensures clean, stable power delivery to all connected loads and sensitive equipment. </p>\n\n<p>This Marsriva MR-SPF6.5K-LP1-TL54E 6.5kW Solar Inverter operates at up to 94% maximum efficiency for optimal energy utilization. Surge power reaches twice the rated output capacity for handling sudden load spikes reliably. Transfer time stays within 10ms for near-seamless switching between power sources during outages. Solar and utility grid sources can power loads simultaneously for flexible hybrid energy management. </p>\n\n<p>This Marsriva Solar Inverter accepts nominal input voltage across 208, 220, 230, and 240VAC ranges. Voltage range spans 170 to 264VAC in UPS mode and 90 to 280VAC in APP or GEN mode. This Marsriva MR-SPF6.5K-LP1-TL54E 6.5kW Solar Inverter has frequency auto-sensing covers both 50Hz and 60Hz inputs for global compatibility. </p>\n\n<p>The MPPT solar charger supports a voltage range of 60 to 450VDC with 500VDC maximum open circuit voltage. Maximum PV input power reaches 9000W with a maximum solar charging current of 120A. Maximum AC and hybrid charging currents both reach 120A for rapid battery replenishment. </p>\n\n<p>This Marsriva Hybrid Solar Inverter supports 48VDC nominal battery voltage across a 40 to 61VDC operating range. This Marsriva MR-SPF6.5K-LP1-TL54E 6.5kW Solar Inverter has Lead-acid, lithium, and user-defined battery types all work with this flexible system. CAN and RS485 communication ports enable full BMS integration for advanced battery management. </p>\n\n<p>A built-in WiFi module supports remote monitoring and system management from any connected device. Dual AC output and feed-in to grid function expand installation flexibility for diverse energy setups. IP54 protection rating ensures reliable outdoor operation against dust and water spray.</p>\n\n\n\n</div>",
+      "specs": {
+        "General Information": {
+          "Battery Type": "Lead-acid / Lithium / User-defined",
+          "Rated AC Output Power": "6.5kVA / 6.5kW",
+          "AC Peak/ Surge Output Power": "2 times of rated power",
+          "UPS Transfer Time": "10ms",
+          "Connectivity": "BMS(485/CAN), WiFi Module",
+          "Protection": "IP54 Protection",
+          "Others": "High frequency inverter with small size and light weight Solar and utility grid can power loads at the same time With the ability to work without battery Dual AC output Feed-in to grid function"
+        },
+        "Output": {
+          "AC Output": "208 / 220 / 230 / 240VAC ± 5% Nominal Output Frequency: 50 / 60Hz ± 0.1% (Batt. Mode)",
+          "Output Waveform": "Pure sine wave AC output",
+          "Others": "Surge Power: 2 times of rated power"
+        },
+        "Input (Charging)": {
+          "AC Input": "60 – 450VDC (Min. 80VDC without battery connected)",
+          "Solar Input": "Solar Charger Type: MPPT Max. PV Input Power: 9000W Max. PV Input Current: 27A Max. PV Open Circuit Voltage: 500VDC Max. Solar Charging Current: 120A",
+          "Grid/ Wall Input": "120A"
+        },
+        "Environment": {
+          "Operating Temperature": "-10°C to 60°C",
+          "Storage Temperature": "-15°C to 60°C"
+        },
+        "Physical Information": {
+          "Dimension": "336 × 394 × 110mm (W x H x D)",
+          "Weight": "8.8 kg"
+        },
+        "Warranty Information": {
+          "Warranty": "2 years"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/marsriva-mr-spf6-5k-lp1-tl54e-6-5kw-solar-inverter",
+      "audit": {
+        "sourcePrice": 56000,
+        "sourceRegularPrice": 61600,
+        "calculatedPrice": 61600,
+        "calculatedOldPrice": 67760,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T08:54:58.643Z"
+      }
+    },
+    {
+      "id": "st-54081",
+      "title": "Rahimafrooz RZ Solar SL 6KW/48V Inverter",
+      "slug": "rahimafrooz-rz-solar-sl-6kw-48v-inverter",
+      "price": 63800,
+      "oldPrice": 68750,
+      "discountPercentage": 7,
+      "category": "solar-inverter",
+      "categoryName": "SOLAR INVERTER",
+      "brand": "Rahimafrooz",
+      "productCode": "54081",
+      "stock": 10,
+      "image": "https://i.ibb.co/tM25tm33/Rahimafrooz-RZ-Solar-SL-6-KW-48.webp",
+      "images": [
+        "https://i.ibb.co/tM25tm33/Rahimafrooz-RZ-Solar-SL-6-KW-48.webp"
+      ],
+      "shortDescription": "Model: SL 6KW/48V\nOutput Power: 6000W, Output Voltage: 220/230/240Vac±5%\nAC Charging Current: 100A, Higher Cut-off Voltage: 280Vac\nSolar Panel Capacity: 7000W, MPPT Tracking Range: 60-450Vdc\nMaximum Input Voltage (Voc): 500Vdc, Charging Current (Solar + AC): 120A",
+      "keyFeatures": [
+        "Model: SL 6KW/48V",
+        "Output Power: 6000W, Output Voltage: 220/230/240Vac±5%",
+        "AC Charging Current: 100A, Higher Cut-off Voltage: 280Vac",
+        "Solar Panel Capacity: 7000W, MPPT Tracking Range: 60-450Vdc",
+        "Maximum Input Voltage (Voc): 500Vdc, Charging Current (Solar + AC): 120A"
+      ],
+      "warranty": "2 years",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Rahimafrooz RZ Solar SL 6KW/48V Inverter</h2><p>The <span style=\"font-weight: bold;\">Rahimafrooz RZ Solar SL 6KW/48V</span> Inverter is a hybrid solar inverter that delivers 6000W of output power with a 12000W surge for five seconds. This peak rating lets you start heavy loads like pumps and air conditioners without tripping. The built-in MPPT solar tracking accepts up to 7000W of solar panel capacity, so you can harvest more energy from your roof. A 2.5-inch LCD display shows live system status at a glance. You can also monitor and manage the inverter through WiFi and Bluetooth compatibility. The unit works with lead-acid, SMF, lithium-ion, and user-defined battery settings, which gives you freedom to choose your storage. It is built for homes, shops, and small offices that need a reliable power backup with solar savings.</p><h3>6000W Inverter Output and Battery Support</h3><p>This Rahimafrooz RZ Solar SL 6KW/48V inverter produces 220, 230, or 240Vac with a tolerance of ±5%, which keeps your appliances running on steady power. The 48V inverter system gives you a no-load and full-load output of 230Vac, so voltage stays consistent as demand changes. AC charging reaches 100A, and the combined solar and AC charging current reaches 120A for faster battery recovery. The dedicated BMS port connects directly to lithium-ion batteries for safer communication and control. Users can rely on its 280Vac higher cut-off and 90Vac lower cut-off to handle unstable grid conditions with confidence.</p><h3>MPPT Solar Inverter Performance</h3><p>The Rahimafrooz RZ Solar SL 6KW/48V inverter is an MPPT solar inverter with a wide 60-450Vdc tracking range that adapts to different panel layouts. The nominal PV voltage of 360Vdc keeps conversion efficient during normal sunlight hours. A maximum input voltage of 500Vdc (Voc) gives you a safe margin on cold, bright mornings. The 27A PV input current supports high-capacity panel strings without bottlenecks. Transfer time is just 10ms in UPS mode and 20ms in APL mode, so computers and sensitive electronics stay on during outages.</p><h3>Solar Inverter Protection and Durability</h3><p>This Rahimafrooz RZ Solar SL 6KW/48V solar inverter protects your system with over-temperature, short-circuit, overcharge, and under-discharge safeguards. Overload protection allows 10 seconds at 105% to 130% load and 5 seconds at 130% load, which shields the unit from sudden spikes. It operates from -10°C to 50°C, so it stays reliable in hot summers and winter months. The IP21 rating guards against solid objects and light dripping water during indoor installation. Noise stays below 60dB, so you can place it in a living area without disturbance.</p></div>",
+      "specs": {
+        "Main Feature": {
+          "Capacity": "6KW",
+          "Display Type": "LCD 2.5\"",
+          "Input Voltage": "Higher Cut-off Voltage: 280Vac Lower Cut-off Voltage: 90Vac",
+          "Output Voltage": "Output Voltage: 220 / 230 / 240Vac ±5%",
+          "Noise Level": "< 60 dB",
+          "Others": "Surge / Peak Power: 12000W (5 Sec) Supported Battery Type: Lead Acid, SMF, Li-Ion, User Defined Inverter Mode / Battery Mode: No Load Output Voltage: 230Vac Full Load Output Voltage: 230Vac±5% Overload Protection: 10s@105%~130% load; 5s@130% load AC Charging Current: 100A Solar/PV Mode: Solar Panel Capacity: 7000W MPPT Tracking Range: 60-450Vdc Nominal PV Voltage: 360Vdc Maximum Input Voltage (Voc): 500Vdc PV Input Current: 27A Charging Current (Solar + AC): 120A Operating Temperature Range: -10°C to 50°C IP (Ingress Protection) Rating: IP21 Protection: Over Temperature | Short Circuit | Overload Protection | Overcharge | Under Discharge Protection BMS Port for Li-Ion Battery WiFi & Bluetooth Compatibility"
+        },
+        "Output Features": {
+          "Transfer Time": "10ms (UPS mode) / 20ms (APL mode)"
+        },
+        "Manufacture Warranty": {
+          "Warranty": "2 years"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/rahimafrooz-rz-solar-sl-6kw-48v-inverter",
+      "audit": {
+        "sourcePrice": 58000,
+        "sourceRegularPrice": 62500,
+        "calculatedPrice": 63800,
+        "calculatedOldPrice": 68750,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T08:55:00.618Z"
+      }
+    },
+    {
+      "id": "st-54086",
+      "title": "Growatt SPE 3500TL HVM-24G2 3.5KW ON -Grid Hybrid Solar Inverter",
+      "slug": "growatt-spe-3500tl-hvm-24g2-3500w-solar-inverter",
+      "price": 70400,
+      "oldPrice": 75900,
+      "discountPercentage": 7,
+      "category": "solar-inverter",
+      "categoryName": "SOLAR INVERTER",
+      "brand": "Growatt",
+      "productCode": "54086",
+      "stock": 10,
+      "image": "https://i.ibb.co/cchz8cXX/Growatt-SPE-3500-TL-HVM-24-G2-3.webp",
+      "images": [
+        "https://i.ibb.co/cchz8cXX/Growatt-SPE-3500-TL-HVM-24-G2-3.webp"
+      ],
+      "shortDescription": "Model: SPE 3500TL HVM-24G2\nInverter type: ON -Grid Hybrid Solar Inverter\nRated Output Power: 3.5kW, Max. Efficiency: 96.5%\nMPP Voltage Range: 450V DC, Max. Input Current Per MPP Tracker: 22A\nDual MPP Trackers, Integrated Transfer Switch, Grid-Tied Function",
+      "keyFeatures": [
+        "Model: SPE 3500TL HVM-24G2",
+        "Inverter type: ON -Grid Hybrid Solar Inverter",
+        "Rated Output Power: 3.5kW, Max. Efficiency: 96.5%",
+        "MPP Voltage Range: 450V DC, Max. Input Current Per MPP Tracker: 22A",
+        "Dual MPP Trackers, Integrated Transfer Switch, Grid-Tied Function"
+      ],
+      "warranty": "2 Year Warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Growatt SPE 3500TL HVM-24G2 3.5KW ON -Grid Hybrid Solar Inverter</h2><p>The <span style=\"font-weight: bold;\">Growatt SPE 3500TL HVM-24G2</span> is a 3.5kW on-grid hybrid solar inverter built for reliable home and small business power. It delivers 3500W of rated output, so you can run lights, fans, a refrigerator and other daily loads together. Its maximum efficiency of 96.5% turns more of your solar energy into usable electricity. The inverter supports both lithium and lead-acid batteries, which gives you freedom to choose a battery that suits your budget. Dual outputs let you manage smart loads, so essential devices stay powered first. You can monitor the system remotely through WiFi or 4G communication. The unit supports a 24V battery system and produces a clean pure sine wave output. It suits homes, shops and offices that want steady backup and lower electricity bills.</p><h3>3.5kW Hybrid Solar Inverter Power Output</h3><p>This Growatt SPE 3500TL HVM-24G2 hybrid solar inverter delivers 3500W of nominal AC power and a maximum apparent power of 3500VA. The nominal output voltage is 230V at 50/60Hz, so it matches standard household appliances. The 15.2A output current supports multiple loads running at the same time. The adjustable power factor from 0.8 leading to 0.8 lagging helps you match different load types. Pure sine wave output with THDi below 5% protects sensitive electronics such as computers and televisions. The UPS transfer time is 10ms typical and 20ms maximum, so devices keep running during a power cut.</p><h3>Solar Input and Dual MPP Tracker Performance</h3><p>The Growatt SPE 3500TL HVM-24G2 solar inverter accepts up to 4000W of recommended PV power. Dual MPP trackers help it collect energy from more than one panel arrangement, which improves harvest in changing sunlight. The inverter starts at 150±10V and accepts a maximum DC voltage of 500V. Its MPP voltage range of 120V to 450V gives you flexibility when designing your panel strings. Each tracker handles up to 22A of input current, so higher-output panels work without trouble. This makes it a practical choice for solar setups, where load shedding is still a concern.</p><h3>Battery Backup and Durable Solar Inverter Build</h3><p>This Growatt SPE 3500TL HVM-24G2 hybrid solar inverter works with a 24V nominal battery system and a voltage range of 20V to 32V. Battery overcharge protection at 32V guards your battery and extends its working life. The DC fan keeps the unit cool during long hours of operation. The inverter works from -20°C to +50°C and handles relative humidity from 5% to 95%. It is rated IP20 and operates at altitudes below 2000m, which suits indoor installation. WiFi and 4G connectivity let you check performance and system status from your phone.</p></div>",
+      "specs": {
+        "General Information": {
+          "Battery Type": "Supports Lithium/Lead-acid",
+          "Rated AC Output Power": "3500W max.",
+          "UPS Transfer Time": "10ms typical, 20ms Max",
+          "Others": "Battery data (DC) Nominal DC voltage: 24V Battery voltage range: 20-32V Battery overcharge protectio: 32V Backup power (AC) AC nominal output power: 3500W Nominal AC output voltage: 230V Nominal AC output frequency: 50/60hZ Cooling: DC fan Protection degree: IP20 Relative humidity: 5%~95% non-considering Altitude: ＜2000m Communication: WiFi/4G"
+        },
+        "Output": {
+          "AC Output": "AC nominal power: 3500W Max. AC apparent power: 3500VA Nominal AC voltage: 230V AC grid frequency: 50/60Hz Output current: 15.2A Adjustable power factor: 0.8leading…0.8lagging THDi: < 5%",
+          "Output Waveform": "Pure Sine Wave"
+        },
+        "Input (Charging)": {
+          "DC Input": "Max. recommended PV power (for module STC): 4000W Start voltage: 150±10V Max. DC voltage: 500V MPP voltage range: 120V-450V No. of MPP trackers: 1 No. of PV strings per MPP tracker: 1 Max. input current per MPP tracker: 22A"
+        },
+        "Environment": {
+          "Operating Temperature": "-20°C to +50°C"
+        },
+        "Physical Information": {
+          "Color": "White",
+          "Dimension": "370 × 125 × 430mm",
+          "Weight": "Approx. 10.5 kg"
+        },
+        "Warranty Information": {
+          "Warranty": "2 Year Warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/growatt-spe-3500tl-hvm-24g2-3500w-solar-inverter",
+      "audit": {
+        "sourcePrice": 64000,
+        "sourceRegularPrice": 69000,
+        "calculatedPrice": 70400,
+        "calculatedOldPrice": 75900,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T08:55:02.875Z"
+      }
+    },
+    {
+      "id": "st-54087",
+      "title": "Growatt SPE 6000TL HVM-G2 6KW ON -Grid Hybrid Solar Inverter",
+      "slug": "growatt-spe-6000tl-hvm-g2-6kw-solar-inverter",
+      "price": 83600,
+      "oldPrice": 90200,
+      "discountPercentage": 7,
+      "category": "solar-inverter",
+      "categoryName": "SOLAR INVERTER",
+      "brand": "Growatt",
+      "productCode": "54087",
+      "stock": 10,
+      "image": "https://i.ibb.co/cchz8cXX/Growatt-SPE-3500-TL-HVM-24-G2-3.webp",
+      "images": [
+        "https://i.ibb.co/cchz8cXX/Growatt-SPE-3500-TL-HVM-24-G2-3.webp"
+      ],
+      "shortDescription": "Model: SPE 6000TL HVM-G2\nInverter type: ON -Grid Hybrid Solar Inverter\nRated Output Power: 6kW, Max. Efficiency: 96.5%\nMPP Voltage Range: 450V DC, Max. Input Current Per MPP Tracker: 16A+16A\nDual MPP Trackers, Integrated transfer switch, Grid-Tied Function",
+      "keyFeatures": [
+        "Model: SPE 6000TL HVM-G2",
+        "Inverter type: ON -Grid Hybrid Solar Inverter",
+        "Rated Output Power: 6kW, Max. Efficiency: 96.5%",
+        "MPP Voltage Range: 450V DC, Max. Input Current Per MPP Tracker: 16A+16A",
+        "Dual MPP Trackers, Integrated transfer switch, Grid-Tied Function"
+      ],
+      "warranty": "2 Year Warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Growatt SPE 6000TL HVM-G2 6KW ON -Grid Hybrid Solar Inverter</h2><p>The <span style=\"font-weight: bold;\">Growatt SPE 6000TL HVM-G2</span> is a 6KW on-grid hybrid solar inverter built for homes that want reliable solar power. It delivers 6000W of rated output, so you can run heavy household loads with ease. Its maximum efficiency of 96.5% turns more of your solar energy into usable electricity. Dual MPP trackers help you collect power from two separate panel arrays at the same time. This Growatt hybrid inverter works with both lithium and lead-acid batteries, which gives you flexible storage choices. You can monitor the system through WiFi or 4G connectivity, so you always know how your solar setup performs. It suits homes and small shops that need a reliable home solar inverter with built-in UPS backup.</p><h3>6KW Hybrid Solar Inverter Power and Output</h3><p>The Growatt SPE 6000TL HVM-G2 hybrid solar inverter delivers 6000W of nominal AC power and a maximum apparent power of 6000VA. It supplies a nominal voltage of 230V at 50/60Hz, which matches standard household appliances. The output current is 26.1A, so your fans, fridge, and air conditioner get steady power. A pure sine wave output protects sensitive electronics from damage and noise. THDi stays below 5%, which keeps the power clean and your devices safe. The adjustable power factor ranges from 0.8 leading to 0.8 lagging, so the inverter adapts easily to different grid conditions.</p><h3>Dual MPPT Solar Inverter Input and Efficiency</h3><p>This Growatt SPE 6000TL HVM-G2 inverter uses two MPP trackers, and each tracker handles two PV strings. It accepts up to 8000W of recommended PV power, so you can install a larger solar array. The MPP voltage range runs from 60V to 450V, which helps the inverter track the best power point in changing sunlight. The unit starts at 80±10V and accepts a maximum DC voltage of 500V, so it begins working early each morning. Each tracker supports a high input current of 16A, which suits modern high-power panels. Its 96.5% peak efficiency reduces energy loss and improves your savings over time. Where sunlight is plentiful for most of the year, this strong yield makes a real difference.</p><h3>48V Solar Inverter with Battery Support and UPS Backup</h3><p>The Growatt SPE 6000TL HVM-G2&nbsp;solar inverter works as a 48V solar inverter with a battery voltage range of 40V to 60V. It supports lithium and lead-acid batteries, so you can pick the option that fits your budget. Overcharge protection at 60V keeps your battery safe and extends its life. The integrated transfer switch changes to backup mode in just 10ms typically, and 20ms at most. Your lights, computers, and appliances keep running during a power cut. The DC fan cools the unit, and it operates in 5% to 95% humidity at altitudes below 2000m. The IP20 protection rating means you should install it indoors, and the grid-tied function lets you use solar and grid power together.</p></div>",
+      "specs": {
+        "General Information": {
+          "Battery Type": "Supports Lithium/Lead-acid",
+          "Rated AC Output Power": "6000W max.",
+          "UPS Transfer Time": "10ms typical, 20ms Max",
+          "Others": "Battery data (DC) Nominal DC voltage: 48V Battery voltage range: 40-60V Battery overcharge protectio: 60V Backup power (AC) AC nominal output power: 6000W Nominal AC output voltage: 230V Nominal AC output frequency: 50/60hZ Cooling: DC fan Protection degree: IP20 Relative humidity: 5%~95% non-considering Altitude: ＜2000m Communication: WiFi/4G"
+        },
+        "Output": {
+          "AC Output": "AC nominal power: 6000W Max. AC apparent power: 6000VA Nominal AC voltage: 230V AC grid frequency: 50/60Hz Output current: 26.1A Adjustable power factor: 0.8leading…0.8lagging THDi: < 5%",
+          "Output Waveform": "Pure Sine Wave"
+        },
+        "Input (Charging)": {
+          "DC Input": "Max. recommended PV power (for module STC): 8000W Start voltage: 80±10V Max. DC voltage: 500V MPP voltage range: 60V-450V No. of MPP trackers: 2 No. of PV strings per MPP tracker: 2 Max. input current per MPP tracker: 16A+6A"
+        },
+        "Environment": {
+          "Operating Temperature": "-20°C to +50°C"
+        },
+        "Physical Information": {
+          "Color": "White",
+          "Dimension": "422 × 125 × 460mm",
+          "Weight": "Approx. 13.5 kg"
+        },
+        "Warranty Information": {
+          "Warranty": "2 Year Warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/growatt-spe-6000tl-hvm-g2-6kw-solar-inverter",
+      "audit": {
+        "sourcePrice": 76000,
+        "sourceRegularPrice": 82000,
+        "calculatedPrice": 83600,
+        "calculatedOldPrice": 90200,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T08:55:04.969Z"
+      }
+    },
+    {
+      "id": "st-51941",
+      "title": "Gospower GPEX-8KH2 8kW Hybrid Solar Inverter",
+      "slug": "gospower-gpex-8kh2-8kw-hybrid-solar-inverter",
+      "price": 91080,
+      "oldPrice": 96800,
+      "discountPercentage": 6,
+      "category": "solar-inverter",
+      "categoryName": "SOLAR INVERTER",
+      "brand": "Gospower",
+      "productCode": "51941",
+      "stock": 10,
+      "image": "https://i.ibb.co/rR7pN6bD/Gospower-GPEX-8-KH2-8k-W-Hybrid.webp",
+      "images": [
+        "https://i.ibb.co/rR7pN6bD/Gospower-GPEX-8-KH2-8k-W-Hybrid.webp",
+        "https://i.ibb.co/5WpGnTDX/Gospower-GPEX-8-KH2-8k-W-Hybrid.webp",
+        "https://i.ibb.co/DfHXk3w6/Gospower-GPEX-8-KH2-8k-W-Hybrid.webp",
+        "https://i.ibb.co/QjFXbkLv/Gospower-GPEX-8-KH2-8k-W-Hybrid.webp"
+      ],
+      "shortDescription": "Model: GPEX-8KH2\nRated Power: 8kW\nRated Output Current: 33.3A\nMax Charge/ Discharge Current: 75A\nConnectivity: WiFi, Bluetooth",
+      "keyFeatures": [
+        "Model: GPEX-8KH2",
+        "Rated Power: 8kW",
+        "Rated Output Current: 33.3A",
+        "Max Charge/ Discharge Current: 75A",
+        "Connectivity: WiFi, Bluetooth"
+      ],
+      "warranty": "3 years",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Gospower 8kW Hybrid Solar Inverter</h2>\n<p>The <strong>Gospower 8kW</strong> Hybrid Solar Inverter is a high‑capacity, advanced energy solution designed for households and businesses that require reliable backup power and efficient solar integration. Supporting LiFePO4 batteries with a voltage range of 75–480V DC, this Gospower Hybrid Solar Inverter delivers a rated bidirectional AC output of 8kW with a current of 33.3A, ensuring stable performance even under heavy loads. With surge capacity up to 9000VA and a maximum continuous AC input power of 20kW, the Gospower Off Grid Solar Inverter is engineered to handle demanding energy requirements with ease.</p>\n<p>Built for efficiency, the GosPower PV Inverter achieves up to 97% peak efficiency and an impressive 99.9% MPPT efficiency, ensuring maximum energy harvesting from solar panels. It supports a recommended PV input power of 14.4kW with four MPPTs, each capable of handling up to 3.6kW input power. With advanced protections including PV reverse connection, battery reverse connection, output short‑circuit protection, insulation impedance detection, residual current detection, and anti‑island protection, the Gospower Inverter guarantees safe and reliable operation in diverse environments. Its Type 4X enclosure and IP65 protection grade further enhance durability, making it suitable for both residential and commercial installations.</p>\n<p>Equipped with modern connectivity options such as Wi‑Fi and Bluetooth, along with RS485 and CAN for BMS communication, the Gospower 8kW Hybrid Solar Inverter allows seamless monitoring and smart control. App integration provides real‑time performance tracking, while its natural cooling system ensures efficient operation without noise. With a switching time of just 10ms, the inverter delivers smooth transitions between on‑grid and off‑grid modes, maintaining uninterrupted power supply.</p>\n<p>Designed to perform in extreme conditions, the Gospower 8kW Hybrid Solar Inverter operates reliably within a wide temperature range of –22°F to +140°F, with no derating below 113°F. Combining robust build quality, advanced safety protections, and high efficiency, this inverter is the perfect solution for households and businesses looking to reduce electricity costs, ensure backup power, and maximize solar output. Whether you need a Gospower Off Grid Solar Inverter or a smart GosPower PV Inverter, this model delivers innovation, sustainability, and long‑term reliability for modern energy systems.</p>\n\n</div>",
+      "specs": {
+        "General Information": {
+          "Battery Type": "LiFePO4",
+          "Rated AC Output Power": "8kW",
+          "Connectivity": "Wi-Fi; Bluetooth",
+          "App Control": "Yes",
+          "Protection": "IP65 Protection Grade DC switch PV reverse connection protection Battery reverse connection protection Output short-circuit protection Output overvoltage protection Insulation impedance detection Residual current detection Anti-island protection",
+          "Others": "Max Charge/Discharge Current: 75A Battery charging/discharging efficiency: 96% Peak Efficiency LCD Display."
+        },
+        "Physical Information": {
+          "Dimension": "840*680*200",
+          "Weight": "Net Weight: 58.5KG Gross Weight: 71KG"
+        },
+        "Warranty Information": {
+          "Warranty": "3 years"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/gospower-gpex-8kh2-8kw-hybrid-solar-inverter",
+      "audit": {
+        "sourcePrice": 82800,
+        "sourceRegularPrice": 88000,
+        "calculatedPrice": 91080,
+        "calculatedOldPrice": 96800,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T08:55:08.740Z"
+      }
+    },
+    {
+      "id": "st-53789",
+      "title": "Solis S6-EH1P3K-L-PLUS 3kW Single Phase Hybrid Solar Inverter",
+      "slug": "solis-s6-eh1p3k-l-plus-3kw-hybrid-solar-inverter",
+      "price": 104500,
+      "oldPrice": 115500,
+      "discountPercentage": 10,
+      "category": "solar-inverter",
+      "categoryName": "SOLAR INVERTER",
+      "brand": "Solis",
+      "productCode": "53789",
+      "stock": 10,
+      "image": "https://i.ibb.co/8L6V2nFK/Solis-S6-EH1-P3-K-L-PLUS-3k-W-Sin.webp",
+      "images": [
+        "https://i.ibb.co/8L6V2nFK/Solis-S6-EH1-P3-K-L-PLUS-3k-W-Sin.webp",
+        "https://i.ibb.co/Xk57gg9s/Solis-S6-EH1-P3-K-L-PLUS-3k-W-Sin.webp",
+        "https://i.ibb.co/WNshkBWZ/Solis-S6-EH1-P3-K-L-PLUS-3k-W-Sin.webp",
+        "https://i.ibb.co/HDnGsXgP/Solis-S6-EH1-P3-K-L-PLUS-3k-W-Sin.webp",
+        "https://i.ibb.co/m5Snc8T6/Solis-S6-EH1-P3-K-L-PLUS-3k-W-Sin.webp"
+      ],
+      "shortDescription": "Model: S6-EH1P5K-L-PLUS\nInverter type: Single-Phase, Low Voltage Hybrid\nRated Output Power: 3kW, Max. Efficiency: 96.2%\nMax. input voltage: 500V DC(PV Side), Max. input current: 16 A/16 A DC(PV Side)\nProtection: IP66, Anti-islanding, DC reverse polarity, Integrated AFCI 2.0",
+      "keyFeatures": [
+        "Model: S6-EH1P5K-L-PLUS",
+        "Inverter type: Single-Phase, Low Voltage Hybrid",
+        "Rated Output Power: 3kW, Max. Efficiency: 96.2%",
+        "Max. input voltage: 500V DC(PV Side), Max. input current: 16 A/16 A DC(PV Side)",
+        "Protection: IP66, Anti-islanding, DC reverse polarity, Integrated AFCI 2.0"
+      ],
+      "warranty": "5 Year Warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Solis S6-EH1P3K-L-PLUS 3kW Single Phase Hybrid Solar Inverter</h2><p>The <strong>Solis S6-EH1P3K-L-PLUS 3kW Solar Inverter</strong> delivers efficient energy management for residential solar installations. This hybrid solar inverter supports grid-connected operation and battery storage for flexible energy usage. It provides 3 kW rated grid output power and supports 220 V or 230 V grid voltage. Its single phase solar design suits homes requiring efficient power conversion and backup support.</p><p>Featuring a recommended maximum PV array size of 6 kW, the Solis S6-EH1P3K-L-PLUS inverter supports a maximum usable solar input of 4.8 kW. This grid solar inverter operates across an MPPT voltage range of 90-435 V. It supports lithium-ion and lead-acid batteries with a voltage range of 40-60 V. Maximum battery charging and discharging power reaches 3 kW, with current up to 70 A.</p><p>For improved energy management, the Solis S6-EH1P3K-L-PLUS inverter includes app control, Bluetooth connectivity, and a 7-inch LCD display. This app control solar inverter offers real-time monitoring and convenient system access. Its backup output delivers 3 kW power, with a switching time below 10 milliseconds. Communication interfaces include RS485 and CAN, supporting compatible battery communication and system integration.</p><p>Designed for demanding environmental conditions, the Solis S6-EH1P3K-L-PLUS inverter features IP66 ingress protection and an operating temperature range of -25°C to +60°C. This low voltage solar inverter supports battery voltages between 40 V and 60 V. It also accepts generator input up to 3 kW for additional energy flexibility. Measuring 335 × 560 × 253 mm and weighing approximately 23 kg, this inverter offers a space-conscious installation option for modern residential solar systems.</p></div>",
+      "specs": {
+        "General Information": {
+          "App Control": "Yes",
+          "Protection": "Ingress protection IP66",
+          "Noise Level": "< 65 dB(A)",
+          "Others": "Display: 7.0\" LCD & Bluetooth + APP DC connection: MC4 plug (PV port) / Terminal Block (BAT port) AC connection: Terminal Block Communication interface: Standard: RS485, CAN"
+        },
+        "Output": {
+          "AC Output": "Output AC (Grid side) Rated output power: 3 kW Rated grid voltage: 220 V / 230 V Rated grid output current: 13.7 A / 13.1 A Output AC (Back-up) Rated output power: 3 kW Back-up switch time: < 10 ms Rated output voltage: L/N/PE, 220 V / 230 V"
+        },
+        "Input (Charging)": {
+          "AC Input": "Input AC (Grid side) Input voltage range: 187 - 253 V Max. input current: 21 A Frequency range: 45 - 55 Hz / 55 - 65 Hz",
+          "DC Input": "Supported Battery type: Li-ion / Lead-acid Battery voltage range: 40 - 60 V Max. charge / discharge power: 3 kW Max. charge / discharge current: 70 A Communication: CAN / RS485",
+          "Solar Input": "Input (PV Side) Recommended max. PV array size: 6 kW Max. usable PV input power: 4.8 kW Max. input voltage: 500 V Rated voltage: 330 V Start-up voltage: 90 V MPPT voltage range: 90 - 435 V Max. current input: 16 A / 16 A",
+          "Generator Input": "Input AC (Generator side) Max. input power: 3 kW Max. input current: 13.7 A / 13.1 A Rated input frequency: 50 Hz / 60 Hz"
+        },
+        "Environment": {
+          "Operating Temperature": "-25°C to +60°C"
+        },
+        "Physical Information": {
+          "Color": "White",
+          "Dimension": "335 × 560 × 253 mm",
+          "Weight": "Approx. 23 kg"
+        },
+        "Warranty Information": {
+          "Warranty": "5 Year Warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/solis-s6-eh1p3k-l-plus-3kw-hybrid-solar-inverter",
+      "audit": {
+        "sourcePrice": 95000,
+        "sourceRegularPrice": 105000,
+        "calculatedPrice": 104500,
+        "calculatedOldPrice": 115500,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T08:55:13.670Z"
+      }
+    },
+    {
+      "id": "st-53635",
+      "title": "Solis S5-GR3P5K 5KW Three Phase ON-Grid Solar Inverter",
+      "slug": "solis-s5-gr3p5k-5kw-three-phase-solar-inverter",
+      "price": 107800,
+      "oldPrice": 118800,
+      "discountPercentage": 9,
+      "category": "solar-inverter",
+      "categoryName": "SOLAR INVERTER",
+      "brand": "Solis",
+      "productCode": "53635",
+      "stock": 10,
+      "image": "https://i.ibb.co/1tJDGYwY/Solis-S5-GR3-P5-K-5-KW-Three-Phas.webp",
+      "images": [
+        "https://i.ibb.co/1tJDGYwY/Solis-S5-GR3-P5-K-5-KW-Three-Phas.webp",
+        "https://i.ibb.co/Pv5h8Y9T/Solis-S5-GR3-P5-K-5-KW-Three-Phas.webp",
+        "https://i.ibb.co/1f98fLJ0/Solis-S5-GR3-P5-K-5-KW-Three-Phas.webp",
+        "https://i.ibb.co/wrZBmGKM/Solis-S5-GR3-P5-K-5-KW-Three-Phas.webp",
+        "https://i.ibb.co/JjcTjwk8/Solis-S5-GR3-P5-K-5-KW-Three-Phas.webp"
+      ],
+      "shortDescription": "Model: S5-GR3P5K\nRated Output Power: 5kW, Max. Efficiency: 98.3%\nInverter type: 3-Phase Grid-Tied\nMax. input voltage: 1100 V DC, Max. input current: 16 A/16 A DC\nProtection: IP66, AFCI, DC reverse polarity, Short circuit, MC4 DC Connector",
+      "keyFeatures": [
+        "Model: S5-GR3P5K",
+        "Rated Output Power: 5kW, Max. Efficiency: 98.3%",
+        "Inverter type: 3-Phase Grid-Tied",
+        "Max. input voltage: 1100 V DC, Max. input current: 16 A/16 A DC",
+        "Protection: IP66, AFCI, DC reverse polarity, Short circuit, MC4 DC Connector"
+      ],
+      "warranty": "5 Year Warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Solis S5-GR3P5K 5KW Three Phase ON-Grid Solar Inverter</h2><p>The <strong>Solis S5-GR3P5K</strong> Inverter is a 5KW three-phase grid-tied solar inverter designed for compatible on-grid solar power systems. It converts DC electricity generated by solar panels into AC electricity for use in a grid-connected installation. The <span style=\"color: rgb(0, 0, 0);\">inverter </span>supports a recommended maximum PV input power of 7.5kW and features a transformerless design. With support for three-phase grid connections, this Solis 5KW Inverter is suitable for solar installations that require a compatible three-phase grid-tied solution.</p><h3>Solar Panel Compatibility</h3><p>The Solis S5-GR3P5K 5KW Inverter has a rated AC output power of 5kW and a maximum output power of 5.5kW. It supports a recommended maximum solar PV input power of 7.5kW, allowing system designers to configure a suitable solar panel array. The maximum DC input voltage is 1100V, while the rated voltage is 600V. These specifications help installers assess whether the inverter matches the voltage and power requirements of the planned solar installation.</p><h3>Dual MPPT for Solar Input Management</h3><p>This Solis S5-GR3P5K has Dual MPPT Inverter features two maximum power point trackers (MPPTs) and supports two input strings for the 5KW model. Its MPPT voltage range is 160–1000V, allowing the inverter to manage solar input within the specified operating range. Proper panel configuration is important for matching the solar array to the inverter's electrical requirements. Installers should check the panel voltage, current, string arrangement, and total PV capacity before connecting the system.</p><h3>Three-Phase Grid-Tied Connection</h3><p>The Solis On-Grid Solar Inverter supports three-phase grid connections at 220/380V or 230/400V, with a rated grid frequency of 50Hz or 60Hz. It is designed for solar systems that operate in coordination with a compatible electricity grid. The inverter (S5-GR3P5K) also supports export power control, which can help manage electricity exported to the grid when the system is configured with the required equipment and settings. Grid compatibility and local installation requirements should be confirmed before setup.</p><h3>High Efficiency with Energy Monitoring</h3><p>The Solis S5-GR3P5K belongs to the S5-GR3P(5–20)K series, which lists maximum efficiency of up to 98.7%; the exact efficiency of the 5KW model should be confirmed from the applicable model-specific data. The series also supports 24-hour load consumption monitoring, helping users track energy use when the required monitoring setup is available. Adaptive weak-grid functionality is included to support operation under varying grid conditions.</p><h3>IP66 Rating for Protection</h3><p>This Solis 5KW Three Phase Inverter includes several protection functions, such as DC reverse-polarity protection, short-circuit protection, output overcurrent protection, insulation resistance monitoring, residual current detection, surge protection, grid monitoring, anti-islanding protection, and temperature protection. The<span style=\"font-weight: bold;\">&nbsp;SOLIS S5-GR3P5K inverter</span> has an IP66 ingress protection rating. Integrated AFCI 2.0 is listed as optional in the datasheet. These features help installers assess the inverter's protection provisions when designing a compatible solar system.</p><h3>LCD Display Options</h3><p>The inverter includes an LCD display for viewing system information. RS485 communication is supported, while Wi-Fi and GPRS connectivity are available through optional accessories listed in the datasheet. These communication options can support monitoring when the appropriate equipment is installed and configured. Buyers should confirm which accessories are included with the specific product package before purchasing.</p></div>",
+      "specs": {
+        "General Information": {
+          "Rated AC Output Power": "5kW",
+          "App Control": "Yes",
+          "Protection": "DC reverse-polarity protection Short circuit protection Output over current protection Insulation resistance monitoring Residual current detection Surge protection Grid monitoring Anti-islanding protection Temperature protection Multi peak scan Integrated AFCI 2.0 Integrated DC switch",
+          "Noise Level": "< 30 dB(A)",
+          "Others": "Topology: Transformerless Supports export power control > 150% DC/AC ratio Display: LCD THDi: < 2% DC injection current: < 0.5% In"
+        },
+        "Output": {
+          "AC Output": "Max. output power: 5.5 kW Max. apparent output power: 5.5 kVA Rated grid voltage: 3/N/PE, 220 V / 380 V, 230 V / 400 V Rated grid frequency: 50 Hz / 60 Hz Power Factor: >0.99 (0.8 leading - 0.8 lagging) THDi: <2%"
+        },
+        "Input (Charging)": {
+          "DC Input": "Recommended max. PV power: 7.5 kW Max. input voltage : 1100V Rated voltage: 600 V Start-up voltage: 180 V MPPT voltage range: 160 - 1000 V Max. input current: 16 A / 16 A Max. short-circuit current: 20 A / 20 A MPPT number / Max. input strings number: 2 / 2",
+          "Solar Input": "Yes"
+        },
+        "Environment": {
+          "Operating Temperature": "-25°C to +60°C"
+        },
+        "Physical Information": {
+          "Color": "White",
+          "Dimension": "310 × 563 × 219 mm",
+          "Weight": "Approx. 16.9 kg"
+        },
+        "Warranty Information": {
+          "Warranty": "5 Year Warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/solis-s5-gr3p5k-5kw-three-phase-solar-inverter",
+      "audit": {
+        "sourcePrice": 98000,
+        "sourceRegularPrice": 108000,
+        "calculatedPrice": 107800,
+        "calculatedOldPrice": 118800,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T08:55:18.130Z"
+      }
+    },
+    {
+      "id": "st-51942",
+      "title": "Gospower GPEX-12KH2 12kW Hybrid Solar Inverter",
+      "slug": "gospower-gpex-12kh2-12kw-hybrid-solar-inverter",
+      "price": 120890,
+      "oldPrice": 130350,
+      "discountPercentage": 7,
+      "category": "solar-inverter",
+      "categoryName": "SOLAR INVERTER",
+      "brand": "Gospower",
+      "productCode": "51942",
+      "stock": 10,
+      "image": "https://i.ibb.co/fVQV5wcb/Gospower-GPEX-12-KH2-12k-W-Hybri.webp",
+      "images": [
+        "https://i.ibb.co/fVQV5wcb/Gospower-GPEX-12-KH2-12k-W-Hybri.webp",
+        "https://i.ibb.co/mFJBc5Pp/Gospower-GPEX-12-KH2-12k-W-Hybri.webp",
+        "https://i.ibb.co/0p13KsWj/Gospower-GPEX-12-KH2-12k-W-Hybri.webp",
+        "https://i.ibb.co/4wp9P5KM/Gospower-GPEX-12-KH2-12k-W-Hybri.webp"
+      ],
+      "shortDescription": "Model: GPEX-12KH2\nRated Power: 12kW\nRated Output Current: 50A\nMax Charge/ Discharge Current: 75A\nConnectivity: WiFi, Bluetooth",
+      "keyFeatures": [
+        "Model: GPEX-12KH2",
+        "Rated Power: 12kW",
+        "Rated Output Current: 50A",
+        "Max Charge/ Discharge Current: 75A",
+        "Connectivity: WiFi, Bluetooth"
+      ],
+      "warranty": "3 years",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Gospower 12kW Hybrid Solar Inverter</h2>\n<p>The<strong> Gospower 12kW </strong>Hybrid Solar Inverter (GPEX‑12KH2) is a high‑capacity renewable energy solution engineered for households, businesses, and commercial setups that demand powerful performance and reliable solar integration. Supporting LiFePO4 batteries with a voltage range of 75–480V DC, this Gospower Hybrid Solar Inverter delivers a rated AC output of 12kW / 50A, ensuring stable power delivery for heavy loads. With surge handling up to 20kW and advanced protections including PV reverse connection, battery reverse connection, output short‑circuit protection, insulation impedance detection, residual current detection, and anti‑island protection, the Gospower Off Grid Solar Inverter guarantees safe and efficient operation in diverse environments.</p>\n<p>Engineered for maximum efficiency, the GosPower PV Inverter achieves up to 97% peak efficiency, 99.9% MPPT efficiency, and 96% battery charging/discharging efficiency, making it one of the most advanced hybrid inverters in its class. It supports a recommended PV input power of 20kW with four MPPTs, each capable of handling up to 5kW input power. With a maximum input current of 27A per MPPT and short‑circuit current of 40A, the Gospower 12kW Hybrid Solar Inverter ensures optimal solar harvesting across multiple panel configurations, providing flexibility and scalability for large installations.</p>\n<p>Connectivity and smart control are at the core of this Gospower Inverter. Equipped with Wi‑Fi, Bluetooth, RS485, and CAN communication, it allows seamless integration with battery management systems and smart monitoring apps. The LCD display provides real‑time performance data, while app control enables remote management for convenience and efficiency. With a switching time of just 10ms, the inverter ensures smooth transitions between on‑grid and off‑grid modes, maintaining uninterrupted power supply.</p>\n<p>Designed for durability, the Gospower 12kW Hybrid Solar Inverter features a Type 4X enclosure, natural cooling system, and reliable performance across extreme temperatures ranging from –22°F to +140°F, with no derating below 113°F. Combining robust build quality, advanced safety protections, and high efficiency, this inverter is the perfect solution for households and businesses aiming to reduce electricity costs, ensure backup power, and maximize solar output. Whether you need a Gospower Off Grid Solar Inverter or a smart GosPower PV Inverter, the GPEX‑12KH2 delivers innovation, sustainability, and long‑term reliability for modern energy systems.</p>\n\n</div>",
+      "specs": {
+        "General Information": {
+          "Battery Type": "LiFePO4",
+          "Rated AC Output Power": "12kW",
+          "Connectivity": "Wi-Fi; Bluetooth",
+          "App Control": "Yes",
+          "Protection": "IP65 Protection Grade DC switch PV reverse connection protection Battery reverse connection protection Output short-circuit protection Output overvoltage protection Insulation impedance detection Residual current detection Anti-island protection",
+          "Others": "Max Charge/Discharge Current: 75A Battery charging/discharging efficiency: 96% Peak Efficiency LCD Display."
+        },
+        "Physical Information": {
+          "Dimension": "840*680*200",
+          "Weight": "Net Weight: 58.5KG Gross Weight: 71KG"
+        },
+        "Warranty Information": {
+          "Warranty": "3 years"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/gospower-gpex-12kh2-12kw-hybrid-solar-inverter",
+      "audit": {
+        "sourcePrice": 109900,
+        "sourceRegularPrice": 118500,
+        "calculatedPrice": 120890,
+        "calculatedOldPrice": 130350,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T08:55:21.879Z"
+      }
+    },
+    {
+      "id": "st-51835",
+      "title": "Marsriva MR-SPF12K-LP1-TL20E 12kW Hybrid Solar Inverter",
+      "slug": "marsriva-mr-spf12k-lp1-tl20e-12kw-hybrid-solar-inverter",
+      "price": 130900,
+      "oldPrice": 169400,
+      "discountPercentage": 23,
+      "category": "solar-inverter",
+      "categoryName": "SOLAR INVERTER",
+      "brand": "MARSRIVA",
+      "productCode": "51835",
+      "stock": 10,
+      "image": "https://i.ibb.co/Y7WTqMXh/Marsriva-MR-SPF12-K-LP1-TL20-E-1.webp",
+      "images": [
+        "https://i.ibb.co/Y7WTqMXh/Marsriva-MR-SPF12-K-LP1-TL20-E-1.webp",
+        "https://i.ibb.co/Q75CPgwp/Marsriva-MR-SPF12-K-LP1-TL20-E-1.webp",
+        "https://i.ibb.co/Jjxqg81J/Marsriva-MR-SPF12-K-LP1-TL20-E-1.webp",
+        "https://i.ibb.co/XfWPz896/Marsriva-MR-SPF12-K-LP1-TL20-E-1.webp",
+        "https://i.ibb.co/2YLCBCyp/Marsriva-MR-SPF12-K-LP1-TL20-E-1.webp",
+        "https://i.ibb.co/VYLkdDvs/Marsriva-MR-SPF12-K-LP1-TL20-E-1.webp"
+      ],
+      "shortDescription": "Model: MR-SPF12K-LP1-TL20E\nRated Power: 12kVA / 12kW\nMPPT ranges 60V~450V, 500Voc\nParallel operation with 6 units, Built-in Wi-Fi\nInterface: BMS (RS485, CAN-BUS or RS232)",
+      "keyFeatures": [
+        "Model: MR-SPF12K-LP1-TL20E",
+        "Rated Power: 12kVA / 12kW",
+        "MPPT ranges 60V~450V, 500Voc",
+        "Parallel operation with 6 units, Built-in Wi-Fi",
+        "Interface: BMS (RS485, CAN-BUS or RS232)"
+      ],
+      "warranty": "2 years",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Marsriva MR-SPF12K-LP1-TL20E 12kW Hybrid Solar Inverter</h2>\n<p>The Marsriva <strong>MR-SPF12K-LP1-TL20E</strong> 12kW Hybrid Solar Inverter suitable for larger installations. It features a single-phase, high-frequency design with IP20 protection rating included. The Marsriva Hybrid Solar Inverter supports dual outputs, enabling smart load management across connected devices. Maximum PV input current reaches 27A, ensuring efficient solar energy conversion capacity. </p>\n<p>This Marsriva 12kW Hybrid Solar Inverter includes built-in Wi-Fi for convenient mobile monitoring through dedicated apps. RGB status lights provide clear, at-a-glance system status indication for users. The Marsriva Solar Inverter supports USB On-the-Go functionality alongside reserved BMS communication ports. It works with RS485, CAN-BUS, or RS232 protocols for flexible battery management. </p>\n<p>This inverter features a replaceable fan design, simplifying long-term maintenance and servicing tasks. Battery independent design allows flexible configuration across different battery types and setups. The Marsriva MR-SPF12K-LP1-TL20E 12kW Solar Inverter offers selectable high power charging current options. It remains compatible with utility mains or generator input for backup flexibility. </p>\n<p>Built-in anti-dust protection extends the unit's operational lifespan in demanding environments. Optional DC output supports DC fans, LED bulbs, and similar low-power devices. This Marsriva MR-SPF12K-LP1-TL20E 12kW Hybrid Solar Inverter supports parallel operation with up to six units simultaneously. Output voltage regulates at 230VAC with pure sine wave output for stability. </p>\n<p>Peak efficiency reaches 95% in line mode and 93% in inverter mode. Battery nominal voltage runs at 48VDC, with overcharge protection at 63VDC. Maximum PV array power reaches 15000W, supporting substantial solar panel configurations effectively. This Marsriva 12kW Solar Inverter suits residential and commercial solar installations requiring dependable performance.</p>\n\n</div>",
+      "specs": {
+        "General Information": {
+          "Battery Type": "Lead-acid / Lithium / User-defined",
+          "Rated AC Output Power": "12kVA / 12kW",
+          "AC Peak/ Surge Output Power": "24000VA",
+          "UPS Transfer Time": "10ms (For PC); 20ms (For Home Appliances)",
+          "Connectivity": "USB, RS232, BMS(485,CAN), WiFi Module, Dry-contact",
+          "Protection": "63VDC Overcharge Protection",
+          "Others": "Dual outputs, for smart load management ​​​​​​​Status indication with RGB lights ​​​​​​​Built-in Wi-Fi for mobile monitoring (Android/iOS App available) ​​​​​​​Supports USB On-the-Go function ​​​​​​​Replaceable fan design for ease of maintenance ​​​​​​​Battery independent design ​​​​​​​Selectable high power charging current ​​​​​​​Compatible to Utility Mains or generator input ​​​​​​​Built-in anti-dust kit ​​​​​​​Optional DC output for DC fan, LED bulb and so on Parallel operation with 6 units"
+        },
+        "Output": {
+          "AC Output": "230VAC ± 5% Nominal Output Frequency: 50Hz / 60Hz",
+          "DC Output": "12VDC ± 5%, 100W",
+          "Output Waveform": "Pure sine wave",
+          "Others": "Surge Power: 2 times of rated power Peak Efficiency: 95% at Line mode, 93% at Inverter mode"
+        },
+        "Input (Charging)": {
+          "AC Input": "230VAC (Nominal) 170 – 280VAC (For PC); 90 – 280VAC (For Home Appliances) (Selectable)",
+          "Solar Input": "Max. PV Array Open Circuit Voltage: 500VDC Max. PV Input Current: 27A*2 (MAX. 45A)",
+          "Grid/ Wall Input": "200A"
+        },
+        "Physical Information": {
+          "Dimension": "147.4 × 432.5 × 553.6mm (W x H x D)",
+          "Weight": "18.4 kg"
+        },
+        "Warranty Information": {
+          "Warranty": "2 years"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/marsriva-mr-spf12k-lp1-tl20e-12kw-hybrid-solar-inverter",
+      "audit": {
+        "sourcePrice": 119000,
+        "sourceRegularPrice": 154000,
+        "calculatedPrice": 130900,
+        "calculatedOldPrice": 169400,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T08:55:26.902Z"
+      }
+    },
+    {
+      "id": "st-53669",
+      "title": "Solis S6-EH1P5K-L-PLUS 5kW Single Phase Hybrid Solar Inverter",
+      "slug": "solis-s6-eh1p5k-l-plus-solar-inverter",
+      "price": 132000,
+      "oldPrice": 137500,
+      "discountPercentage": 4,
+      "category": "solar-inverter",
+      "categoryName": "SOLAR INVERTER",
+      "brand": "Solis",
+      "productCode": "53669",
+      "stock": 10,
+      "image": "https://i.ibb.co/8L6V2nFK/Solis-S6-EH1-P3-K-L-PLUS-3k-W-Sin.webp",
+      "images": [
+        "https://i.ibb.co/8L6V2nFK/Solis-S6-EH1-P3-K-L-PLUS-3k-W-Sin.webp",
+        "https://i.ibb.co/Xk57gg9s/Solis-S6-EH1-P3-K-L-PLUS-3k-W-Sin.webp",
+        "https://i.ibb.co/WNshkBWZ/Solis-S6-EH1-P3-K-L-PLUS-3k-W-Sin.webp",
+        "https://i.ibb.co/HDnGsXgP/Solis-S6-EH1-P3-K-L-PLUS-3k-W-Sin.webp",
+        "https://i.ibb.co/m5Snc8T6/Solis-S6-EH1-P3-K-L-PLUS-3k-W-Sin.webp"
+      ],
+      "shortDescription": "Model: S6-EH1P5K-L-PLUS\nRated Power: 5kW, Rated Current: 22.8 A / 21.8 A\nNumber of MPPTs: 2/2, Max. efficiency: 96.2%\nBattery Type: Li-ion / Lead-acid, Wave Form: Pure sine wave\nNatural Convection Cooling, IP66 Ingress Protection",
+      "keyFeatures": [
+        "Model: S6-EH1P5K-L-PLUS",
+        "Rated Power: 5kW, Rated Current: 22.8 A / 21.8 A",
+        "Number of MPPTs: 2/2, Max. efficiency: 96.2%",
+        "Battery Type: Li-ion / Lead-acid, Wave Form: Pure sine wave",
+        "Natural Convection Cooling, IP66 Ingress Protection"
+      ],
+      "warranty": "5 Year Warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Solis S6-EH1P5K-L-PLUS 5kW Single Phase Hybrid Solar Inverter</h2><p>The <span style=\"font-weight: bold;\">Solis S6-EH1P5K-L-PLUS</span> 5kW Single Phase Hybrid Solar Inverter combines solar, battery, and grid power in one compact unit. It delivers 5kW rated AC output power and 5kVA maximum apparent power to your loads. Output voltage is 220V or 230V, which suits standard household appliances. The grid input voltage range runs from 187 to 253 V. This low voltage inverter fits residential solar systems and small commercial setups. Net metering compatibility lets you send surplus power back to the grid, while energy storage keeps extra energy ready for later use.</p><p>Dual MPPT solar input lets you split panels across two roof sections. The Solis S6-EH1P5K-L-PLUS Hybrid Solar Inverter suits a recommended PV array size of 10kW and uses up to 8kW of that solar power at once. Each tracker works across a 90 to 435 V range. Start-up needs only 90 V, so production begins even in weak light. Each input handles 16 A, with a 20 A short circuit limit. A 96.2% maximum efficiency keeps conversion losses low and saves more of your solar energy.</p><p>Li-ion and lead-acid battery support gives you freedom to choose the storage that fits your budget. The Solis S6-EH1P5K-L-PLUS Hybrid Solar Inverter switches to backup in under 4 ms, so lights and devices keep running without a noticeable break. This backup power inverter delivers 5 kW of rated output during outages and supplies twice the rated power for 10 seconds. Pure sine wave output protects sensitive electronics, with THDv below 2% on linear loads. Battery charging reaches 95.3% efficiency from solar and 93.9% from AC. Discharging to AC reaches 93.8% efficiency, so stored energy goes further.</p><p>IP66 ingress protection keeps out dust and strong water jets, making installation reliable indoors or outdoors. Natural convection cooling keeps noise below 65 dB(A). The inverter operates from -25°C to +60°C, which suits varied climates. The Solis S6-EH1P5K-L-PLUS Hybrid Solar Inverter weighs approximately 23kg, so handling stays manageable. Grid output quality stays high, with power factor above 0.99 and THDi under 2%. Maximum AC passthrough current is 40 A for connected loads. App control and real-time energy monitoring let you track system performance from your phone.</p></div>",
+      "specs": {
+        "General Information": {
+          "Battery Type": "Li-ion / Lead-acid",
+          "Rated AC Output Power": "5kW / 5kVA",
+          "UPS Transfer Time": "<4 ms",
+          "App Control": "Yes",
+          "Protection": "Ingress protection IP66",
+          "Noise Level": "< 65 dB(A)",
+          "Others": "Supports Energy Storage & Real-Time Monitoring Ideal for Residential & Small Commercial Solar Systems Net Metering Compatible Low Voltage Inverter"
+        },
+        "Output": {
+          "AC Output": "220V / 230V Rated output power: 5 kW Max. apparent output power: 5 kVA",
+          "Output Waveform": "Pure sine wave",
+          "Others": "AC Output (Grid) Rated output power: 5 kW Max. apparent output power: 5 kVA Operation phase: L/N/PE Rated grid voltage: 220V / 230V Rated grid frequency: 50Hz / 60Hz Rated output current: 22.8 A / 21.8 A Max. output current: 22.8 A / 21.8 A Power factor: >0.99 (0.8 lead–0.8 lag) THDi: <2%"
+        },
+        "Input (Charging)": {
+          "AC Input": "187–253 V",
+          "DC Input": "10 kW",
+          "Others": "PV (DC) Input Recommended Max. PV array size: 10 kW Max. usable PV input power: 8 kW Max. input voltage: 500 V Rated voltage: 330 V Start-up voltage: 90 V MPPT voltage range: 90–435 V Max. input current: 16 A / 16 A Max. short circuit current: 20 A / 20 A MPPT trackers / strings: 2 / 2 AC Input (Grid) Input voltage range: 187–253 V Max. input current: 32 A Frequency range: 45–55 Hz / 55–65 Hz AC Output (Backup) Rated output power: 5 kW Max. apparent output power: 2× rated (10s) Backup switch time: <4 ms Rated output voltage: 220V / 230V Rated output frequency: 50Hz / 60Hz Rated output current: 22.8 A / 21.8 A Max. AC passthrough current: 40 A THDv (@linear load): <2% Efficiency Max. efficiency: 96.2% European efficiency: 96.1% Battery charged by PV/AC efficiency: 95.3% / 93.9% Battery discharged to AC efficiency: 93.8%"
+        },
+        "Environment": {
+          "Operating Temperature": "-25°C to +60°C"
+        },
+        "Physical Information": {
+          "Color": "White",
+          "Dimension": "335 × 560 × 253 mm",
+          "Weight": "Approx. 23kg"
+        },
+        "Warranty Information": {
+          "Warranty": "5 Year Warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/solis-s6-eh1p5k-l-plus-solar-inverter",
+      "audit": {
+        "sourcePrice": 120000,
+        "sourceRegularPrice": 125000,
+        "calculatedPrice": 132000,
+        "calculatedOldPrice": 137500,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T08:55:28.301Z"
+      }
+    },
+    {
+      "id": "st-53645",
+      "title": "Solis S5-GR3P10K 10KW Three Phase ON-Grid Solar Inverter",
+      "slug": "solis-s5-gr3p10k-10kw-solar-inverter",
+      "price": 134200,
+      "oldPrice": 143000,
+      "discountPercentage": 6,
+      "category": "solar-inverter",
+      "categoryName": "SOLAR INVERTER",
+      "brand": "Solis",
+      "productCode": "53645",
+      "stock": 10,
+      "image": "https://i.ibb.co/1tJDGYwY/Solis-S5-GR3-P5-K-5-KW-Three-Phas.webp",
+      "images": [
+        "https://i.ibb.co/1tJDGYwY/Solis-S5-GR3-P5-K-5-KW-Three-Phas.webp",
+        "https://i.ibb.co/Pv5h8Y9T/Solis-S5-GR3-P5-K-5-KW-Three-Phas.webp",
+        "https://i.ibb.co/1f98fLJ0/Solis-S5-GR3-P5-K-5-KW-Three-Phas.webp",
+        "https://i.ibb.co/wrZBmGKM/Solis-S5-GR3-P5-K-5-KW-Three-Phas.webp",
+        "https://i.ibb.co/JjcTjwk8/Solis-S5-GR3-P5-K-5-KW-Three-Phas.webp"
+      ],
+      "shortDescription": "Model: S5-GR3P10K\nRated Output Power: 10kW AC, Max. Efficiency: 98.5%\nInverter type: 3-Phase Grid-Tied\nMax. input voltage: 1100 V DC, Max. input current: 16 A/16 A DC\nProtection: IP66, AFCI, DC reverse polarity, Short circuit, MC4 DC Connector",
+      "keyFeatures": [
+        "Model: S5-GR3P10K",
+        "Rated Output Power: 10kW AC, Max. Efficiency: 98.5%",
+        "Inverter type: 3-Phase Grid-Tied",
+        "Max. input voltage: 1100 V DC, Max. input current: 16 A/16 A DC",
+        "Protection: IP66, AFCI, DC reverse polarity, Short circuit, MC4 DC Connector"
+      ],
+      "warranty": "5 Year Warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Solis S5-GR3P10K 10KW Three Phase ON-Grid Solar Inverter</h2><p>The <span style=\"font-weight: bold;\">SOLIS S5-GR3P10K</span> 10KW Three Phase ON-Grid Solar Inverter is designed for solar power systems connected to a compatible three-phase electricity grid. It converts DC electricity generated by solar panels into AC electricity for grid-connected use. With a rated output power of 10kW and a recommended maximum PV input power of 15kW, this Solis 10KW Inverter supports solar system configurations designed around its electrical specifications. Its transformerless design and dual MPPT system provide key features for compatible residential, commercial, and other three-phase solar installations.</p><h3>Solar Panel Compatibility</h3><p>The Solis S5-GR3P10K Inverter provides 10kW of rated AC output power, with maximum output power of 11kW and maximum apparent output power of 11kVA. It supports a recommended maximum solar PV input power of 15kW. The inverter has a maximum DC input voltage of 1100V and a rated DC voltage of 600V. Its start-up voltage is 180V, allowing installers to assess the solar array's electrical requirements when planning a compatible system.</p><h3>Dual MPPT Technology for Solar Input</h3><p>This Solis Dual MPPT Inverter features two maximum power point trackers (MPPTs) and supports two input strings for the 10KW model. Its MPPT voltage range is 160–1000V, while the maximum input current is 16A per input. These specifications help installers plan the solar panel arrangement and manage the electrical input within the inverter's limits. The panel string voltage, current, and total PV capacity should be checked before installation to ensure compatibility.</p><h3>Three-Phase Grid-Tied Solar Connection</h3><p>The Solis 10KW Three Phase Inverter supports three-phase grid connections at 220/380V or 230/400V, with a rated grid frequency of 50Hz or 60Hz. It is designed for on-grid solar systems that operate alongside a compatible electricity grid. The inverter also supports export power control, which can help manage electricity exported to the grid when the required equipment and settings are configured. Confirm local grid requirements and connection standards before installation.</p><h3>High Efficiency with Energy Monitoring</h3><p>The Solis S5-GR3P10K Solar Inverter offers maximum conversion efficiency of up to 98.5% for this model. Higher conversion efficiency helps reduce energy losses during the conversion of solar DC power into AC power. The series also supports 24-hour load consumption monitoring and adaptive weak-grid functionality. Monitoring availability depends on the system configuration and required communication equipment.</p><h3>IP66 Rating for Protection</h3><p>This Solis On-Grid Solar Inverter has an IP66 ingress protection rating. Its listed protection functions include DC reverse-polarity protection, short-circuit protection, output overcurrent protection, insulation resistance monitoring, residual current detection, surge protection, grid monitoring, anti-islanding protection, and temperature protection. The datasheet lists integrated AFCI 2.0 as optional. These features support system protection, while correct installation and configuration remain essential for safe operation.</p><h3>Operating Conditions</h3><p>The Solis S5-GR3P10K measures 310 × 563 × 219mm and uses a transformerless topology. The datasheet specifies an operating ambient temperature range of -25°C to +60°C, relative humidity of 0–100%, and a maximum operating altitude of 4000 metres. Night-time self-consumption is listed as less than 1W. Installers should consider the mounting location, ventilation, electrical connections, and environmental conditions when planning the installation./p&gt;</p></div>",
+      "specs": {
+        "General Information": {
+          "Rated AC Output Power": "10kW",
+          "App Control": "Yes",
+          "Protection": "DC reverse-polarity protection Short circuit protection Output over current protection Insulation resistance monitoring Residual current detection Surge protection Grid monitoring Anti-islanding protection Temperature protection Multi peak scan Integrated AFCI 2.0 Integrated DC switch",
+          "Noise Level": "< 30 dB(A)",
+          "Others": "Topology: Transformerless Supports export power control > 150% DC/AC ratio Display: LCD THDi: < 2% DC injection current: < 0.5% In"
+        },
+        "Output": {
+          "AC Output": "Max. output power: 11 kW Max. apparent output power: 11 kVA Rated grid voltage: 3/N/PE, 220 V / 380 V, 230 V / 400 V Rated grid frequency: 50 Hz / 60 Hz Power Factor: >0.99 (0.8 leading - 0.8 lagging) THDi: <2% DC injection current : < 0.5% In"
+        },
+        "Input (Charging)": {
+          "DC Input": "Recommended max. PV power: 15 kW Max. input voltage : 1100V Rated voltage: 600 V Start-up voltage: 180 V MPPT voltage range: 160 - 1000 V Max. input current: 16 A / 16 A Max. short-circuit current: 20 A / 20 A MPPT number / Max. input strings number: 2 / 2",
+          "Solar Input": "Yes"
+        },
+        "Environment": {
+          "Operating Temperature": "-25°C to +60°C"
+        },
+        "Physical Information": {
+          "Color": "White",
+          "Dimension": "310 × 563 × 219 mm",
+          "Weight": "Approx. 18 kg"
+        },
+        "Warranty Information": {
+          "Warranty": "5 Year Warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/solis-s5-gr3p10k-10kw-solar-inverter",
+      "audit": {
+        "sourcePrice": 122000,
+        "sourceRegularPrice": 130000,
+        "calculatedPrice": 134200,
+        "calculatedOldPrice": 143000,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T08:55:29.737Z"
+      }
+    },
+    {
+      "id": "st-53791",
+      "title": "Solis S6-EH1P6K-L-PLUS 6kW Single Phase Hybrid Solar Inverter",
+      "slug": "solis-s6-eh1p6k-l-plus-6kw-hybrid-solar-inverter",
+      "price": 148500,
+      "oldPrice": 160600,
+      "discountPercentage": 8,
+      "category": "solar-inverter",
+      "categoryName": "SOLAR INVERTER",
+      "brand": "Solis",
+      "productCode": "53791",
+      "stock": 10,
+      "image": "https://i.ibb.co/8L6V2nFK/Solis-S6-EH1-P3-K-L-PLUS-3k-W-Sin.webp",
+      "images": [
+        "https://i.ibb.co/8L6V2nFK/Solis-S6-EH1-P3-K-L-PLUS-3k-W-Sin.webp",
+        "https://i.ibb.co/Xk57gg9s/Solis-S6-EH1-P3-K-L-PLUS-3k-W-Sin.webp",
+        "https://i.ibb.co/WNshkBWZ/Solis-S6-EH1-P3-K-L-PLUS-3k-W-Sin.webp",
+        "https://i.ibb.co/HDnGsXgP/Solis-S6-EH1-P3-K-L-PLUS-3k-W-Sin.webp",
+        "https://i.ibb.co/m5Snc8T6/Solis-S6-EH1-P3-K-L-PLUS-3k-W-Sin.webp"
+      ],
+      "shortDescription": "Model: S6-EH1P6K-L-PLUS\nInverter type: Single-Phase, Low Voltage Hybrid\nRated Output Power: 6kW, Max. Efficiency: 96.2%\nMax. input voltage: 500V DC(PV Side), Max. input current: 16 A/16 A DC(PV Side)\nProtection: IP66, Anti-islanding, DC reverse polarity, Integrated AFCI 2.0",
+      "keyFeatures": [
+        "Model: S6-EH1P6K-L-PLUS",
+        "Inverter type: Single-Phase, Low Voltage Hybrid",
+        "Rated Output Power: 6kW, Max. Efficiency: 96.2%",
+        "Max. input voltage: 500V DC(PV Side), Max. input current: 16 A/16 A DC(PV Side)",
+        "Protection: IP66, Anti-islanding, DC reverse polarity, Integrated AFCI 2.0"
+      ],
+      "warranty": "5 Year Warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Solis S6-EH1P6K-L-PLUS 6kW Single Phase Hybrid Solar Inverter</h2><p>The <strong>Solis S6-EH1P6K-L-PLUS 6kW Single Phase Hybrid Solar Inverter</strong> offers efficient energy management for residential and commercial solar installations. This Solar inverter features a rated output power of 6kW and maximum efficiency of 96.2%. Its low-voltage hybrid design supports solar generation, battery storage, and grid connectivity. With IP66 protection, it operates in temperatures ranging from -25°C to +60°C.</p><h3>Advanced Solar Input and Battery Support</h3><p>The Solis S6-EH1P6K-L-PLUS supports a recommended maximum PV array size of 12kW and usable PV input power of 9.6kW. It features a maximum DC input voltage of 500V and dual 16A input channels. Battery compatibility includes lithium-ion and lead-acid types, with a voltage range of 40–60V. Its maximum battery charging and discharging power is 6kW, making it suitable for systems requiring a 6kW solar inverter battery interface.</p><h3>Intelligent Monitoring and Safety Features</h3><p>Users can monitor system performance through the 7-inch LCD, Bluetooth, and mobile application. The Solis S6-EH1P6K-L-PLUS includes integrated AFCI 2.0, anti-islanding protection, and DC reverse polarity protection. Its RS485 and CAN communication interfaces support compatible battery and system connections. The inverter also features MC4 solar connectors and terminal block connections for battery and AC wiring.</p><h3>Reliable Backup and Grid Connectivity</h3><p>This Single phase inverter delivers 6kW rated AC output at 220V or 230V. Its backup switching time is under 10 milliseconds, supporting rapid transitions during grid interruptions. Generator input supports up to 6kW, providing another energy source when required. Measuring 335 × 560 × 253mm and weighing approximately 23kg, the Solis S6-EH1P6K-L-PLUS hybrid inverter offers advanced energy control and backup functionality.</p></div>",
+      "specs": {
+        "General Information": {
+          "App Control": "Yes",
+          "Protection": "Ingress protection IP66",
+          "Noise Level": "< 65 dB(A)",
+          "Others": "Display: 7.0\" LCD & Bluetooth + APP DC connection: MC4 plug (PV port) / Terminal Block (BAT port) AC connection: Terminal Block Communication interface: Standard: RS485, CAN"
+        },
+        "Output": {
+          "AC Output": "Output AC (Grid side) Rated output power: 6kW Rated grid voltage: 220 V / 230 V Rated grid output current: 27.3 A / 26.1 A Output AC (Back-up) Rated output power: 6 kW Back-up switch time: < 10 ms Rated output voltage: L/N/PE, 220 V / 230 V"
+        },
+        "Input (Charging)": {
+          "AC Input": "Input AC (Grid side) Input voltage range: 187 - 253 V Max. input current: 40 A Frequency range: 45 - 55 Hz / 55 - 65 Hz",
+          "DC Input": "Supported Battery type: Li-ion / Lead-acid Battery voltage range: 40 - 60 V Max. charge / discharge power: 6 kW Max. charge / discharge current: 135 A Communication: CAN / RS485",
+          "Solar Input": "Input (PV Side) Recommended max. PV array size: 12 kW Max. usable PV input power: 9.6 kW Max. input voltage: 500 V Rated voltage: 330 V Start-up voltage: 90 V MPPT voltage range: 90 - 435 V Max. current input: 16 A / 16 A",
+          "Generator Input": "Input AC (Generator side) Max. input power: 6 kW Max. input current: 27.3 A / 26.1 A Rated input frequency: 50 Hz / 60 Hz"
+        },
+        "Environment": {
+          "Operating Temperature": "-25°C to +60°C"
+        },
+        "Physical Information": {
+          "Color": "White",
+          "Dimension": "335 × 560 × 253 mm",
+          "Weight": "Approx. 23 kg"
+        },
+        "Warranty Information": {
+          "Warranty": "5 Year Warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/solis-s6-eh1p6k-l-plus-6kw-hybrid-solar-inverter",
+      "audit": {
+        "sourcePrice": 135000,
+        "sourceRegularPrice": 146000,
+        "calculatedPrice": 148500,
+        "calculatedOldPrice": 160600,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T08:55:31.171Z"
+      }
+    },
+    {
+      "id": "st-54090",
+      "title": "Growatt SPE 12000 ES 12KW ON -Grid Hybrid Solar Inverter",
+      "slug": "growatt-spe-12000-es-12kw-solar-inverter",
+      "price": 148500,
+      "oldPrice": 156200,
+      "discountPercentage": 5,
+      "category": "solar-inverter",
+      "categoryName": "SOLAR INVERTER",
+      "brand": "Growatt",
+      "productCode": "54090",
+      "stock": 10,
+      "image": "https://i.ibb.co/FbsMbFTS/Growatt-SPE-12000-ES-12-KW-ON.webp",
+      "images": [
+        "https://i.ibb.co/FbsMbFTS/Growatt-SPE-12000-ES-12-KW-ON.webp"
+      ],
+      "shortDescription": "Model: SPE 12000 ES\nInverter type: ON -Grid Hybrid Solar Inverter\nRated Output Power: 12kW, Max. Efficiency: 96.5%\nMPP Voltage Range: 480V DC, Max. Input Current Per MPP Tracker: 27A\nDual MPP Trackers, Dual Outputs for Smart Load Management",
+      "keyFeatures": [
+        "Model: SPE 12000 ES",
+        "Inverter type: ON -Grid Hybrid Solar Inverter",
+        "Rated Output Power: 12kW, Max. Efficiency: 96.5%",
+        "MPP Voltage Range: 480V DC, Max. Input Current Per MPP Tracker: 27A",
+        "Dual MPP Trackers, Dual Outputs for Smart Load Management"
+      ],
+      "warranty": "2 Year Warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Growatt SPE 12000 ES 12KW ON -Grid Hybrid Solar Inverter</h2><p>The <span style=\"font-weight: bold;\">Growatt SPE 12000 ES</span> is a 12KW hybrid solar inverter that delivers 12000W of rated output with up to 96.5% maximum efficiency. It uses dual MPP trackers, so you can connect two separate solar arrays and harvest more energy from your roof. Dual outputs give you smart load management, which keeps your essential appliances running first. This Growatt hybrid inverter supports both lithium and lead-acid batteries, so you can choose the storage that suits your budget. You can monitor your system through built-in WiFi or 4G connectivity, which lets you check performance from anywhere. The transformerless design keeps the unit compact and reduces internal losses. The inverter works as a pure sine wave inverter, so it runs sensitive electronics safely. It suits large homes, shops, and small businesses that want reliable solar power with battery backup.</p><h3>12KW Hybrid Inverter with Dual MPPT Solar Input</h3><p>This Growatt SPE 12000 ES MPPT solar inverter accepts up to 15000W of recommended PV power, which gives you room to build a large solar array. It has two MPP trackers with one PV string each, so you can mix panel orientations on different roof sections. Each tracker handles a maximum input current of 27A, which supports modern high-output panels. The start voltage is 120V and the MPP voltage range is 60V to 450V, so the inverter begins working early in the morning. The maximum DC voltage of 550V gives you flexibility when you design your strings.</p><h3>48V Solar Inverter with Battery and UPS Backup</h3><p>This Growatt SPE 12000 ES solar inverter works with a nominal battery voltage of 48V, which matches the most common home battery banks. It supports a maximum charging current of 250A and a discharging current of 280A, so your battery charges quickly and powers heavy loads. The UPS transfer time is under 20ms in single mode and under 30ms in parallel mode, so your lights and devices keep running during an outage. The backup output delivers 12000W at 230V and 50/60Hz, which covers air conditioners, pumps, and other large appliances. The AC output current is 52.2A, so the inverter supplies steady power to your whole load. An adjustable power factor from 0.8 leading to 0.8 lagging helps you match different grid requirements.</p><h3>On-Grid Solar Inverter with High-Efficiency Performance</h3><p>This Growatt SPE 12000 ES&nbsp;Solar Inverter feeds extra solar power to the grid and lowers your electricity bill. The maximum AC apparent power is 12000VA, so the unit handles peak demand without strain. Total harmonic distortion stays below 5%, which gives you clean and stable power for your equipment. Self-consumption stays under 75W, so more of your solar energy reaches your loads. The DC fan cools the unit, and typical noise stays below 75dB during operation. The IP20 protection rating suits indoor installation, and the inverter works in humidity from 5% to 95% at altitudes below 2000m.</p></div>",
+      "specs": {
+        "General Information": {
+          "Battery Type": "Supports Lithium/Lead-acid",
+          "Rated AC Output Power": "12000W max.",
+          "UPS Transfer Time": "<20ms@Single <30ms@Parallel",
+          "Others": "Battery data (DC) Nominal DC voltage: 48V Max charging and discharging current: 250A/280A Backup power (AC) AC nominal output power: 12000W Nominal AC output voltage: 230V Nominal AC output frequency: 50/60Hz Cooling: DC fan Protection degree: IP20 Relative humidity: 5%~95% non-considering Altitude: ＜2000m Communication: WiFi/4G Noise emission (typical): ＜75dB Self-consumption: < 75W Topology: Tranformerless"
+        },
+        "Output": {
+          "AC Output": "AC nominal power: 12000W Max. AC apparent power: 12000VA Nominal AC voltage: 230V AC grid frequency: 50/60Hz Output current: 52.2A Adjustable power factor: 0.8leading…0.8lagging THDi: < 5%",
+          "Output Waveform": "Pure Sine Wave"
+        },
+        "Input (Charging)": {
+          "DC Input": "Max. recommended PV power (for module STC): 15000W Start voltage: 120V Max. DC voltage: 550V MPP voltage range: 60V-450V No. of MPP trackers: 2 No. of PV strings per MPP tracker: 1 Max. input current per MPP tracker: 27A"
+        },
+        "Environment": {
+          "Operating Temperature": "-20°C to +50°C"
+        },
+        "Physical Information": {
+          "Color": "White",
+          "Dimension": "550 × 465 × 150mm",
+          "Weight": "Approx. 21.5 kg"
+        },
+        "Warranty Information": {
+          "Warranty": "2 Year Warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/growatt-spe-12000-es-12kw-solar-inverter",
+      "audit": {
+        "sourcePrice": 135000,
+        "sourceRegularPrice": 142000,
+        "calculatedPrice": 148500,
+        "calculatedOldPrice": 156200,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T08:55:33.570Z"
+      }
+    },
+    {
+      "id": "st-53873",
+      "title": "Solis S5-GR3P15K 15kW Three Phase ON-Grid Solar Inverter",
+      "slug": "solis-s5-gr3p15k-15kw-solar-inverter",
+      "price": 169400,
+      "oldPrice": 185900,
+      "discountPercentage": 9,
+      "category": "solar-inverter",
+      "categoryName": "SOLAR INVERTER",
+      "brand": "Solis",
+      "productCode": "53873",
+      "stock": 10,
+      "image": "https://i.ibb.co/1tJDGYwY/Solis-S5-GR3-P5-K-5-KW-Three-Phas.webp",
+      "images": [
+        "https://i.ibb.co/1tJDGYwY/Solis-S5-GR3-P5-K-5-KW-Three-Phas.webp",
+        "https://i.ibb.co/Pv5h8Y9T/Solis-S5-GR3-P5-K-5-KW-Three-Phas.webp",
+        "https://i.ibb.co/1f98fLJ0/Solis-S5-GR3-P5-K-5-KW-Three-Phas.webp",
+        "https://i.ibb.co/wrZBmGKM/Solis-S5-GR3-P5-K-5-KW-Three-Phas.webp",
+        "https://i.ibb.co/JjcTjwk8/Solis-S5-GR3-P5-K-5-KW-Three-Phas.webp"
+      ],
+      "shortDescription": "Model: S5-GR3P15K\nRated Output Power: 15 kW AC, Max. Efficiency: 98.6%\nInverter type: 3-Phase Grid-Tied\nMax. input voltage: 1100V DC, Max. input current: 32A/32A DC\nProtection: IP66, AFCI, DC reverse polarity, Short circuit, MC4 DC Connector",
+      "keyFeatures": [
+        "Model: S5-GR3P15K",
+        "Rated Output Power: 15 kW AC, Max. Efficiency: 98.6%",
+        "Inverter type: 3-Phase Grid-Tied",
+        "Max. input voltage: 1100V DC, Max. input current: 32A/32A DC",
+        "Protection: IP66, AFCI, DC reverse polarity, Short circuit, MC4 DC Connector"
+      ],
+      "warranty": "5 Year Warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Solis S5-GR3P15K 15kW Three Phase ON-Grid Solar Inverter</h2><p>The <strong>Solis S5-GR3P15K 15kW Three Phase ON-Grid Solar Inverter</strong> is a high-performance solar inverter designed for three-phase, grid-connected solar power systems. With a rated AC output of 15kW and maximum efficiency of 98.6%, it supports efficient energy conversion. This On-Grid solar inverter accommodates up to 22.5kW of recommended solar panel capacity, supporting effective energy generation for residential and commercial installations.</p><p>Featuring a maximum DC input voltage of 1100V and input current of 32A per input, the Solis S5-GR3P15K supports flexible solar system configurations. Its two MPPTs accommodate up to four input strings for improved energy harvesting. The 160–1000V MPPT voltage range and multi-peak scanning help optimize solar power generation under changing conditions. This 15kW solar inverter also supports export power control.</p><p>The Solis S5-GR3P15K includes comprehensive safety features for reliable system operation. Integrated AFCI 2.0, DC reverse-polarity protection, short-circuit protection, surge protection, and anti-islanding protection help safeguard the installation. Its IP66-rated enclosure offers protection against dust and water exposure. App-based monitoring, an LCD display, and an integrated DC switch support convenient system management. Noise levels remain below 30 dB(A).</p><p>Designed with transformerless topology, the Solis S5-GR3P15K delivers a maximum AC output of 16.5kW and a power factor above 0.99 under specified conditions. Its low total harmonic distortion of below 2% supports quality power delivery. Operating temperatures range from -25°C to +60°C. Measuring 310 × 563 × 219mm and weighing approximately 18kg, this three phase solar inverter suits installations requiring efficient grid-connected performance and advanced protection features.</p></div>",
+      "specs": {
+        "General Information": {
+          "Rated AC Output Power": "15kW",
+          "App Control": "Yes",
+          "Protection": "DC reverse-polarity protection Short circuit protection Output over current protection Insulation resistance monitoring Residual current detection Surge protection Grid monitoring Anti-islanding protection Temperature protection Multi peak scan Integrated AFCI 2.0 Integrated DC switch",
+          "Noise Level": "< 30 dB(A)",
+          "Others": "Topology: Transformerless Supports export power control > 150% DC/AC ratio Display: LCD THDi: < 2% DC injection current: < 0.5% In"
+        },
+        "Output": {
+          "AC Output": "Max. output power: 16.5 kW Max. apparent output power: 16.5 kVA Rated grid voltage: 3/N/PE, 220 V / 380 V, 230 V / 400 V Rated grid frequency: 50 Hz / 60 Hz Power Factor: >0.99 (0.8 leading - 0.8 lagging) THDi: <2% DC injection current : < 0.5% In"
+        },
+        "Input (Charging)": {
+          "DC Input": "Recommended max. PV power: 22.5 kW Max. input voltage: 1100 V Rated voltage: 600 V Start-up voltage: 180 V MPPT voltage range: 160 - 1000 V Max. input current: 32 A / 32 A Max. short-circuit current: 40 A / 40 A MPPT number / Max. input strings number: 2/4",
+          "Solar Input": "Yes Recommended max. PV power: 22.5 kW"
+        },
+        "Environment": {
+          "Operating Temperature": "-25°C to +60°C"
+        },
+        "Physical Information": {
+          "Color": "White",
+          "Dimension": "310 × 563 × 219 mm",
+          "Weight": "Approx. 18 kg"
+        },
+        "Warranty Information": {
+          "Warranty": "5 Year Warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/solis-s5-gr3p15k-15kw-solar-inverter ",
+      "audit": {
+        "sourcePrice": 154000,
+        "sourceRegularPrice": 169000,
+        "calculatedPrice": 169400,
+        "calculatedOldPrice": 185900,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T08:55:34.984Z"
+      }
+    },
+    {
+      "id": "st-53823",
+      "title": "Solis S6-EH1P8K-L-PLUS 8kW Single Phase Hybrid Solar Inverter",
+      "slug": "solis-s6-eh1p8k-l-plus-8kw-hybrid-solar-inverter",
+      "price": 189200,
+      "oldPrice": 207900,
+      "discountPercentage": 9,
+      "category": "solar-inverter",
+      "categoryName": "SOLAR INVERTER",
+      "brand": "Solis",
+      "productCode": "53823",
+      "stock": 10,
+      "image": "https://i.ibb.co/8L6V2nFK/Solis-S6-EH1-P3-K-L-PLUS-3k-W-Sin.webp",
+      "images": [
+        "https://i.ibb.co/8L6V2nFK/Solis-S6-EH1-P3-K-L-PLUS-3k-W-Sin.webp",
+        "https://i.ibb.co/Xk57gg9s/Solis-S6-EH1-P3-K-L-PLUS-3k-W-Sin.webp",
+        "https://i.ibb.co/WNshkBWZ/Solis-S6-EH1-P3-K-L-PLUS-3k-W-Sin.webp",
+        "https://i.ibb.co/HDnGsXgP/Solis-S6-EH1-P3-K-L-PLUS-3k-W-Sin.webp",
+        "https://i.ibb.co/m5Snc8T6/Solis-S6-EH1-P3-K-L-PLUS-3k-W-Sin.webp"
+      ],
+      "shortDescription": "Model: S6-EH1P8K-L-PLUS\nInverter type: Single-Phase, Low Voltage Hybrid\nRated Output Power: 8 kW, Max. Efficiency: 96.2%\nMax. input voltage: 500V DC(PV Side), Max. input current: 32 A/32 A DC(PV Side)\nProtection: IP66, Anti-islanding, DC reverse polarity, Integrated AFCI 2.0",
+      "keyFeatures": [
+        "Model: S6-EH1P8K-L-PLUS",
+        "Inverter type: Single-Phase, Low Voltage Hybrid",
+        "Rated Output Power: 8 kW, Max. Efficiency: 96.2%",
+        "Max. input voltage: 500V DC(PV Side), Max. input current: 32 A/32 A DC(PV Side)",
+        "Protection: IP66, Anti-islanding, DC reverse polarity, Integrated AFCI 2.0"
+      ],
+      "warranty": "5 Year Warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Solis S6-EH1P8K-L-PLUS 8kW Single Phase Hybrid Solar Inverter</h2><p>The <strong>Solis S6-EH1P8K-L-PLUS 8kW Single Phase Hybrid Solar Inverter</strong> delivers efficient solar power conversion for residential and commercial energy systems. With a rated output power of 8kW and maximum efficiency of 96.2%, this solar inverter supports reliable energy management. Its single-phase design operates at 220V or 230V, while IP66 protection supports installation in challenging environmental conditions.</p><h3>High-Efficiency Solar Input and Battery Support</h3><p>The Solis S6-EH1P8K-L-PLUS supports a recommended maximum PV array size of 16kW and usable PV input power up to 12.8kW. It features a 500V maximum PV input voltage and dual 32A input capacity. Compatible with lithium-ion and lead-acid batteries, this hybrid inverter supports 40–60V battery systems, with charging and discharging power up to 8kW. These specifications support flexible solar energy storage and management.</p><h3>Fast Backup and Advanced Protection</h3><p>This Solis solar inverter delivers 8kW backup output with a switching time below 10 milliseconds. Integrated protection includes anti-islanding, DC reverse polarity protection, and AFCI 2.0. Its operating temperature range extends from -25°C to +60°C. These features support stable operation and additional electrical protection. Users can monitor performance through the 7-inch LCD, Bluetooth, and mobile app connectivity.</p><h3>Smart Connectivity and Installation</h3><p>The Solis S6-EH1P8K-L-PLUS includes RS485 and CAN communication interfaces for system integration and battery communication. Its generator input supports up to 8kW, providing another energy source when required. Measuring 335 × 560 × 253mm and weighing approximately 23kg, the unit features a white finish. Although it is not a 3kW solar inverter, this 8kW single phase inverter suits systems requiring higher output capacity.</p></div>",
+      "specs": {
+        "General Information": {
+          "App Control": "Yes",
+          "Protection": "Ingress protection IP66",
+          "Noise Level": "< 65 dB(A)",
+          "Others": "Display: 7.0\" LCD & Bluetooth + APP DC connection: MC4 plug (PV port) / Terminal Block (BAT port) AC connection: Terminal Block Communication interface: Standard: RS485, CAN"
+        },
+        "Output": {
+          "AC Output": "Output AC (Grid side) Rated output power: 8kW Rated grid voltage: 220 V / 230 V Rated grid output current: 36.4 A / 34.8 A Output AC (Back-up) Rated output power: 8 kW Back-up switch time: < 10 ms Rated output voltage: L/N/PE, 220 V / 230 V"
+        },
+        "Input (Charging)": {
+          "AC Input": "Input AC (Grid side) Input voltage range: 187 - 253 V Max. input current: 50 A Frequency range: 45 - 55 Hz / 55 - 65 Hz",
+          "DC Input": "Supported Battery type: Li-ion / Lead-acid Battery voltage range: 40 - 60 V Max. charge / discharge power: 8 kW Max. charge / discharge current: 190 A Communication: CAN / RS485",
+          "Solar Input": "Input (PV Side) Recommended max. PV array size: 16 kW Max. usable PV input power: 12.8 kW Max. input voltage: 500 V Rated voltage: 330 V Start-up voltage: 90 V MPPT voltage range: 90 - 435 V Max. current input: 32 A / 32 A",
+          "Generator Input": "Input AC (Generator side) Max. input power: 8 kW Max. input current: 36.4 A / 34.8 A Rated input frequency: 50 Hz / 60 Hz"
+        },
+        "Environment": {
+          "Operating Temperature": "-25°C to +60°C"
+        },
+        "Physical Information": {
+          "Color": "White",
+          "Dimension": "335 × 560 × 253 mm",
+          "Weight": "Approx. 23 kg"
+        },
+        "Warranty Information": {
+          "Warranty": "5 Year Warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/solis-s6-eh1p8k-l-plus-8kw-hybrid-solar-inverter",
+      "audit": {
+        "sourcePrice": 172000,
+        "sourceRegularPrice": 189000,
+        "calculatedPrice": 189200,
+        "calculatedOldPrice": 207900,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T08:55:36.348Z"
+      }
+    },
+    {
+      "id": "st-53874",
+      "title": "Solis S5-GR3P20K 20kW Three Phase ON-Grid Solar Inverter",
+      "slug": "solis-s5-gr3p20k-20kw-solar-inverter",
+      "price": 191400,
+      "oldPrice": 210100,
+      "discountPercentage": 9,
+      "category": "solar-inverter",
+      "categoryName": "SOLAR INVERTER",
+      "brand": "Solis",
+      "productCode": "53874",
+      "stock": 10,
+      "image": "https://i.ibb.co/1tJDGYwY/Solis-S5-GR3-P5-K-5-KW-Three-Phas.webp",
+      "images": [
+        "https://i.ibb.co/1tJDGYwY/Solis-S5-GR3-P5-K-5-KW-Three-Phas.webp",
+        "https://i.ibb.co/Pv5h8Y9T/Solis-S5-GR3-P5-K-5-KW-Three-Phas.webp",
+        "https://i.ibb.co/1f98fLJ0/Solis-S5-GR3-P5-K-5-KW-Three-Phas.webp",
+        "https://i.ibb.co/wrZBmGKM/Solis-S5-GR3-P5-K-5-KW-Three-Phas.webp",
+        "https://i.ibb.co/JjcTjwk8/Solis-S5-GR3-P5-K-5-KW-Three-Phas.webp"
+      ],
+      "shortDescription": "Model: S5-GR3P20K\nRated Output Power: 20 kW AC, Max. Efficiency: 98.7%\nInverter type: 3-Phase Grid-Tied\nMax. input voltage: 1100V DC, Max. input current: 32A/32A DC\nProtection: IP66, AFCI, DC reverse polarity, Short circuit, MC4 DC Connector",
+      "keyFeatures": [
+        "Model: S5-GR3P20K",
+        "Rated Output Power: 20 kW AC, Max. Efficiency: 98.7%",
+        "Inverter type: 3-Phase Grid-Tied",
+        "Max. input voltage: 1100V DC, Max. input current: 32A/32A DC",
+        "Protection: IP66, AFCI, DC reverse polarity, Short circuit, MC4 DC Connector"
+      ],
+      "warranty": "5 Year Warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Solis S5-GR3P20K 20kW Three Phase ON-Grid Solar Inverter</h2><p>The <strong>Solis S5-GR3P20K 20kW Three-Phase On-Grid Solar Inverter</strong> delivers efficient solar power conversion for commercial and industrial installations. With a maximum efficiency of 98.7%, this solar inverter converts DC electricity from solar panels into usable AC power. Its 20 kW rated output supports three-phase grid-connected systems. The transformerless design contributes to efficient operation, while the compact structure simplifies installation. An LCD display provides system information, and app control enables convenient performance monitoring.</p><p>Designed for high-capacity solar installations, the Solis S5-GR3P20K supports a recommended maximum PV input power of 30 kW. This 20 kW solar inverter features a maximum DC input voltage of 1100 V and a wide MPPT voltage range of 160–1000 V. Two MPPT trackers support up to four input strings, helping optimize energy collection across different panel configurations. Its greater than 150% DC-to-AC ratio supports suitable system sizing for improved solar energy utilization.</p><p>For grid-connected applications, the Solis S5-GR3P20K operates as an On-Grid solar inverter with a rated grid voltage of 220/380 V or 230/400 V. It supports 50 Hz and 60 Hz frequencies, with a power factor above 0.99 under specified conditions. Total harmonic distortion remains below 2%, supporting high-quality AC output. Export power control also helps manage electricity fed into the grid according to system requirements.</p><p>Safety and durability remain key features of the Solis S5-GR3P20K three-phase solar inverter. Its IP66-rated enclosure supports outdoor installation, while integrated AFCI 2.0 helps detect arc faults. Additional protections include reverse polarity, short circuits, overcurrent, surges, overheating, and anti-islanding. Operating temperatures range from -25°C to +60°C. Weighing approximately 18 kg, this 20 kW solar inverter offers efficient power conversion and advanced monitoring for commercial solar energy systems.</p></div>",
+      "specs": {
+        "General Information": {
+          "Rated AC Output Power": "20kW",
+          "App Control": "Yes",
+          "Protection": "DC reverse-polarity protection Short circuit protection Output over current protection Insulation resistance monitoring Residual current detection Surge protection Grid monitoring Anti-islanding protection Temperature protection Multi peak scan Integrated AFCI 2.0 Integrated DC switch",
+          "Noise Level": "< 30 dB(A)",
+          "Others": "Topology: Transformerless Supports export power control > 150% DC/AC ratio Display: LCD THDi: < 2% DC injection current: < 0.5% In"
+        },
+        "Output": {
+          "AC Output": "Max. output power: 20 kW Max. apparent output power: 22 kVA Rated grid voltage: 3/N/PE, 220 V / 380 V, 230 V / 400 V Rated grid frequency: 50 Hz / 60 Hz Power Factor: >0.99 (0.8 leading - 0.8 lagging) THDi: <2% DC injection current : < 0.5% In"
+        },
+        "Input (Charging)": {
+          "DC Input": "Recommended max. PV power: 30 kW Max. input voltage: 1100 V Rated voltage: 600 V Start-up voltage: 180 V MPPT voltage range: 160 - 1000 V Max. input current: 32 A / 32 A Max. short-circuit current: 40 A / 40 A MPPT number / Max. input strings number: 2/4",
+          "Solar Input": "Yes Recommended max. PV power: 30 kW"
+        },
+        "Environment": {
+          "Operating Temperature": "-25°C to +60°C"
+        },
+        "Physical Information": {
+          "Color": "White",
+          "Dimension": "310 × 563 × 219 mm",
+          "Weight": "Approx. 18 kg"
+        },
+        "Warranty Information": {
+          "Warranty": "5 Year Warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/solis-s5-gr3p20k-20kw-solar-inverter",
+      "audit": {
+        "sourcePrice": 174000,
+        "sourceRegularPrice": 191000,
+        "calculatedPrice": 191400,
+        "calculatedOldPrice": 210100,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T08:55:37.735Z"
+      }
+    },
+    {
+      "id": "st-53843",
+      "title": "Solis S6-EH1P9.9K03-NV-YD-L 10kW Single Phase Hybrid Solar Inverter",
+      "slug": "solis-s6-eh1p9-9k03-nv-yd-l-10kw-inverter",
+      "price": 240900,
+      "oldPrice": 264000,
+      "discountPercentage": 9,
+      "category": "solar-inverter",
+      "categoryName": "SOLAR INVERTER",
+      "brand": "Solis",
+      "productCode": "53843",
+      "stock": 10,
+      "image": "https://i.ibb.co/H6jp9pC/Solis-S6-EH1-P9-9-K03-NV-YD-L-10.webp",
+      "images": [
+        "https://i.ibb.co/H6jp9pC/Solis-S6-EH1-P9-9-K03-NV-YD-L-10.webp",
+        "https://i.ibb.co/tMKpVVRH/Solis-S6-EH1-P9-9-K03-NV-YD-L-10.webp",
+        "https://i.ibb.co/5gwvT2cJ/Solis-S6-EH1-P9-9-K03-NV-YD-L-10.webp",
+        "https://i.ibb.co/1GMfrrnq/Solis-S6-EH1-P9-9-K03-NV-YD-L-10.webp",
+        "https://i.ibb.co/CptgKdbJ/Solis-S6-EH1-P9-9-K03-NV-YD-L-10.webp"
+      ],
+      "shortDescription": "Model: S6-EH1P9.9K03-NV-YD-L\nInverter type: Single-Phase, Low Voltage Hybrid\nRated Output Power: 9.9 kW, Max. Efficiency: 97.6%\nMax. input voltage: 550V DC(PV Side), Max. input current: 40A/40A/40A DC(PV Side)\nProtection: IP66, Anti-islanding, DC reverse polarity, Surge protection",
+      "keyFeatures": [
+        "Model: S6-EH1P9.9K03-NV-YD-L",
+        "Inverter type: Single-Phase, Low Voltage Hybrid",
+        "Rated Output Power: 9.9 kW, Max. Efficiency: 97.6%",
+        "Max. input voltage: 550V DC(PV Side), Max. input current: 40A/40A/40A DC(PV Side)",
+        "Protection: IP66, Anti-islanding, DC reverse polarity, Surge protection"
+      ],
+      "warranty": "5 Year Warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Solis S6-EH1P9.9K03-NV-YD-L 10kW Single Phase Hybrid Solar Inverter</h2><p>The <strong>Solis S6-EH1P9.9K03-NV-YD-L</strong> is a single-phase hybrid solar inverter built to support solar energy generation and battery storage systems. This 10 kW solar inverter delivers 9.9 kW rated output power and achieves maximum efficiency of 97.6%. It supports grid-connected operation, battery charging, and backup power supply. The Solis solar inverter suits residential and commercial installations requiring low-voltage hybrid energy management.</p><h3>High-Efficiency Solar Performance</h3><p>Featuring a maximum PV input voltage of 550 V DC, the Solis S6-EH1P9.9K03-NV-YD-L hybrid inverter supports a recommended maximum PV array size of 19.8 kW. Its maximum usable PV input power reaches 15.8 kW. The MPPT voltage range spans 80–520 V, with three 40 A input channels. This hybrid inverter supports efficient solar energy conversion across suitable photovoltaic configurations.</p><h3>Battery Storage and Backup Power</h3><p>The Solis S6-EH1P9.9K03-NV-YD-L hybrid inverter  supports lithium-ion and lead-acid batteries within a 40–60 V voltage range. Its maximum charge and discharge current reaches 208 A. The backup output provides 9.9 kW rated power, with a switching time below 10 milliseconds. This single-phase solar inverter also supports generator input and grid charging for flexible energy management.</p><h3>Smart Monitoring and Safety Protection</h3><p>Equipped with a 7-inch LCD, the Solis S6-EH1P9.9K03-NV-YD-L solar inverter offers app control through Wi-Fi, LAN, and Bluetooth connectivity. Its IP66-rated enclosure supports installation in demanding environments, while anti-islanding, DC reverse polarity, and surge protection enhance operational safety. This grid solar inverter operates between -25°C and +60°C, supporting various installation conditions.</p></div>",
+      "specs": {
+        "General Information": {
+          "App Control": "Yes",
+          "Protection": "Ingress protection IP66",
+          "Noise Level": "< 65 dB(A)",
+          "Others": "Display: 7.0\" LCD & Bluetooth + APP PV connection MC4 connector Battery connection: Terminal Block AC connection: Terminal Block Communication interface: Standard: WIFI+LAN+Bluetooth, CAN-BMS, CAN-Parallel × 2, RS485-Meter, RS485, DRM, DI, DO × 2"
+        },
+        "Output": {
+          "AC Output": "Output AC (Grid side) Rated output power: 9.9 kW Rated grid voltage: L/N/PE, 220 V / 230 V Rated grid output current: 45 A / 43.1 A Output AC (Back-up) Rated output power: 9.9 kW Back-up switch time: < 10 ms Rated output voltage: L/N/PE, 220 V / 230 V"
+        },
+        "Input (Charging)": {
+          "AC Input": "Input AC (Grid side) Max. input power: 14.8 kW Input voltage range: 187 - 253 V Max. input current: 67.5 A / 64.5 A",
+          "DC Input": "Supported Battery type: Li-ion / Lead-acid Battery voltage range: 40 - 60 V Max. charge / discharge current: 208 A Communication: CAN / RS485",
+          "Solar Input": "Input (PV Side) Recommended max. PV array size: 19.8 kW Max. usable PV input power: 15.8 kW Max. input voltage: 550 V Rated voltage: 380 V Start-up voltage: 100 V MPPT voltage range: 80 - 520 V Max. current input: 40 A / 40 A / 40 A",
+          "Generator Input": "Input AC (Generator side) Max. input power: 9.9 kW Max. input current: 45 A / 43.1 A Rated input frequency: 50 Hz / 60 Hz"
+        },
+        "Environment": {
+          "Operating Temperature": "-25°C to +60°C"
+        },
+        "Physical Information": {
+          "Color": "White",
+          "Dimension": "459 × 845 × 313 mm",
+          "Weight": "Approx. 55.5 kg"
+        },
+        "Warranty Information": {
+          "Warranty": "5 Year Warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/solis-s6-eh1p9-9k03-nv-yd-l-10kw-inverter",
+      "audit": {
+        "sourcePrice": 219000,
+        "sourceRegularPrice": 240000,
+        "calculatedPrice": 240900,
+        "calculatedOldPrice": 264000,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T08:55:42.541Z"
+      }
+    },
+    {
+      "id": "st-53882",
+      "title": "Solis S6-GC3P30K03-NV 30kW Three Phase ON-Grid Solar Inverter",
+      "slug": "solis-s6-gc3p30k03-nv-30kw-solar-inverter",
+      "price": 266200,
+      "oldPrice": 293700,
+      "discountPercentage": 9,
+      "category": "solar-inverter",
+      "categoryName": "SOLAR INVERTER",
+      "brand": "Solis",
+      "productCode": "53882",
+      "stock": 10,
+      "image": "https://i.ibb.co/tT2yVDrH/Solis-S6-GC3-P30-K03-NV-30k-W-Thr.webp",
+      "images": [
+        "https://i.ibb.co/tT2yVDrH/Solis-S6-GC3-P30-K03-NV-30k-W-Thr.webp",
+        "https://i.ibb.co/Fkz08kzQ/Solis-S6-GC3-P30-K03-NV-30k-W-Thr.webp",
+        "https://i.ibb.co/mCs7WdpD/Solis-S6-GC3-P30-K03-NV-30k-W-Thr.webp",
+        "https://i.ibb.co/Ld84x7H9/Solis-S6-GC3-P30-K03-NV-30k-W-Thr.webp",
+        "https://i.ibb.co/9H1WqTqL/Solis-S6-GC3-P30-K03-NV-30k-W-Thr.webp"
+      ],
+      "shortDescription": "Model: S6-GC3P30K03-NV\nInverter type: 3-Phase Grid-Tied\nRated Output Power: 30 kW AC, Max. Efficiency: 98.5%\nMax. input voltage: 1100V DC, Max. input current: 42A/42A/42A DC\nProtection: IP66, DC reverse polarity, Short circuit, MC4 DC Connector",
+      "keyFeatures": [
+        "Model: S6-GC3P30K03-NV",
+        "Inverter type: 3-Phase Grid-Tied",
+        "Rated Output Power: 30 kW AC, Max. Efficiency: 98.5%",
+        "Max. input voltage: 1100V DC, Max. input current: 42A/42A/42A DC",
+        "Protection: IP66, DC reverse polarity, Short circuit, MC4 DC Connector"
+      ],
+      "warranty": "5 Year Warranty",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Solis S6-GC3P30K03-NV 30kW Three Phase ON-Grid Solar Inverter</h2><p>The <strong>Solis S6-GC3P30K03-NV 30kW Three Phase ON-Grid Solar Inverter</strong> delivers efficient solar power conversion for commercial and industrial installations. This 3 Phase Solar Inverter provides 30 kW rated AC output power with a maximum efficiency of 98.5%. Its transformerless topology supports efficient operation, while a DC/AC ratio exceeding 150% allows a recommended maximum PV input capacity of 45 kW. The inverter supports grid voltages of 220/380 V and 230/400 V at 50 Hz or 60 Hz.</p><p>Designed for high-capacity solar systems, the Solis S6-GC3P30K03-NV Solar Inverter functions as an On-Grid Solar Inverter with three MPPTs and six maximum input strings. It supports a maximum DC input voltage of 1100 V and an MPPT voltage range of 180-1000 V. Each MPPT accommodates up to 42 A input current, helping manage solar generation across multiple strings. Its power factor exceeds 0.99, with total harmonic distortion below 3%.</p><p>For operational monitoring, this Solis 30kW solar inverter offers Bluetooth connectivity, app control, LED indicators, and grid monitoring. Built-in features include I/V curve scanning, multi-peak scanning, and string monitoring for improved system visibility. Although the term Energy storage solar inverter describes a different system category, this model is specifically designed for grid-tied solar applications. It does not specify integrated battery storage functionality.</p><p>The Solis S6-GC3P30K03-NV Solar Inverter features IP66 protection and multiple safeguards, including DC reverse-polarity, short-circuit, overcurrent, surge, temperature, and anti-islanding protection. Its integrated DC switch supports convenient system isolation. Operating temperatures range from -25°C to +60°C, while noise levels remain at or below 55 dB(A). Measuring 355 by 625 by 250 mm and weighing approximately 26.5 kg, this white inverter suits commercial solar installations requiring efficient conversion and advanced monitoring.</p></div>",
+      "specs": {
+        "General Information": {
+          "Rated AC Output Power": "30 kW",
+          "App Control": "Yes",
+          "Protection": "DC reverse-polarity protection Short circuit protection Output over current protection Surge protection Grid monitoring Anti-islanding protection: Temperature protection Strings monitoring I/V Curve scanning Multi peak scan Integrated DC switch",
+          "Noise Level": "≤ 55 dB(A)",
+          "Others": "Topology: Transformerless > 150% DC/AC ratio Display: LED indicator & Bluetooth + APP"
+        },
+        "Output": {
+          "AC Output": "Max. output power: 30 kW Max. apparent output power: 30 kVA Rated grid voltage: 3/N/PE, 220 V / 380 V, 230 V / 400 V Rated grid frequency: 50 Hz / 60 Hz Power Factor: >0.99 (0.8 leading - 0.8 lagging) THDi: < 3%"
+        },
+        "Input (Charging)": {
+          "DC Input": "Recommended max. PV power: 45 kW Max. input voltage: 1100 V Rated voltage: 600 V Start-up voltage: 180 V MPPT voltage range: 180 - 1000 V Max. input current: 42 A / 42 A / 42 A Max. short-circuit current: 52.5 A / 52.5 A / 52.5 A MPPT number / Max. input strings number: 3 / 6",
+          "Solar Input": "Yes"
+        },
+        "Environment": {
+          "Operating Temperature": "-25°C to +60°C"
+        },
+        "Physical Information": {
+          "Color": "White",
+          "Dimension": "355 × 625 × 250 mm",
+          "Weight": "Approx. 26.5 kg"
+        },
+        "Warranty Information": {
+          "Warranty": "5 Year Warranty"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": false,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/solis-s6-gc3p30k03-nv-30kw-solar-inverter",
+      "audit": {
+        "sourcePrice": 242000,
+        "sourceRegularPrice": 267000,
+        "calculatedPrice": 266200,
+        "calculatedOldPrice": 293700,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T08:55:46.979Z"
+      }
+    }
+  ]
+}
