@@ -1,0 +1,557 @@
+{
+  "source": "https://www.startech.com.bd/solar-package",
+  "sourceName": "source_5_solar_package",
+  "scrapedAt": "2026-10-31T13:43:27.697Z",
+  "totalCrawledPages": 1,
+  "totalProductsFound": 6,
+  "categoriesToCreate": [
+    {
+      "id": "cat-solar-package",
+      "name": "SOLAR PACKAGE",
+      "slug": "solar-package",
+      "order": 16,
+      "isActive": true,
+      "image": "https://i.ibb.co/KzQ2MKb9/Marsriva-2k-W-Off-Grid-Hybrid-S.webp",
+      "icon": "Package",
+      "description": "Complete turnkey solar packages including hybrid inverters, lithium batteries, bifacial panels, and accessories."
+    }
+  ],
+  "categoriesExisting": [],
+  "stats": {
+    "total": 6,
+    "withPrice": 6,
+    "withoutPrice": 0,
+    "descriptionsCleaned": 6,
+    "totalImagesUploaded": 6,
+    "imageUploadFailures": 0
+  },
+  "products": [
+    {
+      "id": "st-53906",
+      "title": "Marsriva 2kW Off Grid Hybrid Solar Package",
+      "slug": "2kw-solar-package",
+      "price": 112200,
+      "oldPrice": 117700,
+      "discountPercentage": 5,
+      "category": "solar-package",
+      "categoryName": "SOLAR PACKAGE",
+      "brand": "Marsriva",
+      "productCode": "53906",
+      "stock": 10,
+      "image": "https://i.ibb.co/KzQ2MKb9/Marsriva-2k-W-Off-Grid-Hybrid-S.webp",
+      "images": [
+        "https://i.ibb.co/KzQ2MKb9/Marsriva-2k-W-Off-Grid-Hybrid-S.webp"
+      ],
+      "shortDescription": "Model: 2kW Off Grid Hybrid Solar Package\nInverter: Marsriva MR-SPF2K-LP1-TL20E 2kW Hybrid Solar Inverter\nBattery: Marsriva MR-LBP12-200-LAR 12.8V 200Ah LiFePO4 Solar Battery\nJinKo 66HL4M-BDV 620W N-Type Bifacial Module Dual Glass Solar Panel\nBackup Time: 2hour to 3hour (Depand on load)",
+      "keyFeatures": [
+        "Model: 2kW Off Grid Hybrid Solar Package",
+        "Inverter: Marsriva MR-SPF2K-LP1-TL20E 2kW Hybrid Solar Inverter",
+        "Battery: Marsriva MR-LBP12-200-LAR 12.8V 200Ah LiFePO4 Solar Battery",
+        "JinKo 66HL4M-BDV 620W N-Type Bifacial Module Dual Glass Solar Panel",
+        "Backup Time: 2hour to 3hour (Depand on load)"
+      ],
+      "warranty": "2 years warranty for Marsriva MR-SPF2K-LP1-TL20E 2kW Hybrid Solar Inverter 5-year warranty for Marsriva MR-LBP12-200-LAR 12.8V 200Ah LiFePO4 Solar Battery 10-year warranty for JinKo 66HL4M-BDV 620W N-Type Bifacial Module Dual Glass Solar Panel",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Marsriva 2kW Off Grid Hybrid Solar Package</h2><p>The <strong>Marsriva 2kW Off-Grid Hybrid Solar Package</strong> provides solar power for homes requiring essential electricity during power outages. This off-grid solar package combines a hybrid solar inverter, a LiFePO4 battery, and a high-output bifacial solar panel. It supports essential household appliances, including LED lights, ceiling fans, an inverter-type refrigerator, a television, a Wi-Fi router, and a laptop or computer. With its solar charging capability and battery storage, this Solar Package helps reduce reliance on grid electricity. The system suits households seeking a compact solar solution for backup power and daily energy needs. It can support selected appliances in a 3-4 bedroom solar setup, depending on total consumption and simultaneous usage. The actual backup time depends on the connected load, battery condition, and operating conditions. This Solar IPS package offers a suitable option for homes needing an alternative electricity source. Its hybrid design supports solar energy utilization and battery-powered operation when grid electricity is unavailable.</p><h3>Hybrid Solar Inverter and High-Efficiency Solar Panel</h3><p>The Marsriva MR-SPF2K-LP1-TL20E 2kW Hybrid Solar Inverter manages solar power conversion and battery charging. This hybrid inverter supports a solar system designed for essential home appliances and backup electricity.  The JinKo 66HL4M-BDV 620W N-Type Bifacial Module Dual Glass Solar Panel supplies solar energy to the system. Its 625W rated output supports solar electricity generation when sunlight conditions are suitable. N-type cell technology and a bifacial, dual-glass construction form part of the panel's design.</p><h3>Battery Capacity and Estimated Backup Time</h3><p>The Marsriva MR-LBP12-200-LAR 12.8V 200Ah LiFePO4 Solar Battery stores electricity for use when solar generation is insufficient or grid power is unavailable. It features a 12.8V nominal voltage and a 200Ah capacity, providing approximately 2.56kWh of nominal stored energy. Usable energy depends on the battery's operating limits, conversion losses, and system settings. This battery supports essential appliances, including LED lighting, ceiling fans, an LED television, a refrigerator, a router, and a computer. The estimated backup time is 2 to 3 hours, depending on the connected load and operating conditions. The actual backup time also depends on battery charge level, inverter efficiency, and appliance starting loads.</p><h3>Solar Package Includes</h3><p>This 2kW Off-Grid Hybrid Solar Package includes 1 unit of Marsriva MR-SPF2K-LP1-TL20E 2kW Hybrid Solar Inverter, 1 unit of Marsriva MR-LBP12-200-LAR 12.8V 200Ah LiFePO4 Solar Battery, and 2 units of JinKo 66HL4M-BDV 620W N-Type Bifacial Module Dual Glass Solar Panel. It provides a total solar panel capacity of 1,250W. This system offers an efficient solar power solution with battery storage for reliable electricity and backup power.&nbsp;</p></div>",
+      "specs": {
+        "General Information": {
+          "System Type": "Off Grid",
+          "Total Capacity": "2kW",
+          "Best For": "3 Bedroom Household"
+        },
+        "Solar Panel Information": {
+          "Number of Panels": "2",
+          "Panel Type": "N-Type",
+          "Panel Wattage": "2 x 620W",
+          "Efficiency": "23.3%",
+          "Max Voltage": "Up to 40.70V",
+          "Max Current": "Up to 15.29A"
+        },
+        "Solar Inverter Information": {
+          "Rated PV Input": "Max. PV Input Power: 3000W",
+          "AC Output": "2kVA / 2kW",
+          "MPPT": "Yes",
+          "Monitoring": "Yes",
+          "Battery Support": "Yes",
+          "Protection": "IP20",
+          "Dimension": "331 × 270 × 100mm (W x H x D)",
+          "Weight": "4.5kg"
+        },
+        "Battery Information": {
+          "Number of Batteries": "1",
+          "Battery Type": "LiFePO4",
+          "Capacity": "200Ah",
+          "Voltage": "12.8V",
+          "Cycle Life": "Up to 6000",
+          "Discharge": "Max. 100A",
+          "Backup Time": "2H to 3H (Depand on load)",
+          "Dimension": "331 × 270 × 100mm (W x H x D)",
+          "Weight": "4.5kg"
+        },
+        "Load Capacity": {
+          "Light": "5-7 LED lights (15 watts each ≈ 100 watts)",
+          "Fan": "4-5 ceiling fans (80 watts each ≈ 400 watts)",
+          "Router": "1 router and charger (20 watts)",
+          "Television": "1 LED TV (50-80 watts)",
+          "Refrigerator": "1 refrigerator (inverter type preferred; running load ≈ 200-300 watts)",
+          "Laptop": "1 laptop (100-150 watts)",
+          "Computer": "1 computer (100-150 watts)"
+        },
+        "Installation & Accessories": {
+          "Installation Included": "N/A"
+        },
+        "Warranty Information": {
+          "Warranty": "2 years warranty for Marsriva MR-SPF2K-LP1-TL20E 2kW Hybrid Solar Inverter 5-year warranty for Marsriva MR-LBP12-200-LAR 12.8V 200Ah LiFePO4 Solar Battery 10-year warranty for JinKo 66HL4M-BDV 620W N-Type Bifacial Module Dual Glass Solar Panel"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": true,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/2kw-solar-package",
+      "audit": {
+        "sourcePrice": 102000,
+        "sourceRegularPrice": 107000,
+        "calculatedPrice": 112200,
+        "calculatedOldPrice": 117700,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T13:43:17.610Z"
+      }
+    },
+    {
+      "id": "st-53946",
+      "title": "Gospower 1.6kW Off Grid Hybrid Solar Package",
+      "slug": "1-6kw-solar-package",
+      "price": 128700,
+      "oldPrice": 137500,
+      "discountPercentage": 6,
+      "category": "solar-package",
+      "categoryName": "SOLAR PACKAGE",
+      "brand": "Gospower",
+      "productCode": "53946",
+      "stock": 10,
+      "image": "https://i.ibb.co/99KhS84V/Gospower-1-6k-W-Off-Grid-Hybrid.webp",
+      "images": [
+        "https://i.ibb.co/99KhS84V/Gospower-1-6k-W-Off-Grid-Hybrid.webp"
+      ],
+      "shortDescription": "Model: 1.6kW Off Grid Hybrid Solar Package\nInverter: Gospower GPEO-1K6L1-4V1 1.6kW Hybrid Solar Inverter\nBattery: Hithium HeroEE NeoPower 4 G2 12.8V 314Ah LiFePO₄ Lithium Battery\nJinKo 66HL4M-BDV 620W N-Type Bifacial Module Dual Glass Solar Panel\nBackup Time: 2hour to 3hour (Depand on load)",
+      "keyFeatures": [
+        "Model: 1.6kW Off Grid Hybrid Solar Package",
+        "Inverter: Gospower GPEO-1K6L1-4V1 1.6kW Hybrid Solar Inverter",
+        "Battery: Hithium HeroEE NeoPower 4 G2 12.8V 314Ah LiFePO₄ Lithium Battery",
+        "JinKo 66HL4M-BDV 620W N-Type Bifacial Module Dual Glass Solar Panel",
+        "Backup Time: 2hour to 3hour (Depand on load)"
+      ],
+      "warranty": "2-year warranty for Gospower GPEO-1K6L1-4V1 1.6kW Hybrid Solar Inverter 5-year warranty for Hithium HeroEE NeoPower 4 G2 12.8V 314Ah LiFePO₄ Lithium Battery 10-year warranty for JinKo 66HL4M-BDV 620W N-Type Bifacial Module Dual Glass Solar Panel",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Gospower 1.6kW Off Grid Hybrid Solar Package</h2><p>The Gospower 1.6kW Off Grid Hybrid Solar Package is a reliable solar solution for small households, small studios, and small shops seeking efficient power backup. This solar system combines high-performance solar panels, a hybrid inverter, and lithium battery storage. It includes two JinKo 66HL4M-BDV 620W N-Type bifacial dual-glass panels, delivering a combined 1250W capacity. With 23.3% panel efficiency, this solar setup for home supports electricity generation during daylight hours. Its off-grid design provides an alternative power source during grid outages. This solar combo suits homes requiring backup power for essential electrical appliances..</p><h3>Solar Panels and Inverter Specifications</h3><p>The Gospower 1250W Solar package features the Gospower GPEO-1K6L1-4V1 1.6kW hybrid solar inverter with 1600W maximum PV input and 2000VA output capacity. Its built-in MPPT technology optimizes solar energy harvesting, while monitoring features help users track system performance. IP54 protection adds resistance against dust and water splashes. The package also includes a Hithium HeroEE NeoPower 4 G2 LiFePO₄ lithium battery rated at 12.8V and 314Ah. This battery technology supports repeated charging cycles and efficient energy storage. Together, these components create a solar inverter package designed for off-grid household electricity needs.</p><h3>Load Capacity and Estimated Backup Time</h3><p>The Gospower 1.6kW solar package offers an estimated 2-3 hours of backup, depending on connected appliances and their combined power consumption. It can support five to seven 15W LED lights, four to five 80W ceiling fans, a router, and a television under suitable load conditions. Users may also operate a laptop or an inverter-type refrigerator, depending on total demand. Running several appliances simultaneously reduces available backup time. For better performance, prioritize essential devices and manage overall consumption within the inverter's output capacity. This solar solution provides household backup for lighting, communication, entertainment, and selected appliances during power interruptions.</p><h3>Solar Package Includes</h3><p>This Gospower 1.6kW Off Grid Hybrid Solar Package includes 1 unit of Gospower GPEO-1K6L1-4V1 1.6kW Hybrid Solar Inverter, 1 unit of Hithium HeroEE NeoPower 4 G2 12.8V 314Ah LiFePO₄ Lithium Battery, and 2 units of JinKo 66HL4M-BDV 620W N-Type Bifacial Module Dual Glass Solar Panel. It provides a total solar panel capacity of 1250W. This system offers an efficient solar power solution with battery storage for reliable electricity and backup power.</p></div>",
+      "specs": {
+        "General Information": {
+          "System Type": "Off Grid",
+          "Total Capacity": "1.6kW",
+          "Best For": "Small Household"
+        },
+        "Solar Panel Information": {
+          "Number of Panels": "2",
+          "Panel Type": "N-Type",
+          "Panel Wattage": "2 x 620W",
+          "Efficiency": "23.3%",
+          "Max Voltage": "Up to 40.70V",
+          "Max Current": "Up to 15.29A"
+        },
+        "Solar Inverter Information": {
+          "Rated PV Input": "Max. PV Input Power: 1600W",
+          "AC Output": "1600W / 2000VA",
+          "MPPT": "Yes",
+          "Monitoring": "Yes",
+          "Battery Support": "Yes",
+          "Protection": "IP54"
+        },
+        "Battery Information": {
+          "Number of Batteries": "1",
+          "Battery Type": "LiFePO4",
+          "Capacity": "314Ah",
+          "Voltage": "12.8V",
+          "Cycle Life": "Up to 11000",
+          "Discharge": "Max. 150A",
+          "Backup Time": "2 to 3 hours (Depends on load)",
+          "Dimension": "331 × 270 × 100mm (W x H x D)"
+        },
+        "Load Capacity": {
+          "Light": "5-7 LED lights (15 watts each ≈ 100 watts)",
+          "Fan": "4-5 ceiling fans (80 watts each ≈ 400 watts)",
+          "Router": "1 router and charger (20 watts)",
+          "Television": "1 LED TV (50-80 watts)",
+          "Refrigerator": "1 refrigerator (inverter type preferred; running load ≈ 200-300 watts)",
+          "Laptop": "1 laptop (100-150 watts)",
+          "Computer": "1 computer (100-150 watts)"
+        },
+        "Installation & Accessories": {
+          "Installation Included": "N/A"
+        },
+        "Warranty Information": {
+          "Warranty": "2-year warranty for Gospower GPEO-1K6L1-4V1 1.6kW Hybrid Solar Inverter 5-year warranty for Hithium HeroEE NeoPower 4 G2 12.8V 314Ah LiFePO₄ Lithium Battery 10-year warranty for JinKo 66HL4M-BDV 620W N-Type Bifacial Module Dual Glass Solar Panel"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": true,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/1-6kw-solar-package",
+      "audit": {
+        "sourcePrice": 117000,
+        "sourceRegularPrice": 125000,
+        "calculatedPrice": 128700,
+        "calculatedOldPrice": 137500,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T13:43:19.673Z"
+      }
+    },
+    {
+      "id": "st-53942",
+      "title": "Marsriva 3.6kW Off Grid Hybrid Solar Package",
+      "slug": "3-6kw-solar-package",
+      "price": 159500,
+      "oldPrice": 173800,
+      "discountPercentage": 8,
+      "category": "solar-package",
+      "categoryName": "SOLAR PACKAGE",
+      "brand": "Marsriva",
+      "productCode": "53942",
+      "stock": 10,
+      "image": "https://i.ibb.co/vxGVV3jR/Marsriva-3-6k-W-Off-Grid-Hybrid.webp",
+      "images": [
+        "https://i.ibb.co/vxGVV3jR/Marsriva-3-6k-W-Off-Grid-Hybrid.webp"
+      ],
+      "shortDescription": "Model: 3.6kW Off Grid Hybrid Solar Package\nInverter: Marsriva MR-SPF3.6K-LP1-TL20E 3.6kW Hybrid Solar Inverter\nBattery: MARSARIVA MR-LFP24-100-WMT 25.6V 100Ah Lithium Battery\nJinKo 66HL4M-BDV 620W N-Type Bifacial Module Dual Glass Solar Panel\nBackup Time: 2 to 3 hours (Depends on load)",
+      "keyFeatures": [
+        "Model: 3.6kW Off Grid Hybrid Solar Package",
+        "Inverter: Marsriva MR-SPF3.6K-LP1-TL20E 3.6kW Hybrid Solar Inverter",
+        "Battery: MARSARIVA MR-LFP24-100-WMT 25.6V 100Ah Lithium Battery",
+        "JinKo 66HL4M-BDV 620W N-Type Bifacial Module Dual Glass Solar Panel",
+        "Backup Time: 2 to 3 hours (Depends on load)"
+      ],
+      "warranty": "2 years warranty for Marsriva MR-SPF3.6K-LP1-TL20E 3.6kW Hybrid Solar Inverter 5-year warranty for MARSARIVA MR-LFP24-100-WMT 25.6V 100Ah Lithium Battery 10-year warranty for JinKo 66HL4M-BDV 620W N-Type Bifacial Module Dual Glass Solar Panel",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Marsriva 3.6kW Off Grid Hybrid Solar Package</h2>\n\n\n<p>The <strong>Marsriva 3.6kW Off Grid Hybrid Solar Package</strong> is an off-grid hybrid solar solution designed for medium-sized households seeking an alternative power source. With a total inverter capacity of 3.6kVA, this solar system supports essential home appliances during power outages. It provides a reliable solar setup for home use, helping households manage electricity needs with solar energy. This complete solar solution includes four high-efficiency solar panels, a hybrid inverter, and a lithium iron phosphate battery. It suits homes requiring backup power for lighting, fans, televisions, routers, and other essential electronics.</p>\n\n\n<h3>Solar Panels and Inverter Specifications</h3>\n\n\n<p>The solar inverter package features four 625W N-type monocrystalline solar panels with 23.3% efficiency. Together, these panels deliver 2500W of rated solar capacity for effective energy generation under suitable sunlight conditions. Each panel supports a maximum voltage of 40.70V and current of 15.48A. The hybrid inverter provides 3.6kW AC output and supports up to 5000W maximum PV input power. Its built-in MPPT technology helps optimize solar energy harvesting. Monitoring functionality allows users to track system performance, while integrated protection supports safe operation. Battery compatibility further enhances this solar system's off-grid functionality.</p>\n\n\n<h3>Battery Capacity and Estimated Backup Time</h3>\n\n\n<p>The 3.6kW Off Grid Hybrid Solar Package includes one 25.6V, 100Ah LiFePO4 battery with approximately 2.56kWh of nominal energy storage. Its rated cycle life reaches 6,000 cycles or more, supporting long-term household energy storage. The estimated backup time is 2 to 3 hours, depending on connected appliances, battery charge, and operating conditions. This battery can support essential loads, including LED lights, ceiling fans, a router, a television, and selected other appliances. An inverter-type refrigerator may also operate within suitable load limits. For better backup performance, prioritize essential appliances and manage simultaneous power consumption carefully.</p>\n\n\n<h3>Solar Package Includes</h3>\n\n\n<p>This 3.6kW Off Grid Hybrid Solar Package includes 1 unit of Marsriva MR-SPF3.6K-LP1-TL20E 3.6kW Hybrid Solar Inverter, 1 unit of MARSARIVA MR-LFP24-100-WMT 100Ah Lithium Battery, and 4 units of JinKo 66HL4M-BDV 620W N-Type Bifacial Module Dual Glass Solar Panel. It provides a total solar panel capacity of 2500W. This system offers an efficient solar power solution with battery storage for reliable electricity and backup power.</p>\n\n\n\n\n\n</div>",
+      "specs": {
+        "General Information": {
+          "System Type": "Off Grid",
+          "Total Capacity": "3.6kW",
+          "Best For": "Medium Household"
+        },
+        "Solar Panel Information": {
+          "Number of Panels": "4",
+          "Panel Type": "N-Type Monocrystalline",
+          "Panel Wattage": "4 x 620W",
+          "Efficiency": "23.3%",
+          "Max Voltage": "Up to 40.70V",
+          "Max Current": "Up to 15.29A"
+        },
+        "Solar Inverter Information": {
+          "Rated PV Input": "Max. PV Input Power: 5000W",
+          "AC Output": "3.6kVA / 3.6kW",
+          "MPPT": "Yes",
+          "Monitoring": "Yes",
+          "Battery Support": "Yes",
+          "Protection": "IP20",
+          "Dimension": "284 × 420 × 104mm (W x H x D)",
+          "Weight": "6.4 kg"
+        },
+        "Battery Information": {
+          "Number of Batteries": "1",
+          "Battery Type": "LiFePO4",
+          "Capacity": "100Ah",
+          "Voltage": "25.6V",
+          "Cycle Life": "≥6000",
+          "Discharge": "Max. 120A",
+          "Backup Time": "2 to 3 hours (Depends on load)",
+          "Dimension": "360 × 150 × 400 (437) mm",
+          "Weight": "28kg"
+        },
+        "Load Capacity": {
+          "Light": "10-15 LED lights (15 watts each ≈ 100 watts)",
+          "Fan": "5-8 ceiling fans (80 watts each ≈ 400 watts)",
+          "Router": "1 router and charger (20 watts)",
+          "Television": "1 LED TV (50-100 watts)",
+          "Refrigerator": "1 refrigerator (inverter type preferred; running load ≈ 200-300 watts)",
+          "Laptop": "1 laptop (100-150 watts)",
+          "Computer": "1 computer (100-150 watts)"
+        },
+        "Installation & Accessories": {
+          "Installation Included": "N/A"
+        },
+        "Warranty Information": {
+          "Warranty": "2 years warranty for Marsriva MR-SPF3.6K-LP1-TL20E 3.6kW Hybrid Solar Inverter 5-year warranty for MARSARIVA MR-LFP24-100-WMT 25.6V 100Ah Lithium Battery 10-year warranty for JinKo 66HL4M-BDV 620W N-Type Bifacial Module Dual Glass Solar Panel"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": true,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/3-6kw-solar-package",
+      "audit": {
+        "sourcePrice": 145000,
+        "sourceRegularPrice": 158000,
+        "calculatedPrice": 159500,
+        "calculatedOldPrice": 173800,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T13:43:22.138Z"
+      }
+    },
+    {
+      "id": "st-53953",
+      "title": "Solis 5kW On Grid Solar Package",
+      "slug": "5kw-on-grid-solar-package",
+      "price": 217800,
+      "oldPrice": 242000,
+      "discountPercentage": 10,
+      "category": "solar-package",
+      "categoryName": "SOLAR PACKAGE",
+      "brand": "Solis",
+      "productCode": "53953",
+      "stock": 10,
+      "image": "https://i.ibb.co/svszjYmm/Solis-5k-W-On-Grid-Solar-Packag.webp",
+      "images": [
+        "https://i.ibb.co/svszjYmm/Solis-5k-W-On-Grid-Solar-Packag.webp"
+      ],
+      "shortDescription": "Model: 5kW On Grid Solar Package\nInverter: Solis S5-GR3P5K 5KW Three Phase ON-Grid Solar Inverter\nJinKo 66HL4M-BDV 620W N-Type Bifacial Module Dual Glass Solar Panel\nMax. PV Input: 5000 watt\nInverter Type: 3-Phase Grid-Tied",
+      "keyFeatures": [
+        "Model: 5kW On Grid Solar Package",
+        "Inverter: Solis S5-GR3P5K 5KW Three Phase ON-Grid Solar Inverter",
+        "JinKo 66HL4M-BDV 620W N-Type Bifacial Module Dual Glass Solar Panel",
+        "Max. PV Input: 5000 watt",
+        "Inverter Type: 3-Phase Grid-Tied"
+      ],
+      "warranty": "5-year warranty for Solis S5-GR3P5K 5KW Three Phase ON-Grid Solar Inverter 10-year warranty for JinKo 66HL4M-BDV 620W N-Type Bifacial Module Dual Glass Solar Panel",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Solis 5kW On Grid Solar Package</h2><p>The <strong>Solis 5kW On Grid Solar Package</strong> offers an efficient solar solution for households, offices, and studios. This 5kW solar package connects directly to the electricity grid, helping users generate solar power and reduce reliance on conventional electricity. With a total system capacity of 5.5 kVA, it supports residential and small commercial energy requirements. The solar setup for home includes eight high-performance solar panels, providing a combined capacity of 5,000 watts. Its grid-tied configuration allows solar energy to support connected electrical loads while maintaining a connection to the utility grid. This On Grid Solar Package suits users seeking a reliable way to incorporate renewable energy into their property.</p><h3>Solar Panels and Inverter Specifications</h3><p>The package features the Solis S5-GR3P5K three-phase grid-tied solar inverter, with a maximum PV input power of 5 kW and an AC output of 5.5 kW. Integrated MPPT technology optimizes solar power conversion, while monitoring functions help users track system performance. Its IP66 protection rating supports installation in suitable outdoor environments. The panel array includes 8 units of JinKo 66HL4M-BDV 620W N-type bifacial dual-glass modules. These monocrystalline panels offer 23.3% efficiency, with a maximum voltage of 40.70V and current of 15.48A. Together, the inverter and panels form a solar inverter package designed for efficient grid-connected electricity generation.</p><h3>Solar Package Includes</h3><p>This Solis 5kW On Grid Solar Package includes 1 unit of Solis S5-GR3P5K 5KW Three Phase ON-Grid Solar Inverter, and 8 units of JinKo 66HL4M-BDV 620W N-Type Bifacial Module Dual Glass Solar Panel. It provides a total solar panel capacity of 5kW. This system offers an efficient solar power solution with battery storage for reliable electricity and backup power.</p></div>",
+      "specs": {
+        "General Information": {
+          "System Type": "On Grid",
+          "Total Capacity": "5 kW"
+        },
+        "Solar Panel Information": {
+          "Number of Panels": "8",
+          "Panel Type": "N-Type Monocrystalline",
+          "Panel Wattage": "8 x 620W",
+          "Efficiency": "23.3%",
+          "Max Voltage": "Up to 40.70V",
+          "Max Current": "Up to 15.29A"
+        },
+        "Solar Inverter Information": {
+          "Rated PV Input": "Max. PV Input Power: 5 kW",
+          "AC Output": "5.5 kW",
+          "Phase": "3- Phase",
+          "MPPT": "Yes",
+          "Monitoring": "Yes",
+          "Protection": "IP66",
+          "Dimension": "310 × 563 × 219 mm",
+          "Weight": "Approx. 16.9 kg"
+        },
+        "Installation & Accessories": {
+          "Installation Included": "N/A"
+        },
+        "Warranty Information": {
+          "Warranty": "5-year warranty for Solis S5-GR3P5K 5KW Three Phase ON-Grid Solar Inverter 10-year warranty for JinKo 66HL4M-BDV 620W N-Type Bifacial Module Dual Glass Solar Panel"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": true,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/5kw-on-grid-solar-package",
+      "audit": {
+        "sourcePrice": 198000,
+        "sourceRegularPrice": 220000,
+        "calculatedPrice": 217800,
+        "calculatedOldPrice": 242000,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T13:43:24.193Z"
+      }
+    },
+    {
+      "id": "st-53950",
+      "title": "Marsriva 6.5kW Off Grid Hybrid Solar Package",
+      "slug": "6-5kw-solar-package",
+      "price": 319000,
+      "oldPrice": 339900,
+      "discountPercentage": 6,
+      "category": "solar-package",
+      "categoryName": "SOLAR PACKAGE",
+      "brand": "Marsriva",
+      "productCode": "53950",
+      "stock": 10,
+      "image": "https://i.ibb.co/ynf217hv/Marsriva-6-5k-W-Off-Grid-Hybrid.webp",
+      "images": [
+        "https://i.ibb.co/ynf217hv/Marsriva-6-5k-W-Off-Grid-Hybrid.webp"
+      ],
+      "shortDescription": "Model: 6.5kW Off Grid Hybrid Solar Package\nInverter: Marsriva MR-SPF6.5K-LP1-TL20E 6.5kW Hybrid Solar Inverter\nBattery: MARSARIVA MR-LFP48-100-WMD 51.2V 102Ah Lithium Battery\nJinKo 66HL4M-BDV 620W N-Type Bifacial Module Dual Glass Solar Panel\nMax. Load Capacity: 5000 watts",
+      "keyFeatures": [
+        "Model: 6.5kW Off Grid Hybrid Solar Package",
+        "Inverter: Marsriva MR-SPF6.5K-LP1-TL20E 6.5kW Hybrid Solar Inverter",
+        "Battery: MARSARIVA MR-LFP48-100-WMD 51.2V 102Ah Lithium Battery",
+        "JinKo 66HL4M-BDV 620W N-Type Bifacial Module Dual Glass Solar Panel",
+        "Max. Load Capacity: 5000 watts"
+      ],
+      "warranty": "2-year warranty for Marsriva MR-SPF6.5K-LP1-TL20E 6.5kW Hybrid Solar Inverter 5-year warranty for MARSARIVA MR-LFP48-100-WMD 51.2V 102Ah Lithium Battery 10-year warranty for JinKo 66HL4M-BDV 620W N-Type Bifacial Module Dual Glass Solar Panel",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Marsriva 6.5kW Off Grid Hybrid Solar Package</h2><p>The <strong>Marsriva 6.5kW Off Grid Hybrid Solar Package</strong> is an efficient solar solution for medium households, small offices, and studios. This 5000W solar package combines advanced solar technology with reliable energy storage for improved power availability. It features a 6.5kVA hybrid inverter, one lithium battery, and eight high-performance solar panels. This solar setup for home applications supports essential appliances and helps reduce reliance on conventional electricity. Its off-grid configuration provides an alternative power source during outages. With a maximum load capacity of 5000 watts, this solar system supports various residential and small commercial energy requirements..</p><h3>Solar Panels and Inverter Specifications</h3><p>The Marsriva MR-SPF6.5K-LP1-TL20E hybrid solar inverter delivers 6.5kW output and supports up to 9000W maximum PV input. Its built-in MPPT technology optimizes solar energy utilization, while monitoring features help track system performance. The package includes eight JinKo 66HL4M-BDV 620W N-type bifacial dual-glass panels, offering 23.3% efficiency. These monocrystalline panels provide a combined rated capacity of 5000W. The MARSARIVA MR-LFP48-100-WMD battery features LiFePO4 technology, 51.2V voltage, and 102Ah capacity. With a cycle life of at least 6000 cycles, this solar inverter package supports long-term energy storage. Together, these components create a reliable solar combo for off-grid electricity needs.</p><h3>Load Capacity and Estimated Backup Time</h3><p>The system supports a maximum load of 5000 watts, depending on appliance requirements and operating conditions. Its 2 to 3 hours of estimated backup time depends on the connected load and battery usage. This solar solution can power LED lights, ceiling fans, televisions, routers, laptops, and inverter refrigerators. It can also operate one 1.5-ton inverter air conditioner under suitable conditions. Water pumps, microwaves, and geysers are supported within the available load capacity. Proper load management helps optimize battery backup and overall system performance.</p><h3>Solar Package Includes</h3><p>This Gospower 6.5kW Off Grid Hybrid Solar Package includes 1 unit of Marsriva MR-SPF6.5K-LP1-TL20E 6.5kW Hybrid Solar Inverter, 1 unit of MARSARIVA MR-LFP48-100-WMD 51.2V 102Ah Lithium Battery, and 8 units of JinKo 66HL4M-BDV 620W N-Type Bifacial Module Dual Glass Solar Panel. It provides a total solar panel capacity of 5kW. This system offers an efficient solar power solution with battery storage for reliable electricity and backup power.</p></div>",
+      "specs": {
+        "General Information": {
+          "System Type": "Off Grid",
+          "Total Capacity": "6.5kW",
+          "Best For": "Medium Household, Small Office, Small Studio"
+        },
+        "Solar Panel Information": {
+          "Number of Panels": "8",
+          "Panel Type": "N-Type Monocrystalline",
+          "Panel Wattage": "8 x 620W",
+          "Efficiency": "23.3%",
+          "Max Voltage": "Up to 40.70V",
+          "Max Current": "Up to 15.29A"
+        },
+        "Solar Inverter Information": {
+          "Rated PV Input": "Max. PV Input Power: 9000W",
+          "AC Output": "6.5kVA / 6.5kW",
+          "MPPT": "Yes",
+          "Monitoring": "Yes",
+          "Battery Support": "Yes",
+          "Protection": "IP20",
+          "Dimension": "336 × 410 × 110mm (W x H x D)",
+          "Weight": "10 kg"
+        },
+        "Battery Information": {
+          "Number of Batteries": "1",
+          "Battery Type": "LiFePO4",
+          "Capacity": "102Ah",
+          "Voltage": "51.2V",
+          "Cycle Life": "≥6000",
+          "Discharge": "Max. 120A",
+          "Backup Time": "1 to 3 hours (Depends on load)",
+          "Dimension": "398 × 198.5 × 598.5mm",
+          "Weight": "44.5kg"
+        },
+        "Load Capacity": {
+          "Light": "15–20 LED lights (15 watts each ≈ 100 watts)",
+          "Fan": "10–12 ceiling fans (80 watts each ≈ 400 watts)",
+          "Router": "1 router and charger (20 watts)",
+          "Television": "2–3 LED TV (50-100 watts)",
+          "Refrigerator": "1-2 refrigerator (inverter type preferred; running load ≈ 200-300 watts)",
+          "Air Conditioner": "Can operate 1 AC 1.5-ton Inverter",
+          "Laptop": "1-3 laptop (100-150 watts)",
+          "Computer": "1-3 computer (100-150 watts)",
+          "Others": "Mobile chargers and CCTV cameras Can operate a 1 to 1.5 HP water motor or pump. Can operate one geyser or microwave oven."
+        },
+        "Installation & Accessories": {
+          "Installation Included": "N/A"
+        },
+        "Warranty Information": {
+          "Warranty": "2-year warranty for Marsriva MR-SPF6.5K-LP1-TL20E 6.5kW Hybrid Solar Inverter 5-year warranty for MARSARIVA MR-LFP48-100-WMD 51.2V 102Ah Lithium Battery 10-year warranty for JinKo 66HL4M-BDV 620W N-Type Bifacial Module Dual Glass Solar Panel"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": true,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/6-5kw-solar-package",
+      "audit": {
+        "sourcePrice": 290000,
+        "sourceRegularPrice": 309000,
+        "calculatedPrice": 319000,
+        "calculatedOldPrice": 339900,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T13:43:26.293Z"
+      }
+    },
+    {
+      "id": "st-53954",
+      "title": "Solis 10kW On Grid Solar Package",
+      "slug": "10kw-on-grid-solar-package",
+      "price": 379500,
+      "oldPrice": 409200,
+      "discountPercentage": 7,
+      "category": "solar-package",
+      "categoryName": "SOLAR PACKAGE",
+      "brand": "Solis",
+      "productCode": "53954",
+      "stock": 10,
+      "image": "https://i.ibb.co/svszjYmm/Solis-5k-W-On-Grid-Solar-Packag.webp",
+      "images": [
+        "https://i.ibb.co/svszjYmm/Solis-5k-W-On-Grid-Solar-Packag.webp"
+      ],
+      "shortDescription": "Model: 10kW On Grid Solar Package\nInverter: Solis S5-GR3P10K 10KW Three Phase ON-Grid Solar Inverter\nJinKo 66HL4M-BDV 620W N-Type Bifacial Module Dual Glass Solar Panel\nMax. PV Input: 10000 watt\nInverter Type: 3-Phase Grid-Tied",
+      "keyFeatures": [
+        "Model: 10kW On Grid Solar Package",
+        "Inverter: Solis S5-GR3P10K 10KW Three Phase ON-Grid Solar Inverter",
+        "JinKo 66HL4M-BDV 620W N-Type Bifacial Module Dual Glass Solar Panel",
+        "Max. PV Input: 10000 watt",
+        "Inverter Type: 3-Phase Grid-Tied"
+      ],
+      "warranty": "5-year warranty for Solis S5-GR3P10K 10KW Three Phase ON-Grid Solar Inverter 10-year warranty for JinKo 66HL4M-BDV 620W N-Type Bifacial Module Dual Glass Solar Panel",
+      "description": "<div class=\"section-head\">\n        <h2>Description</h2>\n    </div>\n    <div class=\"full-description\" itemprop=\"description\"><h2>Solis 10kW On Grid Solar Package</h2><p>The <strong>Solis 10kW On Grid Solar Package</strong> offers an efficient solar solution for residential and commercial properties seeking grid-connected power generation. This 10kW solar package combines a 10kW three-phase inverter with 16 high-performance solar panels. It provides a total panel capacity of 10,000 watts, supporting solar electricity generation for suitable energy requirements. This solar setup for home can help reduce grid electricity consumption and support long-term energy savings. Its on-grid configuration connects with the utility grid, allowing users to generate electricity from sunlight. The system suits properties requiring a three-phase grid-tied solar solution with performance monitoring capabilities.</p><h3>Solar Panels and Inverter Specifications</h3><p>The package features the Solis S5-GR3P10K 10kW three-phase on-grid solar inverter, delivering 10kW AC output. It includes MPPT technology, system monitoring, and IP66 protection for reliable outdoor installation. The solar inverter package works with 16 JinKo 66HL4M-BDV 620W N-type bifacial dual-glass panels. These monocrystalline modules offer 23.3% efficiency, with maximum voltage up to 40.70V and current up to 15.48A. The On Grid Solar Package combines advanced inverter functionality with high-efficiency panels for effective solar power generation. Its specifications support residential and commercial applications requiring grid-connected solar electricity.</p><h3>Solar Package Includes</h3><p>This Solis 10kW On Grid Solar Package includes 1 unit of Solis S5-GR3P10K 10KW Three Phase ON-Grid Solar Inverter, and 8 units of JinKo 66HL4M-BDV 620W N-Type Bifacial Module Dual Glass Solar Panel. It provides a total solar panel capacity of 10kW. This system offers an efficient solar power solution with battery storage for reliable electricity and backup power.</p></div>",
+      "specs": {
+        "General Information": {
+          "System Type": "On Grid",
+          "Total Capacity": "10kW"
+        },
+        "Solar Panel Information": {
+          "Number of Panels": "16",
+          "Panel Type": "N-Type Monocrystalline",
+          "Panel Wattage": "16 x 620W",
+          "Efficiency": "23.3%",
+          "Max Voltage": "Up to 40.70V",
+          "Max Current": "Up to 15.29A"
+        },
+        "Solar Inverter Information": {
+          "Rated PV Input": "Max. PV Input Power: 10 kW",
+          "AC Output": "10 kW",
+          "Phase": "3- Phase",
+          "MPPT": "Yes",
+          "Monitoring": "Yes",
+          "Protection": "IP66",
+          "Dimension": "310 × 563 × 219 mm",
+          "Weight": "Approx. 18 kg"
+        },
+        "Installation & Accessories": {
+          "Installation Included": "N/A"
+        },
+        "Warranty Information": {
+          "Warranty": "5-year warranty for Solis S5-GR3P10K 10KW Three Phase ON-Grid Solar Inverter 10-year warranty for JinKo 66HL4M-BDV 620W N-Type Bifacial Module Dual Glass Solar Panel"
+        }
+      },
+      "rating": 0,
+      "reviewCount": 0,
+      "reviewsCount": 0,
+      "isNewItem": true,
+      "isFeatured": true,
+      "isDeal": false,
+      "isHotDeal": false,
+      "sourceUrl": "https://www.startech.com.bd/10kw-on-grid-solar-package",
+      "audit": {
+        "sourcePrice": 345000,
+        "sourceRegularPrice": 372000,
+        "calculatedPrice": 379500,
+        "calculatedOldPrice": 409200,
+        "priceMultiplier": 1.1,
+        "status": "In Stock",
+        "scrapedAt": "2026-10-31T13:43:27.697Z"
+      }
+    }
+  ]
+}
