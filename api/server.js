@@ -32,10 +32,17 @@ const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:3000';
 const ADMIN_URL = process.env.ADMIN_URL || 'http://localhost:5173';
 
 // MongoDB Connection
+let mongoConnError = null;
 if (process.env.MONGODB_URI) {
   mongoose.connect(process.env.MONGODB_URI)
-    .then(() => console.log('🍃 MongoDB connected successfully via MONGODB_URI'))
-    .catch(err => console.warn('⚠️ MongoDB connection error (falling back to memory):', err.message));
+    .then(() => {
+      mongoConnError = null;
+      console.log('🍃 MongoDB connected successfully via MONGODB_URI');
+    })
+    .catch(err => {
+      mongoConnError = err.message;
+      console.warn('⚠️ MongoDB connection error (falling back to memory):', err.message);
+    });
 } else {
   console.log('ℹ️ MONGODB_URI not provided; running API in in-memory seed mode.');
 }
@@ -95,11 +102,18 @@ const apiRouter = express.Router();
 
 // Health Check
 apiRouter.get('/health', (req, res) => {
+  const mongoStates = ['disconnected', 'connected', 'connecting', 'disconnecting'];
   return successResponse(res, {
     status: 'healthy',
     timestamp: new Date().toISOString(),
     uptime: process.uptime(),
-    environment: process.env.NODE_ENV || 'development'
+    environment: process.env.NODE_ENV || 'development',
+    db: {
+      hasUri: !!process.env.MONGODB_URI,
+      state: mongoStates[mongoose.connection.readyState] || 'unknown',
+      readyState: mongoose.connection.readyState,
+      error: mongoConnError
+    }
   }, 'MaxiTShop API is operational');
 });
 
