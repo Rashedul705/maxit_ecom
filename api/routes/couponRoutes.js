@@ -65,3 +65,4 @@ router.delete('/:id', requireAdminAuth, async (req, res, next) => {
 });
 
 module.exports = router;
+

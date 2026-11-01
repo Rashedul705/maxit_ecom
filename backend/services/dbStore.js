@@ -507,7 +507,7 @@ const db = {
   },
 
   // --- PRODUCTS ---
-  async getProducts({ category, brand, search, minPrice, maxPrice, inStock, sort, page = 1, limit = 20, isDeal, isFeatured, isNewItem }) {
+  async getProducts({ category, sub, subcategory, brand, search, minPrice, maxPrice, inStock, sort, page = 1, limit = 20, isDeal, isFeatured, isNewItem }) {
     if (isMongo()) {
       try {
         const filter = {};
@@ -519,6 +519,11 @@ const db = {
             { categoryName: { $regex: new RegExp(`^${c}$`, 'i') } },
             { slug: { $regex: new RegExp(c, 'i') } }
           ];
+        }
+
+        const subCat = (sub || subcategory || '').trim();
+        if (subCat) {
+          filter.subcategory = { $regex: new RegExp(`^${subCat}$`, 'i') };
         }
 
         if (brand) {

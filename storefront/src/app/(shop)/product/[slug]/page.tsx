@@ -84,7 +84,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* Breadcrumb: Home / [Category] / [Product Name] */}
+      {/* Breadcrumb: Home / [Category] / [Subcategory] / [Product Name] */}
       <nav className="flex items-center text-xs text-slate-500 mb-6 gap-2 overflow-x-auto whitespace-nowrap">
         <Link href="/" className="hover:text-[#0468D3] transition-colors font-medium">
           Home
@@ -93,6 +93,14 @@ export default async function ProductPage({ params }: ProductPageProps) {
         <Link href={`/category/${product.category}`} className="hover:text-[#0468D3] capitalize transition-colors font-medium">
           {product.categoryName || product.category.replace(/-/g, ' ')}
         </Link>
+        {product.subcategory && (
+          <>
+            <span className="text-slate-300">/</span>
+            <Link href={`/category/${product.category}?sub=${product.subcategory}`} className="hover:text-[#0468D3] capitalize transition-colors font-medium">
+              {product.subcategoryName || product.subcategory.replace(/-/g, ' ')}
+            </Link>
+          </>
+        )}
         <span className="text-slate-300">/</span>
         <span className="font-semibold text-slate-800 line-clamp-1">{product.title}</span>
       </nav>

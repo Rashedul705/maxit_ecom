@@ -93,6 +93,8 @@ export const api = {
   // Products
   getProducts: (params: {
     category?: string;
+    sub?: string;
+    subcategory?: string;
     search?: string;
     brand?: string;
     minPrice?: number | string;
@@ -104,6 +106,7 @@ export const api = {
   } = {}) => {
     const query = new URLSearchParams();
     if (params.category) query.set('category', params.category);
+    if (params.sub || params.subcategory) query.set('sub', params.sub || params.subcategory || '');
     if (params.search) query.set('search', params.search);
     if (params.brand) query.set('brand', params.brand);
     if (params.minPrice !== undefined && params.minPrice !== '') query.set('minPrice', String(params.minPrice));

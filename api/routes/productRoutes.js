@@ -9,6 +9,8 @@ router.get('/', async (req, res, next) => {
   try {
     const {
       category,
+      sub,
+      subcategory,
       brand,
       search,
       minPrice,
@@ -21,6 +23,8 @@ router.get('/', async (req, res, next) => {
 
     const result = await db.getProducts({
       category,
+      sub: sub || subcategory,
+      subcategory: sub || subcategory,
       brand,
       search,
       minPrice,

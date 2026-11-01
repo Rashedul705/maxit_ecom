@@ -69,9 +69,10 @@ export const adminApi = {
   deleteCategory: (id: string) => request<{ deleted: boolean }>(`/categories/${id}`, { method: 'DELETE' }),
 
   // Products
-  getProducts: (params: { category?: string; brand?: string; search?: string; page?: number; limit?: number } = {}) => {
+  getProducts: (params: { category?: string; subcategory?: string; brand?: string; search?: string; page?: number; limit?: number } = {}) => {
     const q = new URLSearchParams();
     if (params.category) q.set('category', params.category);
+    if (params.subcategory) q.set('sub', params.subcategory);
     if (params.brand) q.set('brand', params.brand);
     if (params.search) q.set('search', params.search);
     if (params.page) q.set('page', String(params.page));

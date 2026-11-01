@@ -9,6 +9,8 @@ const ProductSchema = new mongoose.Schema({
   discountPercentage: { type: Number, default: 0 },
   category: { type: String, required: true },
   categoryName: { type: String, default: '' },
+  subcategory: { type: String, default: '' },
+  subcategoryName: { type: String, default: '' },
   brand: { type: String, default: 'General' },
   stock: { type: Number, default: 10 },
   image: { type: String, default: '' },
@@ -30,6 +32,7 @@ const ProductSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 ProductSchema.index({ category: 1, brand: 1, price: 1 });
+ProductSchema.index({ category: 1, subcategory: 1 });
 ProductSchema.index({ price: 1 });
 ProductSchema.index({ stock: 1 });
 ProductSchema.index({ createdAt: -1 });

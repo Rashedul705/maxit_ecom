@@ -51,6 +51,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
   const page = parseInt(search.page || '1', 10);
   const productsResponse = await api.getProducts({
     category: slug,
+    sub: search.sub,
     brand: search.brand,
     minPrice: search.minPrice,
     maxPrice: search.maxPrice,
@@ -67,6 +68,35 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
   const hasNext = page < totalPages;
   const availableBrands = productsResponse.filterMeta?.availableBrands || [];
 
+  const currentSub = search.sub || '';
+  const activeSub = category.subcategories?.find((s: any) => s.slug === currentSub || s.id === currentSub);
+
+  const buildSubUrl = (targetSub?: string) => {
+    const p = new URLSearchParams();
+    if (targetSub && targetSub !== currentSub) {
+      p.set('sub', targetSub);
+    }
+    if (search.brand) p.set('brand', search.brand);
+    if (search.minPrice) p.set('minPrice', search.minPrice);
+    if (search.maxPrice) p.set('maxPrice', search.maxPrice);
+    if (search.inStock) p.set('inStock', search.inStock);
+    if (search.sort) p.set('sort', search.sort);
+    const qs = p.toString();
+    return qs ? `/category/${slug}?${qs}` : `/category/${slug}`;
+  };
+
+  const buildPageUrl = (targetPage: number) => {
+    const p = new URLSearchParams();
+    p.set('page', String(targetPage));
+    if (search.sub) p.set('sub', search.sub);
+    if (search.brand) p.set('brand', search.brand);
+    if (search.minPrice) p.set('minPrice', search.minPrice);
+    if (search.maxPrice) p.set('maxPrice', search.maxPrice);
+    if (search.inStock) p.set('inStock', search.inStock);
+    if (search.sort) p.set('sort', search.sort);
+    return `/category/${slug}?${p.toString()}`;
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-6">
       
@@ -77,29 +107,57 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
           <span>Home</span>
         </Link>
         <ChevronRight className="w-3 h-3 text-slate-400" />
-        <span className="font-semibold text-slate-900">{category.name}</span>
+        {activeSub ? (
+          <>
+            <Link href={`/category/${slug}`} className="hover:text-blue-600">
+              {category.name}
+            </Link>
+            <ChevronRight className="w-3 h-3 text-slate-400" />
+            <span className="font-semibold text-slate-900">{activeSub.name}</span>
+          </>
+        ) : (
+          <span className="font-semibold text-slate-900">{category.name}</span>
+        )}
       </nav>
 
       {/* Category Header Banner */}
       <div className="bg-white rounded-2xl border border-slate-200 p-6 mb-6 shadow-xs">
         <h1 className="text-xl sm:text-3xl font-black text-slate-900 mb-2">
-          {category.name}
+          {activeSub ? `${activeSub.name} - ${category.name}` : category.name}
         </h1>
         <p className="text-xs sm:text-sm text-slate-600 max-w-2xl">
-          Browse our extensive collection of {category.name.toLowerCase()} with official warranty, lowest market rates, and fast doorstep delivery across Bangladesh.
+          Browse our extensive collection of {activeSub ? activeSub.name.toLowerCase() : category.name.toLowerCase()} with official warranty, lowest market rates, and fast doorstep delivery across Bangladesh.
         </p>
 
         {/* Subcategory Pills */}
         {category.subcategories && category.subcategories.length > 0 && (
           <div className="mt-4 pt-4 border-t border-slate-100 flex flex-wrap gap-2">
-            {category.subcategories.map(sub => (
-              <span
-                key={sub.id}
-                className="text-xs bg-slate-100 hover:bg-blue-50 hover:text-blue-600 text-slate-700 px-3 py-1.5 rounded-full font-medium transition-colors"
-              >
-                {sub.name}
-              </span>
-            ))}
+            <Link
+              href={buildSubUrl(undefined)}
+              className={`text-xs sm:text-sm px-3.5 py-1.5 rounded-full border transition-all ${
+                !currentSub
+                  ? 'bg-[#FF6600] text-white border-[#FF6600] font-semibold shadow-xs'
+                  : 'bg-white text-slate-700 border-slate-200 hover:border-[#FF6600] hover:text-[#FF6600] font-medium shadow-2xs'
+              }`}
+            >
+              All
+            </Link>
+            {category.subcategories.map(sub => {
+              const isActive = currentSub === sub.slug;
+              return (
+                <Link
+                  key={sub.id}
+                  href={buildSubUrl(sub.slug)}
+                  className={`text-xs sm:text-sm px-3.5 py-1.5 rounded-full border transition-all ${
+                    isActive
+                      ? 'bg-[#FF6600] text-white border-[#FF6600] font-semibold shadow-xs'
+                      : 'bg-white text-slate-700 border-slate-200 hover:border-[#FF6600] hover:text-[#FF6600] font-medium shadow-2xs'
+                  }`}
+                >
+                  {sub.name}
+                </Link>
+              );
+            })}
           </div>
         )}
       </div>
@@ -143,10 +201,10 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
 
           {/* Pagination Controls */}
           {totalPages > 1 && (
-            <div className="pt-6 flex items-center justify-center gap-2">
+            <div className="pt-6 flex flex-wrap items-center justify-center gap-1.5 sm:gap-2">
               {hasPrev && (
                 <Link
-                  href={`/category/${slug}?page=${page - 1}`}
+                  href={buildPageUrl(page - 1)}
                   className="px-3 py-2 bg-white border border-slate-200 text-slate-700 rounded-lg text-xs font-semibold hover:bg-slate-50 flex items-center gap-1 shadow-xs"
                 >
                   <ArrowLeft className="w-3.5 h-3.5" />
@@ -154,23 +212,51 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                 </Link>
               )}
 
-              {Array.from({ length: totalPages }, (_, i) => i + 1).map(p => (
-                <Link
-                  key={p}
-                  href={`/category/${slug}?page=${p}`}
-                  className={`w-8 h-8 rounded-lg text-xs font-bold flex items-center justify-center transition-colors ${
-                    p === page
-                      ? 'bg-[#FF6600] text-white shadow-xs'
-                      : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-50'
-                  }`}
-                >
-                  {p}
-                </Link>
-              ))}
+              {/* Smart pagination numbers */}
+              {(() => {
+                const pages: (number | string)[] = [];
+                if (totalPages <= 7) {
+                  for (let i = 1; i <= totalPages; i++) pages.push(i);
+                } else {
+                  pages.push(1);
+                  if (page > 3) pages.push('...');
+                  const start = Math.max(2, page - 1);
+                  const end = Math.min(totalPages - 1, page + 1);
+                  for (let i = start; i <= end; i++) {
+                    if (!pages.includes(i)) pages.push(i);
+                  }
+                  if (page < totalPages - 2) pages.push('...');
+                  if (!pages.includes(totalPages)) pages.push(totalPages);
+                }
+
+                return pages.map((p, idx) => {
+                  if (p === '...') {
+                    return (
+                      <span key={`dots-${idx}`} className="w-8 h-8 flex items-center justify-center text-xs text-slate-400">
+                        ...
+                      </span>
+                    );
+                  }
+                  const pageNum = Number(p);
+                  return (
+                    <Link
+                      key={pageNum}
+                      href={buildPageUrl(pageNum)}
+                      className={`w-8 h-8 rounded-lg text-xs font-bold flex items-center justify-center transition-colors ${
+                        pageNum === page
+                          ? 'bg-[#FF6600] text-white shadow-xs'
+                          : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-50'
+                      }`}
+                    >
+                      {pageNum}
+                    </Link>
+                  );
+                });
+              })()}
 
               {hasNext && (
                 <Link
-                  href={`/category/${slug}?page=${page + 1}`}
+                  href={buildPageUrl(page + 1)}
                   className="px-3 py-2 bg-white border border-slate-200 text-slate-700 rounded-lg text-xs font-semibold hover:bg-slate-50 flex items-center gap-1 shadow-xs"
                 >
                   <span>Next</span>

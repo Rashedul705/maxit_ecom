@@ -12,6 +12,7 @@ export const ProductsView: React.FC = () => {
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const [categoryFilter, setCategoryFilter] = useState('');
+  const [subcategoryFilter, setSubcategoryFilter] = useState('');
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
@@ -41,6 +42,7 @@ export const ProductsView: React.FC = () => {
       setLoading(true);
       const data = await adminApi.getProducts({
         category: categoryFilter,
+        subcategory: subcategoryFilter,
         search,
         page,
         limit: 15
@@ -60,7 +62,7 @@ export const ProductsView: React.FC = () => {
 
   useEffect(() => {
     fetchProducts();
-  }, [page, categoryFilter]);
+  }, [page, categoryFilter, subcategoryFilter]);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -200,13 +202,33 @@ export const ProductsView: React.FC = () => {
           className="form-select"
           style={{ width: '220px' }}
           value={categoryFilter}
-          onChange={e => { setCategoryFilter(e.target.value); setPage(1); }}
+          onChange={e => { setCategoryFilter(e.target.value); setSubcategoryFilter(''); setPage(1); }}
         >
           <option value="">All Categories</option>
           {categories.map(c => (
             <option key={c.id} value={c.slug}>{c.name}</option>
           ))}
         </select>
+
+        {(() => {
+          const selectedCat = categories.find(c => c.slug === categoryFilter);
+          if (selectedCat?.subcategories && selectedCat.subcategories.length > 0) {
+            return (
+              <select
+                className="form-select"
+                style={{ width: '200px' }}
+                value={subcategoryFilter}
+                onChange={e => { setSubcategoryFilter(e.target.value); setPage(1); }}
+              >
+                <option value="">All Subcategories</option>
+                {selectedCat.subcategories.map(s => (
+                  <option key={s.slug} value={s.slug}>{s.name}</option>
+                ))}
+              </select>
+            );
+          }
+          return null;
+        })()}
       </div>
 
       {/* Table */}
@@ -249,8 +271,13 @@ export const ProductsView: React.FC = () => {
                       <div style={{ fontWeight: 600, maxWidth: '280px' }}>{p.title}</div>
                       <div style={{ fontSize: '11px', color: '#64748b' }}>Slug: {p.slug}</div>
                     </td>
-                    <td style={{ fontSize: '12px', textTransform: 'uppercase', color: '#475569' }}>
-                      {p.category}
+                    <td style={{ fontSize: '12px', color: '#475569' }}>
+                      <div style={{ textTransform: 'uppercase', fontWeight: 600 }}>{p.category}</div>
+                      {p.subcategoryName && (
+                        <div style={{ fontSize: '11px', color: '#ea580c', background: '#fff7ed', border: '1px solid #ffedd5', display: 'inline-block', padding: '1px 6px', borderRadius: '4px', marginTop: '3px', fontWeight: 500 }}>
+                          {p.subcategoryName}
+                        </div>
+                      )}
                     </td>
                     <td style={{ fontSize: '13px' }}>{p.brand}</td>
 

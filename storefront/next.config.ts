@@ -31,6 +31,21 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'ibb.co',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.startech.com.bd',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'startech.com.bd',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
         hostname: 'bdshop.com',
         pathname: '/**',
       },

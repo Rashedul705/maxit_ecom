@@ -155,6 +155,8 @@ export interface Product {
   oldPrice?: number;
   category: string;
   categoryName?: string;
+  subcategory?: string;
+  subcategoryName?: string;
   brand: string;
   stock: number;
   isNew: boolean;
@@ -226,6 +228,8 @@ export interface SearchSuggestion {
   image: string;
   category: string;
   categoryName?: string;
+  subcategory?: string;
+  subcategoryName?: string;
   brand: string;
 }
 

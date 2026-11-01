@@ -7,6 +7,7 @@ export interface Category {
   description?: string;
   order: number;
   isActive: boolean;
+  subcategories?: { id?: string; name: string; slug: string }[];
 }
 
 export interface Product {
@@ -16,6 +17,8 @@ export interface Product {
   price: number;
   oldPrice: number;
   category: string;
+  subcategory?: string;
+  subcategoryName?: string;
   brand: string;
   stock: number;
   images: string[];
