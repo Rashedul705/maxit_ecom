@@ -12,8 +12,11 @@ storefront/.env
 storefront/.env.local
 admin/.env
 admin/.env.local
+api/.env
+api/.env.local
 # Dev-only scraper/upload artifacts
 backend/output/
+api/output/
 .DS_Store
 Thumbs.db
 *.log

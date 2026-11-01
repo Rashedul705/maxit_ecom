@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const rateLimit = require('express-rate-limit');
 const path = require('path');
 const mongoose = require('mongoose');
 
@@ -52,12 +53,31 @@ app.use(cors({
     ) {
       return callback(null, true);
     }
-    return callback(null, true);
+    return callback(new Error('Origin not allowed by CORS'));
   },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'x-admin-token']
 }));
+
+// Rate limiting — must be after CORS, before routes
+const globalLimiter = rateLimit({
+  windowMs: 60 * 1000,       // 1 minute
+  max: 300,                   // 300 requests per minute per IP
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { success: false, message: 'Too many requests, please slow down.' }
+});
+const loginLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,  // 15 minutes
+  max: 20,                    // 20 login attempts per 15 min
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { success: false, message: 'Too many login attempts. Please try again in 15 minutes.' }
+});
+app.use('/api/v1/admin/login', loginLimiter);
+app.use('/api/v1/', globalLimiter);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

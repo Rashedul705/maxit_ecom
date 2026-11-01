@@ -102,7 +102,7 @@ async function runSlowUploader() {
                   await sleep(45000); // polite pause between uploads
                 } else {
                   console.warn(`[ImgBB notice] (key ...${activeKey.slice(-4)}): ${json.error?.message || 'Upload failed'}`);
-                  if (json.error?.message?.includes('Rate limit')) {
+                  if (json.error?.message?.includes('Rate limit') || json.error?.code === 103 || json.error?.message?.includes('forbidden')) {
                     keyIndex = (keyIndex + 1) % currentKeys.length;
                     attempts++;
                     if (attempts >= currentKeys.length) {

@@ -22,6 +22,8 @@ export const ProductModal: React.FC<ProductModalProps> = ({
   const [price, setPrice] = useState(product?.price || 0);
   const [oldPrice, setOldPrice] = useState(product?.oldPrice || 0);
   const [category, setCategory] = useState(product?.category || (categories[0]?.slug || ''));
+  const [subcategory, setSubcategory] = useState(product?.subcategory || '');
+  const [availableSubcats, setAvailableSubcats] = useState<{ id: string; name: string; slug: string }[]>([]);
   const [brand, setBrand] = useState(product?.brand || (brands[0]?.name || 'Nano Power'));
   const [stock, setStock] = useState(product?.stock !== undefined ? product.stock : 10);
   const [productCode, setProductCode] = useState(product?.productCode || '');
@@ -45,6 +47,26 @@ export const ProductModal: React.FC<ProductModalProps> = ({
       setSpecs([{ key: 'Warranty', value: '1 Year Warranty' }]);
     }
   }, [product]);
+
+  useEffect(() => {
+    if (!category) {
+      setAvailableSubcats([]);
+      return;
+    }
+    const cat = categories.find(c => c.slug === category || c.id === category);
+    if (cat && cat.subcategories && cat.subcategories.length > 0) {
+      setAvailableSubcats(cat.subcategories.map(s => ({
+        id: s.id || s.slug,
+        name: s.name,
+        slug: s.slug
+      })));
+    } else {
+      adminApi.getSubcategories(category)
+        .then(subs => setAvailableSubcats(subs))
+        .catch(() => setAvailableSubcats([]));
+    }
+    if (!product) setSubcategory('');
+  }, [category, categories]);
 
   const handleAddImageField = () => setImages([...images, '']);
   const handleImageChange = (val: string, index: number) => {
@@ -96,6 +118,10 @@ export const ProductModal: React.FC<ProductModalProps> = ({
       price: Number(price),
       oldPrice: Number(oldPrice),
       category,
+      subcategory: subcategory || undefined,
+      subcategoryName: subcategory
+        ? (availableSubcats.find(s => s.slug === subcategory)?.name || subcategory)
+        : undefined,
       brand,
       stock: Number(stock),
       productCode: productCode.trim(),
@@ -187,6 +213,26 @@ export const ProductModal: React.FC<ProductModalProps> = ({
                   ))}
                 </select>
               </div>
+            </div>
+
+            <div className="form-group">
+              <label className="form-label">Subcategory</label>
+              <select
+                className="form-select"
+                value={subcategory}
+                onChange={e => setSubcategory(e.target.value)}
+                disabled={availableSubcats.length === 0}
+              >
+                <option value="">— None (no subcategory) —</option>
+                {availableSubcats.map(s => (
+                  <option key={s.id} value={s.slug}>{s.name}</option>
+                ))}
+              </select>
+              {availableSubcats.length === 0 && (
+                <span style={{ fontSize: '11px', color: '#94a3b8', marginTop: '4px', display: 'block' }}>
+                  No subcategories for this category.
+                </span>
+              )}
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}>
