@@ -51,6 +51,8 @@ export const ProductEditorView: React.FC<ProductEditorViewProps> = ({
   const [brand, setBrand] = useState(product?.brand || (brands[0]?.name || 'Gospower'));
   const [productCode, setProductCode] = useState(product?.productCode || '');
   const [category, setCategory] = useState(product?.category || (categories[0]?.slug || ''));
+  const [subcategory, setSubcategory] = useState(product?.subcategory || '');
+  const [availableSubcats, setAvailableSubcats] = useState<{ id: string; name: string; slug: string }[]>([]);
 
   // Pricing & Status
   const [regularPrice, setRegularPrice] = useState<number>(product?.oldPrice || 0);
@@ -102,6 +104,26 @@ export const ProductEditorView: React.FC<ProductEditorViewProps> = ({
       setSlug(generated);
     }
   }, [title, slugTouched, product]);
+
+  // Load subcategories when category changes
+  useEffect(() => {
+    if (!category) { setAvailableSubcats([]); return; }
+    const cat = categories.find(c => c.slug === category || c.id === category);
+    if (cat && cat.subcategories && cat.subcategories.length > 0) {
+      setAvailableSubcats(cat.subcategories.map(s => ({
+        id: s.id || s.slug,
+        name: s.name,
+        slug: s.slug
+      })));
+    } else {
+      // Fetch from API
+      adminApi.getSubcategories(category)
+        .then(subs => setAvailableSubcats(subs))
+        .catch(() => setAvailableSubcats([]));
+    }
+    // Don't clear subcategory on initial load (editing)
+    if (!product) setSubcategory('');
+  }, [category]);
 
   // Parse product specs into spec groups
   useEffect(() => {
@@ -351,6 +373,10 @@ export const ProductEditorView: React.FC<ProductEditorViewProps> = ({
         brand: brand.trim(),
         productCode: productCode.trim(),
         category,
+        subcategory: subcategory || undefined,
+        subcategoryName: subcategory
+          ? (availableSubcats.find(s => s.slug === subcategory)?.name || subcategory)
+          : undefined,
         price: Number(specialPrice),
         oldPrice: Number(regularPrice),
         stock: inStock ? Number(stockQuantity) : 0,
@@ -497,6 +523,27 @@ export const ProductEditorView: React.FC<ProductEditorViewProps> = ({
                   ))}
                 </select>
               </div>
+            </div>
+
+            {/* Subcategory — full width below the 2-col row */}
+            <div className="form-group" style={{ marginTop: '0' }}>
+              <label className="form-label">Subcategory</label>
+              <select
+                className="form-select"
+                value={subcategory}
+                onChange={e => setSubcategory(e.target.value)}
+                disabled={availableSubcats.length === 0}
+              >
+                <option value="">— None (no subcategory) —</option>
+                {availableSubcats.map(s => (
+                  <option key={s.id} value={s.slug}>{s.name}</option>
+                ))}
+              </select>
+              {availableSubcats.length === 0 && category && (
+                <span style={{ fontSize: '11px', color: '#94a3b8', marginTop: '4px', display: 'block' }}>
+                  No subcategories for this category. Add them in Subcategories management.
+                </span>
+              )}
             </div>
           </div>
 

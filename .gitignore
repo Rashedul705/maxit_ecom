@@ -8,6 +8,12 @@ dist
 backend/.env
 frontend/.env
 frontend/.env.local
+storefront/.env
+storefront/.env.local
+admin/.env
+admin/.env.local
+# Dev-only scraper/upload artifacts
+backend/output/
 .DS_Store
 Thumbs.db
 *.log

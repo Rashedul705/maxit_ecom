@@ -12,11 +12,11 @@ export const metadata: Metadata = {
   description: "maxitshop is Bangladesh's premier e-commerce platform for Solar Energy, LiFePO4 Batteries, Inverters, Smart Gadgets, and Electronics with Cash on Delivery across all 64 districts.",
   keywords: "maxitshop, solar panels bd, inverter price bangladesh, lifepo4 battery bd, bms module, electronics parts dhaka, cash on delivery",
   authors: [{ name: "maxitshop" }],
-  metadataBase: new URL("http://localhost:3001"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://maxitecom.maxapi.esp32.site"),
   openGraph: {
     title: "maxitshop | Online Shopping in Bangladesh",
     description: "Authentic solar equipment, inverters, batteries, and electronics with nationwide delivery.",
-    url: "http://localhost:3001",
+    url: process.env.NEXT_PUBLIC_SITE_URL || "https://maxitecom.maxapi.esp32.site",
     siteName: "maxitshop",
     locale: "en_BD",
     type: "website",

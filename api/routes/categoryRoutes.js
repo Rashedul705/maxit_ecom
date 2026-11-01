@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../services/dbStore');
+const Category = require('../models/Category');
 const { successResponse, errorResponse } = require('../utils/response');
 const { requireAdminAuth } = require('../middleware/auth');
 
@@ -54,6 +55,79 @@ router.delete('/:id', requireAdminAuth, async (req, res, next) => {
     const ok = await db.deleteCategory(req.params.id);
     if (!ok) return errorResponse(res, 'Category not found', 404);
     return successResponse(res, { deleted: true }, 'Category deleted successfully');
+  } catch (err) {
+    next(err);
+  }
+});
+
+// ─── Subcategory Routes ────────────────────────────────────────────────────
+
+// GET /api/v1/categories/:categoryId/subcategories
+router.get('/:categoryId/subcategories', async (req, res, next) => {
+  try {
+    const cat = await db.getCategoryBySlug(req.params.categoryId);
+    if (!cat) return errorResponse(res, 'Category not found', 404);
+    return successResponse(res, cat.subcategories || []);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// POST /api/v1/categories/:categoryId/subcategories
+router.post('/:categoryId/subcategories', requireAdminAuth, async (req, res, next) => {
+  try {
+    const { name } = req.body;
+    if (!name) return errorResponse(res, 'Subcategory name is required', 400);
+    const slug = req.body.slug || name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    const sub = { id: `sub-${Date.now()}`, name: name.trim(), slug };
+
+    const cat = await Category.findOneAndUpdate(
+      { $or: [{ id: req.params.categoryId }, { slug: req.params.categoryId }] },
+      { $push: { subcategories: sub } },
+      { new: true }
+    ).lean();
+    if (!cat) return errorResponse(res, 'Category not found', 404);
+    return successResponse(res, sub, 'Subcategory created successfully', 201);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// PUT /api/v1/categories/:categoryId/subcategories/:subId
+router.put('/:categoryId/subcategories/:subId', requireAdminAuth, async (req, res, next) => {
+  try {
+    const { name, slug } = req.body;
+    const updateFields = {};
+    if (name) updateFields['subcategories.$.name'] = name.trim();
+    if (slug) updateFields['subcategories.$.slug'] = slug;
+    else if (name) updateFields['subcategories.$.slug'] = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+
+    const cat = await Category.findOneAndUpdate(
+      {
+        $or: [{ id: req.params.categoryId }, { slug: req.params.categoryId }],
+        'subcategories.id': req.params.subId
+      },
+      { $set: updateFields },
+      { new: true }
+    ).lean();
+    if (!cat) return errorResponse(res, 'Category or subcategory not found', 404);
+    const updated = (cat.subcategories || []).find(s => s.id === req.params.subId);
+    return successResponse(res, updated, 'Subcategory updated successfully');
+  } catch (err) {
+    next(err);
+  }
+});
+
+// DELETE /api/v1/categories/:categoryId/subcategories/:subId
+router.delete('/:categoryId/subcategories/:subId', requireAdminAuth, async (req, res, next) => {
+  try {
+    const cat = await Category.findOneAndUpdate(
+      { $or: [{ id: req.params.categoryId }, { slug: req.params.categoryId }] },
+      { $pull: { subcategories: { id: req.params.subId } } },
+      { new: true }
+    ).lean();
+    if (!cat) return errorResponse(res, 'Category not found', 404);
+    return successResponse(res, { deleted: true }, 'Subcategory deleted successfully');
   } catch (err) {
     next(err);
   }

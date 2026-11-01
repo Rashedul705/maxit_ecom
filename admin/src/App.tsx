@@ -5,6 +5,7 @@ import { DashboardView } from './views/DashboardView';
 import { OrdersView } from './views/OrdersView';
 import { ProductsView } from './views/ProductsView';
 import { CategoriesView } from './views/CategoriesView';
+import { SubcategoriesView } from './views/SubcategoriesView';
 import { BrandsView } from './views/BrandsView';
 import { BannersView } from './views/BannersView';
 import { ComplaintsView } from './views/ComplaintsView';
@@ -55,6 +56,8 @@ export function App() {
         return <ProductsView />;
       case 'categories':
         return <CategoriesView />;
+      case 'subcategories':
+        return <SubcategoriesView />;
       case 'brands':
         return <BrandsView />;
       case 'banners':

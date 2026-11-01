@@ -68,6 +68,12 @@ export const adminApi = {
   updateCategory: (id: string, data: Partial<Category>) => request<Category>(`/categories/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
   deleteCategory: (id: string) => request<{ deleted: boolean }>(`/categories/${id}`, { method: 'DELETE' }),
 
+  // Subcategories
+  getSubcategories: (categoryId: string) => request<{ id: string; name: string; slug: string }[]>(`/categories/${categoryId}/subcategories`),
+  createSubcategory: (categoryId: string, data: { name: string; slug?: string }) => request<{ id: string; name: string; slug: string }>(`/categories/${categoryId}/subcategories`, { method: 'POST', body: JSON.stringify(data) }),
+  updateSubcategory: (categoryId: string, subId: string, data: { name: string; slug?: string }) => request<{ id: string; name: string; slug: string }>(`/categories/${categoryId}/subcategories/${subId}`, { method: 'PUT', body: JSON.stringify(data) }),
+  deleteSubcategory: (categoryId: string, subId: string) => request<{ deleted: boolean }>(`/categories/${categoryId}/subcategories/${subId}`, { method: 'DELETE' }),
+
   // Products
   getProducts: (params: { category?: string; subcategory?: string; brand?: string; search?: string; page?: number; limit?: number } = {}) => {
     const q = new URLSearchParams();
