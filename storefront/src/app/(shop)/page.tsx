@@ -15,32 +15,27 @@ export default async function HomePage() {
   let categoryGroups: { category: Category; products: Product[] }[] = [];
 
   try {
-    const [catsData, bannersData, brandsData, prodsData] = await Promise.all([
+    const [catsData, bannersData, brandsData] = await Promise.all([
       api.getCategories().catch(() => []),
       api.getBanners().catch(() => []),
       api.getBrands().catch(() => []),
-      api.getProducts({ limit: 150 }).catch(() => ({ items: [] }))
     ]);
 
     categories = catsData;
     banners = bannersData;
     brands = brandsData;
-    const allProducts = prodsData.items || [];
 
-    // Group products by top categories for "Hot Deal" sections
-    if (categories.length > 0 && allProducts.length > 0) {
-      // Pick top 6 categories
+    // Fetch products per category individually so each section shows its own products
+    if (categories.length > 0) {
       const targetCategories = categories.slice(0, 6);
-      categoryGroups = targetCategories.map((cat) => {
-        const catProducts = allProducts.filter(
-          (p) => p.category === cat.slug || p.category === cat.name || (p as any).categoryName === cat.name
-        );
-        // Fallback: if category has few products, take slice of all products so cards are displayed
-        return {
-          category: cat,
-          products: catProducts.length > 0 ? catProducts : allProducts.slice(0, 6)
-        };
-      });
+      const groupResults = await Promise.all(
+        targetCategories.map(async (cat) => {
+          const data = await api.getProducts({ category: cat.slug, limit: 8 }).catch(() => ({ items: [] }));
+          return { category: cat, products: data.items || [] };
+        })
+      );
+      // Only include categories that actually have products
+      categoryGroups = groupResults.filter((g) => g.products.length > 0);
     }
   } catch (err) {
     console.error('Error prefetching home page data:', err);
