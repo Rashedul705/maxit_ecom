@@ -17,10 +17,134 @@ import { LoginView } from './views/LoginView';
 import { CouponsView } from './views/CouponsView';
 import { adminApi } from './api';
 
+export const VALID_TABS = [
+  'dashboard',
+  'orders',
+  'products',
+  'categories',
+  'subcategories',
+  'brands',
+  'banners',
+  'coupons',
+  'complaints',
+  'sellers',
+  'pages',
+  'subscribers',
+  'settings'
+] as const;
+
+export type AdminTab = typeof VALID_TABS[number];
+
+function parseTab(value?: string | null): AdminTab | null {
+  if (!value) return null;
+  const clean = value.toLowerCase().trim();
+  return (VALID_TABS as readonly string[]).includes(clean) ? (clean as AdminTab) : null;
+}
+
+function getInitialTab(): AdminTab {
+  // 1. From Pathname (e.g. /admin/orders or /admin/subcategories or /orders)
+  try {
+    const path = window.location.pathname.replace(/\/+$/, '');
+    const segments = path.split('/').filter(Boolean);
+    const adminIdx = segments.indexOf('admin');
+    if (adminIdx !== -1 && segments[adminIdx + 1]) {
+      const parsed = parseTab(segments[adminIdx + 1]);
+      if (parsed) return parsed;
+    } else if (segments.length > 0) {
+      const parsed = parseTab(segments[segments.length - 1]);
+      if (parsed) return parsed;
+    }
+  } catch (_) {}
+
+  // 2. From URL Hash (e.g. #orders or #/orders)
+  try {
+    const rawHash = window.location.hash.replace(/^#\/?/, '');
+    const cleanHash = rawHash.split('?')[0].split('/')[0];
+    const parsed = parseTab(cleanHash);
+    if (parsed) return parsed;
+  } catch (_) {}
+
+  // 3. From URL Search Param (e.g. ?tab=orders)
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const parsed = parseTab(params.get('tab'));
+    if (parsed) return parsed;
+  } catch (_) {}
+
+  // 4. From localStorage
+  try {
+    const stored = parseTab(localStorage.getItem('maxit_admin_tab'));
+    if (stored) return stored;
+  } catch (_) {}
+
+  // 5. Default
+  return 'dashboard';
+}
+
+function updateUrlAndTitle(tab: AdminTab, replace = false) {
+  try {
+    const isSubPath = tab !== 'dashboard';
+    const currentPath = window.location.pathname;
+    const hasAdminPrefix = currentPath.startsWith('/admin') || currentPath === '/admin';
+
+    const newPath = hasAdminPrefix
+      ? (isSubPath ? `/admin/${tab}` : '/admin')
+      : (isSubPath ? `/${tab}` : '/');
+
+    if (window.location.pathname !== newPath) {
+      if (replace) {
+        window.history.replaceState({ tab }, '', newPath);
+      } else {
+        window.history.pushState({ tab }, '', newPath);
+      }
+    }
+
+    const formattedTitle = tab.charAt(0).toUpperCase() + tab.slice(1);
+    document.title = `MaxiTShop Admin - ${formattedTitle}`;
+  } catch (_) {}
+}
+
 export function App() {
   const [user, setUser] = useState<any>(null);
-  const [currentTab, setCurrentTab] = useState<string>('dashboard');
+  const [currentTab, setCurrentTab] = useState<AdminTab>(getInitialTab);
   const [checkedAuth, setCheckedAuth] = useState(false);
+
+  // Sync initial URL and title on mount
+  useEffect(() => {
+    updateUrlAndTitle(currentTab, true);
+    try {
+      localStorage.setItem('maxit_admin_tab', currentTab);
+    } catch (_) {}
+  }, []);
+
+  // Listen for browser Back/Forward (popstate) and hash changes
+  useEffect(() => {
+    const handleUrlChange = (e?: any) => {
+      const tabFromState = e && 'state' in e && e.state?.tab ? parseTab(e.state.tab) : null;
+      const tab = tabFromState || getInitialTab();
+      setCurrentTab(tab);
+      try {
+        localStorage.setItem('maxit_admin_tab', tab);
+      } catch (_) {}
+      updateUrlAndTitle(tab, true);
+    };
+
+    window.addEventListener('popstate', handleUrlChange);
+    window.addEventListener('hashchange', handleUrlChange);
+    return () => {
+      window.removeEventListener('popstate', handleUrlChange);
+      window.removeEventListener('hashchange', handleUrlChange);
+    };
+  }, []);
+
+  const handleSelectTab = (tab: string, replace = false) => {
+    const valid = parseTab(tab) || 'dashboard';
+    setCurrentTab(valid);
+    try {
+      localStorage.setItem('maxit_admin_tab', valid);
+    } catch (_) {}
+    updateUrlAndTitle(valid, replace);
+  };
 
   useEffect(() => {
     const handleLogoutEvent = () => setUser(null);
@@ -43,12 +167,14 @@ export function App() {
         } else {
           localStorage.removeItem('maxit_admin_token');
           localStorage.removeItem('maxit_admin_user');
+          localStorage.removeItem('maxit_admin_tab');
           setUser(null);
         }
       })
       .catch(() => {
         localStorage.removeItem('maxit_admin_token');
         localStorage.removeItem('maxit_admin_user');
+        localStorage.removeItem('maxit_admin_tab');
         setUser(null);
       })
       .finally(() => {
@@ -61,7 +187,9 @@ export function App() {
   const handleLogout = () => {
     localStorage.removeItem('maxit_admin_token');
     localStorage.removeItem('maxit_admin_user');
+    localStorage.removeItem('maxit_admin_tab');
     setUser(null);
+    updateUrlAndTitle('dashboard', true);
   };
 
   if (!checkedAuth) return null;
@@ -73,7 +201,7 @@ export function App() {
   const renderContent = () => {
     switch (currentTab) {
       case 'dashboard':
-        return <DashboardView onNavigate={(tab) => setCurrentTab(tab)} />;
+        return <DashboardView onNavigate={(tab) => handleSelectTab(tab)} />;
       case 'orders':
         return <OrdersView />;
       case 'products':
@@ -99,7 +227,7 @@ export function App() {
       case 'settings':
         return <SettingsView />;
       default:
-        return <DashboardView onNavigate={(tab) => setCurrentTab(tab)} />;
+        return <DashboardView onNavigate={(tab) => handleSelectTab(tab)} />;
     }
   };
 
@@ -107,7 +235,7 @@ export function App() {
     <div className="admin-layout">
       <Sidebar
         currentTab={currentTab}
-        onSelectTab={(tab) => setCurrentTab(tab)}
+        onSelectTab={(tab) => handleSelectTab(tab)}
         onLogout={handleLogout}
       />
       <div className="admin-main">

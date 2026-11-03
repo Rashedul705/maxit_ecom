@@ -5,7 +5,10 @@ const OrderItemSchema = new mongoose.Schema({
   title: { type: String, required: true },
   price: { type: Number, required: true },
   quantity: { type: Number, required: true, default: 1 },
-  image: { type: String, default: '' }
+  image: { type: String, default: '' },
+  variation: { type: String, default: '' },
+  variant: { type: String, default: '' },
+  specs: { type: mongoose.Schema.Types.Mixed, default: {} }
 }, { _id: false });
 
 const OrderSchema = new mongoose.Schema({

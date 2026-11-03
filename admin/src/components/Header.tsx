@@ -10,11 +10,13 @@ export const Header: React.FC<HeaderProps> = ({ user, currentTab }) => {
   const getTitle = () => {
     switch (currentTab) {
       case 'dashboard': return 'Dashboard Overview';
-      case 'orders': return 'Customer Orders';
+      case 'orders': return 'Customer Orders & Logistics';
       case 'products': return 'Products Catalog';
       case 'categories': return 'Categories';
+      case 'subcategories': return 'Subcategories';
       case 'brands': return 'Brands';
       case 'banners': return 'Hero Banners';
+      case 'coupons': return 'Coupons & Deals';
       case 'complaints': return 'Complaints & Disputes';
       case 'sellers': return 'Sellers Directory';
       case 'pages': return 'Policy & CMS Pages';

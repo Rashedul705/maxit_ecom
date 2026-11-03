@@ -1214,12 +1214,31 @@ const db = {
       // Strictly enforce verified server price to eliminate client price-tampering
       const verifiedPrice = Number(prod.price || 0);
 
+      // Derive variation or variant information if present
+      let variationStr = item.variation || item.variant || '';
+      if (!variationStr && item.selectedVariation) {
+        if (typeof item.selectedVariation === 'object') {
+          variationStr = Object.entries(item.selectedVariation).map(([k, v]) => `${k}: ${v}`).join(', ');
+        } else {
+          variationStr = String(item.selectedVariation);
+        }
+      }
+      if (!variationStr && prod.specs && typeof prod.specs === 'object') {
+        const specEntries = Object.entries(prod.specs);
+        if (specEntries.length > 0) {
+          variationStr = specEntries.slice(0, 2).map(([k, v]) => `${k}: ${v}`).join(', ');
+        }
+      }
+
       resolvedItems.push({
         productId: prod.id,
         title: prod.title,
         price: verifiedPrice,
         quantity: qty,
-        image: (prod.images && prod.images[0]) || prod.image || ''
+        image: (prod.images && prod.images[0]) || prod.image || '',
+        variation: variationStr,
+        variant: variationStr,
+        specs: prod.specs || {}
       });
     }
 
@@ -1454,6 +1473,73 @@ const db = {
     order.status = status;
     order.timeline.push(newTimelineItem);
     return order;
+  },
+
+  async updateOrderAmount(id, { total, subtotal, deliveryCharge, discount, note }) {
+    const updateFields = {};
+    if (total !== undefined && total !== null && !isNaN(Number(total))) {
+      updateFields.total = Math.max(0, Math.round(Number(total)));
+    }
+    if (subtotal !== undefined && subtotal !== null && !isNaN(Number(subtotal))) {
+      updateFields.subtotal = Math.max(0, Math.round(Number(subtotal)));
+    }
+    if (deliveryCharge !== undefined && deliveryCharge !== null && !isNaN(Number(deliveryCharge))) {
+      updateFields.deliveryCharge = Math.max(0, Math.round(Number(deliveryCharge)));
+    }
+    if (discount !== undefined && discount !== null && !isNaN(Number(discount))) {
+      updateFields.discount = Math.max(0, Math.round(Number(discount)));
+    }
+
+    if (updateFields.total === undefined) {
+      const currentOrder = isMongo()
+        ? await Order.findOne({ $or: [{ id }, { orderNumber: id }] }).lean()
+        : memoryStore.orders.find(o => o.id === id || o.orderNumber === id);
+      if (currentOrder) {
+        const s = updateFields.subtotal !== undefined ? updateFields.subtotal : (currentOrder.subtotal || 0);
+        const d = updateFields.deliveryCharge !== undefined ? updateFields.deliveryCharge : (currentOrder.deliveryCharge || 0);
+        const disc = updateFields.discount !== undefined ? updateFields.discount : (currentOrder.discount || 0);
+        updateFields.total = Math.max(0, s + d - disc);
+      }
+    }
+
+    const noteText = note || `Invoice amount edited by Admin. New Grand Total: ৳${updateFields.total?.toLocaleString() || 'updated'}`;
+    const newTimelineItem = {
+      status: 'confirmed',
+      note: noteText,
+      timestamp: new Date()
+    };
+
+    if (isMongo()) {
+      try {
+        const updated = await Order.findOneAndUpdate(
+          { $or: [{ id }, { orderNumber: id }] },
+          {
+            $set: updateFields,
+            $push: { timeline: newTimelineItem }
+          },
+          { new: true }
+        ).lean();
+
+        if (updated) {
+          const mem = memoryStore.orders.find(o => o.id === id || o.orderNumber === id);
+          if (mem) {
+            Object.assign(mem, updateFields);
+            if (!mem.timeline) mem.timeline = [];
+            mem.timeline.push(newTimelineItem);
+          }
+          return updated;
+        }
+      } catch (e) {
+        console.error('Mongo updateOrderAmount error:', e);
+      }
+    }
+
+    const mem = memoryStore.orders.find(o => o.id === id || o.orderNumber === id);
+    if (!mem) return null;
+    Object.assign(mem, updateFields);
+    if (!mem.timeline) mem.timeline = [];
+    mem.timeline.push(newTimelineItem);
+    return mem;
   },
 
   async bulkUpdateOrderStatus({ ids = [], status, note }) {

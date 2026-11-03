@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Order } from '../types';
 import { adminApi } from '../api';
-import { Search, Printer, ChevronLeft, ChevronRight, CheckCircle2, Truck, Download, CheckSquare, Square, X, AlertCircle, RefreshCw } from 'lucide-react';
-import { InvoiceModal } from '../components/InvoiceModal';
+import { Search, Printer, ChevronLeft, ChevronRight, CheckCircle2, Truck, Download, CheckSquare, Square, X, AlertCircle, RefreshCw, FileText, Tag, Eye, Edit2 } from 'lucide-react';
+import { OrderPopupModal } from '../components/OrderPopupModal';
+import { BulkPrintModal } from '../components/BulkPrintModal';
+import { ParcelStickerPrintModal } from '../components/ParcelStickerPrintModal';
+import { EditOrderAmountModal } from '../components/EditOrderAmountModal';
+import { printHtmlContent } from '../utils/printService';
+import { generateInvoicesHtml } from '../utils/printTemplates';
 
 export const OrdersView: React.FC = () => {
   const [orders, setOrders] = useState<Order[]>([]);
@@ -14,8 +19,15 @@ export const OrdersView: React.FC = () => {
   const [refreshing, setRefreshing] = useState(false);
   const [lastRefreshed, setLastRefreshed] = useState<Date>(new Date());
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
+  const [isOrderPopupOpen, setIsOrderPopupOpen] = useState(false);
+  const [isBulkStickerModalOpen, setIsBulkStickerModalOpen] = useState(false);
+  const [bulkPrintModal, setBulkPrintModal] = useState<{ isOpen: boolean; type: 'invoice' | 'sticker' }>({
+    isOpen: false,
+    type: 'invoice'
+  });
   const [updatingId, setUpdatingId] = useState<string | null>(null);
   const [courierDispatchingId, setCourierDispatchingId] = useState<string | null>(null);
+  const [editingAmountOrder, setEditingAmountOrder] = useState<Order | null>(null);
 
   // Bulk Selection State
   const [selectedOrderIds, setSelectedOrderIds] = useState<string[]>([]);
@@ -83,6 +95,14 @@ export const OrdersView: React.FC = () => {
     } finally {
       setUpdatingId(null);
     }
+  };
+
+  const handleAmountUpdated = (updatedOrder: Order) => {
+    setOrders(prev => prev.map(o => o.id === updatedOrder.id ? updatedOrder : o));
+    if (selectedOrder && selectedOrder.id === updatedOrder.id) {
+      setSelectedOrder(updatedOrder);
+    }
+    showNotification('success', `Invoice amount updated for Order #${updatedOrder.orderNumber}! New Total: ৳${(updatedOrder.total || 0).toLocaleString()}`);
   };
 
   // Dispatch to Steadfast / Pathao Courier
@@ -218,6 +238,26 @@ export const OrdersView: React.FC = () => {
     } finally {
       setBulkActionLoading(false);
     }
+  };
+
+  // Dedicated Print Single Order Invoice (Isolated iframe, NO background page leak)
+  const handlePrintSingleOrderInvoice = (order: Order) => {
+    const { html, pageStyle } = generateInvoicesHtml([order]);
+    printHtmlContent(html, {
+      title: `Invoice_${order.orderNumber}`,
+      pageStyle
+    });
+  };
+
+  // Dedicated Bulk Print Invoices
+  const handleBulkPrintInvoices = () => {
+    const selectedOrders = orders.filter(o => selectedOrderIds.includes(o.id));
+    if (selectedOrders.length === 0) return;
+    const { html, pageStyle } = generateInvoicesHtml(selectedOrders);
+    printHtmlContent(html, {
+      title: `MaxiTShop_Invoices_${selectedOrders.length}_Orders`,
+      pageStyle
+    });
   };
 
   // Toggle selection
@@ -395,6 +435,28 @@ export const OrdersView: React.FC = () => {
               Cancel
             </button>
 
+            {/* Bulk Print Invoices */}
+            <button
+              disabled={bulkActionLoading}
+              onClick={handleBulkPrintInvoices}
+              className="btn btn-sm"
+              style={{ background: '#334155', color: '#fff', border: 'none', padding: '4px 10px', fontSize: '12px', display: 'flex', alignItems: 'center', gap: '4px' }}
+              title="Bulk print invoices for selected orders (isolated A4 tax invoices)"
+            >
+              <FileText size={13} /> Bulk Invoices
+            </button>
+
+            {/* Bulk Print Steadfast Stickers (Opens Image 2 Layout Choice Modal) */}
+            <button
+              disabled={bulkActionLoading}
+              onClick={() => setIsBulkStickerModalOpen(true)}
+              className="btn btn-sm"
+              style={{ background: '#0284c7', color: '#fff', border: 'none', padding: '4px 10px', fontSize: '12px', display: 'flex', alignItems: 'center', gap: '4px' }}
+              title="Bulk print Steadfast parcel shipping stickers (100x150mm, A4 4/8, 75x50mm)"
+            >
+              <Tag size={13} /> Bulk Stickers
+            </button>
+
             <button
               disabled={bulkActionLoading}
               onClick={handleExportCSV}
@@ -474,7 +536,14 @@ export const OrdersView: React.FC = () => {
                     </td>
 
                     <td>
-                      <div style={{ fontWeight: 700, color: '#ff6600', fontSize: '14px' }}>
+                      <div
+                        onClick={() => {
+                          setSelectedOrder(order);
+                          setIsOrderPopupOpen(true);
+                        }}
+                        style={{ fontWeight: 700, color: '#ff6600', fontSize: '14px', cursor: 'pointer', textDecoration: 'underline' }}
+                        title="Click to view order popup"
+                      >
                         {order.orderNumber}
                       </div>
                       <div style={{ fontSize: '11px', color: '#64748b' }}>
@@ -483,26 +552,104 @@ export const OrdersView: React.FC = () => {
                     </td>
 
                     <td>
-                      <div style={{ fontWeight: 600 }}>{order.customer?.name || 'Customer'}</div>
-                      <div style={{ fontSize: '12px', color: '#475569' }}>📞 {order.customer?.phone || 'N/A'}</div>
-                      <div style={{ fontSize: '12px', color: '#64748b', maxWidth: '200px' }}>
-                        📍 {[order.customer?.address, order.customer?.thana, order.customer?.district].filter(Boolean).join(', ') || 'N/A'}
+                      <div
+                        onClick={() => {
+                          setSelectedOrder(order);
+                          setIsOrderPopupOpen(true);
+                        }}
+                        style={{ cursor: 'pointer' }}
+                        title="Click to view customer details"
+                      >
+                        <div style={{ fontWeight: 600, color: '#0f172a' }}>{order.customer?.name || 'Customer'}</div>
+                        <div style={{ fontSize: '12px', color: '#475569' }}>📞 {order.customer?.phone || 'N/A'}</div>
+                        <div style={{ fontSize: '12px', color: '#64748b', maxWidth: '200px' }}>
+                          📍 {[order.customer?.address, order.customer?.thana, order.customer?.district].filter(Boolean).join(', ') || 'N/A'}
+                        </div>
                       </div>
                     </td>
 
                     <td>
-                      <div style={{ fontSize: '12px', color: '#334155' }}>
-                        {(order.items || []).map((item, idx) => (
-                          <div key={idx} style={{ marginBottom: '3px' }}>
-                            • <strong>{item.quantity}x</strong> {(item.title || 'Item').substring(0, 28)}...
-                          </div>
-                        ))}
+                      <div style={{ fontSize: '12px', color: '#334155', display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                        {(order.items || []).map((item, idx) => {
+                          const variation = item.variation || item.variant || (item.specs && Object.keys(item.specs).length > 0
+                            ? Object.entries(item.specs).slice(0, 2).map(([k, v]) => `${k}: ${v}`).join(', ')
+                            : null);
+
+                          return (
+                            <div
+                              key={idx}
+                              onClick={() => {
+                                setSelectedOrder(order);
+                                setIsOrderPopupOpen(true);
+                              }}
+                              style={{
+                                cursor: 'pointer',
+                                padding: '4px 8px',
+                                borderRadius: '6px',
+                                background: '#f8fafc',
+                                border: '1px solid #e2e8f0',
+                                transition: 'all 0.15s ease',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                gap: '2px'
+                              }}
+                              onMouseEnter={(e) => {
+                                e.currentTarget.style.borderColor = '#ff6600';
+                                e.currentTarget.style.background = '#fff7ed';
+                              }}
+                              onMouseLeave={(e) => {
+                                e.currentTarget.style.borderColor = '#e2e8f0';
+                                e.currentTarget.style.background = '#f8fafc';
+                              }}
+                              title="Click to open popup with customer, order & product details"
+                            >
+                              <div style={{ fontWeight: 600, color: '#0f172a' }}>
+                                • <strong>{item.quantity}x</strong> {item.title}
+                              </div>
+                              {variation && (
+                                <div style={{
+                                  fontSize: '10px',
+                                  fontWeight: 700,
+                                  color: '#c2410c',
+                                  background: '#ffedd5',
+                                  borderRadius: '3px',
+                                  padding: '1px 5px',
+                                  alignSelf: 'flex-start'
+                                }}>
+                                  🏷️ {variation}
+                                </div>
+                              )}
+                            </div>
+                          );
+                        })}
                       </div>
                     </td>
 
                     <td>
-                      <div style={{ fontWeight: 800, fontSize: '15px' }}>৳{(order.total || 0).toLocaleString()}</div>
-                      <div style={{ fontSize: '11px', color: '#64748b', textTransform: 'uppercase' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        <span style={{ fontWeight: 800, fontSize: '15px' }}>৳{(order.total || 0).toLocaleString()}</span>
+                        <button
+                          type="button"
+                          onClick={() => setEditingAmountOrder(order)}
+                          style={{
+                            background: '#fff7ed',
+                            border: '1px solid #fed7aa',
+                            borderRadius: '4px',
+                            padding: '1px 5px',
+                            cursor: 'pointer',
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '3px',
+                            color: '#c2410c',
+                            fontSize: '10px',
+                            fontWeight: 700
+                          }}
+                          title="Edit amount on invoice"
+                        >
+                          <Edit2 size={10} /> Edit
+                        </button>
+                      </div>
+                      <div style={{ fontSize: '11px', color: '#64748b', textTransform: 'uppercase', marginTop: '2px' }}>
                         {order.paymentMethod || 'cod'} • <span style={{ color: order.paymentStatus === 'paid' ? '#10b981' : '#f59e0b' }}>{order.paymentStatus || 'unpaid'}</span>
                       </div>
                     </td>
@@ -563,13 +710,27 @@ export const OrdersView: React.FC = () => {
                     </td>
 
                     <td>
-                      <button
-                        className="btn btn-secondary btn-sm"
-                        onClick={() => setSelectedOrder(order)}
-                        title="Print Invoice"
-                      >
-                        <Printer size={14} /> Print
-                      </button>
+                      <div style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
+                        <button
+                          className="btn btn-secondary btn-sm"
+                          onClick={() => {
+                            setSelectedOrder(order);
+                            setIsOrderPopupOpen(true);
+                          }}
+                          title="View order popup"
+                          style={{ display: 'flex', alignItems: 'center', gap: '4px', padding: '4px 8px', fontSize: '12px' }}
+                        >
+                          <Eye size={13} /> View
+                        </button>
+                        <button
+                          className="btn btn-secondary btn-sm"
+                          onClick={() => handlePrintSingleOrderInvoice(order)}
+                          title="Print Retail Tax Invoice (A4)"
+                          style={{ padding: '4px 8px' }}
+                        >
+                          <Printer size={13} />
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 );
@@ -617,7 +778,38 @@ export const OrdersView: React.FC = () => {
         </div>
       </div>
 
-      <InvoiceModal order={selectedOrder} onClose={() => setSelectedOrder(null)} />
+      <OrderPopupModal
+        order={selectedOrder}
+        isOpen={isOrderPopupOpen}
+        onClose={() => {
+          setIsOrderPopupOpen(false);
+          setSelectedOrder(null);
+        }}
+        onOrderUpdated={(updated) => {
+          setOrders(prev => prev.map(o => o.id === updated.id ? updated : o));
+          setSelectedOrder(updated);
+        }}
+      />
+
+      <BulkPrintModal
+        orders={orders.filter(o => selectedOrderIds.includes(o.id))}
+        isOpen={bulkPrintModal.isOpen}
+        initialType={bulkPrintModal.type}
+        onClose={() => setBulkPrintModal({ isOpen: false, type: 'invoice' })}
+      />
+
+      <ParcelStickerPrintModal
+        orders={orders.filter(o => selectedOrderIds.includes(o.id))}
+        isOpen={isBulkStickerModalOpen}
+        onClose={() => setIsBulkStickerModalOpen(false)}
+      />
+
+      <EditOrderAmountModal
+        order={editingAmountOrder}
+        isOpen={!!editingAmountOrder}
+        onClose={() => setEditingAmountOrder(null)}
+        onSuccess={handleAmountUpdated}
+      />
     </div>
   );
 };

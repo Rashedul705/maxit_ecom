@@ -6,6 +6,14 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
+        hostname: '**',
+      },
+      {
+        protocol: 'http',
+        hostname: '**',
+      },
+      {
+        protocol: 'https',
         hostname: 'images.unsplash.com',
         pathname: '/**',
       },
@@ -31,7 +39,47 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'i.ibb.co.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
         hostname: 'ibb.co',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'ibb.co.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.ibb.co',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.ibb.co.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'http',
+        hostname: 'maxitecomapi.maxapi.esp32.site',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'maxitecomapi.maxapi.esp32.site',
+        pathname: '/**',
+      },
+      {
+        protocol: 'http',
+        hostname: '*.esp32.site',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.esp32.site',
         pathname: '/**',
       },
       {
@@ -65,15 +113,18 @@ const nextConfig: NextConfig = {
     },
   },
   async rewrites() {
-    const defaultBackend = process.env.NODE_ENV === 'development'
+    const isDev = process.env.NODE_ENV === 'development';
+    const defaultBackend = isDev
       ? 'http://localhost:5002'
       : 'https://maxitecomapi.maxapi.esp32.site';
 
     const backend = (
-      process.env.BACKEND_URL ||
-      process.env.API_URL?.replace(/\/api\/v1\/?$/, '') ||
-      process.env.NEXT_PUBLIC_API_URL?.replace(/\/api\/v1\/?$/, '') ||
-      defaultBackend
+      isDev
+        ? (process.env.DEV_BACKEND_URL || 'http://localhost:5002')
+        : (process.env.BACKEND_URL ||
+           process.env.API_URL?.replace(/\/api\/v1\/?$/, '') ||
+           process.env.NEXT_PUBLIC_API_URL?.replace(/\/api\/v1\/?$/, '') ||
+           defaultBackend)
     ).replace(/\/$/, '');
 
     return [

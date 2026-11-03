@@ -126,6 +126,8 @@ export const adminApi = {
   getOrderById: (id: string) => request<Order>(`/orders/${id}`),
   updateOrderStatus: (id: string, status: string, note?: string) =>
     request<Order>(`/orders/${id}/status`, { method: 'PATCH', body: JSON.stringify({ status, note }) }),
+  updateOrderAmount: (id: string, data: { total?: number; subtotal?: number; deliveryCharge?: number; discount?: number; note?: string }) =>
+    request<Order>(`/orders/${id}/amount`, { method: 'PATCH', body: JSON.stringify(data) }),
   bulkUpdateOrderStatus: (ids: string[], status: string, note?: string) =>
     request<{ updatedCount: number; status: string }>('/orders/bulk-status', {
       method: 'POST',

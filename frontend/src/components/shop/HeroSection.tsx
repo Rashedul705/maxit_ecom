@@ -114,6 +114,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ categories, banners })
                       alt={banner.title}
                       fill
                       priority
+                      unoptimized
                       sizes="(max-width: 1024px) 100vw, 980px"
                       className="object-cover"
                     />

@@ -60,6 +60,9 @@ export interface OrderItem {
   price: number;
   quantity: number;
   image: string;
+  variation?: string;
+  variant?: string;
+  specs?: Record<string, any>;
 }
 
 export interface OrderCustomer {

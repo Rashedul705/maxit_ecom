@@ -364,21 +364,69 @@ body {
   box-shadow: 0 0 0 3px rgba(255, 102, 0, 0.15);
 }
 
-/* Invoice Print View */
+/* Invoice & Courier Sticker Print View */
 @media print {
-  body {
-    background: #ffffff !important;
+  @page {
+    margin: 8mm;
+    size: auto;
   }
-  .admin-sidebar, .admin-header, .btn, .no-print {
+  html, body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* CRITICAL: Hide all dashboard, sidebar, headers, forms, and background order management tables */
+  .admin-sidebar,
+  .admin-header,
+  .btn,
+  .no-print,
+  .table-card,
+  .admin-table,
+  form,
+  header {
     display: none !important;
   }
-  .admin-layout, .admin-main, .admin-content {
+
+  /* Hide main page siblings so only the active printable modal/document renders */
+  .admin-main > *:not(.modal-overlay) {
+    display: none !important;
+  }
+
+  .modal-overlay {
+    position: static !important;
+    background: transparent !important;
     padding: 0 !important;
-    margin: 0 !important;
+    display: block !important;
+  }
+  .modal-content {
+    box-shadow: none !important;
+    border: none !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    max-height: none !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    background: transparent !important;
+  }
+  .page-break {
+    page-break-after: always !important;
+    break-after: page !important;
   }
   .printable-invoice {
     border: none !important;
     box-shadow: none !important;
     padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .printable-sticker {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    margin: 0 auto !important;
+    box-shadow: none !important;
   }
 }

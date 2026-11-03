@@ -118,4 +118,19 @@ router.patch('/:id/status', requireAdminAuth, async (req, res, next) => {
   }
 });
 
+// PATCH /api/v1/orders/:id/amount - Edit invoice amount (subtotal, deliveryCharge, discount, total)
+router.patch('/:id/amount', requireAdminAuth, async (req, res, next) => {
+  try {
+    const { total, subtotal, deliveryCharge, discount, note } = req.body;
+    if (total === undefined && subtotal === undefined && deliveryCharge === undefined && discount === undefined) {
+      return errorResponse(res, 'At least one amount field (total, subtotal, deliveryCharge, discount) is required', 400);
+    }
+    const order = await db.updateOrderAmount(req.params.id, { total, subtotal, deliveryCharge, discount, note });
+    if (!order) return errorResponse(res, 'Order not found', 404);
+    return successResponse(res, order, 'Invoice amount updated successfully');
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = router;
