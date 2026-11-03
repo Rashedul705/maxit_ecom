@@ -17,7 +17,7 @@ export default function FAQPage() {
     },
     {
       q: 'Are the products 100% genuine and authentic?',
-      a: 'Yes, all products sold on maxitshop are 100% genuine with official brand and distributor warranty. We do not sell counterfeit or copy products.'
+      a: 'Yes, all products sold on MaxiTShop are 100% genuine with official brand and distributor warranty. We do not sell counterfeit or copy products.'
     },
     {
       q: 'How does the 7-day replacement warranty work?',

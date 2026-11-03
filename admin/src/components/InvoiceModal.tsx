@@ -33,7 +33,7 @@ export const InvoiceModal: React.FC<InvoiceModalProps> = ({ order, onClose }) =>
           {/* Header */}
           <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '2px solid #0f172a', paddingBottom: '16px', marginBottom: '24px' }}>
             <div>
-              <h1 style={{ fontSize: '26px', fontWeight: 800, color: '#ff6600', letterSpacing: '-0.5px' }}>maxitshop</h1>
+              <h1 style={{ fontSize: '26px', fontWeight: 800, color: '#ff6600', letterSpacing: '-0.5px' }}>MaxiTShop</h1>
               <p style={{ fontSize: '12px', color: '#64748b', marginTop: '4px' }}>Solar & Engineering Solutions Bangladesh</p>
               <p style={{ fontSize: '12px', color: '#64748b' }}>2nd Floor, Afroza Tower, Uposhohor New Market, Rajshahi-6000</p>
               <p style={{ fontSize: '12px', color: '#64748b' }}>Phone: +880 1733-272445 | support@maxitshop.com</p>
@@ -52,10 +52,12 @@ export const InvoiceModal: React.FC<InvoiceModalProps> = ({ order, onClose }) =>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', background: '#f8fafc', padding: '16px', borderRadius: '8px', marginBottom: '24px' }}>
             <div>
               <p style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', color: '#64748b', marginBottom: '4px' }}>Billed / Delivered To:</p>
-              <p style={{ fontSize: '15px', fontWeight: 700, color: '#0f172a' }}>{order.customer.name}</p>
-              <p style={{ fontSize: '13px', color: '#334155', marginTop: '2px' }}>Phone: <strong>{order.customer.phone}</strong></p>
-              <p style={{ fontSize: '13px', color: '#334155' }}>Address: {order.customer.address}</p>
-              <p style={{ fontSize: '12px', color: '#64748b', textTransform: 'capitalize' }}>Area: {order.customer.area.replace('_', ' ')}</p>
+              <p style={{ fontSize: '15px', fontWeight: 700, color: '#0f172a' }}>{order.customer?.name || 'Customer'}</p>
+              <p style={{ fontSize: '13px', color: '#334155', marginTop: '2px' }}>Phone: <strong>{order.customer?.phone || 'N/A'}</strong></p>
+              <p style={{ fontSize: '13px', color: '#334155' }}>Address: {order.customer?.address || 'N/A'}</p>
+              <p style={{ fontSize: '12px', color: '#64748b', textTransform: 'capitalize' }}>
+                Area: {order.customer?.area ? String(order.customer.area).replace(/_/g, ' ') : (order.customer?.district || 'Standard Delivery')}
+              </p>
             </div>
             <div style={{ textAlign: 'right' }}>
               <p style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', color: '#64748b', marginBottom: '4px' }}>Order Status:</p>
@@ -128,7 +130,7 @@ export const InvoiceModal: React.FC<InvoiceModalProps> = ({ order, onClose }) =>
             </div>
           </div>
           <p style={{ textAlign: 'center', fontSize: '11px', color: '#94a3b8', marginTop: '24px' }}>
-            Thank you for ordering genuine energy equipment from maxitshop.com!
+            Thank you for ordering genuine energy equipment from MaxiTShop (maxitshop.com)!
           </p>
         </div>
       </div>

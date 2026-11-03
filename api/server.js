@@ -1,8 +1,8 @@
-require('dotenv').config();
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '.env') });
 const express = require('express');
 const cors = require('cors');
 const rateLimit = require('express-rate-limit');
-const path = require('path');
 const mongoose = require('mongoose');
 
 // Route imports
@@ -148,19 +148,21 @@ apiRouter.get('/search/suggestions', async (req, res, next) => {
 // Mount under /api/v1
 app.use('/api/v1', apiRouter);
 
-// Admin Dashboard SPA
-const adminDistPath = path.join(__dirname, 'admin-dist');
-app.use('/admin', express.static(adminDistPath, { redirect: false }));
+// Redirect /admin to the frontend admin portal
 app.get(['/admin', '/admin/*'], (req, res) => {
-  res.sendFile(path.join(adminDistPath, 'index.html'));
+  const isLocal = req.headers.host && (req.headers.host.includes('localhost') || req.headers.host.includes('127.0.0.1'));
+  const frontendAdminUrl = isLocal ? 'http://localhost:3001/admin' : `${CLIENT_URL}/admin`;
+  return res.redirect(302, frontendAdminUrl);
 });
 
 // Root fallback
 app.get('/', (req, res) => {
+  const isLocal = req.headers.host && (req.headers.host.includes('localhost') || req.headers.host.includes('127.0.0.1'));
+  const frontendAdminUrl = isLocal ? 'http://localhost:3001/admin' : `${CLIENT_URL}/admin`;
   return successResponse(res, {
     name: 'MaxiTShop API Server',
     version: '1.0.0',
-    adminDashboard: '/admin',
+    adminDashboard: frontendAdminUrl,
     documentation: '/api/v1/health'
   }, 'Welcome to MaxiTShop API Server');
 });

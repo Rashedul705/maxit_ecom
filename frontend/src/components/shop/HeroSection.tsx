@@ -77,12 +77,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ categories, banners })
       <div className="flex gap-4">
         
         {/* Left Vertical Category Menu (Desktop only - Nanopowerbd layout) */}
-        <div className="hidden lg:block w-64 shrink-0 bg-white border border-gray-200 rounded-lg shadow-xs overflow-hidden h-[420px] flex flex-col">
-          <div className="bg-[#131A22] text-white px-4 py-3 font-bold text-xs uppercase tracking-wider flex items-center gap-2">
+        <div className="hidden lg:flex flex-col w-64 shrink-0 bg-white border border-gray-200 rounded-lg shadow-xs overflow-hidden h-[420px]">
+          <div className="bg-[#131A22] text-white px-4 py-3 font-bold text-xs uppercase tracking-wider flex items-center gap-2 shrink-0">
             <span>Categories</span>
           </div>
-          <div className="divide-y divide-gray-100 overflow-y-auto flex-1">
-            {categories.slice(0, 11).map((cat) => (
+          <div className="divide-y divide-gray-100 overflow-y-auto flex-1 overscroll-contain min-h-0">
+            {categories.map((cat) => (
               <Link
                 key={cat.id}
                 href={`/category/${cat.slug}`}

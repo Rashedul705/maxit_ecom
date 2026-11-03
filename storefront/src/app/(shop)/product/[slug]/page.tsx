@@ -70,7 +70,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
       availability: product.stock > 0 ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
       seller: {
         '@type': 'Organization',
-        name: 'maxitshop'
+        name: "MaxiTShop"
       }
     }
   };

@@ -1,3 +1,5 @@
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '../.env') });
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
@@ -506,6 +508,24 @@ const db = {
     return true;
   },
 
+  async bulkDeleteCategories(ids = []) {
+    if (!Array.isArray(ids) || ids.length === 0) return { deletedCount: 0 };
+    let deletedCount = 0;
+    if (isMongo()) {
+      const res = await Category.deleteMany({
+        $or: [{ id: { $in: ids } }, { slug: { $in: ids } }]
+      });
+      deletedCount = res.deletedCount || 0;
+    }
+    const idSet = new Set(ids);
+    const before = memoryStore.categories.length;
+    memoryStore.categories = memoryStore.categories.filter(c => !idSet.has(c.id) && !idSet.has(c.slug));
+    if (!isMongo()) {
+      deletedCount = before - memoryStore.categories.length;
+    }
+    return { deletedCount };
+  },
+
   // --- PRODUCTS ---
   async getProducts({ category, sub, subcategory, brand, search, minPrice, maxPrice, inStock, sort, page = 1, limit = 20, isDeal, isFeatured, isNewItem }) {
     if (isMongo()) {
@@ -824,6 +844,28 @@ const db = {
     if (idx === -1) return false;
     memoryStore.products.splice(idx, 1);
     return true;
+  },
+
+  async bulkDeleteProducts(ids = []) {
+    if (!Array.isArray(ids) || ids.length === 0) return { deletedCount: 0 };
+    let deletedCount = 0;
+    if (isMongo()) {
+      try {
+        const res = await Product.deleteMany({
+          $or: [{ id: { $in: ids } }, { slug: { $in: ids } }]
+        });
+        deletedCount = res.deletedCount || 0;
+      } catch (e) {
+        console.warn('bulkDeleteProducts Mongo error:', e.message);
+      }
+    }
+    const idSet = new Set(ids);
+    const before = memoryStore.products.length;
+    memoryStore.products = memoryStore.products.filter(p => !idSet.has(p.id) && !idSet.has(p.slug));
+    if (!isMongo()) {
+      deletedCount = before - memoryStore.products.length;
+    }
+    return { deletedCount };
   },
 
   // --- PRODUCT REVIEWS ---

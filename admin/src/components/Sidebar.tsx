@@ -45,9 +45,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentTab, onSelectTab, onLog
       <div className="sidebar-brand">
         <span className="brand-badge">ADMIN</span>
         <div>
-          <h2 style={{ fontSize: '17px', fontWeight: 800, color: '#ffffff', letterSpacing: '-0.3px', lineHeight: 1.1 }}>
-            maxitshop
-          </h2>
+          <h2 style={{ fontSize: '17px', fontWeight: 800, color: '#ffffff', letterSpacing: '-0.3px', lineHeight: 1.1 }}>MaxiTShop</h2>
           <span style={{ fontSize: '11px', color: '#94a3b8' }}>Management Portal</span>
         </div>
       </div>

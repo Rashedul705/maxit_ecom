@@ -46,9 +46,7 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLoginSuccess }) => {
         boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
       }}>
         <div style={{ textAlign: 'center', marginBottom: '28px' }}>
-          <h1 style={{ fontSize: '28px', fontWeight: 800, color: '#ff6600', letterSpacing: '-0.5px' }}>
-            maxitshop
-          </h1>
+          <h1 style={{ fontSize: '28px', fontWeight: 800, color: '#ff6600', letterSpacing: '-0.5px' }}>MaxiTShop</h1>
           <p style={{ fontSize: '13px', color: '#64748b', marginTop: '4px', fontWeight: 500 }}>
             Staff & Merchant Admin Portal
           </p>

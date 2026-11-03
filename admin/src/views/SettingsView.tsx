@@ -48,7 +48,7 @@ export const SettingsView: React.FC = () => {
       // Ensure all tabs and nested objects have robust defaults
       const merged: SiteSettings = {
         ...data,
-        siteName: data.siteName || 'maxitshop',
+        siteName: data.siteName || "MaxiTShop",
         tagline: data.tagline || 'Your Trusted Solar & Energy Solutions Partner in Bangladesh',
         logo: data.logo || '',
         footerLogo: data.footerLogo || '',
@@ -128,7 +128,7 @@ export const SettingsView: React.FC = () => {
           shipping: data.policies?.shipping || ''
         },
         metaTags: {
-          title: data.metaTags?.title || 'maxitshop - Solar & Engineering Store Bangladesh',
+          title: data.metaTags?.title || 'MaxiTShop - Solar & Engineering Store Bangladesh',
           description: data.metaTags?.description || 'Buy solar panels, batteries, BMS, inverters, power tools and electronics parts in Bangladesh with Cash on Delivery.',
           keywords: data.metaTags?.keywords || 'solar panels, lifepo4 battery, bms, inverter, bangladesh, engineering'
         }
@@ -999,7 +999,7 @@ export const SettingsView: React.FC = () => {
                 <input
                   type="text"
                   className="form-input"
-                  placeholder="maxitshop"
+                  placeholder="MaxiTShop"
                   value={settings.socialLinks.messenger}
                   onChange={e => setSettings({
                     ...settings,
@@ -1150,7 +1150,7 @@ export const SettingsView: React.FC = () => {
               <span style={{ fontSize: '11.5px', fontWeight: 600, color: '#64748b', textTransform: 'uppercase' }}>Google Search Result Preview</span>
               <div style={{ marginTop: '8px' }}>
                 <div style={{ fontSize: '18px', color: '#1a0dab', fontWeight: 500, cursor: 'pointer', textDecoration: 'underline' }}>
-                  {settings.metaTags.title || 'maxitshop - Solar & Engineering Store Bangladesh'}
+                  {settings.metaTags.title || 'MaxiTShop - Solar & Engineering Store Bangladesh'}
                 </div>
                 <div style={{ fontSize: '13px', color: '#006621', marginTop: '2px' }}>
                   https://maxitecom.maxapi.esp32.site

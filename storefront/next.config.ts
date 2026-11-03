@@ -79,19 +79,19 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/admin',
-        destination: `${backend}/admin/index.html`,
+        destination: '/admin/index.html',
       },
       {
         source: '/admin/',
-        destination: `${backend}/admin/index.html`,
+        destination: '/admin/index.html',
       },
       {
         source: '/admin/assets/:path*',
-        destination: `${backend}/admin/assets/:path*`,
+        destination: '/admin/assets/:path*',
       },
       {
         source: '/admin/:path*',
-        destination: `${backend}/admin/index.html`,
+        destination: '/admin/index.html',
       },
       {
         source: '/api/v1/:path*',

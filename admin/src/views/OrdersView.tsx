@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Order } from '../types';
 import { adminApi } from '../api';
-import { Search, Printer, ChevronLeft, ChevronRight, CheckCircle2, Truck, Download, CheckSquare, Square, X, AlertCircle } from 'lucide-react';
+import { Search, Printer, ChevronLeft, ChevronRight, CheckCircle2, Truck, Download, CheckSquare, Square, X, AlertCircle, RefreshCw } from 'lucide-react';
 import { InvoiceModal } from '../components/InvoiceModal';
 
 export const OrdersView: React.FC = () => {
@@ -11,6 +11,8 @@ export const OrdersView: React.FC = () => {
   const [statusFilter, setStatusFilter] = useState('');
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
+  const [lastRefreshed, setLastRefreshed] = useState<Date>(new Date());
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
   const [updatingId, setUpdatingId] = useState<string | null>(null);
   const [courierDispatchingId, setCourierDispatchingId] = useState<string | null>(null);
@@ -19,28 +21,44 @@ export const OrdersView: React.FC = () => {
   const [selectedOrderIds, setSelectedOrderIds] = useState<string[]>([]);
   const [bulkActionLoading, setBulkActionLoading] = useState(false);
   const [actionNotification, setActionNotification] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+  const [fetchError, setFetchError] = useState<string | null>(null);
 
-  const fetchOrders = async () => {
+  const fetchOrders = async (silent = false) => {
     try {
-      setLoading(true);
-      const data = await adminApi.getOrders({
+      if (!silent) {
+        setLoading(true);
+      } else {
+        setRefreshing(true);
+      }
+      setFetchError(null);
+      const data: any = await adminApi.getOrders({
         status: statusFilter,
         search,
         page,
         limit: 15
       });
-      setOrders(data.items);
-      setTotal(data.total);
+      const orderList = Array.isArray(data) ? data : (data?.items || []);
+      const totalCount = Array.isArray(data) ? data.length : (data?.total || orderList.length);
+      setOrders(orderList);
+      setTotal(totalCount);
+      setLastRefreshed(new Date());
     } catch (err: any) {
       console.error('Failed to fetch orders:', err);
+      setFetchError(err.message || 'Failed to load orders');
     } finally {
       setLoading(false);
+      setRefreshing(false);
     }
   };
 
   useEffect(() => {
     fetchOrders();
     setSelectedOrderIds([]); // Clear selections on page / filter change
+    // Auto-refresh orders every 10 seconds for real-time visibility
+    const interval = setInterval(() => {
+      fetchOrders(true);
+    }, 10000);
+    return () => clearInterval(interval);
   }, [page, statusFilter]);
 
   const showNotification = (type: 'success' | 'error', message: string) => {
@@ -242,7 +260,18 @@ export const OrdersView: React.FC = () => {
             Process customer orders, automate Steadfast courier consignments, and export logistics spreadsheets.
           </p>
         </div>
-        <div style={{ display: 'flex', gap: '8px' }}>
+        <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+          <button
+            type="button"
+            className="btn btn-secondary btn-sm"
+            onClick={() => fetchOrders(false)}
+            disabled={refreshing}
+            style={{ display: 'flex', alignItems: 'center', gap: '5px' }}
+            title="Refresh orders list"
+          >
+            <RefreshCw size={13} className={refreshing ? 'animate-spin' : ''} />
+            <span>{refreshing ? 'Refreshing...' : 'Refresh'}</span>
+          </button>
           <button
             type="button"
             className="btn btn-secondary btn-sm"
@@ -454,27 +483,27 @@ export const OrdersView: React.FC = () => {
                     </td>
 
                     <td>
-                      <div style={{ fontWeight: 600 }}>{order.customer.name}</div>
-                      <div style={{ fontSize: '12px', color: '#475569' }}>📞 {order.customer.phone}</div>
+                      <div style={{ fontWeight: 600 }}>{order.customer?.name || 'Customer'}</div>
+                      <div style={{ fontSize: '12px', color: '#475569' }}>📞 {order.customer?.phone || 'N/A'}</div>
                       <div style={{ fontSize: '12px', color: '#64748b', maxWidth: '200px' }}>
-                        📍 {[order.customer.address, order.customer.thana, order.customer.district].filter(Boolean).join(', ')}
+                        📍 {[order.customer?.address, order.customer?.thana, order.customer?.district].filter(Boolean).join(', ') || 'N/A'}
                       </div>
                     </td>
 
                     <td>
                       <div style={{ fontSize: '12px', color: '#334155' }}>
-                        {order.items.map((item, idx) => (
+                        {(order.items || []).map((item, idx) => (
                           <div key={idx} style={{ marginBottom: '3px' }}>
-                            • <strong>{item.quantity}x</strong> {item.title.substring(0, 28)}...
+                            • <strong>{item.quantity}x</strong> {(item.title || 'Item').substring(0, 28)}...
                           </div>
                         ))}
                       </div>
                     </td>
 
                     <td>
-                      <div style={{ fontWeight: 800, fontSize: '15px' }}>৳{order.total.toLocaleString()}</div>
+                      <div style={{ fontWeight: 800, fontSize: '15px' }}>৳{(order.total || 0).toLocaleString()}</div>
                       <div style={{ fontSize: '11px', color: '#64748b', textTransform: 'uppercase' }}>
-                        {order.paymentMethod} • <span style={{ color: order.paymentStatus === 'paid' ? '#10b981' : '#f59e0b' }}>{order.paymentStatus || 'unpaid'}</span>
+                        {order.paymentMethod || 'cod'} • <span style={{ color: order.paymentStatus === 'paid' ? '#10b981' : '#f59e0b' }}>{order.paymentStatus || 'unpaid'}</span>
                       </div>
                     </td>
 
@@ -545,6 +574,15 @@ export const OrdersView: React.FC = () => {
                   </tr>
                 );
               })
+            ) : fetchError ? (
+              <tr>
+                <td colSpan={9} style={{ textAlign: 'center', padding: '40px', color: '#ef4444' }}>
+                  <div style={{ marginBottom: '10px', fontWeight: 600 }}>⚠️ {fetchError}</div>
+                  <button className="btn btn-secondary btn-sm" onClick={() => fetchOrders(false)}>
+                    Retry Loading Orders
+                  </button>
+                </td>
+              </tr>
             ) : (
               <tr>
                 <td colSpan={9} style={{ textAlign: 'center', padding: '40px', color: '#64748b' }}>

@@ -45,6 +45,13 @@ async function request<T>(endpoint: string, options: RequestInit = {}): Promise<
 
   const json = await res.json();
   if (!res.ok || !json.success) {
+    if (res.status === 401 && !endpoint.includes('/login')) {
+      localStorage.removeItem('maxit_admin_token');
+      localStorage.removeItem('maxit_admin_user');
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new Event('admin-logout'));
+      }
+    }
     throw new Error(json.message || `Request failed with status ${res.status}`);
   }
   return json.data as T;
@@ -58,6 +65,7 @@ export const adminApi = {
       body: JSON.stringify(creds)
     });
   },
+  verify: () => request<{ valid: boolean; user: any }>('/admin/verify'),
 
   // Dashboard Stats
   getStats: () => request<DashboardStats>('/admin/dashboard'),
@@ -67,12 +75,14 @@ export const adminApi = {
   createCategory: (data: Partial<Category>) => request<Category>('/categories', { method: 'POST', body: JSON.stringify(data) }),
   updateCategory: (id: string, data: Partial<Category>) => request<Category>(`/categories/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
   deleteCategory: (id: string) => request<{ deleted: boolean }>(`/categories/${id}`, { method: 'DELETE' }),
+  bulkDeleteCategories: (ids: string[]) => request<{ deletedCount: number }>('/categories/bulk-delete', { method: 'POST', body: JSON.stringify({ ids }) }),
 
   // Subcategories
   getSubcategories: (categoryId: string) => request<{ id: string; name: string; slug: string }[]>(`/categories/${categoryId}/subcategories`),
   createSubcategory: (categoryId: string, data: { name: string; slug?: string }) => request<{ id: string; name: string; slug: string }>(`/categories/${categoryId}/subcategories`, { method: 'POST', body: JSON.stringify(data) }),
   updateSubcategory: (categoryId: string, subId: string, data: { name: string; slug?: string }) => request<{ id: string; name: string; slug: string }>(`/categories/${categoryId}/subcategories/${subId}`, { method: 'PUT', body: JSON.stringify(data) }),
   deleteSubcategory: (categoryId: string, subId: string) => request<{ deleted: boolean }>(`/categories/${categoryId}/subcategories/${subId}`, { method: 'DELETE' }),
+  bulkDeleteSubcategories: (categoryId: string, subIds: string[]) => request<{ deletedCount: number }>(`/categories/${categoryId}/subcategories/bulk-delete`, { method: 'POST', body: JSON.stringify({ subIds }) }),
 
   // Products
   getProducts: (params: { category?: string; subcategory?: string; brand?: string; search?: string; page?: number; limit?: number } = {}) => {
@@ -90,6 +100,7 @@ export const adminApi = {
   quickUpdateProduct: (id: string, data: { price?: number; oldPrice?: number; stock?: number }) =>
     request<Product>(`/products/${id}`, { method: 'PATCH', body: JSON.stringify(data) }),
   deleteProduct: (id: string) => request<{ deleted: boolean }>(`/products/${id}`, { method: 'DELETE' }),
+  bulkDeleteProducts: (ids: string[]) => request<{ deletedCount: number }>('/products/bulk-delete', { method: 'POST', body: JSON.stringify({ ids }) }),
 
   // Brands
   getBrands: () => request<Brand[]>('/brands'),

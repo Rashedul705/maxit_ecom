@@ -128,7 +128,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, onClose, cat
             Information
           </div>
           <div className="p-4 space-y-3 text-sm text-slate-600">
-            <Link href="/about" onClick={onClose} className="block hover:text-blue-600">About maxitshop</Link>
+            <Link href="/about" onClick={onClose} className="block hover:text-blue-600">About MaxiTShop</Link>
             <Link href="/contact" onClick={onClose} className="block hover:text-blue-600">Contact Us</Link>
             <Link href="/faq" onClick={onClose} className="block hover:text-blue-600">FAQ</Link>
             <Link href="/shipping-returns" onClick={onClose} className="block hover:text-blue-600">Shipping & Returns</Link>

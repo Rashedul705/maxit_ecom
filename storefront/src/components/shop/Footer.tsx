@@ -50,7 +50,7 @@ export const Footer: React.FC = () => {
             </Link>
 
             <p className="text-gray-400 leading-relaxed text-xs max-w-sm">
-              Maxitshop - Your trusted online shopping destination in Bangladesh for solar equipment, gadgets, inverters, and premium smart devices.
+              MaxiTShop - Your trusted online shopping destination in Bangladesh for solar equipment, gadgets, inverters, and premium smart devices.
             </p>
 
             {/* Contact Details */}

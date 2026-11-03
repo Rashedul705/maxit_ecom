@@ -15,6 +15,7 @@ import { SubscribersView } from './views/SubscribersView';
 import { SettingsView } from './views/SettingsView';
 import { LoginView } from './views/LoginView';
 import { CouponsView } from './views/CouponsView';
+import { adminApi } from './api';
 
 export function App() {
   const [user, setUser] = useState<any>(null);
@@ -22,16 +23,39 @@ export function App() {
   const [checkedAuth, setCheckedAuth] = useState(false);
 
   useEffect(() => {
+    const handleLogoutEvent = () => setUser(null);
+    window.addEventListener('admin-logout', handleLogoutEvent);
+
     const token = localStorage.getItem('maxit_admin_token');
     const storedUser = localStorage.getItem('maxit_admin_user');
-    if (token) {
-      if (storedUser) {
-        try { setUser(JSON.parse(storedUser)); } catch (e) { setUser({ name: 'Admin', email: 'admin@maxitshop.com' }); }
-      } else {
-        setUser({ name: 'Admin', email: 'admin@maxitshop.com' });
-      }
+
+    if (!token) {
+      setCheckedAuth(true);
+      return () => window.removeEventListener('admin-logout', handleLogoutEvent);
     }
-    setCheckedAuth(true);
+
+    // Verify token with backend
+    adminApi.verify()
+      .then(res => {
+        if (res && res.valid) {
+          const parsedUser = storedUser ? JSON.parse(storedUser) : (res.user || { name: 'Admin', email: 'admin@maxitshop.com' });
+          setUser(parsedUser);
+        } else {
+          localStorage.removeItem('maxit_admin_token');
+          localStorage.removeItem('maxit_admin_user');
+          setUser(null);
+        }
+      })
+      .catch(() => {
+        localStorage.removeItem('maxit_admin_token');
+        localStorage.removeItem('maxit_admin_user');
+        setUser(null);
+      })
+      .finally(() => {
+        setCheckedAuth(true);
+      });
+
+    return () => window.removeEventListener('admin-logout', handleLogoutEvent);
   }, []);
 
   const handleLogout = () => {

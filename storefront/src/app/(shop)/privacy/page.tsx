@@ -14,7 +14,7 @@ export default function PrivacyPage() {
 
         <h3 className="text-sm font-bold text-slate-900">1. Information We Collect</h3>
         <p className="text-xs text-slate-600 leading-relaxed">
-          When placing an order with maxitshop, we collect your name, phone number, shipping address, and delivery instructions. This information is strictly used for order fulfillment, courier delivery, and customer service.
+          When placing an order with MaxiTShop, we collect your name, phone number, shipping address, and delivery instructions. This information is strictly used for order fulfillment, courier delivery, and customer service.
         </p>
 
         <h3 className="text-sm font-bold text-slate-900">2. Data Security & Protection</h3>

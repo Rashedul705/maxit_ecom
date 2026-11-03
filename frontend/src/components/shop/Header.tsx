@@ -308,7 +308,7 @@ export const Header: React.FC<HeaderProps> = ({ categories = [], onToggleMobileD
 
               {/* Category Dropdown Menu */}
               {showCatDropdown && (
-                <div className="absolute top-full left-0 w-64 bg-white text-gray-800 shadow-2xl border border-gray-200 py-2 z-50">
+                <div className="absolute top-full left-0 w-64 bg-white text-gray-800 shadow-2xl border border-gray-200 py-2 z-50 max-h-[420px] overflow-y-auto overscroll-contain">
                   {categories.map((cat) => (
                     <Link
                       key={cat.id}

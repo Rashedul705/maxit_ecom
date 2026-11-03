@@ -8,22 +8,22 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "maxitshop | Online Shopping in Bangladesh - Solar, Inverters, Gadgets & Spares",
-  description: "maxitshop is Bangladesh's premier e-commerce platform for Solar Energy, LiFePO4 Batteries, Inverters, Smart Gadgets, and Electronics with Cash on Delivery across all 64 districts.",
+  title: "MaxiTShop | Online Shopping in Bangladesh - Solar, Inverters, Gadgets & Spares",
+  description: "MaxiTShop is Bangladesh's premier e-commerce platform for Solar Energy, LiFePO4 Batteries, Inverters, Smart Gadgets, and Electronics with Cash on Delivery across all 64 districts.",
   keywords: "maxitshop, solar panels bd, inverter price bangladesh, lifepo4 battery bd, bms module, electronics parts dhaka, cash on delivery",
-  authors: [{ name: "maxitshop" }],
+  authors: [{ name: "MaxiTShop" }],
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://maxitecom.maxapi.esp32.site"),
   openGraph: {
-    title: "maxitshop | Online Shopping in Bangladesh",
+    title: "MaxiTShop | Online Shopping in Bangladesh",
     description: "Authentic solar equipment, inverters, batteries, and electronics with nationwide delivery.",
     url: process.env.NEXT_PUBLIC_SITE_URL || "https://maxitecom.maxapi.esp32.site",
-    siteName: "maxitshop",
+    siteName: "MaxiTShop",
     locale: "en_BD",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "maxitshop | Bangladesh Trusted Tech & Solar Store",
+    title: "MaxiTShop | Bangladesh Trusted Tech & Solar Store",
     description: "Shop solar systems, batteries, and electronic modules with cash on delivery across BD.",
   },
 };

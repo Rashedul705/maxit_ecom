@@ -19,6 +19,10 @@ export const ProductsView: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [viewMode, setViewMode] = useState<'list' | 'editor'>('list');
 
+  // Bulk Selection State
+  const [selectedIds, setSelectedIds] = useState<string[]>([]);
+  const [bulkDeleting, setBulkDeleting] = useState(false);
+
   // In-line Quick Editing State
   const [inlineEditing, setInlineEditing] = useState<{ id: string; field: 'price' | 'stock'; value: string } | null>(null);
   const [inlineSavingId, setInlineSavingId] = useState<string | null>(null);
@@ -48,6 +52,7 @@ export const ProductsView: React.FC = () => {
         limit: 15
       });
       setProducts(data.items);
+      setSelectedIds([]);
       setTotal(data.total);
     } catch (err: any) {
       console.error('Failed to fetch products:', err);
@@ -94,6 +99,39 @@ export const ProductsView: React.FC = () => {
     } catch (err: any) {
       alert('Delete failed: ' + err.message);
     }
+  };
+
+  // Bulk Delete Products Handler
+  const handleBulkDelete = async () => {
+    if (selectedIds.length === 0) return;
+    const count = selectedIds.length;
+    if (!window.confirm(`Are you sure you want to permanently delete ${count} selected products?`)) return;
+
+    try {
+      setBulkDeleting(true);
+      const res = await adminApi.bulkDeleteProducts(selectedIds);
+      showFeedback('success', `Successfully deleted ${res.deletedCount || count} products`);
+      setSelectedIds([]);
+      fetchProducts();
+    } catch (err: any) {
+      alert('Bulk delete failed: ' + err.message);
+    } finally {
+      setBulkDeleting(false);
+    }
+  };
+
+  const handleToggleSelectAll = () => {
+    if (selectedIds.length === products.length && products.length > 0) {
+      setSelectedIds([]);
+    } else {
+      setSelectedIds(products.map(p => p.id));
+    }
+  };
+
+  const handleToggleSelectOne = (id: string) => {
+    setSelectedIds(prev => 
+      prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]
+    );
   };
 
   // Quick In-line Stock & Price Save
@@ -231,36 +269,103 @@ export const ProductsView: React.FC = () => {
         })()}
       </div>
 
-      {/* Table */}
-      <div className="table-card">
-        <table className="admin-table">
-          <thead>
-            <tr>
-              <th>Image</th>
-              <th>Product Title</th>
-              <th>Category</th>
-              <th>Brand</th>
-              <th>Price (BDT) <span style={{ fontSize: '10px', color: '#94a3b8' }}>(Click to edit)</span></th>
-              <th>Stock <span style={{ fontSize: '10px', color: '#94a3b8' }}>(Click to edit)</span></th>
-              <th>Badges</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {loading ? (
-              <tr>
-                <td colSpan={8} style={{ textAlign: 'center', padding: '40px', color: '#64748b' }}>
-                  Loading catalog...
-                </td>
-              </tr>
-            ) : products.length > 0 ? (
-              products.map(p => {
-                const isEditingPrice = inlineEditing?.id === p.id && inlineEditing?.field === 'price';
-                const isEditingStock = inlineEditing?.id === p.id && inlineEditing?.field === 'stock';
+        {/* Bulk Action Bar */}
+        {selectedIds.length > 0 && (
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            padding: '12px 18px',
+            marginBottom: '16px',
+            background: '#fff1f2',
+            border: '1px solid #fecdd3',
+            borderRadius: '10px',
+            color: '#9f1239'
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '13px', fontWeight: 600 }}>
+              <span style={{
+                background: '#e11d48',
+                color: '#fff',
+                borderRadius: '50%',
+                width: '24px',
+                height: '24px',
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '12px'
+              }}>
+                {selectedIds.length}
+              </span>
+              <span>{selectedIds.length} product{selectedIds.length > 1 ? 's' : ''} selected</span>
+            </div>
+            <div style={{ display: 'flex', gap: '8px' }}>
+              <button
+                className="btn btn-secondary btn-sm"
+                onClick={() => setSelectedIds([])}
+              >
+                Clear Selection
+              </button>
+              <button
+                className="btn btn-danger btn-sm"
+                onClick={handleBulkDelete}
+                disabled={bulkDeleting}
+                style={{ display: 'flex', alignItems: 'center', gap: '6px' }}
+              >
+                <Trash2 size={14} />
+                {bulkDeleting ? 'Deleting...' : `Delete Selected (${selectedIds.length})`}
+              </button>
+            </div>
+          </div>
+        )}
 
-                return (
-                  <tr key={p.id}>
-                    <td>
+        {/* Table */}
+        <div className="table-card">
+          <table className="admin-table">
+            <thead>
+              <tr>
+                <th style={{ width: '40px', textAlign: 'center' }}>
+                  <input
+                    type="checkbox"
+                    checked={products.length > 0 && selectedIds.length === products.length}
+                    onChange={handleToggleSelectAll}
+                    style={{ cursor: 'pointer', width: '16px', height: '16px', accentColor: '#ff6600' }}
+                    title="Select all on this page"
+                  />
+                </th>
+                <th>Image</th>
+                <th>Product Title</th>
+                <th>Category</th>
+                <th>Brand</th>
+                <th>Price (BDT) <span style={{ fontSize: '10px', color: '#94a3b8' }}>(Click to edit)</span></th>
+                <th>Stock <span style={{ fontSize: '10px', color: '#94a3b8' }}>(Click to edit)</span></th>
+                <th>Badges</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {loading ? (
+                <tr>
+                  <td colSpan={9} style={{ textAlign: 'center', padding: '40px', color: '#64748b' }}>
+                    Loading catalog...
+                  </td>
+                </tr>
+              ) : products.length > 0 ? (
+                products.map(p => {
+                  const isEditingPrice = inlineEditing?.id === p.id && inlineEditing?.field === 'price';
+                  const isEditingStock = inlineEditing?.id === p.id && inlineEditing?.field === 'stock';
+                  const isSelected = selectedIds.includes(p.id);
+
+                  return (
+                    <tr key={p.id} style={{ background: isSelected ? '#fff1f2' : undefined }}>
+                      <td style={{ textAlign: 'center' }}>
+                        <input
+                          type="checkbox"
+                          checked={isSelected}
+                          onChange={() => handleToggleSelectOne(p.id)}
+                          style={{ cursor: 'pointer', width: '16px', height: '16px', accentColor: '#ff6600' }}
+                        />
+                      </td>
+                      <td>
                       <img
                         src={p.images?.[0] || 'https://images.unsplash.com/photo-1509391365360-2e959784a276?w=100&q=80'}
                         alt={p.title}
@@ -427,7 +532,7 @@ export const ProductsView: React.FC = () => {
               })
             ) : (
               <tr>
-                <td colSpan={8} style={{ textAlign: 'center', padding: '40px', color: '#64748b' }}>
+                <td colSpan={9} style={{ textAlign: 'center', padding: '40px', color: '#64748b' }}>
                   No products found.
                 </td>
               </tr>

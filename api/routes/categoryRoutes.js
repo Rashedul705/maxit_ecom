@@ -49,6 +49,20 @@ router.put('/:id', requireAdminAuth, async (req, res, next) => {
   }
 });
 
+// POST /api/v1/categories/bulk-delete
+router.post('/bulk-delete', requireAdminAuth, async (req, res, next) => {
+  try {
+    const { ids } = req.body;
+    if (!ids || !Array.isArray(ids) || ids.length === 0) {
+      return errorResponse(res, 'ids must be a non-empty array of category IDs or slugs', 400);
+    }
+    const result = await db.bulkDeleteCategories(ids);
+    return successResponse(res, result, `Successfully deleted ${result.deletedCount} categories`);
+  } catch (err) {
+    next(err);
+  }
+});
+
 // DELETE /api/v1/categories/:id
 router.delete('/:id', requireAdminAuth, async (req, res, next) => {
   try {
@@ -128,6 +142,25 @@ router.delete('/:categoryId/subcategories/:subId', requireAdminAuth, async (req,
     ).lean();
     if (!cat) return errorResponse(res, 'Category not found', 404);
     return successResponse(res, { deleted: true }, 'Subcategory deleted successfully');
+  } catch (err) {
+    next(err);
+  }
+});
+
+// POST /api/v1/categories/:categoryId/subcategories/bulk-delete
+router.post('/:categoryId/subcategories/bulk-delete', requireAdminAuth, async (req, res, next) => {
+  try {
+    const { subIds } = req.body;
+    if (!subIds || !Array.isArray(subIds) || subIds.length === 0) {
+      return errorResponse(res, 'subIds must be a non-empty array of subcategory IDs', 400);
+    }
+    const cat = await Category.findOneAndUpdate(
+      { $or: [{ id: req.params.categoryId }, { slug: req.params.categoryId }] },
+      { $pull: { subcategories: { id: { $in: subIds } } } },
+      { new: true }
+    ).lean();
+    if (!cat) return errorResponse(res, 'Category not found', 404);
+    return successResponse(res, { deletedCount: subIds.length }, `Successfully removed ${subIds.length} subcategories`);
   } catch (err) {
     next(err);
   }

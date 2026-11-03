@@ -165,6 +165,20 @@ router.patch('/:id', requireAdminAuth, async (req, res, next) => {
   }
 });
 
+// POST /api/v1/products/bulk-delete
+router.post('/bulk-delete', requireAdminAuth, async (req, res, next) => {
+  try {
+    const { ids } = req.body;
+    if (!ids || !Array.isArray(ids) || ids.length === 0) {
+      return errorResponse(res, 'ids must be a non-empty array of product IDs or slugs', 400);
+    }
+    const result = await db.bulkDeleteProducts(ids);
+    return successResponse(res, result, `Successfully deleted ${result.deletedCount} products`);
+  } catch (err) {
+    next(err);
+  }
+});
+
 // DELETE /api/v1/products/:id
 router.delete('/:id', requireAdminAuth, async (req, res, next) => {
   try {

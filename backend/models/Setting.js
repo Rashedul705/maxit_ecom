@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const SettingSchema = new mongoose.Schema({
   // General & Brand
-  siteName: { type: String, default: 'maxitshop' },
+  siteName: { type: String, default: "MaxiTShop" },
   tagline: { type: String, default: 'Your Trusted Solar & Energy Solutions Partner in Bangladesh' },
   logo: { type: String, default: '' },
   footerLogo: { type: String, default: '' },
@@ -94,7 +94,7 @@ const SettingSchema = new mongoose.Schema({
 
   // SEO Meta
   metaTags: {
-    title: { type: String, default: 'maxitshop - Solar & Engineering Store Bangladesh' },
+    title: { type: String, default: 'MaxiTShop - Solar & Engineering Store Bangladesh' },
     description: { type: String, default: 'Buy solar panels, batteries, BMS, inverters, power tools and electronics parts in Bangladesh with Cash on Delivery.' },
     keywords: { type: String, default: 'solar panels, lifepo4 battery, bms, inverter, bangladesh, engineering' }
   }

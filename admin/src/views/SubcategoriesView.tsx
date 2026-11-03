@@ -1,7 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Category } from '../types';
 import { adminApi } from '../api';
-import { Plus, Edit2, Trash2, ChevronDown, ChevronRight, Tag } from 'lucide-react';
+import {
+  Plus,
+  Edit2,
+  Trash2,
+  ChevronDown,
+  ChevronRight,
+  Tag,
+  Search,
+  Maximize2,
+  Minimize2,
+  X,
+  Sun,
+  BatteryCharging,
+  Package,
+  Zap,
+  Activity,
+  Battery,
+  Power,
+  Server,
+  Briefcase,
+  Video,
+  Cpu,
+  Shield,
+  Wrench,
+  Sliders,
+  Layers,
+  FolderTree,
+  CheckSquare,
+  Square
+} from 'lucide-react';
 
 interface Subcategory {
   id: string;
@@ -9,14 +38,81 @@ interface Subcategory {
   slug: string;
 }
 
+const ICON_MAP: Record<string, React.ComponentType<{ size?: number; color?: string; style?: React.CSSProperties }>> = {
+  Sun,
+  BatteryCharging,
+  Package,
+  Zap,
+  Activity,
+  Battery,
+  Power,
+  Server,
+  Briefcase,
+  Video,
+  Cpu,
+  Shield,
+  Wrench,
+  Sliders,
+  Layers,
+  FolderTree
+};
+
+const CategoryIconBadge: React.FC<{ icon?: string; name: string }> = ({ icon, name }) => {
+  if (icon && (icon.startsWith('http://') || icon.startsWith('https://') || icon.startsWith('/') || icon.startsWith('data:'))) {
+    return (
+      <div style={{
+        width: '34px',
+        height: '34px',
+        borderRadius: '8px',
+        background: '#f8fafc',
+        border: '1px solid #e2e8f0',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        overflow: 'hidden',
+        flexShrink: 0
+      }}>
+        <img
+          src={icon}
+          alt={name}
+          style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+          onError={(e) => {
+            e.currentTarget.style.display = 'none';
+          }}
+        />
+      </div>
+    );
+  }
+
+  const IconComponent = (icon && ICON_MAP[icon]) || FolderTree;
+  return (
+    <div style={{
+      width: '34px',
+      height: '34px',
+      borderRadius: '8px',
+      background: '#fff7ed',
+      border: '1px solid #fed7aa',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      color: '#ea580c',
+      flexShrink: 0
+    }}>
+      <IconComponent size={18} />
+    </div>
+  );
+};
+
 interface SubcategoryModalProps {
-  categoryId: string;
+  categories: Category[];
+  initialCatId: string;
   sub: Subcategory | null;
   onClose: () => void;
-  onSaved: () => void;
+  onSaved: (catId: string) => void;
 }
 
-const SubcategoryModal: React.FC<SubcategoryModalProps> = ({ categoryId, sub, onClose, onSaved }) => {
+const SubcategoryModal: React.FC<SubcategoryModalProps> = ({ categories, initialCatId, sub, onClose, onSaved }) => {
+  const [selectedCatId, setSelectedCatId] = useState(initialCatId || (categories[0]?.id || ''));
   const [name, setName] = useState(sub?.name || '');
   const [slug, setSlug] = useState(sub?.slug || '');
   const [slugTouched, setSlugTouched] = useState(!!sub);
@@ -30,19 +126,27 @@ const SubcategoryModal: React.FC<SubcategoryModalProps> = ({ categoryId, sub, on
   }, [name, slugTouched]);
 
   const handleSave = async () => {
-    if (!name.trim()) { setError('Name is required'); return; }
+    if (!name.trim()) {
+      setError('Subcategory name is required');
+      return;
+    }
+    if (!selectedCatId) {
+      setError('Please select a parent category');
+      return;
+    }
+
     setSaving(true);
     setError('');
     try {
       if (sub) {
-        await adminApi.updateSubcategory(categoryId, sub.id, { name: name.trim(), slug });
+        await adminApi.updateSubcategory(selectedCatId, sub.id, { name: name.trim(), slug });
       } else {
-        await adminApi.createSubcategory(categoryId, { name: name.trim(), slug });
+        await adminApi.createSubcategory(selectedCatId, { name: name.trim(), slug });
       }
-      onSaved();
+      onSaved(selectedCatId);
       onClose();
     } catch (e: any) {
-      setError(e.message || 'Failed to save');
+      setError(e.message || 'Failed to save subcategory');
     } finally {
       setSaving(false);
     }
@@ -50,44 +154,101 @@ const SubcategoryModal: React.FC<SubcategoryModalProps> = ({ categoryId, sub, on
 
   return (
     <div style={{
-      position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.45)', zIndex: 1000,
-      display: 'flex', alignItems: 'center', justifyContent: 'center'
+      position: 'fixed',
+      inset: 0,
+      background: 'rgba(15, 23, 42, 0.6)',
+      backdropFilter: 'blur(4px)',
+      zIndex: 1000,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '20px'
     }}>
       <div style={{
-        background: '#fff', borderRadius: '14px', padding: '28px', width: '420px',
-        boxShadow: '0 20px 60px rgba(0,0,0,0.2)'
+        background: '#fff',
+        borderRadius: '16px',
+        padding: '28px',
+        width: '100%',
+        maxWidth: '460px',
+        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
       }}>
-        <h3 style={{ fontSize: '17px', fontWeight: 700, color: '#0f172a', marginBottom: '20px' }}>
-          {sub ? 'Edit Subcategory' : 'Add Subcategory'}
-        </h3>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+          <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#0f172a' }}>
+            {sub ? 'Edit Subcategory' : 'Add New Subcategory'}
+          </h3>
+          <button
+            onClick={onClose}
+            style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#94a3b8' }}
+          >
+            <X size={20} />
+          </button>
+        </div>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
           <div>
-            <label style={{ fontSize: '12px', fontWeight: 600, color: '#64748b', display: 'block', marginBottom: '5px' }}>
-              Name *
+            <label style={{ fontSize: '12px', fontWeight: 600, color: '#475569', display: 'block', marginBottom: '6px' }}>
+              Parent Category *
+            </label>
+            <select
+              value={selectedCatId}
+              disabled={!!sub} // Lock parent category during edit
+              onChange={e => setSelectedCatId(e.target.value)}
+              style={{
+                width: '100%',
+                padding: '9px 12px',
+                border: '1px solid #cbd5e1',
+                borderRadius: '8px',
+                fontSize: '14px',
+                outline: 'none',
+                background: sub ? '#f8fafc' : '#fff',
+                cursor: sub ? 'not-allowed' : 'pointer'
+              }}
+            >
+              {categories.map(c => (
+                <option key={c.id} value={c.id}>
+                  {c.name} (/{c.slug})
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label style={{ fontSize: '12px', fontWeight: 600, color: '#475569', display: 'block', marginBottom: '6px' }}>
+              Subcategory Name *
             </label>
             <input
               value={name}
               onChange={e => setName(e.target.value)}
-              placeholder="e.g. Projector"
+              placeholder="e.g. Solar PV Panels, Hybrid Inverter"
               style={{
-                width: '100%', padding: '8px 12px', border: '1px solid #e2e8f0',
-                borderRadius: '8px', fontSize: '14px', outline: 'none',
+                width: '100%',
+                padding: '9px 12px',
+                border: '1px solid #cbd5e1',
+                borderRadius: '8px',
+                fontSize: '14px',
+                outline: 'none',
                 boxSizing: 'border-box'
               }}
             />
           </div>
+
           <div>
-            <label style={{ fontSize: '12px', fontWeight: 600, color: '#64748b', display: 'block', marginBottom: '5px' }}>
-              Slug
+            <label style={{ fontSize: '12px', fontWeight: 600, color: '#475569', display: 'block', marginBottom: '6px' }}>
+              URL Slug
             </label>
             <input
               value={slug}
               onChange={e => { setSlug(e.target.value); setSlugTouched(true); }}
-              placeholder="auto-generated"
+              placeholder="auto-generated-slug"
               style={{
-                width: '100%', padding: '8px 12px', border: '1px solid #e2e8f0',
-                borderRadius: '8px', fontSize: '14px', outline: 'none', color: '#64748b',
+                width: '100%',
+                padding: '9px 12px',
+                border: '1px solid #cbd5e1',
+                borderRadius: '8px',
+                fontSize: '14px',
+                outline: 'none',
+                color: '#64748b',
+                fontFamily: 'monospace',
                 boxSizing: 'border-box'
               }}
             />
@@ -95,30 +256,34 @@ const SubcategoryModal: React.FC<SubcategoryModalProps> = ({ categoryId, sub, on
         </div>
 
         {error && (
-          <p style={{ marginTop: '10px', color: '#ef4444', fontSize: '13px' }}>{error}</p>
+          <div style={{
+            marginTop: '16px',
+            padding: '10px 14px',
+            borderRadius: '8px',
+            background: '#fef2f2',
+            border: '1px solid #fecaca',
+            color: '#b91c1c',
+            fontSize: '13px'
+          }}>
+            {error}
+          </div>
         )}
 
-        <div style={{ display: 'flex', gap: '10px', justifyContent: 'flex-end', marginTop: '20px' }}>
+        <div style={{ display: 'flex', gap: '10px', justifyContent: 'flex-end', marginTop: '24px' }}>
           <button
             onClick={onClose}
-            style={{
-              padding: '8px 18px', border: '1px solid #e2e8f0', borderRadius: '8px',
-              background: '#fff', fontSize: '13px', cursor: 'pointer', color: '#64748b'
-            }}
+            className="btn btn-secondary btn-sm"
+            style={{ padding: '8px 16px', fontSize: '13px' }}
           >
             Cancel
           </button>
           <button
             onClick={handleSave}
             disabled={saving}
-            style={{
-              padding: '8px 18px', border: 'none', borderRadius: '8px',
-              background: '#3b82f6', color: '#fff', fontSize: '13px',
-              cursor: saving ? 'not-allowed' : 'pointer', fontWeight: 600,
-              opacity: saving ? 0.7 : 1
-            }}
+            className="btn btn-primary btn-sm"
+            style={{ padding: '8px 20px', fontSize: '13px', fontWeight: 600 }}
           >
-            {saving ? 'Saving...' : (sub ? 'Update' : 'Add Subcategory')}
+            {saving ? 'Saving...' : (sub ? 'Update Subcategory' : 'Create Subcategory')}
           </button>
         </div>
       </div>
@@ -134,38 +299,51 @@ export const SubcategoriesView: React.FC = () => {
   const [loadingCat, setLoadingCat] = useState<Record<string, boolean>>({});
   const [modalCatId, setModalCatId] = useState<string | null>(null);
   const [editingSub, setEditingSub] = useState<Subcategory | null>(null);
+  const [selectedSubIds, setSelectedSubIds] = useState<Record<string, string[]>>({});
+  const [bulkDeletingCatId, setBulkDeletingCatId] = useState<string | null>(null);
+
+  // Search & Filter
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCategoryFilter, setSelectedCategoryFilter] = useState<string>('all');
 
   const fetchCategories = async () => {
     setLoading(true);
     try {
       const data = await adminApi.getCategories();
       setCategories(data);
-      // Pre-populate subcategories from category data (they're embedded)
+
       const map: Record<string, Subcategory[]> = {};
+      const initialExpanded: Record<string, boolean> = {};
+
       data.forEach((cat) => {
-        if (cat.subcategories && cat.subcategories.length > 0) {
-          map[cat.id] = cat.subcategories.map(s => ({
-            id: s.id || `${cat.id}-${s.slug}`,
-            name: s.name,
-            slug: s.slug
-          }));
-        }
+        const subs = cat.subcategories || [];
+        map[cat.id] = subs.map(s => ({
+          id: s.id || `${cat.id}-${s.slug}`,
+          name: s.name,
+          slug: s.slug
+        }));
+        // Auto-expand all categories by default so user sees everything organized
+        initialExpanded[cat.id] = true;
       });
+
       setSubcatMap(map);
+      setExpanded(initialExpanded);
     } catch (e) {
-      console.error(e);
+      console.error('Failed to load categories and subcategories:', e);
     } finally {
       setLoading(false);
     }
   };
 
-  useEffect(() => { fetchCategories(); }, []);
+  useEffect(() => {
+    fetchCategories();
+  }, []);
 
   const toggleExpand = async (cat: Category) => {
-    const isOpen = expanded[cat.id];
+    const isOpen = !!expanded[cat.id];
     setExpanded(prev => ({ ...prev, [cat.id]: !isOpen }));
-    // Refresh subcategories from API when opening
-    if (!isOpen) {
+
+    if (!isOpen && (!subcatMap[cat.id] || subcatMap[cat.id].length === 0)) {
       setLoadingCat(prev => ({ ...prev, [cat.id]: true }));
       try {
         const subs = await adminApi.getSubcategories(cat.id);
@@ -178,154 +356,515 @@ export const SubcategoriesView: React.FC = () => {
     }
   };
 
+  const handleExpandAll = () => {
+    const allExpanded: Record<string, boolean> = {};
+    categories.forEach(c => { allExpanded[c.id] = true; });
+    setExpanded(allExpanded);
+  };
+
+  const handleCollapseAll = () => {
+    setExpanded({});
+  };
+
   const handleDeleteSub = async (cat: Category, sub: Subcategory) => {
-    if (!window.confirm(`Delete subcategory "${sub.name}" from "${cat.name}"?`)) return;
+    if (!window.confirm(`Are you sure you want to delete subcategory "${sub.name}" from "${cat.name}"?`)) return;
     try {
       await adminApi.deleteSubcategory(cat.id, sub.id);
       setSubcatMap(prev => ({
         ...prev,
         [cat.id]: (prev[cat.id] || []).filter(s => s.id !== sub.id)
       }));
+      setSelectedSubIds(prev => ({
+        ...prev,
+        [cat.id]: (prev[cat.id] || []).filter(id => id !== sub.id)
+      }));
     } catch (e: any) {
       alert('Delete failed: ' + e.message);
     }
   };
 
+  const handleBulkDeleteSub = async (cat: Category) => {
+    const ids = selectedSubIds[cat.id] || [];
+    if (ids.length === 0) return;
+    if (!window.confirm(`Delete ${ids.length} selected subcategories from "${cat.name}"?`)) return;
+
+    try {
+      setBulkDeletingCatId(cat.id);
+      await adminApi.bulkDeleteSubcategories(cat.id, ids);
+      setSubcatMap(prev => ({
+        ...prev,
+        [cat.id]: (prev[cat.id] || []).filter(s => !ids.includes(s.id))
+      }));
+      setSelectedSubIds(prev => ({
+        ...prev,
+        [cat.id]: []
+      }));
+    } catch (e: any) {
+      alert('Bulk delete failed: ' + e.message);
+    } finally {
+      setBulkDeletingCatId(null);
+    }
+  };
+
+  const handleToggleSelectAllSubs = (catId: string, subs: Subcategory[]) => {
+    const current = selectedSubIds[catId] || [];
+    if (current.length === subs.length && subs.length > 0) {
+      setSelectedSubIds(prev => ({ ...prev, [catId]: [] }));
+    } else {
+      setSelectedSubIds(prev => ({ ...prev, [catId]: subs.map(s => s.id) }));
+    }
+  };
+
+  const handleToggleSelectOneSub = (catId: string, subId: string) => {
+    setSelectedSubIds(prev => {
+      const current = prev[catId] || [];
+      const updated = current.includes(subId) ? current.filter(id => id !== subId) : [...current, subId];
+      return { ...prev, [catId]: updated };
+    });
+  };
+
   const handleModalSaved = (catId: string) => {
-    // Refresh subcats for this category
     adminApi.getSubcategories(catId).then(subs => {
       setSubcatMap(prev => ({ ...prev, [catId]: subs }));
+      setExpanded(prev => ({ ...prev, [catId]: true }));
     }).catch(() => {});
   };
 
-  const totalSubs = Object.values(subcatMap).reduce((s, a) => s + a.length, 0);
+  const totalSubs = useMemo(() => {
+    return Object.values(subcatMap).reduce((s, a) => s + (a?.length || 0), 0);
+  }, [subcatMap]);
+
+  // Filtered categories and subcategories
+  const filteredCategories = useMemo(() => {
+    const query = searchQuery.trim().toLowerCase();
+
+    return categories.filter(cat => {
+      // Category filter pill check
+      if (selectedCategoryFilter !== 'all' && cat.id !== selectedCategoryFilter && cat.slug !== selectedCategoryFilter) {
+        return false;
+      }
+
+      // Search query check
+      if (!query) return true;
+
+      const catMatches = cat.name.toLowerCase().includes(query) || cat.slug.toLowerCase().includes(query);
+      if (catMatches) return true;
+
+      const subs = subcatMap[cat.id] || cat.subcategories || [];
+      return subs.some(s => s.name.toLowerCase().includes(query) || s.slug.toLowerCase().includes(query));
+    });
+  }, [categories, subcatMap, searchQuery, selectedCategoryFilter]);
 
   return (
     <div>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
+      {/* Page Header */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', flexWrap: 'wrap', gap: '14px' }}>
         <div>
-          <h2 style={{ fontSize: '22px', fontWeight: 700, color: '#0f172a' }}>Subcategories</h2>
+          <h2 style={{ fontSize: '22px', fontWeight: 700, color: '#0f172a' }}>Subcategories Management</h2>
           <p style={{ fontSize: '13px', color: '#64748b' }}>
-            Manage subcategory pills under each parent category. Click a category to expand its subcategories.
+            Organize, add, edit, and bulk-delete subcategories under each product category.
           </p>
         </div>
-        <div style={{
-          background: '#f1f5f9', borderRadius: '10px', padding: '8px 16px',
-          fontSize: '13px', color: '#64748b', fontWeight: 500
-        }}>
-          <Tag size={14} style={{ marginRight: '6px', verticalAlign: 'middle' }} />
-          {totalSubs} total subcategories across {categories.length} categories
+
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <div style={{
+            background: '#eff6ff',
+            border: '1px solid #bfdbfe',
+            borderRadius: '10px',
+            padding: '7px 14px',
+            fontSize: '13px',
+            color: '#1d4ed8',
+            fontWeight: 600,
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px'
+          }}>
+            <Tag size={15} />
+            <span>{totalSubs} Total Subcategories across {categories.length} Categories</span>
+          </div>
+
+          <button
+            onClick={() => {
+              setModalCatId(categories[0]?.id || '');
+              setEditingSub(null);
+            }}
+            className="btn btn-primary btn-sm"
+            style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '8px 16px', fontWeight: 600 }}
+          >
+            <Plus size={15} /> Add Subcategory
+          </button>
         </div>
       </div>
 
+      {/* Search & Actions Bar */}
+      <div style={{
+        background: '#fff',
+        border: '1px solid #e2e8f0',
+        borderRadius: '12px',
+        padding: '14px 18px',
+        marginBottom: '18px',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        flexWrap: 'wrap',
+        gap: '12px'
+      }}>
+        {/* Search Input */}
+        <div style={{ position: 'relative', width: '100%', maxWidth: '380px' }}>
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={e => setSearchQuery(e.target.value)}
+            placeholder="Search subcategory or category name..."
+            style={{
+              width: '100%',
+              padding: '8px 14px 8px 36px',
+              border: '1px solid #cbd5e1',
+              borderRadius: '8px',
+              fontSize: '13px',
+              outline: 'none',
+              boxSizing: 'border-box'
+            }}
+          />
+          <Search size={16} style={{ position: 'absolute', left: '11px', top: '10px', color: '#94a3b8' }} />
+          {searchQuery && (
+            <button
+              onClick={() => setSearchQuery('')}
+              style={{ position: 'absolute', right: '10px', top: '8px', background: 'none', border: 'none', cursor: 'pointer', color: '#94a3b8' }}
+            >
+              <X size={15} />
+            </button>
+          )}
+        </div>
+
+        {/* View Controls */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <button
+            onClick={handleExpandAll}
+            className="btn btn-secondary btn-sm"
+            style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '12px', padding: '6px 12px' }}
+          >
+            <Maximize2 size={13} /> Expand All
+          </button>
+          <button
+            onClick={handleCollapseAll}
+            className="btn btn-secondary btn-sm"
+            style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '12px', padding: '6px 12px' }}
+          >
+            <Minimize2 size={13} /> Collapse All
+          </button>
+        </div>
+      </div>
+
+      {/* Category Filter Pills */}
+      <div style={{
+        display: 'flex',
+        gap: '6px',
+        overflowX: 'auto',
+        paddingBottom: '12px',
+        marginBottom: '16px',
+        scrollbarWidth: 'thin'
+      }}>
+        <button
+          onClick={() => setSelectedCategoryFilter('all')}
+          style={{
+            padding: '5px 12px',
+            borderRadius: '20px',
+            fontSize: '12px',
+            fontWeight: 600,
+            whiteSpace: 'nowrap',
+            border: selectedCategoryFilter === 'all' ? '1px solid #ff6600' : '1px solid #e2e8f0',
+            background: selectedCategoryFilter === 'all' ? '#ff6600' : '#fff',
+            color: selectedCategoryFilter === 'all' ? '#fff' : '#64748b',
+            cursor: 'pointer'
+          }}
+        >
+          All ({totalSubs})
+        </button>
+
+        {categories.map(c => {
+          const count = (subcatMap[c.id] || c.subcategories || []).length;
+          const isSelected = selectedCategoryFilter === c.id;
+
+          return (
+            <button
+              key={c.id}
+              onClick={() => setSelectedCategoryFilter(c.id)}
+              style={{
+                padding: '5px 12px',
+                borderRadius: '20px',
+                fontSize: '12px',
+                fontWeight: 600,
+                whiteSpace: 'nowrap',
+                border: isSelected ? '1px solid #ff6600' : '1px solid #e2e8f0',
+                background: isSelected ? '#ff6600' : '#fff',
+                color: isSelected ? '#fff' : '#475569',
+                cursor: 'pointer'
+              }}
+            >
+              {c.name} ({count})
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Main Categories & Subcategories List */}
       {loading ? (
-        <div style={{ textAlign: 'center', padding: '60px', color: '#64748b' }}>Loading categories...</div>
+        <div style={{ textAlign: 'center', padding: '60px', color: '#64748b' }}>
+          Loading categories and subcategories...
+        </div>
+      ) : filteredCategories.length === 0 ? (
+        <div style={{
+          textAlign: 'center',
+          padding: '60px 20px',
+          background: '#fff',
+          borderRadius: '12px',
+          border: '1px solid #e2e8f0',
+          color: '#64748b'
+        }}>
+          No categories or subcategories matching your criteria.
+        </div>
       ) : (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-          {categories.map(cat => {
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+          {filteredCategories.map(cat => {
             const isOpen = !!expanded[cat.id];
-            const subs = subcatMap[cat.id] || cat.subcategories || [];
-            const subCount = subs.length;
+            const allSubs = subcatMap[cat.id] || cat.subcategories || [];
+            
+            // Subcategory search filter
+            const query = searchQuery.trim().toLowerCase();
+            const subs = query
+              ? allSubs.filter(s => s.name.toLowerCase().includes(query) || s.slug.toLowerCase().includes(query))
+              : allSubs;
+            const subCount = allSubs.length;
 
             return (
               <div key={cat.id} style={{
-                border: '1px solid #e2e8f0', borderRadius: '12px',
-                overflow: 'hidden', background: '#fff',
-                boxShadow: isOpen ? '0 4px 12px rgba(0,0,0,0.06)' : '0 1px 3px rgba(0,0,0,0.04)'
+                border: '1px solid #e2e8f0',
+                borderRadius: '12px',
+                overflow: 'hidden',
+                background: '#fff',
+                boxShadow: isOpen ? '0 4px 14px rgba(0,0,0,0.05)' : '0 1px 3px rgba(0,0,0,0.02)',
+                transition: 'box-shadow 0.2s'
               }}>
-                {/* Category Row */}
+                {/* Category Row Header */}
                 <div
                   onClick={() => toggleExpand(cat)}
                   style={{
-                    display: 'flex', alignItems: 'center', padding: '14px 18px',
-                    cursor: 'pointer', gap: '12px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    padding: '14px 18px',
+                    cursor: 'pointer',
+                    gap: '14px',
                     background: isOpen ? '#f8fafc' : '#fff',
-                    borderBottom: isOpen ? '1px solid #f1f5f9' : 'none'
+                    borderBottom: isOpen ? '1px solid #f1f5f9' : 'none',
+                    userSelect: 'none'
                   }}
                 >
                   <div style={{ color: '#94a3b8' }}>
-                    {isOpen ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
+                    {isOpen ? <ChevronDown size={18} /> : <ChevronRight size={18} />}
                   </div>
-                  {cat.icon && (
-                    <span style={{ fontSize: '18px' }}>{cat.icon}</span>
-                  )}
+
+                  {/* Clean Category Icon Badge */}
+                  <CategoryIconBadge icon={cat.icon} name={cat.name} />
+
                   <div style={{ flex: 1 }}>
-                    <div style={{ fontWeight: 600, fontSize: '14px', color: '#0f172a' }}>{cat.name}</div>
-                    <div style={{ fontSize: '12px', color: '#94a3b8' }}>/{cat.slug}</div>
+                    <div style={{ fontWeight: 700, fontSize: '14px', color: '#0f172a' }}>
+                      {cat.name}
+                    </div>
+                    <div style={{ fontSize: '11px', color: '#94a3b8', fontFamily: 'monospace' }}>
+                      /{cat.slug}
+                    </div>
                   </div>
+
                   <span style={{
-                    background: subCount > 0 ? '#dbeafe' : '#f1f5f9',
+                    background: subCount > 0 ? '#eff6ff' : '#f1f5f9',
                     color: subCount > 0 ? '#2563eb' : '#94a3b8',
-                    borderRadius: '20px', padding: '2px 10px', fontSize: '12px', fontWeight: 600
+                    border: `1px solid ${subCount > 0 ? '#bfdbfe' : '#e2e8f0'}`,
+                    borderRadius: '20px',
+                    padding: '3px 12px',
+                    fontSize: '12px',
+                    fontWeight: 700
                   }}>
-                    {subCount} subcategories
+                    {subCount} {subCount === 1 ? 'subcategory' : 'subcategories'}
                   </span>
+
                   <button
-                    onClick={e => { e.stopPropagation(); setModalCatId(cat.id); setEditingSub(null); }}
+                    onClick={e => {
+                      e.stopPropagation();
+                      setModalCatId(cat.id);
+                      setEditingSub(null);
+                    }}
+                    className="btn btn-primary btn-sm"
                     style={{
-                      display: 'flex', alignItems: 'center', gap: '4px',
-                      padding: '5px 12px', background: '#3b82f6', color: '#fff',
-                      border: 'none', borderRadius: '7px', fontSize: '12px',
-                      cursor: 'pointer', fontWeight: 600
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '4px',
+                      padding: '5px 12px',
+                      fontSize: '12px',
+                      fontWeight: 600
                     }}
                   >
                     <Plus size={13} /> Add
                   </button>
                 </div>
 
-                {/* Subcategories List */}
+                {/* Subcategories Body */}
                 {isOpen && (
-                  <div style={{ padding: '12px 18px 14px' }}>
+                  <div style={{ padding: '16px 20px', background: '#fafbfc' }}>
                     {loadingCat[cat.id] ? (
-                      <div style={{ color: '#94a3b8', fontSize: '13px', padding: '8px 0' }}>Loading...</div>
+                      <div style={{ color: '#94a3b8', fontSize: '13px', padding: '12px 0' }}>Loading subcategories...</div>
                     ) : subs.length === 0 ? (
                       <div style={{
-                        color: '#94a3b8', fontSize: '13px', padding: '20px 0',
-                        textAlign: 'center', borderTop: '1px dashed #f1f5f9'
+                        color: '#94a3b8',
+                        fontSize: '13px',
+                        padding: '24px 0',
+                        textAlign: 'center',
+                        background: '#fff',
+                        borderRadius: '8px',
+                        border: '1px dashed #cbd5e1'
                       }}>
-                        No subcategories yet.{' '}
+                        {query ? 'No subcategories match your search.' : 'No subcategories yet.'}{' '}
                         <button
                           onClick={() => { setModalCatId(cat.id); setEditingSub(null); }}
-                          style={{ color: '#3b82f6', background: 'none', border: 'none', cursor: 'pointer', fontSize: '13px', fontWeight: 600 }}
+                          style={{
+                            color: '#ff6600',
+                            background: 'none',
+                            border: 'none',
+                            cursor: 'pointer',
+                            fontSize: '13px',
+                            fontWeight: 700
+                          }}
                         >
-                          Add the first one
+                          + Add Subcategory
                         </button>
                       </div>
                     ) : (
-                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                        {subs.map((sub: Subcategory) => (
-                          <div key={sub.id} style={{
-                            display: 'flex', alignItems: 'center', gap: '6px',
-                            background: '#f8fafc', border: '1px solid #e2e8f0',
-                            borderRadius: '20px', padding: '4px 6px 4px 12px',
-                            fontSize: '13px', color: '#374151'
-                          }}>
-                            <span style={{ fontWeight: 500 }}>{sub.name}</span>
-                            <span style={{ color: '#94a3b8', fontSize: '11px' }}>/{sub.slug}</span>
-                            <button
-                              onClick={() => { setModalCatId(cat.id); setEditingSub(sub); }}
-                              title="Edit"
-                              style={{
-                                background: '#e0f2fe', border: 'none', borderRadius: '50%',
-                                width: '22px', height: '22px', cursor: 'pointer',
-                                display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#0284c7'
-                              }}
-                            >
-                              <Edit2 size={11} />
-                            </button>
-                            <button
-                              onClick={() => handleDeleteSub(cat, sub)}
-                              title="Delete"
-                              style={{
-                                background: '#fee2e2', border: 'none', borderRadius: '50%',
-                                width: '22px', height: '22px', cursor: 'pointer',
-                                display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#ef4444'
-                              }}
-                            >
-                              <Trash2 size={11} />
-                            </button>
-                          </div>
-                        ))}
+                      <div>
+                        {/* Subcategories Bulk Action Toolbar */}
+                        <div style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                          marginBottom: '12px',
+                          paddingBottom: '10px',
+                          borderBottom: '1px solid #e2e8f0',
+                          flexWrap: 'wrap',
+                          gap: '8px'
+                        }}>
+                          <label style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12px', color: '#64748b', cursor: 'pointer', userSelect: 'none' }}>
+                            <input
+                              type="checkbox"
+                              checked={subs.length > 0 && ((selectedSubIds[cat.id] || []).length === subs.length)}
+                              onChange={() => handleToggleSelectAllSubs(cat.id, subs)}
+                              style={{ cursor: 'pointer', width: '15px', height: '15px', accentColor: '#ff6600' }}
+                            />
+                            <span>Select All ({subs.length})</span>
+                          </label>
+
+                          {(selectedSubIds[cat.id]?.length || 0) > 0 && (
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                              <span style={{ fontSize: '12px', fontWeight: 700, color: '#e11d48' }}>
+                                {selectedSubIds[cat.id]?.length} selected
+                              </span>
+                              <button
+                                onClick={() => handleBulkDeleteSub(cat)}
+                                disabled={bulkDeletingCatId === cat.id}
+                                style={{
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  gap: '4px',
+                                  background: '#e11d48',
+                                  color: '#fff',
+                                  border: 'none',
+                                  borderRadius: '6px',
+                                  padding: '4px 12px',
+                                  fontSize: '11px',
+                                  fontWeight: 600,
+                                  cursor: 'pointer'
+                                }}
+                              >
+                                <Trash2 size={12} />
+                                {bulkDeletingCatId === cat.id ? 'Deleting...' : `Delete Selected (${selectedSubIds[cat.id]?.length})`}
+                              </button>
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Subcategories Chips */}
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+                          {subs.map((sub: Subcategory) => {
+                            const isSubSelected = (selectedSubIds[cat.id] || []).includes(sub.id);
+
+                            return (
+                              <div
+                                key={sub.id}
+                                style={{
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  gap: '8px',
+                                  background: isSubSelected ? '#fff1f2' : '#ffffff',
+                                  border: `1px solid ${isSubSelected ? '#fda4af' : '#e2e8f0'}`,
+                                  borderRadius: '24px',
+                                  padding: '6px 12px 6px 10px',
+                                  fontSize: '13px',
+                                  color: '#1e293b',
+                                  boxShadow: '0 1px 2px rgba(0,0,0,0.03)'
+                                }}
+                              >
+                                <input
+                                  type="checkbox"
+                                  checked={isSubSelected}
+                                  onChange={() => handleToggleSelectOneSub(cat.id, sub.id)}
+                                  style={{ cursor: 'pointer', width: '14px', height: '14px', accentColor: '#ff6600' }}
+                                />
+
+                                <span style={{ fontWeight: 600 }}>{sub.name}</span>
+                                <span style={{ color: '#94a3b8', fontSize: '11px', fontFamily: 'monospace' }}>
+                                  /{sub.slug}
+                                </span>
+
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '3px', marginLeft: '4px' }}>
+                                  <button
+                                    onClick={() => { setModalCatId(cat.id); setEditingSub(sub); }}
+                                    title="Edit subcategory"
+                                    style={{
+                                      background: '#f0fdf4',
+                                      border: '1px solid #bbf7d0',
+                                      borderRadius: '50%',
+                                      width: '24px',
+                                      height: '24px',
+                                      cursor: 'pointer',
+                                      display: 'flex',
+                                      alignItems: 'center',
+                                      justifyContent: 'center',
+                                      color: '#16a34a'
+                                    }}
+                                  >
+                                    <Edit2 size={11} />
+                                  </button>
+                                  <button
+                                    onClick={() => handleDeleteSub(cat, sub)}
+                                    title="Delete subcategory"
+                                    style={{
+                                      background: '#fef2f2',
+                                      border: '1px solid #fecaca',
+                                      borderRadius: '50%',
+                                      width: '24px',
+                                      height: '24px',
+                                      cursor: 'pointer',
+                                      display: 'flex',
+                                      alignItems: 'center',
+                                      justifyContent: 'center',
+                                      color: '#dc2626'
+                                    }}
+                                  >
+                                    <Trash2 size={11} />
+                                  </button>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
                       </div>
                     )}
                   </div>
@@ -336,15 +875,16 @@ export const SubcategoriesView: React.FC = () => {
         </div>
       )}
 
+      {/* Add / Edit Subcategory Modal */}
       {modalCatId && (
         <SubcategoryModal
-          categoryId={modalCatId}
+          categories={categories}
+          initialCatId={modalCatId}
           sub={editingSub}
           onClose={() => { setModalCatId(null); setEditingSub(null); }}
-          onSaved={() => handleModalSaved(modalCatId)}
+          onSaved={handleModalSaved}
         />
       )}
     </div>
   );
 };
-
