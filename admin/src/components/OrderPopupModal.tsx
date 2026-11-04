@@ -36,6 +36,32 @@ interface OrderPopupModalProps {
 
 type ModalView = 'details' | 'invoice' | 'sticker';
 
+const getItemVariationText = (item: any): string | null => {
+  const sanitize = (str: any) => typeof str === 'string' && !str.includes('[object Object]') && str.trim().length > 0;
+  if (sanitize(item?.variation)) return item.variation.trim();
+  if (sanitize(item?.variant)) return item.variant.trim();
+  if (sanitize(item?.selectedVariation)) return item.selectedVariation.trim();
+  if (item?.specs && typeof item.specs === 'object') {
+    const pairs: string[] = [];
+    for (const [k, v] of Object.entries(item.specs)) {
+      if (typeof v === 'string' || typeof v === 'number') {
+        pairs.push(`${k}: ${v}`);
+        if (pairs.length >= 2) break;
+      } else if (v && typeof v === 'object') {
+        for (const [subK, subV] of Object.entries(v as Record<string, any>)) {
+          if (typeof subV === 'string' || typeof subV === 'number') {
+            pairs.push(`${subK}: ${subV}`);
+            if (pairs.length >= 2) break;
+          }
+        }
+        if (pairs.length >= 2) break;
+      }
+    }
+    if (pairs.length > 0) return pairs.join(', ');
+  }
+  return null;
+};
+
 export const OrderPopupModal: React.FC<OrderPopupModalProps> = ({
   order: initialOrder,
   isOpen,
@@ -544,9 +570,7 @@ export const OrderPopupModal: React.FC<OrderPopupModalProps> = ({
                     </thead>
                     <tbody>
                       {items.map((item, idx) => {
-                        const variation = item.variation || item.variant || (item.specs && Object.keys(item.specs).length > 0
-                          ? Object.entries(item.specs).slice(0, 2).map(([k, v]) => `${k}: ${v}`).join(', ')
-                          : null);
+                        const variation = getItemVariationText(item);
 
                         return (
                           <tr key={idx} style={{ borderBottom: '1px solid #f1f5f9' }}>

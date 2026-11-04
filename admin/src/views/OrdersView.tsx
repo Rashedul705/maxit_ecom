@@ -1,7 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { Order } from '../types';
 import { adminApi } from '../api';
-import { Search, Printer, ChevronLeft, ChevronRight, CheckCircle2, Truck, Download, CheckSquare, Square, X, AlertCircle, RefreshCw, FileText, Tag, Eye, Edit2 } from 'lucide-react';
+import {
+  Search,
+  Printer,
+  ChevronLeft,
+  ChevronRight,
+  CheckCircle2,
+  Truck,
+  Download,
+  CheckSquare,
+  Square,
+  X,
+  AlertCircle,
+  RefreshCw,
+  FileText,
+  Tag,
+  Eye,
+  Edit2,
+  MoreVertical
+} from 'lucide-react';
 import { OrderPopupModal } from '../components/OrderPopupModal';
 import { BulkPrintModal } from '../components/BulkPrintModal';
 import { ParcelStickerPrintModal } from '../components/ParcelStickerPrintModal';
@@ -10,6 +28,66 @@ import { printHtmlContent } from '../utils/printService';
 import { generateInvoicesHtml } from '../utils/printTemplates';
 import { Can } from '../components/Can';
 import { usePermission } from '../context/PermissionContext';
+
+export const getItemVariationText = (item: any): string | null => {
+  const sanitize = (str: any) => typeof str === 'string' && !str.includes('[object Object]') && str.trim().length > 0;
+  if (sanitize(item?.variation)) return item.variation.trim();
+  if (sanitize(item?.variant)) return item.variant.trim();
+  if (sanitize(item?.selectedVariation)) return item.selectedVariation.trim();
+  if (item?.specs && typeof item.specs === 'object') {
+    const pairs: string[] = [];
+    for (const [k, v] of Object.entries(item.specs)) {
+      if (typeof v === 'string' || typeof v === 'number') {
+        pairs.push(`${k}: ${v}`);
+        if (pairs.length >= 2) break;
+      } else if (v && typeof v === 'object') {
+        for (const [subK, subV] of Object.entries(v as Record<string, any>)) {
+          if (typeof subV === 'string' || typeof subV === 'number') {
+            pairs.push(`${subK}: ${subV}`);
+            if (pairs.length >= 2) break;
+          }
+        }
+        if (pairs.length >= 2) break;
+      }
+    }
+    if (pairs.length > 0) return pairs.join(', ');
+  }
+  return null;
+};
+
+const getStatusSelectStyle = (status: string): React.CSSProperties => {
+  switch (status) {
+    case 'pending':
+      return { background: '#fff7ed', color: '#c2410c', borderColor: '#fdba74' };
+    case 'confirmed':
+      return { background: '#eff6ff', color: '#1d4ed8', borderColor: '#93c5fd' };
+    case 'shipped':
+      return { background: '#f5f3ff', color: '#6d28d9', borderColor: '#c4b5fd' };
+    case 'delivered':
+      return { background: '#f0fdf4', color: '#15803d', borderColor: '#86efac' };
+    case 'cancelled':
+      return { background: '#fef2f2', color: '#b91c1c', borderColor: '#fca5a5' };
+    default:
+      return { background: '#f8fafc', color: '#334155', borderColor: '#e2e8f0' };
+  }
+};
+
+const menuItemStyle: React.CSSProperties = {
+  width: '100%',
+  display: 'flex',
+  alignItems: 'center',
+  gap: '8px',
+  padding: '7px 10px',
+  border: 'none',
+  background: 'none',
+  fontSize: '12.5px',
+  color: '#334155',
+  borderRadius: '5px',
+  cursor: 'pointer',
+  textAlign: 'left',
+  transition: 'background-color 0.1s ease',
+  fontWeight: 500
+};
 
 export const OrdersView: React.FC = () => {
   const { hasPermission } = usePermission();
@@ -31,6 +109,8 @@ export const OrdersView: React.FC = () => {
   const [updatingId, setUpdatingId] = useState<string | null>(null);
   const [courierDispatchingId, setCourierDispatchingId] = useState<string | null>(null);
   const [editingAmountOrder, setEditingAmountOrder] = useState<Order | null>(null);
+  const [activeMenuOrderId, setActiveMenuOrderId] = useState<string | null>(null);
+  const [singleStickerOrder, setSingleStickerOrder] = useState<Order | null>(null);
 
   // Bulk Selection State
   const [selectedOrderIds, setSelectedOrderIds] = useState<string[]>([]);
@@ -481,7 +561,7 @@ export const OrdersView: React.FC = () => {
       )}
 
       {/* Orders Table */}
-      <div className="table-card">
+      <div className="table-card" style={{ overflow: 'visible' }}>
         <table className="admin-table">
           <thead>
             <tr>
@@ -499,32 +579,53 @@ export const OrdersView: React.FC = () => {
                   )}
                 </button>
               </th>
-              <th>Order #</th>
-              <th>Customer Details</th>
-              <th>Ordered Items</th>
-              <th>Amount (BDT)</th>
-              <th>Status</th>
-              <th>Courier &amp; Tracking</th>
-              <th>Status Action</th>
-              <th>Actions</th>
+              <th style={{ width: '130px' }}>Order #</th>
+              <th style={{ width: '190px' }}>Customer</th>
+              <th>Items &amp; Amount</th>
+              <th style={{ width: '150px' }}>Status Action</th>
+              <th style={{ width: '60px', textAlign: 'center' }}>Actions</th>
             </tr>
           </thead>
           <tbody>
             {loading ? (
               <tr>
-                <td colSpan={9} style={{ textAlign: 'center', padding: '40px', color: '#64748b' }}>
+                <td colSpan={6} style={{ textAlign: 'center', padding: '40px', color: '#64748b' }}>
                   Loading orders...
                 </td>
               </tr>
             ) : orders.length > 0 ? (
-              orders.map(order => {
+              orders.map((order, index) => {
                 const isSelected = selectedOrderIds.includes(order.id);
                 const courier = order.courier?.provider || (order as any).courier;
                 const trackingCode = order.courier?.trackingCode || (order as any).trackingCode;
+                const consignmentId = order.courier?.consignmentId || (order as any).consignmentId;
+                const items = order.items || [];
+                const firstItem = items[0];
+                const firstVariation = firstItem ? getItemVariationText(firstItem) : null;
+                const hasMultiple = items.length > 1;
+                const isNearBottom = index >= orders.length - 2 && orders.length > 2;
 
                 return (
-                  <tr key={order.id} style={{ background: isSelected ? '#fff7ed' : 'inherit' }}>
-                    <td style={{ textAlign: 'center' }}>
+                  <tr
+                    key={order.id}
+                    onClick={() => {
+                      setSelectedOrder(order);
+                      setIsOrderPopupOpen(true);
+                    }}
+                    style={{
+                      background: isSelected ? '#fff7ed' : 'inherit',
+                      cursor: 'pointer',
+                      transition: 'background-color 0.15s ease'
+                    }}
+                    title="Click anywhere on the order to view full details"
+                  >
+                    {/* Checkbox */}
+                    <td
+                      style={{ textAlign: 'center' }}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                      }}
+                    >
                       <button
                         type="button"
                         onClick={() => handleToggleSelectOrder(order.id)}
@@ -538,172 +639,105 @@ export const OrdersView: React.FC = () => {
                       </button>
                     </td>
 
+                    {/* Order # & Date */}
                     <td>
-                      <div
-                        onClick={() => {
-                          setSelectedOrder(order);
-                          setIsOrderPopupOpen(true);
-                        }}
-                        style={{ fontWeight: 700, color: '#ff6600', fontSize: '14px', cursor: 'pointer', textDecoration: 'underline' }}
-                        title="Click to view order popup"
-                      >
+                      <div style={{ fontWeight: 700, color: '#ff6600', fontSize: '13.5px' }}>
                         {order.orderNumber}
                       </div>
-                      <div style={{ fontSize: '11px', color: '#64748b' }}>
+                      <div style={{ fontSize: '11px', color: '#64748b', marginTop: '2px' }}>
                         {new Date(order.createdAt).toLocaleDateString()}
                       </div>
                     </td>
 
+                    {/* Customer Name & Phone */}
                     <td>
-                      <div
-                        onClick={() => {
-                          setSelectedOrder(order);
-                          setIsOrderPopupOpen(true);
-                        }}
-                        style={{ cursor: 'pointer' }}
-                        title="Click to view customer details"
-                      >
-                        <div style={{ fontWeight: 600, color: '#0f172a' }}>{order.customer?.name || 'Customer'}</div>
-                        <div style={{ fontSize: '12px', color: '#475569' }}>📞 {order.customer?.phone || 'N/A'}</div>
-                        <div style={{ fontSize: '12px', color: '#64748b', maxWidth: '200px' }}>
-                          📍 {[order.customer?.address, order.customer?.thana, order.customer?.district].filter(Boolean).join(', ') || 'N/A'}
+                      <div style={{ fontWeight: 600, color: '#0f172a', fontSize: '13px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '190px' }}>
+                        {order.customer?.name || 'Customer'}
+                      </div>
+                      <div style={{ fontSize: '12px', color: '#475569', marginTop: '2px', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                        <span style={{ fontSize: '11px' }}>📞</span>
+                        <span>{order.customer?.phone || 'N/A'}</span>
+                      </div>
+                    </td>
+
+                    {/* Ordered Items (in short) with Amount */}
+                    <td style={{ verticalAlign: 'middle' }}>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
+                        {/* Line 1: Items overview in short */}
+                        {items.length === 0 ? (
+                          <span style={{ fontSize: '12px', color: '#94a3b8' }}>No items</span>
+                        ) : (
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '5px', flexWrap: 'wrap', lineHeight: 1.3 }}>
+                            <span style={{ fontWeight: 600, color: '#0f172a', fontSize: '12.5px' }}>
+                              • {firstItem.quantity}x {firstItem.title}
+                            </span>
+                            {firstVariation && (
+                              <span style={{
+                                fontSize: '10px',
+                                fontWeight: 700,
+                                color: '#c2410c',
+                                background: '#ffedd5',
+                                borderRadius: '3px',
+                                padding: '1px 5px',
+                                whiteSpace: 'nowrap'
+                              }}>
+                                🏷️ {firstVariation}
+                              </span>
+                            )}
+                            {hasMultiple && (
+                              <span style={{
+                                fontSize: '10.5px',
+                                fontWeight: 700,
+                                color: '#ea580c',
+                                background: '#fff7ed',
+                                border: '1px solid #fed7aa',
+                                borderRadius: '4px',
+                                padding: '1px 6px',
+                                whiteSpace: 'nowrap'
+                              }}>
+                                📦 +{items.length - 1} item{items.length - 1 > 1 ? 's' : ''}
+                              </span>
+                            )}
+                          </div>
+                        )}
+
+                        {/* Line 2: Order Total & Payment status */}
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12px', color: '#64748b' }}>
+                          <span style={{ fontWeight: 800, fontSize: '14px', color: '#0f172a' }}>
+                            ৳{(order.total || 0).toLocaleString()}
+                          </span>
+                          <span>•</span>
+                          <span style={{ textTransform: 'uppercase', fontSize: '11px', fontWeight: 600 }}>
+                            {order.paymentMethod || 'cod'}
+                          </span>
+                          <span style={{
+                            fontSize: '10px',
+                            fontWeight: 700,
+                            textTransform: 'uppercase',
+                            color: order.paymentStatus === 'paid' ? '#10b981' : '#f59e0b',
+                            background: order.paymentStatus === 'paid' ? '#ecfdf5' : '#fffbeb',
+                            padding: '1px 5px',
+                            borderRadius: '3px'
+                          }}>
+                            {order.paymentStatus || 'unpaid'}
+                          </span>
                         </div>
                       </div>
                     </td>
 
-                    <td>
-                      <div style={{ fontSize: '12px', color: '#334155', display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                        {(order.items || []).map((item, idx) => {
-                          const variation = item.variation || item.variant || (item.specs && Object.keys(item.specs).length > 0
-                            ? Object.entries(item.specs).slice(0, 2).map(([k, v]) => `${k}: ${v}`).join(', ')
-                            : null);
-
-                          return (
-                            <div
-                              key={idx}
-                              onClick={() => {
-                                setSelectedOrder(order);
-                                setIsOrderPopupOpen(true);
-                              }}
-                              style={{
-                                cursor: 'pointer',
-                                padding: '4px 8px',
-                                borderRadius: '6px',
-                                background: '#f8fafc',
-                                border: '1px solid #e2e8f0',
-                                transition: 'all 0.15s ease',
-                                display: 'flex',
-                                flexDirection: 'column',
-                                gap: '2px'
-                              }}
-                              onMouseEnter={(e) => {
-                                e.currentTarget.style.borderColor = '#ff6600';
-                                e.currentTarget.style.background = '#fff7ed';
-                              }}
-                              onMouseLeave={(e) => {
-                                e.currentTarget.style.borderColor = '#e2e8f0';
-                                e.currentTarget.style.background = '#f8fafc';
-                              }}
-                              title="Click to open popup with customer, order & product details"
-                            >
-                              <div style={{ fontWeight: 600, color: '#0f172a' }}>
-                                • <strong>{item.quantity}x</strong> {item.title}
-                              </div>
-                              {variation && (
-                                <div style={{
-                                  fontSize: '10px',
-                                  fontWeight: 700,
-                                  color: '#c2410c',
-                                  background: '#ffedd5',
-                                  borderRadius: '3px',
-                                  padding: '1px 5px',
-                                  alignSelf: 'flex-start'
-                                }}>
-                                  🏷️ {variation}
-                                </div>
-                              )}
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </td>
-
-                    <td>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                        <span style={{ fontWeight: 800, fontSize: '15px' }}>৳{(order.total || 0).toLocaleString()}</span>
-                        <Can permission="orders.update_status">
-                          <button
-                            type="button"
-                            onClick={() => setEditingAmountOrder(order)}
-                            style={{
-                              background: '#fff7ed',
-                              border: '1px solid #fed7aa',
-                              borderRadius: '4px',
-                              padding: '1px 5px',
-                              cursor: 'pointer',
-                              display: 'inline-flex',
-                              alignItems: 'center',
-                              gap: '3px',
-                              color: '#c2410c',
-                              fontSize: '10px',
-                              fontWeight: 700
-                            }}
-                            title="Edit amount on invoice"
-                          >
-                            <Edit2 size={10} /> Edit
-                          </button>
-                        </Can>
-                      </div>
-                      <div style={{ fontSize: '11px', color: '#64748b', textTransform: 'uppercase', marginTop: '2px' }}>
-                        {order.paymentMethod || 'cod'} • <span style={{ color: order.paymentStatus === 'paid' ? '#10b981' : '#f59e0b' }}>{order.paymentStatus || 'unpaid'}</span>
-                      </div>
-                    </td>
-
-                    <td>
-                      <span className={`badge badge-${order.status}`}>{order.status}</span>
-                    </td>
-
-                    <td>
-                      {courier && trackingCode ? (
-                        <div>
-                          <div style={{ fontSize: '11px', fontWeight: 700, color: '#0f172a', display: 'flex', alignItems: 'center', gap: '3px' }}>
-                            <Truck size={12} color="#ff6600" />
-                            <span>{courier}</span>
-                          </div>
-                          <div style={{ fontSize: '10px', color: '#64748b', fontFamily: 'monospace' }}>
-                            {trackingCode}
-                          </div>
-                        </div>
-                      ) : (
-                        <Can permission="orders.update_status">
-                          <button
-                            type="button"
-                            disabled={courierDispatchingId === order.id}
-                            onClick={() => handleDispatchCourier(order, 'Steadfast')}
-                            className="btn btn-sm"
-                            style={{
-                              fontSize: '11px',
-                              padding: '3px 8px',
-                              background: '#ff6600',
-                              color: '#fff',
-                              border: 'none',
-                              borderRadius: '6px',
-                              display: 'flex',
-                              alignItems: 'center',
-                              gap: '4px'
-                            }}
-                          >
-                            <Truck size={11} />
-                            <span>{courierDispatchingId === order.id ? 'Sending...' : 'Send Steadfast'}</span>
-                          </button>
-                        </Can>
-                      )}
-                    </td>
-
-                    <td>
+                    {/* Status Action */}
+                    <td onClick={(e) => e.stopPropagation()} style={{ width: '150px' }}>
                       <select
                         className="form-select"
-                        style={{ padding: '4px 8px', fontSize: '12px', width: '115px' }}
+                        style={{
+                          padding: '6px 10px',
+                          fontSize: '12px',
+                          fontWeight: 600,
+                          borderRadius: '6px',
+                          cursor: 'pointer',
+                          width: '130px',
+                          ...getStatusSelectStyle(order.status)
+                        }}
                         value={order.status}
                         disabled={updatingId === order.id || !hasPermission('orders.update_status')}
                         onChange={e => handleStatusChange(order.id, e.target.value)}
@@ -716,35 +750,161 @@ export const OrdersView: React.FC = () => {
                       </select>
                     </td>
 
-                    <td>
-                      <div style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
-                        <button
-                          className="btn btn-secondary btn-sm"
-                          onClick={() => {
-                            setSelectedOrder(order);
-                            setIsOrderPopupOpen(true);
-                          }}
-                          title="View order popup"
-                          style={{ display: 'flex', alignItems: 'center', gap: '4px', padding: '4px 8px', fontSize: '12px' }}
-                        >
-                          <Eye size={13} /> View
-                        </button>
-                        <button
-                          className="btn btn-secondary btn-sm"
-                          onClick={() => handlePrintSingleOrderInvoice(order)}
-                          title="Print Retail Tax Invoice (A4)"
-                          style={{ padding: '4px 8px' }}
-                        >
-                          <Printer size={13} />
-                        </button>
-                      </div>
+                    {/* Three-Dot Action Menu */}
+                    <td
+                      style={{ textAlign: 'center', position: 'relative' }}
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <button
+                        type="button"
+                        onClick={() => setActiveMenuOrderId(activeMenuOrderId === order.id ? null : order.id)}
+                        className="btn btn-secondary btn-sm"
+                        style={{
+                          padding: '5px 7px',
+                          borderRadius: '6px',
+                          background: activeMenuOrderId === order.id ? '#ffedd5' : '#f8fafc',
+                          borderColor: activeMenuOrderId === order.id ? '#fdba74' : '#e2e8f0',
+                          color: activeMenuOrderId === order.id ? '#ea580c' : '#475569',
+                          cursor: 'pointer',
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          justifyContent: 'center'
+                        }}
+                        title="More options"
+                      >
+                        <MoreVertical size={16} />
+                      </button>
+
+                      {/* Dropdown Menu */}
+                      {activeMenuOrderId === order.id && (
+                        <>
+                          <div
+                            onClick={() => setActiveMenuOrderId(null)}
+                            style={{
+                              position: 'fixed',
+                              inset: 0,
+                              zIndex: 40,
+                              cursor: 'default'
+                            }}
+                          />
+                          <div
+                            style={{
+                              position: 'absolute',
+                              right: '8px',
+                              ...(isNearBottom ? { bottom: 'calc(100% + 4px)' } : { top: 'calc(100% + 4px)' }),
+                              zIndex: 50,
+                              background: '#ffffff',
+                              borderRadius: '8px',
+                              boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1)',
+                              border: '1px solid #e2e8f0',
+                              minWidth: '215px',
+                              padding: '6px',
+                              textAlign: 'left'
+                            }}
+                          >
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setActiveMenuOrderId(null);
+                                setSelectedOrder(order);
+                                setIsOrderPopupOpen(true);
+                              }}
+                              style={menuItemStyle}
+                              onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#f1f5f9'; }}
+                              onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent'; }}
+                            >
+                              <Eye size={14} color="#0f172a" />
+                              <span>View Order Details</span>
+                            </button>
+
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setActiveMenuOrderId(null);
+                                handlePrintSingleOrderInvoice(order);
+                              }}
+                              style={menuItemStyle}
+                              onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#f1f5f9'; }}
+                              onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent'; }}
+                            >
+                              <Printer size={14} color="#0284c7" />
+                              <span>Print Retail Invoice (A4)</span>
+                            </button>
+
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setActiveMenuOrderId(null);
+                                setSingleStickerOrder(order);
+                              }}
+                              style={menuItemStyle}
+                              onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#f1f5f9'; }}
+                              onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent'; }}
+                            >
+                              <Tag size={14} color="#ff6600" />
+                              <span>Print Courier Sticker</span>
+                            </button>
+
+                            <Can permission="orders.update_status">
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  setActiveMenuOrderId(null);
+                                  setEditingAmountOrder(order);
+                                }}
+                                style={menuItemStyle}
+                                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#f1f5f9'; }}
+                                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent'; }}
+                              >
+                                <Edit2 size={14} color="#d97706" />
+                                <span>Edit Invoice Amount</span>
+                              </button>
+                            </Can>
+
+                            <div style={{ height: '1px', background: '#f1f5f9', margin: '4px 0' }} />
+
+                            {courier && (trackingCode || consignmentId) ? (
+                              <div style={{ padding: '6px 10px', fontSize: '11px', color: '#475569', background: '#f8fafc', borderRadius: '4px' }}>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontWeight: 700, color: '#0f172a' }}>
+                                  <Truck size={12} color="#ff6600" />
+                                  <span>{courier}</span>
+                                </div>
+                                <div style={{ fontFamily: 'monospace', fontSize: '10.5px', color: '#64748b', marginTop: '2px' }}>
+                                  {trackingCode || consignmentId}
+                                </div>
+                              </div>
+                            ) : (
+                              <Can permission="orders.update_status">
+                                <button
+                                  type="button"
+                                  disabled={courierDispatchingId === order.id}
+                                  onClick={() => {
+                                    setActiveMenuOrderId(null);
+                                    handleDispatchCourier(order, 'Steadfast');
+                                  }}
+                                  style={{
+                                    ...menuItemStyle,
+                                    color: '#ff6600',
+                                    fontWeight: 600
+                                  }}
+                                  onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#fff7ed'; }}
+                                  onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent'; }}
+                                >
+                                  <Truck size={14} color="#ff6600" />
+                                  <span>{courierDispatchingId === order.id ? 'Dispatching...' : 'Dispatch Steadfast'}</span>
+                                </button>
+                              </Can>
+                            )}
+                          </div>
+                        </>
+                      )}
                     </td>
                   </tr>
                 );
               })
             ) : fetchError ? (
               <tr>
-                <td colSpan={9} style={{ textAlign: 'center', padding: '40px', color: '#ef4444' }}>
+                <td colSpan={6} style={{ textAlign: 'center', padding: '40px', color: '#ef4444' }}>
                   <div style={{ marginBottom: '10px', fontWeight: 600 }}>⚠️ {fetchError}</div>
                   <button className="btn btn-secondary btn-sm" onClick={() => fetchOrders(false)}>
                     Retry Loading Orders
@@ -753,7 +913,7 @@ export const OrdersView: React.FC = () => {
               </tr>
             ) : (
               <tr>
-                <td colSpan={9} style={{ textAlign: 'center', padding: '40px', color: '#64748b' }}>
+                <td colSpan={6} style={{ textAlign: 'center', padding: '40px', color: '#64748b' }}>
                   No orders found matching criteria.
                 </td>
               </tr>
@@ -806,9 +966,12 @@ export const OrdersView: React.FC = () => {
       />
 
       <ParcelStickerPrintModal
-        orders={orders.filter(o => selectedOrderIds.includes(o.id))}
-        isOpen={isBulkStickerModalOpen}
-        onClose={() => setIsBulkStickerModalOpen(false)}
+        orders={singleStickerOrder ? [singleStickerOrder] : orders.filter(o => selectedOrderIds.includes(o.id))}
+        isOpen={isBulkStickerModalOpen || !!singleStickerOrder}
+        onClose={() => {
+          setIsBulkStickerModalOpen(false);
+          setSingleStickerOrder(null);
+        }}
       />
 
       <EditOrderAmountModal
