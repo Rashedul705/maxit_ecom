@@ -2,10 +2,10 @@ const express = require('express');
 const router = express.Router();
 const db = require('../services/dbStore');
 const { successResponse, errorResponse } = require('../utils/response');
-const { requireAdminAuth } = require('../middleware/auth');
+const { requireAdminAuth, requirePermission } = require('../middleware/auth');
 
 // GET /api/v1/complaints - Admin only
-router.get('/', requireAdminAuth, async (req, res, next) => {
+router.get('/', requireAdminAuth, requirePermission('reviews.view'), async (req, res, next) => {
   try {
     const complaints = await db.getComplaints();
     return successResponse(res, complaints);
@@ -26,7 +26,7 @@ router.post('/', async (req, res, next) => {
 });
 
 // PATCH /api/v1/complaints/:id/status - Admin only
-router.patch('/:id/status', requireAdminAuth, async (req, res, next) => {
+router.patch('/:id/status', requireAdminAuth, requirePermission('reviews.approve'), async (req, res, next) => {
   try {
     const { status, adminNotes } = req.body;
     const complaint = await db.updateComplaintStatus(req.params.id, { status, adminNotes });

@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../services/dbStore');
 const { successResponse, errorResponse } = require('../utils/response');
-const { requireAdminAuth } = require('../middleware/auth');
+const { requireAdminAuth, requirePermission } = require('../middleware/auth');
 
 // GET /api/v1/products
 router.get('/', async (req, res, next) => {
@@ -130,7 +130,7 @@ router.get('/:slug', async (req, res, next) => {
 });
 
 // POST /api/v1/products
-router.post('/', requireAdminAuth, async (req, res, next) => {
+router.post('/', requireAdminAuth, requirePermission('products.create'), async (req, res, next) => {
   try {
     const { title, price } = req.body;
     if (!title || price === undefined) {
@@ -144,7 +144,7 @@ router.post('/', requireAdminAuth, async (req, res, next) => {
 });
 
 // PUT /api/v1/products/:id
-router.put('/:id', requireAdminAuth, async (req, res, next) => {
+router.put('/:id', requireAdminAuth, requirePermission('products.edit'), async (req, res, next) => {
   try {
     const product = await db.updateProduct(req.params.id, req.body);
     if (!product) return errorResponse(res, 'Product not found', 404);
@@ -155,7 +155,7 @@ router.put('/:id', requireAdminAuth, async (req, res, next) => {
 });
 
 // PATCH /api/v1/products/:id - Quick in-line stock & price update
-router.patch('/:id', requireAdminAuth, async (req, res, next) => {
+router.patch('/:id', requireAdminAuth, requirePermission('products.edit'), async (req, res, next) => {
   try {
     const product = await db.updateProduct(req.params.id, req.body);
     if (!product) return errorResponse(res, 'Product not found', 404);
@@ -166,7 +166,7 @@ router.patch('/:id', requireAdminAuth, async (req, res, next) => {
 });
 
 // POST /api/v1/products/bulk-delete
-router.post('/bulk-delete', requireAdminAuth, async (req, res, next) => {
+router.post('/bulk-delete', requireAdminAuth, requirePermission('products.delete'), async (req, res, next) => {
   try {
     const { ids } = req.body;
     if (!ids || !Array.isArray(ids) || ids.length === 0) {
@@ -180,7 +180,7 @@ router.post('/bulk-delete', requireAdminAuth, async (req, res, next) => {
 });
 
 // DELETE /api/v1/products/:id
-router.delete('/:id', requireAdminAuth, async (req, res, next) => {
+router.delete('/:id', requireAdminAuth, requirePermission('products.delete'), async (req, res, next) => {
   try {
     const ok = await db.deleteProduct(req.params.id);
     if (!ok) return errorResponse(res, 'Product not found', 404);

@@ -4,6 +4,7 @@ import { adminApi } from '../api';
 import { Plus, Search, Edit2, Trash2, ChevronLeft, ChevronRight, Check, X, AlertCircle, CheckCircle2 } from 'lucide-react';
 import { ProductModal } from '../components/ProductModal';
 import { ProductEditorView } from '../components/ProductEditorView';
+import { Can } from '../components/Can';
 
 export const ProductsView: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -193,12 +194,14 @@ export const ProductsView: React.FC = () => {
             Manage catalog, specifications, and use quick in-line editing for real-time stock and BDT pricing.
           </p>
         </div>
-        <button
-          className="btn btn-primary"
-          onClick={() => { setEditingProduct(null); setViewMode('editor'); }}
-        >
-          <Plus size={16} /> Add Product
-        </button>
+        <Can permission="products.create">
+          <button
+            className="btn btn-primary"
+            onClick={() => { setEditingProduct(null); setViewMode('editor'); }}
+          >
+            <Plus size={16} /> Add Product
+          </button>
+        </Can>
       </div>
 
       {/* Feedback Toast */}
@@ -511,20 +514,24 @@ export const ProductsView: React.FC = () => {
                     {/* Actions */}
                     <td>
                       <div style={{ display: 'flex', gap: '6px' }}>
-                        <button
-                          className="btn btn-secondary btn-sm"
-                          onClick={() => { setEditingProduct(p); setViewMode('editor'); }}
-                          title="Full Edit"
-                        >
-                          <Edit2 size={13} />
-                        </button>
-                        <button
-                          className="btn btn-danger btn-sm"
-                          onClick={() => handleDeleteProduct(p.id, p.title)}
-                          title="Delete"
-                        >
-                          <Trash2 size={13} />
-                        </button>
+                        <Can permission="products.edit">
+                          <button
+                            className="btn btn-secondary btn-sm"
+                            onClick={() => { setEditingProduct(p); setViewMode('editor'); }}
+                            title="Full Edit"
+                          >
+                            <Edit2 size={13} />
+                          </button>
+                        </Can>
+                        <Can permission="products.delete">
+                          <button
+                            className="btn btn-danger btn-sm"
+                            onClick={() => handleDeleteProduct(p.id, p.title)}
+                            title="Delete"
+                          >
+                            <Trash2 size={13} />
+                          </button>
+                        </Can>
                       </div>
                     </td>
                   </tr>

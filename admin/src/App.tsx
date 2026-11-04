@@ -15,6 +15,9 @@ import { SubscribersView } from './views/SubscribersView';
 import { SettingsView } from './views/SettingsView';
 import { LoginView } from './views/LoginView';
 import { CouponsView } from './views/CouponsView';
+import { ModeratorsView } from './views/ModeratorsView';
+import { AccessDeniedView } from './views/AccessDeniedView';
+import { PermissionProvider } from './context/PermissionContext';
 import { adminApi } from './api';
 
 export const VALID_TABS = [
@@ -30,10 +33,37 @@ export const VALID_TABS = [
   'sellers',
   'pages',
   'subscribers',
+  'moderators',
   'settings'
 ] as const;
 
 export type AdminTab = typeof VALID_TABS[number];
+
+export const TAB_PERMISSIONS: Record<AdminTab, string> = {
+  dashboard: 'reports.view',
+  orders: 'orders.view',
+  products: 'products.view',
+  categories: 'categories.view',
+  subcategories: 'categories.view',
+  brands: 'products.view',
+  banners: 'banners.view',
+  coupons: 'coupons.view',
+  complaints: 'reviews.view',
+  sellers: 'customers.view',
+  pages: 'settings.view',
+  subscribers: 'customers.view',
+  moderators: 'users.manage',
+  settings: 'settings.view'
+};
+
+function userHasPermission(user: any, permissionKey: string): boolean {
+  if (!user) return false;
+  if (user.isActive === false) return false;
+  if (user.role === 'super_admin' || user.role === 'admin') return true;
+  if (!permissionKey) return true;
+  const perms = Array.isArray(user.permissions) ? user.permissions : [];
+  return perms.includes(permissionKey);
+}
 
 function parseTab(value?: string | null): AdminTab | null {
   if (!value) return null;
@@ -162,8 +192,11 @@ export function App() {
     adminApi.verify()
       .then(res => {
         if (res && res.valid) {
-          const parsedUser = storedUser ? JSON.parse(storedUser) : (res.user || { name: 'Admin', email: 'admin@maxitshop.com' });
-          setUser(parsedUser);
+          const freshUser = res.user || (storedUser ? JSON.parse(storedUser) : { name: 'Admin', email: 'admin@maxitshop.com', role: 'super_admin' });
+          setUser(freshUser);
+          try {
+            localStorage.setItem('maxit_admin_user', JSON.stringify(freshUser));
+          } catch (_) {}
         } else {
           localStorage.removeItem('maxit_admin_token');
           localStorage.removeItem('maxit_admin_user');
@@ -199,6 +232,16 @@ export function App() {
   }
 
   const renderContent = () => {
+    const requiredPermission = TAB_PERMISSIONS[currentTab];
+    if (requiredPermission && !userHasPermission(user, requiredPermission)) {
+      return (
+        <AccessDeniedView
+          requiredPermission={requiredPermission}
+          onNavigate={(tab) => handleSelectTab(tab)}
+        />
+      );
+    }
+
     switch (currentTab) {
       case 'dashboard':
         return <DashboardView onNavigate={(tab) => handleSelectTab(tab)} />;
@@ -224,6 +267,8 @@ export function App() {
         return <PagesView />;
       case 'subscribers':
         return <SubscribersView />;
+      case 'moderators':
+        return <ModeratorsView />;
       case 'settings':
         return <SettingsView />;
       default:
@@ -232,19 +277,21 @@ export function App() {
   };
 
   return (
-    <div className="admin-layout">
-      <Sidebar
-        currentTab={currentTab}
-        onSelectTab={(tab) => handleSelectTab(tab)}
-        onLogout={handleLogout}
-      />
-      <div className="admin-main">
-        <Header user={user} currentTab={currentTab} />
-        <main className="admin-content">
-          {renderContent()}
-        </main>
+    <PermissionProvider user={user}>
+      <div className="admin-layout">
+        <Sidebar
+          currentTab={currentTab}
+          onSelectTab={(tab) => handleSelectTab(tab)}
+          onLogout={handleLogout}
+        />
+        <div className="admin-main">
+          <Header user={user} currentTab={currentTab} />
+          <main className="admin-content">
+            {renderContent()}
+          </main>
+        </div>
       </div>
-    </div>
+    </PermissionProvider>
   );
 }
 

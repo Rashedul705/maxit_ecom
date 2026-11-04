@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../services/dbStore');
 const { successResponse } = require('../utils/response');
-const { requireAdminAuth } = require('../middleware/auth');
+const { requireAdminAuth, requireSuperAdmin } = require('../middleware/auth');
 
 // GET /api/v1/settings
 router.get('/', async (req, res, next) => {
@@ -14,8 +14,8 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-// PUT /api/v1/settings
-router.put('/', requireAdminAuth, async (req, res, next) => {
+// PUT /api/v1/settings - Super Admin only
+router.put('/', requireAdminAuth, requireSuperAdmin, async (req, res, next) => {
   try {
     const settings = await db.updateSettings(req.body);
     return successResponse(res, settings, 'Settings updated successfully');

@@ -8,8 +8,11 @@ import { ParcelStickerPrintModal } from '../components/ParcelStickerPrintModal';
 import { EditOrderAmountModal } from '../components/EditOrderAmountModal';
 import { printHtmlContent } from '../utils/printService';
 import { generateInvoicesHtml } from '../utils/printTemplates';
+import { Can } from '../components/Can';
+import { usePermission } from '../context/PermissionContext';
 
 export const OrdersView: React.FC = () => {
+  const { hasPermission } = usePermission();
   const [orders, setOrders] = useState<Order[]>([]);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
@@ -628,26 +631,28 @@ export const OrdersView: React.FC = () => {
                     <td>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                         <span style={{ fontWeight: 800, fontSize: '15px' }}>৳{(order.total || 0).toLocaleString()}</span>
-                        <button
-                          type="button"
-                          onClick={() => setEditingAmountOrder(order)}
-                          style={{
-                            background: '#fff7ed',
-                            border: '1px solid #fed7aa',
-                            borderRadius: '4px',
-                            padding: '1px 5px',
-                            cursor: 'pointer',
-                            display: 'inline-flex',
-                            alignItems: 'center',
-                            gap: '3px',
-                            color: '#c2410c',
-                            fontSize: '10px',
-                            fontWeight: 700
-                          }}
-                          title="Edit amount on invoice"
-                        >
-                          <Edit2 size={10} /> Edit
-                        </button>
+                        <Can permission="orders.update_status">
+                          <button
+                            type="button"
+                            onClick={() => setEditingAmountOrder(order)}
+                            style={{
+                              background: '#fff7ed',
+                              border: '1px solid #fed7aa',
+                              borderRadius: '4px',
+                              padding: '1px 5px',
+                              cursor: 'pointer',
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              gap: '3px',
+                              color: '#c2410c',
+                              fontSize: '10px',
+                              fontWeight: 700
+                            }}
+                            title="Edit amount on invoice"
+                          >
+                            <Edit2 size={10} /> Edit
+                          </button>
+                        </Can>
                       </div>
                       <div style={{ fontSize: '11px', color: '#64748b', textTransform: 'uppercase', marginTop: '2px' }}>
                         {order.paymentMethod || 'cod'} • <span style={{ color: order.paymentStatus === 'paid' ? '#10b981' : '#f59e0b' }}>{order.paymentStatus || 'unpaid'}</span>
@@ -670,26 +675,28 @@ export const OrdersView: React.FC = () => {
                           </div>
                         </div>
                       ) : (
-                        <button
-                          type="button"
-                          disabled={courierDispatchingId === order.id}
-                          onClick={() => handleDispatchCourier(order, 'Steadfast')}
-                          className="btn btn-sm"
-                          style={{
-                            fontSize: '11px',
-                            padding: '3px 8px',
-                            background: '#ff6600',
-                            color: '#fff',
-                            border: 'none',
-                            borderRadius: '6px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '4px'
-                          }}
-                        >
-                          <Truck size={11} />
-                          <span>{courierDispatchingId === order.id ? 'Sending...' : 'Send Steadfast'}</span>
-                        </button>
+                        <Can permission="orders.update_status">
+                          <button
+                            type="button"
+                            disabled={courierDispatchingId === order.id}
+                            onClick={() => handleDispatchCourier(order, 'Steadfast')}
+                            className="btn btn-sm"
+                            style={{
+                              fontSize: '11px',
+                              padding: '3px 8px',
+                              background: '#ff6600',
+                              color: '#fff',
+                              border: 'none',
+                              borderRadius: '6px',
+                              display: 'flex',
+                              alignItems: 'center',
+                              gap: '4px'
+                            }}
+                          >
+                            <Truck size={11} />
+                            <span>{courierDispatchingId === order.id ? 'Sending...' : 'Send Steadfast'}</span>
+                          </button>
+                        </Can>
                       )}
                     </td>
 
@@ -698,7 +705,7 @@ export const OrdersView: React.FC = () => {
                         className="form-select"
                         style={{ padding: '4px 8px', fontSize: '12px', width: '115px' }}
                         value={order.status}
-                        disabled={updatingId === order.id}
+                        disabled={updatingId === order.id || !hasPermission('orders.update_status')}
                         onChange={e => handleStatusChange(order.id, e.target.value)}
                       >
                         <option value="pending">Pending</option>

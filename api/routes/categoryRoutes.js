@@ -3,7 +3,7 @@ const router = express.Router();
 const db = require('../services/dbStore');
 const Category = require('../models/Category');
 const { successResponse, errorResponse } = require('../utils/response');
-const { requireAdminAuth } = require('../middleware/auth');
+const { requireAdminAuth, requirePermission } = require('../middleware/auth');
 
 // GET /api/v1/categories
 router.get('/', async (req, res, next) => {
@@ -27,7 +27,7 @@ router.get('/:slug', async (req, res, next) => {
 });
 
 // POST /api/v1/categories
-router.post('/', requireAdminAuth, async (req, res, next) => {
+router.post('/', requireAdminAuth, requirePermission('categories.manage'), async (req, res, next) => {
   try {
     const { name } = req.body;
     if (!name) return errorResponse(res, 'Category name is required', 400);
@@ -39,7 +39,7 @@ router.post('/', requireAdminAuth, async (req, res, next) => {
 });
 
 // PUT /api/v1/categories/:id
-router.put('/:id', requireAdminAuth, async (req, res, next) => {
+router.put('/:id', requireAdminAuth, requirePermission('categories.manage'), async (req, res, next) => {
   try {
     const cat = await db.updateCategory(req.params.id, req.body);
     if (!cat) return errorResponse(res, 'Category not found', 404);
@@ -50,7 +50,7 @@ router.put('/:id', requireAdminAuth, async (req, res, next) => {
 });
 
 // POST /api/v1/categories/bulk-delete
-router.post('/bulk-delete', requireAdminAuth, async (req, res, next) => {
+router.post('/bulk-delete', requireAdminAuth, requirePermission('categories.manage'), async (req, res, next) => {
   try {
     const { ids } = req.body;
     if (!ids || !Array.isArray(ids) || ids.length === 0) {
@@ -64,7 +64,7 @@ router.post('/bulk-delete', requireAdminAuth, async (req, res, next) => {
 });
 
 // DELETE /api/v1/categories/:id
-router.delete('/:id', requireAdminAuth, async (req, res, next) => {
+router.delete('/:id', requireAdminAuth, requirePermission('categories.manage'), async (req, res, next) => {
   try {
     const ok = await db.deleteCategory(req.params.id);
     if (!ok) return errorResponse(res, 'Category not found', 404);
@@ -88,7 +88,7 @@ router.get('/:categoryId/subcategories', async (req, res, next) => {
 });
 
 // POST /api/v1/categories/:categoryId/subcategories
-router.post('/:categoryId/subcategories', requireAdminAuth, async (req, res, next) => {
+router.post('/:categoryId/subcategories', requireAdminAuth, requirePermission('categories.manage'), async (req, res, next) => {
   try {
     const { name } = req.body;
     if (!name) return errorResponse(res, 'Subcategory name is required', 400);
@@ -108,7 +108,7 @@ router.post('/:categoryId/subcategories', requireAdminAuth, async (req, res, nex
 });
 
 // PUT /api/v1/categories/:categoryId/subcategories/:subId
-router.put('/:categoryId/subcategories/:subId', requireAdminAuth, async (req, res, next) => {
+router.put('/:categoryId/subcategories/:subId', requireAdminAuth, requirePermission('categories.manage'), async (req, res, next) => {
   try {
     const { name, slug } = req.body;
     const updateFields = {};
@@ -133,7 +133,7 @@ router.put('/:categoryId/subcategories/:subId', requireAdminAuth, async (req, re
 });
 
 // DELETE /api/v1/categories/:categoryId/subcategories/:subId
-router.delete('/:categoryId/subcategories/:subId', requireAdminAuth, async (req, res, next) => {
+router.delete('/:categoryId/subcategories/:subId', requireAdminAuth, requirePermission('categories.manage'), async (req, res, next) => {
   try {
     const cat = await Category.findOneAndUpdate(
       { $or: [{ id: req.params.categoryId }, { slug: req.params.categoryId }] },
@@ -148,7 +148,7 @@ router.delete('/:categoryId/subcategories/:subId', requireAdminAuth, async (req,
 });
 
 // POST /api/v1/categories/:categoryId/subcategories/bulk-delete
-router.post('/:categoryId/subcategories/bulk-delete', requireAdminAuth, async (req, res, next) => {
+router.post('/:categoryId/subcategories/bulk-delete', requireAdminAuth, requirePermission('categories.manage'), async (req, res, next) => {
   try {
     const { subIds } = req.body;
     if (!subIds || !Array.isArray(subIds) || subIds.length === 0) {

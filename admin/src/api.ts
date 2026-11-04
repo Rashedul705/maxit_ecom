@@ -10,7 +10,9 @@ import {
   SiteSettings,
   Subscriber,
   Coupon,
-  DashboardStats
+  DashboardStats,
+  ModeratorUser,
+  ActivityLogEntry
 } from './types';
 
 const getApiBase = () => {
@@ -179,6 +181,30 @@ export const adminApi = {
   deleteCoupon: (id: string) => request<{ deleted: boolean }>(`/coupons/${id}`, {
     method: 'DELETE'
   }),
+
+  // Moderator & Permissions Management (Super Admin Only)
+  getModerators: () => request<ModeratorUser[]>('/admin/moderators'),
+  getModeratorById: (id: string) => request<ModeratorUser>(`/admin/moderators/${id}`),
+  createModerator: (data: { name: string; email: string; phone?: string; password: string; permissions: string[]; isActive?: boolean }) =>
+    request<ModeratorUser>('/admin/moderators', {
+      method: 'POST',
+      body: JSON.stringify(data)
+    }),
+  updateModerator: (id: string, data: { name?: string; email?: string; phone?: string; password?: string; permissions?: string[]; isActive?: boolean }) =>
+    request<ModeratorUser>(`/admin/moderators/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(data)
+    }),
+  deleteModerator: (id: string) =>
+    request<{ deleted: boolean }>(`/admin/moderators/${id}`, {
+      method: 'DELETE'
+    }),
+  getModeratorLogs: (params: { limit?: number; moderatorId?: string } = {}) => {
+    const q = new URLSearchParams();
+    if (params.limit) q.set('limit', String(params.limit));
+    if (params.moderatorId) q.set('moderatorId', params.moderatorId);
+    return request<ActivityLogEntry[]>(`/admin/moderators/logs?${q.toString()}`);
+  },
 
   // Image Upload
   uploadImage: async (file: File): Promise<string> => {

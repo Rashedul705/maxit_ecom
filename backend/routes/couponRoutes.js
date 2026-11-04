@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../services/dbStore');
 const { successResponse, errorResponse } = require('../utils/response');
-const { requireAdminAuth } = require('../middleware/auth');
+const { requireAdminAuth, requirePermission } = require('../middleware/auth');
 
 // POST /api/v1/coupons/verify - Verify coupon code (Public)
 router.post('/verify', async (req, res, next) => {
@@ -19,7 +19,7 @@ router.post('/verify', async (req, res, next) => {
 });
 
 // GET /api/v1/coupons - List all coupons (Admin)
-router.get('/', requireAdminAuth, async (req, res, next) => {
+router.get('/', requireAdminAuth, requirePermission('coupons.view'), async (req, res, next) => {
   try {
     const coupons = await db.getCoupons();
     return successResponse(res, coupons);
@@ -29,7 +29,7 @@ router.get('/', requireAdminAuth, async (req, res, next) => {
 });
 
 // POST /api/v1/coupons - Create coupon (Admin)
-router.post('/', requireAdminAuth, async (req, res, next) => {
+router.post('/', requireAdminAuth, requirePermission('coupons.manage'), async (req, res, next) => {
   try {
     const { code, discountValue } = req.body;
     if (!code || discountValue === undefined) {
@@ -43,7 +43,7 @@ router.post('/', requireAdminAuth, async (req, res, next) => {
 });
 
 // PUT /api/v1/coupons/:id - Update coupon (Admin)
-router.put('/:id', requireAdminAuth, async (req, res, next) => {
+router.put('/:id', requireAdminAuth, requirePermission('coupons.manage'), async (req, res, next) => {
   try {
     const coupon = await db.updateCoupon(req.params.id, req.body);
     if (!coupon) return errorResponse(res, 'Coupon not found', 404);
@@ -54,7 +54,7 @@ router.put('/:id', requireAdminAuth, async (req, res, next) => {
 });
 
 // DELETE /api/v1/coupons/:id - Delete coupon (Admin)
-router.delete('/:id', requireAdminAuth, async (req, res, next) => {
+router.delete('/:id', requireAdminAuth, requirePermission('coupons.manage'), async (req, res, next) => {
   try {
     const ok = await db.deleteCoupon(req.params.id);
     if (!ok) return errorResponse(res, 'Coupon not found', 404);

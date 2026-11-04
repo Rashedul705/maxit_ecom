@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../services/dbStore');
 const { successResponse, errorResponse } = require('../utils/response');
-const { requireAdminAuth } = require('../middleware/auth');
+const { requireAdminAuth, requireSuperAdmin } = require('../middleware/auth');
 
 // GET /api/v1/pages
 router.get('/', async (req, res, next) => {
@@ -25,8 +25,8 @@ router.get('/:slug', async (req, res, next) => {
   }
 });
 
-// PUT /api/v1/pages/:slug
-router.put('/:slug', requireAdminAuth, async (req, res, next) => {
+// PUT /api/v1/pages/:slug - Super Admin only
+router.put('/:slug', requireAdminAuth, requireSuperAdmin, async (req, res, next) => {
   try {
     const page = await db.updatePage(req.params.slug, req.body);
     return successResponse(res, page, 'Page updated successfully');

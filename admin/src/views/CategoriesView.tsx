@@ -3,6 +3,7 @@ import { Category } from '../types';
 import { adminApi } from '../api';
 import { Plus, Edit2, Trash2 } from 'lucide-react';
 import { CategoryModal } from '../components/CategoryModal';
+import { Can } from '../components/Can';
 
 export const CategoriesView: React.FC = () => {
   const [categories, setCategories] = useState<Category[]>([]);
@@ -90,9 +91,11 @@ export const CategoriesView: React.FC = () => {
           <h2 style={{ fontSize: '22px', fontWeight: 700, color: '#0f172a' }}>Categories Management</h2>
           <p style={{ fontSize: '13px', color: '#64748b' }}>Configure category hierarchy, cover images, and left menu icons.</p>
         </div>
-        <button className="btn btn-primary" onClick={() => { setEditingCategory(null); setIsModalOpen(true); }}>
-          <Plus size={16} /> Add Category
-        </button>
+        <Can permission="categories.manage">
+          <button className="btn btn-primary" onClick={() => { setEditingCategory(null); setIsModalOpen(true); }}>
+            <Plus size={16} /> Add Category
+          </button>
+        </Can>
       </div>
 
       {/* Bulk Action Bar */}
@@ -204,14 +207,16 @@ export const CategoriesView: React.FC = () => {
                     <span className="badge badge-active">{c.isActive ? 'Active' : 'Hidden'}</span>
                   </td>
                   <td>
-                    <div style={{ display: 'flex', gap: '6px' }}>
-                      <button className="btn btn-secondary btn-sm" onClick={() => { setEditingCategory(c); setIsModalOpen(true); }}>
-                        <Edit2 size={13} />
-                      </button>
-                      <button className="btn btn-danger btn-sm" onClick={() => handleDelete(c.id, c.name)}>
-                        <Trash2 size={13} />
-                      </button>
-                    </div>
+                    <Can permission="categories.manage">
+                      <div style={{ display: 'flex', gap: '6px' }}>
+                        <button className="btn btn-secondary btn-sm" onClick={() => { setEditingCategory(c); setIsModalOpen(true); }}>
+                          <Edit2 size={13} />
+                        </button>
+                        <button className="btn btn-danger btn-sm" onClick={() => handleDelete(c.id, c.name)}>
+                          <Trash2 size={13} />
+                        </button>
+                      </div>
+                    </Can>
                   </td>
                 </tr>
               );

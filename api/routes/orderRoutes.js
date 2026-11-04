@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../services/dbStore');
 const { successResponse, errorResponse } = require('../utils/response');
-const { requireAdminAuth } = require('../middleware/auth');
+const { requireAdminAuth, requirePermission, hasPermission } = require('../middleware/auth');
 
 // POST /api/v1/orders - Place order (Public for customers)
 router.post('/', async (req, res, next) => {
@@ -45,7 +45,7 @@ router.get('/track', async (req, res, next) => {
 });
 
 // GET /api/v1/orders - Admin list with filtering
-router.get('/', requireAdminAuth, async (req, res, next) => {
+router.get('/', requireAdminAuth, requirePermission('orders.view'), async (req, res, next) => {
   try {
     const { status, search, page = 1, limit = 20 } = req.query;
     const result = await db.getOrders({ status, search, page, limit });
@@ -56,7 +56,7 @@ router.get('/', requireAdminAuth, async (req, res, next) => {
 });
 
 // GET /api/v1/orders/export - Export orders list for warehouse fulfillment
-router.get('/export', requireAdminAuth, async (req, res, next) => {
+router.get('/export', requireAdminAuth, requirePermission('orders.view'), async (req, res, next) => {
   try {
     const { status, search } = req.query;
     const orders = await db.getAllOrdersForExport({ status, search });
@@ -67,7 +67,7 @@ router.get('/export', requireAdminAuth, async (req, res, next) => {
 });
 
 // POST /api/v1/orders/bulk-status - Bulk update orders status
-router.post('/bulk-status', requireAdminAuth, async (req, res, next) => {
+router.post('/bulk-status', requireAdminAuth, requirePermission('orders.update_status'), async (req, res, next) => {
   try {
     const { ids, status, note } = req.body;
     if (!ids || !Array.isArray(ids) || ids.length === 0) {
@@ -76,6 +76,14 @@ router.post('/bulk-status', requireAdminAuth, async (req, res, next) => {
     if (!status) {
       return errorResponse(res, 'status is required', 400);
     }
+
+    if (status === 'cancelled' && !hasPermission(req.admin, 'orders.cancel')) {
+      return errorResponse(res, 'Forbidden: You do not have permission to cancel orders (orders.cancel)', 403);
+    }
+    if (status === 'refunded' && !hasPermission(req.admin, 'orders.refund')) {
+      return errorResponse(res, 'Forbidden: You do not have permission to refund orders (orders.refund)', 403);
+    }
+
     const result = await db.bulkUpdateOrderStatus({ ids, status, note });
     return successResponse(res, result, `Updated ${result.updatedCount} orders to ${status}`);
   } catch (err) {
@@ -84,7 +92,7 @@ router.post('/bulk-status', requireAdminAuth, async (req, res, next) => {
 });
 
 // POST /api/v1/orders/:id/courier-dispatch - Dispatch order via Steadfast / Pathao
-router.post('/:id/courier-dispatch', requireAdminAuth, async (req, res, next) => {
+router.post('/:id/courier-dispatch', requireAdminAuth, requirePermission('orders.update_status'), async (req, res, next) => {
   try {
     const { courier = 'Steadfast' } = req.body;
     const result = await db.dispatchToCourier({ orderId: req.params.id, courier });
@@ -95,7 +103,7 @@ router.post('/:id/courier-dispatch', requireAdminAuth, async (req, res, next) =>
 });
 
 // GET /api/v1/orders/:id - Order details
-router.get('/:id', requireAdminAuth, async (req, res, next) => {
+router.get('/:id', requireAdminAuth, requirePermission('orders.view'), async (req, res, next) => {
   try {
     const order = await db.getOrderById(req.params.id);
     if (!order) return errorResponse(res, 'Order not found', 404);
@@ -110,6 +118,21 @@ router.patch('/:id/status', requireAdminAuth, async (req, res, next) => {
   try {
     const { status, note } = req.body;
     if (!status) return errorResponse(res, 'Status is required', 400);
+
+    if (status === 'cancelled') {
+      if (!hasPermission(req.admin, 'orders.cancel')) {
+        return errorResponse(res, 'Forbidden: You do not have permission to cancel orders (orders.cancel)', 403);
+      }
+    } else if (status === 'refunded') {
+      if (!hasPermission(req.admin, 'orders.refund')) {
+        return errorResponse(res, 'Forbidden: You do not have permission to refund orders (orders.refund)', 403);
+      }
+    } else {
+      if (!hasPermission(req.admin, 'orders.update_status')) {
+        return errorResponse(res, 'Forbidden: You do not have permission to update order status (orders.update_status)', 403);
+      }
+    }
+
     const order = await db.updateOrderStatus(req.params.id, { status, note });
     if (!order) return errorResponse(res, 'Order not found', 404);
     return successResponse(res, order, 'Order status updated successfully');
@@ -119,7 +142,7 @@ router.patch('/:id/status', requireAdminAuth, async (req, res, next) => {
 });
 
 // PATCH /api/v1/orders/:id/amount - Edit invoice amount (subtotal, deliveryCharge, discount, total)
-router.patch('/:id/amount', requireAdminAuth, async (req, res, next) => {
+router.patch('/:id/amount', requireAdminAuth, requirePermission('orders.update_status'), async (req, res, next) => {
   try {
     const { total, subtotal, deliveryCharge, discount, note } = req.body;
     if (total === undefined && subtotal === undefined && deliveryCharge === undefined && discount === undefined) {

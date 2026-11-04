@@ -265,6 +265,41 @@ export interface DashboardStats {
   recentOrders: Order[];
 }
 
+export interface ModeratorUser {
+  id: string;
+  name: string;
+  email: string;
+  phone?: string;
+  role: 'super_admin' | 'moderator';
+  permissions: string[];
+  isActive: boolean;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface ActivityLogEntry {
+  _id?: string;
+  id: string;
+  action: string;
+  actor: {
+    id: string;
+    name: string;
+    email: string;
+    role: string;
+  };
+  target: {
+    id: string;
+    name: string;
+    email: string;
+    role: string;
+  };
+  details: string;
+  oldPermissions?: string[];
+  newPermissions?: string[];
+  metadata?: Record<string, any>;
+  createdAt: string;
+}
+
 // Runtime exports to support ES modules in Vite dev mode
 export const Category = {};
 export const Product = {};

@@ -20,6 +20,8 @@ const User = require('../models/User');
 const Review = require('../models/Review');
 const Coupon = require('../models/Coupon');
 const Wishlist = require('../models/Wishlist');
+const ActivityLog = require('../models/ActivityLog');
+const { isAssignablePermissionKey } = require('../lib/permissions');
 
 const JWT_SECRET = process.env.JWT_SECRET || 'supersecretjwtkey_maxitshop_2026';
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'admin@maxitshop.com';
@@ -210,6 +212,39 @@ mongoose.connection.on('connected', () => {
   syncMongoSeeds();
 });
 
+function normalizeModeratorPermissions(inputPermissions = []) {
+  if (!Array.isArray(inputPermissions)) return [];
+  const set = new Set();
+  for (const key of inputPermissions) {
+    if (typeof key === 'string' && isAssignablePermissionKey(key)) {
+      set.add(key.trim());
+    }
+  }
+  // Dependency rule: if an action is chosen, its view is automatically included
+  if (set.has('products.create') || set.has('products.edit') || set.has('products.delete')) {
+    set.add('products.view');
+  }
+  if (set.has('categories.manage')) {
+    set.add('categories.view');
+  }
+  if (set.has('orders.update_status') || set.has('orders.cancel') || set.has('orders.refund')) {
+    set.add('orders.view');
+  }
+  if (set.has('customers.edit')) {
+    set.add('customers.view');
+  }
+  if (set.has('reviews.approve') || set.has('reviews.delete')) {
+    set.add('reviews.view');
+  }
+  if (set.has('coupons.manage')) {
+    set.add('coupons.view');
+  }
+  if (set.has('banners.manage')) {
+    set.add('banners.view');
+  }
+  return Array.from(set);
+}
+
 const db = {
   // --- AUTHENTICATION ---
   async authenticateAdmin({ email, password }) {
@@ -220,28 +255,68 @@ const db = {
     if (!email || !password) return null;
     const inputEmail = email.trim().toLowerCase();
 
-    let isValid = (inputEmail === adminEmail && password === adminPassword);
+    // 1. Root Super Admin from environment
+    if (inputEmail === adminEmail && password === adminPassword) {
+      const jwtToken = jwt.sign(
+        { id: 'user-admin', role: 'super_admin', email: inputEmail },
+        jwtSecret,
+        { expiresIn: '7d' }
+      );
+      return {
+        token: jwtToken,
+        user: {
+          id: 'user-admin',
+          name: 'MaxiTShop Administrator',
+          email: inputEmail,
+          role: 'super_admin',
+          permissions: [],
+          isActive: true
+        }
+      };
+    }
 
-    if (!isValid && isMongo()) {
+    // 2. MongoDB Staff (Super Admin / Admin / Moderator)
+    if (isMongo()) {
       try {
-        const user = await User.findOne({ email: inputEmail, role: 'admin' }).lean();
+        const user = await User.findOne({
+          email: inputEmail,
+          role: { $in: ['super_admin', 'admin', 'moderator'] }
+        }).lean();
+
         if (user) {
+          if (user.isActive === false) {
+            const err = new Error('Forbidden: Your moderator account has been deactivated. Please contact Super Admin.');
+            err.statusCode = 403;
+            throw err;
+          }
+
           const isBcrypt = await bcrypt.compare(password, user.password).catch(() => false);
           if (isBcrypt || user.password === password) {
-            isValid = true;
+            const role = (user.role === 'admin' || user.role === 'super_admin') ? 'super_admin' : 'moderator';
+            const permissions = role === 'super_admin' ? [] : (user.permissions || []);
+            const jwtToken = jwt.sign(
+              { id: user.id, role, email: user.email },
+              jwtSecret,
+              { expiresIn: '7d' }
+            );
+            return {
+              token: jwtToken,
+              user: {
+                id: user.id,
+                name: user.name || 'MaxiTShop Moderator',
+                email: user.email,
+                phone: user.phone || '',
+                role,
+                permissions,
+                isActive: user.isActive !== false
+              }
+            };
           }
         }
       } catch (e) {
+        if (e.statusCode === 403) throw e;
         console.warn('Admin DB auth check warning:', e.message);
       }
-    }
-
-    if (isValid) {
-      const jwtToken = jwt.sign({ role: 'admin', email: inputEmail }, jwtSecret, { expiresIn: '7d' });
-      return {
-        token: jwtToken,
-        user: { name: 'MaxiTShop Administrator', email: inputEmail, role: 'admin' }
-      };
     }
     return null;
   },
@@ -2184,6 +2259,296 @@ const db = {
       return true;
     }
     return false;
+  },
+
+  // --- MODERATOR & PERMISSION MANAGEMENT (Super Admin Only) ---
+  async getModerators() {
+    if (isMongo()) {
+      const users = await User.find({
+        role: { $in: ['moderator', 'admin', 'super_admin'] }
+      })
+      .select('-password')
+      .sort({ createdAt: -1 })
+      .lean();
+
+      return users.map(u => ({
+        id: u.id,
+        name: u.name,
+        email: u.email,
+        phone: u.phone || '',
+        role: (u.role === 'admin' || u.role === 'super_admin') ? 'super_admin' : 'moderator',
+        permissions: (u.role === 'admin' || u.role === 'super_admin') ? [] : (u.permissions || []),
+        isActive: u.isActive !== false,
+        createdAt: u.createdAt,
+        updatedAt: u.updatedAt
+      }));
+    }
+
+    return (memoryStore.users || []).filter(u => ['moderator', 'admin', 'super_admin'].includes(u.role));
+  },
+
+  async getModeratorById(id) {
+    if (isMongo()) {
+      const u = await User.findOne({
+        $or: [{ id }, { _id: mongoose.isValidObjectId(id) ? id : null }]
+      })
+      .select('-password')
+      .lean();
+
+      if (!u) return null;
+      return {
+        id: u.id,
+        name: u.name,
+        email: u.email,
+        phone: u.phone || '',
+        role: (u.role === 'admin' || u.role === 'super_admin') ? 'super_admin' : 'moderator',
+        permissions: (u.role === 'admin' || u.role === 'super_admin') ? [] : (u.permissions || []),
+        isActive: u.isActive !== false,
+        createdAt: u.createdAt,
+        updatedAt: u.updatedAt
+      };
+    }
+    return null;
+  },
+
+  async createModerator({ name, email, phone, password, permissions = [], isActive = true }, actor) {
+    if (!name || !email || !password) {
+      throw new Error('Name, email, and password are required to create a moderator');
+    }
+
+    const cleanEmail = email.toLowerCase().trim();
+    if (isMongo()) {
+      const existing = await User.findOne({ email: cleanEmail }).lean();
+      if (existing) {
+        throw new Error('An account with this email already exists');
+      }
+
+      const hashedPassword = await bcrypt.hash(password, 10);
+      const normalizedPermissions = normalizeModeratorPermissions(permissions);
+      const modId = `mod-${Date.now()}`;
+
+      const newMod = await User.create({
+        id: modId,
+        name: name.trim(),
+        email: cleanEmail,
+        phone: phone ? phone.trim() : '',
+        password: hashedPassword,
+        role: 'moderator',
+        permissions: normalizedPermissions,
+        isActive: isActive !== false
+      });
+
+      // Audit Log
+      try {
+        await ActivityLog.create({
+          id: `log-${Date.now()}-${Math.random().toString(36).substr(2, 6)}`,
+          action: 'create_moderator',
+          actor: {
+            id: actor?.id || 'usr-superadmin',
+            name: actor?.name || 'Super Admin',
+            email: actor?.email || 'admin@maxitshop.com',
+            role: actor?.role || 'super_admin'
+          },
+          target: {
+            id: newMod.id,
+            name: newMod.name,
+            email: newMod.email,
+            role: 'moderator'
+          },
+          details: `Created moderator ${newMod.name} (${newMod.email}) with ${normalizedPermissions.length} permissions`,
+          oldPermissions: [],
+          newPermissions: normalizedPermissions,
+          metadata: { isActive: newMod.isActive }
+        });
+      } catch (logErr) {
+        console.warn('Failed to record create_moderator log:', logErr.message);
+      }
+
+      return {
+        id: newMod.id,
+        name: newMod.name,
+        email: newMod.email,
+        phone: newMod.phone,
+        role: 'moderator',
+        permissions: newMod.permissions,
+        isActive: newMod.isActive,
+        createdAt: newMod.createdAt
+      };
+    }
+
+    throw new Error('Database connection required');
+  },
+
+  async updateModerator(id, updateData, actor) {
+    if (isMongo()) {
+      const mod = await User.findOne({
+        $or: [{ id }, { _id: mongoose.isValidObjectId(id) ? id : null }]
+      });
+
+      if (!mod) {
+        throw new Error('Moderator not found');
+      }
+
+      if (mod.role === 'super_admin' || mod.role === 'admin') {
+        throw new Error('Super Admin access permissions cannot be restricted or modified');
+      }
+
+      const oldPermissions = [...(mod.permissions || [])];
+      const oldActive = mod.isActive !== false;
+
+      if (updateData.name) mod.name = updateData.name.trim();
+      if (updateData.phone !== undefined) mod.phone = updateData.phone.trim();
+      if (updateData.email && updateData.email.trim().toLowerCase() !== mod.email) {
+        const emailCheck = await User.findOne({ email: updateData.email.trim().toLowerCase() });
+        if (emailCheck && emailCheck.id !== mod.id) {
+          throw new Error('Email is already in use by another user');
+        }
+        mod.email = updateData.email.trim().toLowerCase();
+      }
+
+      if (updateData.password && updateData.password.trim().length > 0) {
+        mod.password = await bcrypt.hash(updateData.password.trim(), 10);
+      }
+
+      let permissionsChanged = false;
+      let newPermissions = oldPermissions;
+      if (updateData.permissions !== undefined) {
+        newPermissions = normalizeModeratorPermissions(updateData.permissions);
+        const sortedOld = [...oldPermissions].sort().join(',');
+        const sortedNew = [...newPermissions].sort().join(',');
+        if (sortedOld !== sortedNew) {
+          permissionsChanged = true;
+          mod.permissions = newPermissions;
+        }
+      }
+
+      let statusChanged = false;
+      if (updateData.isActive !== undefined) {
+        const nextActive = Boolean(updateData.isActive);
+        if (nextActive !== oldActive) {
+          statusChanged = true;
+          mod.isActive = nextActive;
+        }
+      }
+
+      await mod.save();
+
+      // Audit Log for Permission or Status changes
+      if (permissionsChanged || statusChanged) {
+        try {
+          const action = permissionsChanged && statusChanged
+            ? 'update_moderator_all'
+            : permissionsChanged
+            ? 'update_permissions'
+            : 'update_status';
+
+          const details = permissionsChanged
+            ? `Changed permissions from [${oldPermissions.join(', ')}] to [${newPermissions.join(', ')}]`
+            : `Changed status to ${mod.isActive ? 'Active' : 'Inactive'}`;
+
+          await ActivityLog.create({
+            id: `log-${Date.now()}-${Math.random().toString(36).substr(2, 6)}`,
+            action,
+            actor: {
+              id: actor?.id || 'usr-superadmin',
+              name: actor?.name || 'Super Admin',
+              email: actor?.email || 'admin@maxitshop.com',
+              role: actor?.role || 'super_admin'
+            },
+            target: {
+              id: mod.id,
+              name: mod.name,
+              email: mod.email,
+              role: 'moderator'
+            },
+            details,
+            oldPermissions,
+            newPermissions,
+            metadata: { isActive: mod.isActive }
+          });
+        } catch (logErr) {
+          console.warn('Failed to record update_moderator log:', logErr.message);
+        }
+      }
+
+      return {
+        id: mod.id,
+        name: mod.name,
+        email: mod.email,
+        phone: mod.phone,
+        role: 'moderator',
+        permissions: mod.permissions,
+        isActive: mod.isActive,
+        updatedAt: mod.updatedAt
+      };
+    }
+
+    throw new Error('Database connection required');
+  },
+
+  async deleteModerator(id, actor) {
+    if (isMongo()) {
+      const mod = await User.findOne({
+        $or: [{ id }, { _id: mongoose.isValidObjectId(id) ? id : null }]
+      });
+
+      if (!mod) {
+        throw new Error('Moderator not found');
+      }
+
+      if (mod.role === 'super_admin' || mod.role === 'admin') {
+        throw new Error('Super Admin accounts cannot be deleted');
+      }
+
+      if (actor && actor.id === mod.id) {
+        throw new Error('You cannot delete your own account');
+      }
+
+      await User.deleteOne({ _id: mod._id });
+
+      try {
+        await ActivityLog.create({
+          id: `log-${Date.now()}-${Math.random().toString(36).substr(2, 6)}`,
+          action: 'delete_moderator',
+          actor: {
+            id: actor?.id || 'usr-superadmin',
+            name: actor?.name || 'Super Admin',
+            email: actor?.email || 'admin@maxitshop.com',
+            role: actor?.role || 'super_admin'
+          },
+          target: {
+            id: mod.id,
+            name: mod.name,
+            email: mod.email,
+            role: 'moderator'
+          },
+          details: `Deleted moderator account ${mod.name} (${mod.email})`,
+          oldPermissions: mod.permissions || [],
+          newPermissions: []
+        });
+      } catch (logErr) {
+        console.warn('Failed to record delete_moderator log:', logErr.message);
+      }
+
+      return { success: true };
+    }
+
+    throw new Error('Database connection required');
+  },
+
+  async getModeratorLogs({ limit = 50, moderatorId } = {}) {
+    if (isMongo()) {
+      const filter = {};
+      if (moderatorId) {
+        filter.$or = [{ 'target.id': moderatorId }, { 'actor.id': moderatorId }];
+      }
+      const logs = await ActivityLog.find(filter)
+        .sort({ createdAt: -1 })
+        .limit(Math.min(Number(limit) || 50, 200))
+        .lean();
+      return logs;
+    }
+    return [];
   }
 };
 

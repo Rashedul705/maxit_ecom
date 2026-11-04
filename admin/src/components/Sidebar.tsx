@@ -14,8 +14,10 @@ import {
   Settings,
   LogOut,
   ExternalLink,
-  Tag
+  Tag,
+  ShieldCheck
 } from 'lucide-react';
+import { usePermission } from '../context/PermissionContext';
 
 interface SidebarProps {
   currentTab: string;
@@ -24,21 +26,26 @@ interface SidebarProps {
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({ currentTab, onSelectTab, onLogout }) => {
-  const menuItems = [
-    { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
-    { id: 'orders', label: 'Orders', icon: ShoppingBag },
-    { id: 'products', label: 'Products', icon: Package },
-    { id: 'categories', label: 'Categories', icon: Layers },
-    { id: 'subcategories', label: 'Subcategories', icon: FolderTree },
-    { id: 'brands', label: 'Brands', icon: Award },
-    { id: 'banners', label: 'Hero Banners', icon: ImageIcon },
-    { id: 'coupons', label: 'Coupons & Deals', icon: Tag },
-    { id: 'complaints', label: 'Complaints', icon: MessageSquare },
-    { id: 'sellers', label: 'Sellers', icon: Users },
-    { id: 'pages', label: 'Policy Pages', icon: FileText },
-    { id: 'subscribers', label: 'Subscribers', icon: Mail },
-    { id: 'settings', label: 'Site Settings', icon: Settings },
+  const { hasPermission } = usePermission();
+
+  const allMenuItems = [
+    { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard, permission: 'reports.view' },
+    { id: 'orders', label: 'Orders', icon: ShoppingBag, permission: 'orders.view' },
+    { id: 'products', label: 'Products', icon: Package, permission: 'products.view' },
+    { id: 'categories', label: 'Categories', icon: Layers, permission: 'categories.view' },
+    { id: 'subcategories', label: 'Subcategories', icon: FolderTree, permission: 'categories.view' },
+    { id: 'brands', label: 'Brands', icon: Award, permission: 'products.view' },
+    { id: 'banners', label: 'Hero Banners', icon: ImageIcon, permission: 'banners.view' },
+    { id: 'coupons', label: 'Coupons & Deals', icon: Tag, permission: 'coupons.view' },
+    { id: 'complaints', label: 'Complaints', icon: MessageSquare, permission: 'reviews.view' },
+    { id: 'sellers', label: 'Sellers', icon: Users, permission: 'customers.view' },
+    { id: 'subscribers', label: 'Subscribers', icon: Mail, permission: 'customers.view' },
+    { id: 'moderators', label: 'Moderators & Access', icon: ShieldCheck, permission: 'users.manage' },
+    { id: 'pages', label: 'Policy Pages', icon: FileText, permission: 'settings.view' },
+    { id: 'settings', label: 'Site Settings', icon: Settings, permission: 'settings.view' },
   ];
+
+  const visibleMenuItems = allMenuItems.filter(item => hasPermission(item.permission));
 
   return (
     <aside className="admin-sidebar no-print">
@@ -51,7 +58,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentTab, onSelectTab, onLog
       </div>
 
       <nav className="sidebar-nav">
-        {menuItems.map(item => {
+        {visibleMenuItems.map(item => {
           const Icon = item.icon;
           const isActive = currentTab === item.id;
           return (
