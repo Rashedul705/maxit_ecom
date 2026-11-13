@@ -344,6 +344,12 @@ export const Header: React.FC<HeaderProps> = ({ categories = [], onToggleMobileD
               >
                 Contact
               </Link>
+              <Link
+                href="/shop"
+                className="px-4 py-3 text-xs sm:text-sm font-semibold text-gray-200 hover:text-[#FF6600] transition-colors"
+              >
+                Shop
+              </Link>
             </div>
           </div>
 

@@ -21,6 +21,7 @@ const uploadRoutes = require('./routes/uploadRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const couponRoutes = require('./routes/couponRoutes');
 const wishlistRoutes = require('./routes/wishlistRoutes');
+const contactRoutes = require('./routes/contactRoutes');
 
 const { errorHandler, notFoundHandler } = require('./middleware/errorHandler');
 const { successResponse } = require('./utils/response');
@@ -134,6 +135,7 @@ apiRouter.use('/upload', uploadRoutes);
 apiRouter.use('/admin', adminRoutes);
 apiRouter.use('/coupons', couponRoutes);
 apiRouter.use('/wishlist', wishlistRoutes);
+apiRouter.use('/contact', contactRoutes);
 
 // Search suggestions
 apiRouter.get('/search/suggestions', async (req, res, next) => {
@@ -173,10 +175,18 @@ app.use(errorHandler);
 
 // Start Server
 if (require.main === module) {
-  app.listen(PORT, () => {
+  app.listen(PORT, async () => {
     console.log(`🚀 MaxiTShop Express Server running on port ${PORT}`);
     console.log(`📡 Base API URL: http://localhost:${PORT}/api/v1`);
     console.log(`🔒 Admin Token Configured: ${process.env.ADMIN_TOKEN ? 'YES' : 'DEFAULT'}`);
+
+    // Verify SMTP Email Service
+    try {
+      const emailService = require('./services/emailService');
+      await emailService.verifyConnection();
+    } catch (e) {
+      console.warn('⚠️ [SMTP] Verification error:', e.message);
+    }
   });
 }
 

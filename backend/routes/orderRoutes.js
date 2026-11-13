@@ -24,6 +24,24 @@ router.post('/', async (req, res, next) => {
 
     const resolvedCoupon = (couponCode || coupon || '').trim();
     const order = await db.createOrder({ customer, items, paymentMethod, couponCode: resolvedCoupon });
+
+    // Non-blocking asynchronous email notifications
+    try {
+      const emailService = require('../services/emailService');
+      emailService.sendOrderConfirmation(order).catch(e => console.error('Order confirmation email error:', e.message));
+      emailService.sendNewOrderAdminAlert(order).catch(e => console.error('Admin order alert email error:', e.message));
+    } catch (e) {
+      console.warn('⚠️ [SMTP] Order email dispatch skipped:', e.message);
+    }
+
+    // Non-blocking asynchronous SMS notifications (Customer and Admin)
+    try {
+      const smsService = require('../services/smsService');
+      smsService.sendOrderNotification({ order }).catch(e => console.error('Order SMS error:', e.message));
+    } catch (e) {
+      console.warn('⚠️ [SMS] Order SMS dispatch skipped:', e.message);
+    }
+
     return successResponse(res, order, 'Order placed successfully', 201);
   } catch (err) {
     return errorResponse(res, err.message, 400);
@@ -135,6 +153,23 @@ router.patch('/:id/status', requireAdminAuth, async (req, res, next) => {
 
     const order = await db.updateOrderStatus(req.params.id, { status, note });
     if (!order) return errorResponse(res, 'Order not found', 404);
+
+    // Non-blocking status change notification email
+    try {
+      const emailService = require('../services/emailService');
+      emailService.sendOrderStatusUpdate(order, status, note).catch(e => console.error('Status update email error:', e.message));
+    } catch (e) {
+      console.warn('⚠️ [SMTP] Status update email skipped:', e.message);
+    }
+
+    // Non-blocking status change notification SMS
+    try {
+      const smsService = require('../services/smsService');
+      smsService.sendOrderStatusNotification({ order, newStatus: status }).catch(e => console.error('Status update SMS error:', e.message));
+    } catch (e) {
+      console.warn('⚠️ [SMS] Status update SMS skipped:', e.message);
+    }
+
     return successResponse(res, order, 'Order status updated successfully');
   } catch (err) {
     next(err);

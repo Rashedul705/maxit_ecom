@@ -1,0 +1,1352 @@
+[
+  {
+    "_id": "6adfaaefa8737fa00632ea22",
+    "id": "cat-solar-energy",
+    "name": "SOLAR ENERGY",
+    "slug": "solar-energy",
+    "image": "https://www.nanopowerbd.com/public/uploads/category/1776917773-solar-pv.webp",
+    "icon": "https://www.nanopowerbd.com/public/uploads/category/1776917773-solar-pv.webp",
+    "description": "Tier-1 Solar Panels, Hybrid Inverters, Solar Controllers & Mounting",
+    "order": 1,
+    "isActive": true,
+    "__v": 0,
+    "createdAt": "2026-10-26T19:33:03.574Z",
+    "updatedAt": "2026-11-03T06:38:28.582Z",
+    "subcategories": [
+      {
+        "id": "sub-solar-energy-1",
+        "name": "Solar PV Panels",
+        "slug": "solar-pv-panels",
+        "_id": "6ae980a7be9d58f571b958b5"
+      },
+      {
+        "id": "sub-solar-energy-2",
+        "name": "Solar Charge Controller",
+        "slug": "solar-charge-controller",
+        "_id": "6ae980a7be9d58f571b958b6"
+      },
+      {
+        "id": "sub-solar-energy-3",
+        "name": "Solar Accessories & Connectors",
+        "slug": "solar-accessories-connectors",
+        "_id": "6ae980a7be9d58f571b958b7"
+      },
+      {
+        "id": "sub-solar-energy-4",
+        "name": "DC Protection & SPD",
+        "slug": "dc-protection-spd",
+        "_id": "6ae980a7be9d58f571b958b8"
+      },
+      {
+        "id": "sub-solar-energy-5",
+        "name": "Solar Mounting & Cables",
+        "slug": "solar-mounting-cables",
+        "_id": "6ae980a7be9d58f571b958b9"
+      }
+    ]
+  },
+  {
+    "_id": "6ae5aeba4a4cfbe9d06d8e0d",
+    "slug": "solar-inverter",
+    "__v": 0,
+    "createdAt": "2026-10-31T09:02:49.980Z",
+    "description": "High efficiency on-grid, off-grid and hybrid solar inverters.",
+    "icon": "Sun",
+    "id": "cat-solar-inverter",
+    "image": "https://i.ibb.co/HLPnBnQ8/Growatt-SPF-6000-ES-Plus-6k-W-H.webp",
+    "isActive": true,
+    "name": "SOLAR INVERTER",
+    "order": 2,
+    "updatedAt": "2026-11-03T06:35:19.107Z",
+    "subcategories": [
+      {
+        "id": "sub-solar-inverter-1",
+        "name": "Hybrid Solar Inverter",
+        "slug": "hybrid-solar-inverter",
+        "_id": "6ae980a7be9d58f571b958ba"
+      },
+      {
+        "id": "sub-solar-inverter-2",
+        "name": "On-Grid Solar Inverter",
+        "slug": "on-grid-solar-inverter",
+        "_id": "6ae980a7be9d58f571b958bb"
+      },
+      {
+        "id": "sub-solar-inverter-3",
+        "name": "Off-Grid Solar Inverter",
+        "slug": "off-grid-solar-inverter",
+        "_id": "6ae980a7be9d58f571b958bc"
+      },
+      {
+        "id": "sub-solar-inverter-4",
+        "name": "Micro Inverter",
+        "slug": "micro-inverter",
+        "_id": "6ae980a7be9d58f571b958bd"
+      },
+      {
+        "id": "sub-solar-inverter-5",
+        "name": "Inverter Accessories",
+        "slug": "inverter-accessories",
+        "_id": "6ae980a7be9d58f571b958be"
+      }
+    ]
+  },
+  {
+    "_id": "6ae5b4594a4cfbe9d06d91c5",
+    "slug": "online-ups",
+    "__v": 0,
+    "createdAt": "2026-10-31T09:26:49.053Z",
+    "description": "High performance pure sine wave online UPS systems for enterprise and home equipment.",
+    "icon": "Zap",
+    "id": "cat-online-ups",
+    "image": "https://i.ibb.co/FLTP3THX/Must-EH55-H1-K3-1-KVA-Online-UPS.webp",
+    "isActive": true,
+    "name": "ONLINE UPS",
+    "order": 3,
+    "updatedAt": "2026-11-03T06:35:19.416Z",
+    "subcategories": [
+      {
+        "id": "sub-online-ups-1",
+        "name": "1KVA - 3KVA Online UPS",
+        "slug": "1kva-3kva-online-ups",
+        "_id": "6ae980a7be9d58f571b958c9"
+      },
+      {
+        "id": "sub-online-ups-2",
+        "name": "6KVA - 10KVA Online UPS",
+        "slug": "6kva-10kva-online-ups",
+        "_id": "6ae980a7be9d58f571b958ca"
+      },
+      {
+        "id": "sub-online-ups-3",
+        "name": "3 Phase Online UPS",
+        "slug": "3-phase-online-ups",
+        "_id": "6ae980a7be9d58f571b958cb"
+      },
+      {
+        "id": "sub-online-ups-4",
+        "name": "Rack Mount Online UPS",
+        "slug": "rack-mount-online-ups",
+        "_id": "6ae980a7be9d58f571b958cc"
+      },
+      {
+        "id": "sub-online-ups-5",
+        "name": "Modular Online UPS",
+        "slug": "modular-online-ups",
+        "_id": "6ae980a7be9d58f571b958cd"
+      }
+    ]
+  },
+  {
+    "_id": "6ae5b7b74a4cfbe9d06d93f2",
+    "slug": "voltage-stabilizer",
+    "__v": 0,
+    "createdAt": "2026-10-31T09:41:11.277Z",
+    "description": "Automatic voltage regulators and servo stabilizers for sensitive industrial and residential appliances.",
+    "icon": "Activity",
+    "id": "cat-voltage-stabilizer",
+    "image": "https://i.ibb.co/DPt7VtGc/Tecnoware-FSTEL75-KT-75-KVA-Elec.jpg",
+    "isActive": true,
+    "name": "VOLTAGE STABILIZER",
+    "order": 4,
+    "updatedAt": "2026-11-03T06:35:19.516Z",
+    "subcategories": [
+      {
+        "id": "sub-voltage-stabilizer-1",
+        "name": "Servo Voltage Stabilizer",
+        "slug": "servo-voltage-stabilizer",
+        "_id": "6ae980a7be9d58f571b958ce"
+      },
+      {
+        "id": "sub-voltage-stabilizer-2",
+        "name": "Relay Type Stabilizer",
+        "slug": "relay-type-stabilizer",
+        "_id": "6ae980a7be9d58f571b958cf"
+      },
+      {
+        "id": "sub-voltage-stabilizer-3",
+        "name": "3-Phase Industrial Stabilizer",
+        "slug": "3-phase-industrial-stabilizer",
+        "_id": "6ae980a7be9d58f571b958d0"
+      },
+      {
+        "id": "sub-voltage-stabilizer-4",
+        "name": "Digital Display Stabilizer",
+        "slug": "digital-display-stabilizer",
+        "_id": "6ae980a7be9d58f571b958d1"
+      },
+      {
+        "id": "sub-voltage-stabilizer-5",
+        "name": "Static Voltage Regulator",
+        "slug": "static-voltage-regulator",
+        "_id": "6ae980a7be9d58f571b958d2"
+      }
+    ]
+  },
+  {
+    "_id": "6adfaaefa8737fa00632ea1e",
+    "id": "cat-lt-ht-power-goods",
+    "name": "LT-HT POWER GOODS",
+    "slug": "lt-ht-power-goods",
+    "image": "https://www.nanopowerbd.com/public/uploads/category/1776918494-dropout-e3.webp",
+    "icon": "https://www.nanopowerbd.com/public/uploads/category/1776918494-dropout-e3.webp",
+    "description": "Transformers, Drop-out Fuses, Vacuum Circuit Breakers & Switchgear",
+    "order": 5,
+    "isActive": true,
+    "__v": 0,
+    "createdAt": "2026-10-26T19:33:03.574Z",
+    "updatedAt": "2026-11-03T06:35:19.616Z",
+    "subcategories": [
+      {
+        "id": "sub-lt-ht-power-goods-1",
+        "name": "Distribution Transformer",
+        "slug": "distribution-transformer",
+        "_id": "6ae980a7be9d58f571b958d3"
+      },
+      {
+        "id": "sub-lt-ht-power-goods-2",
+        "name": "Lightning Arrester",
+        "slug": "lightning-arrester",
+        "_id": "6ae980a7be9d58f571b958d4"
+      },
+      {
+        "id": "sub-lt-ht-power-goods-3",
+        "name": "Dropout Fuse & Cutout",
+        "slug": "dropout-fuse-cutout",
+        "_id": "6ae980a7be9d58f571b958d5"
+      },
+      {
+        "id": "sub-lt-ht-power-goods-4",
+        "name": "HT Switchgear & Panels",
+        "slug": "ht-switchgear-panels",
+        "_id": "6ae980a7be9d58f571b958d6"
+      },
+      {
+        "id": "sub-lt-ht-power-goods-5",
+        "name": "Circuit Breakers (MCCB / MCB)",
+        "slug": "circuit-breakers-mccb-mcb",
+        "_id": "6ae980a7be9d58f571b958d7"
+      }
+    ]
+  },
+  {
+    "_id": "6adfaaefa8737fa00632ea1f",
+    "id": "cat-modules-sensor",
+    "name": "MODULES & SENSOR",
+    "slug": "modules-&-sensor",
+    "image": "https://www.nanopowerbd.com/public/uploads/category/1776918353-18650-2s-bms.webp",
+    "icon": "https://www.nanopowerbd.com/public/uploads/category/1776918353-18650-2s-bms.webp",
+    "description": "Current Sensors, Temperature, Proximity, Relay Modules & Smart Controllers",
+    "order": 6,
+    "isActive": true,
+    "__v": 0,
+    "createdAt": "2026-10-26T19:33:03.574Z",
+    "updatedAt": "2026-11-03T06:35:19.727Z",
+    "subcategories": [
+      {
+        "id": "sub-modules-sensor-1",
+        "name": "ESP32 & Arduino Modules",
+        "slug": "esp32-arduino-modules",
+        "_id": "6ae980a7be9d58f571b958d8"
+      },
+      {
+        "id": "sub-modules-sensor-2",
+        "name": "Water Level Sensors",
+        "slug": "water-level-sensors",
+        "_id": "6ae980a7be9d58f571b958d9"
+      },
+      {
+        "id": "sub-modules-sensor-3",
+        "name": "Motion & PIR Sensors",
+        "slug": "motion-pir-sensors",
+        "_id": "6ae980a7be9d58f571b958da"
+      },
+      {
+        "id": "sub-modules-sensor-4",
+        "name": "Temperature & Humidity Sensors",
+        "slug": "temperature-humidity-sensors",
+        "_id": "6ae980a7be9d58f571b958db"
+      },
+      {
+        "id": "sub-modules-sensor-5",
+        "name": "GPS & RTC Modules",
+        "slug": "gps-rtc-modules",
+        "_id": "6ae980a7be9d58f571b958dc"
+      }
+    ]
+  },
+  {
+    "_id": "6adfaaefa8737fa00632ea20",
+    "id": "cat-igbt-fet-diode-transistor",
+    "name": "IGBT-FET-DIODE-TRANSISTOR",
+    "slug": "igbt-fet-diode-transistor",
+    "image": "https://www.nanopowerbd.com/public/uploads/category/1778045900-fet-&amp;-igbt.webp",
+    "icon": "https://www.nanopowerbd.com/public/uploads/category/1778045900-fet-&amp;-igbt.webp",
+    "description": "Power IGBT Modules, Fast Recovery Diodes, MOSFETs & Power Transistors",
+    "order": 7,
+    "isActive": true,
+    "__v": 0,
+    "createdAt": "2026-10-26T19:33:03.574Z",
+    "updatedAt": "2026-11-03T06:35:19.824Z",
+    "subcategories": [
+      {
+        "id": "sub-igbt-fet-diode-transistor-1",
+        "name": "MOSFET",
+        "slug": "mosfet",
+        "_id": "6ae980a7be9d58f571b958dd"
+      },
+      {
+        "id": "sub-igbt-fet-diode-transistor-2",
+        "name": "IGBT Module",
+        "slug": "igbt-module",
+        "_id": "6ae980a7be9d58f571b958de"
+      },
+      {
+        "id": "sub-igbt-fet-diode-transistor-3",
+        "name": "Schottky Diode",
+        "slug": "schottky-diode",
+        "_id": "6ae980a7be9d58f571b958df"
+      },
+      {
+        "id": "sub-igbt-fet-diode-transistor-4",
+        "name": "Power Transistor",
+        "slug": "power-transistor",
+        "_id": "6ae980a7be9d58f571b958e0"
+      },
+      {
+        "id": "sub-igbt-fet-diode-transistor-5",
+        "name": "Bridge Rectifier",
+        "slug": "bridge-rectifier",
+        "_id": "6ae980a7be9d58f571b958e1"
+      }
+    ]
+  },
+  {
+    "_id": "6adfaaefa8737fa00632ea21",
+    "id": "cat-electronics-parts",
+    "name": "ELECTRONICS PARTS",
+    "slug": "electronics-parts",
+    "image": "https://www.nanopowerbd.com/public/uploads/category/1776918073-atmega328p.webp",
+    "icon": "https://www.nanopowerbd.com/public/uploads/category/1776918073-atmega328p.webp",
+    "description": "Microcontrollers, Capacitors, Resistors, Optocouplers & Connectors",
+    "order": 8,
+    "isActive": true,
+    "__v": 0,
+    "createdAt": "2026-10-26T19:33:03.574Z",
+    "updatedAt": "2026-11-03T06:35:19.921Z",
+    "subcategories": [
+      {
+        "id": "sub-electronics-parts-1",
+        "name": "Microcontroller & IC",
+        "slug": "microcontroller-ic",
+        "_id": "6ae980a7be9d58f571b958e2"
+      },
+      {
+        "id": "sub-electronics-parts-2",
+        "name": "Driver IC & Optocoupler",
+        "slug": "driver-ic-optocoupler",
+        "_id": "6ae980a7be9d58f571b958e3"
+      },
+      {
+        "id": "sub-electronics-parts-3",
+        "name": "Power Management IC",
+        "slug": "power-management-ic",
+        "_id": "6ae980a7be9d58f571b958e4"
+      },
+      {
+        "id": "sub-electronics-parts-4",
+        "name": "Capacitor & Resistor",
+        "slug": "capacitor-resistor",
+        "_id": "6ae980a7be9d58f571b958e5"
+      },
+      {
+        "id": "sub-electronics-parts-5",
+        "name": "Heat Sink & Enclosure",
+        "slug": "heat-sink-enclosure",
+        "_id": "6ae980a7be9d58f571b958e6"
+      }
+    ]
+  },
+  {
+    "_id": "6adfaaefa8737fa00632ea1c",
+    "id": "cat-safety-security",
+    "name": "SAFETY - SECURITY",
+    "slug": "safety---security",
+    "image": "https://www.nanopowerbd.com/public/uploads/category/1776918982-dahua-goods.webp",
+    "icon": "https://www.nanopowerbd.com/public/uploads/category/1776918982-dahua-goods.webp",
+    "description": "IP Cameras, NVR, Smart Door Locks, Fire Extinguishers & Industrial Safety",
+    "order": 9,
+    "isActive": true,
+    "__v": 0,
+    "createdAt": "2026-10-26T19:33:03.573Z",
+    "updatedAt": "2026-11-03T06:35:20.019Z",
+    "subcategories": [
+      {
+        "id": "sub-safety-security-1",
+        "name": "Fire Extinguisher & Aerosol",
+        "slug": "fire-extinguisher-aerosol",
+        "_id": "6ae980a8be9d58f571b958e7"
+      },
+      {
+        "id": "sub-safety-security-2",
+        "name": "Warning Lights & Sirens",
+        "slug": "warning-lights-sirens",
+        "_id": "6ae980a8be9d58f571b958e8"
+      },
+      {
+        "id": "sub-safety-security-3",
+        "name": "Industrial Safety Equipment",
+        "slug": "industrial-safety-equipment",
+        "_id": "6ae980a8be9d58f571b958e9"
+      },
+      {
+        "id": "sub-safety-security-4",
+        "name": "Electrical Insulation Gear",
+        "slug": "electrical-insulation-gear",
+        "_id": "6ae980a8be9d58f571b958ea"
+      },
+      {
+        "id": "sub-safety-security-5",
+        "name": "Security Surveillance",
+        "slug": "security-surveillance",
+        "_id": "6ae980a8be9d58f571b958eb"
+      }
+    ]
+  },
+  {
+    "_id": "6adfaaefa8737fa00632ea1d",
+    "id": "cat-tools-hardware",
+    "name": "TOOLS - HARDWARE",
+    "slug": "tools---hardware",
+    "image": "https://www.nanopowerbd.com/public/uploads/category/1777472468-0.25-inch-quick-ratchet-wrench-spanner.webp",
+    "icon": "https://www.nanopowerbd.com/public/uploads/category/1777472468-0.25-inch-quick-ratchet-wrench-spanner.webp",
+    "description": "Multimeters, Crimping Tools, Hex Keys, Soldering Stations & Precision Kits",
+    "order": 10,
+    "isActive": true,
+    "__v": 0,
+    "createdAt": "2026-10-26T19:33:03.573Z",
+    "updatedAt": "2026-11-03T06:35:20.120Z",
+    "subcategories": [
+      {
+        "id": "sub-tools-hardware-1",
+        "name": "Digital Multimeter & Clamp Meter",
+        "slug": "digital-multimeter-clamp-meter",
+        "_id": "6ae980a8be9d58f571b958ec"
+      },
+      {
+        "id": "sub-tools-hardware-2",
+        "name": "Spot Welding Machine & Rods",
+        "slug": "spot-welding-machine-rods",
+        "_id": "6ae980a8be9d58f571b958ed"
+      },
+      {
+        "id": "sub-tools-hardware-3",
+        "name": "Cutting Disc & Abrasives",
+        "slug": "cutting-disc-abrasives",
+        "_id": "6ae980a8be9d58f571b958ee"
+      },
+      {
+        "id": "sub-tools-hardware-4",
+        "name": "Screwdriver & Wrench Sets",
+        "slug": "screwdriver-wrench-sets",
+        "_id": "6ae980a8be9d58f571b958ef"
+      },
+      {
+        "id": "sub-tools-hardware-5",
+        "name": "Fasteners & Royal Bolts",
+        "slug": "fasteners-royal-bolts",
+        "_id": "6ae980a8be9d58f571b958f0"
+      }
+    ]
+  },
+  {
+    "_id": "6adfaaefa8737fa00632ea24",
+    "id": "cat-automation-process-cont",
+    "name": "AUTOMATION-PROCESS CONT.",
+    "slug": "automation-process-cont.",
+    "image": "https://www.nanopowerbd.com/public/uploads/category/1776919527-electrical-test-instruments.webp",
+    "icon": "https://www.nanopowerbd.com/public/uploads/category/1776919527-electrical-test-instruments.webp",
+    "description": "Siemens PLC, VFD Drives, HMI Displays & Industrial Automation Cards",
+    "order": 11,
+    "isActive": true,
+    "__v": 0,
+    "createdAt": "2026-10-26T19:33:03.574Z",
+    "updatedAt": "2026-11-03T06:35:20.219Z",
+    "subcategories": [
+      {
+        "id": "sub-automation-process-cont-1",
+        "name": "Programmable Logic Controller (PLC)",
+        "slug": "programmable-logic-controller-plc",
+        "_id": "6ae980a8be9d58f571b958f1"
+      },
+      {
+        "id": "sub-automation-process-cont-2",
+        "name": "Variable Frequency Drive (VFD)",
+        "slug": "variable-frequency-drive-vfd",
+        "_id": "6ae980a8be9d58f571b958f2"
+      },
+      {
+        "id": "sub-automation-process-cont-3",
+        "name": "Digital Timer & Switch",
+        "slug": "digital-timer-switch",
+        "_id": "6ae980a8be9d58f571b958f3"
+      },
+      {
+        "id": "sub-automation-process-cont-4",
+        "name": "Human Machine Interface (HMI)",
+        "slug": "human-machine-interface-hmi",
+        "_id": "6ae980a8be9d58f571b958f4"
+      },
+      {
+        "id": "sub-automation-process-cont-5",
+        "name": "Industrial Relays & Contactors",
+        "slug": "industrial-relays-contactors",
+        "_id": "6ae980a8be9d58f571b958f5"
+      }
+    ]
+  },
+  {
+    "_id": "6adfaaefa8737fa00632ea1a",
+    "id": "cat-battery-bms-charger",
+    "name": "BATTERY-BMS-CHARGER",
+    "slug": "battery-bms-charger",
+    "image": "https://www.nanopowerbd.com/public/uploads/category/1776919212-lithium-ion-battery.webp",
+    "icon": "https://www.nanopowerbd.com/public/uploads/category/1776919212-lithium-ion-battery.webp",
+    "description": "LiFePO4, Lithium Ion Batteries, Active Balancers, Smart BMS & Chargers",
+    "order": 12,
+    "isActive": true,
+    "__v": 0,
+    "createdAt": "2026-10-26T19:33:03.572Z",
+    "updatedAt": "2026-11-03T06:35:20.318Z",
+    "subcategories": [
+      {
+        "id": "sub-battery-bms-charger-1",
+        "name": "LiFePO4 Battery Cells",
+        "slug": "lifepo4-battery-cells",
+        "_id": "6ae980a8be9d58f571b958f6"
+      },
+      {
+        "id": "sub-battery-bms-charger-2",
+        "name": "Smart BMS",
+        "slug": "smart-bms",
+        "_id": "6ae980a8be9d58f571b958f7"
+      },
+      {
+        "id": "sub-battery-bms-charger-3",
+        "name": "Lithium Battery Charger",
+        "slug": "lithium-battery-charger",
+        "_id": "6ae980a8be9d58f571b958f8"
+      },
+      {
+        "id": "sub-battery-bms-charger-4",
+        "name": "Battery Balancer & Equalizer",
+        "slug": "battery-balancer-equalizer",
+        "_id": "6ae980a8be9d58f571b958f9"
+      },
+      {
+        "id": "sub-battery-bms-charger-5",
+        "name": "Spot Welder & Accessories",
+        "slug": "spot-welder-accessories",
+        "_id": "6ae980a8be9d58f571b958fa"
+      }
+    ]
+  },
+  {
+    "_id": "6adfaaefa8737fa00632ea1b",
+    "id": "cat-customized-circuit-pcb",
+    "name": "CUSTOMIZED CIRCUIT - PCB",
+    "slug": "customized-circuit---pcb",
+    "image": "https://www.nanopowerbd.com/public/uploads/category/1776919114-servo-avr-control-card.webp",
+    "icon": "https://www.nanopowerbd.com/public/uploads/category/1776919114-servo-avr-control-card.webp",
+    "description": "Custom Servo AVR Control Cards, Inverter Motherboards & Circuit Solutions",
+    "order": 14,
+    "isActive": true,
+    "__v": 0,
+    "createdAt": "2026-10-26T19:33:03.573Z",
+    "updatedAt": "2026-11-03T06:35:20.417Z",
+    "subcategories": [
+      {
+        "id": "sub-customized-circuit-pcb-1",
+        "name": "IPS & UPS Circuit Board",
+        "slug": "ips-ups-circuit-board",
+        "_id": "6ae980a8be9d58f571b958fb"
+      },
+      {
+        "id": "sub-customized-circuit-pcb-2",
+        "name": "Solar VFD Controller",
+        "slug": "solar-vfd-controller",
+        "_id": "6ae980a8be9d58f571b958fc"
+      },
+      {
+        "id": "sub-customized-circuit-pcb-3",
+        "name": "Servo AVR Control Card",
+        "slug": "servo-avr-control-card",
+        "_id": "6ae980a8be9d58f571b958fd"
+      },
+      {
+        "id": "sub-customized-circuit-pcb-4",
+        "name": "Custom PCB Fabrication",
+        "slug": "custom-pcb-fabrication",
+        "_id": "6ae980a8be9d58f571b958fe"
+      },
+      {
+        "id": "sub-customized-circuit-pcb-5",
+        "name": "Power Supply Boards",
+        "slug": "power-supply-boards",
+        "_id": "6ae980a8be9d58f571b958ff"
+      }
+    ]
+  },
+  {
+    "_id": "6adfaaefa8737fa00632ea23",
+    "id": "cat-service-maintenance",
+    "name": "SERVICE & MAINTENANCE",
+    "slug": "service-&-maintenance",
+    "image": "https://www.nanopowerbd.com/public/uploads/category/1776919326-inverter-repairing-services-500x500.webp",
+    "icon": "https://www.nanopowerbd.com/public/uploads/category/1776919326-inverter-repairing-services-500x500.webp",
+    "description": "Solar Inverter Repairing, IPS Maintenance & Engineering Service Support",
+    "order": 15,
+    "isActive": true,
+    "__v": 0,
+    "createdAt": "2026-10-26T19:33:03.574Z",
+    "updatedAt": "2026-11-03T06:35:20.518Z",
+    "subcategories": [
+      {
+        "id": "sub-service-maintenance-1",
+        "name": "Inverter Repair & Servicing",
+        "slug": "inverter-repair-servicing",
+        "_id": "6ae980a8be9d58f571b95900"
+      },
+      {
+        "id": "sub-service-maintenance-2",
+        "name": "Transformer Maintenance",
+        "slug": "transformer-maintenance",
+        "_id": "6ae980a8be9d58f571b95901"
+      },
+      {
+        "id": "sub-service-maintenance-3",
+        "name": "VFD Drive Repair",
+        "slug": "vfd-drive-repair",
+        "_id": "6ae980a8be9d58f571b95902"
+      },
+      {
+        "id": "sub-service-maintenance-4",
+        "name": "UPS Servicing & Battery Replacement",
+        "slug": "ups-servicing-battery-replacement",
+        "_id": "6ae980a8be9d58f571b95903"
+      },
+      {
+        "id": "sub-service-maintenance-5",
+        "name": "Industrial Automation Support",
+        "slug": "industrial-automation-support",
+        "_id": "6ae980a8be9d58f571b95904"
+      }
+    ]
+  },
+  {
+    "_id": "6ae5ee6b4a4cfbe9d06db900",
+    "slug": "solar-battery",
+    "__v": 0,
+    "createdAt": "2026-10-31T13:34:35.846Z",
+    "description": "High performance LiFePO4 lithium and deep cycle solar batteries for residential, industrial, and off-grid solar energy systems.",
+    "icon": "BatteryCharging",
+    "id": "cat-solar-battery",
+    "image": "https://i.ibb.co/w10z5hL/Hithium-Hero-EE-16-16k-Wh-Lithiu.webp",
+    "isActive": true,
+    "name": "SOLAR BATTERY",
+    "order": 15,
+    "updatedAt": "2026-11-03T06:35:19.208Z",
+    "subcategories": [
+      {
+        "id": "sub-solar-battery-1",
+        "name": "Lithium Solar Battery (LiFePO4)",
+        "slug": "lithium-solar-battery",
+        "_id": "6ae980a7be9d58f571b958bf"
+      },
+      {
+        "id": "sub-solar-battery-2",
+        "name": "High Voltage Battery System",
+        "slug": "high-voltage-battery-system",
+        "_id": "6ae980a7be9d58f571b958c0"
+      },
+      {
+        "id": "sub-solar-battery-3",
+        "name": "Wall-Mount Solar Battery",
+        "slug": "wall-mount-solar-battery",
+        "_id": "6ae980a7be9d58f571b958c1"
+      },
+      {
+        "id": "sub-solar-battery-4",
+        "name": "Tubular Solar Battery",
+        "slug": "tubular-solar-battery",
+        "_id": "6ae980a7be9d58f571b958c2"
+      },
+      {
+        "id": "sub-solar-battery-5",
+        "name": "Gel Battery",
+        "slug": "gel-battery",
+        "_id": "6ae980a7be9d58f571b958c3"
+      }
+    ]
+  },
+  {
+    "_id": "6ae5f1424a4cfbe9d06dbaf7",
+    "slug": "solar-package",
+    "__v": 0,
+    "createdAt": "2026-10-31T13:46:42.858Z",
+    "description": "Complete turnkey solar packages including hybrid inverters, lithium batteries, bifacial panels, and accessories.",
+    "icon": "Package",
+    "id": "cat-solar-package",
+    "image": "https://i.ibb.co/KzQ2MKb9/Marsriva-2k-W-Off-Grid-Hybrid-S.webp",
+    "isActive": true,
+    "name": "SOLAR PACKAGE",
+    "order": 16,
+    "updatedAt": "2026-11-03T06:35:19.308Z",
+    "subcategories": [
+      {
+        "id": "sub-solar-package-1",
+        "name": "Off-Grid Solar Package",
+        "slug": "off-grid-solar-package",
+        "_id": "6ae980a7be9d58f571b958c4"
+      },
+      {
+        "id": "sub-solar-package-2",
+        "name": "On-Grid Solar Package",
+        "slug": "on-grid-solar-package",
+        "_id": "6ae980a7be9d58f571b958c5"
+      },
+      {
+        "id": "sub-solar-package-3",
+        "name": "Hybrid Solar Package",
+        "slug": "hybrid-solar-package",
+        "_id": "6ae980a7be9d58f571b958c6"
+      },
+      {
+        "id": "sub-solar-package-4",
+        "name": "Solar Pump Package",
+        "slug": "solar-pump-package",
+        "_id": "6ae980a7be9d58f571b958c7"
+      },
+      {
+        "id": "sub-solar-package-5",
+        "name": "Solar Street Light Package",
+        "slug": "solar-street-light-package",
+        "_id": "6ae980a7be9d58f571b958c8"
+      }
+    ]
+  },
+  {
+    "_id": "6ae5f4584a4cfbe9d06dbcee",
+    "slug": "ups",
+    "__v": 0,
+    "createdAt": "2026-10-31T13:59:52.295Z",
+    "description": "Offline and line-interactive uninterruptible power supply (UPS) systems for desktop computers, workstations, and home electronics.",
+    "icon": "Zap",
+    "id": "cat-ups",
+    "image": "https://i.ibb.co/XxKLxhYB/Digital-X-650-VA-Offline-UPS.jpg",
+    "isActive": true,
+    "name": "UPS",
+    "order": 17,
+    "updatedAt": "2026-11-03T06:35:20.618Z",
+    "subcategories": [
+      {
+        "id": "sub-ups-1",
+        "name": "650VA Offline UPS",
+        "slug": "650va-offline-ups",
+        "_id": "6ae980a8be9d58f571b95905"
+      },
+      {
+        "id": "sub-ups-2",
+        "name": "1200VA Offline UPS",
+        "slug": "1200va-offline-ups",
+        "_id": "6ae980a8be9d58f571b95906"
+      },
+      {
+        "id": "sub-ups-3",
+        "name": "Mini DC UPS for Router",
+        "slug": "mini-dc-ups-router",
+        "_id": "6ae980a8be9d58f571b95907"
+      },
+      {
+        "id": "sub-ups-4",
+        "name": "Line Interactive UPS",
+        "slug": "line-interactive-ups",
+        "_id": "6ae980a8be9d58f571b95908"
+      },
+      {
+        "id": "sub-ups-5",
+        "name": "Long Backup Home UPS",
+        "slug": "long-backup-home-ups",
+        "_id": "6ae980a8be9d58f571b95909"
+      }
+    ]
+  },
+  {
+    "_id": "6ae61d594a4cfbe9d06dda3c",
+    "slug": "ups-battery",
+    "__v": 0,
+    "createdAt": "2026-10-31T16:54:49.664Z",
+    "description": "Replacement lead-acid, AGM, gel, and lithium batteries for offline and online UPS systems.",
+    "icon": "Battery",
+    "id": "cat-ups-battery",
+    "image": "https://i.ibb.co/0pkxfYkm/KENSON-KS4-4-V-4-5-AH-Rechargeab.jpg",
+    "isActive": true,
+    "name": "UPS BATTERY",
+    "order": 18,
+    "updatedAt": "2026-11-03T06:35:20.716Z",
+    "subcategories": [
+      {
+        "id": "sub-ups-battery-1",
+        "name": "12V 7Ah - 9Ah UPS Battery",
+        "slug": "12v-7ah-9ah-ups-battery",
+        "_id": "6ae980a8be9d58f571b9590a"
+      },
+      {
+        "id": "sub-ups-battery-2",
+        "name": "12V 12Ah - 20Ah Battery",
+        "slug": "12v-12ah-20ah-battery",
+        "_id": "6ae980a8be9d58f571b9590b"
+      },
+      {
+        "id": "sub-ups-battery-3",
+        "name": "Sealed Lead Acid (SLA) Battery",
+        "slug": "sealed-lead-acid-sla-battery",
+        "_id": "6ae980a8be9d58f571b9590c"
+      },
+      {
+        "id": "sub-ups-battery-4",
+        "name": "Deep Cycle Battery",
+        "slug": "deep-cycle-battery",
+        "_id": "6ae980a8be9d58f571b9590d"
+      }
+    ]
+  },
+  {
+    "_id": "6ae61fac4a4cfbe9d06ddbed",
+    "slug": "portable-power-station",
+    "__v": 0,
+    "createdAt": "2026-10-31T17:04:44.513Z",
+    "description": "High-capacity portable power stations, solar generators, and outdoor backup power supplies.",
+    "icon": "Power",
+    "id": "cat-portable-power-station",
+    "image": "https://i.ibb.co/yFMpvSLG/Eco-SONIC-SL82-L2-300-W-Portable.webp",
+    "isActive": true,
+    "name": "PORTABLE POWER STATION",
+    "order": 19,
+    "updatedAt": "2026-11-03T06:35:20.816Z",
+    "subcategories": [
+      {
+        "id": "sub-portable-power-station-1",
+        "name": "300W - 600W Portable Station",
+        "slug": "300w-600w-portable-station",
+        "_id": "6ae980a8be9d58f571b9590e"
+      },
+      {
+        "id": "sub-portable-power-station-2",
+        "name": "1000W - 2000W Heavy Duty Station",
+        "slug": "1000w-2000w-heavy-duty-station",
+        "_id": "6ae980a8be9d58f571b9590f"
+      },
+      {
+        "id": "sub-portable-power-station-3",
+        "name": "Solar Generator Kits",
+        "slug": "solar-generator-kits",
+        "_id": "6ae980a8be9d58f571b95910"
+      },
+      {
+        "id": "sub-portable-power-station-4",
+        "name": "Foldable Solar Panels",
+        "slug": "foldable-solar-panels",
+        "_id": "6ae980a8be9d58f571b95911"
+      }
+    ]
+  },
+  {
+    "_id": "6ae626934a4cfbe9d06de0f9",
+    "slug": "server-networking",
+    "__v": 0,
+    "createdAt": "2026-10-31T17:34:11.568Z",
+    "description": "Enterprise servers, server processors, server racks, NAS/SAN storage, and networking hardware with official warranty in Bangladesh.",
+    "icon": "Server",
+    "id": "cat-server-networking",
+    "image": "",
+    "isActive": true,
+    "name": "SERVER & NETWORKING",
+    "order": 20,
+    "updatedAt": "2026-11-01T04:19:13.016Z",
+    "subcategories": [
+      {
+        "id": "sub-server",
+        "name": "Server",
+        "slug": "server",
+        "_id": "6ae6bdc1a8826f6578a94020"
+      },
+      {
+        "id": "sub-gpu-server",
+        "name": "GPU Server",
+        "slug": "gpu-server",
+        "_id": "6ae6bdc1a8826f6578a94021"
+      },
+      {
+        "id": "sub-workstation",
+        "name": "Workstation",
+        "slug": "workstation",
+        "_id": "6ae6bdc1a8826f6578a94022"
+      },
+      {
+        "id": "sub-server-rack",
+        "name": "Server Rack",
+        "slug": "server-rack",
+        "_id": "6ae6bdc1a8826f6578a94023"
+      },
+      {
+        "id": "sub-nas-storage",
+        "name": "NAS Storage",
+        "slug": "nas-storage",
+        "_id": "6ae6bdc1a8826f6578a94024"
+      },
+      {
+        "id": "sub-san-storage",
+        "name": "SAN Storage",
+        "slug": "san-storage",
+        "_id": "6ae6bdc1a8826f6578a94025"
+      },
+      {
+        "id": "sub-das-storage",
+        "name": "DAS Storage",
+        "slug": "das-storage",
+        "_id": "6ae6bdc1a8826f6578a94026"
+      },
+      {
+        "id": "sub-server-hdd",
+        "name": "Server HDD",
+        "slug": "server-hdd",
+        "_id": "6ae6bdc1a8826f6578a94027"
+      },
+      {
+        "id": "sub-server-hdd-bay",
+        "name": "Server HDD Bay",
+        "slug": "server-hdd-bay",
+        "_id": "6ae6bdc1a8826f6578a94028"
+      },
+      {
+        "id": "sub-server-ram",
+        "name": "Server RAM",
+        "slug": "server-ram",
+        "_id": "6ae6bdc1a8826f6578a94029"
+      },
+      {
+        "id": "sub-server-ssd",
+        "name": "Server SSD",
+        "slug": "server-ssd",
+        "_id": "6ae6bdc1a8826f6578a9402a"
+      },
+      {
+        "id": "sub-server-power-supply",
+        "name": "Server Power Supply",
+        "slug": "server-power-supply",
+        "_id": "6ae6bdc1a8826f6578a9402b"
+      },
+      {
+        "id": "sub-server-processor",
+        "name": "Server Processor",
+        "slug": "server-processor",
+        "_id": "6ae6bdc1a8826f6578a9402c"
+      }
+    ]
+  },
+  {
+    "_id": "6ae628f74a4cfbe9d06de2b3",
+    "slug": "office-equipment",
+    "__v": 0,
+    "createdAt": "2026-10-31T17:44:23.013Z",
+    "description": "Printers, projectors, scanners, photocopiers, paper shredders, and conference systems with official warranty in Bangladesh.",
+    "icon": "Briefcase",
+    "id": "cat-office-equipment",
+    "image": "",
+    "isActive": true,
+    "name": "OFFICE EQUIPMENT",
+    "order": 21,
+    "updatedAt": "2026-11-01T04:19:12.822Z",
+    "subcategories": [
+      {
+        "id": "sub-projector",
+        "name": "Projector",
+        "slug": "projector",
+        "_id": "6ae6bdc0a8826f6578a93ff0"
+      },
+      {
+        "id": "sub-conference-system",
+        "name": "Conference System",
+        "slug": "conference-system",
+        "_id": "6ae6bdc0a8826f6578a93ff1"
+      },
+      {
+        "id": "sub-pa-system",
+        "name": "PA System",
+        "slug": "pa-system",
+        "_id": "6ae6bdc0a8826f6578a93ff2"
+      },
+      {
+        "id": "sub-interactive-flat-panel",
+        "name": "Interactive Flat Panel",
+        "slug": "interactive-flat-panel",
+        "_id": "6ae6bdc0a8826f6578a93ff3"
+      },
+      {
+        "id": "sub-video-wall",
+        "name": "Video Wall",
+        "slug": "video-wall",
+        "_id": "6ae6bdc0a8826f6578a93ff4"
+      },
+      {
+        "id": "sub-signage",
+        "name": "Signage",
+        "slug": "signage",
+        "_id": "6ae6bdc0a8826f6578a93ff5"
+      },
+      {
+        "id": "sub-kiosk",
+        "name": "Kiosk",
+        "slug": "kiosk",
+        "_id": "6ae6bdc0a8826f6578a93ff6"
+      },
+      {
+        "id": "sub-printer",
+        "name": "Printer",
+        "slug": "printer",
+        "_id": "6ae6bdc0a8826f6578a93ff7"
+      },
+      {
+        "id": "sub-laser-printer",
+        "name": "Laser Printer",
+        "slug": "laser-printer",
+        "_id": "6ae6bdc0a8826f6578a93ff8"
+      },
+      {
+        "id": "sub-large-format-printer",
+        "name": "Large Format Printer",
+        "slug": "large-format-printer",
+        "_id": "6ae6bdc0a8826f6578a93ff9"
+      },
+      {
+        "id": "sub-id-card-printer",
+        "name": "ID Card Printer",
+        "slug": "id-card-printer",
+        "_id": "6ae6bdc0a8826f6578a93ffa"
+      },
+      {
+        "id": "sub-pos-printer",
+        "name": "POS Printer",
+        "slug": "pos-printer",
+        "_id": "6ae6bdc0a8826f6578a93ffb"
+      },
+      {
+        "id": "sub-label-printer",
+        "name": "Label Printer",
+        "slug": "label-printer",
+        "_id": "6ae6bdc0a8826f6578a93ffc"
+      },
+      {
+        "id": "sub-digital-weight-machine",
+        "name": "Digital Weight Machine",
+        "slug": "digital-weight-machine",
+        "_id": "6ae6bdc0a8826f6578a93ffd"
+      },
+      {
+        "id": "sub-photocopier",
+        "name": "Photocopier",
+        "slug": "photocopier",
+        "_id": "6ae6bdc0a8826f6578a93ffe"
+      },
+      {
+        "id": "sub-toner",
+        "name": "Toner",
+        "slug": "toner",
+        "_id": "6ae6bdc0a8826f6578a93fff"
+      },
+      {
+        "id": "sub-cartridge",
+        "name": "Cartridge",
+        "slug": "cartridge",
+        "_id": "6ae6bdc0a8826f6578a94000"
+      },
+      {
+        "id": "sub-ink-bottle",
+        "name": "Ink Bottle",
+        "slug": "ink-bottle",
+        "_id": "6ae6bdc0a8826f6578a94001"
+      },
+      {
+        "id": "sub-ribbon",
+        "name": "Ribbon",
+        "slug": "ribbon",
+        "_id": "6ae6bdc0a8826f6578a94002"
+      },
+      {
+        "id": "sub-printer-paper",
+        "name": "Printer Paper",
+        "slug": "printer-paper",
+        "_id": "6ae6bdc0a8826f6578a94003"
+      },
+      {
+        "id": "sub-printer-drum",
+        "name": "Printer Drum",
+        "slug": "printer-drum",
+        "_id": "6ae6bdc0a8826f6578a94004"
+      },
+      {
+        "id": "sub-scanner",
+        "name": "Scanner",
+        "slug": "scanner",
+        "_id": "6ae6bdc0a8826f6578a94005"
+      },
+      {
+        "id": "sub-barcode-scanner",
+        "name": "Barcode Scanner",
+        "slug": "barcode-scanner",
+        "_id": "6ae6bdc0a8826f6578a94006"
+      },
+      {
+        "id": "sub-cash-drawer",
+        "name": "Cash Drawer",
+        "slug": "cash-drawer",
+        "_id": "6ae6bdc0a8826f6578a94007"
+      },
+      {
+        "id": "sub-telephone-set",
+        "name": "Telephone Set",
+        "slug": "telephone-set",
+        "_id": "6ae6bdc0a8826f6578a94008"
+      },
+      {
+        "id": "sub-ip-phone",
+        "name": "IP Phone",
+        "slug": "ip-phone",
+        "_id": "6ae6bdc0a8826f6578a94009"
+      },
+      {
+        "id": "sub-pabx-system",
+        "name": "PABX System",
+        "slug": "pabx-system",
+        "_id": "6ae6bdc0a8826f6578a9400a"
+      },
+      {
+        "id": "sub-money-counting-machine",
+        "name": "Money Counting Machine",
+        "slug": "money-counting-machine",
+        "_id": "6ae6bdc0a8826f6578a9400b"
+      },
+      {
+        "id": "sub-paper-shredder",
+        "name": "Paper Shredder",
+        "slug": "paper-shredder",
+        "_id": "6ae6bdc0a8826f6578a9400c"
+      },
+      {
+        "id": "sub-laminating-machine",
+        "name": "Laminating Machine",
+        "slug": "laminating-machine",
+        "_id": "6ae6bdc0a8826f6578a9400d"
+      },
+      {
+        "id": "sub-binding-machine",
+        "name": "Binding Machine",
+        "slug": "binding-machine",
+        "_id": "6ae6bdc0a8826f6578a9400e"
+      }
+    ]
+  },
+  {
+    "_id": "6ae6a0d14a4cfbe9d06e319e",
+    "slug": "security-camera",
+    "__v": 0,
+    "createdAt": "2026-11-01T02:15:45.460Z",
+    "description": "Find the best CCTV security solutions, IP cameras, CC cameras, DVR, NVR, access control, and security accessories with official warranty in Bangladesh.",
+    "icon": "Video",
+    "id": "cat-security-camera",
+    "image": "",
+    "isActive": true,
+    "name": "SECURITY CAMERA",
+    "order": 22,
+    "updatedAt": "2026-11-01T04:19:12.903Z",
+    "subcategories": [
+      {
+        "id": "sub-portable-wifi-camera",
+        "name": "Portable WiFi Camera",
+        "slug": "portable-wifi-camera",
+        "_id": "6ae6bdc0a8826f6578a9400f"
+      },
+      {
+        "id": "sub-ip-camera",
+        "name": "IP Camera",
+        "slug": "ip-camera",
+        "_id": "6ae6bdc0a8826f6578a94010"
+      },
+      {
+        "id": "sub-cc-camera",
+        "name": "CC Camera",
+        "slug": "cc-camera",
+        "_id": "6ae6bdc0a8826f6578a94011"
+      },
+      {
+        "id": "sub-ptz-camera",
+        "name": "PTZ Camera",
+        "slug": "ptz-camera",
+        "_id": "6ae6bdc0a8826f6578a94012"
+      },
+      {
+        "id": "sub-solar-camera",
+        "name": "Solar Camera",
+        "slug": "solar-camera",
+        "_id": "6ae6bdc0a8826f6578a94013"
+      },
+      {
+        "id": "sub-cc-camera-package",
+        "name": "CC Camera Package",
+        "slug": "cc-camera-package",
+        "_id": "6ae6bdc0a8826f6578a94014"
+      },
+      {
+        "id": "sub-ip-camera-package",
+        "name": "IP Camera Package",
+        "slug": "ip-camera-package",
+        "_id": "6ae6bdc0a8826f6578a94015"
+      },
+      {
+        "id": "sub-dvr",
+        "name": "DVR",
+        "slug": "dvr",
+        "_id": "6ae6bdc0a8826f6578a94016"
+      },
+      {
+        "id": "sub-nvr",
+        "name": "NVR",
+        "slug": "nvr",
+        "_id": "6ae6bdc0a8826f6578a94017"
+      },
+      {
+        "id": "sub-xvr",
+        "name": "XVR",
+        "slug": "xvr",
+        "_id": "6ae6bdc0a8826f6578a94018"
+      },
+      {
+        "id": "sub-cc-camera-accessories",
+        "name": "CC Camera Accessories",
+        "slug": "cc-camera-accessories",
+        "_id": "6ae6bdc0a8826f6578a94019"
+      },
+      {
+        "id": "sub-door-lock",
+        "name": "Door Lock",
+        "slug": "door-lock",
+        "_id": "6ae6bdc0a8826f6578a9401a"
+      },
+      {
+        "id": "sub-smart-door-bell",
+        "name": "Smart Door Bell",
+        "slug": "smart-door-bell",
+        "_id": "6ae6bdc0a8826f6578a9401b"
+      },
+      {
+        "id": "sub-access-control",
+        "name": "Access Control",
+        "slug": "access-control",
+        "_id": "6ae6bdc0a8826f6578a9401c"
+      },
+      {
+        "id": "sub-entrance-control",
+        "name": "Entrance Control",
+        "slug": "entrance-control",
+        "_id": "6ae6bdc0a8826f6578a9401d"
+      },
+      {
+        "id": "sub-digital-locker-vault",
+        "name": "Digital Locker & Vault",
+        "slug": "digital-locker-vault",
+        "_id": "6ae6bdc0a8826f6578a9401e"
+      },
+      {
+        "id": "sub-kvm-switch",
+        "name": "KVM Switch",
+        "slug": "kvm-switch",
+        "_id": "6ae6bdc0a8826f6578a9401f"
+      }
+    ]
+  },
+  {
+    "_id": "6af57fa7495d58170f10ae97",
+    "id": "cat-smart-home-iot",
+    "name": "SMART HOME IOT",
+    "slug": "smart-home-iot",
+    "image": "https://images.unsplash.com/photo-1558002038-1055907df827?w=600&q=80",
+    "icon": "Cpu",
+    "description": "Smart Home Automation, Smart WiFi Switches, Voice Control Devices, and Remote Sensors in Bangladesh.",
+    "order": 23,
+    "isActive": true,
+    "subcategories": [
+      {
+        "id": "sub-smart-wifi-switches",
+        "name": "Smart WiFi Switches",
+        "slug": "smart-wifi-switches",
+        "_id": "6af57fa7495d58170f10ae98"
+      },
+      {
+        "id": "sub-voice-control-devices",
+        "name": "Voice Control Devices",
+        "slug": "voice-control-devices",
+        "_id": "6af57fa7495d58170f10ae99"
+      },
+      {
+        "id": "sub-remote-sensor-monitor",
+        "name": "Remote & Sensor Monitor",
+        "slug": "remote-sensor-monitor",
+        "_id": "6af57fa7495d58170f10ae9a"
+      },
+      {
+        "id": "sub-smart-security-sensors",
+        "name": "Smart Sensors & Accessories",
+        "slug": "smart-sensors-accessories",
+        "_id": "6af57fa7495d58170f10ae9b"
+      }
+    ],
+    "createdAt": "2026-11-12T08:58:15.123Z",
+    "updatedAt": "2026-11-12T08:58:15.123Z",
+    "__v": 0
+  },
+  {
+    "_id": "6af57fa7495d58170f10ae9c",
+    "id": "cat-wind-energy",
+    "name": "WIND ENERGY",
+    "slug": "wind-energy",
+    "image": "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=600&q=80",
+    "icon": "Wind",
+    "description": "Wind Turbines, Wind Hybrid Controllers, and Wind Energy Solutions in Bangladesh.",
+    "order": 24,
+    "isActive": true,
+    "subcategories": [
+      {
+        "id": "sub-wind-turbine-generator",
+        "name": "Wind Turbine Generator",
+        "slug": "wind-turbine-generator",
+        "_id": "6af57fa7495d58170f10ae9d"
+      },
+      {
+        "id": "sub-wind-charge-controller",
+        "name": "Wind Hybrid Controller",
+        "slug": "wind-hybrid-controller",
+        "_id": "6af57fa7495d58170f10ae9e"
+      },
+      {
+        "id": "sub-wind-energy-accessories",
+        "name": "Wind Energy Accessories",
+        "slug": "wind-energy-accessories",
+        "_id": "6af57fa7495d58170f10ae9f"
+      }
+    ],
+    "createdAt": "2026-11-12T08:58:15.273Z",
+    "updatedAt": "2026-11-12T08:58:15.273Z",
+    "__v": 0
+  }
+]

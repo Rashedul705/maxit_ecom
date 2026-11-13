@@ -1,0 +1,115 @@
+[
+  {
+    "id": "src-solar-energy",
+    "name": "Solar Energy",
+    "slug": "solar-wind-energy",
+    "url": "https://bdshop.com/category/solar-wind-energy",
+    "totalProducts": 402,
+    "subcategories": [
+      {
+        "id": "src-solar-package",
+        "name": "Solar Package",
+        "slug": "solar-package",
+        "url": "https://bdshop.com/category/solar-package",
+        "totalProducts": 47
+      },
+      {
+        "id": "src-solar-inverter",
+        "name": "Solar Inverter",
+        "slug": "solar-inverter",
+        "url": "https://bdshop.com/category/solar-inverter",
+        "totalProducts": 130
+      },
+      {
+        "id": "src-solar-battery",
+        "name": "Solar Battery",
+        "slug": "solar-battery",
+        "url": "https://bdshop.com/category/solar-battery",
+        "totalProducts": 66
+      },
+      {
+        "id": "src-solar-accessories",
+        "name": "Solar Accessories",
+        "slug": "Solar-Accessories",
+        "url": "https://bdshop.com/category/Solar-Accessories",
+        "totalProducts": 68,
+        "nestedSubcategories": [
+          {
+            "name": "Solar Accessories & Connectors",
+            "description": "MC4 connectors, branch connectors, water drain clips, distribution boxes, terminal lugs",
+            "parentUrl": "https://bdshop.com/category/Solar-Accessories"
+          },
+          {
+            "name": "DC Protection & SPD",
+            "description": "DC circuit breakers, surge protective devices (SPD), auto phase selectors, lightning protection",
+            "parentUrl": "https://bdshop.com/category/Solar-Accessories"
+          },
+          {
+            "name": "Solar Mounting & Cables",
+            "description": "DC solar cables, battery cables, AC cables, earthing cables, mounting screws and roof hardware",
+            "parentUrl": "https://bdshop.com/category/Solar-Accessories"
+          }
+        ]
+      },
+      {
+        "id": "src-solar-panels",
+        "name": "Solar Panels",
+        "slug": "solar-panels",
+        "url": "https://bdshop.com/category/solar-panels",
+        "totalProducts": 24
+      },
+      {
+        "id": "src-solar-charge-controllers",
+        "name": "Solar Charge Controllers",
+        "slug": "charge-controllers",
+        "url": "https://bdshop.com/category/charge-controllers",
+        "totalProducts": 2
+      },
+      {
+        "id": "src-solar-station",
+        "name": "Solar Power Station",
+        "slug": "solar-station",
+        "url": "https://bdshop.com/category/solar-station",
+        "totalProducts": 65
+      }
+    ]
+  },
+  {
+    "id": "src-wind-energy",
+    "name": "Wind Energy",
+    "slug": "Wind-Energy",
+    "url": "https://bdshop.com/category/Wind-Energy",
+    "totalProducts": 0,
+    "subcategories": []
+  },
+  {
+    "id": "src-smart-home-iot",
+    "name": "Smart Home IoT",
+    "slug": "smart-home-iot",
+    "url": "https://bdshop.com/category/smart-home-iot",
+    "totalProducts": 89,
+    "subcategories": [
+      {
+        "id": "src-smart-wifi-switches",
+        "name": "Smart WiFi Switches",
+        "slug": "smart-wifi-switches",
+        "url": "https://bdshop.com/category/smart-wifi-switches",
+        "totalProducts": 36
+      },
+      {
+        "id": "src-voice-control-devices",
+        "name": "Voice Control Devices",
+        "slug": "voice-control-devices",
+        "url": "https://bdshop.com/category/voice-control-devices",
+        "totalProducts": 13
+      },
+      {
+        "id": "src-remote-sensor-monitor",
+        "name": "Remote & Sensor Monitor",
+        "slug": "remote-sensor-monitor",
+        "url": "https://bdshop.com/category/remote-sensor-monitor",
+        "totalProducts": 28
+      }
+    ]
+  }
+]

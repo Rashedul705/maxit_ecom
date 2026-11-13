@@ -609,16 +609,71 @@ const db = {
 
         if (category) {
           const c = category.trim();
+          const cleanSlug = c.replace(/^cat-/, '');
           filter.$or = [
-            { category: { $regex: new RegExp(`^${c}$`, 'i') } },
+            { category: { $regex: new RegExp(`^(cat-)?${cleanSlug}$`, 'i') } },
             { categoryName: { $regex: new RegExp(`^${c}$`, 'i') } },
-            { slug: { $regex: new RegExp(c, 'i') } }
+            { categoryName: { $regex: new RegExp(`^${cleanSlug.replace(/-/g, ' ')}$`, 'i') } }
           ];
         }
 
         const subCat = (sub || subcategory || '').trim();
         if (subCat) {
-          filter.subcategory = { $regex: new RegExp(`^${subCat}$`, 'i') };
+          const cleanSub = subCat.replace(/^sub-/, '');
+          let subCandidates = [cleanSub, `sub-${cleanSub}`, subCat, cleanSub.replace(/-/g, ' ')];
+
+          if (category) {
+            try {
+              const cleanCat = category.replace(/^cat-/, '');
+              const catDoc = await Category.findOne({
+                $or: [
+                  { slug: { $regex: new RegExp(`^(cat-)?${cleanCat}$`, 'i') } },
+                  { name: { $regex: new RegExp(`^${category}$`, 'i') } }
+                ]
+              }).lean();
+
+              if (catDoc && Array.isArray(catDoc.subcategories)) {
+                const targetSub = catDoc.subcategories.find(s =>
+                  s.slug === subCat ||
+                  s.slug === cleanSub ||
+                  s.id === subCat ||
+                  s.id === `sub-${subCat}` ||
+                  s.name.toLowerCase() === subCat.toLowerCase() ||
+                  s.slug.replace(/^sub-/, '') === cleanSub
+                );
+                if (targetSub) {
+                  const sClean = targetSub.slug.replace(/^sub-/, '');
+                  subCandidates.push(
+                    targetSub.id,
+                    targetSub.slug,
+                    `sub-${sClean}`,
+                    sClean,
+                    targetSub.name,
+                    sClean.replace(/-/g, ' ')
+                  );
+                }
+              }
+            } catch (e) {}
+          }
+
+          const uniqueCandidates = [...new Set(subCandidates.filter(Boolean))];
+          const subRegexList = uniqueCandidates.map(c => new RegExp(`^${c.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')}$`, 'i'));
+
+          const subMatchCondition = [
+            { subcategory: { $in: subRegexList } },
+            { subCategoryId: { $in: uniqueCandidates } },
+            { subCategory: { $in: uniqueCandidates } }
+          ];
+
+          if (filter.$or) {
+            filter.$and = (filter.$and || []).concat([
+              { $or: filter.$or },
+              { $or: subMatchCondition }
+            ]);
+            delete filter.$or;
+          } else {
+            filter.$or = subMatchCondition;
+          }
         }
 
         if (brand) {
@@ -727,6 +782,13 @@ const db = {
         return pc === c ||
                pc.replace(/[^a-z0-9]/g, '') === c.replace(/[^a-z0-9]/g, '') ||
                (p.categoryName && p.categoryName.toLowerCase().trim() === c);
+      });
+    }
+    if (sub || subcategory) {
+      const s = (sub || subcategory).toLowerCase().trim().replace(/^sub-/, '');
+      list = list.filter(p => {
+        const pSub = (p.subcategory || p.subCategory || p.subCategoryId || '').toLowerCase().trim().replace(/^sub-/, '');
+        return pSub === s || pSub.replace(/[^a-z0-9]/g, '') === s.replace(/[^a-z0-9]/g, '');
       });
     }
     if (brand) {

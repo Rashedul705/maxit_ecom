@@ -1,19 +1,28 @@
 node_modules
 .next
 dist
-# Environment Variables
+# Environment Variables (strictly protected)
 .env
 .env.*
+.env.local
+.env.*.local
+**/.env
+**/.env.*
+**/.env.local
+**/.env.*.local
+!**/.env.example
 !.env.example
+
 backend/.env
-frontend/.env
-frontend/.env.local
-storefront/.env
-storefront/.env.local
-admin/.env
-admin/.env.local
+backend/.env.*
 api/.env
-api/.env.local
+api/.env.*
+frontend/.env
+frontend/.env.*
+storefront/.env
+storefront/.env.*
+admin/.env
+admin/.env.*
 # Dev-only scraper/upload artifacts
 backend/output/
 api/output/

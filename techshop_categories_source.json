@@ -1,0 +1,785 @@
+[
+  {
+    "name": "Instruments",
+    "slug": "instruments",
+    "url": "https://techshopbd.com/category/instruments",
+    "subcategories": [
+      {
+        "name": "Signal Generator",
+        "slug": "signal-generator",
+        "url": "https://techshopbd.com/category/instruments/signal-generator"
+      },
+      {
+        "name": "Signal Analyzer",
+        "slug": "signal-analyzer",
+        "url": "https://techshopbd.com/category/instruments/signal-analyzer"
+      },
+      {
+        "name": "Analog Multimeter",
+        "slug": "analog-multimeter",
+        "url": "https://techshopbd.com/category/instruments/analog-multimeter"
+      },
+      {
+        "name": "Load Tester",
+        "slug": "load-tester",
+        "url": "https://techshopbd.com/category/instruments/load-tester"
+      },
+      {
+        "name": "Digital Oscilloscopes",
+        "slug": "digital-oscilloscopes",
+        "url": "https://techshopbd.com/category/instruments/digital-oscilloscopes"
+      },
+      {
+        "name": "Digital Multimeters",
+        "slug": "digital-multimeters",
+        "url": "https://techshopbd.com/category/instruments/digital-multimeters"
+      },
+      {
+        "name": "Calculator",
+        "slug": "calculator",
+        "url": "https://techshopbd.com/category/instruments/calculator"
+      },
+      {
+        "name": "Measurement",
+        "slug": "measurement",
+        "url": "https://techshopbd.com/category/instruments/measurement"
+      },
+      {
+        "name": "Power Supply",
+        "slug": "power-supply",
+        "url": "https://techshopbd.com/category/instruments/power-supply"
+      }
+    ]
+  },
+  {
+    "name": "Drone",
+    "slug": "drone",
+    "url": "https://techshopbd.com/category/drone",
+    "subcategories": [
+      {
+        "name": "Semi Professional Drone",
+        "slug": "semi-professional-drone",
+        "url": "https://techshopbd.com/category/drone/semi-professional-drone"
+      },
+      {
+        "name": "Professional Drone",
+        "slug": "professional-drone",
+        "url": "https://techshopbd.com/category/drone/professional-drone"
+      }
+    ]
+  },
+  {
+    "name": "Kits",
+    "slug": "kits",
+    "url": "https://techshopbd.com/category/kits",
+    "subcategories": [
+      {
+        "name": "Sensor Kits",
+        "slug": "sensor-kits",
+        "url": "https://techshopbd.com/category/kits/sensor-kits"
+      },
+      {
+        "name": "Robotic Kits",
+        "slug": "robotic-kits",
+        "url": "https://techshopbd.com/category/kits/robotic-kits"
+      },
+      {
+        "name": "Starter Kits",
+        "slug": "starter-kits",
+        "url": "https://techshopbd.com/category/kits/starter-kits"
+      },
+      {
+        "name": "Science Box",
+        "slug": "science-box",
+        "url": "https://techshopbd.com/category/kits/science-box"
+      },
+      {
+        "name": "Advanced kits",
+        "slug": "advanced-kits",
+        "url": "https://techshopbd.com/category/kits/advanced-kits"
+      }
+    ]
+  },
+  {
+    "name": "Maintenance Tools",
+    "slug": "maintenance-tools",
+    "url": "https://techshopbd.com/category/maintenance-tools",
+    "subcategories": [
+      {
+        "name": "Tools",
+        "slug": "tools",
+        "url": "https://techshopbd.com/category/maintenance-tools/tools"
+      }
+    ]
+  },
+  {
+    "name": "Home Automation",
+    "slug": "home-automation",
+    "url": "https://techshopbd.com/category/home-automation",
+    "subcategories": [
+      {
+        "name": "Rechargeable Fan",
+        "slug": "rechargeable-fan",
+        "url": "https://techshopbd.com/category/home-automation/rechargeable-fan"
+      },
+      {
+        "name": "Appliance",
+        "slug": "appliance",
+        "url": "https://techshopbd.com/category/home-automation/appliance"
+      },
+      {
+        "name": "IPS UPS Inverter",
+        "slug": "ips-ups-inverter",
+        "url": "https://techshopbd.com/category/home-automation/ips-ups-inverter"
+      },
+      {
+        "name": "Remote",
+        "slug": "remote",
+        "url": "https://techshopbd.com/category/home-automation/remote"
+      },
+      {
+        "name": "Timer",
+        "slug": "timer",
+        "url": "https://techshopbd.com/category/home-automation/timer"
+      },
+      {
+        "name": "Security System",
+        "slug": "security-system",
+        "url": "https://techshopbd.com/category/home-automation/security-system"
+      },
+      {
+        "name": "Automatic Light",
+        "slug": "automatic-light",
+        "url": "https://techshopbd.com/category/home-automation/automatic-light"
+      },
+      {
+        "name": "Automatic Switch",
+        "slug": "automatic-switch",
+        "url": "https://techshopbd.com/category/home-automation/automatic-switch"
+      },
+      {
+        "name": "IoT Device",
+        "slug": "iot-device",
+        "url": "https://techshopbd.com/category/home-automation/iot-device"
+      }
+    ]
+  },
+  {
+    "name": "3D Printer & Accessories",
+    "slug": "3d-printer-accessories",
+    "url": "https://techshopbd.com/category/3d-printer-accessories",
+    "subcategories": [
+      {
+        "name": "3D Printing Machines",
+        "slug": "3d-printing-machines",
+        "url": "https://techshopbd.com/category/3d-printer-accessories/3d-printing-machines"
+      },
+      {
+        "name": "3D Printer Filament",
+        "slug": "3d-printer-filament",
+        "url": "https://techshopbd.com/category/3d-printer-accessories/3d-printer-filament"
+      }
+    ]
+  },
+  {
+    "name": "Miscellaneous",
+    "slug": "miscellaneous",
+    "url": "https://techshopbd.com/category/miscellaneous",
+    "subcategories": [
+      {
+        "name": "Audio",
+        "slug": "audio",
+        "url": "https://techshopbd.com/category/miscellaneous/audio"
+      },
+      {
+        "name": "Screw",
+        "slug": "screw",
+        "url": "https://techshopbd.com/category/miscellaneous/screw"
+      },
+      {
+        "name": "Magnet",
+        "slug": "magnet",
+        "url": "https://techshopbd.com/category/miscellaneous/magnet"
+      },
+      {
+        "name": "Pump",
+        "slug": "pump",
+        "url": "https://techshopbd.com/category/miscellaneous/pump"
+      },
+      {
+        "name": "Solenoid",
+        "slug": "solenoid",
+        "url": "https://techshopbd.com/category/miscellaneous/solenoid"
+      },
+      {
+        "name": "Cooler",
+        "slug": "cooler",
+        "url": "https://techshopbd.com/category/miscellaneous/cooler"
+      },
+      {
+        "name": "Generator",
+        "slug": "generator",
+        "url": "https://techshopbd.com/category/miscellaneous/generator"
+      },
+      {
+        "name": "Charger",
+        "slug": "charger",
+        "url": "https://techshopbd.com/category/miscellaneous/charger"
+      },
+      {
+        "name": "Memory Card",
+        "slug": "memory-card",
+        "url": "https://techshopbd.com/category/miscellaneous/memory-card"
+      },
+      {
+        "name": "Keypad",
+        "slug": "keypad",
+        "url": "https://techshopbd.com/category/miscellaneous/keypad"
+      },
+      {
+        "name": "Battery",
+        "slug": "battery",
+        "url": "https://techshopbd.com/category/miscellaneous/battery"
+      },
+      {
+        "name": "Switch & Button",
+        "slug": "switch-button",
+        "url": "https://techshopbd.com/category/miscellaneous/switch-button"
+      },
+      {
+        "name": "Relay",
+        "slug": "relay",
+        "url": "https://techshopbd.com/category/miscellaneous/relay"
+      },
+      {
+        "name": "DC Fan",
+        "slug": "dc-fan",
+        "url": "https://techshopbd.com/category/miscellaneous/dc-fan"
+      },
+      {
+        "name": "Breadboard",
+        "slug": "breadboard",
+        "url": "https://techshopbd.com/category/miscellaneous/breadboard"
+      },
+      {
+        "name": "Crystal Oscillator",
+        "slug": "crystal-oscillator",
+        "url": "https://techshopbd.com/category/miscellaneous/crystal-oscillator"
+      },
+      {
+        "name": "Soldering",
+        "slug": "soldering",
+        "url": "https://techshopbd.com/category/miscellaneous/soldering"
+      },
+      {
+        "name": "Solar",
+        "slug": "solar",
+        "url": "https://techshopbd.com/category/miscellaneous/solar"
+      }
+    ]
+  },
+  {
+    "name": "Microcontroller",
+    "slug": "microcontroller",
+    "url": "https://techshopbd.com/category/microcontroller",
+    "subcategories": [
+      {
+        "name": "ARM Microcontroller",
+        "slug": "arm-microcontroller",
+        "url": "https://techshopbd.com/category/microcontroller/arm-microcontroller"
+      },
+      {
+        "name": "Data Converter",
+        "slug": "data-converter",
+        "url": "https://techshopbd.com/category/microcontroller/data-converter"
+      },
+      {
+        "name": "AVR Programmer",
+        "slug": "avr-programmer",
+        "url": "https://techshopbd.com/category/microcontroller/avr-programmer"
+      },
+      {
+        "name": "PIC Programmer",
+        "slug": "pic-programmer",
+        "url": "https://techshopbd.com/category/microcontroller/pic-programmer"
+      },
+      {
+        "name": "Other Microcontrollers & Accessories",
+        "slug": "other-microcontrollers-accessories",
+        "url": "https://techshopbd.com/category/microcontroller/other-microcontrollers-accessories"
+      },
+      {
+        "name": "AVR Microcontroller",
+        "slug": "avr-microcontroller",
+        "url": "https://techshopbd.com/category/microcontroller/avr-microcontroller"
+      },
+      {
+        "name": "PIC Microcontroller",
+        "slug": "pic-microcontroller",
+        "url": "https://techshopbd.com/category/microcontroller/pic-microcontroller"
+      }
+    ]
+  },
+  {
+    "name": "ESP",
+    "slug": "esp",
+    "url": "https://techshopbd.com/category/esp",
+    "subcategories": [
+      {
+        "name": "ESP8266",
+        "slug": "esp8266",
+        "url": "https://techshopbd.com/category/esp/esp8266"
+      },
+      {
+        "name": "ESP32",
+        "slug": "esp32",
+        "url": "https://techshopbd.com/category/esp/esp32"
+      }
+    ]
+  },
+  {
+    "name": "Arduino",
+    "slug": "arduino",
+    "url": "https://techshopbd.com/category/arduino",
+    "subcategories": [
+      {
+        "name": "Arduino Shield",
+        "slug": "arduino-shield",
+        "url": "https://techshopbd.com/category/arduino/arduino-shield"
+      },
+      {
+        "name": "Arduino Board",
+        "slug": "arduino-board",
+        "url": "https://techshopbd.com/category/arduino/arduino-board"
+      }
+    ]
+  },
+  {
+    "name": "Development Board",
+    "slug": "development-board",
+    "url": "https://techshopbd.com/category/development-board",
+    "subcategories": [
+      {
+        "name": "Raspberry Pi & Accessories",
+        "slug": "raspberry-pi-accessories",
+        "url": "https://techshopbd.com/category/development-board/raspberry-pi-accessories"
+      },
+      {
+        "name": "Other Development Board",
+        "slug": "other-development-board",
+        "url": "https://techshopbd.com/category/development-board/other-development-board"
+      },
+      {
+        "name": "ARM Development Board",
+        "slug": "arm-development-board",
+        "url": "https://techshopbd.com/category/development-board/arm-development-board"
+      },
+      {
+        "name": "FPGA Development Board",
+        "slug": "fpga-development-board",
+        "url": "https://techshopbd.com/category/development-board/fpga-development-board"
+      },
+      {
+        "name": "AVR Development Board",
+        "slug": "avr-development-board",
+        "url": "https://techshopbd.com/category/development-board/avr-development-board"
+      },
+      {
+        "name": "PIC Development Board",
+        "slug": "pic-development-board",
+        "url": "https://techshopbd.com/category/development-board/pic-development-board"
+      }
+    ]
+  },
+  {
+    "name": "Robotics",
+    "slug": "robotics",
+    "url": "https://techshopbd.com/category/robotics",
+    "subcategories": [
+      {
+        "name": "Propeller",
+        "slug": "propeller",
+        "url": "https://techshopbd.com/category/robotics/propeller"
+      },
+      {
+        "name": "Controller",
+        "slug": "controller",
+        "url": "https://techshopbd.com/category/robotics/controller"
+      },
+      {
+        "name": "Actuator",
+        "slug": "actuator",
+        "url": "https://techshopbd.com/category/robotics/actuator"
+      },
+      {
+        "name": "Robotics Sensor",
+        "slug": "robotics-sensor",
+        "url": "https://techshopbd.com/category/robotics/robotics-sensor"
+      },
+      {
+        "name": "Motor Driver",
+        "slug": "motor-driver",
+        "url": "https://techshopbd.com/category/robotics/motor-driver"
+      },
+      {
+        "name": "Motor",
+        "slug": "motor",
+        "url": "https://techshopbd.com/category/robotics/motor"
+      },
+      {
+        "name": "Wheel & Caster",
+        "slug": "wheel-caster",
+        "url": "https://techshopbd.com/category/robotics/wheel-caster"
+      },
+      {
+        "name": "Other Robotics",
+        "slug": "other-robotics",
+        "url": "https://techshopbd.com/category/robotics/other-robotics"
+      }
+    ]
+  },
+  {
+    "name": "Sensor",
+    "slug": "sensor",
+    "url": "https://techshopbd.com/category/sensor",
+    "subcategories": [
+      {
+        "name": "Sound",
+        "slug": "sound",
+        "url": "https://techshopbd.com/category/sensor/sound"
+      },
+      {
+        "name": "Motion",
+        "slug": "motion",
+        "url": "https://techshopbd.com/category/sensor/motion"
+      },
+      {
+        "name": "Weight",
+        "slug": "weight",
+        "url": "https://techshopbd.com/category/sensor/weight"
+      },
+      {
+        "name": "Water",
+        "slug": "water",
+        "url": "https://techshopbd.com/category/sensor/water"
+      },
+      {
+        "name": "Pressure",
+        "slug": "pressure",
+        "url": "https://techshopbd.com/category/sensor/pressure"
+      },
+      {
+        "name": "Moisture",
+        "slug": "moisture",
+        "url": "https://techshopbd.com/category/sensor/moisture"
+      },
+      {
+        "name": "Current",
+        "slug": "current",
+        "url": "https://techshopbd.com/category/sensor/current"
+      },
+      {
+        "name": "Gas",
+        "slug": "gas",
+        "url": "https://techshopbd.com/category/sensor/gas"
+      },
+      {
+        "name": "Flex",
+        "slug": "flex",
+        "url": "https://techshopbd.com/category/sensor/flex"
+      },
+      {
+        "name": "Gyro, Accelerometer & Compass",
+        "slug": "gyro-accelerometer-compass",
+        "url": "https://techshopbd.com/category/sensor/gyro-accelerometer-compass"
+      },
+      {
+        "name": "Biometrics",
+        "slug": "biometrics",
+        "url": "https://techshopbd.com/category/sensor/biometrics"
+      },
+      {
+        "name": "Other Sensor",
+        "slug": "other-sensor",
+        "url": "https://techshopbd.com/category/sensor/other-sensor"
+      },
+      {
+        "name": "Light",
+        "slug": "light",
+        "url": "https://techshopbd.com/category/sensor/light"
+      },
+      {
+        "name": "Temperature",
+        "slug": "temperature",
+        "url": "https://techshopbd.com/category/sensor/temperature"
+      }
+    ]
+  },
+  {
+    "name": "Wireless Transceiver",
+    "slug": "wireless-transceiver",
+    "url": "https://techshopbd.com/category/wireless-transceiver",
+    "subcategories": [
+      {
+        "name": "Xbee / Zigbee",
+        "slug": "xbee-zigbee",
+        "url": "https://techshopbd.com/category/wireless-transceiver/xbee-zigbee"
+      },
+      {
+        "name": "Bluetooth",
+        "slug": "bluetooth",
+        "url": "https://techshopbd.com/category/wireless-transceiver/bluetooth"
+      },
+      {
+        "name": "WiFi",
+        "slug": "wifi",
+        "url": "https://techshopbd.com/category/wireless-transceiver/wifi"
+      },
+      {
+        "name": "Antennas",
+        "slug": "antennas",
+        "url": "https://techshopbd.com/category/wireless-transceiver/antennas"
+      },
+      {
+        "name": "GSM, GPS & GPRS",
+        "slug": "gsm-gps-gprs",
+        "url": "https://techshopbd.com/category/wireless-transceiver/gsm-gps-gprs"
+      },
+      {
+        "name": "RF",
+        "slug": "rf",
+        "url": "https://techshopbd.com/category/wireless-transceiver/rf"
+      }
+    ]
+  },
+  {
+    "name": "Accessories",
+    "slug": "accessories",
+    "url": "https://techshopbd.com/category/accessories",
+    "subcategories": [
+      {
+        "name": "Computer Peripherals",
+        "slug": "computer-peripherals",
+        "url": "https://techshopbd.com/category/accessories/computer-peripherals"
+      },
+      {
+        "name": "Cable",
+        "slug": "cable",
+        "url": "https://techshopbd.com/category/accessories/cable"
+      },
+      {
+        "name": "Connector",
+        "slug": "connector",
+        "url": "https://techshopbd.com/category/accessories/connector"
+      }
+    ]
+  },
+  {
+    "name": "Display",
+    "slug": "display",
+    "url": "https://techshopbd.com/category/display",
+    "subcategories": [
+      {
+        "name": "Display Driver",
+        "slug": "display-driver",
+        "url": "https://techshopbd.com/category/display/display-driver"
+      },
+      {
+        "name": "LED Panel",
+        "slug": "led-panel",
+        "url": "https://techshopbd.com/category/display/led-panel"
+      },
+      {
+        "name": "Multi Segment",
+        "slug": "multi-segment",
+        "url": "https://techshopbd.com/category/display/multi-segment"
+      },
+      {
+        "name": "DOT Matrix",
+        "slug": "dot-matrix",
+        "url": "https://techshopbd.com/category/display/dot-matrix"
+      },
+      {
+        "name": "LCD, OLED & E-Ink",
+        "slug": "lcd-oled-e-ink",
+        "url": "https://techshopbd.com/category/display/lcd-oled-e-ink"
+      }
+    ]
+  },
+  {
+    "name": "Basic Component",
+    "slug": "basic-component",
+    "url": "https://techshopbd.com/category/basic-component",
+    "subcategories": [
+      {
+        "name": "Laser",
+        "slug": "laser",
+        "url": "https://techshopbd.com/category/basic-component/laser"
+      },
+      {
+        "name": "Inductor",
+        "slug": "inductor",
+        "url": "https://techshopbd.com/category/basic-component/inductor"
+      },
+      {
+        "name": "Resistor",
+        "slug": "resistor",
+        "url": "https://techshopbd.com/category/basic-component/resistor"
+      },
+      {
+        "name": "Capacitor",
+        "slug": "capacitor",
+        "url": "https://techshopbd.com/category/basic-component/capacitor"
+      },
+      {
+        "name": "LED",
+        "slug": "led",
+        "url": "https://techshopbd.com/category/basic-component/led"
+      },
+      {
+        "name": "Thyristor / SCR",
+        "slug": "thyristor-scr",
+        "url": "https://techshopbd.com/category/basic-component/thyristor-scr"
+      },
+      {
+        "name": "Diac & Triac",
+        "slug": "diac-triac",
+        "url": "https://techshopbd.com/category/basic-component/diac-triac"
+      },
+      {
+        "name": "Buzzer",
+        "slug": "buzzer",
+        "url": "https://techshopbd.com/category/basic-component/buzzer"
+      },
+      {
+        "name": "Diode",
+        "slug": "diode",
+        "url": "https://techshopbd.com/category/basic-component/diode"
+      },
+      {
+        "name": "Regulator",
+        "slug": "regulator",
+        "url": "https://techshopbd.com/category/basic-component/regulator"
+      },
+      {
+        "name": "Transistor",
+        "slug": "transistor",
+        "url": "https://techshopbd.com/category/basic-component/transistor"
+      },
+      {
+        "name": "MOSFET",
+        "slug": "mosfet",
+        "url": "https://techshopbd.com/category/basic-component/mosfet"
+      },
+      {
+        "name": "Optocoupler",
+        "slug": "optocoupler",
+        "url": "https://techshopbd.com/category/basic-component/optocoupler"
+      }
+    ]
+  },
+  {
+    "name": "General IC",
+    "slug": "general-ic",
+    "url": "https://techshopbd.com/category/general-ic",
+    "subcategories": [
+      {
+        "name": "RTC",
+        "slug": "rtc",
+        "url": "https://techshopbd.com/category/general-ic/rtc"
+      },
+      {
+        "name": "Driver",
+        "slug": "driver",
+        "url": "https://techshopbd.com/category/general-ic/driver"
+      },
+      {
+        "name": "Converter",
+        "slug": "converter",
+        "url": "https://techshopbd.com/category/general-ic/converter"
+      },
+      {
+        "name": "74 Family",
+        "slug": "74-family",
+        "url": "https://techshopbd.com/category/general-ic/74-family"
+      },
+      {
+        "name": "4000 Family",
+        "slug": "4000-family",
+        "url": "https://techshopbd.com/category/general-ic/4000-family"
+      },
+      {
+        "name": "Digital Rheostat",
+        "slug": "digital-rheostat",
+        "url": "https://techshopbd.com/category/general-ic/digital-rheostat"
+      },
+      {
+        "name": "Decoder",
+        "slug": "decoder",
+        "url": "https://techshopbd.com/category/general-ic/decoder"
+      },
+      {
+        "name": "Encoder",
+        "slug": "encoder",
+        "url": "https://techshopbd.com/category/general-ic/encoder"
+      },
+      {
+        "name": "EEPROM",
+        "slug": "eeprom",
+        "url": "https://techshopbd.com/category/general-ic/eeprom"
+      },
+      {
+        "name": "Gates",
+        "slug": "gates",
+        "url": "https://techshopbd.com/category/general-ic/gates"
+      },
+      {
+        "name": "Inverter",
+        "slug": "inverter",
+        "url": "https://techshopbd.com/category/general-ic/inverter"
+      },
+      {
+        "name": "LCD Driver",
+        "slug": "lcd-driver",
+        "url": "https://techshopbd.com/category/general-ic/lcd-driver"
+      },
+      {
+        "name": "Other IC",
+        "slug": "other-ic",
+        "url": "https://techshopbd.com/category/general-ic/other-ic"
+      },
+      {
+        "name": "Transceiver",
+        "slug": "transceiver",
+        "url": "https://techshopbd.com/category/general-ic/transceiver"
+      },
+      {
+        "name": "Timer & PWM",
+        "slug": "timer-pwm",
+        "url": "https://techshopbd.com/category/general-ic/timer-pwm"
+      },
+      {
+        "name": "OPAMP",
+        "slug": "opamp",
+        "url": "https://techshopbd.com/category/general-ic/opamp"
+      }
+    ]
+  },
+  {
+    "name": "Computer & Accessories",
+    "slug": "computer-accessories",
+    "url": "https://techshopbd.com/category/computer-accessories",
+    "subcategories": [
+      {
+        "name": "Projector",
+        "slug": "projector",
+        "url": "https://techshopbd.com/category/computer-accessories/projector"
+      },
+      {
+        "name": "Mini PC",
+        "slug": "mini-pc",
+        "url": "https://techshopbd.com/category/computer-accessories/mini-pc"
+      }
+    ]
+  }
+]

@@ -1,0 +1,265 @@
+const fs = require('fs');
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '../.env') });
+const mongoose = require('mongoose');
+const Category = require('../models/Category');
+
+async function main() {
+  if (process.env.MONGODB_URI) {
+    await mongoose.connect(process.env.MONGODB_URI);
+    console.log('Connected to MongoDB');
+  }
+
+  // 1. Check or create SMART HOME IOT
+  let smartHome = await Category.findOne({ slug: 'smart-home-iot' });
+  if (!smartHome) {
+    const count = await Category.countDocuments();
+    smartHome = await Category.create({
+      id: 'cat-smart-home-iot',
+      name: 'SMART HOME IOT',
+      slug: 'smart-home-iot',
+      image: 'https://images.unsplash.com/photo-1558002038-1055907df827?w=600&q=80',
+      icon: 'Cpu',
+      description: 'Smart Home Automation, Smart WiFi Switches, Voice Control Devices, and Remote Sensors in Bangladesh.',
+      order: count + 1,
+      isActive: true,
+      subcategories: [
+        { id: 'sub-smart-wifi-switches', name: 'Smart WiFi Switches', slug: 'smart-wifi-switches' },
+        { id: 'sub-voice-control-devices', name: 'Voice Control Devices', slug: 'voice-control-devices' },
+        { id: 'sub-remote-sensor-monitor', name: 'Remote & Sensor Monitor', slug: 'remote-sensor-monitor' },
+        { id: 'sub-smart-security-sensors', name: 'Smart Sensors & Accessories', slug: 'smart-sensors-accessories' }
+      ]
+    });
+    console.log('Created Category: SMART HOME IOT');
+  } else {
+    console.log('Category SMART HOME IOT already exists');
+  }
+
+  // 2. Check or create WIND ENERGY
+  let windEnergy = await Category.findOne({ slug: 'wind-energy' });
+  if (!windEnergy) {
+    const count = await Category.countDocuments();
+    windEnergy = await Category.create({
+      id: 'cat-wind-energy',
+      name: 'WIND ENERGY',
+      slug: 'wind-energy',
+      image: 'https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=600&q=80',
+      icon: 'Wind',
+      description: 'Wind Turbines, Wind Hybrid Controllers, and Wind Energy Solutions in Bangladesh.',
+      order: count + 1,
+      isActive: true,
+      subcategories: [
+        { id: 'sub-wind-turbine-generator', name: 'Wind Turbine Generator', slug: 'wind-turbine-generator' },
+        { id: 'sub-wind-charge-controller', name: 'Wind Hybrid Controller', slug: 'wind-hybrid-controller' },
+        { id: 'sub-wind-energy-accessories', name: 'Wind Energy Accessories', slug: 'wind-energy-accessories' }
+      ]
+    });
+    console.log('Created Category: WIND ENERGY');
+  } else {
+    console.log('Category WIND ENERGY already exists');
+  }
+
+  // 3. Build category_mapping.json
+  const mapping = {
+    "1. Solar Energy": {
+      "source": {
+        "name": "Solar Energy",
+        "slug": "solar-wind-energy",
+        "url": "https://bdshop.com/category/solar-wind-energy"
+      },
+      "action": "reused",
+      "targetCategory": {
+        "id": "cat-solar-energy",
+        "name": "SOLAR ENERGY",
+        "slug": "solar-energy"
+      },
+      "targetSubcategory": null,
+      "notes": "Umbrella solar category on our site. Products inside it will map to specific subcategories (Panels, Controllers, Accessories, Protection, Cables)."
+    },
+    "2. Wind Energy": {
+      "source": {
+        "name": "Wind Energy",
+        "slug": "Wind-Energy",
+        "url": "https://bdshop.com/category/Wind-Energy"
+      },
+      "action": "created",
+      "targetCategory": {
+        "id": "cat-wind-energy",
+        "name": "WIND ENERGY",
+        "slug": "wind-energy"
+      },
+      "targetSubcategory": null,
+      "notes": "Created new category on our site. Currently 0 active items on source, ready for wind products."
+    },
+    "3. Smart Home IoT": {
+      "source": {
+        "name": "Smart Home IoT",
+        "slug": "smart-home-iot",
+        "url": "https://bdshop.com/category/smart-home-iot"
+      },
+      "action": "created",
+      "targetCategory": {
+        "id": "cat-smart-home-iot",
+        "name": "SMART HOME IOT",
+        "slug": "smart-home-iot"
+      },
+      "targetSubcategory": {
+        "Smart WiFi Switches": { "id": "sub-smart-wifi-switches", "slug": "smart-wifi-switches", "name": "Smart WiFi Switches" },
+        "Voice Control Devices": { "id": "sub-voice-control-devices", "slug": "voice-control-devices", "name": "Voice Control Devices" },
+        "Remote & Sensor Monitor": { "id": "sub-remote-sensor-monitor", "slug": "remote-sensor-monitor", "name": "Remote & Sensor Monitor" }
+      },
+      "notes": "Created dedicated SMART HOME IOT category with subcategories matching WiFi switches, voice assistants, and smart sensors."
+    },
+    "4. Solar Package": {
+      "source": {
+        "name": "Solar Package",
+        "slug": "solar-package",
+        "url": "https://bdshop.com/category/solar-package"
+      },
+      "action": "reused",
+      "targetCategory": {
+        "id": "cat-solar-package",
+        "name": "SOLAR PACKAGE",
+        "slug": "solar-package"
+      },
+      "targetSubcategory": {
+        "Hybrid Solar Package": { "id": "sub-hybrid-solar-package", "slug": "hybrid-solar-package", "name": "Hybrid Solar Package" },
+        "Off-Grid Solar Package": { "id": "sub-off-grid-solar-package", "slug": "off-grid-solar-package", "name": "Off-Grid Solar Package" },
+        "On-Grid Solar Package": { "id": "sub-on-grid-solar-package", "slug": "on-grid-solar-package", "name": "On-Grid Solar Package" }
+      },
+      "notes": "Reused existing SOLAR PACKAGE category. Mapped into hybrid, on-grid, or off-grid package subcategory based on product title/specs."
+    },
+    "5. Solar Inverter": {
+      "source": {
+        "name": "Solar Inverter",
+        "slug": "solar-inverter",
+        "url": "https://bdshop.com/category/solar-inverter"
+      },
+      "action": "reused",
+      "targetCategory": {
+        "id": "cat-solar-inverter",
+        "name": "SOLAR INVERTER",
+        "slug": "solar-inverter"
+      },
+      "targetSubcategory": {
+        "Hybrid Solar Inverter": { "id": "sub-hybrid-solar-inverter", "slug": "hybrid-solar-inverter", "name": "Hybrid Solar Inverter" },
+        "On-Grid Solar Inverter": { "id": "sub-on-grid-solar-inverter", "slug": "on-grid-solar-inverter", "name": "On-Grid Solar Inverter" },
+        "Off-Grid Solar Inverter": { "id": "sub-off-grid-solar-inverter", "slug": "off-grid-solar-inverter", "name": "Off-Grid Solar Inverter" },
+        "Micro Inverter": { "id": "sub-micro-inverter", "slug": "micro-inverter", "name": "Micro Inverter" }
+      },
+      "notes": "Reused existing SOLAR INVERTER category. Mapped into hybrid, on-grid, off-grid or micro inverter."
+    },
+    "6. Solar Battery": {
+      "source": {
+        "name": "Solar Battery",
+        "slug": "solar-battery",
+        "url": "https://bdshop.com/category/solar-battery"
+      },
+      "action": "reused",
+      "targetCategory": {
+        "id": "cat-solar-battery",
+        "name": "SOLAR BATTERY",
+        "slug": "solar-battery"
+      },
+      "targetSubcategory": {
+        "Lithium Solar Battery (LiFePO4)": { "id": "sub-lithium-solar-battery", "slug": "lithium-solar-battery", "name": "Lithium Solar Battery (LiFePO4)" },
+        "Wall-Mount Solar Battery": { "id": "sub-wall-mount-solar-battery", "slug": "wall-mount-solar-battery", "name": "Wall-Mount Solar Battery" },
+        "High Voltage Battery System": { "id": "sub-high-voltage-battery-system", "slug": "high-voltage-battery-system", "name": "High Voltage Battery System" },
+        "Gel Battery": { "id": "sub-gel-battery", "slug": "gel-battery", "name": "Gel Battery" }
+      },
+      "notes": "Reused existing SOLAR BATTERY category. Mapped into LiFePO4, wall-mount, or high voltage."
+    },
+    "7. Solar Accessories": {
+      "source": {
+        "name": "Solar Accessories",
+        "slug": "Solar-Accessories",
+        "url": "https://bdshop.com/category/Solar-Accessories"
+      },
+      "action": "reused",
+      "targetCategory": {
+        "id": "cat-solar-energy",
+        "name": "SOLAR ENERGY",
+        "slug": "solar-energy"
+      },
+      "targetSubcategory": {
+        "Solar Accessories & Connectors": { "id": "sub-solar-accessories-connectors", "slug": "solar-accessories-connectors", "name": "Solar Accessories & Connectors" },
+        "DC Protection & SPD": { "id": "sub-dc-protection-spd", "slug": "dc-protection-spd", "name": "DC Protection & SPD" },
+        "Solar Mounting & Cables": { "id": "sub-solar-mounting-cables", "slug": "solar-mounting-cables", "name": "Solar Mounting & Cables" }
+      },
+      "notes": "Reused SOLAR ENERGY with subcategories 8, 9, 10 automatically classified by product attributes."
+    },
+    "8. Solar Accessories & Connectors": {
+      "source": {
+        "name": "Solar Accessories & Connectors (Part of Solar Accessories)",
+        "slug": "Solar-Accessories",
+        "url": "https://bdshop.com/category/Solar-Accessories"
+      },
+      "action": "reused",
+      "targetCategory": {
+        "id": "cat-solar-energy",
+        "name": "SOLAR ENERGY",
+        "slug": "solar-energy"
+      },
+      "targetSubcategory": {
+        "id": "sub-solar-accessories-connectors",
+        "name": "Solar Accessories & Connectors",
+        "slug": "solar-accessories-connectors"
+      },
+      "notes": "MC4 connectors, branch connectors, water drain clips, distribution boxes, terminal lugs, adapters."
+    },
+    "9. DC Protection & SPD": {
+      "source": {
+        "name": "DC Protection & SPD (Part of Solar Accessories)",
+        "slug": "Solar-Accessories",
+        "url": "https://bdshop.com/category/Solar-Accessories"
+      },
+      "action": "reused",
+      "targetCategory": {
+        "id": "cat-solar-energy",
+        "name": "SOLAR ENERGY",
+        "slug": "solar-energy"
+      },
+      "targetSubcategory": {
+        "id": "sub-dc-protection-spd",
+        "name": "DC Protection & SPD",
+        "slug": "dc-protection-spd"
+      },
+      "notes": "Surge protection devices (SPD), DC MCCB/MCB breakers, lightning arresters, auto phase selectors, fuse holders."
+    },
+    "10. Solar Mounting & Cables": {
+      "source": {
+        "name": "Solar Mounting & Cables (Part of Solar Accessories)",
+        "slug": "Solar-Accessories",
+        "url": "https://bdshop.com/category/Solar-Accessories"
+      },
+      "action": "reused",
+      "targetCategory": {
+        "id": "cat-solar-energy",
+        "name": "SOLAR ENERGY",
+        "slug": "solar-energy"
+      },
+      "targetSubcategory": {
+        "id": "sub-solar-mounting-cables",
+        "name": "Solar Mounting & Cables",
+        "slug": "solar-mounting-cables"
+      },
+      "notes": "UV resistant DC solar cables, flexible battery cables, AC cables, earthing cables, solar mounting rails, roofing screws, end/mid clamps."
+    }
+  };
+
+  fs.writeFileSync('category_mapping.json', JSON.stringify(mapping, null, 2), 'utf-8');
+  console.log('Saved category_mapping.json successfully');
+
+  // Also refresh categories_ours.json with the updated category list
+  const allCats = await Category.find({ isActive: { $ne: false } }).sort({ order: 1 }).lean();
+  fs.writeFileSync('categories_ours.json', JSON.stringify(allCats, null, 2), 'utf-8');
+  console.log('Refreshed categories_ours.json with', allCats.length, 'categories');
+
+  process.exit(0);
+}
+
+main().catch(err => {
+  console.error(err);
+  process.exit(1);
+});
+

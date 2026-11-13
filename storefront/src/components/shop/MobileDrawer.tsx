@@ -130,6 +130,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, onClose, cat
           <div className="p-4 space-y-3 text-sm text-slate-600">
             <Link href="/about" onClick={onClose} className="block hover:text-blue-600">About MaxiTShop</Link>
             <Link href="/contact" onClick={onClose} className="block hover:text-blue-600">Contact Us</Link>
+            <Link href="/shop" onClick={onClose} className="block font-medium text-[#0468D3] hover:text-blue-700">Shop Catalog</Link>
             <Link href="/faq" onClick={onClose} className="block hover:text-blue-600">FAQ</Link>
             <Link href="/shipping-returns" onClick={onClose} className="block hover:text-blue-600">Shipping & Returns</Link>
             <Link href="/terms" onClick={onClose} className="block hover:text-blue-600">Terms & Conditions</Link>
@@ -139,11 +140,11 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, onClose, cat
         {/* Drawer Footer with Hotline */}
         <div className="p-4 bg-slate-900 text-white border-t border-slate-800">
           <a
-            href="tel:+8801700000000"
+            href="tel:+8801733272445"
             className="flex items-center justify-center gap-2 w-full py-2.5 bg-blue-600 hover:bg-blue-700 rounded-lg text-sm font-semibold transition-colors shadow-xs"
           >
             <Phone className="w-4 h-4" />
-            <span>Call Hotline: +880 1700-000000</span>
+            <span>Call Hotline: 01733272445</span>
           </a>
         </div>
       </div>

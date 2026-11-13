@@ -13,14 +13,29 @@ export default function ContactPage() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Graceful submission delay
-    await new Promise((r) => setTimeout(r, 700));
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+    setErrorMessage('');
+    try {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5002/api/v1';
+      const res = await fetch(`${apiUrl}/contact`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        throw new Error(data.message || 'Failed to send message');
+      }
+      setIsSubmitted(true);
+    } catch (err: any) {
+      setErrorMessage(err.message || 'Something went wrong. Please call our hotline.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -280,6 +295,13 @@ export default function ContactPage() {
                       placeholder="Tell us about your project or inquiry..."
                     />
                   </div>
+
+                  {/* Error Notification */}
+                  {errorMessage && (
+                    <div className="p-3 bg-red-50 text-red-700 text-xs rounded-xl border border-red-200">
+                      ⚠️ {errorMessage}
+                    </div>
+                  )}
 
                   {/* Send Button */}
                   <button

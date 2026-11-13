@@ -171,4 +171,47 @@ router.delete('/moderators/:id', requireSuperAdmin, async (req, res, next) => {
   }
 });
 
+// POST /api/v1/admin/send-test-email - Test SMTP email delivery
+router.post('/send-test-email', requireAdminAuth, async (req, res, next) => {
+  try {
+    const emailService = require('../services/emailService');
+    const { to } = req.body;
+    const result = await emailService.sendTestEmail(to);
+    if (!result.success) {
+      return errorResponse(res, `Failed to send test email: ${result.error || result.message}`, 500);
+    }
+    return successResponse(res, result, `Test email successfully sent to ${to || process.env.SMTP_USER}`);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// GET /api/v1/admin/sms-balance - Check BulkSMSBD balance
+router.get('/sms-balance', requireAdminAuth, async (req, res, next) => {
+  try {
+    const smsService = require('../services/smsService');
+    const result = await smsService.getBalance();
+    return successResponse(res, result);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// POST /api/v1/admin/send-test-sms - Send test SMS
+router.post('/send-test-sms', requireAdminAuth, async (req, res, next) => {
+  try {
+    const smsService = require('../services/smsService');
+    const { number, message } = req.body;
+    const target = number || process.env.ADMIN_PHONE || '8801733272445';
+    const text = message || 'MaxiTShop: Test SMS notification via BulkSMSBD.';
+    const result = await smsService.sendSms(target, text);
+    if (!result.success) {
+      return errorResponse(res, `SMS delivery status: ${result.error || result.message}`, 400);
+    }
+    return successResponse(res, result, `Test SMS sent to ${target}`);
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = router;

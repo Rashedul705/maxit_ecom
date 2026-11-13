@@ -272,21 +272,6 @@ export const Footer: React.FC = () => {
 
         </div>
 
-        {/* Google Map Embedded Location matching https://www.m4xit.com */}
-        <div className="w-full mt-12 pt-8 border-t border-slate-800">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3634.103439609135!2d88.59531817559223!3d24.377704764404523!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14644734df7254d%3A0x9ca140a46bae1fa1!2sMax%20iT%20Solution!5e0!3m2!1sen!2sbd!4v1793392757385!5m2!1sen!2sbd"
-            width="100%"
-            height={450}
-            style={{ border: 0 }}
-            allowFullScreen={true}
-            loading="lazy"
-            referrerPolicy="strict-origin-when-cross-origin"
-            title="Max iT Solution Google Maps Location"
-            className="w-full h-[450px]"
-          />
-        </div>
-
         {/* Copyright notice */}
         <div className="border-t border-slate-800 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-gray-500 text-[11px]">
           <p>© 2026 Max iT Solution. All rights reserved. · <Link href="/admin" className="hover:text-[#FF6600] transition-colors underline">Admin Portal</Link></p>
