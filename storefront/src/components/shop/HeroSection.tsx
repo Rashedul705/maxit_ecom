@@ -17,6 +17,12 @@ import {
   Car,
   Activity,
   Zap,
+  Wind,
+  Camera,
+  Briefcase,
+  Bot,
+  Radio,
+  Printer,
   ChevronRight as ArrowRightIcon
 } from 'lucide-react';
 import { Category, Banner } from '@/lib/types';
@@ -28,26 +34,58 @@ interface HeroSectionProps {
 
 const getCategoryIcon = (slug: string) => {
   switch (slug) {
+    case 'solar-energy':
+    case 'solar-inverter':
+    case 'solar-battery':
+    case 'solar-package':
     case 'solar-green-energy':
       return <Sun className="w-4 h-4 text-[#FF6600]" />;
+    case 'wind-energy':
+      return <Wind className="w-4 h-4 text-sky-500" />;
+    case 'battery-bms-charger':
+    case 'ups-battery':
+    case 'portable-power-station':
     case 'batteries-inverters':
       return <BatteryCharging className="w-4 h-4 text-emerald-600" />;
-    case 'industrial-automation':
+    case 'esp':
+    case 'arduino':
+    case 'microcontroller':
+    case 'development-board':
       return <Cpu className="w-4 h-4 text-blue-600" />;
-    case 'consumer-electronics':
-      return <Tv className="w-4 h-4 text-purple-600" />;
-    case 'smart-home-security':
-      return <ShieldCheck className="w-4 h-4 text-amber-600" />;
-    case 'gadgets-accessories':
-      return <Headphones className="w-4 h-4 text-pink-600" />;
+    case 'security-camera':
+      return <Camera className="w-4 h-4 text-amber-600" />;
+    case 'office-equipment':
     case 'computers-office':
-      return <Laptop className="w-4 h-4 text-cyan-600" />;
+      return <Briefcase className="w-4 h-4 text-cyan-600" />;
+    case 'online-ups':
+    case 'ups':
+    case 'voltage-stabilizer':
+    case 'lt-ht-power-goods':
+      return <Zap className="w-4 h-4 text-amber-500" />;
+    case 'smart-home-iot':
+    case 'home-automation':
+    case 'automation-process-cont.':
+      return <ShieldCheck className="w-4 h-4 text-emerald-500" />;
+    case 'robotics':
+      return <Bot className="w-4 h-4 text-indigo-500" />;
+    case 'drone':
+    case 'wireless-transceiver':
+      return <Radio className="w-4 h-4 text-blue-500" />;
+    case '3d-printer-accessories':
+      return <Printer className="w-4 h-4 text-purple-600" />;
+    case 'sensor':
+    case 'modules-&-sensor':
+    case 'instruments':
+      return <Activity className="w-4 h-4 text-rose-600" />;
+    case 'tools---hardware':
+    case 'maintenance-tools':
     case 'tools-measurement':
       return <Wrench className="w-4 h-4 text-orange-600" />;
-    case 'electric-vehicles-spares':
-      return <Car className="w-4 h-4 text-teal-600" />;
-    case 'health-lifestyle':
-      return <Activity className="w-4 h-4 text-rose-600" />;
+    case 'computer-accessories':
+    case 'server-networking':
+      return <Laptop className="w-4 h-4 text-sky-600" />;
+    case 'consumer-electronics':
+      return <Tv className="w-4 h-4 text-purple-600" />;
     default:
       return <Zap className="w-4 h-4 text-[#FF6600]" />;
   }

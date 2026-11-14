@@ -508,20 +508,15 @@ const db = {
 
   // --- CATEGORIES ---
   async getCategories() {
-    const sortBySolarAndOrder = (list) => {
-      return [...list].sort((a, b) => {
-        const aIsSolar = (a.slug === 'solar-energy' || /solar/i.test(a.name || '')) ? 0 : 1;
-        const bIsSolar = (b.slug === 'solar-energy' || /solar/i.test(b.name || '')) ? 0 : 1;
-        if (aIsSolar !== bIsSolar) return aIsSolar - bIsSolar;
-        return (a.order || 0) - (b.order || 0);
-      });
+    const sortByOrder = (list) => {
+      return [...list].sort((a, b) => (a.order || 0) - (b.order || 0));
     };
 
     if (isMongo()) {
       const docs = await Category.find({ isActive: { $ne: false } }).sort({ order: 1 }).lean();
-      if (docs && docs.length) return sortBySolarAndOrder(docs);
+      if (docs && docs.length) return sortByOrder(docs);
     }
-    return sortBySolarAndOrder(memoryStore.categories.filter(c => c.isActive !== false));
+    return sortByOrder(memoryStore.categories.filter(c => c.isActive !== false));
   },
 
   async getCategoryBySlug(slug) {

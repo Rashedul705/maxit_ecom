@@ -26,8 +26,9 @@ export default async function HomePage() {
     brands = brandsData;
 
     // Fetch products per category individually so each section shows its own products
+    // Priority order: Solar, Wind, Battery, ESP, Camera, Office Equipment
     if (categories.length > 0) {
-      const targetCategories = categories.slice(0, 6);
+      const targetCategories = categories.slice(0, 11);
       const groupResults = await Promise.all(
         targetCategories.map(async (cat) => {
           const data = await api.getProducts({ category: cat.slug, limit: 8 }).catch(() => ({ items: [] }));

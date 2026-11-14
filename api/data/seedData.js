@@ -10,7 +10,7 @@ module.exports = {
       "order": 1,
       "isActive": true,
       "createdAt": "2026-10-26T19:33:03.574Z",
-      "updatedAt": "2026-11-03T06:38:28.582Z",
+      "updatedAt": "2026-11-14T18:47:32.859Z",
       "subcategories": [
         {
           "id": "sub-solar-energy-1",
@@ -54,7 +54,7 @@ module.exports = {
       "isActive": true,
       "name": "SOLAR INVERTER",
       "order": 2,
-      "updatedAt": "2026-11-03T06:35:19.107Z",
+      "updatedAt": "2026-11-14T18:47:33.188Z",
       "subcategories": [
         {
           "id": "sub-solar-inverter-1",
@@ -89,534 +89,6 @@ module.exports = {
       ]
     },
     {
-      "slug": "online-ups",
-      "createdAt": "2026-10-31T09:26:49.053Z",
-      "description": "High performance pure sine wave online UPS systems for enterprise and home equipment.",
-      "icon": "Zap",
-      "id": "cat-online-ups",
-      "image": "https://i.ibb.co/FLTP3THX/Must-EH55-H1-K3-1-KVA-Online-UPS.webp",
-      "isActive": true,
-      "name": "ONLINE UPS",
-      "order": 3,
-      "updatedAt": "2026-11-03T06:35:19.416Z",
-      "subcategories": [
-        {
-          "id": "sub-online-ups-1",
-          "name": "1KVA - 3KVA Online UPS",
-          "slug": "1kva-3kva-online-ups",
-          "_id": "6ae980a7be9d58f571b958c9"
-        },
-        {
-          "id": "sub-online-ups-2",
-          "name": "6KVA - 10KVA Online UPS",
-          "slug": "6kva-10kva-online-ups",
-          "_id": "6ae980a7be9d58f571b958ca"
-        },
-        {
-          "id": "sub-online-ups-3",
-          "name": "3 Phase Online UPS",
-          "slug": "3-phase-online-ups",
-          "_id": "6ae980a7be9d58f571b958cb"
-        },
-        {
-          "id": "sub-online-ups-4",
-          "name": "Rack Mount Online UPS",
-          "slug": "rack-mount-online-ups",
-          "_id": "6ae980a7be9d58f571b958cc"
-        },
-        {
-          "id": "sub-online-ups-5",
-          "name": "Modular Online UPS",
-          "slug": "modular-online-ups",
-          "_id": "6ae980a7be9d58f571b958cd"
-        }
-      ]
-    },
-    {
-      "slug": "voltage-stabilizer",
-      "createdAt": "2026-10-31T09:41:11.277Z",
-      "description": "Automatic voltage regulators and servo stabilizers for sensitive industrial and residential appliances.",
-      "icon": "Activity",
-      "id": "cat-voltage-stabilizer",
-      "image": "https://i.ibb.co/DPt7VtGc/Tecnoware-FSTEL75-KT-75-KVA-Elec.jpg",
-      "isActive": true,
-      "name": "VOLTAGE STABILIZER",
-      "order": 4,
-      "updatedAt": "2026-11-03T06:35:19.516Z",
-      "subcategories": [
-        {
-          "id": "sub-voltage-stabilizer-1",
-          "name": "Servo Voltage Stabilizer",
-          "slug": "servo-voltage-stabilizer",
-          "_id": "6ae980a7be9d58f571b958ce"
-        },
-        {
-          "id": "sub-voltage-stabilizer-2",
-          "name": "Relay Type Stabilizer",
-          "slug": "relay-type-stabilizer",
-          "_id": "6ae980a7be9d58f571b958cf"
-        },
-        {
-          "id": "sub-voltage-stabilizer-3",
-          "name": "3-Phase Industrial Stabilizer",
-          "slug": "3-phase-industrial-stabilizer",
-          "_id": "6ae980a7be9d58f571b958d0"
-        },
-        {
-          "id": "sub-voltage-stabilizer-4",
-          "name": "Digital Display Stabilizer",
-          "slug": "digital-display-stabilizer",
-          "_id": "6ae980a7be9d58f571b958d1"
-        },
-        {
-          "id": "sub-voltage-stabilizer-5",
-          "name": "Static Voltage Regulator",
-          "slug": "static-voltage-regulator",
-          "_id": "6ae980a7be9d58f571b958d2"
-        }
-      ]
-    },
-    {
-      "id": "cat-lt-ht-power-goods",
-      "name": "LT-HT POWER GOODS",
-      "slug": "lt-ht-power-goods",
-      "image": "https://www.nanopowerbd.com/public/uploads/category/1776918494-dropout-e3.webp",
-      "icon": "https://www.nanopowerbd.com/public/uploads/category/1776918494-dropout-e3.webp",
-      "description": "Transformers, Drop-out Fuses, Vacuum Circuit Breakers & Switchgear",
-      "order": 5,
-      "isActive": true,
-      "createdAt": "2026-10-26T19:33:03.574Z",
-      "updatedAt": "2026-11-03T06:35:19.616Z",
-      "subcategories": [
-        {
-          "id": "sub-lt-ht-power-goods-1",
-          "name": "Distribution Transformer",
-          "slug": "distribution-transformer",
-          "_id": "6ae980a7be9d58f571b958d3"
-        },
-        {
-          "id": "sub-lt-ht-power-goods-2",
-          "name": "Lightning Arrester",
-          "slug": "lightning-arrester",
-          "_id": "6ae980a7be9d58f571b958d4"
-        },
-        {
-          "id": "sub-lt-ht-power-goods-3",
-          "name": "Dropout Fuse & Cutout",
-          "slug": "dropout-fuse-cutout",
-          "_id": "6ae980a7be9d58f571b958d5"
-        },
-        {
-          "id": "sub-lt-ht-power-goods-4",
-          "name": "HT Switchgear & Panels",
-          "slug": "ht-switchgear-panels",
-          "_id": "6ae980a7be9d58f571b958d6"
-        },
-        {
-          "id": "sub-lt-ht-power-goods-5",
-          "name": "Circuit Breakers (MCCB / MCB)",
-          "slug": "circuit-breakers-mccb-mcb",
-          "_id": "6ae980a7be9d58f571b958d7"
-        }
-      ]
-    },
-    {
-      "id": "cat-modules-sensor",
-      "name": "MODULES & SENSOR",
-      "slug": "modules-&-sensor",
-      "image": "https://www.nanopowerbd.com/public/uploads/category/1776918353-18650-2s-bms.webp",
-      "icon": "https://www.nanopowerbd.com/public/uploads/category/1776918353-18650-2s-bms.webp",
-      "description": "Current Sensors, Temperature, Proximity, Relay Modules & Smart Controllers",
-      "order": 6,
-      "isActive": true,
-      "createdAt": "2026-10-26T19:33:03.574Z",
-      "updatedAt": "2026-11-03T06:35:19.727Z",
-      "subcategories": [
-        {
-          "id": "sub-modules-sensor-1",
-          "name": "ESP32 & Arduino Modules",
-          "slug": "esp32-arduino-modules",
-          "_id": "6ae980a7be9d58f571b958d8"
-        },
-        {
-          "id": "sub-modules-sensor-2",
-          "name": "Water Level Sensors",
-          "slug": "water-level-sensors",
-          "_id": "6ae980a7be9d58f571b958d9"
-        },
-        {
-          "id": "sub-modules-sensor-3",
-          "name": "Motion & PIR Sensors",
-          "slug": "motion-pir-sensors",
-          "_id": "6ae980a7be9d58f571b958da"
-        },
-        {
-          "id": "sub-modules-sensor-4",
-          "name": "Temperature & Humidity Sensors",
-          "slug": "temperature-humidity-sensors",
-          "_id": "6ae980a7be9d58f571b958db"
-        },
-        {
-          "id": "sub-modules-sensor-5",
-          "name": "GPS & RTC Modules",
-          "slug": "gps-rtc-modules",
-          "_id": "6ae980a7be9d58f571b958dc"
-        }
-      ]
-    },
-    {
-      "id": "cat-igbt-fet-diode-transistor",
-      "name": "IGBT-FET-DIODE-TRANSISTOR",
-      "slug": "igbt-fet-diode-transistor",
-      "image": "https://www.nanopowerbd.com/public/uploads/category/1778045900-fet-&amp;-igbt.webp",
-      "icon": "https://www.nanopowerbd.com/public/uploads/category/1778045900-fet-&amp;-igbt.webp",
-      "description": "Power IGBT Modules, Fast Recovery Diodes, MOSFETs & Power Transistors",
-      "order": 7,
-      "isActive": true,
-      "createdAt": "2026-10-26T19:33:03.574Z",
-      "updatedAt": "2026-11-03T06:35:19.824Z",
-      "subcategories": [
-        {
-          "id": "sub-igbt-fet-diode-transistor-1",
-          "name": "MOSFET",
-          "slug": "mosfet",
-          "_id": "6ae980a7be9d58f571b958dd"
-        },
-        {
-          "id": "sub-igbt-fet-diode-transistor-2",
-          "name": "IGBT Module",
-          "slug": "igbt-module",
-          "_id": "6ae980a7be9d58f571b958de"
-        },
-        {
-          "id": "sub-igbt-fet-diode-transistor-3",
-          "name": "Schottky Diode",
-          "slug": "schottky-diode",
-          "_id": "6ae980a7be9d58f571b958df"
-        },
-        {
-          "id": "sub-igbt-fet-diode-transistor-4",
-          "name": "Power Transistor",
-          "slug": "power-transistor",
-          "_id": "6ae980a7be9d58f571b958e0"
-        },
-        {
-          "id": "sub-igbt-fet-diode-transistor-5",
-          "name": "Bridge Rectifier",
-          "slug": "bridge-rectifier",
-          "_id": "6ae980a7be9d58f571b958e1"
-        }
-      ]
-    },
-    {
-      "id": "cat-electronics-parts",
-      "name": "ELECTRONICS PARTS",
-      "slug": "electronics-parts",
-      "image": "https://www.nanopowerbd.com/public/uploads/category/1776918073-atmega328p.webp",
-      "icon": "https://www.nanopowerbd.com/public/uploads/category/1776918073-atmega328p.webp",
-      "description": "Microcontrollers, Capacitors, Resistors, Optocouplers & Connectors",
-      "order": 8,
-      "isActive": true,
-      "createdAt": "2026-10-26T19:33:03.574Z",
-      "updatedAt": "2026-11-03T06:35:19.921Z",
-      "subcategories": [
-        {
-          "id": "sub-electronics-parts-1",
-          "name": "Microcontroller & IC",
-          "slug": "microcontroller-ic",
-          "_id": "6ae980a7be9d58f571b958e2"
-        },
-        {
-          "id": "sub-electronics-parts-2",
-          "name": "Driver IC & Optocoupler",
-          "slug": "driver-ic-optocoupler",
-          "_id": "6ae980a7be9d58f571b958e3"
-        },
-        {
-          "id": "sub-electronics-parts-3",
-          "name": "Power Management IC",
-          "slug": "power-management-ic",
-          "_id": "6ae980a7be9d58f571b958e4"
-        },
-        {
-          "id": "sub-electronics-parts-4",
-          "name": "Capacitor & Resistor",
-          "slug": "capacitor-resistor",
-          "_id": "6ae980a7be9d58f571b958e5"
-        },
-        {
-          "id": "sub-electronics-parts-5",
-          "name": "Heat Sink & Enclosure",
-          "slug": "heat-sink-enclosure",
-          "_id": "6ae980a7be9d58f571b958e6"
-        }
-      ]
-    },
-    {
-      "id": "cat-safety-security",
-      "name": "SAFETY - SECURITY",
-      "slug": "safety---security",
-      "image": "https://www.nanopowerbd.com/public/uploads/category/1776918982-dahua-goods.webp",
-      "icon": "https://www.nanopowerbd.com/public/uploads/category/1776918982-dahua-goods.webp",
-      "description": "IP Cameras, NVR, Smart Door Locks, Fire Extinguishers & Industrial Safety",
-      "order": 9,
-      "isActive": true,
-      "createdAt": "2026-10-26T19:33:03.573Z",
-      "updatedAt": "2026-11-03T06:35:20.019Z",
-      "subcategories": [
-        {
-          "id": "sub-safety-security-1",
-          "name": "Fire Extinguisher & Aerosol",
-          "slug": "fire-extinguisher-aerosol",
-          "_id": "6ae980a8be9d58f571b958e7"
-        },
-        {
-          "id": "sub-safety-security-2",
-          "name": "Warning Lights & Sirens",
-          "slug": "warning-lights-sirens",
-          "_id": "6ae980a8be9d58f571b958e8"
-        },
-        {
-          "id": "sub-safety-security-3",
-          "name": "Industrial Safety Equipment",
-          "slug": "industrial-safety-equipment",
-          "_id": "6ae980a8be9d58f571b958e9"
-        },
-        {
-          "id": "sub-safety-security-4",
-          "name": "Electrical Insulation Gear",
-          "slug": "electrical-insulation-gear",
-          "_id": "6ae980a8be9d58f571b958ea"
-        },
-        {
-          "id": "sub-safety-security-5",
-          "name": "Security Surveillance",
-          "slug": "security-surveillance",
-          "_id": "6ae980a8be9d58f571b958eb"
-        }
-      ]
-    },
-    {
-      "id": "cat-tools-hardware",
-      "name": "TOOLS - HARDWARE",
-      "slug": "tools---hardware",
-      "image": "https://www.nanopowerbd.com/public/uploads/category/1777472468-0.25-inch-quick-ratchet-wrench-spanner.webp",
-      "icon": "https://www.nanopowerbd.com/public/uploads/category/1777472468-0.25-inch-quick-ratchet-wrench-spanner.webp",
-      "description": "Multimeters, Crimping Tools, Hex Keys, Soldering Stations & Precision Kits",
-      "order": 10,
-      "isActive": true,
-      "createdAt": "2026-10-26T19:33:03.573Z",
-      "updatedAt": "2026-11-03T06:35:20.120Z",
-      "subcategories": [
-        {
-          "id": "sub-tools-hardware-1",
-          "name": "Digital Multimeter & Clamp Meter",
-          "slug": "digital-multimeter-clamp-meter",
-          "_id": "6ae980a8be9d58f571b958ec"
-        },
-        {
-          "id": "sub-tools-hardware-2",
-          "name": "Spot Welding Machine & Rods",
-          "slug": "spot-welding-machine-rods",
-          "_id": "6ae980a8be9d58f571b958ed"
-        },
-        {
-          "id": "sub-tools-hardware-3",
-          "name": "Cutting Disc & Abrasives",
-          "slug": "cutting-disc-abrasives",
-          "_id": "6ae980a8be9d58f571b958ee"
-        },
-        {
-          "id": "sub-tools-hardware-4",
-          "name": "Screwdriver & Wrench Sets",
-          "slug": "screwdriver-wrench-sets",
-          "_id": "6ae980a8be9d58f571b958ef"
-        },
-        {
-          "id": "sub-tools-hardware-5",
-          "name": "Fasteners & Royal Bolts",
-          "slug": "fasteners-royal-bolts",
-          "_id": "6ae980a8be9d58f571b958f0"
-        }
-      ]
-    },
-    {
-      "id": "cat-automation-process-cont",
-      "name": "AUTOMATION-PROCESS CONT.",
-      "slug": "automation-process-cont.",
-      "image": "https://www.nanopowerbd.com/public/uploads/category/1776919527-electrical-test-instruments.webp",
-      "icon": "https://www.nanopowerbd.com/public/uploads/category/1776919527-electrical-test-instruments.webp",
-      "description": "Siemens PLC, VFD Drives, HMI Displays & Industrial Automation Cards",
-      "order": 11,
-      "isActive": true,
-      "createdAt": "2026-10-26T19:33:03.574Z",
-      "updatedAt": "2026-11-03T06:35:20.219Z",
-      "subcategories": [
-        {
-          "id": "sub-automation-process-cont-1",
-          "name": "Programmable Logic Controller (PLC)",
-          "slug": "programmable-logic-controller-plc",
-          "_id": "6ae980a8be9d58f571b958f1"
-        },
-        {
-          "id": "sub-automation-process-cont-2",
-          "name": "Variable Frequency Drive (VFD)",
-          "slug": "variable-frequency-drive-vfd",
-          "_id": "6ae980a8be9d58f571b958f2"
-        },
-        {
-          "id": "sub-automation-process-cont-3",
-          "name": "Digital Timer & Switch",
-          "slug": "digital-timer-switch",
-          "_id": "6ae980a8be9d58f571b958f3"
-        },
-        {
-          "id": "sub-automation-process-cont-4",
-          "name": "Human Machine Interface (HMI)",
-          "slug": "human-machine-interface-hmi",
-          "_id": "6ae980a8be9d58f571b958f4"
-        },
-        {
-          "id": "sub-automation-process-cont-5",
-          "name": "Industrial Relays & Contactors",
-          "slug": "industrial-relays-contactors",
-          "_id": "6ae980a8be9d58f571b958f5"
-        }
-      ]
-    },
-    {
-      "id": "cat-battery-bms-charger",
-      "name": "BATTERY-BMS-CHARGER",
-      "slug": "battery-bms-charger",
-      "image": "https://www.nanopowerbd.com/public/uploads/category/1776919212-lithium-ion-battery.webp",
-      "icon": "https://www.nanopowerbd.com/public/uploads/category/1776919212-lithium-ion-battery.webp",
-      "description": "LiFePO4, Lithium Ion Batteries, Active Balancers, Smart BMS & Chargers",
-      "order": 12,
-      "isActive": true,
-      "createdAt": "2026-10-26T19:33:03.572Z",
-      "updatedAt": "2026-11-03T06:35:20.318Z",
-      "subcategories": [
-        {
-          "id": "sub-battery-bms-charger-1",
-          "name": "LiFePO4 Battery Cells",
-          "slug": "lifepo4-battery-cells",
-          "_id": "6ae980a8be9d58f571b958f6"
-        },
-        {
-          "id": "sub-battery-bms-charger-2",
-          "name": "Smart BMS",
-          "slug": "smart-bms",
-          "_id": "6ae980a8be9d58f571b958f7"
-        },
-        {
-          "id": "sub-battery-bms-charger-3",
-          "name": "Lithium Battery Charger",
-          "slug": "lithium-battery-charger",
-          "_id": "6ae980a8be9d58f571b958f8"
-        },
-        {
-          "id": "sub-battery-bms-charger-4",
-          "name": "Battery Balancer & Equalizer",
-          "slug": "battery-balancer-equalizer",
-          "_id": "6ae980a8be9d58f571b958f9"
-        },
-        {
-          "id": "sub-battery-bms-charger-5",
-          "name": "Spot Welder & Accessories",
-          "slug": "spot-welder-accessories",
-          "_id": "6ae980a8be9d58f571b958fa"
-        }
-      ]
-    },
-    {
-      "id": "cat-customized-circuit-pcb",
-      "name": "CUSTOMIZED CIRCUIT - PCB",
-      "slug": "customized-circuit---pcb",
-      "image": "https://www.nanopowerbd.com/public/uploads/category/1776919114-servo-avr-control-card.webp",
-      "icon": "https://www.nanopowerbd.com/public/uploads/category/1776919114-servo-avr-control-card.webp",
-      "description": "Custom Servo AVR Control Cards, Inverter Motherboards & Circuit Solutions",
-      "order": 14,
-      "isActive": true,
-      "createdAt": "2026-10-26T19:33:03.573Z",
-      "updatedAt": "2026-11-03T06:35:20.417Z",
-      "subcategories": [
-        {
-          "id": "sub-customized-circuit-pcb-1",
-          "name": "IPS & UPS Circuit Board",
-          "slug": "ips-ups-circuit-board",
-          "_id": "6ae980a8be9d58f571b958fb"
-        },
-        {
-          "id": "sub-customized-circuit-pcb-2",
-          "name": "Solar VFD Controller",
-          "slug": "solar-vfd-controller",
-          "_id": "6ae980a8be9d58f571b958fc"
-        },
-        {
-          "id": "sub-customized-circuit-pcb-3",
-          "name": "Servo AVR Control Card",
-          "slug": "servo-avr-control-card",
-          "_id": "6ae980a8be9d58f571b958fd"
-        },
-        {
-          "id": "sub-customized-circuit-pcb-4",
-          "name": "Custom PCB Fabrication",
-          "slug": "custom-pcb-fabrication",
-          "_id": "6ae980a8be9d58f571b958fe"
-        },
-        {
-          "id": "sub-customized-circuit-pcb-5",
-          "name": "Power Supply Boards",
-          "slug": "power-supply-boards",
-          "_id": "6ae980a8be9d58f571b958ff"
-        }
-      ]
-    },
-    {
-      "id": "cat-service-maintenance",
-      "name": "SERVICE & MAINTENANCE",
-      "slug": "service-&-maintenance",
-      "image": "https://www.nanopowerbd.com/public/uploads/category/1776919326-inverter-repairing-services-500x500.webp",
-      "icon": "https://www.nanopowerbd.com/public/uploads/category/1776919326-inverter-repairing-services-500x500.webp",
-      "description": "Solar Inverter Repairing, IPS Maintenance & Engineering Service Support",
-      "order": 15,
-      "isActive": true,
-      "createdAt": "2026-10-26T19:33:03.574Z",
-      "updatedAt": "2026-11-03T06:35:20.518Z",
-      "subcategories": [
-        {
-          "id": "sub-service-maintenance-1",
-          "name": "Inverter Repair & Servicing",
-          "slug": "inverter-repair-servicing",
-          "_id": "6ae980a8be9d58f571b95900"
-        },
-        {
-          "id": "sub-service-maintenance-2",
-          "name": "Transformer Maintenance",
-          "slug": "transformer-maintenance",
-          "_id": "6ae980a8be9d58f571b95901"
-        },
-        {
-          "id": "sub-service-maintenance-3",
-          "name": "VFD Drive Repair",
-          "slug": "vfd-drive-repair",
-          "_id": "6ae980a8be9d58f571b95902"
-        },
-        {
-          "id": "sub-service-maintenance-4",
-          "name": "UPS Servicing & Battery Replacement",
-          "slug": "ups-servicing-battery-replacement",
-          "_id": "6ae980a8be9d58f571b95903"
-        },
-        {
-          "id": "sub-service-maintenance-5",
-          "name": "Industrial Automation Support",
-          "slug": "industrial-automation-support",
-          "_id": "6ae980a8be9d58f571b95904"
-        }
-      ]
-    },
-    {
       "slug": "solar-battery",
       "createdAt": "2026-10-31T13:34:35.846Z",
       "description": "High performance LiFePO4 lithium and deep cycle solar batteries for residential, industrial, and off-grid solar energy systems.",
@@ -625,8 +97,8 @@ module.exports = {
       "image": "https://i.ibb.co/w10z5hL/Hithium-Hero-EE-16-16k-Wh-Lithiu.webp",
       "isActive": true,
       "name": "SOLAR BATTERY",
-      "order": 15,
-      "updatedAt": "2026-11-03T06:35:19.208Z",
+      "order": 3,
+      "updatedAt": "2026-11-14T18:47:33.238Z",
       "subcategories": [
         {
           "id": "sub-solar-battery-1",
@@ -669,8 +141,8 @@ module.exports = {
       "image": "https://i.ibb.co/KzQ2MKb9/Marsriva-2k-W-Off-Grid-Hybrid-S.webp",
       "isActive": true,
       "name": "SOLAR PACKAGE",
-      "order": 16,
-      "updatedAt": "2026-11-03T06:35:19.308Z",
+      "order": 4,
+      "updatedAt": "2026-11-14T18:47:33.289Z",
       "subcategories": [
         {
           "id": "sub-solar-package-1",
@@ -705,46 +177,78 @@ module.exports = {
       ]
     },
     {
-      "slug": "ups",
-      "createdAt": "2026-10-31T13:59:52.295Z",
-      "description": "Offline and line-interactive uninterruptible power supply (UPS) systems for desktop computers, workstations, and home electronics.",
-      "icon": "Zap",
-      "id": "cat-ups",
-      "image": "https://i.ibb.co/XxKLxhYB/Digital-X-650-VA-Offline-UPS.jpg",
+      "id": "cat-wind-energy",
+      "name": "WIND ENERGY",
+      "slug": "wind-energy",
+      "image": "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=600&q=80",
+      "icon": "Wind",
+      "description": "Wind Turbines, Wind Hybrid Controllers, and Wind Energy Solutions in Bangladesh.",
+      "order": 5,
       "isActive": true,
-      "name": "UPS",
-      "order": 17,
-      "updatedAt": "2026-11-03T06:35:20.618Z",
       "subcategories": [
         {
-          "id": "sub-ups-1",
-          "name": "650VA Offline UPS",
-          "slug": "650va-offline-ups",
-          "_id": "6ae980a8be9d58f571b95905"
+          "id": "sub-wind-turbine-generator",
+          "name": "Wind Turbine Generator",
+          "slug": "wind-turbine-generator",
+          "_id": "6af57fa7495d58170f10ae9d"
         },
         {
-          "id": "sub-ups-2",
-          "name": "1200VA Offline UPS",
-          "slug": "1200va-offline-ups",
-          "_id": "6ae980a8be9d58f571b95906"
+          "id": "sub-wind-charge-controller",
+          "name": "Wind Hybrid Controller",
+          "slug": "wind-hybrid-controller",
+          "_id": "6af57fa7495d58170f10ae9e"
         },
         {
-          "id": "sub-ups-3",
-          "name": "Mini DC UPS for Router",
-          "slug": "mini-dc-ups-router",
-          "_id": "6ae980a8be9d58f571b95907"
+          "id": "sub-wind-energy-accessories",
+          "name": "Wind Energy Accessories",
+          "slug": "wind-energy-accessories",
+          "_id": "6af57fa7495d58170f10ae9f"
+        }
+      ],
+      "createdAt": "2026-11-12T08:58:15.273Z",
+      "updatedAt": "2026-11-14T18:47:33.339Z"
+    },
+    {
+      "id": "cat-battery-bms-charger",
+      "name": "BATTERY-BMS-CHARGER",
+      "slug": "battery-bms-charger",
+      "image": "https://www.nanopowerbd.com/public/uploads/category/1776919212-lithium-ion-battery.webp",
+      "icon": "https://www.nanopowerbd.com/public/uploads/category/1776919212-lithium-ion-battery.webp",
+      "description": "LiFePO4, Lithium Ion Batteries, Active Balancers, Smart BMS & Chargers",
+      "order": 6,
+      "isActive": true,
+      "createdAt": "2026-10-26T19:33:03.572Z",
+      "updatedAt": "2026-11-14T18:47:33.388Z",
+      "subcategories": [
+        {
+          "id": "sub-battery-bms-charger-1",
+          "name": "LiFePO4 Battery Cells",
+          "slug": "lifepo4-battery-cells",
+          "_id": "6ae980a8be9d58f571b958f6"
         },
         {
-          "id": "sub-ups-4",
-          "name": "Line Interactive UPS",
-          "slug": "line-interactive-ups",
-          "_id": "6ae980a8be9d58f571b95908"
+          "id": "sub-battery-bms-charger-2",
+          "name": "Smart BMS",
+          "slug": "smart-bms",
+          "_id": "6ae980a8be9d58f571b958f7"
         },
         {
-          "id": "sub-ups-5",
-          "name": "Long Backup Home UPS",
-          "slug": "long-backup-home-ups",
-          "_id": "6ae980a8be9d58f571b95909"
+          "id": "sub-battery-bms-charger-3",
+          "name": "Lithium Battery Charger",
+          "slug": "lithium-battery-charger",
+          "_id": "6ae980a8be9d58f571b958f8"
+        },
+        {
+          "id": "sub-battery-bms-charger-4",
+          "name": "Battery Balancer & Equalizer",
+          "slug": "battery-balancer-equalizer",
+          "_id": "6ae980a8be9d58f571b958f9"
+        },
+        {
+          "id": "sub-battery-bms-charger-5",
+          "name": "Spot Welder & Accessories",
+          "slug": "spot-welder-accessories",
+          "_id": "6ae980a8be9d58f571b958fa"
         }
       ]
     },
@@ -757,8 +261,8 @@ module.exports = {
       "image": "https://i.ibb.co/0pkxfYkm/KENSON-KS4-4-V-4-5-AH-Rechargeab.jpg",
       "isActive": true,
       "name": "UPS BATTERY",
-      "order": 18,
-      "updatedAt": "2026-11-03T06:35:20.716Z",
+      "order": 7,
+      "updatedAt": "2026-11-14T18:47:33.438Z",
       "subcategories": [
         {
           "id": "sub-ups-battery-1",
@@ -795,8 +299,8 @@ module.exports = {
       "image": "https://i.ibb.co/yFMpvSLG/Eco-SONIC-SL82-L2-300-W-Portable.webp",
       "isActive": true,
       "name": "PORTABLE POWER STATION",
-      "order": 19,
-      "updatedAt": "2026-11-03T06:35:20.816Z",
+      "order": 8,
+      "updatedAt": "2026-11-14T18:47:33.487Z",
       "subcategories": [
         {
           "id": "sub-portable-power-station-1",
@@ -825,94 +329,144 @@ module.exports = {
       ]
     },
     {
-      "slug": "server-networking",
-      "createdAt": "2026-10-31T17:34:11.568Z",
-      "description": "Enterprise servers, server processors, server racks, NAS/SAN storage, and networking hardware with official warranty in Bangladesh.",
-      "icon": "Server",
-      "id": "cat-server-networking",
-      "image": "",
+      "slug": "esp",
+      "createdAt": "2026-11-12T20:45:53.976Z",
+      "description": "ESP32, ESP8266 Wi-Fi & Bluetooth IoT development boards, modules, camera shields and adapters.",
+      "icon": "https://admin.techshopbd.com/uploads/product/ESP8266-ESP-03-Wifi-Module.jpg",
+      "id": "cat-esp",
+      "image": "https://admin.techshopbd.com/uploads/product/ESP8266-ESP-03-Wifi-Module.jpg",
       "isActive": true,
-      "name": "SERVER & NETWORKING",
-      "order": 20,
-      "updatedAt": "2026-11-01T04:19:13.016Z",
+      "name": "ESP",
+      "order": 9,
       "subcategories": [
         {
-          "id": "sub-server",
-          "name": "Server",
-          "slug": "server",
-          "_id": "6ae6bdc1a8826f6578a94020"
+          "id": "sub-esp-1",
+          "name": "ESP8266",
+          "slug": "esp8266",
+          "_id": "6af62874de49e6ad2dfc910e"
         },
         {
-          "id": "sub-gpu-server",
-          "name": "GPU Server",
-          "slug": "gpu-server",
-          "_id": "6ae6bdc1a8826f6578a94021"
+          "id": "sub-esp-2",
+          "name": "ESP32",
+          "slug": "esp32",
+          "_id": "6af62874de49e6ad2dfc910f"
+        }
+      ],
+      "updatedAt": "2026-11-14T18:47:33.537Z"
+    },
+    {
+      "slug": "security-camera",
+      "createdAt": "2026-11-01T02:15:45.460Z",
+      "description": "Find the best CCTV security solutions, IP cameras, CC cameras, DVR, NVR, access control, and security accessories with official warranty in Bangladesh.",
+      "icon": "Video",
+      "id": "cat-security-camera",
+      "image": "https://www.startech.com.bd/image/cache/catalog/nvr/hikvision/ds-7916nxi-i4-s/ds-7916nxi-i4-s-500x500.webp",
+      "isActive": true,
+      "name": "SECURITY CAMERA",
+      "order": 10,
+      "updatedAt": "2026-11-14T18:47:33.586Z",
+      "subcategories": [
+        {
+          "id": "sub-portable-wifi-camera",
+          "name": "Portable WiFi Camera",
+          "slug": "portable-wifi-camera",
+          "_id": "6ae6bdc0a8826f6578a9400f"
         },
         {
-          "id": "sub-workstation",
-          "name": "Workstation",
-          "slug": "workstation",
-          "_id": "6ae6bdc1a8826f6578a94022"
+          "id": "sub-ip-camera",
+          "name": "IP Camera",
+          "slug": "ip-camera",
+          "_id": "6ae6bdc0a8826f6578a94010"
         },
         {
-          "id": "sub-server-rack",
-          "name": "Server Rack",
-          "slug": "server-rack",
-          "_id": "6ae6bdc1a8826f6578a94023"
+          "id": "sub-cc-camera",
+          "name": "CC Camera",
+          "slug": "cc-camera",
+          "_id": "6ae6bdc0a8826f6578a94011"
         },
         {
-          "id": "sub-nas-storage",
-          "name": "NAS Storage",
-          "slug": "nas-storage",
-          "_id": "6ae6bdc1a8826f6578a94024"
+          "id": "sub-ptz-camera",
+          "name": "PTZ Camera",
+          "slug": "ptz-camera",
+          "_id": "6ae6bdc0a8826f6578a94012"
         },
         {
-          "id": "sub-san-storage",
-          "name": "SAN Storage",
-          "slug": "san-storage",
-          "_id": "6ae6bdc1a8826f6578a94025"
+          "id": "sub-solar-camera",
+          "name": "Solar Camera",
+          "slug": "solar-camera",
+          "_id": "6ae6bdc0a8826f6578a94013"
         },
         {
-          "id": "sub-das-storage",
-          "name": "DAS Storage",
-          "slug": "das-storage",
-          "_id": "6ae6bdc1a8826f6578a94026"
+          "id": "sub-cc-camera-package",
+          "name": "CC Camera Package",
+          "slug": "cc-camera-package",
+          "_id": "6ae6bdc0a8826f6578a94014"
         },
         {
-          "id": "sub-server-hdd",
-          "name": "Server HDD",
-          "slug": "server-hdd",
-          "_id": "6ae6bdc1a8826f6578a94027"
+          "id": "sub-ip-camera-package",
+          "name": "IP Camera Package",
+          "slug": "ip-camera-package",
+          "_id": "6ae6bdc0a8826f6578a94015"
         },
         {
-          "id": "sub-server-hdd-bay",
-          "name": "Server HDD Bay",
-          "slug": "server-hdd-bay",
-          "_id": "6ae6bdc1a8826f6578a94028"
+          "id": "sub-dvr",
+          "name": "DVR",
+          "slug": "dvr",
+          "_id": "6ae6bdc0a8826f6578a94016"
         },
         {
-          "id": "sub-server-ram",
-          "name": "Server RAM",
-          "slug": "server-ram",
-          "_id": "6ae6bdc1a8826f6578a94029"
+          "id": "sub-nvr",
+          "name": "NVR",
+          "slug": "nvr",
+          "_id": "6ae6bdc0a8826f6578a94017"
         },
         {
-          "id": "sub-server-ssd",
-          "name": "Server SSD",
-          "slug": "server-ssd",
-          "_id": "6ae6bdc1a8826f6578a9402a"
+          "id": "sub-xvr",
+          "name": "XVR",
+          "slug": "xvr",
+          "_id": "6ae6bdc0a8826f6578a94018"
         },
         {
-          "id": "sub-server-power-supply",
-          "name": "Server Power Supply",
-          "slug": "server-power-supply",
-          "_id": "6ae6bdc1a8826f6578a9402b"
+          "id": "sub-cc-camera-accessories",
+          "name": "CC Camera Accessories",
+          "slug": "cc-camera-accessories",
+          "_id": "6ae6bdc0a8826f6578a94019"
         },
         {
-          "id": "sub-server-processor",
-          "name": "Server Processor",
-          "slug": "server-processor",
-          "_id": "6ae6bdc1a8826f6578a9402c"
+          "id": "sub-door-lock",
+          "name": "Door Lock",
+          "slug": "door-lock",
+          "_id": "6ae6bdc0a8826f6578a9401a"
+        },
+        {
+          "id": "sub-smart-door-bell",
+          "name": "Smart Door Bell",
+          "slug": "smart-door-bell",
+          "_id": "6ae6bdc0a8826f6578a9401b"
+        },
+        {
+          "id": "sub-access-control",
+          "name": "Access Control",
+          "slug": "access-control",
+          "_id": "6ae6bdc0a8826f6578a9401c"
+        },
+        {
+          "id": "sub-entrance-control",
+          "name": "Entrance Control",
+          "slug": "entrance-control",
+          "_id": "6ae6bdc0a8826f6578a9401d"
+        },
+        {
+          "id": "sub-digital-locker-vault",
+          "name": "Digital Locker & Vault",
+          "slug": "digital-locker-vault",
+          "_id": "6ae6bdc0a8826f6578a9401e"
+        },
+        {
+          "id": "sub-kvm-switch",
+          "name": "KVM Switch",
+          "slug": "kvm-switch",
+          "_id": "6ae6bdc0a8826f6578a9401f"
         }
       ]
     },
@@ -922,11 +476,11 @@ module.exports = {
       "description": "Printers, projectors, scanners, photocopiers, paper shredders, and conference systems with official warranty in Bangladesh.",
       "icon": "Briefcase",
       "id": "cat-office-equipment",
-      "image": "",
+      "image": "https://www.startech.com.bd/image/cache/catalog/projector/optoma/zw521/zw521-04-500x500.webp",
       "isActive": true,
       "name": "OFFICE EQUIPMENT",
-      "order": 21,
-      "updatedAt": "2026-11-01T04:19:12.822Z",
+      "order": 11,
+      "updatedAt": "2026-11-14T18:47:33.636Z",
       "subcategories": [
         {
           "id": "sub-projector",
@@ -1117,118 +671,178 @@ module.exports = {
       ]
     },
     {
-      "slug": "security-camera",
-      "createdAt": "2026-11-01T02:15:45.460Z",
-      "description": "Find the best CCTV security solutions, IP cameras, CC cameras, DVR, NVR, access control, and security accessories with official warranty in Bangladesh.",
-      "icon": "Video",
-      "id": "cat-security-camera",
-      "image": "",
+      "slug": "online-ups",
+      "createdAt": "2026-10-31T09:26:49.053Z",
+      "description": "High performance pure sine wave online UPS systems for enterprise and home equipment.",
+      "icon": "Zap",
+      "id": "cat-online-ups",
+      "image": "https://i.ibb.co/FLTP3THX/Must-EH55-H1-K3-1-KVA-Online-UPS.webp",
       "isActive": true,
-      "name": "SECURITY CAMERA",
-      "order": 22,
-      "updatedAt": "2026-11-01T04:19:12.903Z",
+      "name": "ONLINE UPS",
+      "order": 12,
+      "updatedAt": "2026-11-14T18:47:33.688Z",
       "subcategories": [
         {
-          "id": "sub-portable-wifi-camera",
-          "name": "Portable WiFi Camera",
-          "slug": "portable-wifi-camera",
-          "_id": "6ae6bdc0a8826f6578a9400f"
+          "id": "sub-online-ups-1",
+          "name": "1KVA - 3KVA Online UPS",
+          "slug": "1kva-3kva-online-ups",
+          "_id": "6ae980a7be9d58f571b958c9"
         },
         {
-          "id": "sub-ip-camera",
-          "name": "IP Camera",
-          "slug": "ip-camera",
-          "_id": "6ae6bdc0a8826f6578a94010"
+          "id": "sub-online-ups-2",
+          "name": "6KVA - 10KVA Online UPS",
+          "slug": "6kva-10kva-online-ups",
+          "_id": "6ae980a7be9d58f571b958ca"
         },
         {
-          "id": "sub-cc-camera",
-          "name": "CC Camera",
-          "slug": "cc-camera",
-          "_id": "6ae6bdc0a8826f6578a94011"
+          "id": "sub-online-ups-3",
+          "name": "3 Phase Online UPS",
+          "slug": "3-phase-online-ups",
+          "_id": "6ae980a7be9d58f571b958cb"
         },
         {
-          "id": "sub-ptz-camera",
-          "name": "PTZ Camera",
-          "slug": "ptz-camera",
-          "_id": "6ae6bdc0a8826f6578a94012"
+          "id": "sub-online-ups-4",
+          "name": "Rack Mount Online UPS",
+          "slug": "rack-mount-online-ups",
+          "_id": "6ae980a7be9d58f571b958cc"
         },
         {
-          "id": "sub-solar-camera",
-          "name": "Solar Camera",
-          "slug": "solar-camera",
-          "_id": "6ae6bdc0a8826f6578a94013"
+          "id": "sub-online-ups-5",
+          "name": "Modular Online UPS",
+          "slug": "modular-online-ups",
+          "_id": "6ae980a7be9d58f571b958cd"
+        }
+      ]
+    },
+    {
+      "slug": "ups",
+      "createdAt": "2026-10-31T13:59:52.295Z",
+      "description": "Offline and line-interactive uninterruptible power supply (UPS) systems for desktop computers, workstations, and home electronics.",
+      "icon": "Zap",
+      "id": "cat-ups",
+      "image": "https://i.ibb.co/XxKLxhYB/Digital-X-650-VA-Offline-UPS.jpg",
+      "isActive": true,
+      "name": "UPS",
+      "order": 13,
+      "updatedAt": "2026-11-14T18:47:33.738Z",
+      "subcategories": [
+        {
+          "id": "sub-ups-1",
+          "name": "650VA Offline UPS",
+          "slug": "650va-offline-ups",
+          "_id": "6ae980a8be9d58f571b95905"
         },
         {
-          "id": "sub-cc-camera-package",
-          "name": "CC Camera Package",
-          "slug": "cc-camera-package",
-          "_id": "6ae6bdc0a8826f6578a94014"
+          "id": "sub-ups-2",
+          "name": "1200VA Offline UPS",
+          "slug": "1200va-offline-ups",
+          "_id": "6ae980a8be9d58f571b95906"
         },
         {
-          "id": "sub-ip-camera-package",
-          "name": "IP Camera Package",
-          "slug": "ip-camera-package",
-          "_id": "6ae6bdc0a8826f6578a94015"
+          "id": "sub-ups-3",
+          "name": "Mini DC UPS for Router",
+          "slug": "mini-dc-ups-router",
+          "_id": "6ae980a8be9d58f571b95907"
         },
         {
-          "id": "sub-dvr",
-          "name": "DVR",
-          "slug": "dvr",
-          "_id": "6ae6bdc0a8826f6578a94016"
+          "id": "sub-ups-4",
+          "name": "Line Interactive UPS",
+          "slug": "line-interactive-ups",
+          "_id": "6ae980a8be9d58f571b95908"
         },
         {
-          "id": "sub-nvr",
-          "name": "NVR",
-          "slug": "nvr",
-          "_id": "6ae6bdc0a8826f6578a94017"
+          "id": "sub-ups-5",
+          "name": "Long Backup Home UPS",
+          "slug": "long-backup-home-ups",
+          "_id": "6ae980a8be9d58f571b95909"
+        }
+      ]
+    },
+    {
+      "slug": "voltage-stabilizer",
+      "createdAt": "2026-10-31T09:41:11.277Z",
+      "description": "Automatic voltage regulators and servo stabilizers for sensitive industrial and residential appliances.",
+      "icon": "Activity",
+      "id": "cat-voltage-stabilizer",
+      "image": "https://i.ibb.co/DPt7VtGc/Tecnoware-FSTEL75-KT-75-KVA-Elec.jpg",
+      "isActive": true,
+      "name": "VOLTAGE STABILIZER",
+      "order": 14,
+      "updatedAt": "2026-11-14T18:47:33.787Z",
+      "subcategories": [
+        {
+          "id": "sub-voltage-stabilizer-1",
+          "name": "Servo Voltage Stabilizer",
+          "slug": "servo-voltage-stabilizer",
+          "_id": "6ae980a7be9d58f571b958ce"
         },
         {
-          "id": "sub-xvr",
-          "name": "XVR",
-          "slug": "xvr",
-          "_id": "6ae6bdc0a8826f6578a94018"
+          "id": "sub-voltage-stabilizer-2",
+          "name": "Relay Type Stabilizer",
+          "slug": "relay-type-stabilizer",
+          "_id": "6ae980a7be9d58f571b958cf"
         },
         {
-          "id": "sub-cc-camera-accessories",
-          "name": "CC Camera Accessories",
-          "slug": "cc-camera-accessories",
-          "_id": "6ae6bdc0a8826f6578a94019"
+          "id": "sub-voltage-stabilizer-3",
+          "name": "3-Phase Industrial Stabilizer",
+          "slug": "3-phase-industrial-stabilizer",
+          "_id": "6ae980a7be9d58f571b958d0"
         },
         {
-          "id": "sub-door-lock",
-          "name": "Door Lock",
-          "slug": "door-lock",
-          "_id": "6ae6bdc0a8826f6578a9401a"
+          "id": "sub-voltage-stabilizer-4",
+          "name": "Digital Display Stabilizer",
+          "slug": "digital-display-stabilizer",
+          "_id": "6ae980a7be9d58f571b958d1"
         },
         {
-          "id": "sub-smart-door-bell",
-          "name": "Smart Door Bell",
-          "slug": "smart-door-bell",
-          "_id": "6ae6bdc0a8826f6578a9401b"
+          "id": "sub-voltage-stabilizer-5",
+          "name": "Static Voltage Regulator",
+          "slug": "static-voltage-regulator",
+          "_id": "6ae980a7be9d58f571b958d2"
+        }
+      ]
+    },
+    {
+      "id": "cat-lt-ht-power-goods",
+      "name": "LT-HT POWER GOODS",
+      "slug": "lt-ht-power-goods",
+      "image": "https://www.nanopowerbd.com/public/uploads/category/1776918494-dropout-e3.webp",
+      "icon": "https://www.nanopowerbd.com/public/uploads/category/1776918494-dropout-e3.webp",
+      "description": "Transformers, Drop-out Fuses, Vacuum Circuit Breakers & Switchgear",
+      "order": 15,
+      "isActive": true,
+      "createdAt": "2026-10-26T19:33:03.574Z",
+      "updatedAt": "2026-11-14T18:47:33.836Z",
+      "subcategories": [
+        {
+          "id": "sub-lt-ht-power-goods-1",
+          "name": "Distribution Transformer",
+          "slug": "distribution-transformer",
+          "_id": "6ae980a7be9d58f571b958d3"
         },
         {
-          "id": "sub-access-control",
-          "name": "Access Control",
-          "slug": "access-control",
-          "_id": "6ae6bdc0a8826f6578a9401c"
+          "id": "sub-lt-ht-power-goods-2",
+          "name": "Lightning Arrester",
+          "slug": "lightning-arrester",
+          "_id": "6ae980a7be9d58f571b958d4"
         },
         {
-          "id": "sub-entrance-control",
-          "name": "Entrance Control",
-          "slug": "entrance-control",
-          "_id": "6ae6bdc0a8826f6578a9401d"
+          "id": "sub-lt-ht-power-goods-3",
+          "name": "Dropout Fuse & Cutout",
+          "slug": "dropout-fuse-cutout",
+          "_id": "6ae980a7be9d58f571b958d5"
         },
         {
-          "id": "sub-digital-locker-vault",
-          "name": "Digital Locker & Vault",
-          "slug": "digital-locker-vault",
-          "_id": "6ae6bdc0a8826f6578a9401e"
+          "id": "sub-lt-ht-power-goods-4",
+          "name": "HT Switchgear & Panels",
+          "slug": "ht-switchgear-panels",
+          "_id": "6ae980a7be9d58f571b958d6"
         },
         {
-          "id": "sub-kvm-switch",
-          "name": "KVM Switch",
-          "slug": "kvm-switch",
-          "_id": "6ae6bdc0a8826f6578a9401f"
+          "id": "sub-lt-ht-power-goods-5",
+          "name": "Circuit Breakers (MCCB / MCB)",
+          "slug": "circuit-breakers-mccb-mcb",
+          "_id": "6ae980a7be9d58f571b958d7"
         }
       ]
     },
@@ -1239,7 +853,7 @@ module.exports = {
       "image": "https://images.unsplash.com/photo-1558002038-1055907df827?w=600&q=80",
       "icon": "Cpu",
       "description": "Smart Home Automation, Smart WiFi Switches, Voice Control Devices, and Remote Sensors in Bangladesh.",
-      "order": 23,
+      "order": 16,
       "isActive": true,
       "subcategories": [
         {
@@ -1268,197 +882,7 @@ module.exports = {
         }
       ],
       "createdAt": "2026-11-12T08:58:15.123Z",
-      "updatedAt": "2026-11-12T08:58:15.123Z"
-    },
-    {
-      "id": "cat-wind-energy",
-      "name": "WIND ENERGY",
-      "slug": "wind-energy",
-      "image": "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=600&q=80",
-      "icon": "Wind",
-      "description": "Wind Turbines, Wind Hybrid Controllers, and Wind Energy Solutions in Bangladesh.",
-      "order": 24,
-      "isActive": true,
-      "subcategories": [
-        {
-          "id": "sub-wind-turbine-generator",
-          "name": "Wind Turbine Generator",
-          "slug": "wind-turbine-generator",
-          "_id": "6af57fa7495d58170f10ae9d"
-        },
-        {
-          "id": "sub-wind-charge-controller",
-          "name": "Wind Hybrid Controller",
-          "slug": "wind-hybrid-controller",
-          "_id": "6af57fa7495d58170f10ae9e"
-        },
-        {
-          "id": "sub-wind-energy-accessories",
-          "name": "Wind Energy Accessories",
-          "slug": "wind-energy-accessories",
-          "_id": "6af57fa7495d58170f10ae9f"
-        }
-      ],
-      "createdAt": "2026-11-12T08:58:15.273Z",
-      "updatedAt": "2026-11-12T08:58:15.273Z"
-    },
-    {
-      "slug": "instruments",
-      "createdAt": "2026-11-12T20:58:27.588Z",
-      "description": "Digital multimeters, oscilloscopes, signal generators, power supplies and precision testing tools.",
-      "icon": "https://admin.techshopbd.com/uploads/product/Sanwa-YX360-Analog-Multimeter-side-view_20250622_170122.webp",
-      "id": "cat-instruments",
-      "image": "https://admin.techshopbd.com/uploads/product/Sanwa-YX360-Analog-Multimeter-side-view_20250622_170122.webp",
-      "isActive": true,
-      "name": "INSTRUMENTS",
-      "order": 25,
-      "subcategories": [
-        {
-          "id": "sub-instruments-1",
-          "name": "Signal Generator",
-          "slug": "signal-generator",
-          "_id": "6af62873de49e6ad2dfc90a4"
-        },
-        {
-          "id": "sub-instruments-2",
-          "name": "Signal Analyzer",
-          "slug": "signal-analyzer",
-          "_id": "6af62873de49e6ad2dfc90a5"
-        },
-        {
-          "id": "sub-instruments-3",
-          "name": "Analog Multimeter",
-          "slug": "analog-multimeter",
-          "_id": "6af62873de49e6ad2dfc90a6"
-        },
-        {
-          "id": "sub-instruments-4",
-          "name": "Load Tester",
-          "slug": "load-tester",
-          "_id": "6af62873de49e6ad2dfc90a7"
-        },
-        {
-          "id": "sub-instruments-5",
-          "name": "Digital Oscilloscopes",
-          "slug": "digital-oscilloscopes",
-          "_id": "6af62873de49e6ad2dfc90a8"
-        },
-        {
-          "id": "sub-instruments-6",
-          "name": "Digital Multimeters",
-          "slug": "digital-multimeters",
-          "_id": "6af62873de49e6ad2dfc90a9"
-        },
-        {
-          "id": "sub-instruments-7",
-          "name": "Calculator",
-          "slug": "calculator",
-          "_id": "6af62873de49e6ad2dfc90aa"
-        },
-        {
-          "id": "sub-instruments-8",
-          "name": "Measurement",
-          "slug": "measurement",
-          "_id": "6af62873de49e6ad2dfc90ab"
-        },
-        {
-          "id": "sub-instruments-9",
-          "name": "Power Supply",
-          "slug": "power-supply",
-          "_id": "6af62873de49e6ad2dfc90ac"
-        }
-      ],
-      "updatedAt": "2026-11-12T20:58:27.588Z"
-    },
-    {
-      "slug": "drone",
-      "createdAt": "2026-11-12T20:58:27.749Z",
-      "description": "Semi-professional and professional drone kits, motors, flight controllers and quadcopter parts.",
-      "icon": "https://admin.techshopbd.com/uploads/product/f88-max-drone_011_20260729_174352.webp",
-      "id": "cat-drone",
-      "image": "https://admin.techshopbd.com/uploads/product/f88-max-drone_011_20260729_174352.webp",
-      "isActive": true,
-      "name": "DRONE",
-      "order": 26,
-      "subcategories": [
-        {
-          "id": "sub-drone-1",
-          "name": "Semi Professional Drone",
-          "slug": "semi-professional-drone",
-          "_id": "6af62873de49e6ad2dfc90b6"
-        },
-        {
-          "id": "sub-drone-2",
-          "name": "Professional Drone",
-          "slug": "professional-drone",
-          "_id": "6af62873de49e6ad2dfc90b7"
-        }
-      ],
-      "updatedAt": "2026-11-12T20:58:27.749Z"
-    },
-    {
-      "slug": "kits",
-      "createdAt": "2026-11-12T20:58:27.853Z",
-      "description": "Robotics kits, sensor kits, starter learning bundles, science boxes and STEM projects.",
-      "icon": "https://admin.techshopbd.com/uploads/product/Tamiya-70097-Twin-Motor-Gearbox-Kit.jpg",
-      "id": "cat-kits",
-      "image": "https://admin.techshopbd.com/uploads/product/Tamiya-70097-Twin-Motor-Gearbox-Kit.jpg",
-      "isActive": true,
-      "name": "KITS",
-      "order": 27,
-      "subcategories": [
-        {
-          "id": "sub-kits-1",
-          "name": "Sensor Kits",
-          "slug": "sensor-kits",
-          "_id": "6af62873de49e6ad2dfc90ba"
-        },
-        {
-          "id": "sub-kits-2",
-          "name": "Robotic Kits",
-          "slug": "robotic-kits",
-          "_id": "6af62873de49e6ad2dfc90bb"
-        },
-        {
-          "id": "sub-kits-3",
-          "name": "Starter Kits",
-          "slug": "starter-kits",
-          "_id": "6af62873de49e6ad2dfc90bc"
-        },
-        {
-          "id": "sub-kits-4",
-          "name": "Science Box",
-          "slug": "science-box",
-          "_id": "6af62873de49e6ad2dfc90bd"
-        },
-        {
-          "id": "sub-kits-5",
-          "name": "Advanced kits",
-          "slug": "advanced-kits",
-          "_id": "6af62873de49e6ad2dfc90be"
-        }
-      ],
-      "updatedAt": "2026-11-12T20:58:27.853Z"
-    },
-    {
-      "slug": "maintenance-tools",
-      "createdAt": "2026-11-12T20:58:27.957Z",
-      "description": "Precision screwdrivers, soldering irons, wire strippers, tweezers and repair equipment.",
-      "icon": "https://admin.techshopbd.com/uploads/product/MiniHandDrill.jpg",
-      "id": "cat-maintenance-tools",
-      "image": "https://admin.techshopbd.com/uploads/product/MiniHandDrill.jpg",
-      "isActive": true,
-      "name": "MAINTENANCE TOOLS",
-      "order": 28,
-      "subcategories": [
-        {
-          "id": "sub-maintenance-tools-1",
-          "name": "Tools",
-          "slug": "tools",
-          "_id": "6af62873de49e6ad2dfc90c4"
-        }
-      ],
-      "updatedAt": "2026-11-12T20:58:27.957Z"
+      "updatedAt": "2026-11-14T18:47:33.885Z"
     },
     {
       "slug": "home-automation",
@@ -1469,7 +893,7 @@ module.exports = {
       "image": "https://admin.techshopbd.com/uploads/product/ac-dc-high-speed-turbo-fan-livo-lv2603-01_20260901_164744.webp",
       "isActive": true,
       "name": "HOME AUTOMATION",
-      "order": 29,
+      "order": 17,
       "subcategories": [
         {
           "id": "sub-home-automation-1",
@@ -1526,7 +950,619 @@ module.exports = {
           "_id": "6af62874de49e6ad2dfc90ce"
         }
       ],
-      "updatedAt": "2026-11-12T20:58:28.061Z"
+      "updatedAt": "2026-11-14T18:47:33.934Z"
+    },
+    {
+      "id": "cat-automation-process-cont",
+      "name": "AUTOMATION-PROCESS CONT.",
+      "slug": "automation-process-cont.",
+      "image": "https://www.nanopowerbd.com/public/uploads/category/1776919527-electrical-test-instruments.webp",
+      "icon": "https://www.nanopowerbd.com/public/uploads/category/1776919527-electrical-test-instruments.webp",
+      "description": "Siemens PLC, VFD Drives, HMI Displays & Industrial Automation Cards",
+      "order": 18,
+      "isActive": true,
+      "createdAt": "2026-10-26T19:33:03.574Z",
+      "updatedAt": "2026-11-14T18:47:33.983Z",
+      "subcategories": [
+        {
+          "id": "sub-automation-process-cont-1",
+          "name": "Programmable Logic Controller (PLC)",
+          "slug": "programmable-logic-controller-plc",
+          "_id": "6ae980a8be9d58f571b958f1"
+        },
+        {
+          "id": "sub-automation-process-cont-2",
+          "name": "Variable Frequency Drive (VFD)",
+          "slug": "variable-frequency-drive-vfd",
+          "_id": "6ae980a8be9d58f571b958f2"
+        },
+        {
+          "id": "sub-automation-process-cont-3",
+          "name": "Digital Timer & Switch",
+          "slug": "digital-timer-switch",
+          "_id": "6ae980a8be9d58f571b958f3"
+        },
+        {
+          "id": "sub-automation-process-cont-4",
+          "name": "Human Machine Interface (HMI)",
+          "slug": "human-machine-interface-hmi",
+          "_id": "6ae980a8be9d58f571b958f4"
+        },
+        {
+          "id": "sub-automation-process-cont-5",
+          "name": "Industrial Relays & Contactors",
+          "slug": "industrial-relays-contactors",
+          "_id": "6ae980a8be9d58f571b958f5"
+        }
+      ]
+    },
+    {
+      "slug": "arduino",
+      "createdAt": "2026-11-12T20:58:28.627Z",
+      "description": "Genuine and compatible Arduino Uno, Mega, Nano boards, shields, and expansion modules.",
+      "icon": "https://admin.techshopbd.com/uploads/product/Arduino-Xbee-Shield.jpg",
+      "id": "cat-arduino",
+      "image": "https://admin.techshopbd.com/uploads/product/Arduino-Xbee-Shield.jpg",
+      "isActive": true,
+      "name": "ARDUINO",
+      "order": 19,
+      "subcategories": [
+        {
+          "id": "sub-arduino-1",
+          "name": "Arduino Shield",
+          "slug": "arduino-shield",
+          "_id": "6af62874de49e6ad2dfc9112"
+        },
+        {
+          "id": "sub-arduino-2",
+          "name": "Arduino Board",
+          "slug": "arduino-board",
+          "_id": "6af62874de49e6ad2dfc9113"
+        }
+      ],
+      "updatedAt": "2026-11-14T18:47:34.033Z"
+    },
+    {
+      "slug": "development-board",
+      "createdAt": "2026-11-12T20:58:28.729Z",
+      "description": "Raspberry Pi, ARM, FPGA, AVR, and specialty embedded development systems.",
+      "icon": "https://admin.techshopbd.com/uploads/product/RaspberryPiOSRaspBMC.jpg",
+      "id": "cat-development-board",
+      "image": "https://admin.techshopbd.com/uploads/product/RaspberryPiOSRaspBMC.jpg",
+      "isActive": true,
+      "name": "DEVELOPMENT BOARD",
+      "order": 20,
+      "subcategories": [
+        {
+          "id": "sub-development-board-1",
+          "name": "Raspberry Pi & Accessories",
+          "slug": "raspberry-pi-accessories",
+          "_id": "6af62874de49e6ad2dfc9116"
+        },
+        {
+          "id": "sub-development-board-2",
+          "name": "Other Development Board",
+          "slug": "other-development-board",
+          "_id": "6af62874de49e6ad2dfc9117"
+        },
+        {
+          "id": "sub-development-board-3",
+          "name": "ARM Development Board",
+          "slug": "arm-development-board",
+          "_id": "6af62874de49e6ad2dfc9118"
+        },
+        {
+          "id": "sub-development-board-4",
+          "name": "FPGA Development Board",
+          "slug": "fpga-development-board",
+          "_id": "6af62874de49e6ad2dfc9119"
+        },
+        {
+          "id": "sub-development-board-5",
+          "name": "AVR Development Board",
+          "slug": "avr-development-board",
+          "_id": "6af62874de49e6ad2dfc911a"
+        },
+        {
+          "id": "sub-development-board-6",
+          "name": "PIC Development Board",
+          "slug": "pic-development-board",
+          "_id": "6af62874de49e6ad2dfc911b"
+        }
+      ],
+      "updatedAt": "2026-11-14T18:47:34.082Z"
+    },
+    {
+      "slug": "microcontroller",
+      "createdAt": "2026-11-12T20:58:28.385Z",
+      "description": "AVR, PIC, ARM microcontrollers, programmers, data converters and embedded MCUs.",
+      "icon": "https://admin.techshopbd.com/uploads/product/USB-3300-USB-HS-Board.jpg",
+      "id": "cat-microcontroller",
+      "image": "https://admin.techshopbd.com/uploads/product/USB-3300-USB-HS-Board.jpg",
+      "isActive": true,
+      "name": "MICROCONTROLLER",
+      "order": 21,
+      "subcategories": [
+        {
+          "id": "sub-microcontroller-1",
+          "name": "ARM Microcontroller",
+          "slug": "arm-microcontroller",
+          "_id": "6af62874de49e6ad2dfc9100"
+        },
+        {
+          "id": "sub-microcontroller-2",
+          "name": "Data Converter",
+          "slug": "data-converter",
+          "_id": "6af62874de49e6ad2dfc9101"
+        },
+        {
+          "id": "sub-microcontroller-3",
+          "name": "AVR Programmer",
+          "slug": "avr-programmer",
+          "_id": "6af62874de49e6ad2dfc9102"
+        },
+        {
+          "id": "sub-microcontroller-4",
+          "name": "PIC Programmer",
+          "slug": "pic-programmer",
+          "_id": "6af62874de49e6ad2dfc9103"
+        },
+        {
+          "id": "sub-microcontroller-5",
+          "name": "Other Microcontrollers & Accessories",
+          "slug": "other-microcontrollers-accessories",
+          "_id": "6af62874de49e6ad2dfc9104"
+        },
+        {
+          "id": "sub-microcontroller-6",
+          "name": "AVR Microcontroller",
+          "slug": "avr-microcontroller",
+          "_id": "6af62874de49e6ad2dfc9105"
+        },
+        {
+          "id": "sub-microcontroller-7",
+          "name": "PIC Microcontroller",
+          "slug": "pic-microcontroller",
+          "_id": "6af62874de49e6ad2dfc9106"
+        }
+      ],
+      "updatedAt": "2026-11-14T18:47:34.132Z"
+    },
+    {
+      "slug": "robotics",
+      "createdAt": "2026-11-12T20:58:28.846Z",
+      "description": "Robotic chassis, motors, motor drivers, wheels, servos, actuators, and robotic controllers.",
+      "icon": "https://admin.techshopbd.com/uploads/product/Tamiya-70106-4-Channel-Remote-Control-Box.jpg",
+      "id": "cat-robotics",
+      "image": "https://admin.techshopbd.com/uploads/product/Tamiya-70106-4-Channel-Remote-Control-Box.jpg",
+      "isActive": true,
+      "name": "ROBOTICS",
+      "order": 22,
+      "subcategories": [
+        {
+          "id": "sub-robotics-1",
+          "name": "Propeller",
+          "slug": "propeller",
+          "_id": "6af62874de49e6ad2dfc9122"
+        },
+        {
+          "id": "sub-robotics-2",
+          "name": "Controller",
+          "slug": "controller",
+          "_id": "6af62874de49e6ad2dfc9123"
+        },
+        {
+          "id": "sub-robotics-3",
+          "name": "Actuator",
+          "slug": "actuator",
+          "_id": "6af62874de49e6ad2dfc9124"
+        },
+        {
+          "id": "sub-robotics-4",
+          "name": "Robotics Sensor",
+          "slug": "robotics-sensor",
+          "_id": "6af62874de49e6ad2dfc9125"
+        },
+        {
+          "id": "sub-robotics-5",
+          "name": "Motor Driver",
+          "slug": "motor-driver",
+          "_id": "6af62874de49e6ad2dfc9126"
+        },
+        {
+          "id": "sub-robotics-6",
+          "name": "Motor",
+          "slug": "motor",
+          "_id": "6af62874de49e6ad2dfc9127"
+        },
+        {
+          "id": "sub-robotics-7",
+          "name": "Wheel & Caster",
+          "slug": "wheel-caster",
+          "_id": "6af62874de49e6ad2dfc9128"
+        },
+        {
+          "id": "sub-robotics-8",
+          "name": "Other Robotics",
+          "slug": "other-robotics",
+          "_id": "6af62874de49e6ad2dfc9129"
+        }
+      ],
+      "updatedAt": "2026-11-14T18:47:34.193Z"
+    },
+    {
+      "slug": "drone",
+      "createdAt": "2026-11-12T20:58:27.749Z",
+      "description": "Semi-professional and professional drone kits, motors, flight controllers and quadcopter parts.",
+      "icon": "https://admin.techshopbd.com/uploads/product/f88-max-drone_011_20260729_174352.webp",
+      "id": "cat-drone",
+      "image": "https://admin.techshopbd.com/uploads/product/f88-max-drone_011_20260729_174352.webp",
+      "isActive": true,
+      "name": "DRONE",
+      "order": 23,
+      "subcategories": [
+        {
+          "id": "sub-drone-1",
+          "name": "Semi Professional Drone",
+          "slug": "semi-professional-drone",
+          "_id": "6af62873de49e6ad2dfc90b6"
+        },
+        {
+          "id": "sub-drone-2",
+          "name": "Professional Drone",
+          "slug": "professional-drone",
+          "_id": "6af62873de49e6ad2dfc90b7"
+        }
+      ],
+      "updatedAt": "2026-11-14T18:47:34.243Z"
+    },
+    {
+      "slug": "kits",
+      "createdAt": "2026-11-12T20:58:27.853Z",
+      "description": "Robotics kits, sensor kits, starter learning bundles, science boxes and STEM projects.",
+      "icon": "https://admin.techshopbd.com/uploads/product/Tamiya-70097-Twin-Motor-Gearbox-Kit.jpg",
+      "id": "cat-kits",
+      "image": "https://admin.techshopbd.com/uploads/product/Tamiya-70097-Twin-Motor-Gearbox-Kit.jpg",
+      "isActive": true,
+      "name": "KITS",
+      "order": 24,
+      "subcategories": [
+        {
+          "id": "sub-kits-1",
+          "name": "Sensor Kits",
+          "slug": "sensor-kits",
+          "_id": "6af62873de49e6ad2dfc90ba"
+        },
+        {
+          "id": "sub-kits-2",
+          "name": "Robotic Kits",
+          "slug": "robotic-kits",
+          "_id": "6af62873de49e6ad2dfc90bb"
+        },
+        {
+          "id": "sub-kits-3",
+          "name": "Starter Kits",
+          "slug": "starter-kits",
+          "_id": "6af62873de49e6ad2dfc90bc"
+        },
+        {
+          "id": "sub-kits-4",
+          "name": "Science Box",
+          "slug": "science-box",
+          "_id": "6af62873de49e6ad2dfc90bd"
+        },
+        {
+          "id": "sub-kits-5",
+          "name": "Advanced kits",
+          "slug": "advanced-kits",
+          "_id": "6af62873de49e6ad2dfc90be"
+        }
+      ],
+      "updatedAt": "2026-11-14T18:47:34.310Z"
+    },
+    {
+      "slug": "sensor",
+      "createdAt": "2026-11-12T20:58:28.951Z",
+      "description": "Environmental, temperature, ultrasonic, PIR, gas, light, pressure, and biometric sensors.",
+      "icon": "https://admin.techshopbd.com/uploads/product/Electret-Microphone.jpg",
+      "id": "cat-sensor",
+      "image": "https://admin.techshopbd.com/uploads/product/Electret-Microphone.jpg",
+      "isActive": true,
+      "name": "SENSOR",
+      "order": 25,
+      "subcategories": [
+        {
+          "id": "sub-sensor-1",
+          "name": "Sound",
+          "slug": "sound",
+          "_id": "6af62874de49e6ad2dfc9132"
+        },
+        {
+          "id": "sub-sensor-2",
+          "name": "Motion",
+          "slug": "motion",
+          "_id": "6af62874de49e6ad2dfc9133"
+        },
+        {
+          "id": "sub-sensor-3",
+          "name": "Weight",
+          "slug": "weight",
+          "_id": "6af62874de49e6ad2dfc9134"
+        },
+        {
+          "id": "sub-sensor-4",
+          "name": "Water",
+          "slug": "water",
+          "_id": "6af62874de49e6ad2dfc9135"
+        },
+        {
+          "id": "sub-sensor-5",
+          "name": "Pressure",
+          "slug": "pressure",
+          "_id": "6af62874de49e6ad2dfc9136"
+        },
+        {
+          "id": "sub-sensor-6",
+          "name": "Moisture",
+          "slug": "moisture",
+          "_id": "6af62874de49e6ad2dfc9137"
+        },
+        {
+          "id": "sub-sensor-7",
+          "name": "Current",
+          "slug": "current",
+          "_id": "6af62874de49e6ad2dfc9138"
+        },
+        {
+          "id": "sub-sensor-8",
+          "name": "Gas",
+          "slug": "gas",
+          "_id": "6af62874de49e6ad2dfc9139"
+        },
+        {
+          "id": "sub-sensor-9",
+          "name": "Flex",
+          "slug": "flex",
+          "_id": "6af62874de49e6ad2dfc913a"
+        },
+        {
+          "id": "sub-sensor-10",
+          "name": "Gyro, Accelerometer & Compass",
+          "slug": "gyro-accelerometer-compass",
+          "_id": "6af62874de49e6ad2dfc913b"
+        },
+        {
+          "id": "sub-sensor-11",
+          "name": "Biometrics",
+          "slug": "biometrics",
+          "_id": "6af62874de49e6ad2dfc913c"
+        },
+        {
+          "id": "sub-sensor-12",
+          "name": "Other Sensor",
+          "slug": "other-sensor",
+          "_id": "6af62874de49e6ad2dfc913d"
+        },
+        {
+          "id": "sub-sensor-13",
+          "name": "Light",
+          "slug": "light",
+          "_id": "6af62874de49e6ad2dfc913e"
+        },
+        {
+          "id": "sub-sensor-14",
+          "name": "Temperature",
+          "slug": "temperature",
+          "_id": "6af62874de49e6ad2dfc913f"
+        }
+      ],
+      "updatedAt": "2026-11-14T18:47:34.367Z"
+    },
+    {
+      "id": "cat-modules-sensor",
+      "name": "MODULES & SENSOR",
+      "slug": "modules-&-sensor",
+      "image": "https://www.nanopowerbd.com/public/uploads/category/1776918353-18650-2s-bms.webp",
+      "icon": "https://www.nanopowerbd.com/public/uploads/category/1776918353-18650-2s-bms.webp",
+      "description": "Current Sensors, Temperature, Proximity, Relay Modules & Smart Controllers",
+      "order": 26,
+      "isActive": true,
+      "createdAt": "2026-10-26T19:33:03.574Z",
+      "updatedAt": "2026-11-14T18:47:34.416Z",
+      "subcategories": [
+        {
+          "id": "sub-modules-sensor-1",
+          "name": "ESP32 & Arduino Modules",
+          "slug": "esp32-arduino-modules",
+          "_id": "6ae980a7be9d58f571b958d8"
+        },
+        {
+          "id": "sub-modules-sensor-2",
+          "name": "Water Level Sensors",
+          "slug": "water-level-sensors",
+          "_id": "6ae980a7be9d58f571b958d9"
+        },
+        {
+          "id": "sub-modules-sensor-3",
+          "name": "Motion & PIR Sensors",
+          "slug": "motion-pir-sensors",
+          "_id": "6ae980a7be9d58f571b958da"
+        },
+        {
+          "id": "sub-modules-sensor-4",
+          "name": "Temperature & Humidity Sensors",
+          "slug": "temperature-humidity-sensors",
+          "_id": "6ae980a7be9d58f571b958db"
+        },
+        {
+          "id": "sub-modules-sensor-5",
+          "name": "GPS & RTC Modules",
+          "slug": "gps-rtc-modules",
+          "_id": "6ae980a7be9d58f571b958dc"
+        }
+      ]
+    },
+    {
+      "slug": "instruments",
+      "createdAt": "2026-11-12T20:58:27.588Z",
+      "description": "Digital multimeters, oscilloscopes, signal generators, power supplies and precision testing tools.",
+      "icon": "https://admin.techshopbd.com/uploads/product/Sanwa-YX360-Analog-Multimeter-side-view_20250622_170122.webp",
+      "id": "cat-instruments",
+      "image": "https://admin.techshopbd.com/uploads/product/Sanwa-YX360-Analog-Multimeter-side-view_20250622_170122.webp",
+      "isActive": true,
+      "name": "INSTRUMENTS",
+      "order": 27,
+      "subcategories": [
+        {
+          "id": "sub-instruments-1",
+          "name": "Signal Generator",
+          "slug": "signal-generator",
+          "_id": "6af62873de49e6ad2dfc90a4"
+        },
+        {
+          "id": "sub-instruments-2",
+          "name": "Signal Analyzer",
+          "slug": "signal-analyzer",
+          "_id": "6af62873de49e6ad2dfc90a5"
+        },
+        {
+          "id": "sub-instruments-3",
+          "name": "Analog Multimeter",
+          "slug": "analog-multimeter",
+          "_id": "6af62873de49e6ad2dfc90a6"
+        },
+        {
+          "id": "sub-instruments-4",
+          "name": "Load Tester",
+          "slug": "load-tester",
+          "_id": "6af62873de49e6ad2dfc90a7"
+        },
+        {
+          "id": "sub-instruments-5",
+          "name": "Digital Oscilloscopes",
+          "slug": "digital-oscilloscopes",
+          "_id": "6af62873de49e6ad2dfc90a8"
+        },
+        {
+          "id": "sub-instruments-6",
+          "name": "Digital Multimeters",
+          "slug": "digital-multimeters",
+          "_id": "6af62873de49e6ad2dfc90a9"
+        },
+        {
+          "id": "sub-instruments-7",
+          "name": "Calculator",
+          "slug": "calculator",
+          "_id": "6af62873de49e6ad2dfc90aa"
+        },
+        {
+          "id": "sub-instruments-8",
+          "name": "Measurement",
+          "slug": "measurement",
+          "_id": "6af62873de49e6ad2dfc90ab"
+        },
+        {
+          "id": "sub-instruments-9",
+          "name": "Power Supply",
+          "slug": "power-supply",
+          "_id": "6af62873de49e6ad2dfc90ac"
+        }
+      ],
+      "updatedAt": "2026-11-14T18:47:34.481Z"
+    },
+    {
+      "slug": "wireless-transceiver",
+      "createdAt": "2026-11-12T20:58:29.061Z",
+      "description": "Bluetooth, Wi-Fi, LoRa, RF, XBee, and GSM/GPS/GPRS wireless communication modules.",
+      "icon": "https://admin.techshopbd.com/uploads/product/Bluetooth-SMD-Module-RN-42.jpg",
+      "id": "cat-wireless-transceiver",
+      "image": "https://admin.techshopbd.com/uploads/product/Bluetooth-SMD-Module-RN-42.jpg",
+      "isActive": true,
+      "name": "WIRELESS TRANSCEIVER",
+      "order": 28,
+      "subcategories": [
+        {
+          "id": "sub-wireless-transceiver-1",
+          "name": "Xbee / Zigbee",
+          "slug": "xbee-zigbee",
+          "_id": "6af62875de49e6ad2dfc914e"
+        },
+        {
+          "id": "sub-wireless-transceiver-2",
+          "name": "Bluetooth",
+          "slug": "bluetooth",
+          "_id": "6af62875de49e6ad2dfc914f"
+        },
+        {
+          "id": "sub-wireless-transceiver-3",
+          "name": "WiFi",
+          "slug": "wifi",
+          "_id": "6af62875de49e6ad2dfc9150"
+        },
+        {
+          "id": "sub-wireless-transceiver-4",
+          "name": "Antennas",
+          "slug": "antennas",
+          "_id": "6af62875de49e6ad2dfc9151"
+        },
+        {
+          "id": "sub-wireless-transceiver-5",
+          "name": "GSM, GPS & GPRS",
+          "slug": "gsm-gps-gprs",
+          "_id": "6af62875de49e6ad2dfc9152"
+        },
+        {
+          "id": "sub-wireless-transceiver-6",
+          "name": "RF",
+          "slug": "rf",
+          "_id": "6af62875de49e6ad2dfc9153"
+        }
+      ],
+      "updatedAt": "2026-11-14T18:47:34.530Z"
+    },
+    {
+      "slug": "display",
+      "createdAt": "2026-11-12T20:58:29.271Z",
+      "description": "OLED, TFT LCD, 7-segment displays, dot matrix panels, and display driver modules.",
+      "icon": "https://admin.techshopbd.com/uploads/product/4068-LCD-Driver.jpg",
+      "id": "cat-display",
+      "image": "https://admin.techshopbd.com/uploads/product/4068-LCD-Driver.jpg",
+      "isActive": true,
+      "name": "DISPLAY",
+      "order": 29,
+      "subcategories": [
+        {
+          "id": "sub-display-1",
+          "name": "Display Driver",
+          "slug": "display-driver",
+          "_id": "6af62875de49e6ad2dfc9160"
+        },
+        {
+          "id": "sub-display-2",
+          "name": "LED Panel",
+          "slug": "led-panel",
+          "_id": "6af62875de49e6ad2dfc9161"
+        },
+        {
+          "id": "sub-display-3",
+          "name": "Multi Segment",
+          "slug": "multi-segment",
+          "_id": "6af62875de49e6ad2dfc9162"
+        },
+        {
+          "id": "sub-display-4",
+          "name": "DOT Matrix",
+          "slug": "dot-matrix",
+          "_id": "6af62875de49e6ad2dfc9163"
+        },
+        {
+          "id": "sub-display-5",
+          "name": "LCD, OLED & E-Ink",
+          "slug": "lcd-oled-e-ink",
+          "_id": "6af62875de49e6ad2dfc9164"
+        }
+      ],
+      "updatedAt": "2026-11-14T18:47:34.579Z"
     },
     {
       "slug": "3d-printer-accessories",
@@ -1552,7 +1588,599 @@ module.exports = {
           "_id": "6af62874de49e6ad2dfc90d9"
         }
       ],
-      "updatedAt": "2026-11-12T20:58:28.178Z"
+      "updatedAt": "2026-11-14T18:47:34.628Z"
+    },
+    {
+      "slug": "computer-accessories",
+      "createdAt": "2026-11-12T20:58:29.600Z",
+      "description": "Mini PCs, embedded compute modules, projectors, and computing accessories.",
+      "icon": "https://admin.techshopbd.com/uploads/product/Sf5771ae3e7bb401d852ccba6b9bc27750_20260513_091235.webp",
+      "id": "cat-computer-accessories",
+      "image": "https://admin.techshopbd.com/uploads/product/Sf5771ae3e7bb401d852ccba6b9bc27750_20260513_091235.webp",
+      "isActive": true,
+      "name": "COMPUTER & ACCESSORIES",
+      "order": 31,
+      "subcategories": [
+        {
+          "id": "sub-computer-accessories-1",
+          "name": "Projector",
+          "slug": "projector",
+          "_id": "6af62875de49e6ad2dfc91a4"
+        },
+        {
+          "id": "sub-computer-accessories-2",
+          "name": "Mini PC",
+          "slug": "mini-pc",
+          "_id": "6af62875de49e6ad2dfc91a5"
+        }
+      ],
+      "updatedAt": "2026-11-14T18:47:34.678Z"
+    },
+    {
+      "slug": "server-networking",
+      "createdAt": "2026-10-31T17:34:11.568Z",
+      "description": "Enterprise servers, server processors, server racks, NAS/SAN storage, and networking hardware with official warranty in Bangladesh.",
+      "icon": "Server",
+      "id": "cat-server-networking",
+      "image": "https://i.ibb.co/nN1D8SwV/maxit-447a0w.png",
+      "isActive": true,
+      "name": "SERVER & NETWORKING",
+      "order": 32,
+      "updatedAt": "2026-11-14T18:47:34.728Z",
+      "subcategories": [
+        {
+          "id": "sub-server",
+          "name": "Server",
+          "slug": "server",
+          "_id": "6ae6bdc1a8826f6578a94020"
+        },
+        {
+          "id": "sub-gpu-server",
+          "name": "GPU Server",
+          "slug": "gpu-server",
+          "_id": "6ae6bdc1a8826f6578a94021"
+        },
+        {
+          "id": "sub-workstation",
+          "name": "Workstation",
+          "slug": "workstation",
+          "_id": "6ae6bdc1a8826f6578a94022"
+        },
+        {
+          "id": "sub-server-rack",
+          "name": "Server Rack",
+          "slug": "server-rack",
+          "_id": "6ae6bdc1a8826f6578a94023"
+        },
+        {
+          "id": "sub-nas-storage",
+          "name": "NAS Storage",
+          "slug": "nas-storage",
+          "_id": "6ae6bdc1a8826f6578a94024"
+        },
+        {
+          "id": "sub-san-storage",
+          "name": "SAN Storage",
+          "slug": "san-storage",
+          "_id": "6ae6bdc1a8826f6578a94025"
+        },
+        {
+          "id": "sub-das-storage",
+          "name": "DAS Storage",
+          "slug": "das-storage",
+          "_id": "6ae6bdc1a8826f6578a94026"
+        },
+        {
+          "id": "sub-server-hdd",
+          "name": "Server HDD",
+          "slug": "server-hdd",
+          "_id": "6ae6bdc1a8826f6578a94027"
+        },
+        {
+          "id": "sub-server-hdd-bay",
+          "name": "Server HDD Bay",
+          "slug": "server-hdd-bay",
+          "_id": "6ae6bdc1a8826f6578a94028"
+        },
+        {
+          "id": "sub-server-ram",
+          "name": "Server RAM",
+          "slug": "server-ram",
+          "_id": "6ae6bdc1a8826f6578a94029"
+        },
+        {
+          "id": "sub-server-ssd",
+          "name": "Server SSD",
+          "slug": "server-ssd",
+          "_id": "6ae6bdc1a8826f6578a9402a"
+        },
+        {
+          "id": "sub-server-power-supply",
+          "name": "Server Power Supply",
+          "slug": "server-power-supply",
+          "_id": "6ae6bdc1a8826f6578a9402b"
+        },
+        {
+          "id": "sub-server-processor",
+          "name": "Server Processor",
+          "slug": "server-processor",
+          "_id": "6ae6bdc1a8826f6578a9402c"
+        }
+      ]
+    },
+    {
+      "id": "cat-electronics-parts",
+      "name": "ELECTRONICS PARTS",
+      "slug": "electronics-parts",
+      "image": "https://www.nanopowerbd.com/public/uploads/category/1776918073-atmega328p.webp",
+      "icon": "https://www.nanopowerbd.com/public/uploads/category/1776918073-atmega328p.webp",
+      "description": "Microcontrollers, Capacitors, Resistors, Optocouplers & Connectors",
+      "order": 33,
+      "isActive": true,
+      "createdAt": "2026-10-26T19:33:03.574Z",
+      "updatedAt": "2026-11-14T18:47:34.777Z",
+      "subcategories": [
+        {
+          "id": "sub-electronics-parts-1",
+          "name": "Microcontroller & IC",
+          "slug": "microcontroller-ic",
+          "_id": "6ae980a7be9d58f571b958e2"
+        },
+        {
+          "id": "sub-electronics-parts-2",
+          "name": "Driver IC & Optocoupler",
+          "slug": "driver-ic-optocoupler",
+          "_id": "6ae980a7be9d58f571b958e3"
+        },
+        {
+          "id": "sub-electronics-parts-3",
+          "name": "Power Management IC",
+          "slug": "power-management-ic",
+          "_id": "6ae980a7be9d58f571b958e4"
+        },
+        {
+          "id": "sub-electronics-parts-4",
+          "name": "Capacitor & Resistor",
+          "slug": "capacitor-resistor",
+          "_id": "6ae980a7be9d58f571b958e5"
+        },
+        {
+          "id": "sub-electronics-parts-5",
+          "name": "Heat Sink & Enclosure",
+          "slug": "heat-sink-enclosure",
+          "_id": "6ae980a7be9d58f571b958e6"
+        }
+      ]
+    },
+    {
+      "slug": "basic-component",
+      "createdAt": "2026-11-12T20:58:29.379Z",
+      "description": "Resistors, capacitors, diodes, LEDs, transistors, MOSFETs, inductors, and voltage regulators.",
+      "icon": "https://admin.techshopbd.com/uploads/product/Inductor-10uH.jpg",
+      "id": "cat-basic-component",
+      "image": "https://admin.techshopbd.com/uploads/product/Inductor-10uH.jpg",
+      "isActive": true,
+      "name": "BASIC COMPONENT",
+      "order": 34,
+      "subcategories": [
+        {
+          "id": "sub-basic-component-1",
+          "name": "Laser",
+          "slug": "laser",
+          "_id": "6af62875de49e6ad2dfc916a"
+        },
+        {
+          "id": "sub-basic-component-2",
+          "name": "Inductor",
+          "slug": "inductor",
+          "_id": "6af62875de49e6ad2dfc916b"
+        },
+        {
+          "id": "sub-basic-component-3",
+          "name": "Resistor",
+          "slug": "resistor",
+          "_id": "6af62875de49e6ad2dfc916c"
+        },
+        {
+          "id": "sub-basic-component-4",
+          "name": "Capacitor",
+          "slug": "capacitor",
+          "_id": "6af62875de49e6ad2dfc916d"
+        },
+        {
+          "id": "sub-basic-component-5",
+          "name": "LED",
+          "slug": "led",
+          "_id": "6af62875de49e6ad2dfc916e"
+        },
+        {
+          "id": "sub-basic-component-6",
+          "name": "Thyristor / SCR",
+          "slug": "thyristor-scr",
+          "_id": "6af62875de49e6ad2dfc916f"
+        },
+        {
+          "id": "sub-basic-component-7",
+          "name": "Diac & Triac",
+          "slug": "diac-triac",
+          "_id": "6af62875de49e6ad2dfc9170"
+        },
+        {
+          "id": "sub-basic-component-8",
+          "name": "Buzzer",
+          "slug": "buzzer",
+          "_id": "6af62875de49e6ad2dfc9171"
+        },
+        {
+          "id": "sub-basic-component-9",
+          "name": "Diode",
+          "slug": "diode",
+          "_id": "6af62875de49e6ad2dfc9172"
+        },
+        {
+          "id": "sub-basic-component-10",
+          "name": "Regulator",
+          "slug": "regulator",
+          "_id": "6af62875de49e6ad2dfc9173"
+        },
+        {
+          "id": "sub-basic-component-11",
+          "name": "Transistor",
+          "slug": "transistor",
+          "_id": "6af62875de49e6ad2dfc9174"
+        },
+        {
+          "id": "sub-basic-component-12",
+          "name": "MOSFET",
+          "slug": "mosfet",
+          "_id": "6af62875de49e6ad2dfc9175"
+        },
+        {
+          "id": "sub-basic-component-13",
+          "name": "Optocoupler",
+          "slug": "optocoupler",
+          "_id": "6af62875de49e6ad2dfc9176"
+        }
+      ],
+      "updatedAt": "2026-11-14T18:47:34.826Z"
+    },
+    {
+      "slug": "general-ic",
+      "createdAt": "2026-11-12T20:58:29.485Z",
+      "description": "74-series logic gates, 4000-series CMOS, op-amps, timer ICs, EEPROMs, and driver ICs.",
+      "icon": "https://admin.techshopbd.com/uploads/product/DS1307-RTC_1.jpg",
+      "id": "cat-general-ic",
+      "image": "https://admin.techshopbd.com/uploads/product/DS1307-RTC_1.jpg",
+      "isActive": true,
+      "name": "GENERAL IC",
+      "order": 35,
+      "subcategories": [
+        {
+          "id": "sub-general-ic-1",
+          "name": "RTC",
+          "slug": "rtc",
+          "_id": "6af62875de49e6ad2dfc9184"
+        },
+        {
+          "id": "sub-general-ic-2",
+          "name": "Driver",
+          "slug": "driver",
+          "_id": "6af62875de49e6ad2dfc9185"
+        },
+        {
+          "id": "sub-general-ic-3",
+          "name": "Converter",
+          "slug": "converter",
+          "_id": "6af62875de49e6ad2dfc9186"
+        },
+        {
+          "id": "sub-general-ic-4",
+          "name": "74 Family",
+          "slug": "74-family",
+          "_id": "6af62875de49e6ad2dfc9187"
+        },
+        {
+          "id": "sub-general-ic-5",
+          "name": "4000 Family",
+          "slug": "4000-family",
+          "_id": "6af62875de49e6ad2dfc9188"
+        },
+        {
+          "id": "sub-general-ic-6",
+          "name": "Digital Rheostat",
+          "slug": "digital-rheostat",
+          "_id": "6af62875de49e6ad2dfc9189"
+        },
+        {
+          "id": "sub-general-ic-7",
+          "name": "Decoder",
+          "slug": "decoder",
+          "_id": "6af62875de49e6ad2dfc918a"
+        },
+        {
+          "id": "sub-general-ic-8",
+          "name": "Encoder",
+          "slug": "encoder",
+          "_id": "6af62875de49e6ad2dfc918b"
+        },
+        {
+          "id": "sub-general-ic-9",
+          "name": "EEPROM",
+          "slug": "eeprom",
+          "_id": "6af62875de49e6ad2dfc918c"
+        },
+        {
+          "id": "sub-general-ic-10",
+          "name": "Gates",
+          "slug": "gates",
+          "_id": "6af62875de49e6ad2dfc918d"
+        },
+        {
+          "id": "sub-general-ic-11",
+          "name": "Inverter",
+          "slug": "inverter",
+          "_id": "6af62875de49e6ad2dfc918e"
+        },
+        {
+          "id": "sub-general-ic-12",
+          "name": "LCD Driver",
+          "slug": "lcd-driver",
+          "_id": "6af62875de49e6ad2dfc918f"
+        },
+        {
+          "id": "sub-general-ic-13",
+          "name": "Other IC",
+          "slug": "other-ic",
+          "_id": "6af62875de49e6ad2dfc9190"
+        },
+        {
+          "id": "sub-general-ic-14",
+          "name": "Transceiver",
+          "slug": "transceiver",
+          "_id": "6af62875de49e6ad2dfc9191"
+        },
+        {
+          "id": "sub-general-ic-15",
+          "name": "Timer & PWM",
+          "slug": "timer-pwm",
+          "_id": "6af62875de49e6ad2dfc9192"
+        },
+        {
+          "id": "sub-general-ic-16",
+          "name": "OPAMP",
+          "slug": "opamp",
+          "_id": "6af62875de49e6ad2dfc9193"
+        }
+      ],
+      "updatedAt": "2026-11-14T18:47:34.879Z"
+    },
+    {
+      "id": "cat-igbt-fet-diode-transistor",
+      "name": "IGBT-FET-DIODE-TRANSISTOR",
+      "slug": "igbt-fet-diode-transistor",
+      "image": "https://www.nanopowerbd.com/public/uploads/category/1778045900-fet-&amp;-igbt.webp",
+      "icon": "https://www.nanopowerbd.com/public/uploads/category/1778045900-fet-&amp;-igbt.webp",
+      "description": "Power IGBT Modules, Fast Recovery Diodes, MOSFETs & Power Transistors",
+      "order": 36,
+      "isActive": true,
+      "createdAt": "2026-10-26T19:33:03.574Z",
+      "updatedAt": "2026-11-14T18:47:34.930Z",
+      "subcategories": [
+        {
+          "id": "sub-igbt-fet-diode-transistor-1",
+          "name": "MOSFET",
+          "slug": "mosfet",
+          "_id": "6ae980a7be9d58f571b958dd"
+        },
+        {
+          "id": "sub-igbt-fet-diode-transistor-2",
+          "name": "IGBT Module",
+          "slug": "igbt-module",
+          "_id": "6ae980a7be9d58f571b958de"
+        },
+        {
+          "id": "sub-igbt-fet-diode-transistor-3",
+          "name": "Schottky Diode",
+          "slug": "schottky-diode",
+          "_id": "6ae980a7be9d58f571b958df"
+        },
+        {
+          "id": "sub-igbt-fet-diode-transistor-4",
+          "name": "Power Transistor",
+          "slug": "power-transistor",
+          "_id": "6ae980a7be9d58f571b958e0"
+        },
+        {
+          "id": "sub-igbt-fet-diode-transistor-5",
+          "name": "Bridge Rectifier",
+          "slug": "bridge-rectifier",
+          "_id": "6ae980a7be9d58f571b958e1"
+        }
+      ]
+    },
+    {
+      "id": "cat-customized-circuit-pcb",
+      "name": "CUSTOMIZED CIRCUIT - PCB",
+      "slug": "customized-circuit---pcb",
+      "image": "https://www.nanopowerbd.com/public/uploads/category/1776919114-servo-avr-control-card.webp",
+      "icon": "https://www.nanopowerbd.com/public/uploads/category/1776919114-servo-avr-control-card.webp",
+      "description": "Custom Servo AVR Control Cards, Inverter Motherboards & Circuit Solutions",
+      "order": 37,
+      "isActive": true,
+      "createdAt": "2026-10-26T19:33:03.573Z",
+      "updatedAt": "2026-11-14T18:47:34.979Z",
+      "subcategories": [
+        {
+          "id": "sub-customized-circuit-pcb-1",
+          "name": "IPS & UPS Circuit Board",
+          "slug": "ips-ups-circuit-board",
+          "_id": "6ae980a8be9d58f571b958fb"
+        },
+        {
+          "id": "sub-customized-circuit-pcb-2",
+          "name": "Solar VFD Controller",
+          "slug": "solar-vfd-controller",
+          "_id": "6ae980a8be9d58f571b958fc"
+        },
+        {
+          "id": "sub-customized-circuit-pcb-3",
+          "name": "Servo AVR Control Card",
+          "slug": "servo-avr-control-card",
+          "_id": "6ae980a8be9d58f571b958fd"
+        },
+        {
+          "id": "sub-customized-circuit-pcb-4",
+          "name": "Custom PCB Fabrication",
+          "slug": "custom-pcb-fabrication",
+          "_id": "6ae980a8be9d58f571b958fe"
+        },
+        {
+          "id": "sub-customized-circuit-pcb-5",
+          "name": "Power Supply Boards",
+          "slug": "power-supply-boards",
+          "_id": "6ae980a8be9d58f571b958ff"
+        }
+      ]
+    },
+    {
+      "id": "cat-tools-hardware",
+      "name": "TOOLS - HARDWARE",
+      "slug": "tools---hardware",
+      "image": "https://www.nanopowerbd.com/public/uploads/category/1777472468-0.25-inch-quick-ratchet-wrench-spanner.webp",
+      "icon": "https://www.nanopowerbd.com/public/uploads/category/1777472468-0.25-inch-quick-ratchet-wrench-spanner.webp",
+      "description": "Multimeters, Crimping Tools, Hex Keys, Soldering Stations & Precision Kits",
+      "order": 38,
+      "isActive": true,
+      "createdAt": "2026-10-26T19:33:03.573Z",
+      "updatedAt": "2026-11-14T18:47:35.029Z",
+      "subcategories": [
+        {
+          "id": "sub-tools-hardware-1",
+          "name": "Digital Multimeter & Clamp Meter",
+          "slug": "digital-multimeter-clamp-meter",
+          "_id": "6ae980a8be9d58f571b958ec"
+        },
+        {
+          "id": "sub-tools-hardware-2",
+          "name": "Spot Welding Machine & Rods",
+          "slug": "spot-welding-machine-rods",
+          "_id": "6ae980a8be9d58f571b958ed"
+        },
+        {
+          "id": "sub-tools-hardware-3",
+          "name": "Cutting Disc & Abrasives",
+          "slug": "cutting-disc-abrasives",
+          "_id": "6ae980a8be9d58f571b958ee"
+        },
+        {
+          "id": "sub-tools-hardware-4",
+          "name": "Screwdriver & Wrench Sets",
+          "slug": "screwdriver-wrench-sets",
+          "_id": "6ae980a8be9d58f571b958ef"
+        },
+        {
+          "id": "sub-tools-hardware-5",
+          "name": "Fasteners & Royal Bolts",
+          "slug": "fasteners-royal-bolts",
+          "_id": "6ae980a8be9d58f571b958f0"
+        }
+      ]
+    },
+    {
+      "slug": "maintenance-tools",
+      "createdAt": "2026-11-12T20:58:27.957Z",
+      "description": "Precision screwdrivers, soldering irons, wire strippers, tweezers and repair equipment.",
+      "icon": "https://admin.techshopbd.com/uploads/product/MiniHandDrill.jpg",
+      "id": "cat-maintenance-tools",
+      "image": "https://admin.techshopbd.com/uploads/product/MiniHandDrill.jpg",
+      "isActive": true,
+      "name": "MAINTENANCE TOOLS",
+      "order": 39,
+      "subcategories": [
+        {
+          "id": "sub-maintenance-tools-1",
+          "name": "Tools",
+          "slug": "tools",
+          "_id": "6af62873de49e6ad2dfc90c4"
+        }
+      ],
+      "updatedAt": "2026-11-14T18:47:35.078Z"
+    },
+    {
+      "slug": "accessories",
+      "createdAt": "2026-11-12T20:58:29.166Z",
+      "description": "High-grade jumper wires, USB cables, terminal headers, breadboard accessories, and connectors.",
+      "icon": "https://admin.techshopbd.com/uploads/product/HDMI-to-VGA-Converter-Feature_20260906_143059.webp",
+      "id": "cat-accessories",
+      "image": "https://admin.techshopbd.com/uploads/product/HDMI-to-VGA-Converter-Feature_20260906_143059.webp",
+      "isActive": true,
+      "name": "ACCESSORIES",
+      "order": 40,
+      "subcategories": [
+        {
+          "id": "sub-accessories-1",
+          "name": "Computer Peripherals",
+          "slug": "computer-peripherals",
+          "_id": "6af62875de49e6ad2dfc915a"
+        },
+        {
+          "id": "sub-accessories-2",
+          "name": "Cable",
+          "slug": "cable",
+          "_id": "6af62875de49e6ad2dfc915b"
+        },
+        {
+          "id": "sub-accessories-3",
+          "name": "Connector",
+          "slug": "connector",
+          "_id": "6af62875de49e6ad2dfc915c"
+        }
+      ],
+      "updatedAt": "2026-11-14T18:47:35.127Z"
+    },
+    {
+      "id": "cat-safety-security",
+      "name": "SAFETY - SECURITY",
+      "slug": "safety---security",
+      "image": "https://www.nanopowerbd.com/public/uploads/category/1776918982-dahua-goods.webp",
+      "icon": "https://www.nanopowerbd.com/public/uploads/category/1776918982-dahua-goods.webp",
+      "description": "IP Cameras, NVR, Smart Door Locks, Fire Extinguishers & Industrial Safety",
+      "order": 41,
+      "isActive": true,
+      "createdAt": "2026-10-26T19:33:03.573Z",
+      "updatedAt": "2026-11-14T18:47:35.177Z",
+      "subcategories": [
+        {
+          "id": "sub-safety-security-1",
+          "name": "Fire Extinguisher & Aerosol",
+          "slug": "fire-extinguisher-aerosol",
+          "_id": "6ae980a8be9d58f571b958e7"
+        },
+        {
+          "id": "sub-safety-security-2",
+          "name": "Warning Lights & Sirens",
+          "slug": "warning-lights-sirens",
+          "_id": "6ae980a8be9d58f571b958e8"
+        },
+        {
+          "id": "sub-safety-security-3",
+          "name": "Industrial Safety Equipment",
+          "slug": "industrial-safety-equipment",
+          "_id": "6ae980a8be9d58f571b958e9"
+        },
+        {
+          "id": "sub-safety-security-4",
+          "name": "Electrical Insulation Gear",
+          "slug": "electrical-insulation-gear",
+          "_id": "6ae980a8be9d58f571b958ea"
+        },
+        {
+          "id": "sub-safety-security-5",
+          "name": "Security Surveillance",
+          "slug": "security-surveillance",
+          "_id": "6ae980a8be9d58f571b958eb"
+        }
+      ]
     },
     {
       "slug": "miscellaneous",
@@ -1563,7 +2191,7 @@ module.exports = {
       "image": "https://admin.techshopbd.com/uploads/product/MIDI-Breakout.jpg",
       "isActive": true,
       "name": "MISCELLANEOUS",
-      "order": 31,
+      "order": 42,
       "subcategories": [
         {
           "id": "sub-miscellaneous-1",
@@ -1674,679 +2302,51 @@ module.exports = {
           "_id": "6af62874de49e6ad2dfc90ed"
         }
       ],
-      "updatedAt": "2026-11-12T20:58:28.281Z"
+      "updatedAt": "2026-11-14T18:47:35.226Z"
     },
     {
-      "slug": "microcontroller",
-      "createdAt": "2026-11-12T20:58:28.385Z",
-      "description": "AVR, PIC, ARM microcontrollers, programmers, data converters and embedded MCUs.",
-      "icon": "https://admin.techshopbd.com/uploads/product/USB-3300-USB-HS-Board.jpg",
-      "id": "cat-microcontroller",
-      "image": "https://admin.techshopbd.com/uploads/product/USB-3300-USB-HS-Board.jpg",
-      "isActive": true,
-      "name": "MICROCONTROLLER",
-      "order": 32,
-      "subcategories": [
-        {
-          "id": "sub-microcontroller-1",
-          "name": "ARM Microcontroller",
-          "slug": "arm-microcontroller",
-          "_id": "6af62874de49e6ad2dfc9100"
-        },
-        {
-          "id": "sub-microcontroller-2",
-          "name": "Data Converter",
-          "slug": "data-converter",
-          "_id": "6af62874de49e6ad2dfc9101"
-        },
-        {
-          "id": "sub-microcontroller-3",
-          "name": "AVR Programmer",
-          "slug": "avr-programmer",
-          "_id": "6af62874de49e6ad2dfc9102"
-        },
-        {
-          "id": "sub-microcontroller-4",
-          "name": "PIC Programmer",
-          "slug": "pic-programmer",
-          "_id": "6af62874de49e6ad2dfc9103"
-        },
-        {
-          "id": "sub-microcontroller-5",
-          "name": "Other Microcontrollers & Accessories",
-          "slug": "other-microcontrollers-accessories",
-          "_id": "6af62874de49e6ad2dfc9104"
-        },
-        {
-          "id": "sub-microcontroller-6",
-          "name": "AVR Microcontroller",
-          "slug": "avr-microcontroller",
-          "_id": "6af62874de49e6ad2dfc9105"
-        },
-        {
-          "id": "sub-microcontroller-7",
-          "name": "PIC Microcontroller",
-          "slug": "pic-microcontroller",
-          "_id": "6af62874de49e6ad2dfc9106"
-        }
-      ],
-      "updatedAt": "2026-11-12T20:58:28.385Z"
-    },
-    {
-      "slug": "esp",
-      "createdAt": "2026-11-12T20:45:53.976Z",
-      "description": "ESP32, ESP8266 Wi-Fi & Bluetooth IoT development boards, modules, camera shields and adapters.",
-      "icon": "https://admin.techshopbd.com/uploads/product/ESP8266-ESP-03-Wifi-Module.jpg",
-      "id": "cat-esp",
-      "image": "https://admin.techshopbd.com/uploads/product/ESP8266-ESP-03-Wifi-Module.jpg",
-      "isActive": true,
-      "name": "ESP",
-      "order": 33,
-      "subcategories": [
-        {
-          "id": "sub-esp-1",
-          "name": "ESP8266",
-          "slug": "esp8266",
-          "_id": "6af62874de49e6ad2dfc910e"
-        },
-        {
-          "id": "sub-esp-2",
-          "name": "ESP32",
-          "slug": "esp32",
-          "_id": "6af62874de49e6ad2dfc910f"
-        }
-      ],
-      "updatedAt": "2026-11-12T20:58:28.504Z"
-    },
-    {
-      "slug": "arduino",
-      "createdAt": "2026-11-12T20:58:28.627Z",
-      "description": "Genuine and compatible Arduino Uno, Mega, Nano boards, shields, and expansion modules.",
-      "icon": "https://admin.techshopbd.com/uploads/product/Arduino-Xbee-Shield.jpg",
-      "id": "cat-arduino",
-      "image": "https://admin.techshopbd.com/uploads/product/Arduino-Xbee-Shield.jpg",
-      "isActive": true,
-      "name": "ARDUINO",
-      "order": 34,
-      "subcategories": [
-        {
-          "id": "sub-arduino-1",
-          "name": "Arduino Shield",
-          "slug": "arduino-shield",
-          "_id": "6af62874de49e6ad2dfc9112"
-        },
-        {
-          "id": "sub-arduino-2",
-          "name": "Arduino Board",
-          "slug": "arduino-board",
-          "_id": "6af62874de49e6ad2dfc9113"
-        }
-      ],
-      "updatedAt": "2026-11-12T20:58:28.627Z"
-    },
-    {
-      "slug": "development-board",
-      "createdAt": "2026-11-12T20:58:28.729Z",
-      "description": "Raspberry Pi, ARM, FPGA, AVR, and specialty embedded development systems.",
-      "icon": "https://admin.techshopbd.com/uploads/product/RaspberryPiOSRaspBMC.jpg",
-      "id": "cat-development-board",
-      "image": "https://admin.techshopbd.com/uploads/product/RaspberryPiOSRaspBMC.jpg",
-      "isActive": true,
-      "name": "DEVELOPMENT BOARD",
-      "order": 35,
-      "subcategories": [
-        {
-          "id": "sub-development-board-1",
-          "name": "Raspberry Pi & Accessories",
-          "slug": "raspberry-pi-accessories",
-          "_id": "6af62874de49e6ad2dfc9116"
-        },
-        {
-          "id": "sub-development-board-2",
-          "name": "Other Development Board",
-          "slug": "other-development-board",
-          "_id": "6af62874de49e6ad2dfc9117"
-        },
-        {
-          "id": "sub-development-board-3",
-          "name": "ARM Development Board",
-          "slug": "arm-development-board",
-          "_id": "6af62874de49e6ad2dfc9118"
-        },
-        {
-          "id": "sub-development-board-4",
-          "name": "FPGA Development Board",
-          "slug": "fpga-development-board",
-          "_id": "6af62874de49e6ad2dfc9119"
-        },
-        {
-          "id": "sub-development-board-5",
-          "name": "AVR Development Board",
-          "slug": "avr-development-board",
-          "_id": "6af62874de49e6ad2dfc911a"
-        },
-        {
-          "id": "sub-development-board-6",
-          "name": "PIC Development Board",
-          "slug": "pic-development-board",
-          "_id": "6af62874de49e6ad2dfc911b"
-        }
-      ],
-      "updatedAt": "2026-11-12T20:58:28.729Z"
-    },
-    {
-      "slug": "robotics",
-      "createdAt": "2026-11-12T20:58:28.846Z",
-      "description": "Robotic chassis, motors, motor drivers, wheels, servos, actuators, and robotic controllers.",
-      "icon": "https://admin.techshopbd.com/uploads/product/Tamiya-70106-4-Channel-Remote-Control-Box.jpg",
-      "id": "cat-robotics",
-      "image": "https://admin.techshopbd.com/uploads/product/Tamiya-70106-4-Channel-Remote-Control-Box.jpg",
-      "isActive": true,
-      "name": "ROBOTICS",
-      "order": 36,
-      "subcategories": [
-        {
-          "id": "sub-robotics-1",
-          "name": "Propeller",
-          "slug": "propeller",
-          "_id": "6af62874de49e6ad2dfc9122"
-        },
-        {
-          "id": "sub-robotics-2",
-          "name": "Controller",
-          "slug": "controller",
-          "_id": "6af62874de49e6ad2dfc9123"
-        },
-        {
-          "id": "sub-robotics-3",
-          "name": "Actuator",
-          "slug": "actuator",
-          "_id": "6af62874de49e6ad2dfc9124"
-        },
-        {
-          "id": "sub-robotics-4",
-          "name": "Robotics Sensor",
-          "slug": "robotics-sensor",
-          "_id": "6af62874de49e6ad2dfc9125"
-        },
-        {
-          "id": "sub-robotics-5",
-          "name": "Motor Driver",
-          "slug": "motor-driver",
-          "_id": "6af62874de49e6ad2dfc9126"
-        },
-        {
-          "id": "sub-robotics-6",
-          "name": "Motor",
-          "slug": "motor",
-          "_id": "6af62874de49e6ad2dfc9127"
-        },
-        {
-          "id": "sub-robotics-7",
-          "name": "Wheel & Caster",
-          "slug": "wheel-caster",
-          "_id": "6af62874de49e6ad2dfc9128"
-        },
-        {
-          "id": "sub-robotics-8",
-          "name": "Other Robotics",
-          "slug": "other-robotics",
-          "_id": "6af62874de49e6ad2dfc9129"
-        }
-      ],
-      "updatedAt": "2026-11-12T20:58:28.846Z"
-    },
-    {
-      "slug": "sensor",
-      "createdAt": "2026-11-12T20:58:28.951Z",
-      "description": "Environmental, temperature, ultrasonic, PIR, gas, light, pressure, and biometric sensors.",
-      "icon": "https://admin.techshopbd.com/uploads/product/Electret-Microphone.jpg",
-      "id": "cat-sensor",
-      "image": "https://admin.techshopbd.com/uploads/product/Electret-Microphone.jpg",
-      "isActive": true,
-      "name": "SENSOR",
-      "order": 37,
-      "subcategories": [
-        {
-          "id": "sub-sensor-1",
-          "name": "Sound",
-          "slug": "sound",
-          "_id": "6af62874de49e6ad2dfc9132"
-        },
-        {
-          "id": "sub-sensor-2",
-          "name": "Motion",
-          "slug": "motion",
-          "_id": "6af62874de49e6ad2dfc9133"
-        },
-        {
-          "id": "sub-sensor-3",
-          "name": "Weight",
-          "slug": "weight",
-          "_id": "6af62874de49e6ad2dfc9134"
-        },
-        {
-          "id": "sub-sensor-4",
-          "name": "Water",
-          "slug": "water",
-          "_id": "6af62874de49e6ad2dfc9135"
-        },
-        {
-          "id": "sub-sensor-5",
-          "name": "Pressure",
-          "slug": "pressure",
-          "_id": "6af62874de49e6ad2dfc9136"
-        },
-        {
-          "id": "sub-sensor-6",
-          "name": "Moisture",
-          "slug": "moisture",
-          "_id": "6af62874de49e6ad2dfc9137"
-        },
-        {
-          "id": "sub-sensor-7",
-          "name": "Current",
-          "slug": "current",
-          "_id": "6af62874de49e6ad2dfc9138"
-        },
-        {
-          "id": "sub-sensor-8",
-          "name": "Gas",
-          "slug": "gas",
-          "_id": "6af62874de49e6ad2dfc9139"
-        },
-        {
-          "id": "sub-sensor-9",
-          "name": "Flex",
-          "slug": "flex",
-          "_id": "6af62874de49e6ad2dfc913a"
-        },
-        {
-          "id": "sub-sensor-10",
-          "name": "Gyro, Accelerometer & Compass",
-          "slug": "gyro-accelerometer-compass",
-          "_id": "6af62874de49e6ad2dfc913b"
-        },
-        {
-          "id": "sub-sensor-11",
-          "name": "Biometrics",
-          "slug": "biometrics",
-          "_id": "6af62874de49e6ad2dfc913c"
-        },
-        {
-          "id": "sub-sensor-12",
-          "name": "Other Sensor",
-          "slug": "other-sensor",
-          "_id": "6af62874de49e6ad2dfc913d"
-        },
-        {
-          "id": "sub-sensor-13",
-          "name": "Light",
-          "slug": "light",
-          "_id": "6af62874de49e6ad2dfc913e"
-        },
-        {
-          "id": "sub-sensor-14",
-          "name": "Temperature",
-          "slug": "temperature",
-          "_id": "6af62874de49e6ad2dfc913f"
-        }
-      ],
-      "updatedAt": "2026-11-12T20:58:28.951Z"
-    },
-    {
-      "slug": "wireless-transceiver",
-      "createdAt": "2026-11-12T20:58:29.061Z",
-      "description": "Bluetooth, Wi-Fi, LoRa, RF, XBee, and GSM/GPS/GPRS wireless communication modules.",
-      "icon": "https://admin.techshopbd.com/uploads/product/Bluetooth-SMD-Module-RN-42.jpg",
-      "id": "cat-wireless-transceiver",
-      "image": "https://admin.techshopbd.com/uploads/product/Bluetooth-SMD-Module-RN-42.jpg",
-      "isActive": true,
-      "name": "WIRELESS TRANSCEIVER",
-      "order": 38,
-      "subcategories": [
-        {
-          "id": "sub-wireless-transceiver-1",
-          "name": "Xbee / Zigbee",
-          "slug": "xbee-zigbee",
-          "_id": "6af62875de49e6ad2dfc914e"
-        },
-        {
-          "id": "sub-wireless-transceiver-2",
-          "name": "Bluetooth",
-          "slug": "bluetooth",
-          "_id": "6af62875de49e6ad2dfc914f"
-        },
-        {
-          "id": "sub-wireless-transceiver-3",
-          "name": "WiFi",
-          "slug": "wifi",
-          "_id": "6af62875de49e6ad2dfc9150"
-        },
-        {
-          "id": "sub-wireless-transceiver-4",
-          "name": "Antennas",
-          "slug": "antennas",
-          "_id": "6af62875de49e6ad2dfc9151"
-        },
-        {
-          "id": "sub-wireless-transceiver-5",
-          "name": "GSM, GPS & GPRS",
-          "slug": "gsm-gps-gprs",
-          "_id": "6af62875de49e6ad2dfc9152"
-        },
-        {
-          "id": "sub-wireless-transceiver-6",
-          "name": "RF",
-          "slug": "rf",
-          "_id": "6af62875de49e6ad2dfc9153"
-        }
-      ],
-      "updatedAt": "2026-11-12T20:58:29.061Z"
-    },
-    {
-      "slug": "accessories",
-      "createdAt": "2026-11-12T20:58:29.166Z",
-      "description": "High-grade jumper wires, USB cables, terminal headers, breadboard accessories, and connectors.",
-      "icon": "https://admin.techshopbd.com/uploads/product/HDMI-to-VGA-Converter-Feature_20260906_143059.webp",
-      "id": "cat-accessories",
-      "image": "https://admin.techshopbd.com/uploads/product/HDMI-to-VGA-Converter-Feature_20260906_143059.webp",
-      "isActive": true,
-      "name": "ACCESSORIES",
-      "order": 39,
-      "subcategories": [
-        {
-          "id": "sub-accessories-1",
-          "name": "Computer Peripherals",
-          "slug": "computer-peripherals",
-          "_id": "6af62875de49e6ad2dfc915a"
-        },
-        {
-          "id": "sub-accessories-2",
-          "name": "Cable",
-          "slug": "cable",
-          "_id": "6af62875de49e6ad2dfc915b"
-        },
-        {
-          "id": "sub-accessories-3",
-          "name": "Connector",
-          "slug": "connector",
-          "_id": "6af62875de49e6ad2dfc915c"
-        }
-      ],
-      "updatedAt": "2026-11-12T20:58:29.166Z"
-    },
-    {
-      "slug": "display",
-      "createdAt": "2026-11-12T20:58:29.271Z",
-      "description": "OLED, TFT LCD, 7-segment displays, dot matrix panels, and display driver modules.",
-      "icon": "https://admin.techshopbd.com/uploads/product/4068-LCD-Driver.jpg",
-      "id": "cat-display",
-      "image": "https://admin.techshopbd.com/uploads/product/4068-LCD-Driver.jpg",
-      "isActive": true,
-      "name": "DISPLAY",
-      "order": 40,
-      "subcategories": [
-        {
-          "id": "sub-display-1",
-          "name": "Display Driver",
-          "slug": "display-driver",
-          "_id": "6af62875de49e6ad2dfc9160"
-        },
-        {
-          "id": "sub-display-2",
-          "name": "LED Panel",
-          "slug": "led-panel",
-          "_id": "6af62875de49e6ad2dfc9161"
-        },
-        {
-          "id": "sub-display-3",
-          "name": "Multi Segment",
-          "slug": "multi-segment",
-          "_id": "6af62875de49e6ad2dfc9162"
-        },
-        {
-          "id": "sub-display-4",
-          "name": "DOT Matrix",
-          "slug": "dot-matrix",
-          "_id": "6af62875de49e6ad2dfc9163"
-        },
-        {
-          "id": "sub-display-5",
-          "name": "LCD, OLED & E-Ink",
-          "slug": "lcd-oled-e-ink",
-          "_id": "6af62875de49e6ad2dfc9164"
-        }
-      ],
-      "updatedAt": "2026-11-12T20:58:29.271Z"
-    },
-    {
-      "slug": "basic-component",
-      "createdAt": "2026-11-12T20:58:29.379Z",
-      "description": "Resistors, capacitors, diodes, LEDs, transistors, MOSFETs, inductors, and voltage regulators.",
-      "icon": "https://admin.techshopbd.com/uploads/product/Inductor-10uH.jpg",
-      "id": "cat-basic-component",
-      "image": "https://admin.techshopbd.com/uploads/product/Inductor-10uH.jpg",
-      "isActive": true,
-      "name": "BASIC COMPONENT",
-      "order": 41,
-      "subcategories": [
-        {
-          "id": "sub-basic-component-1",
-          "name": "Laser",
-          "slug": "laser",
-          "_id": "6af62875de49e6ad2dfc916a"
-        },
-        {
-          "id": "sub-basic-component-2",
-          "name": "Inductor",
-          "slug": "inductor",
-          "_id": "6af62875de49e6ad2dfc916b"
-        },
-        {
-          "id": "sub-basic-component-3",
-          "name": "Resistor",
-          "slug": "resistor",
-          "_id": "6af62875de49e6ad2dfc916c"
-        },
-        {
-          "id": "sub-basic-component-4",
-          "name": "Capacitor",
-          "slug": "capacitor",
-          "_id": "6af62875de49e6ad2dfc916d"
-        },
-        {
-          "id": "sub-basic-component-5",
-          "name": "LED",
-          "slug": "led",
-          "_id": "6af62875de49e6ad2dfc916e"
-        },
-        {
-          "id": "sub-basic-component-6",
-          "name": "Thyristor / SCR",
-          "slug": "thyristor-scr",
-          "_id": "6af62875de49e6ad2dfc916f"
-        },
-        {
-          "id": "sub-basic-component-7",
-          "name": "Diac & Triac",
-          "slug": "diac-triac",
-          "_id": "6af62875de49e6ad2dfc9170"
-        },
-        {
-          "id": "sub-basic-component-8",
-          "name": "Buzzer",
-          "slug": "buzzer",
-          "_id": "6af62875de49e6ad2dfc9171"
-        },
-        {
-          "id": "sub-basic-component-9",
-          "name": "Diode",
-          "slug": "diode",
-          "_id": "6af62875de49e6ad2dfc9172"
-        },
-        {
-          "id": "sub-basic-component-10",
-          "name": "Regulator",
-          "slug": "regulator",
-          "_id": "6af62875de49e6ad2dfc9173"
-        },
-        {
-          "id": "sub-basic-component-11",
-          "name": "Transistor",
-          "slug": "transistor",
-          "_id": "6af62875de49e6ad2dfc9174"
-        },
-        {
-          "id": "sub-basic-component-12",
-          "name": "MOSFET",
-          "slug": "mosfet",
-          "_id": "6af62875de49e6ad2dfc9175"
-        },
-        {
-          "id": "sub-basic-component-13",
-          "name": "Optocoupler",
-          "slug": "optocoupler",
-          "_id": "6af62875de49e6ad2dfc9176"
-        }
-      ],
-      "updatedAt": "2026-11-12T20:58:29.379Z"
-    },
-    {
-      "slug": "general-ic",
-      "createdAt": "2026-11-12T20:58:29.485Z",
-      "description": "74-series logic gates, 4000-series CMOS, op-amps, timer ICs, EEPROMs, and driver ICs.",
-      "icon": "https://admin.techshopbd.com/uploads/product/DS1307-RTC_1.jpg",
-      "id": "cat-general-ic",
-      "image": "https://admin.techshopbd.com/uploads/product/DS1307-RTC_1.jpg",
-      "isActive": true,
-      "name": "GENERAL IC",
-      "order": 42,
-      "subcategories": [
-        {
-          "id": "sub-general-ic-1",
-          "name": "RTC",
-          "slug": "rtc",
-          "_id": "6af62875de49e6ad2dfc9184"
-        },
-        {
-          "id": "sub-general-ic-2",
-          "name": "Driver",
-          "slug": "driver",
-          "_id": "6af62875de49e6ad2dfc9185"
-        },
-        {
-          "id": "sub-general-ic-3",
-          "name": "Converter",
-          "slug": "converter",
-          "_id": "6af62875de49e6ad2dfc9186"
-        },
-        {
-          "id": "sub-general-ic-4",
-          "name": "74 Family",
-          "slug": "74-family",
-          "_id": "6af62875de49e6ad2dfc9187"
-        },
-        {
-          "id": "sub-general-ic-5",
-          "name": "4000 Family",
-          "slug": "4000-family",
-          "_id": "6af62875de49e6ad2dfc9188"
-        },
-        {
-          "id": "sub-general-ic-6",
-          "name": "Digital Rheostat",
-          "slug": "digital-rheostat",
-          "_id": "6af62875de49e6ad2dfc9189"
-        },
-        {
-          "id": "sub-general-ic-7",
-          "name": "Decoder",
-          "slug": "decoder",
-          "_id": "6af62875de49e6ad2dfc918a"
-        },
-        {
-          "id": "sub-general-ic-8",
-          "name": "Encoder",
-          "slug": "encoder",
-          "_id": "6af62875de49e6ad2dfc918b"
-        },
-        {
-          "id": "sub-general-ic-9",
-          "name": "EEPROM",
-          "slug": "eeprom",
-          "_id": "6af62875de49e6ad2dfc918c"
-        },
-        {
-          "id": "sub-general-ic-10",
-          "name": "Gates",
-          "slug": "gates",
-          "_id": "6af62875de49e6ad2dfc918d"
-        },
-        {
-          "id": "sub-general-ic-11",
-          "name": "Inverter",
-          "slug": "inverter",
-          "_id": "6af62875de49e6ad2dfc918e"
-        },
-        {
-          "id": "sub-general-ic-12",
-          "name": "LCD Driver",
-          "slug": "lcd-driver",
-          "_id": "6af62875de49e6ad2dfc918f"
-        },
-        {
-          "id": "sub-general-ic-13",
-          "name": "Other IC",
-          "slug": "other-ic",
-          "_id": "6af62875de49e6ad2dfc9190"
-        },
-        {
-          "id": "sub-general-ic-14",
-          "name": "Transceiver",
-          "slug": "transceiver",
-          "_id": "6af62875de49e6ad2dfc9191"
-        },
-        {
-          "id": "sub-general-ic-15",
-          "name": "Timer & PWM",
-          "slug": "timer-pwm",
-          "_id": "6af62875de49e6ad2dfc9192"
-        },
-        {
-          "id": "sub-general-ic-16",
-          "name": "OPAMP",
-          "slug": "opamp",
-          "_id": "6af62875de49e6ad2dfc9193"
-        }
-      ],
-      "updatedAt": "2026-11-12T20:58:29.485Z"
-    },
-    {
-      "slug": "computer-accessories",
-      "createdAt": "2026-11-12T20:58:29.600Z",
-      "description": "Mini PCs, embedded compute modules, projectors, and computing accessories.",
-      "icon": "https://admin.techshopbd.com/uploads/product/Sf5771ae3e7bb401d852ccba6b9bc27750_20260513_091235.webp",
-      "id": "cat-computer-accessories",
-      "image": "https://admin.techshopbd.com/uploads/product/Sf5771ae3e7bb401d852ccba6b9bc27750_20260513_091235.webp",
-      "isActive": true,
-      "name": "COMPUTER & ACCESSORIES",
+      "id": "cat-service-maintenance",
+      "name": "SERVICE & MAINTENANCE",
+      "slug": "service-&-maintenance",
+      "image": "https://www.nanopowerbd.com/public/uploads/category/1776919326-inverter-repairing-services-500x500.webp",
+      "icon": "https://www.nanopowerbd.com/public/uploads/category/1776919326-inverter-repairing-services-500x500.webp",
+      "description": "Solar Inverter Repairing, IPS Maintenance & Engineering Service Support",
       "order": 43,
+      "isActive": true,
+      "createdAt": "2026-10-26T19:33:03.574Z",
+      "updatedAt": "2026-11-14T18:47:35.276Z",
       "subcategories": [
         {
-          "id": "sub-computer-accessories-1",
-          "name": "Projector",
-          "slug": "projector",
-          "_id": "6af62875de49e6ad2dfc91a4"
+          "id": "sub-service-maintenance-1",
+          "name": "Inverter Repair & Servicing",
+          "slug": "inverter-repair-servicing",
+          "_id": "6ae980a8be9d58f571b95900"
         },
         {
-          "id": "sub-computer-accessories-2",
-          "name": "Mini PC",
-          "slug": "mini-pc",
-          "_id": "6af62875de49e6ad2dfc91a5"
+          "id": "sub-service-maintenance-2",
+          "name": "Transformer Maintenance",
+          "slug": "transformer-maintenance",
+          "_id": "6ae980a8be9d58f571b95901"
+        },
+        {
+          "id": "sub-service-maintenance-3",
+          "name": "VFD Drive Repair",
+          "slug": "vfd-drive-repair",
+          "_id": "6ae980a8be9d58f571b95902"
+        },
+        {
+          "id": "sub-service-maintenance-4",
+          "name": "UPS Servicing & Battery Replacement",
+          "slug": "ups-servicing-battery-replacement",
+          "_id": "6ae980a8be9d58f571b95903"
+        },
+        {
+          "id": "sub-service-maintenance-5",
+          "name": "Industrial Automation Support",
+          "slug": "industrial-automation-support",
+          "_id": "6ae980a8be9d58f571b95904"
         }
-      ],
-      "updatedAt": "2026-11-12T20:58:29.600Z"
+      ]
     }
   ],
   "brands": [
