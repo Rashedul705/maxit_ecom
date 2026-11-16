@@ -1,9 +1,30 @@
 'use client';
 
-import React, { useState } from 'react';
-import { Phone, Mail, MapPin, Send, CheckCircle2, ExternalLink } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Phone, Mail, MapPin, Send, CheckCircle2, ExternalLink, Clock } from 'lucide-react';
+import { api } from '@/lib/api';
+import type { SiteSetting } from '@/lib/types';
 
 export default function ContactPage() {
+  const [settings, setSettings] = useState<SiteSetting | null>(null);
+
+  useEffect(() => {
+    let isMounted = true;
+    api.getSettings().then(s => {
+      if (isMounted && s) setSettings(s);
+    }).catch(e => console.warn('Failed to fetch contact settings:', e));
+    return () => { isMounted = false; };
+  }, []);
+
+  const phone = settings?.contact?.phone || settings?.phone || '+8801733-272445';
+  const email = settings?.contact?.email || settings?.email || 'sales@m4xit.com';
+  const rawWhatsapp = settings?.socialLinks?.whatsapp || settings?.contact?.whatsapp || settings?.whatsappNumber || '8801733272445';
+  const cleanWhatsapp = rawWhatsapp.replace(/[^0-9]/g, '');
+  const supportHours = settings?.contact?.supportHours || 'Saturday - Thursday: 9:00 AM - 8:00 PM';
+  const mapsUrl = settings?.contact?.googleMapsUrl || 'https://maps.app.goo.gl/2N1mLA8RwpcaohFs6';
+  const rawAddress = settings?.contact?.address || settings?.address || 'Head Office: Afroza Tower, 4th Floor, Uposhohor Newmarket, Rajshahi | LAB Office: Afroza Tower, 2nd Floor, Uposhohor Newmarket, Rajshahi';
+  const addressParts = rawAddress.split('|').map(s => s.trim()).filter(Boolean);
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -95,7 +116,7 @@ export default function ContactPage() {
                       Skip the waiting queue. Chat with our sales &amp; engineering team on WhatsApp for fast response.
                     </p>
                     <a
-                      href="https://wa.me/8801733272445?text=Hello%20Max%20iT%20Solution%2C%20I%20would%20like%20to%20inquire%20about%20your%20services."
+                      href={`https://wa.me/${cleanWhatsapp}?text=Hello%20Max%20iT%20Solution%2C%20I%20would%20like%20to%20inquire%20about%20your%20products.`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-full inline-flex items-center justify-center gap-2.5 px-5 py-3.5 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-sm rounded-xl shadow-lg shadow-[#25D366]/40 hover:shadow-[#25D366]/60 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 group"
@@ -125,8 +146,8 @@ export default function ContactPage() {
                         Phone Number
                       </h3>
                       <p className="text-white/80 leading-relaxed font-medium">
-                        <a href="tel:+8801733-272445" className="hover:text-white transition-colors">
-                          +88 01733-272445
+                        <a href={`tel:${phone.replace(/[^0-9+]/g, '')}`} className="hover:text-white transition-colors">
+                          {phone}
                         </a>
                       </p>
                     </div>
@@ -142,48 +163,44 @@ export default function ContactPage() {
                         Email Address
                       </h3>
                       <p className="text-white/80 leading-relaxed font-medium">
-                        <a href="mailto:sales@m4xit.com" className="hover:text-white transition-colors">
-                          sales@m4xit.com
+                        <a href={`mailto:${email}`} className="hover:text-white transition-colors">
+                          {email}
                         </a>
                       </p>
                     </div>
                   </div>
 
-                  {/* Head Office */}
-                  <div className="flex items-start group">
-                    <div className="shrink-0 w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center mr-6 border border-white/20 shadow-lg">
-                      <MapPin className="w-7 h-7 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold mb-1 text-white tracking-wide">
-                        Head Office
-                      </h3>
-                      <p className="text-white/80 leading-relaxed font-medium whitespace-pre-line">
-                        Afroza Tower, 4th Floor, Uposhohor Newmarket, Rajshahi
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* LAB Office */}
-                  <div className="flex items-start group">
-                    <div className="shrink-0 w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center mr-6 border border-white/20 shadow-lg">
-                      <MapPin className="w-7 h-7 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold mb-1 text-white tracking-wide">
-                        LAB Office
-                      </h3>
-                      <p className="text-white/80 leading-relaxed font-medium whitespace-pre-line">
-                        Afroza Tower, 2nd Floor, Uposhohor Newmarket, Rajshahi
-                      </p>
-                    </div>
-                  </div>
+                  {/* Dynamic Office Addresses */}
+                  {addressParts.map((part, idx) => {
+                    const colonIdx = part.indexOf(':');
+                    const label = colonIdx !== -1 ? part.slice(0, colonIdx).trim() : (idx === 0 ? 'Head Office' : 'Branch Office');
+                    const desc = colonIdx !== -1 ? part.slice(colonIdx + 1).trim() : part;
+                    return (
+                      <div key={idx} className="flex items-start group">
+                        <div className="shrink-0 w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center mr-6 border border-white/20 shadow-lg">
+                          <MapPin className="w-7 h-7 text-white" />
+                        </div>
+                        <div>
+                          <h3 className="text-lg font-semibold mb-1 text-white tracking-wide">
+                            {label}
+                          </h3>
+                          <p className="text-white/80 leading-relaxed font-medium whitespace-pre-line">
+                            {desc}
+                          </p>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
 
-              {/* Bottom Response Guarantee Note */}
-              <div className="relative z-10 mt-10 pt-6 border-t border-white/10">
-                <p className="text-white/60 font-medium text-sm">
+              {/* Bottom Support Hours & Response Guarantee Note */}
+              <div className="relative z-10 mt-10 pt-6 border-t border-white/10 space-y-1">
+                <p className="text-white/90 font-medium text-xs flex items-center gap-1.5">
+                  <Clock className="w-3.5 h-3.5 text-white/80 shrink-0" />
+                  <span>Support Hours: {supportHours}</span>
+                </p>
+                <p className="text-white/60 font-medium text-xs">
                   We typically respond within 24 hours via email, or instantly on WhatsApp.
                 </p>
               </div>
@@ -318,7 +335,7 @@ export default function ContactPage() {
 
           </div>
 
-          {/* Google Maps Location Section matching https://www.m4xit.com/contact */}
+          {/* Google Maps Location Section */}
           <div className="mt-16 bg-white rounded-[2rem] shadow-xl overflow-hidden border border-gray-100">
             <div className="p-6 md:p-8 bg-gray-50/80 border-b border-gray-100 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
               <div>
@@ -329,12 +346,12 @@ export default function ContactPage() {
                   Find Us on Google Maps
                 </h3>
                 <p className="text-sm md:text-base text-gray-600 mt-1">
-                  Afroza Tower, Uposhohor Newmarket, Rajshahi (Head Office: 4th Floor | LAB Office: 2nd Floor)
+                  {rawAddress}
                 </p>
               </div>
 
               <a
-                href="https://maps.app.goo.gl/2N1mLA8RwpcaohFs6"
+                href={mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#0468D3] hover:bg-[#0468D3]/90 text-white font-bold text-sm shadow-md hover:shadow-lg transition-all self-start sm:self-auto group shrink-0"

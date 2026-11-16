@@ -5,6 +5,8 @@ import { api } from '@/lib/api';
 import { Home, ChevronRight, FileText, ShieldCheck, Clock } from 'lucide-react';
 import type { Metadata } from 'next';
 
+export const revalidate = 0;
+
 interface DynamicPageProps {
   params: Promise<{ slug: string }>;
 }
@@ -83,11 +85,33 @@ export default async function StaticPage({ params }: DynamicPageProps) {
   let pageData: { title: string; content: string; updatedAt?: string } | null = null;
   try {
     const remotePage = await api.getPage(slug);
-    if (remotePage && remotePage.content) {
+    if (remotePage && remotePage.content && remotePage.content.trim()) {
       pageData = remotePage;
     }
   } catch (err) {
-    // Graceful fallback to rich local content
+    // Continue to settings/fallback
+  }
+
+  // Cross-reference settings.policies if page content was not in pages collection
+  if (!pageData) {
+    try {
+      const settings = await api.getSettings();
+      if (settings?.policies) {
+        if (slug === 'terms-conditions' && settings.policies.terms) {
+          pageData = { title: 'Terms and Conditions', content: settings.policies.terms };
+        } else if (slug === 'privacy-policy' && settings.policies.privacy) {
+          pageData = { title: 'Privacy Policy', content: settings.policies.privacy };
+        } else if (slug === 'return-policy' && settings.policies.returnPolicy) {
+          pageData = { title: 'Return & Replacement Policy', content: settings.policies.returnPolicy };
+        } else if (slug === 'delivery-rules' && settings.policies.shipping) {
+          pageData = { title: 'Delivery Rules & Shipping Policy', content: settings.policies.shipping };
+        } else if (slug === 'warranty-policy' && settings.policies.warranty) {
+          pageData = { title: 'Warranty & Guarantee Policy', content: settings.policies.warranty };
+        }
+      }
+    } catch (err) {
+      // Continue to local fallback
+    }
   }
 
   if (!pageData) {
@@ -97,6 +121,8 @@ export default async function StaticPage({ params }: DynamicPageProps) {
   if (!pageData) {
     notFound();
   }
+
+  const isHtml = pageData.content.includes('<') && pageData.content.includes('>');
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
@@ -127,15 +153,19 @@ export default async function StaticPage({ params }: DynamicPageProps) {
               <span>•</span>
               <span className="flex items-center gap-1">
                 <Clock className="w-3.5 h-3.5" />
-                Updated 2026
+                Updated {pageData.updatedAt ? new Date(pageData.updatedAt).toLocaleDateString() : '2026'}
               </span>
             </div>
           </div>
         </div>
 
         {/* Content Body */}
-        <div className="prose prose-sm sm:prose max-w-none text-gray-700 leading-relaxed whitespace-pre-line space-y-4 font-normal">
-          {pageData.content}
+        <div className="prose prose-sm sm:prose max-w-none text-gray-700 leading-relaxed space-y-4 font-normal">
+          {isHtml ? (
+            <div dangerouslySetInnerHTML={{ __html: pageData.content }} />
+          ) : (
+            <div className="whitespace-pre-line">{pageData.content}</div>
+          )}
         </div>
       </article>
     </div>
