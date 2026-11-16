@@ -112,12 +112,14 @@ export const Header: React.FC<HeaderProps> = ({ categories = [], onToggleMobileD
 
           {/* Logo */}
           <Link href="/" className="shrink-0 flex items-center select-none py-0.5">
-            <span className="text-2xl sm:text-3xl font-black tracking-tight text-[#FF6600]">
-              maxit
-            </span>
-            <span className="text-2xl sm:text-3xl font-black tracking-tight text-[#131A22]">
-              shop
-            </span>
+            <Image
+              src="/images/logo.png"
+              alt="MAXIT"
+              width={160}
+              height={36}
+              priority
+              className="h-8 sm:h-9 w-auto object-contain"
+            />
           </Link>
 
           {/* Search Bar with live autocomplete */}

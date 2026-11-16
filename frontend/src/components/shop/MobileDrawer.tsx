@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { X, ChevronRight, ChevronDown, Phone, MapPin, Flame, Sparkles } from 'lucide-react';
 import { Category } from '@/lib/types';
 
@@ -35,13 +36,16 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, onClose, cat
       <div className="fixed inset-y-0 left-0 w-full max-w-xs bg-white shadow-2xl flex flex-col z-50">
         
         {/* Drawer Header */}
-        <div className="p-4 bg-slate-900 text-white flex items-center justify-between">
-          <div className="flex items-center gap-2 select-none">
-            <div className="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center font-bold text-white text-base">
-              M
-            </div>
-            <span className="font-black text-lg text-[#FF6A00]">MaxiT<span className="text-white">Shop</span></span>
-          </div>
+        <div className="p-3.5 bg-slate-900 text-white flex items-center justify-between">
+          <Link href="/" onClick={onClose} className="flex items-center select-none bg-white px-2.5 py-1 rounded-md">
+            <Image
+              src="/images/logo.png"
+              alt="MAXIT"
+              width={110}
+              height={25}
+              className="h-6 w-auto object-contain"
+            />
+          </Link>
           <button
             onClick={onClose}
             className="p-1.5 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition-colors"

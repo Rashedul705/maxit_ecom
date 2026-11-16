@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   Phone,
   Mail,
@@ -44,9 +45,14 @@ export const Footer: React.FC = () => {
           {/* Column 1 & 2: Brand, Tagline, Contact & App Badges */}
           <div className="lg:col-span-2 space-y-4">
             {/* Logo */}
-            <Link href="/" className="inline-flex items-center select-none">
-              <span className="text-2xl font-black text-[#FF6600]">maxit</span>
-              <span className="text-2xl font-black text-white">shop</span>
+            <Link href="/" className="inline-flex items-center select-none bg-white px-3 py-1.5 rounded-lg shadow-sm hover:opacity-95 transition-opacity">
+              <Image
+                src="/images/logo.png"
+                alt="MAXIT"
+                width={150}
+                height={34}
+                className="h-8 w-auto object-contain"
+              />
             </Link>
 
             <p className="text-gray-400 leading-relaxed text-xs max-w-sm">

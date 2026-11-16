@@ -18,6 +18,7 @@ import {
   ShieldCheck
 } from 'lucide-react';
 import { usePermission } from '../context/PermissionContext';
+import logoImg from '../assets/logo.png';
 
 interface SidebarProps {
   currentTab: string;
@@ -50,11 +51,10 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentTab, onSelectTab, onLog
   return (
     <aside className="admin-sidebar no-print">
       <div className="sidebar-brand">
-        <span className="brand-badge">ADMIN</span>
-        <div>
-          <h2 style={{ fontSize: '17px', fontWeight: 800, color: '#ffffff', letterSpacing: '-0.3px', lineHeight: 1.1 }}>MaxiTShop</h2>
-          <span style={{ fontSize: '11px', color: '#94a3b8' }}>Management Portal</span>
+        <div style={{ background: '#ffffff', padding: '3px 8px', borderRadius: '6px', display: 'flex', alignItems: 'center' }}>
+          <img src={logoImg} alt="MAXIT" style={{ height: '22px', width: 'auto', objectFit: 'contain' }} />
         </div>
+        <span className="brand-badge">ADMIN</span>
       </div>
 
       <nav className="sidebar-nav">
