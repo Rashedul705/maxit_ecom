@@ -4,15 +4,16 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { X, ChevronRight, ChevronDown, Phone, MapPin, Flame, Sparkles } from 'lucide-react';
-import { Category } from '@/lib/types';
+import { Category, SiteSetting } from '@/lib/types';
 
 interface MobileDrawerProps {
   isOpen: boolean;
   onClose: () => void;
   categories: Category[];
+  settings?: SiteSetting | null;
 }
 
-export const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, onClose, categories }) => {
+export const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, onClose, categories, settings }) => {
   const [expandedCategories, setExpandedCategories] = useState<Record<string, boolean>>({});
 
   if (!isOpen) return null;
@@ -144,11 +145,11 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, onClose, cat
         {/* Drawer Footer with Hotline */}
         <div className="p-4 bg-slate-900 text-white border-t border-slate-800">
           <a
-            href="tel:+8801733272445"
-            className="flex items-center justify-center gap-2 w-full py-2.5 bg-blue-600 hover:bg-blue-700 rounded-lg text-sm font-semibold transition-colors shadow-xs"
+            href={`tel:${(settings?.header?.hotline || settings?.phone || '01733272445').replace(/[^0-9+]/g, '')}`}
+            className="flex items-center justify-center gap-2 w-full py-2.5 bg-[#FF6600] hover:bg-[#e55c00] rounded-lg text-sm font-semibold transition-colors shadow-xs"
           >
             <Phone className="w-4 h-4" />
-            <span>Call Hotline: 01733272445</span>
+            <span>Call Hotline: {settings?.header?.hotline || settings?.phone || '01733272445'}</span>
           </a>
         </div>
       </div>

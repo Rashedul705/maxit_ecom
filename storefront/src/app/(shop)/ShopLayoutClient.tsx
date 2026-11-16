@@ -7,16 +7,17 @@ import { CartDrawer } from '@/components/shop/CartDrawer';
 import { FloatingSupport } from '@/components/shop/FloatingSupport';
 import { MobileBottomNav } from '@/components/shop/MobileBottomNav';
 import { Footer } from '@/components/shop/Footer';
-import { Category } from '@/lib/types';
+import { Category, SiteSetting } from '@/lib/types';
 import { CartProvider } from '@/lib/cartContext';
 import { WishlistProvider } from '@/lib/wishlistContext';
 
 interface ShopLayoutClientProps {
   children: React.ReactNode;
   categories: Category[];
+  settings?: SiteSetting | null;
 }
 
-export const ShopLayoutClient: React.FC<ShopLayoutClientProps> = ({ children, categories }) => {
+export const ShopLayoutClient: React.FC<ShopLayoutClientProps> = ({ children, categories, settings }) => {
   const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
 
   return (
@@ -26,6 +27,7 @@ export const ShopLayoutClient: React.FC<ShopLayoutClientProps> = ({ children, ca
           {/* Main Header with Top Header & Main Nav Bar */}
           <Header
             categories={categories}
+            settings={settings}
             onToggleMobileDrawer={() => setIsMobileDrawerOpen(true)}
           />
 
@@ -34,6 +36,7 @@ export const ShopLayoutClient: React.FC<ShopLayoutClientProps> = ({ children, ca
             isOpen={isMobileDrawerOpen}
             onClose={() => setIsMobileDrawerOpen(false)}
             categories={categories}
+            settings={settings}
           />
 
           {/* Slide-over Cart Drawer */}

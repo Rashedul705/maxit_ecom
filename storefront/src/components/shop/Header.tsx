@@ -14,19 +14,21 @@ import {
   Sparkles,
   User,
   LogIn,
-  Heart
+  Heart,
+  Phone
 } from 'lucide-react';
 import { useCart } from '@/lib/cartContext';
 import { useWishlist } from '@/lib/wishlistContext';
 import { api } from '@/lib/api';
-import { Category, SearchSuggestion } from '@/lib/types';
+import { Category, SearchSuggestion, SiteSetting } from '@/lib/types';
 
 interface HeaderProps {
   categories?: Category[];
+  settings?: SiteSetting | null;
   onToggleMobileDrawer: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ categories = [], onToggleMobileDrawer }) => {
+export const Header: React.FC<HeaderProps> = ({ categories = [], settings, onToggleMobileDrawer }) => {
   const router = useRouter();
   const { totalItems, subtotal, openCart } = useCart();
   const { wishlistCount } = useWishlist();
@@ -97,6 +99,43 @@ export const Header: React.FC<HeaderProps> = ({ categories = [], onToggleMobileD
 
   return (
     <header className="sticky top-0 z-40 bg-white border-b border-gray-200 shadow-xs">
+      {/* 0. TOP ANNOUNCEMENT BAR (Editable from Admin) */}
+      {settings?.header?.showAnnouncement && settings.header.announcementText && (
+        <div className="bg-[#0B1528] text-white text-[11px] sm:text-xs py-2 px-4 border-b border-[#1C2739] select-none">
+          <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+            <div className="flex-1 text-center font-medium truncate">
+              {settings.header.announcementLink ? (
+                <Link
+                  href={settings.header.announcementLink}
+                  className="hover:text-[#FF6600] transition-colors underline decoration-dotted underline-offset-2"
+                >
+                  {settings.header.announcementText}
+                </Link>
+              ) : (
+                <span>{settings.header.announcementText}</span>
+              )}
+            </div>
+            {settings?.header?.hotline && (
+              <div className="hidden md:flex items-center gap-2 text-gray-300 shrink-0 text-xs">
+                <Phone className="w-3.5 h-3.5 text-[#FF6600]" />
+                <span className="text-gray-400">Hotline:</span>
+                <a
+                  href={`tel:${settings.header.hotline.replace(/[^0-9+]/g, '')}`}
+                  className="font-bold text-white hover:text-[#FF6600] transition-colors"
+                >
+                  {settings.header.hotline}
+                </a>
+                {settings.header.supportHours && (
+                  <span className="text-[10px] text-gray-400 border-l border-gray-700 pl-2">
+                    {settings.header.supportHours}
+                  </span>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
       {/* 1. TOP HEADER (Logo, Search, Track Order, Cart) */}
       <div className="max-w-7xl mx-auto px-4 py-3 sm:py-3.5">
         <div className="flex items-center justify-between gap-4">
@@ -326,32 +365,39 @@ export const Header: React.FC<HeaderProps> = ({ categories = [], onToggleMobileD
               )}
             </div>
 
-            {/* Navigation Links */}
-            <div className="flex items-center ml-2">
-              <Link
-                href="/"
-                className="px-4 py-3 text-xs sm:text-sm font-semibold text-gray-200 hover:text-[#FF6600] transition-colors"
-              >
-                Home
-              </Link>
-              <Link
-                href="/sellers"
-                className="px-4 py-3 text-xs sm:text-sm font-semibold text-gray-200 hover:text-[#FF6600] transition-colors"
-              >
-                Sellers
-              </Link>
-              <Link
-                href="/contact"
-                className="px-4 py-3 text-xs sm:text-sm font-semibold text-gray-200 hover:text-[#FF6600] transition-colors"
-              >
-                Contact
-              </Link>
-              <Link
-                href="/shop"
-                className="px-4 py-3 text-xs sm:text-sm font-semibold text-gray-200 hover:text-[#FF6600] transition-colors"
-              >
-                Shop
-              </Link>
+            {/* Dynamic Navigation Links (Admin Controlled) */}
+            <div className="flex items-center ml-2 overflow-x-auto scrollbar-none whitespace-nowrap">
+              {(settings?.navLinks && settings.navLinks.length > 0
+                ? settings.navLinks
+                : [
+                    { label: 'Home', url: '/' },
+                    { label: 'Sellers', url: '/sellers' },
+                    { label: 'Contact', url: '/contact' },
+                    { label: 'Shop', url: '/shop' },
+                    { label: 'Hot Deals', url: '/#deals' },
+                    { label: 'Track Order', url: '/track-order' }
+                  ]
+              ).map((link, idx) => (
+                link.isExternal ? (
+                  <a
+                    key={idx}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-4 py-3 text-xs sm:text-sm font-semibold text-gray-200 hover:text-[#FF6600] transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={idx}
+                    href={link.url}
+                    className="px-4 py-3 text-xs sm:text-sm font-semibold text-gray-200 hover:text-[#FF6600] transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                )
+              ))}
             </div>
           </div>
 

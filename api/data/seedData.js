@@ -334455,7 +334455,39 @@ module.exports = {
     "metaTags": {
       "title": "maxitshop - Solar, Battery & Power Engineering Bangladesh",
       "description": "Buy Tier-1 Solar Panels, LiFePO4 Battery Cells, Smart BMS, Hybrid Inverters and Electronics Parts in Bangladesh with Cash on Delivery."
-    }
+    },
+    "navLinks": [
+      {
+        "label": "Home",
+        "url": "/",
+        "isExternal": false
+      },
+      {
+        "label": "Sellers",
+        "url": "/sellers",
+        "isExternal": false
+      },
+      {
+        "label": "Contact",
+        "url": "/contact",
+        "isExternal": false
+      },
+      {
+        "label": "Shop",
+        "url": "/shop",
+        "isExternal": false
+      },
+      {
+        "label": "Hot Deals",
+        "url": "/#deals",
+        "isExternal": false
+      },
+      {
+        "label": "Track Order",
+        "url": "/track-order",
+        "isExternal": false
+      }
+    ]
   },
   "sellers": [
     {

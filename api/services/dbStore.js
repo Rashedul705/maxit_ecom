@@ -1961,13 +1961,11 @@ const db = {
       };
 
       s.navLinks = Array.isArray(s.navLinks) && s.navLinks.length > 0 ? s.navLinks : [
-        { label: 'All Products', url: '/category/all', isExternal: false },
-        { label: 'LiFePO4 Batteries', url: '/category/lifepo4', isExternal: false },
-        { label: 'Smart BMS', url: '/category/bms', isExternal: false },
-        { label: 'Solar Inverters', url: '/category/solar-inverters', isExternal: false },
+        { label: 'Home', url: '/', isExternal: false },
+        { label: 'Sellers', url: '/sellers', isExternal: false },
+        { label: 'Contact', url: '/contact', isExternal: false },
+        { label: 'Shop', url: '/shop', isExternal: false },
         { label: 'Hot Deals', url: '/#deals', isExternal: false },
-        { label: 'Brand Directory', url: '/#brands', isExternal: false },
-        { label: 'Verified Sellers', url: '/sellers', isExternal: false },
         { label: 'Track Order', url: '/track-order', isExternal: false }
       ];
 

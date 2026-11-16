@@ -1,7 +1,9 @@
 import React from 'react';
 import { api } from '@/lib/api';
-import { Category } from '@/lib/types';
+import { Category, SiteSetting } from '@/lib/types';
 import { ShopLayoutClient } from './ShopLayoutClient';
+
+export const revalidate = 0;
 
 export default async function ShopLayout({
   children,
@@ -9,10 +11,17 @@ export default async function ShopLayout({
   children: React.ReactNode;
 }) {
   let categories: Category[] = [];
+  let settings: SiteSetting | null = null;
+
   try {
-    categories = await api.getCategories();
+    const [catsData, settingsData] = await Promise.all([
+      api.getCategories().catch(() => []),
+      api.getSettings().catch(() => null)
+    ]);
+    categories = catsData;
+    settings = settingsData;
   } catch (err) {
-    console.error('Failed to prefetch categories in ShopLayout:', err);
+    console.error('Failed to prefetch categories and settings in ShopLayout:', err);
     // Fallback categories for resilient rendering
     categories = [
       { id: 'cat-solar-energy', name: 'SOLAR ENERGY', slug: 'solar-energy', parent: null },
@@ -30,7 +39,7 @@ export default async function ShopLayout({
   }
 
   return (
-    <ShopLayoutClient categories={categories}>
+    <ShopLayoutClient categories={categories} settings={settings}>
       {children}
     </ShopLayoutClient>
   );
