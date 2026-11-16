@@ -48,13 +48,13 @@ export const ShopLayoutClient: React.FC<ShopLayoutClientProps> = ({ children, ca
           </main>
 
           {/* Floating WhatsApp & Messenger Support Buttons */}
-          <FloatingSupport />
+          <FloatingSupport settings={settings} />
 
           {/* Mobile Fixed Bottom Navigation Bar */}
           <MobileBottomNav onOpenCategories={() => setIsMobileDrawerOpen(true)} />
 
           {/* Footer */}
-          <Footer />
+          <Footer settings={settings} />
         </div>
       </WishlistProvider>
     </CartProvider>
