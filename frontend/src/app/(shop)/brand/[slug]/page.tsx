@@ -72,6 +72,7 @@ export default async function BrandPage({ params }: BrandPageProps) {
               src={brand.logo}
               alt={brand.name}
               fill
+              unoptimized
               sizes="112px"
               className="object-contain p-2"
             />

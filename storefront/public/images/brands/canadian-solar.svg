@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100" width="300" height="100">
+      <defs>
+        <linearGradient id="csRed" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#E31837"/>
+          <stop offset="100%" stop-color="#B71228"/>
+        </linearGradient>
+      </defs>
+      <g transform="translate(15, 12)">
+        <path d="M35 5 L40 22 L52 14 L46 28 L62 30 L48 40 L56 54 L38 46 L35 70 L32 46 L14 54 L22 40 L8 30 L24 28 L18 14 L30 22 Z" fill="url(#csRed)"/>
+      </g>
+      <text x="85" y="48" font-family="system-ui, -apple-system, Arial, sans-serif" font-size="28" font-weight="900" fill="#E31837" letter-spacing="-0.5">Canadian</text>
+      <text x="208" y="48" font-family="system-ui, -apple-system, Arial, sans-serif" font-size="28" font-weight="400" fill="#231F20" letter-spacing="-0.5">Solar</text>
+      <text x="86" y="66" font-family="system-ui, -apple-system, Arial, sans-serif" font-size="10" font-weight="700" fill="#777777" letter-spacing="2">MAKE THE WORLD A BETTER PLACE</text>
+    </svg>

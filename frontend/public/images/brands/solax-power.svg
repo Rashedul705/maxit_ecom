@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100" width="300" height="100">
+      <g transform="translate(15, 22)">
+        <path d="M10 45 C 5 20, 25 15, 35 15 C 20 20, 20 35, 35 45 Z" fill="#E30613"/>
+        <text x="42" y="36" font-family="system-ui, -apple-system, Arial, sans-serif" font-size="34" font-weight="900" fill="#E30613" letter-spacing="0.5">SolaX</text>
+        <text x="142" y="36" font-family="system-ui, -apple-system, Arial, sans-serif" font-size="34" font-weight="400" fill="#1A1A1A" letter-spacing="1">POWER</text>
+        <text x="44" y="52" font-family="system-ui, -apple-system, Arial, sans-serif" font-size="9" font-weight="700" fill="#666666" letter-spacing="1.5">INTELLIGENT SOLAR INVERTERS</text>
+      </g>
+    </svg>

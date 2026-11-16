@@ -29,12 +29,13 @@ export const BrandsStrip: React.FC<BrandsStripProps> = ({ brands }) => {
             href={`/brand/${brand.slug}`}
             className="group flex flex-col items-center justify-center p-2.5 bg-white border border-gray-200 rounded-lg hover:border-[#FF6600] hover:shadow-md transition-all text-center aspect-square"
           >
-            <div className="relative w-12 h-12 sm:w-14 sm:h-14 mb-1.5 flex items-center justify-center">
+            <div className="relative w-14 h-14 sm:w-16 sm:h-16 mb-1.5 flex items-center justify-center">
               {brand.logo ? (
                 <Image
                   src={brand.logo}
                   alt={brand.name}
                   fill
+                  unoptimized
                   sizes="64px"
                   className="object-contain p-1 group-hover:scale-105 transition-transform"
                 />

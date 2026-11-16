@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100" width="300" height="100">
+      <g transform="translate(15, 24)">
+        <path d="M0 45 L15 10 L35 10 L45 32 L35 45 L20 45 L12 30 L22 30 L28 40 L35 40 L28 20 L20 20 L10 45 Z" fill="#ED1C24"/>
+        <path d="M26 10 L38 0 L52 28 L40 28 Z" fill="#ED1C24"/>
+        <text x="60" y="38" font-family="system-ui, -apple-system, Arial, sans-serif" font-size="30" font-weight="900" fill="#1A1A1A" letter-spacing="1">MICROCHIP</text>
+        <text x="62" y="52" font-family="system-ui, -apple-system, Arial, sans-serif" font-size="9" font-weight="700" fill="#ED1C24" letter-spacing="2">SMART | CONNECTED | SECURE</text>
+      </g>
+    </svg>

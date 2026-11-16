@@ -2354,7 +2354,7 @@ module.exports = {
       "id": "brand-canadian-solar",
       "name": "Canadian Solar",
       "slug": "canadian-solar",
-      "logo": "https://images.unsplash.com/photo-1509391365360-2e959784a276?w=200&q=80",
+      "logo": "/images/brands/canadian-solar.png",
       "website": "https://www.canadiansolar.com",
       "description": "Global leader in solar power and energy storage solutions."
     },
@@ -2362,7 +2362,7 @@ module.exports = {
       "id": "brand-huawei",
       "name": "Huawei Inverter",
       "slug": "huawei",
-      "logo": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=200&q=80",
+      "logo": "/images/brands/huawei.png",
       "website": "https://solar.huawei.com",
       "description": "Smart PV & Energy Storage solutions powering digital power worldwide."
     },
@@ -2370,7 +2370,7 @@ module.exports = {
       "id": "brand-jinko-solar",
       "name": "Jinko Solar",
       "slug": "jinko-solar",
-      "logo": "https://images.unsplash.com/photo-1509391365360-2e959784a276?w=200&q=80",
+      "logo": "/images/brands/jinko-solar.png",
       "website": "https://www.jinkosolar.com",
       "description": "World largest and most innovative solar panel technology provider."
     },
@@ -2378,7 +2378,7 @@ module.exports = {
       "id": "brand-rec-solar",
       "name": "REC Solar",
       "slug": "rec-solar",
-      "logo": "https://images.unsplash.com/photo-1508873696983-2df570464756?w=200&q=80",
+      "logo": "/images/brands/rec-solar.png",
       "website": "https://www.recgroup.com",
       "description": "Premium solar panel manufacturer with high power density."
     },
@@ -2386,7 +2386,7 @@ module.exports = {
       "id": "brand-solax-power",
       "name": "Solax Power",
       "slug": "solax-power",
-      "logo": "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=200&q=80",
+      "logo": "/images/brands/solax-power.png",
       "website": "https://www.solaxpower.com",
       "description": "Pioneering residential and commercial solar hybrid inverters."
     },
@@ -2394,7 +2394,7 @@ module.exports = {
       "id": "brand-goodwe",
       "name": "GoodWe",
       "slug": "goodwe",
-      "logo": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=200&q=80",
+      "logo": "/images/brands/goodwe.png",
       "website": "https://www.goodwe.com",
       "description": "Smart energy innovator providing solar inverters and energy solutions."
     },
@@ -2402,7 +2402,7 @@ module.exports = {
       "id": "brand-siemens",
       "name": "Siemens",
       "slug": "siemens",
-      "logo": "https://images.unsplash.com/photo-1581092335397-9583fe92d232?w=200&q=80",
+      "logo": "/images/brands/siemens.png",
       "website": "https://www.siemens.com",
       "description": "Industrial engineering, PLC automation, and control equipment."
     },
@@ -2410,7 +2410,7 @@ module.exports = {
       "id": "brand-microchip",
       "name": "Microchip",
       "slug": "microchip",
-      "logo": "https://images.unsplash.com/photo-1517055729441-375a27788e77?w=200&q=80",
+      "logo": "/images/brands/microchip.png",
       "website": "https://www.microchip.com",
       "description": "Smart, connected and secure embedded control solutions."
     },
@@ -2418,7 +2418,7 @@ module.exports = {
       "id": "brand-nano-power",
       "name": "Nano Power",
       "slug": "nano-power",
-      "logo": "https://images.unsplash.com/photo-1555680202-c86f0e12f086?w=200&q=80",
+      "logo": "/images/brands/nano-power.png",
       "website": "#",
       "description": "Authentic customized batteries, BMS, chargers and power boards."
     },
@@ -2426,7 +2426,7 @@ module.exports = {
       "id": "brand-meco",
       "name": "MECO",
       "slug": "meco",
-      "logo": "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=200&q=80",
+      "logo": "/images/brands/meco.png",
       "website": "#",
       "description": "Reliable portable power stations, inverters, and battery accessories."
     }
