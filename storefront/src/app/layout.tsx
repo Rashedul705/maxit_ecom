@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import { api } from "@/lib/api";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -7,26 +8,51 @@ export const viewport: Viewport = {
   maximumScale: 5,
 };
 
-export const metadata: Metadata = {
-  title: "MaxiTShop | Online Shopping in Bangladesh - Solar, Inverters, Gadgets & Spares",
-  description: "MaxiTShop is Bangladesh's premier e-commerce platform for Solar Energy, LiFePO4 Batteries, Inverters, Smart Gadgets, and Electronics with Cash on Delivery across all 64 districts.",
-  keywords: "maxitshop, solar panels bd, inverter price bangladesh, lifepo4 battery bd, bms module, electronics parts dhaka, cash on delivery",
-  authors: [{ name: "MaxiTShop" }],
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://maxitecom.maxapi.esp32.site"),
-  openGraph: {
-    title: "MaxiTShop | Online Shopping in Bangladesh",
-    description: "Authentic solar equipment, inverters, batteries, and electronics with nationwide delivery.",
-    url: process.env.NEXT_PUBLIC_SITE_URL || "https://maxitecom.maxapi.esp32.site",
-    siteName: "MaxiTShop",
-    locale: "en_BD",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "MaxiTShop | Bangladesh Trusted Tech & Solar Store",
-    description: "Shop solar systems, batteries, and electronic modules with cash on delivery across BD.",
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  let title = "MaxiTShop | Online Shopping in Bangladesh - Solar, Inverters, Gadgets & Spares";
+  let description = "MaxiTShop is Bangladesh's premier e-commerce platform for Solar Energy, LiFePO4 Batteries, Inverters, Smart Gadgets, and Electronics with Cash on Delivery across all 64 districts.";
+  let keywords = "maxitshop, solar panels bd, inverter price bangladesh, lifepo4 battery bd, bms module, electronics parts dhaka, cash on delivery";
+
+  try {
+    const settings = await api.getSettings();
+    if (settings) {
+      if (settings.metaTags?.title || settings.siteName) {
+        title = settings.metaTags?.title || `${settings.siteName} | ${settings.tagline || ''}`;
+      }
+      if (settings.metaTags?.description || settings.tagline) {
+        description = settings.metaTags?.description || settings.tagline;
+      }
+      if (settings.metaTags?.keywords) {
+        keywords = settings.metaTags.keywords;
+      }
+    }
+  } catch (e) {
+    // Keep fallback defaults
+  }
+
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://maxitecom.maxapi.esp32.site";
+
+  return {
+    title,
+    description,
+    keywords,
+    authors: [{ name: "MaxiTShop" }],
+    metadataBase: new URL(siteUrl),
+    openGraph: {
+      title,
+      description,
+      url: siteUrl,
+      siteName: "MaxiTShop",
+      locale: "en_BD",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
+  };
+}
 
 export default function RootLayout({
   children,

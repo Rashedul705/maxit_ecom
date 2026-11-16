@@ -25,11 +25,12 @@ import {
   Printer,
   ChevronRight as ArrowRightIcon
 } from 'lucide-react';
-import { Category, Banner } from '@/lib/types';
+import { Category, Banner, SiteSetting } from '@/lib/types';
 
 interface HeroSectionProps {
   categories: Category[];
   banners: Banner[];
+  hero?: SiteSetting['hero'];
 }
 
 const getCategoryIcon = (slug: string) => {
@@ -91,7 +92,7 @@ const getCategoryIcon = (slug: string) => {
   }
 };
 
-export const HeroSection: React.FC<HeroSectionProps> = ({ categories, banners }) => {
+export const HeroSection: React.FC<HeroSectionProps> = ({ categories, banners, hero }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
@@ -221,8 +222,34 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ categories, banners })
               )}
             </>
           ) : (
-            <div className="w-full h-full flex items-center justify-center text-gray-400">
-              Loading banners...
+            <div className="w-full h-full flex flex-col justify-center px-8 sm:px-14 bg-gradient-to-r from-[#0B1528] via-[#101C33] to-[#0468D3] text-white">
+              {hero?.badge && (
+                <span className="bg-[#FF6600] text-white text-[10px] sm:text-xs font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full w-fit mb-3">
+                  {hero.badge}
+                </span>
+              )}
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-black leading-tight mb-2">
+                {hero?.headline || 'Powering Bangladesh With High-Performance Solar & Battery Systems'}
+              </h2>
+              <p className="text-xs sm:text-sm text-gray-200 max-w-xl line-clamp-2 mb-5">
+                {hero?.subheadline || 'Explore genuine Grade-A LiFePO4 cells, active balance smart BMS, MPPT solar controllers, and inverters.'}
+              </p>
+              <div className="flex items-center gap-3">
+                <Link
+                  href={hero?.primaryBtnUrl || '/#deals'}
+                  className="bg-[#FF6600] hover:bg-[#e55c00] text-white font-bold text-xs sm:text-sm px-5 py-2.5 rounded-md transition-colors shadow-xs"
+                >
+                  {hero?.primaryBtnText || 'Shop Best Deals'}
+                </Link>
+                {hero?.secondaryBtnText && (
+                  <Link
+                    href={hero?.secondaryBtnUrl || '/track-order'}
+                    className="bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-xs sm:text-sm px-5 py-2.5 rounded-md transition-colors"
+                  >
+                    {hero.secondaryBtnText}
+                  </Link>
+                )}
+              </div>
             </div>
           )}
         </div>

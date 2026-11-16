@@ -1,10 +1,11 @@
 import React from 'react';
 import { api } from '@/lib/api';
 import { HeroSection } from '@/components/shop/HeroSection';
+import { TrustFeaturesStrip } from '@/components/shop/TrustFeaturesStrip';
 import { CategoriesGrid } from '@/components/shop/CategoriesGrid';
 import { HotDealsCategorySection } from '@/components/shop/HotDealsCategorySection';
 import { BrandsStrip } from '@/components/shop/BrandsStrip';
-import { Category, Banner, Brand, Product } from '@/lib/types';
+import { Category, Banner, Brand, Product, SiteSetting } from '@/lib/types';
 
 export const revalidate = 0; // Fresh dynamic data
 
@@ -12,18 +13,21 @@ export default async function HomePage() {
   let categories: Category[] = [];
   let banners: Banner[] = [];
   let brands: Brand[] = [];
+  let settings: SiteSetting | null = null;
   let categoryGroups: { category: Category; products: Product[] }[] = [];
 
   try {
-    const [catsData, bannersData, brandsData] = await Promise.all([
+    const [catsData, bannersData, brandsData, settingsData] = await Promise.all([
       api.getCategories().catch(() => []),
       api.getBanners().catch(() => []),
       api.getBrands().catch(() => []),
+      api.getSettings().catch(() => null),
     ]);
 
     categories = catsData;
     banners = bannersData;
     brands = brandsData;
+    settings = settingsData;
 
     // Fetch products per category individually so each section shows its own products
     // Priority order: Solar, Wind, Battery, ESP, Camera, Office Equipment
@@ -43,9 +47,12 @@ export default async function HomePage() {
   }
 
   return (
-    <div className="space-y-6 sm:space-y-10 pb-12">
+    <div className="space-y-6 sm:space-y-8 pb-12">
       {/* 1. Hero Section: Left Category Menu + Banner Carousel */}
-      <HeroSection categories={categories} banners={banners} />
+      <HeroSection categories={categories} banners={banners} hero={settings?.hero} />
+
+      {/* 1.1 Dynamic Trust Features Strip (Admin-Editable) */}
+      <TrustFeaturesStrip features={settings?.hero?.trustFeatures} />
 
       {/* 2. "Categories" Grid: Image Card + Category Name */}
       <CategoriesGrid categories={categories} />
