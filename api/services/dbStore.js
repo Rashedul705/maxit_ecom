@@ -1377,9 +1377,34 @@ const db = {
     const orderNumber = `ORD-${Math.floor(10000 + Math.random() * 90000)}`;
     const subtotal = resolvedItems.reduce((sum, item) => sum + (Number(item.price) * Number(item.quantity)), 0);
     const isInsideDhaka = customer.area === 'inside_dhaka' ||
-      (customer.division && customer.division.toLowerCase() === 'dhaka') ||
+      (customer.division && (customer.division.toLowerCase() === 'dhaka' || customer.division.toLowerCase().includes('dhaka'))) ||
       (customer.district && customer.district.toLowerCase() === 'dhaka');
-    const deliveryCharge = isInsideDhaka ? 80 : 130;
+
+    // Live Delivery Rates & Free Shipping Calculation from Admin Settings
+    let deliveryCharge = isInsideDhaka ? 70 : 130;
+    let freeDeliveryThreshold = 0;
+    try {
+      const siteSettings = await this.getSettings();
+      if (siteSettings?.deliveryRates) {
+        const rates = siteSettings.deliveryRates;
+        const insideRate = Number(rates.insideDhaka ?? 70);
+        const outsideRate = Number(rates.outsideDhaka ?? 130);
+        freeDeliveryThreshold = Number(rates.freeDeliveryThreshold ?? 0);
+        const codAvailable = rates.codAvailable !== false;
+
+        if (paymentMethod === 'cod' && !codAvailable) {
+          throw new Error('Cash on Delivery (COD) is temporarily disabled. Please choose another payment method.');
+        }
+
+        deliveryCharge = isInsideDhaka ? insideRate : outsideRate;
+        if (freeDeliveryThreshold > 0 && subtotal >= freeDeliveryThreshold) {
+          deliveryCharge = 0;
+        }
+      }
+    } catch (e) {
+      if (e.message && e.message.includes('Cash on Delivery')) throw e;
+      // fallback to standard delivery rates if settings lookup fails
+    }
 
     // Server-side Coupon verification
     let discount = 0;

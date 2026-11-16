@@ -1,11 +1,11 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useCart } from '@/lib/cartContext';
 import { api } from '@/lib/api';
-import { Order } from '@/lib/types';
+import { Order, SiteSetting } from '@/lib/types';
 import { BANGLADESH_DISTRICTS, ALL_DISTRICT_NAMES } from '@/lib/geoData';
 import {
   Truck,
@@ -38,6 +38,25 @@ const AVAILABLE_COUPONS: Record<string, AvailableCoupon> = {
 export default function CheckoutPage() {
   const { items, subtotal, totalItems, clearCart } = useCart();
 
+  // Site Settings from Admin
+  const [siteSettings, setSiteSettings] = useState<SiteSetting | null>(null);
+
+  useEffect(() => {
+    let isMounted = true;
+    api.getSettings()
+      .then((data) => {
+        if (isMounted && data) {
+          setSiteSettings(data);
+        }
+      })
+      .catch((err) => {
+        console.warn('Failed to load settings in checkout:', err);
+      });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   // Form State
   const [customerName, setCustomerName] = useState('');
   const [phone, setPhone] = useState('');
@@ -48,6 +67,32 @@ export default function CheckoutPage() {
   const [note, setNote] = useState('');
   const [paymentMethod, setPaymentMethod] = useState<'cod' | 'bkash' | 'sslcommerz'>('cod');
 
+  // Dynamic Delivery Calculation from Admin Settings
+  const deliveryRates = siteSettings?.deliveryRates;
+  const insideRate = Number(deliveryRates?.insideDhaka ?? 70);
+  const outsideRate = Number(deliveryRates?.outsideDhaka ?? 130);
+  const freeThreshold = Number(deliveryRates?.freeDeliveryThreshold ?? 0);
+  const isFreeDelivery = freeThreshold > 0 && subtotal >= freeThreshold;
+
+  const selectedDistrictData = district ? BANGLADESH_DISTRICTS[district] : null;
+  const isDhaka = selectedDistrictData?.isDhaka ?? false;
+  const baseDeliveryCharge = district ? (isDhaka ? insideRate : outsideRate) : 0;
+  const deliveryCharge = isFreeDelivery && district ? 0 : baseDeliveryCharge;
+
+  const insideDhakaTime = deliveryRates?.insideDhakaTime || '24-48 Hours';
+  const outsideDhakaTime = deliveryRates?.outsideDhakaTime || '2-3 Business Days';
+  const estimatedDeliveryTime = isDhaka ? insideDhakaTime : outsideDhakaTime;
+
+  const codAvailable = deliveryRates?.codAvailable !== false;
+  const codNote = deliveryRates?.codNote || 'Pay with cash after checking the product upon delivery.';
+
+  // If COD is disabled in admin settings, auto-fallback to bkash
+  useEffect(() => {
+    if (deliveryRates && deliveryRates.codAvailable === false && paymentMethod === 'cod') {
+      setPaymentMethod('bkash');
+    }
+  }, [deliveryRates, paymentMethod]);
+
   // Coupon State
   const [couponInput, setCouponInput] = useState('');
   const [appliedCoupon, setAppliedCoupon] = useState<AvailableCoupon | null>(null);
@@ -57,11 +102,6 @@ export default function CheckoutPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [confirmedOrder, setConfirmedOrder] = useState<Order | null>(null);
-
-  // Delivery calculation based on selected district
-  const selectedDistrictData = district ? BANGLADESH_DISTRICTS[district] : null;
-  const isDhaka = selectedDistrictData?.isDhaka ?? false;
-  const deliveryCharge = district ? (isDhaka ? 80 : 130) : 0;
 
   // Coupon discount
   const discount = appliedCoupon
@@ -376,9 +416,12 @@ export default function CheckoutPage() {
                           </option>
                         ))}
                       </select>
-                      <p className="text-[11px] text-gray-400 mt-1">
-                        Select district to view delivery charge
-                      </p>
+                      <div className="text-[11px] text-gray-500 mt-1.5 flex flex-wrap items-center justify-between gap-1">
+                        <span>Inside Dhaka: ৳{insideRate} • Outside Dhaka: ৳{outsideRate}</span>
+                        {freeThreshold > 0 && (
+                          <span className="text-emerald-600 font-semibold">Free over ৳{freeThreshold.toLocaleString()}</span>
+                        )}
+                      </div>
                     </div>
 
                     <div>
@@ -459,41 +502,48 @@ export default function CheckoutPage() {
 
                 <div className="space-y-3">
                   {/* Cash on Delivery */}
-                  <label
-                    onClick={() => setPaymentMethod('cod')}
-                    className={`flex items-center justify-between p-4 rounded-2xl cursor-pointer transition-all ${
-                      paymentMethod === 'cod'
-                        ? 'border-2 border-red-500 bg-red-50/20 shadow-2xs'
-                        : 'border border-gray-200 hover:border-gray-300 bg-white'
-                    }`}
-                  >
-                    <div className="flex items-start gap-3">
-                      <div className="pt-0.5">
-                        <div
-                          className={`w-4 h-4 rounded-full border flex items-center justify-center transition-colors ${
-                            paymentMethod === 'cod'
-                              ? 'border-red-500 bg-red-500'
-                              : 'border-gray-300 bg-white'
-                          }`}
-                        >
-                          {paymentMethod === 'cod' && (
-                            <div className="w-1.5 h-1.5 rounded-full bg-white" />
-                          )}
+                  {codAvailable ? (
+                    <label
+                      onClick={() => setPaymentMethod('cod')}
+                      className={`flex items-center justify-between p-4 rounded-2xl cursor-pointer transition-all ${
+                        paymentMethod === 'cod'
+                          ? 'border-2 border-red-500 bg-red-50/20 shadow-2xs'
+                          : 'border border-gray-200 hover:border-gray-300 bg-white'
+                      }`}
+                    >
+                      <div className="flex items-start gap-3">
+                        <div className="pt-0.5">
+                          <div
+                            className={`w-4 h-4 rounded-full border flex items-center justify-center transition-colors ${
+                              paymentMethod === 'cod'
+                                ? 'border-red-500 bg-red-500'
+                                : 'border-gray-300 bg-white'
+                            }`}
+                          >
+                            {paymentMethod === 'cod' && (
+                              <div className="w-1.5 h-1.5 rounded-full bg-white" />
+                            )}
+                          </div>
+                        </div>
+                        <div>
+                          <p className="text-sm sm:text-base font-bold text-gray-900">
+                            Cash on Delivery (Cash on Delivery)
+                          </p>
+                          <p className="text-xs text-gray-500 mt-0.5">
+                            {codNote}
+                          </p>
                         </div>
                       </div>
-                      <div>
-                        <p className="text-sm sm:text-base font-bold text-gray-900">
-                          Cash on Delivery (Cash on Delivery)
-                        </p>
-                        <p className="text-xs text-gray-500 mt-0.5">
-                          Pay with cash after checking the product upon delivery.
-                        </p>
-                      </div>
+                      <span className="shrink-0 text-xs font-bold text-emerald-600 bg-emerald-50 border border-emerald-100 px-2.5 py-1 rounded-full">
+                        Popular
+                      </span>
+                    </label>
+                  ) : (
+                    <div className="p-4 rounded-2xl bg-amber-50/60 border border-amber-200 text-amber-800 text-xs flex items-center gap-2.5">
+                      <AlertCircle className="w-4 h-4 text-amber-600 shrink-0" />
+                      <span>Cash on Delivery is currently disabled by store admin. Please choose an online payment method below.</span>
                     </div>
-                    <span className="shrink-0 text-xs font-bold text-emerald-600 bg-emerald-50 border border-emerald-100 px-2.5 py-1 rounded-full">
-                      Popular
-                    </span>
-                  </label>
+                  )}
 
                   {/* bKash Payment */}
                   <label
@@ -702,6 +752,22 @@ export default function CheckoutPage() {
 
                 {/* Subtotal, Delivery Fee & Grand Total */}
                 <div className="pt-3 border-t border-gray-100 space-y-2.5 text-sm">
+                  {/* Free Delivery Banner */}
+                  {freeThreshold > 0 && (
+                    <div className={`p-2.5 rounded-xl border text-xs flex items-center gap-2 ${
+                      isFreeDelivery
+                        ? 'bg-emerald-50 border-emerald-200 text-emerald-700 font-medium'
+                        : 'bg-amber-50/60 border-amber-200/80 text-amber-800'
+                    }`}>
+                      <Truck className={`w-4 h-4 shrink-0 ${isFreeDelivery ? 'text-emerald-600' : 'text-amber-600'}`} />
+                      {isFreeDelivery ? (
+                        <span>🎉 You qualify for <strong>Free Delivery</strong>!</span>
+                      ) : (
+                        <span>Add <strong>৳{(freeThreshold - subtotal).toLocaleString()}</strong> more to get <strong>Free Delivery</strong>!</span>
+                      )}
+                    </div>
+                  )}
+
                   <div className="flex items-center justify-between text-gray-600">
                     <span>Subtotal:</span>
                     <span className="font-bold text-gray-900">৳{subtotal.toLocaleString()}</span>
@@ -717,7 +783,14 @@ export default function CheckoutPage() {
                   <div className="flex items-center justify-between text-gray-600">
                     <span>Delivery Charge:</span>
                     {district ? (
-                      <span className="font-bold text-gray-900">৳{deliveryCharge}</span>
+                      isFreeDelivery ? (
+                        <div className="flex items-center gap-1.5">
+                          <span className="text-xs text-gray-400 line-through">৳{baseDeliveryCharge}</span>
+                          <span className="font-bold text-emerald-600 bg-emerald-50 border border-emerald-100 px-2 py-0.5 rounded text-xs">FREE</span>
+                        </div>
+                      ) : (
+                        <span className="font-bold text-gray-900">৳{deliveryCharge}</span>
+                      )
                     ) : (
                       <span className="bg-rose-100 text-rose-700 text-xs px-2.5 py-0.5 rounded-full font-semibold">
                         Select District
@@ -734,7 +807,7 @@ export default function CheckoutPage() {
                         </span>
                         <span className="text-[11px] text-gray-400 mt-0.5 block">
                           {district
-                            ? `(Estimated delivery: ${isDhaka ? '24-48 Hours' : '2-3 Business Days'})`
+                            ? `(Estimated delivery: ${estimatedDeliveryTime})`
                             : '(Delivery charge will be added after selecting district)'}
                         </span>
                       </div>
@@ -784,7 +857,7 @@ export default function CheckoutPage() {
                   </div>
                   <p className="text-[11px] text-gray-400 mt-1">
                     {paymentMethod === 'cod'
-                      ? 'Pay only after receiving and checking your product with the delivery agent.'
+                      ? codNote
                       : 'Your transaction is processed through PCI-DSS compliant secure servers.'}
                   </p>
                 </div>
