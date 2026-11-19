@@ -1,5 +1,6 @@
 import React from 'react';
 import { Order } from '../types';
+import { LOGO_BASE64 } from '../assets/logoBase64';
 
 interface SteadfastStickerProps {
   order: Order;
@@ -41,9 +42,17 @@ export const SteadfastSticker: React.FC<SteadfastStickerProps> = ({ order }) => 
         }}
       >
         <div>
-          <div style={{ fontSize: '22px', fontWeight: 900, letterSpacing: '-0.5px', color: '#000000', textTransform: 'uppercase', lineHeight: 1.1 }}>
-            MaxiTShop
-          </div>
+          <img
+            src={LOGO_BASE64}
+            alt="MAXIT"
+            style={{
+              height: '30px',
+              width: 'auto',
+              objectFit: 'contain',
+              display: 'block',
+              marginBottom: '4px'
+            }}
+          />
           <div style={{ fontSize: '13px', fontWeight: 800, color: '#111111', marginTop: '3px' }}>
             Phone: +880 1733-272445
           </div>

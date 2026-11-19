@@ -1,4 +1,5 @@
 import { Order } from '../types';
+import { LOGO_BASE64 } from '../assets/logoBase64';
 
 function getItemVariationText(item: any): string {
   const sanitize = (str: any) => typeof str === 'string' && !str.includes('[object Object]') && str.trim().length > 0;
@@ -104,7 +105,7 @@ export const generateInvoicesHtml = (orders: Order[]): { html: string; pageStyle
         <!-- Header -->
         <div style="display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid #0f172a;padding-bottom:14px;margin-bottom:18px;">
           <div>
-            <h1 style="font-size:24px;font-weight:900;color:#ff6600;margin:0;letter-spacing:-0.5px;">MaxiTShop</h1>
+            <img src="${LOGO_BASE64}" alt="MAXIT" style="height:36px;width:auto;object-fit:contain;margin-bottom:6px;display:block;" />
             <p style="font-size:11px;color:#475569;margin:3px 0 0 0;font-weight:600;">Solar, Industrial &amp; Electronics Solutions Bangladesh</p>
             <p style="font-size:11px;color:#64748b;margin:2px 0 0 0;">2nd Floor, Afroza Tower, Uposhohor New Market, Rajshahi-6000</p>
             <p style="font-size:11px;color:#64748b;margin:2px 0 0 0;">Phone: +880 1733-272445 | Email: support@maxitshop.com</p>
@@ -232,9 +233,7 @@ const renderStickerBlock = (order: Order, compact = false, ultraCompact = false)
       <!-- 1. Header: Shop Name & Delivery Badge -->
       <div style="padding:${headerPad};border-bottom:2px solid #000000;display:flex;justify-content:space-between;align-items:center;background:#ffffff;">
         <div>
-          <div style="font-size:${shopSize};font-weight:900;letter-spacing:-0.5px;color:#000000;text-transform:uppercase;line-height:1.1;">
-            MaxiTShop
-          </div>
+          <img src="${LOGO_BASE64}" alt="MAXIT" style="height:${ultraCompact ? '20px' : (compact ? '26px' : '32px')};width:auto;object-fit:contain;display:block;margin-bottom:3px;" />
           <div style="font-size:${phoneSize};font-weight:800;color:#111111;margin-top:2px;">
             Phone: +880 1733-272445
           </div>

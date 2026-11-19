@@ -15,9 +15,13 @@ import {
   Heading2,
   List,
   Link as LinkIcon,
-  Table as TableIcon
+  Table as TableIcon,
+  Sparkles,
+  Code,
+  FileText
 } from 'lucide-react';
 import { adminApi } from '../api';
+import { htmlToCleanPlainText, plainTextToCleanHtml } from '../utils/htmlTextConverter';
 
 interface SpecItem {
   key: string;
@@ -83,8 +87,11 @@ export const ProductEditorView: React.FC<ProductEditorViewProps> = ({
   const [showQuickPaste, setShowQuickPaste] = useState(false);
   const [quickPasteText, setQuickPasteText] = useState('');
 
-  // Description
-  const [description, setDescription] = useState(product?.description || product?.shortDescription || '');
+  // Description mode: 'plain' (easy, non-technical friendly) | 'html' (raw HTML)
+  const [descMode, setDescMode] = useState<'plain' | 'html'>('plain');
+  const [description, setDescription] = useState(() =>
+    htmlToCleanPlainText(product?.description || product?.shortDescription || '')
+  );
 
   // Publish switches
   const [isFeatured, setIsFeatured] = useState<boolean>(product?.isFeatured || false);
@@ -385,7 +392,9 @@ export const ProductEditorView: React.FC<ProductEditorViewProps> = ({
         shortDescription: keyFeatures.join('\n'),
         specs: groupedSpecsMap,
         warranty: warrantyText || '1 Year Official Warranty',
-        description: description.trim(),
+        description: descMode === 'plain'
+          ? plainTextToCleanHtml(description)
+          : description.trim(),
         isFeatured,
         isNewItem,
         isDeal,
@@ -1075,81 +1084,177 @@ export const ProductEditorView: React.FC<ProductEditorViewProps> = ({
 
           {/* Card 6: Description */}
           <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: '12px', padding: '24px', boxShadow: '0 1px 3px rgba(0,0,0,0.04)' }}>
-            <h3 style={{ fontSize: '16px', fontWeight: 700, color: '#0f172a', marginBottom: '16px' }}>
-              Description
-            </h3>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px', flexWrap: 'wrap', gap: '10px' }}>
+              <div>
+                <h3 style={{ fontSize: '16px', fontWeight: 700, color: '#0f172a', margin: 0 }}>
+                  Description
+                </h3>
+                <p style={{ fontSize: '12px', color: '#64748b', margin: '3px 0 0 0' }}>
+                  {descMode === 'plain'
+                    ? 'Plain text mode (user-friendly). Type normally with paragraphs and bullet points.'
+                    : 'HTML mode. Edit raw markup directly.'}
+                </p>
+              </div>
 
-            {/* Rich text formatting toolbar */}
+              {/* Mode Toggle Pills */}
+              <div style={{ display: 'flex', background: '#f1f5f9', borderRadius: '8px', padding: '3px', border: '1px solid #e2e8f0' }}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (descMode !== 'plain') {
+                      setDescription(htmlToCleanPlainText(description));
+                      setDescMode('plain');
+                    }
+                  }}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '5px',
+                    padding: '5px 12px',
+                    fontSize: '12px',
+                    fontWeight: 700,
+                    borderRadius: '6px',
+                    border: 'none',
+                    background: descMode === 'plain' ? '#ffffff' : 'transparent',
+                    color: descMode === 'plain' ? '#ff6600' : '#64748b',
+                    boxShadow: descMode === 'plain' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
+                    cursor: 'pointer'
+                  }}
+                >
+                  <FileText size={13} /> Plain Text (Easy)
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (descMode !== 'html') {
+                      setDescription(plainTextToCleanHtml(description));
+                      setDescMode('html');
+                    }
+                  }}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '5px',
+                    padding: '5px 12px',
+                    fontSize: '12px',
+                    fontWeight: 700,
+                    borderRadius: '6px',
+                    border: 'none',
+                    background: descMode === 'html' ? '#ffffff' : 'transparent',
+                    color: descMode === 'html' ? '#ff6600' : '#64748b',
+                    boxShadow: descMode === 'html' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
+                    cursor: 'pointer'
+                  }}
+                >
+                  <Code size={13} /> HTML Code
+                </button>
+              </div>
+            </div>
+
+            {/* Formatting toolbar */}
             <div style={{
               display: 'flex',
-              gap: '6px',
-              padding: '6px 8px',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              padding: '6px 10px',
               background: '#f8fafc',
               border: '1px solid #e2e8f0',
               borderBottom: 'none',
-              borderRadius: '8px 8px 0 0'
+              borderRadius: '8px 8px 0 0',
+              flexWrap: 'wrap',
+              gap: '6px'
             }}>
+              <div style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
+                <button
+                  type="button"
+                  onClick={() => descMode === 'plain' ? insertFormatting('**', '**') : insertFormatting('<strong>', '</strong>')}
+                  style={{ background: 'none', border: 'none', padding: '5px 8px', borderRadius: '4px', cursor: 'pointer', fontWeight: 700, color: '#334155' }}
+                  title="Bold"
+                >
+                  <Bold size={14} />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => descMode === 'plain' ? insertFormatting('*', '*') : insertFormatting('<em>', '</em>')}
+                  style={{ background: 'none', border: 'none', padding: '5px 8px', borderRadius: '4px', cursor: 'pointer', fontStyle: 'italic', color: '#334155' }}
+                  title="Italic"
+                >
+                  <Italic size={14} />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => descMode === 'plain' ? insertFormatting('## ') : insertFormatting('<h2>', '</h2>')}
+                  style={{ background: 'none', border: 'none', padding: '5px 8px', borderRadius: '4px', cursor: 'pointer', color: '#334155' }}
+                  title="Heading"
+                >
+                  <Heading2 size={14} />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => descMode === 'plain' ? insertFormatting('• ') : insertFormatting('<ul>\n  <li>', '</li>\n</ul>')}
+                  style={{ background: 'none', border: 'none', padding: '5px 8px', borderRadius: '4px', cursor: 'pointer', color: '#334155' }}
+                  title="Bullet List"
+                >
+                  <List size={14} />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => descMode === 'plain' ? insertFormatting('[Link Text](https://...)') : insertFormatting('<a href="https://..." target="_blank">', '</a>')}
+                  style={{ background: 'none', border: 'none', padding: '5px 8px', borderRadius: '4px', cursor: 'pointer', color: '#334155' }}
+                  title="Link"
+                >
+                  <LinkIcon size={14} />
+                </button>
+                {descMode === 'html' && (
+                  <button
+                    type="button"
+                    onClick={() => insertFormatting('<table>\n  <tr><th>Header</th></tr>\n  <tr><td>Value</td></tr>\n</table>')}
+                    style={{ background: 'none', border: 'none', padding: '5px 8px', borderRadius: '4px', cursor: 'pointer', color: '#334155' }}
+                    title="Table"
+                  >
+                    <TableIcon size={14} />
+                  </button>
+                )}
+              </div>
+
+              {/* Clean HTML / Format Helper */}
               <button
                 type="button"
-                onClick={() => insertFormatting('<strong>', '</strong>')}
-                style={{ background: 'none', border: 'none', padding: '4px 6px', cursor: 'pointer', fontWeight: 700 }}
-                title="Bold"
+                onClick={() => {
+                  setDescription(htmlToCleanPlainText(description));
+                  setDescMode('plain');
+                }}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '4px',
+                  background: '#ffffff',
+                  border: '1px solid #cbd5e1',
+                  borderRadius: '6px',
+                  padding: '4px 8px',
+                  fontSize: '11px',
+                  fontWeight: 600,
+                  color: '#475569',
+                  cursor: 'pointer'
+                }}
+                title="Remove messy HTML tags and clean up text formatting"
               >
-                <Bold size={14} />
-              </button>
-              <button
-                type="button"
-                onClick={() => insertFormatting('<em>', '</em>')}
-                style={{ background: 'none', border: 'none', padding: '4px 6px', cursor: 'pointer', fontStyle: 'italic' }}
-                title="Italic"
-              >
-                <Italic size={14} />
-              </button>
-              <button
-                type="button"
-                onClick={() => insertFormatting('<h2>', '</h2>')}
-                style={{ background: 'none', border: 'none', padding: '4px 6px', cursor: 'pointer' }}
-                title="Heading 2"
-              >
-                <Heading2 size={14} />
-              </button>
-              <button
-                type="button"
-                onClick={() => insertFormatting('<ul>\n  <li>', '</li>\n</ul>')}
-                style={{ background: 'none', border: 'none', padding: '4px 6px', cursor: 'pointer' }}
-                title="List"
-              >
-                <List size={14} />
-              </button>
-              <button
-                type="button"
-                onClick={() => insertFormatting('<a href="https://..." target="_blank">', '</a>')}
-                style={{ background: 'none', border: 'none', padding: '4px 6px', cursor: 'pointer' }}
-                title="Link"
-              >
-                <LinkIcon size={14} />
-              </button>
-              <button
-                type="button"
-                onClick={() => insertFormatting('<table>\n  <tr><th>Header</th></tr>\n  <tr><td>Value</td></tr>\n</table>')}
-                style={{ background: 'none', border: 'none', padding: '4px 6px', cursor: 'pointer' }}
-                title="Table"
-              >
-                <TableIcon size={14} />
+                <Sparkles size={12} color="#ff6600" /> Clean to Plain Text
               </button>
             </div>
 
             <textarea
               id="desc-editor"
               className="form-textarea"
-              rows={8}
+              rows={10}
               value={description}
               onChange={e => setDescription(e.target.value)}
-              placeholder="The Gospower 6kW Hybrid Solar Inverter supports up to 8000W PV input power and operates reliably from -25°C to 60°C."
+              placeholder="Enter product description in simple plain text. Paragraphs and bullet points are automatically formatted for the website."
               style={{
                 borderRadius: '0 0 8px 8px',
                 fontSize: '13px',
-                lineHeight: 1.6
+                lineHeight: 1.6,
+                fontFamily: descMode === 'html' ? 'monospace' : 'inherit'
               }}
             />
           </div>

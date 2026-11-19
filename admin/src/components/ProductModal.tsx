@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Product, Category, Brand } from '../types';
 import { X, Plus, Trash2, Upload } from 'lucide-react';
 import { adminApi } from '../api';
+import { htmlToCleanPlainText, plainTextToCleanHtml } from '../utils/htmlTextConverter';
 
 interface ProductModalProps {
   product: Product | null;
@@ -30,7 +31,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
   const [warranty, setWarranty] = useState(product?.warranty || '');
   const [keyFeaturesText, setKeyFeaturesText] = useState((product?.keyFeatures || []).join('\n'));
   const [shortDescription, setShortDescription] = useState(product?.shortDescription || '');
-  const [description, setDescription] = useState(product?.description || '');
+  const [description, setDescription] = useState(() => htmlToCleanPlainText(product?.description || ''));
   const [images, setImages] = useState<string[]>(product?.images && product.images.length > 0 ? product.images : ['']);
   const [isDeal, setIsDeal] = useState(product?.isDeal || false);
   const [isFeatured, setIsFeatured] = useState(product?.isFeatured || false);
@@ -128,7 +129,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
       warranty: warranty.trim(),
       keyFeatures: cleanKeyFeatures,
       shortDescription,
-      description,
+      description: plainTextToCleanHtml(description),
       images: cleanImages.length > 0 ? cleanImages : ['https://images.unsplash.com/photo-1509391365360-2e959784a276?w=600&q=80'],
       specs: specsMap,
       isDeal,

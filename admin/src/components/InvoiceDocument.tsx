@@ -1,5 +1,6 @@
 import React from 'react';
 import { Order } from '../types';
+import { LOGO_BASE64 } from '../assets/logoBase64';
 
 function getItemVariationText(item: any): string | null {
   const sanitize = (str: any) => typeof str === 'string' && !str.includes('[object Object]') && str.trim().length > 0;
@@ -65,9 +66,17 @@ export const InvoiceDocument: React.FC<InvoiceDocumentProps> = ({ order }) => {
         }}
       >
         <div>
-          <h1 style={{ fontSize: '26px', fontWeight: 800, color: '#ff6600', margin: 0, letterSpacing: '-0.5px' }}>
-            MaxiTShop
-          </h1>
+          <img
+            src={LOGO_BASE64}
+            alt="MAXIT"
+            style={{
+              height: '38px',
+              width: 'auto',
+              objectFit: 'contain',
+              marginBottom: '6px',
+              display: 'block'
+            }}
+          />
           <p style={{ fontSize: '12px', color: '#64748b', margin: '4px 0 0 0', fontWeight: 500 }}>
             Solar, Industrial &amp; Electronics Engineering Solutions
           </p>
