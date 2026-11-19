@@ -175,7 +175,7 @@ export const Footer: React.FC<FooterProps> = ({ settings }) => {
                 </Link>
               </li>
               <li>
-                <Link href="/customer/order-track" className="hover:text-[#FF6600] transition-colors">
+                <Link href="/track-order" className="hover:text-[#FF6600] transition-colors">
                   Track Order
                 </Link>
               </li>

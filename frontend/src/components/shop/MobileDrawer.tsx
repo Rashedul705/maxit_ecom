@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { X, ChevronRight, ChevronDown, Phone, MapPin, Flame, Sparkles } from 'lucide-react';
+import { X, ChevronRight, ChevronDown, Phone, MapPin, ShoppingBag, Truck, Sparkles } from 'lucide-react';
 import { Category, SiteSetting } from '@/lib/types';
 
 interface MobileDrawerProps {
@@ -58,19 +58,19 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, onClose, cat
         {/* Quick Highlights */}
         <div className="p-3 bg-slate-50 border-b border-slate-200 grid grid-cols-2 gap-2 text-xs font-semibold">
           <Link
-            href="/#deals"
+            href="/shop"
             onClick={onClose}
-            className="flex items-center justify-center gap-1.5 p-2 bg-orange-50 text-orange-600 rounded-lg border border-orange-200/60"
+            className="flex items-center justify-center gap-1.5 p-2 bg-orange-50 text-[#FF6600] rounded-lg border border-orange-200/60 hover:bg-orange-100 transition-colors"
           >
-            <Flame className="w-4 h-4 text-orange-500" />
-            <span>Hot Deals</span>
+            <ShoppingBag className="w-4 h-4 text-[#FF6600]" />
+            <span>Shop All</span>
           </Link>
           <Link
             href="/track-order"
             onClick={onClose}
-            className="flex items-center justify-center gap-1.5 p-2 bg-blue-50 text-blue-600 rounded-lg border border-blue-200/60"
+            className="flex items-center justify-center gap-1.5 p-2 bg-slate-100 text-slate-800 rounded-lg border border-slate-200 hover:text-[#FF6600] transition-colors"
           >
-            <MapPin className="w-4 h-4 text-blue-500" />
+            <Truck className="w-4 h-4 text-[#FF6600]" />
             <span>Track Order</span>
           </Link>
         </div>

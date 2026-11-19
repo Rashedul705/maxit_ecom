@@ -1570,27 +1570,62 @@ const db = {
   },
 
   async trackOrder({ phone, orderNumber, invoiceId }) {
-    const cleanPhone = phone ? phone.replace(/[^0-9]/g, '') : '';
-    const targetOrderNo = (orderNumber || invoiceId || '').trim();
+    // Normalize phone
+    const cleanPhone = phone ? String(phone).replace(/[^0-9]/g, '') : '';
+    const phoneSuffix = cleanPhone.length >= 10 ? cleanPhone.slice(-10) : cleanPhone;
+
+    // Normalize order number
+    const targetOrderNo = String(orderNumber || invoiceId || '').trim();
+    const strippedOrderNo = targetOrderNo.replace(/^[#\s]+/, '').replace(/^ORD-?/i, '').trim();
 
     if (isMongo()) {
       try {
-        const query = {};
-        if (cleanPhone) {
-          query['customer.phone'] = { $regex: cleanPhone };
-        }
+        const orConditions = [];
+
+        // Exact or case-insensitive orderNumber
         if (targetOrderNo) {
-          query.orderNumber = { $regex: new RegExp(`^${targetOrderNo}$`, 'i') };
+          orConditions.push({ orderNumber: { $regex: new RegExp(`^${targetOrderNo.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, 'i') } });
+          orConditions.push({ id: { $regex: new RegExp(`^${targetOrderNo.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, 'i') } });
+          if (strippedOrderNo) {
+            orConditions.push({ orderNumber: { $regex: new RegExp(`ORD-?${strippedOrderNo.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, 'i') } });
+          }
         }
-        const docs = await Order.find(query).sort({ createdAt: -1 }).lean();
-        if (docs && docs.length) return docs;
-      } catch (e) {}
+
+        // Phone condition (matching last 10 digits to handle 01... vs +8801... vs 8801...)
+        if (phoneSuffix) {
+          orConditions.push({ 'customer.phone': { $regex: phoneSuffix } });
+        }
+
+        // If targetOrderNo looks like a phone number (e.g. 10-14 digits)
+        const numericOnly = targetOrderNo.replace(/[^0-9]/g, '');
+        if (numericOnly.length >= 10 && numericOnly.length <= 14) {
+          orConditions.push({ 'customer.phone': { $regex: numericOnly.slice(-10) } });
+        }
+
+        // If phone looks like an order number (e.g. starts with ORD or has letters/hyphens)
+        if (phone && /^ORD-/i.test(String(phone).trim())) {
+          orConditions.push({ orderNumber: { $regex: new RegExp(`^${String(phone).trim()}$`, 'i') } });
+        }
+
+        if (orConditions.length > 0) {
+          const docs = await Order.find({ $or: orConditions }).sort({ createdAt: -1 }).lean();
+          if (docs && docs.length) return docs;
+        }
+      } catch (e) {
+        console.error('Mongo trackOrder error:', e);
+      }
     }
 
     const matched = memoryStore.orders.filter(o => {
-      const pMatch = cleanPhone ? (o.customer && o.customer.phone ? o.customer.phone.replace(/[^0-9]/g, '').includes(cleanPhone) : false) : true;
-      const oMatch = targetOrderNo ? o.orderNumber.toLowerCase() === targetOrderNo.toLowerCase() : true;
-      return pMatch && oMatch;
+      const custPhone = o.customer && o.customer.phone ? String(o.customer.phone).replace(/[^0-9]/g, '') : '';
+      const oNum = o.orderNumber ? o.orderNumber.toLowerCase() : '';
+      const oId = o.id ? o.id.toLowerCase() : '';
+
+      const pMatch = phoneSuffix ? custPhone.includes(phoneSuffix) : false;
+      const oMatch = targetOrderNo ? (oNum === targetOrderNo.toLowerCase() || oId === targetOrderNo.toLowerCase() || (strippedOrderNo && oNum.endsWith(strippedOrderNo.toLowerCase()))) : false;
+      const fallbackPhoneInOrder = (targetOrderNo.replace(/[^0-9]/g, '').length >= 10) ? custPhone.includes(targetOrderNo.replace(/[^0-9]/g, '').slice(-10)) : false;
+
+      return pMatch || oMatch || fallbackPhoneInOrder;
     });
 
     return matched;

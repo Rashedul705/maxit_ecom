@@ -115,6 +115,15 @@ const nextConfig: NextConfig = {
       },
     },
   },
+  async redirects() {
+    return [
+      {
+        source: '/customer/order-track',
+        destination: '/track-order',
+        permanent: true,
+      },
+    ];
+  },
   async rewrites() {
     const isDev = process.env.NODE_ENV === 'development';
     const defaultBackend = isDev

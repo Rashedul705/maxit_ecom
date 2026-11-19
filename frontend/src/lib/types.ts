@@ -249,30 +249,66 @@ export interface CartItem {
 }
 
 export interface OrderItem {
-  id: string;
+  id?: string;
+  productId?: string;
   title: string;
-  slug: string;
+  slug?: string;
   price: number;
   quantity: number;
   image: string;
+  variation?: string;
+  variant?: string;
+  specs?: Record<string, any>;
+}
+
+export interface OrderTimeline {
+  status: string;
+  note?: string;
+  timestamp: string;
+  _id?: string;
+}
+
+export interface OrderCustomer {
+  name?: string;
+  phone?: string;
+  email?: string;
+  division?: string;
+  district?: string;
+  thana?: string;
+  address?: string;
+  area?: string;
+  notes?: string;
+}
+
+export interface OrderCourier {
+  provider?: string;
+  trackingCode?: string;
+  consignmentId?: string;
+  status?: string;
 }
 
 export interface Order {
-  id: string;
+  id?: string;
+  _id?: string;
   orderNumber: string;
-  customerName: string;
-  phone: string;
-  address: string;
-  division: string;
-  district: string;
-  area: string;
+  customerName?: string;
+  phone?: string;
+  address?: string;
+  division?: string;
+  district?: string;
+  area?: string;
+  customer?: OrderCustomer;
+  courier?: OrderCourier;
+  timeline?: OrderTimeline[];
   items: OrderItem[];
   subtotal: number;
   deliveryCharge: number;
+  discount?: number;
   total: number;
   paymentMethod: string;
+  paymentStatus?: string;
   note?: string;
-  status: 'Placed' | 'Processing' | 'Shipped' | 'Delivered' | 'Cancelled';
+  status: 'Placed' | 'Processing' | 'Shipped' | 'Delivered' | 'Cancelled' | 'pending' | 'confirmed' | 'processing' | 'shipped' | 'delivered' | 'cancelled' | string;
   createdAt: string;
   updatedAt?: string;
 }

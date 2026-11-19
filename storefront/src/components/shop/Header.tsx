@@ -280,7 +280,7 @@ export const Header: React.FC<HeaderProps> = ({ categories = [], settings, onTog
 
             {/* Track Order Direct Link */}
             <Link
-              href="/customer/order-track"
+              href="/track-order"
               className="hidden md:flex items-center gap-2 text-xs sm:text-sm font-semibold text-gray-700 hover:text-[#FF6600] transition-colors"
             >
               <Truck className="w-4 h-4 text-[#FF6600]" />
@@ -374,7 +374,6 @@ export const Header: React.FC<HeaderProps> = ({ categories = [], settings, onTog
                     { label: 'Sellers', url: '/sellers' },
                     { label: 'Contact', url: '/contact' },
                     { label: 'Shop', url: '/shop' },
-                    { label: 'Hot Deals', url: '/#deals' },
                     { label: 'Track Order', url: '/track-order' }
                   ]
               ).map((link, idx) => (
