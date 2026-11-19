@@ -368,13 +368,14 @@ export const Header: React.FC<HeaderProps> = ({ categories = [], settings, onTog
             {/* Dynamic Navigation Links (Admin Controlled) */}
             <div className="flex items-center ml-2 overflow-x-auto scrollbar-none whitespace-nowrap">
               {(settings?.navLinks && settings.navLinks.length > 0
-                ? settings.navLinks
+                ? settings.navLinks.filter(
+                    (l) => l.label.toLowerCase() !== 'track order' && l.url !== '/track-order'
+                  )
                 : [
                     { label: 'Home', url: '/' },
                     { label: 'Sellers', url: '/sellers' },
                     { label: 'Contact', url: '/contact' },
-                    { label: 'Shop', url: '/shop' },
-                    { label: 'Track Order', url: '/track-order' }
+                    { label: 'Shop', url: '/shop' }
                   ]
               ).map((link, idx) => (
                 link.isExternal ? (
