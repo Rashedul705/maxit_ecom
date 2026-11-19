@@ -26,6 +26,56 @@ interface ProductInteractiveViewProps {
   relatedProducts?: Product[];
 }
 
+// Helper to sanitize rich HTML and balance mismatched / orphan tags that break SSR hydration
+export function sanitizeDescriptionHtml(rawHtml?: string): string {
+  if (!rawHtml || typeof rawHtml !== 'string') {
+    return '<p>Detailed product description will appear here.</p>';
+  }
+
+  const tagRegex = /<\/?([a-z0-9]+)(?:\s+[^>]*)?>/gi;
+  const stack: string[] = [];
+  let cleaned = '';
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+
+  while ((match = tagRegex.exec(rawHtml)) !== null) {
+    const fullTag = match[0];
+    const tagName = match[1].toLowerCase();
+    const isClosing = fullTag.startsWith('</');
+    const isSelfClosing =
+      fullTag.endsWith('/>') ||
+      ['img', 'br', 'hr', 'input', 'meta', 'link', 'source', 'area', 'col'].includes(tagName);
+
+    if (isClosing) {
+      const lastOpenIndex = stack.lastIndexOf(tagName);
+      if (lastOpenIndex === -1) {
+        // Discard orphan closing tag
+        cleaned += rawHtml.slice(lastIndex, match.index);
+        lastIndex = tagRegex.lastIndex;
+        continue;
+      } else {
+        // Close matching tag
+        stack.splice(lastOpenIndex);
+      }
+    } else if (!isSelfClosing) {
+      stack.push(tagName);
+    }
+
+    cleaned += rawHtml.slice(lastIndex, tagRegex.lastIndex);
+    lastIndex = tagRegex.lastIndex;
+  }
+
+  cleaned += rawHtml.slice(lastIndex);
+
+  // Close any remaining unclosed tags
+  while (stack.length > 0) {
+    const unclosed = stack.pop();
+    cleaned += `</${unclosed}>`;
+  }
+
+  return cleaned.trim() || '<p>Detailed product description will appear here.</p>';
+}
+
 export function normalizeSpecs(specs: any, warranty?: string): { group: string; items: [string, string][] }[] {
   let groups: { group: string; items: [string, string][] }[] = [];
 
@@ -611,9 +661,10 @@ export const ProductInteractiveView: React.FC<ProductInteractiveViewProps> = ({
             </h2>
             <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-2xs">
               <div
+                suppressHydrationWarning
                 className="prose max-w-none text-xs sm:text-sm text-gray-700 leading-relaxed [&>h2]:text-base [&>h2]:font-bold [&>h2]:text-gray-900 [&>h2]:mt-4 [&>h2]:mb-2 [&>h3]:text-sm [&>h3]:font-bold [&>h3]:text-gray-900 [&>h3]:mt-3 [&>h3]:mb-1 [&>p]:mb-3 [&>ul]:list-disc [&>ul]:pl-5 [&>ul]:mb-3 [&>ol]:list-decimal [&>ol]:pl-5 [&>ol]:mb-3 [&>table]:w-full [&>table]:border [&>table]:border-gray-200 [&>table_th]:border [&>table_th]:p-2 [&>table_td]:border [&>table_td]:p-2"
                 dangerouslySetInnerHTML={{
-                  __html: product.description || product.shortDescription || '<p>Detailed product description will appear here.</p>'
+                  __html: sanitizeDescriptionHtml(product.description || product.shortDescription)
                 }}
               />
             </div>

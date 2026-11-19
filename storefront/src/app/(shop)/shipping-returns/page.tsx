@@ -104,7 +104,7 @@ Customers have the right to request a replacement within 7 calendar days of deli
 
           <div className="prose prose-sm sm:prose max-w-none text-slate-700 leading-relaxed font-normal">
             {isReturnHtml ? (
-              <div dangerouslySetInnerHTML={{ __html: returnContent }} />
+              <div suppressHydrationWarning dangerouslySetInnerHTML={{ __html: returnContent }} />
             ) : (
               <div className="whitespace-pre-line space-y-2">{returnContent}</div>
             )}

@@ -162,7 +162,7 @@ export default async function StaticPage({ params }: DynamicPageProps) {
         {/* Content Body */}
         <div className="prose prose-sm sm:prose max-w-none text-gray-700 leading-relaxed space-y-4 font-normal">
           {isHtml ? (
-            <div dangerouslySetInnerHTML={{ __html: pageData.content }} />
+            <div suppressHydrationWarning dangerouslySetInnerHTML={{ __html: pageData.content }} />
           ) : (
             <div className="whitespace-pre-line">{pageData.content}</div>
           )}

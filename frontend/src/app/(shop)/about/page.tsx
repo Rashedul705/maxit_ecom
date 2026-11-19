@@ -50,7 +50,7 @@ Inspired by the best practices of Bangladesh's leading retailers, we focus on 10
 
         <div className="prose prose-sm sm:prose max-w-none text-slate-600 leading-relaxed font-normal">
           {isHtml ? (
-            <div dangerouslySetInnerHTML={{ __html: content }} />
+            <div suppressHydrationWarning dangerouslySetInnerHTML={{ __html: content }} />
           ) : (
             <div className="whitespace-pre-line space-y-4">{content}</div>
           )}

@@ -71,7 +71,7 @@ We store items placed in your shopping cart locally on your web browser (via loc
 
         <div className="prose prose-sm sm:prose max-w-none text-slate-700 leading-relaxed font-normal">
           {isHtml ? (
-            <div dangerouslySetInnerHTML={{ __html: content }} />
+            <div suppressHydrationWarning dangerouslySetInnerHTML={{ __html: content }} />
           ) : (
             <div className="whitespace-pre-line space-y-3">{content}</div>
           )}
