@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Category } from '../types';
 import { X, Upload } from 'lucide-react';
 import { adminApi } from '../api';
+import { CategoryIconDisplay, CategoryCoverDisplay, CATEGORY_ICON_PRESETS } from './CategoryMedia';
 
 interface CategoryModalProps {
   category: Category | null;
@@ -87,33 +88,69 @@ export const CategoryModal: React.FC<CategoryModalProps> = ({ category, onClose,
 
             <div className="form-group">
               <label className="form-label">Category Icon (for Left Menu)</label>
-              <div style={{ display: 'flex', gap: '8px' }}>
+              <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                <CategoryIconDisplay icon={icon} name={name || 'Category'} size={20} />
                 <input
                   type="text"
                   className="form-input"
-                  placeholder="https://..."
+                  placeholder="Icon name (e.g. Sun, Battery) or Image URL"
                   value={icon}
                   onChange={e => setIcon(e.target.value)}
+                  style={{ flex: 1 }}
                 />
-                <label className="btn btn-secondary btn-sm" style={{ cursor: 'pointer' }}>
-                  <Upload size={14} />
+                <label className="btn btn-secondary btn-sm" style={{ cursor: 'pointer', whiteSpace: 'nowrap' }} title="Upload Custom Icon Image">
+                  <Upload size={14} /> Upload
                   <input type="file" accept="image/*" style={{ display: 'none' }} onChange={e => handleUpload(e, 'icon')} />
                 </label>
+              </div>
+              <div style={{ marginTop: '8px' }}>
+                <span style={{ fontSize: '11px', color: '#64748b', display: 'block', marginBottom: '4px' }}>Quick Icon Presets:</span>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px', maxHeight: '72px', overflowY: 'auto', padding: '4px', background: '#f8fafc', borderRadius: '6px', border: '1px solid #e2e8f0' }}>
+                  {CATEGORY_ICON_PRESETS.map(preset => {
+                    const PresetIcon = preset.icon;
+                    const isSelected = icon === preset.name;
+                    return (
+                      <button
+                        key={preset.name}
+                        type="button"
+                        onClick={() => setIcon(preset.name)}
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '4px',
+                          padding: '3px 7px',
+                          fontSize: '11px',
+                          borderRadius: '4px',
+                          border: isSelected ? '1px solid #ff6600' : '1px solid #cbd5e1',
+                          background: isSelected ? '#fff7ed' : '#ffffff',
+                          color: isSelected ? '#ff6600' : '#334155',
+                          cursor: 'pointer'
+                        }}
+                        title={preset.label}
+                      >
+                        <PresetIcon size={12} />
+                        <span>{preset.name}</span>
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
             </div>
 
             <div className="form-group">
               <label className="form-label">Category Cover Image (for Grid)</label>
-              <div style={{ display: 'flex', gap: '8px' }}>
+              <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                <CategoryCoverDisplay image={image} name={name || 'Category'} />
                 <input
                   type="text"
                   className="form-input"
                   placeholder="https://..."
                   value={image}
                   onChange={e => setImage(e.target.value)}
+                  style={{ flex: 1 }}
                 />
-                <label className="btn btn-secondary btn-sm" style={{ cursor: 'pointer' }}>
-                  <Upload size={14} />
+                <label className="btn btn-secondary btn-sm" style={{ cursor: 'pointer', whiteSpace: 'nowrap' }} title="Upload Cover Image">
+                  <Upload size={14} /> Upload
                   <input type="file" accept="image/*" style={{ display: 'none' }} onChange={e => handleUpload(e, 'image')} />
                 </label>
               </div>

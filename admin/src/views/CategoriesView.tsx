@@ -4,6 +4,7 @@ import { adminApi } from '../api';
 import { Plus, Edit2, Trash2 } from 'lucide-react';
 import { CategoryModal } from '../components/CategoryModal';
 import { Can } from '../components/Can';
+import { CategoryIconDisplay, CategoryCoverDisplay } from '../components/CategoryMedia';
 
 export const CategoriesView: React.FC = () => {
   const [categories, setCategories] = useState<Category[]>([]);
@@ -187,18 +188,10 @@ export const CategoriesView: React.FC = () => {
                   </td>
                   <td style={{ fontWeight: 600 }}>#{c.order}</td>
                   <td>
-                    <img
-                      src={c.icon || c.image || 'https://via.placeholder.com/32'}
-                      alt={c.name}
-                      style={{ width: '32px', height: '32px', borderRadius: '4px', objectFit: 'contain', background: '#fff', border: '1px solid #e2e8f0' }}
-                    />
+                    <CategoryIconDisplay icon={c.icon} name={c.name} size={18} />
                   </td>
                   <td>
-                    <img
-                      src={c.image || 'https://via.placeholder.com/60'}
-                      alt={c.name}
-                      style={{ width: '60px', height: '36px', borderRadius: '4px', objectFit: 'cover' }}
-                    />
+                    <CategoryCoverDisplay image={c.image} name={c.name} />
                   </td>
                   <td style={{ fontWeight: 600 }}>{c.name}</td>
                   <td style={{ fontSize: '12px', color: '#64748b' }}>{c.slug}</td>
