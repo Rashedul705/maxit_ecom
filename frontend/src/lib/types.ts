@@ -122,6 +122,11 @@ export interface SiteSetting {
     warranty?: string;
     shipping?: string;
   };
+  metaTags?: {
+    title?: string;
+    description?: string;
+    keywords?: string;
+  };
 }
 
 export interface StoreConfig {
