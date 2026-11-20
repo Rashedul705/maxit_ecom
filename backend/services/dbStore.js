@@ -508,8 +508,14 @@ const db = {
 
   // --- CATEGORIES ---
   async getCategories() {
+    const normalizeMedia = (c) => ({
+      ...c,
+      image: typeof c.image === 'string' ? c.image.replace(/^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?(\/uploads\/)/i, '$3') : c.image,
+      icon: typeof c.icon === 'string' ? c.icon.replace(/^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?(\/uploads\/)/i, '$3') : c.icon,
+    });
+
     const sortByOrder = (list) => {
-      return [...list].sort((a, b) => (a.order || 0) - (b.order || 0));
+      return [...list].map(normalizeMedia).sort((a, b) => (a.order || 0) - (b.order || 0));
     };
 
     if (isMongo()) {
@@ -521,21 +527,36 @@ const db = {
 
   async getCategoryBySlug(slug) {
     if (!slug) return null;
+    const normalizeMedia = (c) => c ? ({
+      ...c,
+      image: typeof c.image === 'string' ? c.image.replace(/^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?(\/uploads\/)/i, '$3') : c.image,
+      icon: typeof c.icon === 'string' ? c.icon.replace(/^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?(\/uploads\/)/i, '$3') : c.icon,
+    }) : null;
+
     if (isMongo()) {
       const doc = await Category.findOne({ $or: [{ slug }, { id: slug }] }).lean();
-      if (doc) return doc;
+      if (doc) return normalizeMedia(doc);
     }
-    return memoryStore.categories.find(c => c.slug === slug || c.id === slug) || null;
+    const found = memoryStore.categories.find(c => c.slug === slug || c.id === slug) || null;
+    return normalizeMedia(found);
   },
 
   async createCategory(data) {
+    const cleanData = { ...data };
+    if (typeof cleanData.image === 'string') {
+      cleanData.image = cleanData.image.replace(/^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?(\/uploads\/)/i, '$3');
+    }
+    if (typeof cleanData.icon === 'string') {
+      cleanData.icon = cleanData.icon.replace(/^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?(\/uploads\/)/i, '$3');
+    }
+
     const orderCount = isMongo() ? await Category.countDocuments() : memoryStore.categories.length;
     const cat = {
       id: `cat-${Date.now()}`,
-      slug: data.slug || data.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
+      slug: cleanData.slug || cleanData.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
       isActive: true,
       order: orderCount + 1,
-      ...data
+      ...cleanData
     };
     if (isMongo()) {
       try {
@@ -551,21 +572,29 @@ const db = {
   },
 
   async updateCategory(id, data) {
+    const cleanData = { ...data };
+    if (typeof cleanData.image === 'string') {
+      cleanData.image = cleanData.image.replace(/^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?(\/uploads\/)/i, '$3');
+    }
+    if (typeof cleanData.icon === 'string') {
+      cleanData.icon = cleanData.icon.replace(/^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?(\/uploads\/)/i, '$3');
+    }
+
     if (isMongo()) {
       const updated = await Category.findOneAndUpdate(
         { $or: [{ id }, { slug: id }] },
-        data,
+        cleanData,
         { new: true }
       ).lean();
       if (updated) {
         const idx = memoryStore.categories.findIndex(c => c.id === id || c.slug === id);
-        if (idx !== -1) memoryStore.categories[idx] = { ...memoryStore.categories[idx], ...data };
+        if (idx !== -1) memoryStore.categories[idx] = { ...memoryStore.categories[idx], ...cleanData };
         return updated;
       }
     }
     const idx = memoryStore.categories.findIndex(c => c.id === id || c.slug === id);
     if (idx === -1) return null;
-    memoryStore.categories[idx] = { ...memoryStore.categories[idx], ...data };
+    memoryStore.categories[idx] = { ...memoryStore.categories[idx], ...cleanData };
     return memoryStore.categories[idx];
   },
 
