@@ -1165,7 +1165,7 @@ const banners = [
     subtitle: 'RTX 40-Series Powered Laptops for Creators & Gamers',
     image: 'https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?w=1400&q=80',
     link: '/category/laptops',
-    badge: 'Zero EMI Available'
+    badge: 'Official Warranty'
   },
   {
     id: 'banner-4',

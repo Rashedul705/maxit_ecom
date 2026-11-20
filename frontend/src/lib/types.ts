@@ -130,15 +130,11 @@ export interface SiteSetting {
 }
 
 export interface StoreConfig {
-  emiEnabled: boolean;
-  emiMonths: number;
   pointsEnabled: boolean;
   pointsDivisor: number;
 }
 
 export const defaultStoreConfig: StoreConfig = {
-  emiEnabled: false,
-  emiMonths: 12,
   pointsEnabled: false,
   pointsDivisor: 1000,
 };

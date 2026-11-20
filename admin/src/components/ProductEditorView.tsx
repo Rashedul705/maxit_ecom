@@ -186,7 +186,6 @@ export const ProductEditorView: React.FC<ProductEditorViewProps> = ({
   const hasDiscount = regularPrice > specialPrice && specialPrice > 0;
   const saveAmount = hasDiscount ? regularPrice - specialPrice : 0;
   const discountPercent = hasDiscount && regularPrice > 0 ? Math.round((saveAmount / regularPrice) * 100) : 0;
-  const emiPerMonth = specialPrice > 0 ? Math.round(specialPrice / 12) : 0;
   const rewardPoints = specialPrice > 0 ? Math.floor(specialPrice / 1000) : 0;
 
   // Add Key Feature
@@ -672,12 +671,14 @@ export const ProductEditorView: React.FC<ProductEditorViewProps> = ({
               <div style={{ fontWeight: 600, color: '#334155', marginBottom: '4px' }}>
                 Shown on the product page automatically
               </div>
-              <div style={{ display: 'flex', gap: '16px', color: '#047857', fontWeight: 600, marginBottom: '2px' }}>
-                <span>0% EMI: {emiPerMonth.toLocaleString()} taka/month (12 months)</span>
+              <div style={{ display: 'flex', gap: '16px', color: '#047857', fontWeight: 600, marginBottom: '2px', flexWrap: 'wrap' }}>
+                {hasDiscount && (
+                  <span>Save: ৳{saveAmount.toLocaleString()} ({discountPercent}% off)</span>
+                )}
                 <span>Reward: {rewardPoints} points</span>
               </div>
               <div style={{ color: '#94a3b8', fontSize: '11px' }}>
-                Calculated from the special price. No extra fields to fill in.
+                Calculated from regular and special prices. No extra fields to fill in.
               </div>
             </div>
           </div>

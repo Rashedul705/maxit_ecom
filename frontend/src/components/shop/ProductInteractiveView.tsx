@@ -463,36 +463,31 @@ export const ProductInteractiveView: React.FC<ProductInteractiveViewProps> = ({
             </div>
           )}
 
-          {/* 5. Payment Options Box (Cash Discount, Optional EMI, Optional Points) */}
+          {/* 5. Pricing & Payment Options Box */}
           <div className="bg-orange-50/30 border border-orange-100 rounded-xl p-3.5 sm:p-4 mb-5">
-            <div className={`grid gap-3 ${storeConfig.emiEnabled && product.price > 0 ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1'}`}>
-              {/* Cash Discount Price Box */}
-              <div className="bg-white rounded-lg border border-orange-200/80 p-3 shadow-2xs">
-                <div className="text-[11px] sm:text-xs text-gray-500 font-medium">Cash Discount Price</div>
-                <div className="text-xl sm:text-2xl font-bold text-[#FF6600] my-0.5">
-                  {product.price > 0 ? `৳${product.price.toLocaleString()}` : 'Call for Price'}
-                </div>
-                <div className="text-[11px] text-gray-400">Online / Cash Payment</div>
+            <div className="bg-white rounded-lg border border-orange-200/80 p-3 shadow-2xs">
+              <div className="text-[11px] sm:text-xs text-gray-500 font-medium">
+                {product.oldPrice && product.oldPrice > product.price ? 'Special Price' : 'Price'}
               </div>
-
-              {/* Optional EMI Box (shown ONLY if storeConfig.emiEnabled is true) */}
-              {storeConfig.emiEnabled && product.price > 0 ? (
-                <div className="bg-white rounded-lg border border-gray-200 p-3 shadow-2xs">
-                  <div className="text-[11px] sm:text-xs text-gray-500 font-medium">
-                    0% EMI for up to {storeConfig.emiMonths} months
-                  </div>
-                  <div className="text-lg sm:text-xl font-bold text-gray-900 my-0.5">
-                    ৳{Math.round(product.price / storeConfig.emiMonths).toLocaleString()}/month
-                  </div>
-                  <div className="text-[11px] text-gray-400">
-                    Regular Price: ৳{(product.oldPrice && product.oldPrice > product.price ? product.oldPrice : product.price).toLocaleString()}
-                  </div>
-                </div>
-              ) : null}
+              <div className="text-xl sm:text-2xl font-bold text-[#FF6600] my-0.5">
+                {product.price > 0 ? `৳${product.price.toLocaleString()}` : 'Call for Price'}
+              </div>
+              <div className="text-[11px] text-gray-500">
+                {product.oldPrice && product.oldPrice > product.price ? (
+                  <span>
+                    Regular Price: <span className="line-through text-gray-400">৳{product.oldPrice.toLocaleString()}</span>
+                    <span className="text-emerald-600 font-semibold ml-2">
+                      Save ৳{(product.oldPrice - product.price).toLocaleString()}
+                    </span>
+                  </span>
+                ) : (
+                  <span>Cash on Delivery / Online Payment</span>
+                )}
+              </div>
             </div>
 
             {/* Optional Reward Points Line (shown ONLY if storeConfig.pointsEnabled is true) */}
-            {storeConfig.pointsEnabled && product.price > 0 ? (
+            {storeConfig?.pointsEnabled && product.price > 0 ? (
               <div className="text-xs font-semibold text-emerald-700 mt-2.5 pt-2.5 border-t border-orange-200/50 flex items-center gap-1.5">
                 <span>Earn {Math.floor(product.price / storeConfig.pointsDivisor)} reward points with this order</span>
               </div>
