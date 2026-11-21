@@ -19,8 +19,11 @@ router.post('/', async (req, res, next) => {
       await db.createComplaint({
         name,
         phone: phone || email,
+        email: email || '',
+        subject: subject || 'General Inquiry',
         orderId: subject ? `INQUIRY: ${subject.slice(0, 30)}` : 'GENERAL-INQUIRY',
         description: `[Contact Form Inquiry]\nEmail: ${email || 'N/A'}\nSubject: ${subject || 'General'}\nMessage:\n${message}`,
+        message,
         image: ''
       });
     } catch (dbErr) {

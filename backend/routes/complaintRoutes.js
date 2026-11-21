@@ -14,14 +14,70 @@ router.get('/', requireAdminAuth, requirePermission('reviews.view'), async (req,
   }
 });
 
+// GET /api/v1/complaints/:id - Admin only (or single lookup)
+router.get('/:id', requireAdminAuth, requirePermission('reviews.view'), async (req, res, next) => {
+  try {
+    const complaint = await db.getComplaintById(req.params.id);
+    if (!complaint) return errorResponse(res, 'Complaint not found', 404);
+    return successResponse(res, complaint);
+  } catch (err) {
+    next(err);
+  }
+});
+
 // POST /api/v1/complaints - Public for customers
 router.post('/', async (req, res, next) => {
   try {
-    const { name, phone, orderId, description, image } = req.body;
-    const complaint = await db.createComplaint({ name, phone, orderId, description, image });
+    const { name, customerName, phone, email, subject, orderId, orderNumber, description, message, image } = req.body;
+    const complaint = await db.createComplaint({
+      name: name || customerName,
+      phone,
+      email,
+      subject,
+      orderId: orderId || orderNumber,
+      description: description || message,
+      message,
+      image
+    });
     return successResponse(res, complaint, 'Complaint submitted successfully', 201);
   } catch (err) {
     return errorResponse(res, err.message, 400);
+  }
+});
+
+// POST /api/v1/complaints/:id/messages - Admin chat reply to customer
+router.post('/:id/messages', requireAdminAuth, requirePermission('reviews.approve'), async (req, res, next) => {
+  try {
+    const { text, channel, sendEmail, sendSms, attachments } = req.body;
+    if (!text || !text.trim()) {
+      return errorResponse(res, 'Reply message text is required', 400);
+    }
+    const adminName = req.adminUser?.name || 'MaxiTShop Support';
+    const updated = await db.addComplaintMessage(req.params.id, {
+      sender: 'admin',
+      senderName: adminName,
+      text,
+      attachments,
+      channel: channel || (sendEmail ? 'email' : sendSms ? 'sms' : 'web'),
+      sendEmail: !!sendEmail,
+      sendSms: !!sendSms
+    });
+    if (!updated) return errorResponse(res, 'Complaint not found', 404);
+    return successResponse(res, updated, 'Reply sent successfully');
+  } catch (err) {
+    next(err);
+  }
+});
+
+// PATCH /api/v1/complaints/:id/read - Mark as read / unread
+router.patch('/:id/read', requireAdminAuth, requirePermission('reviews.view'), async (req, res, next) => {
+  try {
+    const { isRead = true } = req.body;
+    const complaint = await db.markComplaintRead(req.params.id, isRead);
+    if (!complaint) return errorResponse(res, 'Complaint not found', 404);
+    return successResponse(res, complaint, isRead ? 'Marked as read' : 'Marked as unread');
+  } catch (err) {
+    next(err);
   }
 });
 

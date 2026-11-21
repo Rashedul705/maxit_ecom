@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   LayoutDashboard,
   Package,
@@ -18,6 +18,7 @@ import {
   ShieldCheck
 } from 'lucide-react';
 import { usePermission } from '../context/PermissionContext';
+import { adminApi } from '../api';
 import logoImg from '../assets/logo.png';
 
 interface SidebarProps {
@@ -28,6 +29,20 @@ interface SidebarProps {
 
 export const Sidebar: React.FC<SidebarProps> = ({ currentTab, onSelectTab, onLogout }) => {
   const { hasPermission } = usePermission();
+  const [unreadMessages, setUnreadMessages] = useState<number>(0);
+
+  useEffect(() => {
+    const checkUnread = () => {
+      adminApi.getComplaints().then(data => {
+        const unread = data.filter(c => !c.isRead).length;
+        setUnreadMessages(unread);
+      }).catch(() => {});
+    };
+
+    checkUnread();
+    const interval = setInterval(checkUnread, 30000);
+    return () => clearInterval(interval);
+  }, [currentTab]);
 
   const allMenuItems = [
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard, permission: 'reports.view' },
@@ -38,7 +53,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentTab, onSelectTab, onLog
     { id: 'brands', label: 'Brands', icon: Award, permission: 'products.view' },
     { id: 'banners', label: 'Hero Banners', icon: ImageIcon, permission: 'banners.view' },
     { id: 'coupons', label: 'Coupons & Deals', icon: Tag, permission: 'coupons.view' },
-    { id: 'complaints', label: 'Complaints', icon: MessageSquare, permission: 'reviews.view' },
+    { id: 'complaints', label: 'Messages & Support', icon: MessageSquare, permission: 'reviews.view' },
     { id: 'sellers', label: 'Sellers', icon: Users, permission: 'customers.view' },
     { id: 'subscribers', label: 'Subscribers', icon: Mail, permission: 'customers.view' },
     { id: 'moderators', label: 'Moderators & Access', icon: ShieldCheck, permission: 'users.manage' },
@@ -61,14 +76,30 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentTab, onSelectTab, onLog
         {visibleMenuItems.map(item => {
           const Icon = item.icon;
           const isActive = currentTab === item.id;
+          const showBadge = item.id === 'complaints' && unreadMessages > 0;
+
           return (
             <button
               key={item.id}
               className={`nav-item ${isActive ? 'active' : ''}`}
               onClick={() => onSelectTab(item.id)}
+              style={{ display: 'flex', alignItems: 'center', width: '100%', position: 'relative' }}
             >
               <Icon size={17} />
-              <span>{item.label}</span>
+              <span style={{ flex: 1, textAlign: 'left' }}>{item.label}</span>
+              {showBadge && (
+                <span style={{
+                  background: '#ff6600',
+                  color: '#ffffff',
+                  fontSize: '10px',
+                  fontWeight: 700,
+                  padding: '2px 6px',
+                  borderRadius: '10px',
+                  lineHeight: 1
+                }}>
+                  {unreadMessages}
+                </span>
+              )}
             </button>
           );
         })}

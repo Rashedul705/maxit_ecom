@@ -17,7 +17,7 @@ export const Header: React.FC<HeaderProps> = ({ user, currentTab }) => {
       case 'brands': return 'Brands';
       case 'banners': return 'Hero Banners';
       case 'coupons': return 'Coupons & Deals';
-      case 'complaints': return 'Complaints & Disputes';
+      case 'complaints': return 'Customer Messages & Chat';
       case 'sellers': return 'Sellers Directory';
       case 'pages': return 'Policy & CMS Pages';
       case 'subscribers': return 'Newsletter Subscribers';

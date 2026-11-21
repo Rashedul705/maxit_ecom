@@ -107,16 +107,33 @@ export interface Order {
   createdAt: string;
 }
 
+export interface ChatMessage {
+  id: string;
+  sender: 'customer' | 'admin' | 'system';
+  senderName?: string;
+  text: string;
+  attachments?: string[];
+  channel?: 'web' | 'email' | 'sms';
+  deliveryStatus?: 'sent' | 'delivered' | 'failed';
+  createdAt: string;
+}
+
 export interface Complaint {
   id: string;
   name: string;
   phone: string;
+  email?: string;
+  subject?: string;
   orderId?: string;
   description: string;
   image?: string;
   status: 'new' | 'investigating' | 'resolved';
+  isRead?: boolean;
+  messages?: ChatMessage[];
   adminNotes?: string;
+  lastMessageAt?: string;
   createdAt: string;
+  updatedAt?: string;
 }
 
 export interface Seller {

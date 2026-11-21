@@ -147,10 +147,15 @@ export const adminApi = {
     return request<Order[]>(`/orders/export?${q.toString()}`);
   },
 
-  // Complaints
+  // Complaints & Customer Messages
   getComplaints: () => request<Complaint[]>('/complaints'),
+  getComplaint: (id: string) => request<Complaint>(`/complaints/${id}`),
   updateComplaintStatus: (id: string, status: string, adminNotes?: string) =>
     request<Complaint>(`/complaints/${id}/status`, { method: 'PATCH', body: JSON.stringify({ status, adminNotes }) }),
+  markComplaintRead: (id: string, isRead: boolean = true) =>
+    request<Complaint>(`/complaints/${id}/read`, { method: 'PATCH', body: JSON.stringify({ isRead }) }),
+  sendComplaintReply: (id: string, data: { text: string; channel?: string; sendEmail?: boolean; sendSms?: boolean; attachments?: string[] }) =>
+    request<Complaint>(`/complaints/${id}/messages`, { method: 'POST', body: JSON.stringify(data) }),
 
   // Sellers
   getSellers: () => request<Seller[]>('/sellers'),

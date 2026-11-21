@@ -1892,65 +1892,293 @@ const db = {
     return list;
   },
 
-  // --- COMPLAINTS ---
+  // --- COMPLAINTS & CUSTOMER CHAT MESSAGES ---
   async getComplaints() {
+    const normalizeComplaint = (doc) => {
+      if (!doc) return null;
+      const c = { ...doc };
+      
+      // Extract email if not set
+      if (!c.email && typeof c.description === 'string') {
+        const emailMatch = c.description.match(/Email:\s*([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/i);
+        if (emailMatch) c.email = emailMatch[1];
+      }
+      // Extract subject if not set
+      if (!c.subject && typeof c.description === 'string') {
+        const subjMatch = c.description.match(/Subject:\s*([^\n\r]+)/i);
+        if (subjMatch) c.subject = subjMatch[1].trim();
+      }
+      // isRead handling
+      if (c.isRead === undefined) {
+        c.isRead = c.status === 'resolved';
+      }
+
+      // Ensure messages array is populated with at least the initial inquiry
+      if (!Array.isArray(c.messages) || c.messages.length === 0) {
+        let initialText = c.description || '';
+        const msgMatch = initialText.match(/Message:\s*([\s\S]+)$/i);
+        const cleanText = msgMatch ? msgMatch[1].trim() : initialText;
+
+        c.messages = [
+          {
+            id: `msg-${c.id}-init`,
+            sender: 'customer',
+            senderName: c.name || 'Customer',
+            text: cleanText || c.description,
+            attachments: c.image ? [c.image] : [],
+            channel: 'web',
+            deliveryStatus: 'delivered',
+            createdAt: c.createdAt || new Date()
+          }
+        ];
+      }
+
+      c.lastMessageAt = c.lastMessageAt || c.updatedAt || c.createdAt || new Date();
+      return c;
+    };
+
     if (isMongo()) {
       const docs = await Complaint.find().sort({ createdAt: -1 }).lean();
-      if (docs && docs.length) return docs;
+      if (docs && docs.length) return docs.map(normalizeComplaint);
     }
-    return memoryStore.complaints;
+    return memoryStore.complaints.map(normalizeComplaint);
   },
 
-  async createComplaint({ name, phone, orderId, description, image }) {
-    if (!name || !phone || !description) {
-      throw new Error('Name, phone, and problem description are required');
+  async getComplaintById(id) {
+    const compQuery = mongoose.isValidObjectId(id) ? { $or: [{ id }, { _id: id }] } : { id };
+    const complaints = await this.getComplaints();
+    return complaints.find(c => c.id === id || String(c._id) === id) || null;
+  },
+
+  async createComplaint({ name, customerName, phone, email, subject, orderId, orderNumber, description, message, image }) {
+    const finalName = (name || customerName || '').trim();
+    const finalPhone = (phone || '').trim();
+    const finalDesc = (description || message || '').trim();
+
+    if (!finalName || (!finalPhone && !email) || !finalDesc) {
+      throw new Error('Name, contact info (phone/email), and message are required');
     }
+
+    const compId = `comp-${Date.now()}`;
+    let cleanText = message || finalDesc;
+    const msgMatch = cleanText.match(/Message:\s*([\s\S]+)$/i);
+    if (msgMatch) cleanText = msgMatch[1].trim();
+
     const comp = {
-      id: `comp-${Date.now()}`,
-      name,
-      phone,
-      orderId: orderId || '',
-      description,
+      id: compId,
+      name: finalName,
+      phone: finalPhone || email,
+      email: email || '',
+      subject: subject || '',
+      orderId: orderId || orderNumber || '',
+      description: finalDesc,
       image: image || '',
       status: 'new',
+      isRead: false,
       adminNotes: '',
+      messages: [
+        {
+          id: `msg-${Date.now()}`,
+          sender: 'customer',
+          senderName: finalName,
+          text: cleanText,
+          attachments: image ? [image] : [],
+          channel: 'web',
+          deliveryStatus: 'delivered',
+          createdAt: new Date()
+        }
+      ],
+      lastMessageAt: new Date(),
       createdAt: new Date()
     };
+
     if (isMongo()) {
       try {
         const created = await Complaint.create(comp);
         memoryStore.complaints.unshift(comp);
-        return created.toObject ? created.toObject() : comp;
-      } catch (e) {}
+        const complaints = await this.getComplaints();
+        return complaints.find(c => c.id === compId) || comp;
+      } catch (e) {
+        console.warn('Complaint.create error:', e.message);
+      }
     }
     memoryStore.complaints.unshift(comp);
     return comp;
+  },
+
+  async addComplaintMessage(id, { sender = 'admin', senderName = 'MaxiTShop Support', text, attachments = [], channel = 'web', sendEmail = false, sendSms = false }) {
+    if (!text || !text.trim()) {
+      throw new Error('Message text is required');
+    }
+
+    const newMsg = {
+      id: `msg-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
+      sender: sender || 'admin',
+      senderName: senderName || (sender === 'admin' ? 'MaxiTShop Support' : 'Customer'),
+      text: text.trim(),
+      attachments: Array.isArray(attachments) ? attachments : [],
+      channel: channel || 'web',
+      deliveryStatus: 'sent',
+      createdAt: new Date()
+    };
+
+    let targetDoc = null;
+    if (isMongo()) {
+      const compFilter = mongoose.isValidObjectId(id) ? { $or: [{ id }, { _id: id }] } : { id };
+      targetDoc = await Complaint.findOne(compFilter);
+    }
+
+    // Hydrate existing messages if empty
+    let existingMessages = targetDoc ? (targetDoc.messages || []) : [];
+    if (existingMessages.length === 0 && targetDoc) {
+      let initialText = targetDoc.description || '';
+      const msgMatch = initialText.match(/Message:\s*([\s\S]+)$/i);
+      const cleanText = msgMatch ? msgMatch[1].trim() : initialText;
+      existingMessages = [
+        {
+          id: `msg-${targetDoc.id}-init`,
+          sender: 'customer',
+          senderName: targetDoc.name || 'Customer',
+          text: cleanText || targetDoc.description,
+          attachments: targetDoc.image ? [targetDoc.image] : [],
+          channel: 'web',
+          deliveryStatus: 'delivered',
+          createdAt: targetDoc.createdAt || new Date()
+        }
+      ];
+    }
+
+    const updatedMessages = [...existingMessages, newMsg];
+    const updatePayload = {
+      messages: updatedMessages,
+      lastMessageAt: new Date(),
+    };
+
+    if (sender === 'admin') {
+      updatePayload.isRead = true;
+      if (targetDoc && targetDoc.status === 'new') {
+        updatePayload.status = 'investigating';
+      }
+    } else {
+      updatePayload.isRead = false;
+    }
+
+    let customerEmail = targetDoc?.email;
+    let customerPhone = targetDoc?.phone;
+    let ticketRef = targetDoc?.id || id;
+    let customerName = targetDoc?.name || 'Customer';
+
+    if (!customerEmail && targetDoc?.description) {
+      const emailMatch = targetDoc.description.match(/Email:\s*([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/i);
+      if (emailMatch) customerEmail = emailMatch[1];
+    }
+
+    // Dispatch email notification if requested and email exists
+    if (sendEmail && customerEmail && sender === 'admin') {
+      try {
+        const emailService = require('./emailService');
+        await emailService.sendEmail({
+          to: customerEmail,
+          subject: `[MaxiTShop Support] Reply to your inquiry (${ticketRef})`,
+          html: `
+            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #1e293b; line-height: 1.6;">
+              <div style="background: #0B1528; padding: 20px 24px; border-radius: 8px 8px 0 0; text-align: center;">
+                <h2 style="color: #ffffff; margin: 0; font-size: 20px;">MaxiTShop Support</h2>
+                <p style="color: #94a3b8; margin: 4px 0 0 0; font-size: 13px;">Ticket Reference: <strong>${ticketRef}</strong></p>
+              </div>
+              <div style="padding: 24px; border: 1px solid #e2e8f0; border-top: none; background: #ffffff; border-radius: 0 0 8px 8px;">
+                <p>Hello <strong>${customerName}</strong>,</p>
+                <p>Our support team has responded to your inquiry:</p>
+                <div style="background: #f8fafc; border-left: 4px solid #ff6600; padding: 14px 18px; margin: 16px 0; border-radius: 4px; font-size: 14px; white-space: pre-wrap; color: #0f172a;">${text.trim()}</div>
+                <p style="font-size: 13px; color: #64748b;">If you have further questions or need additional assistance, reply to this email or call our official hotline at <strong>+8801733-272445</strong>.</p>
+                <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 20px 0;" />
+                <p style="font-size: 11px; color: #94a3b8; text-align: center;">MaxiTShop - Solar Equipment & Electronics in Bangladesh<br/>Uposhohor Newmarket, Rajshahi</p>
+              </div>
+            </div>
+          `,
+          text: `Hello ${customerName},\n\nOur support team has responded to your inquiry (${ticketRef}):\n\n${text.trim()}\n\nHotline: +8801733-272445\nMaxiTShop`
+        });
+        newMsg.deliveryStatus = 'delivered';
+      } catch (emailErr) {
+        console.warn('Failed to send email reply:', emailErr.message);
+      }
+    }
+
+    // Dispatch SMS notification if requested and phone exists
+    if (sendSms && customerPhone && sender === 'admin') {
+      try {
+        const smsService = require('./smsService');
+        const shortReply = text.trim().slice(0, 100);
+        await smsService.sendSms(customerPhone, `MaxiTShop Support (${ticketRef}): ${shortReply}`);
+      } catch (smsErr) {
+        console.warn('Failed to send SMS reply:', smsErr.message);
+      }
+    }
+
+    if (isMongo() && targetDoc) {
+      Object.assign(targetDoc, updatePayload);
+      await targetDoc.save();
+      const complaints = await this.getComplaints();
+      const updated = complaints.find(c => c.id === id || String(c._id) === id);
+      const memIdx = memoryStore.complaints.findIndex(c => c.id === id);
+      if (memIdx !== -1 && updated) memoryStore.complaints[memIdx] = updated;
+      return updated;
+    }
+
+    const memComp = memoryStore.complaints.find(c => c.id === id);
+    if (memComp) {
+      Object.assign(memComp, updatePayload);
+      const complaints = await this.getComplaints();
+      return complaints.find(c => c.id === id) || memComp;
+    }
+    return null;
+  },
+
+  async markComplaintRead(id, isRead = true) {
+    if (isMongo()) {
+      try {
+        const compFilter = mongoose.isValidObjectId(id) ? { $or: [{ id }, { _id: id }] } : { id };
+        await Complaint.findOneAndUpdate(
+          compFilter,
+          { isRead },
+          { new: true }
+        );
+      } catch (e) {}
+    }
+    const memComp = memoryStore.complaints.find(c => c.id === id);
+    if (memComp) {
+      memComp.isRead = isRead;
+    }
+    const complaints = await this.getComplaints();
+    return complaints.find(c => c.id === id || String(c._id) === id) || null;
   },
 
   async updateComplaintStatus(id, { status, adminNotes }) {
     const updateFields = {};
     if (status) updateFields.status = status;
     if (adminNotes !== undefined) updateFields.adminNotes = adminNotes;
+    if (status === 'resolved') updateFields.isRead = true;
 
     if (isMongo()) {
       try {
-        const updated = await Complaint.findOneAndUpdate({ id }, updateFields, { new: true }).lean();
-        if (updated) {
-          const c = memoryStore.complaints.find(comp => comp.id === id);
-          if (c) {
-            if (status) c.status = status;
-            if (adminNotes !== undefined) c.adminNotes = adminNotes;
-          }
-          return updated;
-        }
+        const compFilter = mongoose.isValidObjectId(id) ? { $or: [{ id }, { _id: id }] } : { id };
+        await Complaint.findOneAndUpdate(
+          compFilter,
+          updateFields,
+          { new: true }
+        );
       } catch (e) {}
     }
 
     const comp = memoryStore.complaints.find(c => c.id === id);
-    if (!comp) return null;
-    if (status) comp.status = status;
-    if (adminNotes !== undefined) comp.adminNotes = adminNotes;
-    return comp;
+    if (comp) {
+      if (status) comp.status = status;
+      if (adminNotes !== undefined) comp.adminNotes = adminNotes;
+      if (status === 'resolved') comp.isRead = true;
+    }
+    const compQuery = mongoose.isValidObjectId(id) ? { $or: [{ id }, { _id: id }] } : { id };
+    const complaints = await this.getComplaints();
+    return complaints.find(c => c.id === id || String(c._id) === id) || null;
   },
 
   // --- SELLERS ---
