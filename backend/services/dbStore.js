@@ -2176,9 +2176,82 @@ const db = {
       if (adminNotes !== undefined) comp.adminNotes = adminNotes;
       if (status === 'resolved') comp.isRead = true;
     }
-    const compQuery = mongoose.isValidObjectId(id) ? { $or: [{ id }, { _id: id }] } : { id };
     const complaints = await this.getComplaints();
     return complaints.find(c => c.id === id || String(c._id) === id) || null;
+  },
+
+  async addCustomerEmailReply(id, { senderName, text, attachments = [], emailMessageId, createdAt = new Date() }) {
+    if (!text || !text.trim()) return null;
+
+    let targetDoc = null;
+    if (isMongo()) {
+      const compFilter = mongoose.isValidObjectId(id) ? { $or: [{ id }, { _id: id }] } : { id };
+      targetDoc = await Complaint.findOne(compFilter);
+    }
+
+    // Hydrate existing messages if empty
+    let existingMessages = targetDoc ? (targetDoc.messages || []) : [];
+    if (existingMessages.length === 0 && targetDoc) {
+      let initialText = targetDoc.description || '';
+      const msgMatch = initialText.match(/Message:\s*([\s\S]+)$/i);
+      const cleanText = msgMatch ? msgMatch[1].trim() : initialText;
+      existingMessages = [
+        {
+          id: `msg-${targetDoc.id}-init`,
+          sender: 'customer',
+          senderName: targetDoc.name || 'Customer',
+          text: cleanText || targetDoc.description,
+          attachments: targetDoc.image ? [targetDoc.image] : [],
+          channel: 'web',
+          deliveryStatus: 'delivered',
+          createdAt: targetDoc.createdAt || new Date()
+        }
+      ];
+    }
+
+    // Avoid duplicate if emailMessageId matches
+    if (emailMessageId && existingMessages.some(m => m.emailMessageId === emailMessageId)) {
+      const complaints = await this.getComplaints();
+      return complaints.find(c => c.id === id || String(c._id) === id) || null;
+    }
+
+    const newMsg = {
+      id: `msg-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
+      sender: 'customer',
+      senderName: senderName || targetDoc?.name || 'Customer',
+      text: text.trim(),
+      attachments: Array.isArray(attachments) ? attachments : [],
+      channel: 'email',
+      emailMessageId: emailMessageId || '',
+      deliveryStatus: 'delivered',
+      createdAt: createdAt || new Date()
+    };
+
+    const updatedMessages = [...existingMessages, newMsg];
+    const updatePayload = {
+      messages: updatedMessages,
+      lastMessageAt: createdAt || new Date(),
+      isRead: false, // Mark as UNREAD so admin sees notification immediately!
+      status: targetDoc?.status === 'resolved' ? 'investigating' : (targetDoc?.status || 'investigating')
+    };
+
+    if (isMongo() && targetDoc) {
+      Object.assign(targetDoc, updatePayload);
+      await targetDoc.save();
+      const complaints = await this.getComplaints();
+      const updated = complaints.find(c => c.id === id || String(c._id) === id);
+      const memIdx = memoryStore.complaints.findIndex(c => c.id === id);
+      if (memIdx !== -1 && updated) memoryStore.complaints[memIdx] = updated;
+      return updated;
+    }
+
+    const memComp = memoryStore.complaints.find(c => c.id === id);
+    if (memComp) {
+      Object.assign(memComp, updatePayload);
+      const complaints = await this.getComplaints();
+      return complaints.find(c => c.id === id) || memComp;
+    }
+    return null;
   },
 
   // --- SELLERS ---

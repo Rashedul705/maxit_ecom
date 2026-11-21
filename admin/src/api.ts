@@ -150,6 +150,7 @@ export const adminApi = {
   // Complaints & Customer Messages
   getComplaints: () => request<Complaint[]>('/complaints'),
   getComplaint: (id: string) => request<Complaint>(`/complaints/${id}`),
+  syncComplaintEmails: () => request<{ syncResult: any; complaints: Complaint[] }>('/complaints/sync-emails', { method: 'POST' }),
   updateComplaintStatus: (id: string, status: string, adminNotes?: string) =>
     request<Complaint>(`/complaints/${id}/status`, { method: 'PATCH', body: JSON.stringify({ status, adminNotes }) }),
   markComplaintRead: (id: string, isRead: boolean = true) =>

@@ -18,6 +18,7 @@ const CANNED_REPLIES = [
 export const ComplaintsView: React.FC = () => {
   const [complaints, setComplaints] = useState<Complaint[]>([]);
   const [loading, setLoading] = useState(true);
+  const [syncing, setSyncing] = useState(false);
   const [activeTab, setActiveTab] = useState<'all' | 'unread' | 'investigating' | 'resolved'>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedComplaint, setSelectedComplaint] = useState<Complaint | null>(null);
@@ -36,16 +37,43 @@ export const ComplaintsView: React.FC = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const handleSyncEmails = async () => {
+    try {
+      setSyncing(true);
+      const res = await adminApi.syncComplaintEmails();
+      if (res?.complaints) {
+        setComplaints(res.complaints);
+        if (selectedComplaint) {
+          const fresh = res.complaints.find(c => c.id === selectedComplaint.id);
+          if (fresh) setSelectedComplaint(fresh);
+        }
+      }
+    } catch (err: any) {
+      console.warn('Sync emails error:', err);
+    } finally {
+      setSyncing(false);
+    }
+  };
+
   const fetchComplaints = async () => {
     try {
       setLoading(true);
       const data = await adminApi.getComplaints();
       setComplaints(data);
-      // If a complaint is currently opened in modal, keep its active state fresh
       if (selectedComplaint) {
         const fresh = data.find(c => c.id === selectedComplaint.id);
         if (fresh) setSelectedComplaint(fresh);
       }
+      // Also trigger email sync in background
+      adminApi.syncComplaintEmails().then(res => {
+        if (res?.complaints) {
+          setComplaints(res.complaints);
+          if (selectedComplaint) {
+            const fresh = res.complaints.find(c => c.id === selectedComplaint.id);
+            if (fresh) setSelectedComplaint(fresh);
+          }
+        }
+      }).catch(() => {});
     } catch (err: any) {
       console.error('Failed to fetch complaints:', err);
     } finally {
@@ -55,16 +83,26 @@ export const ComplaintsView: React.FC = () => {
 
   useEffect(() => {
     fetchComplaints();
-    // Poll every 30 seconds for live new incoming messages
+    // Poll every 20 seconds for live new incoming messages & email replies
     const timer = setInterval(() => {
-      adminApi.getComplaints().then(data => {
-        setComplaints(data);
-        if (selectedComplaint) {
-          const fresh = data.find(c => c.id === selectedComplaint.id);
-          if (fresh) setSelectedComplaint(fresh);
+      adminApi.syncComplaintEmails().then(res => {
+        if (res?.complaints) {
+          setComplaints(res.complaints);
+          if (selectedComplaint) {
+            const fresh = res.complaints.find(c => c.id === selectedComplaint.id);
+            if (fresh) setSelectedComplaint(fresh);
+          }
         }
-      }).catch(() => {});
-    }, 30000);
+      }).catch(() => {
+        adminApi.getComplaints().then(data => {
+          setComplaints(data);
+          if (selectedComplaint) {
+            const fresh = data.find(c => c.id === selectedComplaint.id);
+            if (fresh) setSelectedComplaint(fresh);
+          }
+        }).catch(() => {});
+      });
+    }, 20000);
     return () => clearInterval(timer);
   }, []);
 
@@ -222,15 +260,27 @@ export const ComplaintsView: React.FC = () => {
           </p>
         </div>
 
-        <button
-          className="btn btn-secondary btn-sm"
-          onClick={fetchComplaints}
-          disabled={loading}
-          style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}
-        >
-          <RefreshCw size={14} className={loading ? 'spin' : ''} />
-          <span>Refresh Inbox</span>
-        </button>
+        <div style={{ display: 'flex', gap: '8px' }}>
+          <button
+            className="btn btn-secondary btn-sm"
+            onClick={handleSyncEmails}
+            disabled={syncing}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}
+            title="Connect to Gmail and sync customer email replies"
+          >
+            <RefreshCw size={14} className={syncing ? 'spin' : ''} />
+            <span>{syncing ? 'Syncing Gmail...' : 'Sync Email Replies'}</span>
+          </button>
+          <button
+            className="btn btn-secondary btn-sm"
+            onClick={fetchComplaints}
+            disabled={loading}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}
+          >
+            <RefreshCw size={14} className={loading ? 'spin' : ''} />
+            <span>Refresh Inbox</span>
+          </button>
+        </div>
       </div>
 
       {/* 2. Search & Tab Filter Bar */}
@@ -641,6 +691,29 @@ export const ComplaintsView: React.FC = () => {
                   <option value="investigating">Status: In Progress</option>
                   <option value="resolved">Status: Resolved</option>
                 </select>
+
+                {/* Sync Email Replies Button */}
+                <button
+                  type="button"
+                  onClick={handleSyncEmails}
+                  disabled={syncing}
+                  style={{
+                    background: syncing ? '#ff6600' : 'rgba(255,255,255,0.1)',
+                    border: '1px solid rgba(255,255,255,0.2)',
+                    color: '#ffffff',
+                    borderRadius: '6px',
+                    padding: '5px 9px',
+                    fontSize: '12px',
+                    cursor: 'pointer',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '4px'
+                  }}
+                  title="Check Gmail for new incoming customer replies"
+                >
+                  <RefreshCw size={12} className={syncing ? 'spin' : ''} />
+                  <span>{syncing ? 'Checking...' : 'Check Replies'}</span>
+                </button>
 
                 {/* Mark as Unread Button */}
                 <button

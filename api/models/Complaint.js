@@ -8,6 +8,7 @@ const MessageItemSchema = new mongoose.Schema({
   attachments: [{ type: String }],
   channel: { type: String, enum: ['web', 'email', 'sms'], default: 'web' },
   deliveryStatus: { type: String, enum: ['sent', 'delivered', 'failed'], default: 'sent' },
+  emailMessageId: { type: String, default: '' },
   createdAt: { type: Date, default: Date.now }
 }, { _id: false });
 

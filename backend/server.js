@@ -180,12 +180,15 @@ if (require.main === module) {
     console.log(`📡 Base API URL: http://localhost:${PORT}/api/v1`);
     console.log(`🔒 Admin Token Configured: ${process.env.ADMIN_TOKEN ? 'YES' : 'DEFAULT'}`);
 
-    // Verify SMTP Email Service
+    // Verify SMTP Email Service & Start Inbound Email Sync
     try {
       const emailService = require('./services/emailService');
       await emailService.verifyConnection();
+
+      const emailSyncService = require('./services/emailSyncService');
+      emailSyncService.startAutoSync(30000);
     } catch (e) {
-      console.warn('⚠️ [SMTP] Verification error:', e.message);
+      console.warn('⚠️ [SMTP/EmailSync] Error:', e.message);
     }
   });
 }

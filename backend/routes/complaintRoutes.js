@@ -14,6 +14,18 @@ router.get('/', requireAdminAuth, requirePermission('reviews.view'), async (req,
   }
 });
 
+// POST /api/v1/complaints/sync-emails - Manually trigger IMAP sync for customer replies
+router.post('/sync-emails', requireAdminAuth, requirePermission('reviews.view'), async (req, res, next) => {
+  try {
+    const emailSyncService = require('../services/emailSyncService');
+    const result = await emailSyncService.syncTicketReplies();
+    const complaints = await db.getComplaints();
+    return successResponse(res, { syncResult: result, complaints }, 'Email sync completed');
+  } catch (err) {
+    next(err);
+  }
+});
+
 // GET /api/v1/complaints/:id - Admin only (or single lookup)
 router.get('/:id', requireAdminAuth, requirePermission('reviews.view'), async (req, res, next) => {
   try {
