@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { api } from '@/lib/api';
 import { Home, ChevronRight, FileText, ShieldCheck, Clock } from 'lucide-react';
+import { renderFormattedPageContent } from '@/lib/pageContentFormatter';
 import type { Metadata } from 'next';
 
 export const revalidate = 0;
@@ -61,6 +62,31 @@ By using MaxiTShop and placing orders, you agree to our standard terms and condi
 MaxiTShop is a premier technology and clean energy e-commerce destination in Bangladesh. We connect consumers and industrial businesses with top-tier solar solutions, inverters, LiFePO4 batteries, electronics, and smart hardware tools.
 
 We are dedicated to fast delivery, responsive support, authentic products, and customer-first service.`
+  },
+  'warranty-policy': {
+    title: 'Warranty & Guarantee Policy',
+    content: `### Official Warranty & Guarantee Policy
+At MaxiTShop, all products are 100% authentic, brand-new, and covered under standard manufacturer or MaxiTShop official service warranty.
+
+### Warranty Coverage
+• **Solar Inverters & Hybrid Systems:** 1 to 5 Years Official Manufacturer Warranty (as specified per model).
+• **Lithium LiFePO4 Battery Packs & Smart BMS:** 1 to 3 Years Replacement / Service Warranty.
+• **Solar Panels:** 10 to 25 Years Performance Output Guarantee.
+• **Electronics, ESP Modules, & Accessories:** 7 Days Replacement Warranty against manufacturing defects.
+
+### Warranty Terms & Conditions
+1. **Original Invoice & Warranty Card:** Please retain your delivery invoice number or warranty card for all warranty claims.
+2. **Physical / Liquid Damage Void:** The warranty does not cover physical breakage, water damage, burn marks from short circuit, or reverse polarity connection.
+3. **Claim Process:** Submit a claim through our customer support or complaints portal with your Order ID and photo/video proof.
+4. **Resolution Period:** Warranty repairs or replacements are typically resolved within 3 to 7 working days.`
+  },
+  'shipping-info': {
+    title: 'Shipping & Delivery Info',
+    content: `### Nationwide Delivery Guidelines
+- **Inside Dhaka:** Delivery fee is ৳70. Delivery completed within 24 to 48 hours via express courier.
+- **Outside Dhaka (All 64 Districts):** Delivery fee is ৳130. Orders delivered within 2 to 4 business days via SA Paribahan, Sundarban Courier, or Steadfast.
+- **Bulky & Heavy Solar Equipment:** For solar panels exceeding 500W or lead-acid/lithium battery banks exceeding 20kg, specialized transport or freight charges may apply upon prior confirmation.
+- **Parcel Inspection:** Customers are encouraged to open and inspect the package in the presence of the delivery person before paying cash.`
   }
 };
 
@@ -122,7 +148,7 @@ export default async function StaticPage({ params }: DynamicPageProps) {
     notFound();
   }
 
-  const isHtml = pageData.content.includes('<') && pageData.content.includes('>');
+  const formattedHtml = renderFormattedPageContent(pageData.content);
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
@@ -160,12 +186,8 @@ export default async function StaticPage({ params }: DynamicPageProps) {
         </div>
 
         {/* Content Body */}
-        <div className="prose prose-sm sm:prose max-w-none text-gray-700 leading-relaxed space-y-4 font-normal">
-          {isHtml ? (
-            <div suppressHydrationWarning dangerouslySetInnerHTML={{ __html: pageData.content }} />
-          ) : (
-            <div className="whitespace-pre-line">{pageData.content}</div>
-          )}
+        <div className="prose prose-sm sm:prose max-w-none text-gray-700 leading-relaxed font-normal">
+          <div suppressHydrationWarning dangerouslySetInnerHTML={{ __html: formattedHtml }} />
         </div>
       </article>
     </div>
