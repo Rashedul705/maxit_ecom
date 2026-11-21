@@ -179,11 +179,6 @@ export const Footer: React.FC<FooterProps> = ({ settings }) => {
                   Track Order
                 </Link>
               </li>
-              <li>
-                <Link href="/complaint" className="hover:text-[#FF6600] transition-colors">
-                  Complaints
-                </Link>
-              </li>
             </ul>
           </div>
 

@@ -78,7 +78,7 @@ Tracking implementation phases for the `maxitshop` redesign based on https://www
   - "Call for price" fallback if price is 0.
   - Full-width orange "অর্ডার করুন" (Order Now) button triggering instant quick checkout.
 - [x] **Brands Strip**: Horizontal logo carousel of top brands linking to brand catalog pages.
-- [x] **Footer**: Comprehensive two-column navigation (Useful Links and Link: Complaints, Order procedure, Delivery Rules, Return Policy, Privacy Policy, Terms & Conditions), official helpline badges, app download badges, newsletter subscription, and social media links.
+- [x] **Footer**: Comprehensive two-column navigation (Useful Links: Home, Sellers, Contact Us, Track Order; and Link: Order procedure, Delivery Rules, Return Policy, Privacy Policy, Terms & Conditions), official helpline badges, app download badges, newsletter subscription, and social media links.
 - [x] **Floating Support**: Floating WhatsApp and Facebook Messenger buttons on bottom-right.
 - [x] **Mobile Bottom Navigation**: 5-tab fixed bottom bar (Category, Tracking, Home, Cart, Login) with active indicator.
 
