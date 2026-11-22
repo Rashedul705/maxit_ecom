@@ -73,7 +73,14 @@ export const adminApi = {
   getStats: () => request<DashboardStats>('/admin/dashboard'),
 
   // Categories
-  getCategories: () => request<Category[]>('/categories'),
+  getCategories: (params?: { all?: boolean; tree?: boolean }) => {
+    const q = new URLSearchParams();
+    if (params?.all) q.set('all', 'true');
+    if (params?.tree) q.set('tree', 'true');
+    const qs = q.toString();
+    return request<Category[]>(`/categories${qs ? `?${qs}` : ''}`);
+  },
+  getCategoryTree: () => request<Category[]>('/categories/tree'),
   createCategory: (data: Partial<Category>) => request<Category>('/categories', { method: 'POST', body: JSON.stringify(data) }),
   updateCategory: (id: string, data: Partial<Category>) => request<Category>(`/categories/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
   deleteCategory: (id: string) => request<{ deleted: boolean }>(`/categories/${id}`, { method: 'DELETE' }),

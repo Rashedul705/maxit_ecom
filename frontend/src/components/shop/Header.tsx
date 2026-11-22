@@ -10,6 +10,7 @@ import {
   Truck,
   Menu,
   ChevronDown,
+  ChevronRight,
   X,
   Sparkles,
   User,
@@ -39,6 +40,7 @@ export const Header: React.FC<HeaderProps> = ({ categories = [], settings, onTog
   const [isLoadingSuggestions, setIsLoadingSuggestions] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [showCatDropdown, setShowCatDropdown] = useState(false);
+  const [hoveredCatSlug, setHoveredCatSlug] = useState<string | null>(null);
   const searchContainerRef = useRef<HTMLDivElement>(null);
   const catDropdownRef = useRef<HTMLDivElement>(null);
 
@@ -349,18 +351,73 @@ export const Header: React.FC<HeaderProps> = ({ categories = [], settings, onTog
 
               {/* Category Dropdown Menu */}
               {showCatDropdown && (
-                <div className="absolute top-full left-0 w-64 bg-white text-gray-800 shadow-2xl border border-gray-200 py-2 z-50 max-h-[420px] overflow-y-auto overscroll-contain">
-                  {categories.map((cat) => (
-                    <Link
-                      key={cat.id}
-                      href={`/category/${cat.slug}`}
-                      onClick={() => setShowCatDropdown(false)}
-                      className="flex items-center justify-between px-4 py-2.5 text-xs font-semibold hover:bg-orange-50 hover:text-[#FF6600] transition-colors"
-                    >
-                      <span>{cat.name}</span>
-                      <span className="text-gray-400 text-[10px]">→</span>
-                    </Link>
-                  ))}
+                <div
+                  className="absolute top-full left-0 w-64 bg-white text-gray-800 shadow-2xl border border-gray-200 py-1.5 z-50 rounded-b-lg"
+                  onMouseLeave={() => setHoveredCatSlug(null)}
+                >
+                  {categories.map((cat) => {
+                    const children = (cat.children && cat.children.length > 0) ? cat.children : (cat.subcategories || []);
+                    const hasChildren = children.length > 0;
+                    const isHovered = hoveredCatSlug === cat.slug;
+
+                    return (
+                      <div
+                        key={cat.id || cat.slug}
+                        className="relative"
+                        onMouseEnter={() => setHoveredCatSlug(cat.slug)}
+                      >
+                        <Link
+                          href={`/category/${cat.slug}`}
+                          onClick={() => {
+                            setShowCatDropdown(false);
+                            setHoveredCatSlug(null);
+                          }}
+                          className={`flex items-center justify-between px-4 py-2.5 text-xs font-semibold transition-colors ${
+                            isHovered
+                              ? 'bg-orange-50 text-[#FF6600]'
+                              : 'text-gray-700 hover:bg-orange-50 hover:text-[#FF6600]'
+                          }`}
+                        >
+                          <span className="truncate">{cat.name}</span>
+                          {hasChildren ? (
+                            <ChevronRight className="w-3.5 h-3.5 text-gray-400 shrink-0" />
+                          ) : (
+                            <span className="text-gray-300 text-[10px]">→</span>
+                          )}
+                        </Link>
+
+                        {/* Subcategory Flyout to the Right */}
+                        {hasChildren && isHovered && (
+                          <div className="absolute left-full top-0 ml-0.5 w-64 bg-white text-gray-800 shadow-2xl border border-gray-200 py-2 z-50 rounded-lg max-h-[420px] overflow-y-auto">
+                            <div className="px-4 py-1.5 text-[11px] font-bold uppercase tracking-wider text-gray-400 border-b border-gray-100 flex items-center justify-between">
+                              <span className="truncate">{cat.name}</span>
+                              <span className="text-[10px] text-gray-400 font-normal shrink-0 ml-2">({children.length})</span>
+                            </div>
+                            <div className="py-1">
+                              {children.map((child: any) => (
+                                <Link
+                                  key={child.id || child.slug}
+                                  href={`/category/${child.slug}`}
+                                  onClick={() => {
+                                    setShowCatDropdown(false);
+                                    setHoveredCatSlug(null);
+                                  }}
+                                  className="flex items-center justify-between px-4 py-2 text-xs text-gray-700 hover:bg-orange-50 hover:text-[#FF6600] transition-colors"
+                                >
+                                  <span className="truncate">{child.name}</span>
+                                  {child.productCount !== undefined && (
+                                    <span className="text-[10px] text-gray-400 font-normal shrink-0 ml-2">
+                                      ({child.productCount})
+                                    </span>
+                                  )}
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
               )}
             </div>

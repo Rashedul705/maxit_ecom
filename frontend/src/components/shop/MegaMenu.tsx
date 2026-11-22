@@ -72,54 +72,67 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ categories }) => {
 
               {/* Right Subcategories Grid */}
               <div className="col-span-8 p-5 bg-white overflow-y-auto max-h-[500px]">
-                {activeCategory && (
-                  <div>
-                    <div className="flex items-center justify-between pb-3 mb-4 border-b border-gray-100">
-                      <h4 className="text-sm font-bold text-gray-900 flex items-center gap-2">
-                        <span>{activeCategory.name}</span>
-                        <span className="text-xs text-blue-600 font-normal">
-                          ({activeCategory.subcategories?.length || 0} subcategories)
-                        </span>
-                      </h4>
-                      <Link
-                        href={`/category/${activeCategory.slug}`}
-                        onClick={() => setIsOpen(false)}
-                        className="text-xs font-semibold text-blue-600 hover:underline flex items-center gap-1"
-                      >
-                        <span>View All</span>
-                        <ChevronRight className="w-3 h-3" />
-                      </Link>
-                    </div>
+                {activeCategory && (() => {
+                  const childList = (activeCategory.children && activeCategory.children.length > 0)
+                    ? activeCategory.children
+                    : (activeCategory.subcategories || []);
 
-                    <div className="grid grid-cols-2 gap-2.5">
-                      {activeCategory.subcategories && activeCategory.subcategories.length > 0 ? (
-                        activeCategory.subcategories.map((sub) => (
-                          <Link
-                            key={sub.id}
-                            href={`/category/${activeCategory.slug}?sub=${sub.slug}`}
-                            onClick={() => setIsOpen(false)}
-                            className="flex items-center gap-2 p-2 rounded-lg text-xs text-gray-700 hover:bg-blue-50 hover:text-blue-600 font-medium transition-colors group"
-                          >
-                            <ChevronRight className="w-3 h-3 text-blue-500 group-hover:translate-x-0.5 transition-transform" />
-                            <span className="truncate">{sub.name}</span>
-                          </Link>
-                        ))
-                      ) : (
-                        <div className="col-span-2 py-8 text-center bg-gray-50/70 rounded-xl border border-dashed border-gray-200">
-                          <p className="text-xs text-gray-500 mb-2.5">Browse all products in this category</p>
-                          <Link
-                            href={`/category/${activeCategory.slug}`}
-                            onClick={() => setIsOpen(false)}
-                            className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-bold transition-colors"
-                          >
-                            <span>Explore {activeCategory.name}</span>
-                            <ChevronRight className="w-3.5 h-3.5" />
-                          </Link>
-                        </div>
-                      )}
+                  return (
+                    <div>
+                      <div className="flex items-center justify-between pb-3 mb-4 border-b border-gray-100">
+                        <h4 className="text-sm font-bold text-gray-900 flex items-center gap-2">
+                          <span>{activeCategory.name}</span>
+                          <span className="text-xs text-blue-600 font-normal">
+                            ({childList.length} subcategories)
+                          </span>
+                        </h4>
+                        <Link
+                          href={`/category/${activeCategory.slug}`}
+                          onClick={() => setIsOpen(false)}
+                          className="text-xs font-semibold text-blue-600 hover:underline flex items-center gap-1"
+                        >
+                          <span>View All</span>
+                          <ChevronRight className="w-3 h-3" />
+                        </Link>
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-2.5">
+                        {childList.length > 0 ? (
+                          childList.map((sub: any) => (
+                            <Link
+                              key={sub.id || sub.slug}
+                              href={`/category/${sub.slug}`}
+                              onClick={() => setIsOpen(false)}
+                              className="flex items-center justify-between p-2 rounded-lg text-xs text-gray-700 hover:bg-blue-50 hover:text-blue-600 font-medium transition-colors group"
+                            >
+                              <div className="flex items-center gap-2 truncate">
+                                <ChevronRight className="w-3 h-3 text-blue-500 group-hover:translate-x-0.5 transition-transform shrink-0" />
+                                <span className="truncate">{sub.name}</span>
+                              </div>
+                              {sub.productCount !== undefined && (
+                                <span className="text-[10px] text-gray-400 font-normal shrink-0 ml-1">
+                                  ({sub.productCount})
+                                </span>
+                              )}
+                            </Link>
+                          ))
+                        ) : (
+                          <div className="col-span-2 py-8 text-center bg-gray-50/70 rounded-xl border border-dashed border-gray-200">
+                            <p className="text-xs text-gray-500 mb-2.5">Browse all products in this category</p>
+                            <Link
+                              href={`/category/${activeCategory.slug}`}
+                              onClick={() => setIsOpen(false)}
+                              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-bold transition-colors"
+                            >
+                              <span>Explore {activeCategory.name}</span>
+                              <ChevronRight className="w-3.5 h-3.5" />
+                            </Link>
+                          </div>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                )}
+                  );
+                })()}
               </div>
             </div>
           )}

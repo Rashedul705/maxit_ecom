@@ -97,23 +97,30 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
     return `/category/${slug}?${p.toString()}`;
   };
 
+  const isMother = Boolean(category.isMother || (!category.parent && category.children?.length));
+  const parentCat = category.parentCategory;
+  const chipList = isMother
+    ? (category.children || [])
+    : (category.siblings || []);
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-6">
       
       {/* Breadcrumb Navigation */}
       <nav className="flex items-center text-xs text-slate-500 mb-5 gap-1.5 overflow-x-auto whitespace-nowrap">
-        <Link href="/" className="hover:text-blue-600 flex items-center gap-1">
+        <Link href="/" className="hover:text-[#FF6600] flex items-center gap-1 transition-colors">
           <Home className="w-3.5 h-3.5" />
           <span>Home</span>
         </Link>
-        <ChevronRight className="w-3 h-3 text-slate-400" />
-        {activeSub ? (
+        <ChevronRight className="w-3 h-3 text-slate-400 shrink-0" />
+
+        {parentCat ? (
           <>
-            <Link href={`/category/${slug}`} className="hover:text-blue-600">
-              {category.name}
+            <Link href={`/category/${parentCat.slug}`} className="hover:text-[#FF6600] transition-colors">
+              {parentCat.name}
             </Link>
-            <ChevronRight className="w-3 h-3 text-slate-400" />
-            <span className="font-semibold text-slate-900">{activeSub.name}</span>
+            <ChevronRight className="w-3 h-3 text-slate-400 shrink-0" />
+            <span className="font-semibold text-slate-900">{category.name}</span>
           </>
         ) : (
           <span className="font-semibold text-slate-900">{category.name}</span>
@@ -122,42 +129,69 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
 
       {/* Category Header Banner */}
       <div className="bg-white rounded-2xl border border-slate-200 p-6 mb-6 shadow-xs">
-        <h1 className="text-xl sm:text-3xl font-black text-slate-900 mb-2">
-          {activeSub ? `${activeSub.name} - ${category.name}` : category.name}
-        </h1>
-        <p className="text-xs sm:text-sm text-slate-600 max-w-2xl">
-          Browse our extensive collection of {activeSub ? activeSub.name.toLowerCase() : category.name.toLowerCase()} with official warranty, lowest market rates, and fast doorstep delivery across Bangladesh.
-        </p>
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <h1 className="text-xl sm:text-3xl font-black text-slate-900 mb-2">
+              {category.name}
+            </h1>
+            <p className="text-xs sm:text-sm text-slate-600 max-w-2xl">
+              {category.description || `Browse our extensive collection of ${category.name.toLowerCase()} with official warranty, lowest market rates, and fast doorstep delivery across Bangladesh.`}
+            </p>
+          </div>
+          {category.productCount !== undefined && (
+            <div className="shrink-0 bg-orange-50 border border-orange-200/60 rounded-xl px-4 py-2.5 text-center">
+              <span className="text-xl sm:text-2xl font-black text-[#FF6600] block">{category.productCount}</span>
+              <span className="text-[11px] font-semibold text-gray-600 uppercase tracking-wider">Products</span>
+            </div>
+          )}
+        </div>
 
-        {/* Subcategory Pills */}
-        {category.subcategories && category.subcategories.length > 0 && (
-          <div className="mt-4 pt-4 border-t border-slate-100 flex flex-wrap gap-2">
-            <Link
-              href={buildSubUrl(undefined)}
-              className={`text-xs sm:text-sm px-3.5 py-1.5 rounded-full border transition-all ${
-                !currentSub
-                  ? 'bg-[#FF6600] text-white border-[#FF6600] font-semibold shadow-xs'
-                  : 'bg-white text-slate-700 border-slate-200 hover:border-[#FF6600] hover:text-[#FF6600] font-medium shadow-2xs'
-              }`}
-            >
-              All
-            </Link>
-            {category.subcategories.map(sub => {
-              const isActive = currentSub === sub.slug;
-              return (
-                <Link
-                  key={sub.id}
-                  href={buildSubUrl(sub.slug)}
-                  className={`text-xs sm:text-sm px-3.5 py-1.5 rounded-full border transition-all ${
-                    isActive
-                      ? 'bg-[#FF6600] text-white border-[#FF6600] font-semibold shadow-xs'
-                      : 'bg-white text-slate-700 border-slate-200 hover:border-[#FF6600] hover:text-[#FF6600] font-medium shadow-2xs'
-                  }`}
+        {/* Subcategory Chips Row */}
+        {chipList.length > 0 && (
+          <div className="mt-5 pt-4 border-t border-slate-100">
+            <div className="text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-2.5">
+              {isMother ? 'Subcategories' : `Related in ${parentCat?.name || 'Category'}`}
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {isMother ? (
+                <span
+                  className="text-xs sm:text-sm px-3.5 py-1.5 rounded-full bg-[#FF6600] text-white border border-[#FF6600] font-semibold shadow-xs"
                 >
-                  {sub.name}
-                </Link>
-              );
-            })}
+                  All ({category.productCount || total})
+                </span>
+              ) : (
+                parentCat && (
+                  <Link
+                    href={`/category/${parentCat.slug}`}
+                    className="text-xs sm:text-sm px-3.5 py-1.5 rounded-full bg-white text-slate-700 border border-slate-200 hover:border-[#FF6600] hover:text-[#FF6600] font-medium shadow-2xs transition-all"
+                  >
+                    ← All {parentCat.name}
+                  </Link>
+                )
+              )}
+
+              {chipList.map((sub: any) => {
+                const isActive = !isMother && sub.slug === slug;
+                return (
+                  <Link
+                    key={sub.id || sub.slug}
+                    href={`/category/${sub.slug}`}
+                    className={`text-xs sm:text-sm px-3.5 py-1.5 rounded-full border transition-all ${
+                      isActive
+                        ? 'bg-[#FF6600] text-white border-[#FF6600] font-semibold shadow-xs'
+                        : 'bg-white text-slate-700 border-slate-200 hover:border-[#FF6600] hover:text-[#FF6600] font-medium shadow-2xs'
+                    }`}
+                  >
+                    <span>{sub.name}</span>
+                    {sub.productCount !== undefined && (
+                      <span className={`text-[10px] ml-1.5 font-normal ${isActive ? 'text-white/90' : 'text-gray-400'}`}>
+                        ({sub.productCount})
+                      </span>
+                    )}
+                  </Link>
+                );
+              })}
+            </div>
           </div>
         )}
       </div>

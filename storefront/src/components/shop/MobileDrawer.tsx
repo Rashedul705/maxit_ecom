@@ -82,16 +82,17 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, onClose, cat
           </div>
 
           {categories.map((cat) => {
-            const hasSub = cat.subcategories && cat.subcategories.length > 0;
+            const subItems = (cat.children && cat.children.length > 0) ? cat.children : (cat.subcategories || []);
+            const hasSub = subItems.length > 0;
             const isExpanded = expandedCategories[cat.slug];
 
             return (
-              <div key={cat.id} className="text-sm">
+              <div key={cat.id || cat.slug} className="text-sm">
                 <div className="flex items-center justify-between px-4 py-3 hover:bg-slate-50">
                   <Link
                     href={`/category/${cat.slug}`}
                     onClick={onClose}
-                    className="font-medium text-slate-800 hover:text-blue-600 flex-1"
+                    className="font-medium text-slate-800 hover:text-[#FF6600] flex-1"
                   >
                     {cat.name}
                   </Link>
@@ -99,10 +100,11 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, onClose, cat
                   {hasSub && (
                     <button
                       onClick={() => toggleCategory(cat.slug)}
-                      className="p-1 text-slate-400 hover:text-slate-600"
+                      className="p-1.5 text-slate-400 hover:text-slate-600 rounded"
+                      aria-label="Toggle subcategories"
                     >
                       {isExpanded ? (
-                        <ChevronDown className="w-4 h-4" />
+                        <ChevronDown className="w-4 h-4 text-[#FF6600]" />
                       ) : (
                         <ChevronRight className="w-4 h-4" />
                       )}
@@ -112,15 +114,20 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, onClose, cat
 
                 {/* Subcategories list */}
                 {hasSub && isExpanded && (
-                  <div className="bg-slate-50/80 px-6 py-2 space-y-2 border-t border-slate-100">
-                    {cat.subcategories!.map((sub) => (
+                  <div className="bg-slate-50/80 px-6 py-2 space-y-1.5 border-t border-slate-100">
+                    {subItems.map((sub: any) => (
                       <Link
-                        key={sub.id}
-                        href={`/category/${cat.slug}?sub=${sub.slug}`}
+                        key={sub.id || sub.slug}
+                        href={`/category/${sub.slug}`}
                         onClick={onClose}
-                        className="block py-1 text-xs text-slate-600 hover:text-blue-600"
+                        className="flex items-center justify-between py-1 text-xs text-slate-600 hover:text-[#FF6600]"
                       >
-                        • {sub.name}
+                        <span className="truncate">• {sub.name}</span>
+                        {sub.productCount !== undefined && (
+                          <span className="text-[10px] text-gray-400 font-normal shrink-0 ml-2">
+                            ({sub.productCount})
+                          </span>
+                        )}
                       </Link>
                     ))}
                   </div>

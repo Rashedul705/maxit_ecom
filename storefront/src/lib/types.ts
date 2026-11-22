@@ -4,6 +4,8 @@ export interface Subcategory {
   slug: string;
   parent: string;
   image?: string;
+  icon?: string;
+  productCount?: number;
 }
 
 export interface Category {
@@ -14,6 +16,13 @@ export interface Category {
   image?: string;
   icon?: string;
   subcategories?: Subcategory[];
+  children?: Category[];
+  productCount?: number;
+  isMother?: boolean;
+  parentCategory?: Category;
+  siblings?: Category[];
+  description?: string;
+  order?: number;
 }
 
 export interface Brand {

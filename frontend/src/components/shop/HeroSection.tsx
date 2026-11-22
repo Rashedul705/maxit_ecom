@@ -35,56 +35,78 @@ interface HeroSectionProps {
 
 const getCategoryIcon = (slug: string) => {
   switch (slug) {
+    case 'solar-renewable-energy':
     case 'solar-energy':
     case 'solar-inverter':
     case 'solar-battery':
     case 'solar-package':
     case 'solar-green-energy':
       return <Sun className="w-4 h-4 text-[#FF6600]" />;
-    case 'wind-energy':
-      return <Wind className="w-4 h-4 text-sky-500" />;
+    case 'batteries-portable-power':
     case 'battery-bms-charger':
     case 'ups-battery':
     case 'portable-power-station':
     case 'batteries-inverters':
       return <BatteryCharging className="w-4 h-4 text-emerald-600" />;
-    case 'esp':
-    case 'arduino':
-    case 'microcontroller':
-    case 'development-board':
-      return <Cpu className="w-4 h-4 text-blue-600" />;
-    case 'security-camera':
-      return <Camera className="w-4 h-4 text-amber-600" />;
-    case 'office-equipment':
-    case 'computers-office':
-      return <Briefcase className="w-4 h-4 text-cyan-600" />;
+    case 'ups-power-protection':
     case 'online-ups':
     case 'ups':
     case 'voltage-stabilizer':
     case 'lt-ht-power-goods':
       return <Zap className="w-4 h-4 text-amber-500" />;
+    case 'smart-home-automation':
     case 'smart-home-iot':
     case 'home-automation':
     case 'automation-process-cont.':
       return <ShieldCheck className="w-4 h-4 text-emerald-500" />;
+    case 'microcontrollers-dev-boards':
+    case 'esp':
+    case 'arduino':
+    case 'microcontroller':
+    case 'development-board':
+      return <Cpu className="w-4 h-4 text-blue-600" />;
+    case 'robotics-drone-kits':
     case 'robotics':
-      return <Bot className="w-4 h-4 text-indigo-500" />;
     case 'drone':
-    case 'wireless-transceiver':
-      return <Radio className="w-4 h-4 text-blue-500" />;
-    case '3d-printer-accessories':
-      return <Printer className="w-4 h-4 text-purple-600" />;
+    case 'kits':
+      return <Bot className="w-4 h-4 text-indigo-500" />;
+    case 'sensors-modules-wireless':
     case 'sensor':
     case 'modules-&-sensor':
-    case 'instruments':
+    case 'wireless-transceiver':
+    case 'display':
+      return <Radio className="w-4 h-4 text-blue-500" />;
+    case 'electronic-components':
+    case 'electronics-parts':
+    case 'basic-component':
+    case 'general-ic':
+    case 'igbt-fet-diode-transistor':
+    case 'customized-circuit---pcb':
       return <Activity className="w-4 h-4 text-rose-600" />;
+    case 'tools-instruments':
+    case 'instruments':
     case 'tools---hardware':
     case 'maintenance-tools':
+    case '3d-printer-accessories':
     case 'tools-measurement':
       return <Wrench className="w-4 h-4 text-orange-600" />;
+    case 'security-safety':
+    case 'security-camera':
+    case 'safety---security':
+      return <Camera className="w-4 h-4 text-amber-600" />;
+    case 'computer-networking-office':
     case 'computer-accessories':
     case 'server-networking':
+    case 'office-equipment':
+    case 'computers-office':
       return <Laptop className="w-4 h-4 text-sky-600" />;
+    case 'accessories-services':
+    case 'accessories':
+    case 'miscellaneous':
+    case 'service-&-maintenance':
+      return <Briefcase className="w-4 h-4 text-cyan-600" />;
+    case 'wind-energy':
+      return <Wind className="w-4 h-4 text-sky-500" />;
     case 'consumer-electronics':
       return <Tv className="w-4 h-4 text-purple-600" />;
     default:
@@ -94,6 +116,7 @@ const getCategoryIcon = (slug: string) => {
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ categories, banners, hero }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [hoveredSlug, setHoveredSlug] = useState<string | null>(null);
 
   useEffect(() => {
     if (banners.length <= 1) return;
@@ -116,25 +139,85 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ categories, banners, h
       <div className="flex gap-4">
         
         {/* Left Vertical Category Menu (Desktop only - Nanopowerbd layout) */}
-        <div className="hidden lg:flex flex-col w-64 shrink-0 bg-white border border-gray-200 rounded-lg shadow-xs overflow-hidden h-[420px]">
-          <div className="bg-[#131A22] text-white px-4 py-3 font-bold text-xs uppercase tracking-wider flex items-center gap-2 shrink-0">
+        <div 
+          className="hidden lg:flex flex-col w-64 shrink-0 bg-white border border-gray-200 rounded-lg shadow-xs relative h-[420px] z-30"
+          onMouseLeave={() => setHoveredSlug(null)}
+        >
+          <div className="bg-[#131A22] text-white px-4 py-3 font-bold text-xs uppercase tracking-wider flex items-center gap-2 shrink-0 rounded-t-lg">
             <span>Categories</span>
           </div>
-          <div className="divide-y divide-gray-100 overflow-y-auto flex-1 overscroll-contain min-h-0">
-            {categories.map((cat) => (
-              <Link
-                key={cat.id}
-                href={`/category/${cat.slug}`}
-                className="group flex items-center justify-between px-3.5 py-2 text-xs text-gray-700 hover:bg-orange-50 hover:text-[#FF6600] transition-colors"
-              >
-                <div className="flex items-center gap-2.5 truncate">
-                  <span className="shrink-0">{getCategoryIcon(cat.slug)}</span>
-                  <span className="truncate font-medium">{cat.name}</span>
+          <div className="divide-y divide-gray-100 overflow-y-auto flex-1 overscroll-contain min-h-0 rounded-b-lg">
+            {categories.map((cat) => {
+              const children = (cat.children && cat.children.length > 0) ? cat.children : (cat.subcategories || []);
+              const hasChildren = children.length > 0;
+              const isHovered = hoveredSlug === cat.slug;
+
+              return (
+                <div
+                  key={cat.id || cat.slug}
+                  onMouseEnter={() => setHoveredSlug(cat.slug)}
+                >
+                  <Link
+                    href={`/category/${cat.slug}`}
+                    className={`group flex items-center justify-between px-3.5 py-2 text-xs transition-colors ${
+                      isHovered
+                        ? 'bg-orange-50 text-[#FF6600]'
+                        : 'text-gray-700 hover:bg-orange-50 hover:text-[#FF6600]'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2.5 truncate">
+                      <span className="shrink-0">{getCategoryIcon(cat.slug)}</span>
+                      <span className="truncate font-medium">{cat.name}</span>
+                    </div>
+                    {hasChildren ? (
+                      <ChevronRight className="w-3.5 h-3.5 text-gray-400 group-hover:text-[#FF6600] shrink-0" />
+                    ) : (
+                      <ArrowRightIcon className="w-3 h-3 text-gray-400 group-hover:text-[#FF6600] group-hover:translate-x-0.5 transition-all shrink-0" />
+                    )}
+                  </Link>
                 </div>
-                <ArrowRightIcon className="w-3 h-3 text-gray-400 group-hover:text-[#FF6600] group-hover:translate-x-0.5 transition-all shrink-0" />
-              </Link>
-            ))}
+              );
+            })}
           </div>
+
+          {/* Subcategories Flyout Drawer to the Right */}
+          {(() => {
+            const activeCat = categories.find((c) => c.slug === hoveredSlug);
+            const children = (activeCat?.children && activeCat.children.length > 0) ? activeCat.children : (activeCat?.subcategories || []);
+            if (!activeCat || children.length === 0) return null;
+
+            return (
+              <div 
+                className="absolute left-full top-0 ml-2 w-64 bg-white border border-gray-200 rounded-lg shadow-xl py-2 z-40 max-h-[420px] overflow-y-auto"
+                onMouseEnter={() => setHoveredSlug(activeCat.slug)}
+              >
+                <div className="px-4 py-2 border-b border-gray-100 flex items-center justify-between">
+                  <span className="text-xs font-bold text-gray-900 uppercase tracking-wider truncate">
+                    {activeCat.name}
+                  </span>
+                  <span className="text-[10px] text-gray-400 font-normal shrink-0 ml-2">
+                    ({children.length})
+                  </span>
+                </div>
+                <div className="py-1">
+                  {children.map((child: any) => (
+                    <Link
+                      key={child.id || child.slug}
+                      href={`/category/${child.slug}`}
+                      className="flex items-center justify-between px-4 py-2 text-xs text-gray-700 hover:bg-orange-50 hover:text-[#FF6600] transition-colors"
+                    >
+                      <span className="truncate">{child.name}</span>
+                      {child.productCount !== undefined && (
+                        <span className="text-[10px] text-gray-400 font-normal shrink-0 ml-2">
+                          ({child.productCount})
+                        </span>
+                      )}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            );
+          })()}
         </div>
 
         {/* Hero Banner Slider */}

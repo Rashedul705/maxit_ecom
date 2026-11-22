@@ -56,7 +56,14 @@ async function fetchJson<T>(url: string, options: RequestInit = {}): Promise<T> 
 
 export const api = {
   // Categories
-  getCategories: () => fetchJson<Category[]>(`${API_BASE}/categories`),
+  getCategories: (params?: { all?: boolean; tree?: boolean }) => {
+    const query = new URLSearchParams();
+    if (params?.all) query.set('all', 'true');
+    if (params?.tree) query.set('tree', 'true');
+    const qs = query.toString();
+    return fetchJson<Category[]>(`${API_BASE}/categories${qs ? `?${qs}` : ''}`);
+  },
+  getCategoryTree: () => fetchJson<Category[]>(`${API_BASE}/categories/tree`),
   getCategory: (slug: string) => fetchJson<Category>(`${API_BASE}/categories/${slug}`),
 
   // Banners

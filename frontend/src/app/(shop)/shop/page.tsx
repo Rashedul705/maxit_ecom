@@ -55,7 +55,8 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
   const hasNext = page < totalPages;
   const availableBrands = productsResponse.filterMeta?.availableBrands || [];
 
-  const currentCategory = categories.find((c: any) => c.slug === search.category);
+  const currentCategory = categories.find((c: any) => c.slug === search.category) ||
+    categories.flatMap((c: any) => c.children || []).find((c: any) => c.slug === search.category);
 
   // Helper to construct pagination URLs while preserving current filters
   const buildPageUrl = (targetPage: number) => {

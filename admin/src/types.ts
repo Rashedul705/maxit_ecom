@@ -2,12 +2,16 @@ export interface Category {
   id: string;
   name: string;
   slug: string;
+  parent?: string | null;
   image: string;
   icon: string;
   description?: string;
   order: number;
   isActive: boolean;
   subcategories?: { id?: string; name: string; slug: string }[];
+  children?: Category[];
+  productCount?: number;
+  isMother?: boolean;
 }
 
 export interface Product {

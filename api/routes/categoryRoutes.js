@@ -5,10 +5,20 @@ const Category = require('../models/Category');
 const { successResponse, errorResponse } = require('../utils/response');
 const { requireAdminAuth, requirePermission } = require('../middleware/auth');
 
+// GET /api/v1/categories/tree
+router.get('/tree', async (req, res, next) => {
+  try {
+    const tree = await db.getCategoryTree();
+    return successResponse(res, tree);
+  } catch (err) {
+    next(err);
+  }
+});
+
 // GET /api/v1/categories
 router.get('/', async (req, res, next) => {
   try {
-    const categories = await db.getCategories();
+    const categories = await db.getCategories(req.query);
     return successResponse(res, categories);
   } catch (err) {
     next(err);
@@ -70,7 +80,7 @@ router.delete('/:id', requireAdminAuth, requirePermission('categories.manage'), 
     if (!ok) return errorResponse(res, 'Category not found', 404);
     return successResponse(res, { deleted: true }, 'Category deleted successfully');
   } catch (err) {
-    next(err);
+    return errorResponse(res, err.message, err.statusCode || 400);
   }
 });
 

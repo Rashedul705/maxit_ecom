@@ -6,13 +6,15 @@ import { CategoryIconDisplay, CategoryCoverDisplay, CATEGORY_ICON_PRESETS } from
 
 interface CategoryModalProps {
   category: Category | null;
+  motherCategories?: Category[];
   onClose: () => void;
   onSave: (data: Partial<Category>) => Promise<void>;
 }
 
-export const CategoryModal: React.FC<CategoryModalProps> = ({ category, onClose, onSave }) => {
+export const CategoryModal: React.FC<CategoryModalProps> = ({ category, motherCategories = [], onClose, onSave }) => {
   const [name, setName] = useState(category?.name || '');
   const [slug, setSlug] = useState(category?.slug || '');
+  const [parent, setParent] = useState(category?.parent || '');
   const [image, setImage] = useState(category?.image || '');
   const [icon, setIcon] = useState(category?.icon || '');
   const [order, setOrder] = useState(category?.order || 1);
@@ -41,6 +43,7 @@ export const CategoryModal: React.FC<CategoryModalProps> = ({ category, onClose,
     await onSave({
       name,
       slug: slug || name.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+      parent: parent ? parent.trim() : null,
       image,
       icon,
       order: Number(order),
@@ -61,6 +64,27 @@ export const CategoryModal: React.FC<CategoryModalProps> = ({ category, onClose,
 
         <form onSubmit={handleSubmit}>
           <div className="modal-body">
+            <div className="form-group">
+              <label className="form-label">Parent Category</label>
+              <select
+                className="form-input"
+                value={parent}
+                onChange={e => setParent(e.target.value)}
+              >
+                <option value="">None (Mother Category)</option>
+                {(motherCategories || [])
+                  .filter(m => !category || (m.id !== category.id && m.slug !== category.slug))
+                  .map(m => (
+                    <option key={m.id || m.slug} value={m.slug}>
+                      {m.name}
+                    </option>
+                  ))}
+              </select>
+              <span style={{ fontSize: '11px', color: '#64748b', display: 'block', marginTop: '4px' }}>
+                Select a Mother Category to make this a Subcategory, or "None" for top-level.
+              </span>
+            </div>
+
             <div className="form-group">
               <label className="form-label">Category Name *</label>
               <input

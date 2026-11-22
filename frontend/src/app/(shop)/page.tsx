@@ -29,13 +29,11 @@ export default async function HomePage() {
     brands = brandsData;
     settings = settingsData;
 
-    // Fetch products per category individually so each section shows its own products
-    // Priority order: Solar, Wind, Battery, ESP, Camera, Office Equipment
+    // Fetch products per mother category (first 5 products across its children)
     if (categories.length > 0) {
-      const targetCategories = categories.slice(0, 11);
       const groupResults = await Promise.all(
-        targetCategories.map(async (cat) => {
-          const data = await api.getProducts({ category: cat.slug, limit: 8 }).catch(() => ({ items: [] }));
+        categories.map(async (cat) => {
+          const data = await api.getProducts({ category: cat.slug, limit: 5 }).catch(() => ({ items: [] }));
           return { category: cat, products: data.items || [] };
         })
       );

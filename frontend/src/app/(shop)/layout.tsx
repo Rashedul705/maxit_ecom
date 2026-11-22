@@ -24,17 +24,18 @@ export default async function ShopLayout({
     console.error('Failed to prefetch categories and settings in ShopLayout:', err);
     // Fallback categories for resilient rendering
     categories = [
-      { id: 'cat-solar-energy', name: 'SOLAR ENERGY', slug: 'solar-energy', parent: null },
-      { id: 'cat-battery-bms-charger', name: 'BATTERY-BMS-CHARGER', slug: 'battery-bms-charger', parent: null },
-      { id: 'cat-service-maintenance', name: 'SERVICE & MAINTENANCE', slug: 'service-&-maintenance', parent: null },
-      { id: 'cat-customized-circuit-pcb', name: 'CUSTOMIZED CIRCUIT - PCB', slug: 'customized-circuit---pcb', parent: null },
-      { id: 'cat-lt-ht-power-goods', name: 'LT-HT POWER GOODS', slug: 'lt-ht-power-goods', parent: null },
-      { id: 'cat-modules-sensor', name: 'MODULES & SENSOR', slug: 'modules-&-sensor', parent: null },
-      { id: 'cat-igbt-fet-diode-transistor', name: 'IGBT-FET-DIODE-TRANSISTOR', slug: 'igbt-fet-diode-transistor', parent: null },
-      { id: 'cat-electronics-parts', name: 'ELECTRONICS PARTS', slug: 'electronics-parts', parent: null },
-      { id: 'cat-safety-security', name: 'SAFETY - SECURITY', slug: 'safety---security', parent: null },
-      { id: 'cat-tools-hardware', name: 'TOOLS - HARDWARE', slug: 'tools---hardware', parent: null },
-      { id: 'cat-automation-process-cont', name: 'AUTOMATION-PROCESS CONT.', slug: 'automation-process-cont.', parent: null }
+      { id: 'cat-solar-renewable-energy', name: 'Solar & Renewable Energy', slug: 'solar-renewable-energy', parent: null },
+      { id: 'cat-batteries-portable-power', name: 'Batteries & Portable Power', slug: 'batteries-portable-power', parent: null },
+      { id: 'cat-ups-power-protection', name: 'UPS & Power Protection', slug: 'ups-power-protection', parent: null },
+      { id: 'cat-smart-home-automation', name: 'Smart Home & Automation', slug: 'smart-home-automation', parent: null },
+      { id: 'cat-microcontrollers-dev-boards', name: 'Microcontrollers & Dev Boards', slug: 'microcontrollers-dev-boards', parent: null },
+      { id: 'cat-robotics-drone-kits', name: 'Robotics, Drone & Kits', slug: 'robotics-drone-kits', parent: null },
+      { id: 'sensors-modules-wireless', name: 'Sensors, Modules & Wireless', slug: 'sensors-modules-wireless', parent: null },
+      { id: 'cat-electronic-components', name: 'Electronic Components', slug: 'electronic-components', parent: null },
+      { id: 'cat-tools-instruments', name: 'Tools & Instruments', slug: 'tools-instruments', parent: null },
+      { id: 'cat-security-safety', name: 'Security & Safety', slug: 'security-safety', parent: null },
+      { id: 'cat-computer-networking-office', name: 'Computer, Networking & Office', slug: 'computer-networking-office', parent: null },
+      { id: 'cat-accessories-services', name: 'Accessories & Services', slug: 'accessories-services', parent: null },
     ];
   }
 

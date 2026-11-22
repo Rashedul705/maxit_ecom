@@ -507,7 +507,7 @@ const db = {
   },
 
   // --- CATEGORIES ---
-  async getCategories() {
+  async getCategories(options = {}) {
     const normalizeMedia = (c) => ({
       ...c,
       image: typeof c.image === 'string' ? c.image.replace(/^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?(\/uploads\/)/i, '$3') : c.image,
@@ -519,10 +519,72 @@ const db = {
     };
 
     if (isMongo()) {
-      const docs = await Category.find({ isActive: { $ne: false } }).sort({ order: 1 }).lean();
-      if (docs && docs.length) return sortByOrder(docs);
+      // If flat list of all categories is explicitly requested
+      if (options.all === true || options.all === 'true') {
+        const docs = await Category.find({ isActive: { $ne: false } }).sort({ order: 1 }).lean();
+        return sortByOrder(docs);
+      }
+
+      // Default or tree: return mother categories with children nested and product counts
+      const allDocs = await Category.find({ isActive: { $ne: false } }).sort({ order: 1 }).lean();
+      const mothers = allDocs.filter(c => !c.parent);
+      const children = allDocs.filter(c => !!c.parent);
+
+      // Fast single aggregation for product counts
+      let countMap = {};
+      try {
+        const countsAgg = await Product.aggregate([
+          { $group: { _id: '$category', count: { $sum: 1 } } }
+        ]);
+        countsAgg.forEach(item => {
+          if (item._id) {
+            const raw = String(item._id).toLowerCase();
+            const clean = raw.replace(/^cat-/, '');
+            countMap[raw] = (countMap[raw] || 0) + item.count;
+            if (clean !== raw) {
+              countMap[clean] = (countMap[clean] || 0) + item.count;
+            }
+          }
+        });
+      } catch (e) {
+        console.warn('Product count aggregation error:', e.message);
+      }
+
+      const getCatCount = (slug) => {
+        if (!slug) return 0;
+        const sLower = slug.toLowerCase();
+        const clean = sLower.replace(/^cat-/, '');
+        return (countMap[sLower] || 0) + (clean !== sLower && countMap[clean] ? countMap[clean] : 0);
+      };
+
+      const result = mothers.map(mother => {
+        const normMother = normalizeMedia(mother);
+        const motherChildren = children
+          .filter(c => c.parent === mother.slug || c.parent === mother.id)
+          .map(c => {
+            const normChild = normalizeMedia(c);
+            normChild.productCount = getCatCount(c.slug);
+            return normChild;
+          })
+          .sort((a, b) => (a.order || 0) - (b.order || 0));
+
+        const totalChildrenCount = motherChildren.reduce((sum, c) => sum + (c.productCount || 0), 0);
+        const directMotherCount = getCatCount(mother.slug);
+
+        normMother.children = motherChildren;
+        normMother.subcategories = motherChildren.map(c => ({ id: c.id, name: c.name, slug: c.slug }));
+        normMother.productCount = directMotherCount + totalChildrenCount;
+        normMother.isMother = true;
+        return normMother;
+      });
+
+      return sortByOrder(result);
     }
     return sortByOrder(memoryStore.categories.filter(c => c.isActive !== false));
+  },
+
+  async getCategoryTree() {
+    return this.getCategories({ tree: true });
   },
 
   async getCategoryBySlug(slug) {
@@ -535,7 +597,72 @@ const db = {
 
     if (isMongo()) {
       const doc = await Category.findOne({ $or: [{ slug }, { id: slug }] }).lean();
-      if (doc) return normalizeMedia(doc);
+      if (!doc) return null;
+      const normalized = normalizeMedia(doc);
+
+      if (!doc.parent) {
+        // Mother Category
+        const children = await Category.find({ parent: doc.slug, isActive: { $ne: false } }).sort({ order: 1 }).lean();
+        const normChildren = children.map(normalizeMedia);
+
+        const allSlugs = [doc.slug, ...children.map(c => c.slug)];
+        const catRegexes = allSlugs.flatMap(s => {
+          const clean = s.replace(/^cat-/, '');
+          return [
+            new RegExp(`^(cat-)?${clean}$`, 'i'),
+            new RegExp(`^${clean.replace(/-/g, ' ')}$`, 'i')
+          ];
+        });
+
+        const productCount = await Product.countDocuments({
+          $or: [
+            { category: { $in: catRegexes } },
+            { categoryName: { $in: catRegexes } }
+          ]
+        });
+
+        // Compute counts per child
+        try {
+          const childCountsAgg = await Product.aggregate([
+            { $match: { $or: [{ category: { $in: catRegexes } }, { categoryName: { $in: catRegexes } }] } },
+            { $group: { _id: '$category', count: { $sum: 1 } } }
+          ]);
+          const countMap = {};
+          childCountsAgg.forEach(item => {
+            if (item._id) {
+              const raw = String(item._id).toLowerCase();
+              countMap[raw.replace(/^cat-/, '')] = item.count;
+            }
+          });
+          normChildren.forEach(c => {
+            const clean = c.slug.replace(/^cat-/, '').toLowerCase();
+            c.productCount = countMap[clean] || 0;
+          });
+        } catch (e) {}
+
+        normalized.isMother = true;
+        normalized.children = normChildren;
+        normalized.subcategories = normChildren.map(c => ({ id: c.id, name: c.name, slug: c.slug }));
+        normalized.productCount = productCount;
+        return normalized;
+      } else {
+        // Child Category
+        const motherDoc = await Category.findOne({ slug: doc.parent }).lean();
+        const siblings = await Category.find({ parent: doc.parent, isActive: { $ne: false } }).sort({ order: 1 }).lean();
+        const cleanSlug = doc.slug.replace(/^cat-/, '');
+        const productCount = await Product.countDocuments({
+          $or: [
+            { category: { $regex: new RegExp(`^(cat-)?${cleanSlug}$`, 'i') } },
+            { categoryName: { $regex: new RegExp(`^${doc.name}$`, 'i') } }
+          ]
+        });
+
+        normalized.isMother = false;
+        normalized.parentCategory = motherDoc ? normalizeMedia(motherDoc) : null;
+        normalized.siblings = siblings.map(normalizeMedia);
+        normalized.productCount = productCount;
+        return normalized;
+      }
     }
     const found = memoryStore.categories.find(c => c.slug === slug || c.id === slug) || null;
     return normalizeMedia(found);
@@ -555,7 +682,8 @@ const db = {
       id: `cat-${Date.now()}`,
       slug: cleanData.slug || cleanData.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
       isActive: true,
-      order: orderCount + 1,
+      parent: cleanData.parent || null,
+      order: cleanData.order || (orderCount + 1),
       ...cleanData
     };
     if (isMongo()) {
@@ -579,6 +707,9 @@ const db = {
     if (typeof cleanData.icon === 'string') {
       cleanData.icon = cleanData.icon.replace(/^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?(\/uploads\/)/i, '$3');
     }
+    if (cleanData.parent === '' || cleanData.parent === 'none') {
+      cleanData.parent = null;
+    }
 
     if (isMongo()) {
       const updated = await Category.findOneAndUpdate(
@@ -600,7 +731,32 @@ const db = {
 
   async deleteCategory(id) {
     if (isMongo()) {
-      await Category.findOneAndDelete({ $or: [{ id }, { slug: id }] });
+      const cat = await Category.findOne({ $or: [{ id }, { slug: id }] }).lean();
+      if (!cat) return false;
+
+      // 1. Prevent deleting mother category that still has subcategories
+      const childCount = await Category.countDocuments({ parent: cat.slug });
+      if (childCount > 0) {
+        const err = new Error(`Cannot delete mother category "${cat.name}" because it still contains ${childCount} subcategories. Please reassign or delete the subcategories first.`);
+        err.statusCode = 400;
+        throw err;
+      }
+
+      // 2. Prevent deleting category that contains products
+      const cleanSlug = cat.slug.replace(/^cat-/, '');
+      const prodCount = await Product.countDocuments({
+        $or: [
+          { category: { $regex: new RegExp(`^(cat-)?${cleanSlug}$`, 'i') } },
+          { categoryName: { $regex: new RegExp(`^${cat.name}$`, 'i') } }
+        ]
+      });
+      if (prodCount > 0) {
+        const err = new Error(`Cannot delete category "${cat.name}" because it still contains ${prodCount} products. Please reassign or delete the products first.`);
+        err.statusCode = 400;
+        throw err;
+      }
+
+      await Category.findOneAndDelete({ _id: cat._id });
     }
     const idx = memoryStore.categories.findIndex(c => c.id === id || c.slug === id);
     if (idx !== -1) memoryStore.categories.splice(idx, 1);
@@ -611,16 +767,14 @@ const db = {
     if (!Array.isArray(ids) || ids.length === 0) return { deletedCount: 0 };
     let deletedCount = 0;
     if (isMongo()) {
-      const res = await Category.deleteMany({
-        $or: [{ id: { $in: ids } }, { slug: { $in: ids } }]
-      });
-      deletedCount = res.deletedCount || 0;
-    }
-    const idSet = new Set(ids);
-    const before = memoryStore.categories.length;
-    memoryStore.categories = memoryStore.categories.filter(c => !idSet.has(c.id) && !idSet.has(c.slug));
-    if (!isMongo()) {
-      deletedCount = before - memoryStore.categories.length;
+      for (const id of ids) {
+        try {
+          const ok = await this.deleteCategory(id);
+          if (ok) deletedCount++;
+        } catch (e) {
+          console.warn(`Bulk delete skipped category ${id}:`, e.message);
+        }
+      }
     }
     return { deletedCount };
   },
@@ -634,10 +788,36 @@ const db = {
         if (category) {
           const c = category.trim();
           const cleanSlug = c.replace(/^cat-/, '');
+
+          // Check if this category has child categories in the DB
+          let categorySlugs = [c];
+          try {
+            const catDoc = await Category.findOne({
+              $or: [
+                { slug: { $regex: new RegExp(`^(cat-)?${cleanSlug}$`, 'i') } },
+                { name: { $regex: new RegExp(`^${c}$`, 'i') } }
+              ]
+            }).lean();
+
+            if (catDoc) {
+              const childrenDocs = await Category.find({ parent: catDoc.slug, isActive: { $ne: false } }).lean();
+              if (childrenDocs && childrenDocs.length > 0) {
+                categorySlugs = [catDoc.slug, ...childrenDocs.map(ch => ch.slug)];
+              }
+            }
+          } catch (e) {}
+
+          const catRegexes = categorySlugs.flatMap(s => {
+            const cl = s.replace(/^cat-/, '');
+            return [
+              new RegExp(`^(cat-)?${cl}$`, 'i'),
+              new RegExp(`^${cl.replace(/-/g, ' ')}$`, 'i')
+            ];
+          });
+
           filter.$or = [
-            { category: { $regex: new RegExp(`^(cat-)?${cleanSlug}$`, 'i') } },
-            { categoryName: { $regex: new RegExp(`^${c}$`, 'i') } },
-            { categoryName: { $regex: new RegExp(`^${cleanSlug.replace(/-/g, ' ')}$`, 'i') } }
+            { category: { $in: catRegexes } },
+            { categoryName: { $in: catRegexes } }
           ];
         }
 

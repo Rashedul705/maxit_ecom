@@ -54,7 +54,7 @@ export const ProductEditorView: React.FC<ProductEditorViewProps> = ({
   const [slugTouched, setSlugTouched] = useState(false);
   const [brand, setBrand] = useState(product?.brand || (brands[0]?.name || 'Gospower'));
   const [productCode, setProductCode] = useState(product?.productCode || '');
-  const [category, setCategory] = useState(product?.category || (categories[0]?.slug || ''));
+  const [category, setCategory] = useState(product?.category ? product.category.replace(/^cat-/, '') : (categories[0]?.slug || ''));
   const [subcategory, setSubcategory] = useState(product?.subcategory || '');
   const [availableSubcats, setAvailableSubcats] = useState<{ id: string; name: string; slug: string }[]>([]);
 
@@ -518,18 +518,38 @@ export const ProductEditorView: React.FC<ProductEditorViewProps> = ({
               </div>
 
               <div className="form-group">
-                <label className="form-label">Category</label>
+                <label className="form-label">Category *</label>
                 <select
                   className="form-select"
-                  value={category}
+                  value={category.replace(/^cat-/, '')}
                   onChange={e => setCategory(e.target.value)}
+                  required
                 >
-                  {categories.map(c => (
-                    <option key={c.id || c.slug} value={c.slug}>
-                      {c.name}
-                    </option>
-                  ))}
+                  <option value="">— Select Category —</option>
+                  {categories.map(mother => {
+                    const children = mother.children || [];
+                    if (children.length > 0) {
+                      return (
+                        <optgroup key={mother.id || mother.slug} label={mother.name}>
+                          <option value={mother.slug}>{mother.name} (Mother Main)</option>
+                          {children.map(child => (
+                            <option key={child.id || child.slug} value={child.slug}>
+                              ↳ {child.name}
+                            </option>
+                          ))}
+                        </optgroup>
+                      );
+                    }
+                    return (
+                      <option key={mother.id || mother.slug} value={mother.slug}>
+                        {mother.name}
+                      </option>
+                    );
+                  })}
                 </select>
+                <span style={{ fontSize: '11px', color: '#64748b', marginTop: '4px', display: 'block' }}>
+                  Hierarchy: Mother Category &gt; Subcategory
+                </span>
               </div>
             </div>
 
