@@ -173,6 +173,11 @@ app.get('/', (req, res) => {
 app.use(notFoundHandler);
 app.use(errorHandler);
 
+// Prevent unhandled rejections from crashing the process
+process.on('unhandledRejection', (reason) => {
+  console.warn('⚠️ [Process] Unhandled Rejection:', reason?.message || reason);
+});
+
 // Start Server
 if (require.main === module) {
   app.listen(PORT, async () => {

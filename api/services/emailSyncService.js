@@ -89,6 +89,18 @@ async function syncTicketReplies() {
     };
 
     connection = await imaps.connect(config);
+
+    // Prevent unhandled 'error' events on the IMAP wrapper from crashing the Node.js process
+    connection.on('error', (err) => {
+      console.warn('[EmailSync] IMAP connection warning:', err?.message || err);
+    });
+
+    if (connection.imap) {
+      connection.imap.on('error', (err) => {
+        console.warn('[EmailSync] Underlying IMAP socket warning:', err?.message || err);
+      });
+    }
+
     await connection.openBox('INBOX');
 
     // Search for ticket reference in subject or recent unread emails
@@ -176,7 +188,13 @@ async function syncTicketReplies() {
   } finally {
     isSyncing = false;
     if (connection) {
-      try { connection.end(); } catch (e) {}
+      try {
+        if (connection.imap) {
+          connection.imap.removeAllListeners('error');
+        }
+        connection.removeAllListeners('error');
+        connection.end();
+      } catch (e) {}
     }
   }
 }
