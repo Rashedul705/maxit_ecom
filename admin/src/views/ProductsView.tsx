@@ -12,6 +12,7 @@ export const ProductsView: React.FC = () => {
   const [brands, setBrands] = useState<Brand[]>([]);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
+  const [motherFilter, setMotherFilter] = useState('');
   const [categoryFilter, setCategoryFilter] = useState('');
   const [subcategoryFilter, setSubcategoryFilter] = useState('');
   const [search, setSearch] = useState('');
@@ -45,8 +46,9 @@ export const ProductsView: React.FC = () => {
   const fetchProducts = async () => {
     try {
       setLoading(true);
+      const activeCategory = categoryFilter || motherFilter;
       const data = await adminApi.getProducts({
-        category: categoryFilter,
+        category: activeCategory,
         subcategory: subcategoryFilter,
         search,
         page,
@@ -68,7 +70,7 @@ export const ProductsView: React.FC = () => {
 
   useEffect(() => {
     fetchProducts();
-  }, [page, categoryFilter, subcategoryFilter]);
+  }, [page, motherFilter, categoryFilter, subcategoryFilter]);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -224,9 +226,9 @@ export const ProductsView: React.FC = () => {
         </div>
       )}
 
-      {/* Filter and Search Bar */}
-      <div style={{ display: 'flex', gap: '14px', marginBottom: '20px', flexWrap: 'wrap' }}>
-        <form onSubmit={handleSearch} style={{ display: 'flex', gap: '8px', flex: '1', minWidth: '280px' }}>
+      {/* 3-Tier Filter and Search Bar: Mother Category -> Category -> Subcategory */}
+      <div style={{ display: 'flex', gap: '12px', marginBottom: '20px', flexWrap: 'wrap', alignItems: 'center' }}>
+        <form onSubmit={handleSearch} style={{ display: 'flex', gap: '8px', flex: '1', minWidth: '260px' }}>
           <input
             type="text"
             className="form-input"
@@ -239,37 +241,154 @@ export const ProductsView: React.FC = () => {
           </button>
         </form>
 
+        {/* Tier 1: Mother Category (12) */}
         <select
           className="form-select"
-          style={{ width: '220px' }}
-          value={categoryFilter}
-          onChange={e => { setCategoryFilter(e.target.value); setSubcategoryFilter(''); setPage(1); }}
+          style={{ width: '200px' }}
+          value={motherFilter}
+          onChange={e => {
+            setMotherFilter(e.target.value);
+            setCategoryFilter('');
+            setSubcategoryFilter('');
+            setPage(1);
+          }}
+          title="Filter by Mother Category"
         >
-          <option value="">All Categories</option>
-          {categories.map(c => (
-            <option key={c.id} value={c.slug}>{c.name}</option>
+          <option value="">All Mother Categories ({categories.length})</option>
+          {categories.map(m => (
+            <option key={m.id || m.slug} value={m.slug}>{m.name}</option>
           ))}
         </select>
 
+        {/* Tier 2: Category (43) */}
         {(() => {
-          const selectedCat = categories.find(c => c.slug === categoryFilter);
-          if (selectedCat?.subcategories && selectedCat.subcategories.length > 0) {
-            return (
-              <select
-                className="form-select"
-                style={{ width: '200px' }}
-                value={subcategoryFilter}
-                onChange={e => { setSubcategoryFilter(e.target.value); setPage(1); }}
-              >
-                <option value="">All Subcategories</option>
-                {selectedCat.subcategories.map(s => (
-                  <option key={s.slug} value={s.slug}>{s.name}</option>
-                ))}
-              </select>
+          const selectedMother = categories.find(m => m.slug === motherFilter);
+          const availableCats = selectedMother ? (selectedMother.children || []) : categories.flatMap(m => m.children || []);
+
+          return (
+            <select
+              className="form-select"
+              style={{ width: '200px' }}
+              value={categoryFilter}
+              onChange={e => {
+                const val = e.target.value;
+                setCategoryFilter(val);
+                setSubcategoryFilter('');
+                if (val && !motherFilter) {
+                  const parentMother = categories.find(m => m.children?.some(ch => ch.slug === val));
+                  if (parentMother) setMotherFilter(parentMother.slug);
+                }
+                setPage(1);
+              }}
+              title="Filter by Category"
+            >
+              <option value="">
+                {selectedMother ? `All Categories in ${selectedMother.name}` : `All Categories (${availableCats.length})`}
+              </option>
+              {selectedMother ? (
+                availableCats.map(c => (
+                  <option key={c.id || c.slug} value={c.slug}>{c.name}</option>
+                ))
+              ) : (
+                categories.map(m => (
+                  <optgroup key={m.id || m.slug} label={m.name}>
+                    {(m.children || []).map(c => (
+                      <option key={c.id || c.slug} value={c.slug}>{c.name}</option>
+                    ))}
+                  </optgroup>
+                ))
+              )}
+            </select>
+          );
+        })()}
+
+        {/* Tier 3: Subcategory (200+) */}
+        {(() => {
+          const allChildren = categories.flatMap(m => m.children || []);
+          const selectedChild = allChildren.find(c => c.slug === categoryFilter);
+          const selectedMother = categories.find(m => m.slug === motherFilter);
+
+          let availableSubs: { id?: string; name: string; slug: string; catName?: string }[] = [];
+          if (selectedChild) {
+            availableSubs = (selectedChild.subcategories || []).map(s => ({ ...s, catName: selectedChild.name }));
+          } else if (selectedMother) {
+            availableSubs = (selectedMother.children || []).flatMap(c =>
+              (c.subcategories || []).map(s => ({ ...s, catName: c.name }))
+            );
+          } else {
+            availableSubs = allChildren.flatMap(c =>
+              (c.subcategories || []).map(s => ({ ...s, catName: c.name }))
             );
           }
-          return null;
+
+          if (availableSubs.length === 0 && !categoryFilter && !motherFilter) return null;
+
+          return (
+            <select
+              className="form-select"
+              style={{ width: '210px' }}
+              value={subcategoryFilter}
+              onChange={e => {
+                const val = e.target.value;
+                setSubcategoryFilter(val);
+                if (val && !categoryFilter) {
+                  const targetCat = allChildren.find(c => c.subcategories?.some(s => s.slug === val));
+                  if (targetCat) {
+                    setCategoryFilter(targetCat.slug);
+                    const parentMother = categories.find(m => m.children?.some(ch => ch.slug === targetCat.slug));
+                    if (parentMother) setMotherFilter(parentMother.slug);
+                  }
+                }
+                setPage(1);
+              }}
+              title="Filter by Subcategory"
+            >
+              <option value="">
+                {selectedChild
+                  ? `All Subcategories (${availableSubs.length})`
+                  : selectedMother
+                    ? `All Subcategories in ${selectedMother.name} (${availableSubs.length})`
+                    : `All Subcategories (${availableSubs.length})`}
+              </option>
+              {selectedChild ? (
+                availableSubs.map(s => (
+                  <option key={s.id || s.slug} value={s.slug}>{s.name}</option>
+                ))
+              ) : (
+                categories.map(m => {
+                  const mChildrenWithSubs = (m.children || []).filter(ch => (ch.subcategories || []).length > 0);
+                  if (motherFilter && m.slug !== motherFilter) return null;
+                  return mChildrenWithSubs.map(ch => (
+                    <optgroup key={ch.id || ch.slug} label={`${ch.name}`}>
+                      {(ch.subcategories || []).map(s => (
+                        <option key={s.id || s.slug} value={s.slug}>{s.name}</option>
+                      ))}
+                    </optgroup>
+                  ));
+                })
+              )}
+            </select>
+          );
         })()}
+
+        {/* Clear Filters Button */}
+        {(motherFilter || categoryFilter || subcategoryFilter || search) && (
+          <button
+            type="button"
+            className="btn btn-secondary btn-sm"
+            onClick={() => {
+              setMotherFilter('');
+              setCategoryFilter('');
+              setSubcategoryFilter('');
+              setSearch('');
+              setPage(1);
+            }}
+            title="Reset all filters"
+            style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '12px', padding: '8px 12px' }}
+          >
+            <X size={14} /> Clear
+          </button>
+        )}
       </div>
 
         {/* Bulk Action Bar */}

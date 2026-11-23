@@ -54,7 +54,8 @@ export const ProductModal: React.FC<ProductModalProps> = ({
       setAvailableSubcats([]);
       return;
     }
-    const cat = categories.find(c => c.slug === category || c.id === category);
+    const cat = categories.find(c => c.slug === category || c.id === category) ||
+      categories.flatMap(m => m.children || []).find(c => c.slug === category || c.id === category);
     if (cat && cat.subcategories && cat.subcategories.length > 0) {
       setAvailableSubcats(cat.subcategories.map(s => ({
         id: s.id || s.slug,
