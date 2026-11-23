@@ -24,6 +24,9 @@ interface ShopPageProps {
   }>;
 }
 
+export const revalidate = 0;
+export const dynamic = 'force-dynamic';
+
 export default async function ShopPage({ searchParams }: ShopPageProps) {
   const search = await searchParams;
   const page = parseInt(search.page || '1', 10);
