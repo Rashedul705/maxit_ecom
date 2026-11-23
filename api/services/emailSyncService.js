@@ -189,10 +189,13 @@ async function syncTicketReplies() {
     isSyncing = false;
     if (connection) {
       try {
+        const noopErr = (err) => {
+          console.warn('[EmailSync] Suppressed teardown socket error:', err?.message || err);
+        };
         if (connection.imap) {
-          connection.imap.removeAllListeners('error');
+          connection.imap.on('error', noopErr);
         }
-        connection.removeAllListeners('error');
+        connection.on('error', noopErr);
         connection.end();
       } catch (e) {}
     }
