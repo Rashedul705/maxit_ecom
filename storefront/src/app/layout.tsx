@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { api } from "@/lib/api";
+import { TopProgressBar } from "@/components/common/TopProgressBar";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -68,6 +69,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
       </head>
       <body className="min-h-full flex flex-col bg-[#F8F9FA] text-gray-900 antialiased selection:bg-[#FF6600] selection:text-white">
+        <TopProgressBar />
         {children}
       </body>
     </html>

@@ -104,6 +104,7 @@ export const adminApi = {
     if (params.limit) q.set('limit', String(params.limit));
     return request<{ items: Product[]; total: number; page: number; limit: number; totalPages: number }>(`/products?${q.toString()}`);
   },
+  getProductById: (id: string) => request<Product>(`/products/${id}`),
   createProduct: (data: Partial<Product>) => request<Product>('/products', { method: 'POST', body: JSON.stringify(data) }),
   updateProduct: (id: string, data: Partial<Product>) => request<Product>(`/products/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
   quickUpdateProduct: (id: string, data: { price?: number; oldPrice?: number; stock?: number }) =>

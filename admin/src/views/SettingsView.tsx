@@ -53,7 +53,7 @@ export const SettingsView: React.FC = () => {
         logo: data.logo || '',
         footerLogo: data.footerLogo || '',
         favicon: data.favicon || '',
-        phone: data.phone || '+880 1733-115391',
+        phone: data.phone || '+8801733-272445',
         email: data.email || 'support@maxitshop.com',
         address: data.address || 'Dhaka, Bangladesh',
         deliveryRates: {
@@ -69,7 +69,7 @@ export const SettingsView: React.FC = () => {
           showAnnouncement: data.header?.showAnnouncement ?? true,
           announcementText: data.header?.announcementText || '⚡ Special Discount on LiFePO4 & Solar Inverters - Fast Delivery Across Bangladesh 🇧🇩',
           announcementLink: data.header?.announcementLink || '/#deals',
-          hotline: data.header?.hotline || data.phone || '+880 1733-115391',
+          hotline: data.header?.hotline || data.phone || '+8801733-272445',
           supportHours: data.header?.supportHours || 'Sat - Thu: 9:00 AM - 8:00 PM'
         },
         navLinks: Array.isArray(data.navLinks) && data.navLinks.length > 0 ? data.navLinks : [
@@ -105,8 +105,8 @@ export const SettingsView: React.FC = () => {
           paymentBannerText: data.footer?.paymentBannerText || 'Cash on Delivery Available Nationwide • bKash • Nagad • Bank Transfer'
         },
         contact: {
-          phone: data.contact?.phone || data.phone || '+880 1733-115391',
-          whatsapp: data.contact?.whatsapp || data.socialLinks?.whatsapp || '+8801733115391',
+          phone: data.contact?.phone || data.phone || '+8801733-272445',
+          whatsapp: data.contact?.whatsapp || data.socialLinks?.whatsapp || '+8801733272445',
           email: data.contact?.email || data.email || 'support@maxitshop.com',
           address: data.contact?.address || data.address || 'House 45, Road 7, Dhanmondi, Dhaka, Bangladesh',
           googleMapsUrl: data.contact?.googleMapsUrl || 'https://maps.google.com',

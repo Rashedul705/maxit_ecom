@@ -66,6 +66,22 @@ export const ProductsView: React.FC = () => {
 
   useEffect(() => {
     fetchAux();
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const editId = params.get('edit');
+      if (editId) {
+        adminApi.getProductById(editId)
+          .then(prod => {
+            if (prod) {
+              setEditingProduct(prod);
+              setViewMode('editor');
+            }
+          })
+          .catch(e => {
+            console.error('Failed to load product from edit param:', e);
+          });
+      }
+    } catch {}
   }, []);
 
   useEffect(() => {

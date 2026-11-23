@@ -100,11 +100,9 @@ router.post('/', requireAdminAuth, upload.single('image'), async (req, res, next
     const filePath = path.join(uploadDir, filename);
     fs.writeFileSync(filePath, req.file.buffer);
 
-    const protocol = req.protocol;
-    const host = req.get('host');
-    const localUrl = `${protocol}://${host}/uploads/${filename}`;
+    const localUrl = `/uploads/${filename}`;
 
-    return successResponse(res, { url: localUrl, provider: 'local' }, 'Image uploaded locally');
+    return successResponse(res, { url: localUrl, filename, provider: 'local' }, 'Image uploaded locally');
   } catch (err) {
     next(err);
   }

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { api } from '@/lib/api';
 import { ProductCard } from '@/components/shop/ProductCard';
+import { AdminEditCategoryButton } from '@/components/common/AdminEditCategoryButton';
 import { CategoryFilterSidebar } from '@/components/shop/CategoryFilterSidebar';
 import { CategorySortBar } from '@/components/shop/CategorySortBar';
 import { ChevronRight, Home, ArrowLeft, ArrowRight, PackageX } from 'lucide-react';
@@ -152,9 +153,12 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
       <div className="bg-white rounded-2xl border border-slate-200 p-6 mb-6 shadow-xs">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <h1 className="text-xl sm:text-3xl font-black text-slate-900 mb-2">
-              {category.name}
-            </h1>
+            <div className="flex items-center gap-3 mb-2 flex-wrap">
+              <h1 className="text-xl sm:text-3xl font-black text-slate-900">
+                {category.name}
+              </h1>
+              <AdminEditCategoryButton categoryId={category.id} categorySlug={category.slug} />
+            </div>
             <p className="text-xs sm:text-sm text-slate-600 max-w-2xl">
               {category.description || `Browse our extensive collection of ${category.name.toLowerCase()} with official warranty, lowest market rates, and fast doorstep delivery across Bangladesh.`}
             </p>
@@ -312,7 +316,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
               </Link>
             </div>
           ) : (
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-4">
               {items.map(product => (
                 <ProductCard key={product.id} product={product} />
               ))}

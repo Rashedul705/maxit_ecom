@@ -29,11 +29,11 @@ export default async function HomePage() {
     brands = brandsData;
     settings = settingsData;
 
-    // Fetch products per mother category (first 5 products across its children)
+    // Fetch products per mother category (latest 8 products across its children)
     if (categories.length > 0) {
       const groupResults = await Promise.all(
         categories.map(async (cat) => {
-          const data = await api.getProducts({ category: cat.slug, limit: 5 }).catch(() => ({ items: [] }));
+          const data = await api.getProducts({ category: cat.slug, limit: 8 }).catch(() => ({ items: [] }));
           return { category: cat, products: data.items || [] };
         })
       );

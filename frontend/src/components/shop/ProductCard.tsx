@@ -2,10 +2,11 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ShoppingCart, Scale, Heart } from 'lucide-react';
+import { ShoppingCart, Scale, Heart, Edit3 } from 'lucide-react';
 import { Product } from '@/lib/types';
 import { useCart } from '@/lib/cartContext';
 import { useWishlist } from '@/lib/wishlistContext';
+import { useAdminAuth } from '@/lib/useAdminAuth';
 import { SafeImage } from '@/components/common/SafeImage';
 
 interface ProductCardProps {
@@ -15,6 +16,7 @@ interface ProductCardProps {
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const { addToCart, openCheckout } = useCart();
   const { isInWishlist, toggleWishlist } = useWishlist();
+  const isAdmin = useAdminAuth();
   const [isInCompare, setIsInCompare] = useState<boolean>(false);
 
   // Sync compare status with localStorage
@@ -94,7 +96,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   }
 
   return (
-    <div className="group relative flex flex-col justify-between bg-white rounded-xl border border-gray-200 p-3 sm:p-3.5 hover:border-[#FF6600] hover:shadow-md transition-all duration-200">
+    <div className="group relative flex flex-col justify-between h-full bg-white rounded-xl border border-gray-200 p-3 sm:p-3.5 hover:border-[#FF6600] hover:shadow-md transition-all duration-200">
       
       {/* Top Part: Image, Badges, Title, Key Features */}
       <div>
@@ -105,7 +107,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               src={product.image || (product.images && product.images[0]) || ''}
               alt={product.title}
               fill
-              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
+              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
               className="object-contain p-2 group-hover:scale-105 transition-transform duration-300"
               loading="lazy"
             />
@@ -135,18 +137,32 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           >
             <Heart className={`w-3.5 h-3.5 ${inWishlist ? 'fill-current text-pink-600' : ''}`} />
           </button>
+
+          {/* Admin Edit Shortcut Button (Only visible to authenticated admins) */}
+          {isAdmin && (
+            <a
+              href={`/admin?tab=products&edit=${product.id || product.slug}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="absolute top-10 right-2 z-10 w-7 h-7 rounded-full bg-amber-500 hover:bg-amber-600 text-white flex items-center justify-center transition-all shadow-xs cursor-pointer"
+              title="Edit Product (Admin)"
+            >
+              <Edit3 className="w-3.5 h-3.5" />
+            </a>
+          )}
         </div>
 
-        {/* Product Title (clamped to 2 lines max) */}
+        {/* Product Title (clamped to 2 lines with uniform fixed height) */}
         <Link href={`/product/${product.slug}`} className="block mb-2">
-          <h3 className="text-xs sm:text-[13px] font-semibold text-gray-800 line-clamp-2 min-h-[34px] sm:min-h-[36px] group-hover:text-[#FF6600] transition-colors leading-snug">
+          <h3 className="text-xs sm:text-[13px] font-semibold text-gray-800 line-clamp-2 h-[34px] sm:h-[36px] group-hover:text-[#FF6600] transition-colors leading-snug">
             {product.title}
           </h3>
         </Link>
 
-        {/* Key Feature Bullets (3 to 4 bullets) */}
+        {/* Key Feature Bullets (3 to 4 bullets with uniform height) */}
         {bullets.length > 0 ? (
-          <ul className="space-y-1 mb-2.5 text-[11px] text-gray-600 min-h-[64px]">
+          <ul className="space-y-1 mb-2.5 text-[11px] text-gray-600 h-[64px] overflow-hidden">
             {bullets.map((b, i) => (
               <li key={i} className="flex items-start gap-1.5 leading-tight">
                 <span className="w-1 h-1 rounded-full bg-gray-400 mt-1 shrink-0" />
@@ -155,7 +171,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             ))}
           </ul>
         ) : (
-          <div className="min-h-[16px] mb-1" />
+          <div className="h-[64px] mb-2.5 flex items-center">
+            <span className="text-[11px] text-gray-400 italic">Official Warranty &amp; Fast Delivery</span>
+          </div>
         )}
       </div>
 

@@ -43,11 +43,22 @@ export const HotDealsCategorySection: React.FC<HotDealsCategorySectionProps> = (
               </Link>
             </div>
 
-            {/* Products Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
-              {products.slice(0, 5).map((product) => (
+            {/* Products Grid: 4 per row on desktop, 3 on tablet, 2 on mobile */}
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-4">
+              {products.slice(0, 8).map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
+            </div>
+
+            {/* Bottom View More Button */}
+            <div className="mt-5 pt-3.5 border-t border-gray-100 flex items-center justify-center">
+              <Link
+                href={`/category/${category.slug}`}
+                className="inline-flex items-center justify-center gap-1.5 px-6 py-2.5 rounded-xl border border-[#FF6600] text-[#FF6600] hover:bg-[#FF6600] hover:text-white text-xs sm:text-sm font-bold transition-all shadow-2xs group"
+              >
+                <span>View More {category.name}</span>
+                <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+              </Link>
             </div>
           </section>
         );

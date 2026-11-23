@@ -20,6 +20,16 @@ export const CategoriesView: React.FC = () => {
       setLoading(true);
       const data = await adminApi.getCategories();
       setCategories(data);
+      const params = new URLSearchParams(window.location.search);
+      const editId = params.get('edit');
+      if (editId) {
+        const flat = data.flatMap(m => [m, ...(m.children || [])]);
+        const found = flat.find(c => c.id === editId || c.slug === editId);
+        if (found) {
+          setEditingCategory(found);
+          setIsModalOpen(true);
+        }
+      }
     } catch (err: any) {
       console.error(err);
     } finally {
