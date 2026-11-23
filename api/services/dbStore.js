@@ -785,12 +785,12 @@ const db = {
       try {
         const filter = {};
 
+        let targetCatSlugs = [];
         if (category) {
           const c = category.trim();
           const cleanSlug = c.replace(/^cat-/, '');
 
           // Check if this category has child categories in the DB
-          let categorySlugs = [c];
           try {
             const catDoc = await Category.findOne({
               $or: [
@@ -802,82 +802,152 @@ const db = {
             if (catDoc) {
               const childrenDocs = await Category.find({ parent: catDoc.slug, isActive: { $ne: false } }).lean();
               if (childrenDocs && childrenDocs.length > 0) {
-                categorySlugs = [catDoc.slug, ...childrenDocs.map(ch => ch.slug)];
+                targetCatSlugs = [catDoc.slug, ...childrenDocs.map(ch => ch.slug)];
+              } else {
+                targetCatSlugs = [catDoc.slug];
               }
+            } else {
+              targetCatSlugs = [c];
             }
+          } catch (e) {
+            targetCatSlugs = [c];
+          }
+        }
+
+        const subCat = (sub || subcategory || '').trim();
+        if (subCat) {
+          const cleanSub = subCat.replace(/^sub-/, '').replace(/^cat-/, '');
+          let subCandidates = [cleanSub, `sub-${cleanSub}`, `cat-${cleanSub}`, subCat, cleanSub.replace(/-/g, ' ')];
+
+          // Check if subCat is a registered Category doc (e.g. child category or mother category)
+          let childDoc = null;
+          try {
+            childDoc = await Category.findOne({
+              $or: [
+                { slug: { $regex: new RegExp(`^(cat-)?${cleanSub}$`, 'i') } },
+                { name: { $regex: new RegExp(`^${subCat}$`, 'i') } }
+              ]
+            }).lean();
           } catch (e) {}
 
-          const catRegexes = categorySlugs.flatMap(s => {
+          if (childDoc) {
+            const cl = childDoc.slug.replace(/^cat-/, '');
+            const catRegexes = [
+              new RegExp(`^(cat-)?${cl}$`, 'i'),
+              new RegExp(`^${cl.replace(/-/g, ' ')}$`, 'i')
+            ];
+            const childCondition = [
+              { category: { $in: catRegexes } },
+              { categoryName: { $regex: new RegExp(`^${childDoc.name}$`, 'i') } },
+              { subcategory: { $regex: new RegExp(`^(sub-)?${cl}$`, 'i') } }
+            ];
+
+            if (targetCatSlugs.length > 0) {
+              const parentRegexes = targetCatSlugs.flatMap(s => {
+                const clParent = s.replace(/^cat-/, '');
+                return [
+                  new RegExp(`^(cat-)?${clParent}$`, 'i'),
+                  new RegExp(`^${clParent.replace(/-/g, ' ')}$`, 'i')
+                ];
+              });
+              filter.$and = (filter.$and || []).concat([
+                { $or: [{ category: { $in: parentRegexes } }, { categoryName: { $in: parentRegexes } }] },
+                { $or: childCondition }
+              ]);
+            } else {
+              if (filter.$or) {
+                filter.$and = (filter.$and || []).concat([
+                  { $or: filter.$or },
+                  { $or: childCondition }
+                ]);
+                delete filter.$or;
+              } else {
+                filter.$or = childCondition;
+              }
+            }
+          } else {
+            // subCat is a Level 3 subcategory (e.g. dc-protection-spd)
+            // Also check if any category doc has this subcategory embedded
+            if (category) {
+              try {
+                const cleanCat = category.replace(/^cat-/, '');
+                const catDoc = await Category.findOne({
+                  $or: [
+                    { slug: { $regex: new RegExp(`^(cat-)?${cleanCat}$`, 'i') } },
+                    { name: { $regex: new RegExp(`^${category}$`, 'i') } }
+                  ]
+                }).lean();
+
+                if (catDoc && Array.isArray(catDoc.subcategories)) {
+                  const targetSub = catDoc.subcategories.find(s =>
+                    s.slug === subCat ||
+                    s.slug === cleanSub ||
+                    s.id === subCat ||
+                    s.id === `sub-${subCat}` ||
+                    (s.name && s.name.toLowerCase() === subCat.toLowerCase()) ||
+                    (s.slug && s.slug.replace(/^sub-/, '') === cleanSub)
+                  );
+                  if (targetSub) {
+                    const sClean = (targetSub.slug || '').replace(/^sub-/, '').replace(/^cat-/, '');
+                    subCandidates.push(
+                      targetSub.id,
+                      targetSub.slug,
+                      `sub-${sClean}`,
+                      sClean,
+                      targetSub.name,
+                      sClean.replace(/-/g, ' ')
+                    );
+                  }
+                }
+              } catch (e) {}
+            }
+
+            const uniqueCandidates = [...new Set(subCandidates.filter(Boolean))];
+            const subRegexList = uniqueCandidates.map(c => new RegExp(`^${c.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')}$`, 'i'));
+
+            const subCondition = [
+              { subcategory: { $in: subRegexList } },
+              { subcategoryName: { $in: subRegexList } },
+              { subCategoryId: { $in: uniqueCandidates } },
+              { subCategory: { $in: uniqueCandidates } }
+            ];
+
+            if (targetCatSlugs.length > 0) {
+              const catRegexes = targetCatSlugs.flatMap(s => {
+                const cl = s.replace(/^cat-/, '');
+                return [
+                  new RegExp(`^(cat-)?${cl}$`, 'i'),
+                  new RegExp(`^${cl.replace(/-/g, ' ')}$`, 'i')
+                ];
+              });
+              filter.$and = (filter.$and || []).concat([
+                { $or: [{ category: { $in: catRegexes } }, { categoryName: { $in: catRegexes } }] },
+                { $or: subCondition }
+              ]);
+            } else {
+              if (filter.$or) {
+                filter.$and = (filter.$and || []).concat([
+                  { $or: filter.$or },
+                  { $or: subCondition }
+                ]);
+                delete filter.$or;
+              } else {
+                filter.$or = subCondition;
+              }
+            }
+          }
+        } else if (targetCatSlugs.length > 0) {
+          const catRegexes = targetCatSlugs.flatMap(s => {
             const cl = s.replace(/^cat-/, '');
             return [
               new RegExp(`^(cat-)?${cl}$`, 'i'),
               new RegExp(`^${cl.replace(/-/g, ' ')}$`, 'i')
             ];
           });
-
           filter.$or = [
             { category: { $in: catRegexes } },
             { categoryName: { $in: catRegexes } }
           ];
-        }
-
-        const subCat = (sub || subcategory || '').trim();
-        if (subCat) {
-          const cleanSub = subCat.replace(/^sub-/, '');
-          let subCandidates = [cleanSub, `sub-${cleanSub}`, subCat, cleanSub.replace(/-/g, ' ')];
-
-          if (category) {
-            try {
-              const cleanCat = category.replace(/^cat-/, '');
-              const catDoc = await Category.findOne({
-                $or: [
-                  { slug: { $regex: new RegExp(`^(cat-)?${cleanCat}$`, 'i') } },
-                  { name: { $regex: new RegExp(`^${category}$`, 'i') } }
-                ]
-              }).lean();
-
-              if (catDoc && Array.isArray(catDoc.subcategories)) {
-                const targetSub = catDoc.subcategories.find(s =>
-                  s.slug === subCat ||
-                  s.slug === cleanSub ||
-                  s.id === subCat ||
-                  s.id === `sub-${subCat}` ||
-                  s.name.toLowerCase() === subCat.toLowerCase() ||
-                  s.slug.replace(/^sub-/, '') === cleanSub
-                );
-                if (targetSub) {
-                  const sClean = targetSub.slug.replace(/^sub-/, '');
-                  subCandidates.push(
-                    targetSub.id,
-                    targetSub.slug,
-                    `sub-${sClean}`,
-                    sClean,
-                    targetSub.name,
-                    sClean.replace(/-/g, ' ')
-                  );
-                }
-              }
-            } catch (e) {}
-          }
-
-          const uniqueCandidates = [...new Set(subCandidates.filter(Boolean))];
-          const subRegexList = uniqueCandidates.map(c => new RegExp(`^${c.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')}$`, 'i'));
-
-          const subMatchCondition = [
-            { subcategory: { $in: subRegexList } },
-            { subCategoryId: { $in: uniqueCandidates } },
-            { subCategory: { $in: uniqueCandidates } }
-          ];
-
-          if (filter.$or) {
-            filter.$and = (filter.$and || []).concat([
-              { $or: filter.$or },
-              { $or: subMatchCondition }
-            ]);
-            delete filter.$or;
-          } else {
-            filter.$or = subMatchCondition;
-          }
         }
 
         if (brand) {
@@ -989,10 +1059,16 @@ const db = {
       });
     }
     if (sub || subcategory) {
-      const s = (sub || subcategory).toLowerCase().trim().replace(/^sub-/, '');
+      const s = (sub || subcategory).toLowerCase().trim().replace(/^sub-/, '').replace(/^cat-/, '');
       list = list.filter(p => {
         const pSub = (p.subcategory || p.subCategory || p.subCategoryId || '').toLowerCase().trim().replace(/^sub-/, '');
-        return pSub === s || pSub.replace(/[^a-z0-9]/g, '') === s.replace(/[^a-z0-9]/g, '');
+        const pSubName = (p.subcategoryName || '').toLowerCase().trim();
+        const pCat = (p.category || '').toLowerCase().trim().replace(/^cat-/, '');
+        const pCatName = (p.categoryName || '').toLowerCase().trim();
+        return pSub === s || pSub.replace(/[^a-z0-9]/g, '') === s.replace(/[^a-z0-9]/g, '') ||
+               pSubName === s ||
+               pCat === s || pCat.replace(/[^a-z0-9]/g, '') === s.replace(/[^a-z0-9]/g, '') ||
+               pCatName === s;
       });
     }
     if (brand) {
