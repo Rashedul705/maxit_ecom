@@ -10,6 +10,8 @@ import {
   ChevronDown,
   ChevronUp,
   Image as ImageIcon,
+  ArrowLeft,
+  ArrowRight,
   Bold,
   Italic,
   Heading2,
@@ -64,13 +66,26 @@ export const ProductEditorView: React.FC<ProductEditorViewProps> = ({
   const [inStock, setInStock] = useState<boolean>((product?.stock !== undefined ? product.stock > 0 : true));
   const [stockQuantity, setStockQuantity] = useState<number>(product?.stock !== undefined ? product.stock : 10);
 
-  // Images
-  const [images, setImages] = useState<string[]>(
-    product?.images && product.images.length > 0 ? product.images : []
-  );
-  const [uploading, setUploading] = useState(false);
-  const [urlInput, setUrlInput] = useState('');
-  const [showUrlInput, setShowUrlInput] = useState(false);
+  // Images: Main Product Image (One only) & Gallery Images (Multiple, reorderable)
+  const [mainImage, setMainImage] = useState<string>(() => {
+    return product?.image || (product?.images && product.images[0]) || '';
+  });
+  const [uploadingMain, setUploadingMain] = useState(false);
+  const [mainUrlInput, setMainUrlInput] = useState('');
+  const [showMainUrlInput, setShowMainUrlInput] = useState(false);
+
+  const [galleryImages, setGalleryImages] = useState<string[]>(() => {
+    const raw = product?.images || [];
+    const main = product?.image || raw[0] || '';
+    return raw.filter((img, i) => {
+      if (!img) return false;
+      if (img === main && i === 0) return false;
+      return true;
+    });
+  });
+  const [uploadingGallery, setUploadingGallery] = useState(false);
+  const [galleryUrlInput, setGalleryUrlInput] = useState('');
+  const [showGalleryUrlInput, setShowGalleryUrlInput] = useState(false);
 
   // Key Features
   const [keyFeatures, setKeyFeatures] = useState<string[]>(
@@ -205,38 +220,80 @@ export const ProductEditorView: React.FC<ProductEditorViewProps> = ({
     setKeyFeatures(keyFeatures.filter((_, i) => i !== idx));
   };
 
-  // Image Upload / Management
-  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  // Main Image Handlers
+  const handleMainFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files || !e.target.files[0]) return;
     try {
-      setUploading(true);
+      setUploadingMain(true);
       const url = await adminApi.uploadImage(e.target.files[0]);
-      setImages([...images, url]);
+      setMainImage(url);
     } catch (err: any) {
-      alert('Upload failed: ' + err.message);
+      alert('Main image upload failed: ' + err.message);
     } finally {
-      setUploading(false);
+      setUploadingMain(false);
     }
   };
 
-  const handleAddImageUrl = () => {
-    if (urlInput.trim()) {
-      setImages([...images, urlInput.trim()]);
-      setUrlInput('');
-      setShowUrlInput(false);
+  const handleSetMainImageUrl = () => {
+    if (mainUrlInput.trim()) {
+      setMainImage(mainUrlInput.trim());
+      setMainUrlInput('');
+      setShowMainUrlInput(false);
     }
   };
 
-  const handleMakeMainImage = (index: number) => {
-    if (index === 0) return;
-    const reordered = [...images];
-    const [selected] = reordered.splice(index, 1);
-    reordered.unshift(selected);
-    setImages(reordered);
+  // Gallery Images Handlers
+  const handleGalleryFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files || e.target.files.length === 0) return;
+    try {
+      setUploadingGallery(true);
+      const files = Array.from(e.target.files);
+      const urls: string[] = [];
+      for (const f of files) {
+        const u = await adminApi.uploadImage(f);
+        urls.push(u);
+      }
+      setGalleryImages([...galleryImages, ...urls]);
+    } catch (err: any) {
+      alert('Gallery upload failed: ' + err.message);
+    } finally {
+      setUploadingGallery(false);
+    }
   };
 
-  const handleRemoveImage = (index: number) => {
-    setImages(images.filter((_, i) => i !== index));
+  const handleAddGalleryImageUrl = () => {
+    if (galleryUrlInput.trim()) {
+      setGalleryImages([...galleryImages, galleryUrlInput.trim()]);
+      setGalleryUrlInput('');
+      setShowGalleryUrlInput(false);
+    }
+  };
+
+  const handleRemoveGalleryImage = (index: number) => {
+    setGalleryImages(galleryImages.filter((_, i) => i !== index));
+  };
+
+  const handleMoveGalleryImage = (index: number, direction: 'left' | 'right') => {
+    const targetIdx = direction === 'left' ? index - 1 : index + 1;
+    if (targetIdx < 0 || targetIdx >= galleryImages.length) return;
+    const updated = [...galleryImages];
+    const [item] = updated.splice(index, 1);
+    updated.splice(targetIdx, 0, item);
+    setGalleryImages(updated);
+  };
+
+  const handlePromoteToMainImage = (galleryIdx: number) => {
+    const chosen = galleryImages[galleryIdx];
+    if (!chosen) return;
+    const oldMain = mainImage;
+    const updated = [...galleryImages];
+    if (oldMain) {
+      updated[galleryIdx] = oldMain;
+    } else {
+      updated.splice(galleryIdx, 1);
+    }
+    setMainImage(chosen);
+    setGalleryImages(updated);
   };
 
   // Specifications manipulation
@@ -372,7 +429,9 @@ export const ProductEditorView: React.FC<ProductEditorViewProps> = ({
         }
       });
 
-      const cleanImages = images.filter(img => img.trim() !== '');
+      const cleanMain = mainImage.trim();
+      const cleanGallery = galleryImages.filter(img => img && img.trim() !== '' && img !== cleanMain);
+      const allImages = cleanMain ? [cleanMain, ...cleanGallery] : cleanGallery;
 
       const payload: Partial<Product> = {
         title: title.trim(),
@@ -387,7 +446,8 @@ export const ProductEditorView: React.FC<ProductEditorViewProps> = ({
         price: Number(specialPrice),
         oldPrice: Number(regularPrice),
         stock: inStock ? Number(stockQuantity) : 0,
-        images: cleanImages.length > 0 ? cleanImages : ['https://images.unsplash.com/photo-1526738549149-8e07eca6c147?w=600&q=80'],
+        image: cleanMain || (allImages[0] || ''),
+        images: allImages.length > 0 ? allImages : [],
         keyFeatures: keyFeatures.filter(f => f.trim().length > 0),
         shortDescription: keyFeatures.join('\n'),
         specs: groupedSpecsMap,
@@ -704,72 +764,75 @@ export const ProductEditorView: React.FC<ProductEditorViewProps> = ({
             </div>
           </div>
 
-          {/* Card 3: Images */}
+          {/* Card 3A: Main Product Image (One Image Only) */}
           <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: '12px', padding: '24px', boxShadow: '0 1px 3px rgba(0,0,0,0.04)' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-              <h3 style={{ fontSize: '16px', fontWeight: 700, color: '#0f172a' }}>
-                Images
-              </h3>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+              <div>
+                <h3 style={{ fontSize: '16px', fontWeight: 700, color: '#0f172a', margin: 0 }}>
+                  Main Product Image
+                </h3>
+                <p style={{ fontSize: '12px', color: '#64748b', margin: '4px 0 0 0' }}>
+                  One primary image shown on product cards, catalog grids, and as the hero image on the product page.
+                </p>
+              </div>
               <button
                 type="button"
                 className="btn btn-secondary btn-sm"
-                onClick={() => setShowUrlInput(!showUrlInput)}
+                onClick={() => setShowMainUrlInput(!showMainUrlInput)}
               >
-                + Add Image by URL
+                {showMainUrlInput ? 'Cancel' : '+ Add / Edit URL'}
               </button>
             </div>
 
-            {showUrlInput && (
-              <div style={{ display: 'flex', gap: '8px', marginBottom: '16px' }}>
+            {showMainUrlInput && (
+              <div style={{ display: 'flex', gap: '8px', margin: '14px 0' }}>
                 <input
                   type="text"
                   className="form-input"
-                  placeholder="Paste direct image URL (https://...)"
-                  value={urlInput}
-                  onChange={e => setUrlInput(e.target.value)}
+                  placeholder="Paste direct image URL for Main Image (https://...)"
+                  value={mainUrlInput}
+                  onChange={e => setMainUrlInput(e.target.value)}
                 />
                 <button
                   type="button"
                   className="btn btn-primary btn-sm"
-                  onClick={handleAddImageUrl}
+                  onClick={handleSetMainImageUrl}
                 >
-                  Add
+                  Set Main Image
                 </button>
               </div>
             )}
 
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '14px', alignItems: 'center', marginBottom: '12px' }}>
-              {images.map((src, idx) => (
-                <div
-                  key={idx}
-                  style={{
-                    position: 'relative',
-                    width: '100px',
-                    height: '100px',
-                    borderRadius: '8px',
-                    border: '1px solid #e2e8f0',
-                    background: '#f8fafc',
-                    overflow: 'hidden',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    cursor: 'pointer'
-                  }}
-                  title="Click to set as Main Image"
-                  onClick={() => handleMakeMainImage(idx)}
-                >
-                  <img
-                    src={src}
-                    alt={`Thumbnail ${idx + 1}`}
-                    style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '4px' }}
-                  />
-
-                  {idx === 0 && (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '20px', marginTop: '16px', flexWrap: 'wrap' }}>
+              {/* Main Image Preview Box */}
+              <div style={{
+                position: 'relative',
+                width: '130px',
+                height: '130px',
+                borderRadius: '10px',
+                border: mainImage ? '2px solid #ff6600' : '2px dashed #cbd5e1',
+                background: '#f8fafc',
+                overflow: 'hidden',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}>
+                {mainImage ? (
+                  <>
+                    <img
+                      src={mainImage}
+                      alt="Main Product"
+                      onError={(e) => {
+                        e.currentTarget.onerror = null;
+                        e.currentTarget.src = '/admin/product-placeholder.svg';
+                      }}
+                      style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '6px' }}
+                    />
                     <span style={{
                       position: 'absolute',
                       top: '6px',
                       left: '6px',
-                      background: '#0f172a',
+                      background: '#ff6600',
                       color: '#fff',
                       fontSize: '10px',
                       fontWeight: 700,
@@ -778,14 +841,157 @@ export const ProductEditorView: React.FC<ProductEditorViewProps> = ({
                     }}>
                       Main
                     </span>
-                  )}
+                    <button
+                      type="button"
+                      onClick={() => setMainImage('')}
+                      title="Remove Main Image"
+                      style={{
+                        position: 'absolute',
+                        top: '6px',
+                        right: '6px',
+                        background: 'rgba(239, 68, 68, 0.9)',
+                        color: '#fff',
+                        border: 'none',
+                        borderRadius: '50%',
+                        width: '22px',
+                        height: '22px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      <X size={12} />
+                    </button>
+                  </>
+                ) : (
+                  <div style={{ textAlign: 'center', color: '#94a3b8', padding: '8px' }}>
+                    <ImageIcon size={28} style={{ margin: '0 auto 4px', display: 'block' }} />
+                    <span style={{ fontSize: '11px', fontWeight: 600 }}>No Main Image</span>
+                  </div>
+                )}
+              </div>
 
+              {/* Upload Button & Dropzone */}
+              <div>
+                <label style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  padding: '10px 16px',
+                  borderRadius: '8px',
+                  border: '1px solid #cbd5e1',
+                  background: '#f8fafc',
+                  color: '#334155',
+                  fontSize: '13px',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  marginBottom: '6px'
+                }}>
+                  <Upload size={16} />
+                  <span>{uploadingMain ? 'Uploading Main Image...' : (mainImage ? 'Replace Main Image' : 'Upload Main Image')}</span>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleMainFileUpload}
+                    style={{ display: 'none' }}
+                    disabled={uploadingMain}
+                  />
+                </label>
+                <div style={{ fontSize: '11px', color: '#64748b' }}>
+                  Supports PNG, JPG, WEBP, AVIF.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Card 3B: Gallery Images (Multiple, Reorderable) */}
+          <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: '12px', padding: '24px', boxShadow: '0 1px 3px rgba(0,0,0,0.04)' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+              <div>
+                <h3 style={{ fontSize: '16px', fontWeight: 700, color: '#0f172a', margin: 0 }}>
+                  Gallery Images ({galleryImages.length})
+                </h3>
+                <p style={{ fontSize: '12px', color: '#64748b', margin: '4px 0 0 0' }}>
+                  Additional photos shown on the product page. Use the ← → arrows to reorder, or click &quot;Make Main&quot; to swap.
+                </p>
+              </div>
+              <button
+                type="button"
+                className="btn btn-secondary btn-sm"
+                onClick={() => setShowGalleryUrlInput(!showGalleryUrlInput)}
+              >
+                {showGalleryUrlInput ? 'Cancel' : '+ Add Gallery URL'}
+              </button>
+            </div>
+
+            {showGalleryUrlInput && (
+              <div style={{ display: 'flex', gap: '8px', margin: '14px 0' }}>
+                <input
+                  type="text"
+                  className="form-input"
+                  placeholder="Paste direct image URL for Gallery (https://...)"
+                  value={galleryUrlInput}
+                  onChange={e => setGalleryUrlInput(e.target.value)}
+                />
+                <button
+                  type="button"
+                  className="btn btn-primary btn-sm"
+                  onClick={handleAddGalleryImageUrl}
+                >
+                  Add to Gallery
+                </button>
+              </div>
+            )}
+
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '14px', alignItems: 'center', margin: '16px 0 12px 0' }}>
+              {galleryImages.map((src, idx) => (
+                <div
+                  key={idx}
+                  style={{
+                    position: 'relative',
+                    width: '115px',
+                    height: '115px',
+                    borderRadius: '8px',
+                    border: '1px solid #e2e8f0',
+                    background: '#f8fafc',
+                    overflow: 'hidden',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}
+                >
+                  <img
+                    src={src}
+                    alt={`Gallery ${idx + 1}`}
+                    onError={(e) => {
+                      e.currentTarget.onerror = null;
+                      e.currentTarget.src = '/admin/product-placeholder.svg';
+                    }}
+                    style={{ width: '100%', height: '80px', objectFit: 'contain', padding: '4px' }}
+                  />
+
+                  {/* Index Number */}
+                  <span style={{
+                    position: 'absolute',
+                    top: '4px',
+                    left: '4px',
+                    background: '#334155',
+                    color: '#fff',
+                    fontSize: '10px',
+                    fontWeight: 700,
+                    padding: '1px 5px',
+                    borderRadius: '3px'
+                  }}>
+                    #{idx + 1}
+                  </span>
+
+                  {/* Remove Button */}
                   <button
                     type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleRemoveImage(idx);
-                    }}
+                    onClick={() => handleRemoveGalleryImage(idx)}
+                    title="Remove from Gallery"
                     style={{
                       position: 'absolute',
                       top: '4px',
@@ -794,23 +1000,84 @@ export const ProductEditorView: React.FC<ProductEditorViewProps> = ({
                       color: '#fff',
                       border: 'none',
                       borderRadius: '50%',
-                      width: '20px',
-                      height: '20px',
+                      width: '18px',
+                      height: '18px',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       cursor: 'pointer'
                     }}
                   >
-                    <X size={12} />
+                    <X size={10} />
                   </button>
+
+                  {/* Bottom Controls: Reorder Left / Right and Set Main */}
+                  <div style={{
+                    width: '100%',
+                    height: '28px',
+                    background: '#f1f5f9',
+                    borderTop: '1px solid #e2e8f0',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    padding: '0 4px'
+                  }}>
+                    <button
+                      type="button"
+                      disabled={idx === 0}
+                      onClick={() => handleMoveGalleryImage(idx, 'left')}
+                      title="Move Left"
+                      style={{
+                        border: 'none',
+                        background: 'transparent',
+                        cursor: idx === 0 ? 'default' : 'pointer',
+                        color: idx === 0 ? '#cbd5e1' : '#475569',
+                        padding: '2px'
+                      }}
+                    >
+                      <ArrowLeft size={13} />
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => handlePromoteToMainImage(idx)}
+                      title="Set as Main Image"
+                      style={{
+                        border: 'none',
+                        background: 'transparent',
+                        fontSize: '10px',
+                        fontWeight: 600,
+                        color: '#ea580c',
+                        cursor: 'pointer',
+                        padding: '2px'
+                      }}
+                    >
+                      Make Main
+                    </button>
+
+                    <button
+                      type="button"
+                      disabled={idx === galleryImages.length - 1}
+                      onClick={() => handleMoveGalleryImage(idx, 'right')}
+                      title="Move Right"
+                      style={{
+                        border: 'none',
+                        background: 'transparent',
+                        cursor: idx === galleryImages.length - 1 ? 'default' : 'pointer',
+                        color: idx === galleryImages.length - 1 ? '#cbd5e1' : '#475569',
+                        padding: '2px'
+                      }}
+                    >
+                      <ArrowRight size={13} />
+                    </button>
+                  </div>
                 </div>
               ))}
 
-              {/* Upload Dropzone */}
+              {/* Upload Dropzone for Gallery */}
               <label style={{
                 width: '120px',
-                height: '100px',
+                height: '115px',
                 borderRadius: '8px',
                 border: '2px dashed #cbd5e1',
                 display: 'flex',
@@ -826,19 +1093,17 @@ export const ProductEditorView: React.FC<ProductEditorViewProps> = ({
                 transition: 'border 0.2s'
               }}>
                 <Upload size={18} style={{ marginBottom: '4px', color: '#94a3b8' }} />
-                <span>{uploading ? 'Uploading...' : 'Drop images here or browse'}</span>
+                <span>{uploadingGallery ? 'Uploading...' : '+ Upload Photos'}</span>
+                <span style={{ fontSize: '9px', color: '#94a3b8', marginTop: '2px' }}>Select 1 or more</span>
                 <input
                   type="file"
                   accept="image/*"
-                  onChange={handleFileUpload}
+                  multiple
+                  onChange={handleGalleryFileUpload}
                   style={{ display: 'none' }}
-                  disabled={uploading}
+                  disabled={uploadingGallery}
                 />
               </label>
-            </div>
-
-            <div style={{ fontSize: '11px', color: '#94a3b8' }}>
-              Drag to reorder. First image is the main image.
             </div>
           </div>
 
@@ -1450,10 +1715,14 @@ export const ProductEditorView: React.FC<ProductEditorViewProps> = ({
                 justifyContent: 'center',
                 overflow: 'hidden'
               }}>
-                {images[0] ? (
+                {mainImage || galleryImages[0] ? (
                   <img
-                    src={images[0]}
+                    src={mainImage || galleryImages[0]}
                     alt={title || 'Product'}
+                    onError={(e) => {
+                      e.currentTarget.onerror = null;
+                      e.currentTarget.src = '/admin/product-placeholder.svg';
+                    }}
                     style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '8px' }}
                   />
                 ) : (

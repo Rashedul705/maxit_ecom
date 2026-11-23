@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Product, Category, Brand } from '../types';
-import { X, Plus, Trash2, Upload } from 'lucide-react';
+import { X, Plus, Trash2, Upload, ArrowLeft, ArrowRight } from 'lucide-react';
 import { adminApi } from '../api';
 import { htmlToCleanPlainText, plainTextToCleanHtml } from '../utils/htmlTextConverter';
 
@@ -32,7 +32,19 @@ export const ProductModal: React.FC<ProductModalProps> = ({
   const [keyFeaturesText, setKeyFeaturesText] = useState((product?.keyFeatures || []).join('\n'));
   const [shortDescription, setShortDescription] = useState(product?.shortDescription || '');
   const [description, setDescription] = useState(() => htmlToCleanPlainText(product?.description || ''));
-  const [images, setImages] = useState<string[]>(product?.images && product.images.length > 0 ? product.images : ['']);
+  // Separate Main Image (1 image) & Gallery Images (Multiple, reorderable)
+  const [mainImage, setMainImage] = useState<string>(() => {
+    return product?.image || (product?.images && product.images[0]) || '';
+  });
+  const [galleryImages, setGalleryImages] = useState<string[]>(() => {
+    const raw = product?.images || [];
+    const main = product?.image || raw[0] || '';
+    return raw.filter((img, i) => {
+      if (!img) return false;
+      if (img === main && i === 0) return false;
+      return true;
+    });
+  });
   const [isDeal, setIsDeal] = useState(product?.isDeal || false);
   const [isFeatured, setIsFeatured] = useState(product?.isFeatured || false);
   const [isNewItem, setIsNewItem] = useState(product?.isNewItem || false);
@@ -70,20 +82,47 @@ export const ProductModal: React.FC<ProductModalProps> = ({
     if (!product) setSubcategory('');
   }, [category, categories]);
 
-  const handleAddImageField = () => setImages([...images, '']);
-  const handleImageChange = (val: string, index: number) => {
-    const copy = [...images];
-    copy[index] = val;
-    setImages(copy);
-  };
-  const handleRemoveImage = (index: number) => setImages(images.filter((_, i) => i !== index));
-
-  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
+  // Main Image Upload
+  const handleMainUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files || !e.target.files[0]) return;
     try {
       setUploading(true);
       const url = await adminApi.uploadImage(e.target.files[0]);
-      handleImageChange(url, index);
+      setMainImage(url);
+    } catch (err: any) {
+      alert('Upload failed: ' + err.message);
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  // Gallery Handlers
+  const handleAddGalleryField = () => setGalleryImages([...galleryImages, '']);
+  const handleGalleryChange = (val: string, index: number) => {
+    const copy = [...galleryImages];
+    copy[index] = val;
+    setGalleryImages(copy);
+  };
+  const handleRemoveGallery = (index: number) => setGalleryImages(galleryImages.filter((_, i) => i !== index));
+  const handleMoveGallery = (index: number, direction: 'left' | 'right') => {
+    const target = direction === 'left' ? index - 1 : index + 1;
+    if (target < 0 || target >= galleryImages.length) return;
+    const copy = [...galleryImages];
+    const [item] = copy.splice(index, 1);
+    copy.splice(target, 0, item);
+    setGalleryImages(copy);
+  };
+  const handleGalleryUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files || e.target.files.length === 0) return;
+    try {
+      setUploading(true);
+      const files = Array.from(e.target.files);
+      const urls: string[] = [];
+      for (const f of files) {
+        const u = await adminApi.uploadImage(f);
+        urls.push(u);
+      }
+      setGalleryImages([...galleryImages, ...urls]);
     } catch (err: any) {
       alert('Upload failed: ' + err.message);
     } finally {
@@ -109,7 +148,10 @@ export const ProductModal: React.FC<ProductModalProps> = ({
       if (s.key.trim()) specsMap[s.key.trim()] = s.value.trim();
     });
 
-    const cleanImages = images.filter(img => img.trim() !== '');
+    const cleanMain = mainImage.trim();
+    const cleanGallery = galleryImages.filter(img => img && img.trim() !== '' && img !== cleanMain);
+    const allImages = cleanMain ? [cleanMain, ...cleanGallery] : cleanGallery;
+
     const cleanKeyFeatures = keyFeaturesText
       .split('\n')
       .map(k => k.trim())
@@ -131,7 +173,8 @@ export const ProductModal: React.FC<ProductModalProps> = ({
       keyFeatures: cleanKeyFeatures,
       shortDescription,
       description: plainTextToCleanHtml(description),
-      images: cleanImages.length > 0 ? cleanImages : ['https://images.unsplash.com/photo-1509391365360-2e959784a276?w=600&q=80'],
+      image: cleanMain || (allImages[0] || ''),
+      images: allImages.length > 0 ? allImages : [],
       specs: specsMap,
       isDeal,
       isFeatured,
@@ -287,35 +330,99 @@ export const ProductModal: React.FC<ProductModalProps> = ({
               </label>
             </div>
 
-            {/* Multiple Images */}
-            <div className="form-group">
+            {/* Main Product Image (One only) */}
+            <div className="form-group" style={{ padding: '12px', background: '#f8fafc', borderRadius: '8px', border: '1px solid #e2e8f0', marginBottom: '16px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                <label className="form-label" style={{ margin: 0 }}>Product Images (URL or Upload)</label>
-                <button type="button" className="btn btn-secondary btn-sm" onClick={handleAddImageField}>
-                  <Plus size={14} /> Add Image
-                </button>
+                <div>
+                  <label className="form-label" style={{ margin: 0, fontWeight: 700 }}>Main Product Image</label>
+                  <p style={{ fontSize: '11px', color: '#64748b', margin: 0 }}>Shown on cards and as hero photo</p>
+                </div>
+                {mainImage && (
+                  <button type="button" className="btn btn-secondary btn-sm" onClick={() => setMainImage('')} style={{ color: '#ef4444' }}>
+                    Remove
+                  </button>
+                )}
               </div>
-              {images.map((img, i) => (
-                <div key={i} style={{ display: 'flex', gap: '8px', alignItems: 'center', marginBottom: '8px' }}>
+              <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                <input
+                  type="text"
+                  className="form-input"
+                  placeholder="https://... or upload"
+                  value={mainImage}
+                  onChange={e => setMainImage(e.target.value)}
+                />
+                <label className="btn btn-secondary btn-sm" style={{ cursor: 'pointer', whiteSpace: 'nowrap' }}>
+                  <Upload size={14} /> Upload
+                  <input type="file" accept="image/*" style={{ display: 'none' }} onChange={handleMainUpload} />
+                </label>
+              </div>
+              {mainImage && (
+                <div style={{ marginTop: '8px' }}>
+                  <img
+                    src={mainImage}
+                    alt="Main Preview"
+                    onError={(e) => {
+                      e.currentTarget.onerror = null;
+                      e.currentTarget.src = '/admin/product-placeholder.svg';
+                    }}
+                    style={{ width: '60px', height: '60px', objectFit: 'contain', borderRadius: '6px', border: '1px solid #cbd5e1', background: '#fff' }}
+                  />
+                </div>
+              )}
+            </div>
+
+            {/* Gallery Images (Multiple, reorderable) */}
+            <div className="form-group" style={{ padding: '12px', background: '#f8fafc', borderRadius: '8px', border: '1px solid #e2e8f0', marginBottom: '16px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                <div>
+                  <label className="form-label" style={{ margin: 0, fontWeight: 700 }}>Gallery Images ({galleryImages.length})</label>
+                  <p style={{ fontSize: '11px', color: '#64748b', margin: 0 }}>Reorder with ← → buttons</p>
+                </div>
+                <div style={{ display: 'flex', gap: '6px' }}>
+                  <label className="btn btn-secondary btn-sm" style={{ cursor: 'pointer' }}>
+                    <Upload size={14} /> Upload Multi
+                    <input type="file" accept="image/*" multiple style={{ display: 'none' }} onChange={handleGalleryUpload} />
+                  </label>
+                  <button type="button" className="btn btn-secondary btn-sm" onClick={handleAddGalleryField}>
+                    <Plus size={14} /> Add URL
+                  </button>
+                </div>
+              </div>
+              {galleryImages.map((img, i) => (
+                <div key={i} style={{ display: 'flex', gap: '6px', alignItems: 'center', marginBottom: '8px' }}>
+                  <button
+                    type="button"
+                    disabled={i === 0}
+                    onClick={() => handleMoveGallery(i, 'left')}
+                    className="btn btn-secondary btn-sm"
+                    title="Move Up"
+                    style={{ padding: '4px 6px' }}
+                  >
+                    <ArrowLeft size={12} />
+                  </button>
+                  <button
+                    type="button"
+                    disabled={i === galleryImages.length - 1}
+                    onClick={() => handleMoveGallery(i, 'right')}
+                    className="btn btn-secondary btn-sm"
+                    title="Move Down"
+                    style={{ padding: '4px 6px' }}
+                  >
+                    <ArrowRight size={12} />
+                  </button>
                   <input
                     type="text"
                     className="form-input"
                     placeholder="https://..."
                     value={img}
-                    onChange={e => handleImageChange(e.target.value, i)}
+                    onChange={e => handleGalleryChange(e.target.value, i)}
                   />
-                  <label className="btn btn-secondary btn-sm" style={{ cursor: 'pointer' }}>
-                    <Upload size={14} />
-                    <input type="file" accept="image/*" style={{ display: 'none' }} onChange={e => handleFileUpload(e, i)} />
-                  </label>
-                  {images.length > 1 && (
-                    <button type="button" className="btn btn-danger btn-sm" onClick={() => handleRemoveImage(i)}>
-                      <Trash2 size={14} />
-                    </button>
-                  )}
+                  <button type="button" className="btn btn-danger btn-sm" onClick={() => handleRemoveGallery(i)}>
+                    <Trash2 size={13} />
+                  </button>
                 </div>
               ))}
-              {uploading && <p style={{ fontSize: '12px', color: '#ff6600' }}>Uploading image...</p>}
+              {uploading && <p style={{ fontSize: '12px', color: '#ff6600', margin: '4px 0 0 0' }}>Uploading...</p>}
             </div>
 
             {/* Specifications */}

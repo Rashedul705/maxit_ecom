@@ -2,11 +2,11 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { ShoppingCart, Scale, Heart } from 'lucide-react';
 import { Product } from '@/lib/types';
 import { useCart } from '@/lib/cartContext';
 import { useWishlist } from '@/lib/wishlistContext';
+import { SafeImage } from '@/components/common/SafeImage';
 
 interface ProductCardProps {
   product: Product;
@@ -101,8 +101,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         {/* Product Image Area */}
         <div className="relative block w-full aspect-square rounded-lg bg-gray-50 overflow-hidden mb-2.5">
           <Link href={`/product/${product.slug}`} className="block w-full h-full">
-            <Image
-              src={product.images && product.images[0] ? product.images[0] : 'https://images.unsplash.com/photo-1526738549149-8e07eca6c147?w=600&q=80'}
+            <SafeImage
+              src={product.image || (product.images && product.images[0]) || ''}
               alt={product.title}
               fill
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"

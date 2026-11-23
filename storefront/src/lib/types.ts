@@ -172,6 +172,7 @@ export interface Product {
   isNew: boolean;
   isFeatured: boolean;
   isDeal: boolean;
+  image?: string;
   images: string[];
   rating?: number;
   reviewCount?: number;

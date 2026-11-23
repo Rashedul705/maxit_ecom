@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import { SafeImage } from '@/components/common/SafeImage';
 import {
   X,
   Trash2,
@@ -102,7 +102,7 @@ export const CartDrawer: React.FC = () => {
               <div key={item.id} className="py-3.5 first:pt-0 last:pb-0 flex items-center gap-3">
                 {/* Thumbnail */}
                 <div className="relative w-16 h-16 sm:w-18 sm:h-18 rounded-2xl bg-amber-50/40 border border-amber-100/70 overflow-hidden shrink-0 flex items-center justify-center p-1">
-                  <Image
+                  <SafeImage
                     src={item.image}
                     alt={item.title}
                     fill

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import { SafeImage } from '@/components/common/SafeImage';
 import { useWishlist } from '@/lib/wishlistContext';
 import { useCart } from '@/lib/cartContext';
 import { Heart, ShoppingBag, Trash2, Home, ChevronRight, ArrowRight } from 'lucide-react';
@@ -76,8 +76,8 @@ export default function WishlistPage() {
             >
               <div>
                 <div className="relative aspect-square bg-gray-50 overflow-hidden">
-                  <Image
-                    src={(prod.images && prod.images[0]) || (prod as any).image || 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=500'}
+                  <SafeImage
+                    src={prod.image || (prod.images && prod.images[0]) || ''}
                     alt={prod.title}
                     fill
                     sizes="(max-width: 640px) 100vw, 300px"

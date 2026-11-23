@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F8FAFC"/>
+      <stop offset="100%" stop-color="#F1F5F9"/>
+    </linearGradient>
+    <linearGradient id="cubeTop" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF8533"/>
+      <stop offset="100%" stop-color="#FF6600"/>
+    </linearGradient>
+    <linearGradient id="cubeLeft" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E65C00"/>
+      <stop offset="100%" stop-color="#CC5200"/>
+    </linearGradient>
+    <linearGradient id="cubeRight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF751A"/>
+      <stop offset="100%" stop-color="#E65C00"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background Card -->
+  <rect width="400" height="400" fill="url(#bgGrad)"/>
+  <rect x="24" y="24" width="352" height="352" rx="20" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+
+  <!-- Centered Isometric Engineering Cube Icon -->
+  <g transform="translate(140, 110)">
+    <!-- Shadow -->
+    <ellipse cx="60" cy="135" rx="55" ry="14" fill="#000000" opacity="0.06"/>
+
+    <!-- Cube Top Face -->
+    <polygon points="60,15 110,42 60,69 10,42" fill="url(#cubeTop)"/>
+    
+    <!-- Cube Left Face -->
+    <polygon points="10,42 60,69 60,125 10,98" fill="url(#cubeLeft)"/>
+    
+    <!-- Cube Right Face -->
+    <polygon points="60,69 110,42 110,98 60,125" fill="url(#cubeRight)"/>
+
+    <!-- Tech Circuit Grid Lines on Cube -->
+    <line x1="60" y1="69" x2="60" y2="125" stroke="#FFA366" stroke-width="1.5" opacity="0.6"/>
+    <line x1="10" y1="42" x2="60" y2="69" stroke="#FFFFFF" stroke-width="1.5" opacity="0.4"/>
+    <line x1="60" y1="69" x2="110" y2="42" stroke="#FFFFFF" stroke-width="1.5" opacity="0.4"/>
+
+    <!-- Inner Core Dot -->
+    <circle cx="60" cy="42" r="5" fill="#FFFFFF" opacity="0.9"/>
+  </g>
+
+  <!-- Brand & Placeholder Labels -->
+  <text x="200" y="278" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" font-weight="800" fill="#0F172A" text-anchor="middle" letter-spacing="1.5">MAXITSHOP</text>
+  <text x="200" y="302" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#64748B" text-anchor="middle">Product Image Coming Soon</text>
+  <rect x="175" y="318" width="50" height="3" rx="1.5" fill="#FF6600"/>
+</svg>

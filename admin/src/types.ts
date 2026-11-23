@@ -25,6 +25,7 @@ export interface Product {
   subcategoryName?: string;
   brand: string;
   stock: number;
+  image?: string;
   images: string[];
   shortDescription?: string;
   description?: string;

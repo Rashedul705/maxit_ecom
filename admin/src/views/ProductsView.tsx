@@ -489,8 +489,12 @@ export const ProductsView: React.FC = () => {
                       </td>
                       <td>
                       <img
-                        src={p.images?.[0] || 'https://images.unsplash.com/photo-1509391365360-2e959784a276?w=100&q=80'}
+                        src={p.image || p.images?.[0] || '/admin/product-placeholder.svg'}
                         alt={p.title}
+                        onError={(e) => {
+                          e.currentTarget.onerror = null;
+                          e.currentTarget.src = '/admin/product-placeholder.svg';
+                        }}
                         style={{ width: '48px', height: '48px', objectFit: 'contain', borderRadius: '6px', border: '1px solid #e2e8f0', background: '#fff' }}
                       />
                     </td>

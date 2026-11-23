@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
+import { SafeImage } from '@/components/common/SafeImage';
 import {
   Heart,
   Scale,
@@ -235,10 +235,14 @@ export const ProductInteractiveView: React.FC<ProductInteractiveViewProps> = ({
     }
   };
 
-  // Gallery images array
-  const galleryImages = (product.images && product.images.length > 0)
-    ? product.images
-    : ['https://images.unsplash.com/photo-1526738549149-8e07eca6c147?w=800&q=80'];
+  // Gallery images array: main image first, followed by additional gallery images
+  const mainImage = product.image || (product.images && product.images[0]) || '';
+  const rawGallery = Array.isArray(product.images) ? product.images : [];
+  const additionalImages = rawGallery.filter(img => img && img !== mainImage);
+  const galleryImages = [mainImage, ...additionalImages].filter(Boolean);
+  if (galleryImages.length === 0) {
+    galleryImages.push('/images/product-placeholder.svg');
+  }
 
   const activeImage = galleryImages[activeImageIndex] || galleryImages[0];
 
@@ -283,7 +287,7 @@ export const ProductInteractiveView: React.FC<ProductInteractiveViewProps> = ({
         <div className="lg:col-span-5 space-y-4">
           {/* Main Large Image */}
           <div className="relative aspect-square w-full rounded-2xl bg-white border border-gray-200 overflow-hidden flex items-center justify-center p-4">
-            <Image
+            <SafeImage
               src={activeImage}
               alt={product.title}
               fill
@@ -309,7 +313,7 @@ export const ProductInteractiveView: React.FC<ProductInteractiveViewProps> = ({
                         : 'border-gray-200 hover:border-gray-400'
                     }`}
                   >
-                    <Image
+                    <SafeImage
                       src={src}
                       alt={`${product.title} - thumbnail ${idx + 1}`}
                       fill
@@ -725,7 +729,7 @@ export const ProductInteractiveView: React.FC<ProductInteractiveViewProps> = ({
                       className="flex items-center gap-3 py-2.5 hover:bg-gray-50/80 rounded-lg p-1.5 transition-colors group"
                     >
                       <div className="w-14 h-14 relative bg-gray-50 rounded-lg border border-gray-200/80 overflow-hidden shrink-0 flex items-center justify-center p-1">
-                        <Image
+                        <SafeImage
                           src={relImg}
                           alt={rel.title}
                           fill

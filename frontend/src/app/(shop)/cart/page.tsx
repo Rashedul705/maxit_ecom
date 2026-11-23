@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import { SafeImage } from '@/components/common/SafeImage';
 import { useCart } from '@/lib/cartContext';
 import {
   Trash2,
@@ -140,7 +140,7 @@ export default function CartPage() {
                     {/* Product Image & Details */}
                     <div className="flex items-start sm:items-center gap-4 flex-1 min-w-0">
                       <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-amber-50/40 border border-amber-100/70 overflow-hidden shrink-0 flex items-center justify-center p-1.5">
-                        <Image
+                        <SafeImage
                           src={item.image}
                           alt={item.title}
                           fill
