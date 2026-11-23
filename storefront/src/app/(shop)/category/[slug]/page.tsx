@@ -102,9 +102,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
 
   const isMother = Boolean(category.isMother || (!category.parent && category.children?.length));
   const parentCat = category.parentCategory;
-  const chipList = isMother
-    ? (category.children || [])
-    : (category.siblings || []);
+  const subcategoryList = isMother ? (category.children || []) : (category.subcategories || []);
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-6">
@@ -123,10 +121,30 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
               {parentCat.name}
             </Link>
             <ChevronRight className="w-3 h-3 text-slate-400 shrink-0" />
-            <span className="font-semibold text-slate-900">{category.name}</span>
+            {currentSub && activeSub ? (
+              <>
+                <Link href={`/category/${category.slug}`} className="hover:text-[#FF6600] transition-colors">
+                  {category.name}
+                </Link>
+                <ChevronRight className="w-3 h-3 text-slate-400 shrink-0" />
+                <span className="font-semibold text-slate-900">{activeSub.name}</span>
+              </>
+            ) : (
+              <span className="font-semibold text-slate-900">{category.name}</span>
+            )}
           </>
         ) : (
-          <span className="font-semibold text-slate-900">{category.name}</span>
+          currentSub && activeSub ? (
+            <>
+              <Link href={`/category/${category.slug}`} className="hover:text-[#FF6600] transition-colors">
+                {category.name}
+              </Link>
+              <ChevronRight className="w-3 h-3 text-slate-400 shrink-0" />
+              <span className="font-semibold text-slate-900">{activeSub.name}</span>
+            </>
+          ) : (
+            <span className="font-semibold text-slate-900">{category.name}</span>
+          )
         )}
       </nav>
 
@@ -149,37 +167,66 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
           )}
         </div>
 
-        {/* Subcategory Chips Row */}
-        {chipList.length > 0 && (
+        {/* 1. Mother Category: Child Categories Chips Row */}
+        {isMother && category.children && category.children.length > 0 && (
           <div className="mt-5 pt-4 border-t border-slate-100">
             <div className="text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-2.5">
-              {isMother ? 'Subcategories' : `Related in ${parentCat?.name || 'Category'}`}
+              Categories in {category.name}
             </div>
             <div className="flex flex-wrap gap-2">
-              {isMother ? (
-                <span
-                  className="text-xs sm:text-sm px-3.5 py-1.5 rounded-full bg-[#FF6600] text-white border border-[#FF6600] font-semibold shadow-xs"
+              <span className="text-xs sm:text-sm px-3.5 py-1.5 rounded-full bg-[#FF6600] text-white border border-[#FF6600] font-semibold shadow-xs">
+                All ({category.productCount || total})
+              </span>
+              {category.children.map((child: any) => (
+                <Link
+                  key={child.id || child.slug}
+                  href={`/category/${child.slug}`}
+                  className="text-xs sm:text-sm px-3.5 py-1.5 rounded-full bg-white text-slate-700 border border-slate-200 hover:border-[#FF6600] hover:text-[#FF6600] font-medium shadow-2xs transition-all flex items-center gap-1.5"
                 >
-                  All ({category.productCount || total})
-                </span>
-              ) : (
-                parentCat && (
-                  <Link
-                    href={`/category/${parentCat.slug}`}
-                    className="text-xs sm:text-sm px-3.5 py-1.5 rounded-full bg-white text-slate-700 border border-slate-200 hover:border-[#FF6600] hover:text-[#FF6600] font-medium shadow-2xs transition-all"
-                  >
-                    ← All {parentCat.name}
-                  </Link>
-                )
-              )}
+                  <span>{child.name}</span>
+                  {child.productCount !== undefined && (
+                    <span className="text-[10px] text-gray-400 font-normal">({child.productCount})</span>
+                  )}
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
 
-              {chipList.map((sub: any) => {
-                const isActive = !isMother && sub.slug === slug;
+        {/* 2. Child Category: Subcategories Chips Row (Level 3) */}
+        {!isMother && category.subcategories && category.subcategories.length > 0 && (
+          <div className="mt-5 pt-4 border-t border-slate-100">
+            <div className="flex items-center justify-between mb-2.5">
+              <span className="text-[11px] font-bold text-gray-500 uppercase tracking-wider">
+                Subcategories in {category.name}
+              </span>
+              {currentSub && (
+                <Link
+                  href={`/category/${slug}`}
+                  className="text-[11px] font-bold text-[#FF6600] hover:underline"
+                >
+                  View All ({category.productCount || total})
+                </Link>
+              )}
+            </div>
+            <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
+              <Link
+                href={buildSubUrl('')}
+                className={`text-xs sm:text-sm px-3.5 py-1.5 rounded-full border transition-all shrink-0 ${
+                  !currentSub
+                    ? 'bg-[#FF6600] text-white border-[#FF6600] font-semibold shadow-xs'
+                    : 'bg-white text-slate-700 border-slate-200 hover:border-[#FF6600] hover:text-[#FF6600] font-medium shadow-2xs'
+                }`}
+              >
+                All ({category.productCount || total})
+              </Link>
+              {category.subcategories.map((sub: any) => {
+                const isActive = currentSub === sub.slug || currentSub === sub.id;
                 return (
                   <Link
                     key={sub.id || sub.slug}
-                    href={`/category/${sub.slug}`}
-                    className={`text-xs sm:text-sm px-3.5 py-1.5 rounded-full border transition-all ${
+                    href={buildSubUrl(sub.slug)}
+                    className={`text-xs sm:text-sm px-3.5 py-1.5 rounded-full border transition-all shrink-0 flex items-center gap-1.5 ${
                       isActive
                         ? 'bg-[#FF6600] text-white border-[#FF6600] font-semibold shadow-xs'
                         : 'bg-white text-slate-700 border-slate-200 hover:border-[#FF6600] hover:text-[#FF6600] font-medium shadow-2xs'
@@ -187,14 +234,47 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                   >
                     <span>{sub.name}</span>
                     {sub.productCount !== undefined && (
-                      <span className={`text-[10px] ml-1.5 font-normal ${isActive ? 'text-white/90' : 'text-gray-400'}`}>
-                        ({sub.productCount})
+                      <span className={`text-[10px] ml-0.5 px-1.5 py-0.2 rounded-full ${
+                        isActive ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-500'
+                      }`}>
+                        {sub.productCount}
                       </span>
                     )}
                   </Link>
                 );
               })}
             </div>
+          </div>
+        )}
+
+        {/* 3. Child Category: Related Sibling Categories Navigation */}
+        {!isMother && category.siblings && category.siblings.length > 1 && (
+          <div className="mt-3.5 pt-3 border-t border-slate-100 flex items-center gap-2 overflow-x-auto text-xs text-slate-600 scrollbar-none">
+            <span className="text-[11px] font-semibold text-gray-400 shrink-0">Related in {parentCat?.name || 'Category'}:</span>
+            {parentCat && (
+              <Link
+                href={`/category/${parentCat.slug}`}
+                className="px-2.5 py-1 rounded-md bg-slate-50 hover:bg-slate-100 text-slate-600 shrink-0 font-medium transition-colors"
+              >
+                ← All {parentCat.name}
+              </Link>
+            )}
+            {category.siblings.map((sib: any) => {
+              const isCurrent = sib.slug === slug;
+              return (
+                <Link
+                  key={sib.id || sib.slug}
+                  href={`/category/${sib.slug}`}
+                  className={`px-2.5 py-1 rounded-md shrink-0 font-medium transition-colors ${
+                    isCurrent
+                      ? 'bg-orange-50 text-[#FF6600] font-bold'
+                      : 'bg-slate-50 hover:bg-orange-50 hover:text-[#FF6600] text-slate-600'
+                  }`}
+                >
+                  {sib.name}
+                </Link>
+              );
+            })}
           </div>
         )}
       </div>
@@ -207,6 +287,9 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
           <CategoryFilterSidebar
             availableBrands={availableBrands}
             currentCategory={slug}
+            subcategories={subcategoryList}
+            isMother={isMother}
+            categoryName={category.name}
           />
         </div>
 

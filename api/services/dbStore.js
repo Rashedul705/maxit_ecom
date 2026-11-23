@@ -657,6 +657,38 @@ const db = {
           ]
         });
 
+        // Compute product count per subcategory
+        if (Array.isArray(normalized.subcategories) && normalized.subcategories.length > 0) {
+          try {
+            const subAgg = await Product.aggregate([
+              {
+                $match: {
+                  $or: [
+                    { category: { $regex: new RegExp(`^(cat-)?${cleanSlug}$`, 'i') } },
+                    { categoryName: { $regex: new RegExp(`^${doc.name}$`, 'i') } }
+                  ]
+                }
+              },
+              { $group: { _id: '$subcategory', count: { $sum: 1 } } }
+            ]);
+            const subMap = {};
+            subAgg.forEach(item => {
+              if (item._id) {
+                const sRaw = String(item._id).toLowerCase();
+                subMap[sRaw] = item.count;
+                subMap[sRaw.replace(/^sub-/, '')] = item.count;
+              }
+            });
+            normalized.subcategories = normalized.subcategories.map(s => {
+              const sClean = (s.slug || '').toLowerCase().replace(/^sub-/, '');
+              return {
+                ...s,
+                productCount: subMap[sClean] || 0
+              };
+            });
+          } catch (e) {}
+        }
+
         normalized.isMother = false;
         normalized.parentCategory = motherDoc ? normalizeMedia(motherDoc) : null;
         normalized.siblings = siblings.map(normalizeMedia);
