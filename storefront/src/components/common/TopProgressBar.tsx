@@ -1,9 +1,9 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 
-export const TopProgressBar: React.FC = () => {
+const TopProgressBarInner: React.FC = () => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -102,5 +102,13 @@ export const TopProgressBar: React.FC = () => {
         style={{ width: `${progress}%` }}
       />
     </div>
+  );
+};
+
+export const TopProgressBar: React.FC = () => {
+  return (
+    <Suspense fallback={null}>
+      <TopProgressBarInner />
+    </Suspense>
   );
 };
