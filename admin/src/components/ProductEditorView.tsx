@@ -71,8 +71,33 @@ export const ProductEditorView: React.FC<ProductEditorViewProps> = ({
     return product?.image || (product?.images && product.images[0]) || '';
   });
   const [uploadingMain, setUploadingMain] = useState(false);
+  const [cleaningImage, setCleaningImage] = useState(false);
   const [mainUrlInput, setMainUrlInput] = useState('');
   const [showMainUrlInput, setShowMainUrlInput] = useState(false);
+
+  const handleCleanImage = async (imgUrl: string, isMain: boolean, galleryIdx?: number) => {
+    if (!imgUrl) return;
+    try {
+      setCleaningImage(true);
+      const res = await adminApi.cleanImageBanner(imgUrl);
+      if (res.url && res.url !== imgUrl) {
+        if (isMain) {
+          setMainImage(res.url);
+        } else if (galleryIdx !== undefined) {
+          const updated = [...galleryImages];
+          updated[galleryIdx] = res.url;
+          setGalleryImages(updated);
+        }
+        alert('Image cleaned successfully! Bottom banner and competitor phone numbers removed.');
+      } else {
+        alert('Image is already clean! No banner or competitor phone was detected.');
+      }
+    } catch (e: any) {
+      alert('Cleaning failed: ' + e.message);
+    } finally {
+      setCleaningImage(false);
+    }
+  };
 
   const [galleryImages, setGalleryImages] = useState<string[]>(() => {
     const raw = product?.images || [];
@@ -874,32 +899,58 @@ export const ProductEditorView: React.FC<ProductEditorViewProps> = ({
 
               {/* Upload Button & Dropzone */}
               <div>
-                <label style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  padding: '10px 16px',
-                  borderRadius: '8px',
-                  border: '1px solid #cbd5e1',
-                  background: '#f8fafc',
-                  color: '#334155',
-                  fontSize: '13px',
-                  fontWeight: 600,
-                  cursor: 'pointer',
-                  marginBottom: '6px'
-                }}>
-                  <Upload size={16} />
-                  <span>{uploadingMain ? 'Uploading Main Image...' : (mainImage ? 'Replace Main Image' : 'Upload Main Image')}</span>
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={handleMainFileUpload}
-                    style={{ display: 'none' }}
-                    disabled={uploadingMain}
-                  />
-                </label>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', marginBottom: '6px' }}>
+                  <label style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    padding: '10px 16px',
+                    borderRadius: '8px',
+                    border: '1px solid #cbd5e1',
+                    background: '#f8fafc',
+                    color: '#334155',
+                    fontSize: '13px',
+                    fontWeight: 600,
+                    cursor: 'pointer'
+                  }}>
+                    <Upload size={16} />
+                    <span>{uploadingMain ? 'Uploading Main Image...' : (mainImage ? 'Replace Main Image' : 'Upload Main Image')}</span>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handleMainFileUpload}
+                      style={{ display: 'none' }}
+                      disabled={uploadingMain}
+                    />
+                  </label>
+
+                  {mainImage && (
+                    <button
+                      type="button"
+                      onClick={() => handleCleanImage(mainImage, true)}
+                      disabled={cleaningImage}
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '6px',
+                        padding: '10px 16px',
+                        borderRadius: '8px',
+                        border: '1px solid #ff6600',
+                        background: '#fff7ed',
+                        color: '#ea580c',
+                        fontSize: '13px',
+                        fontWeight: 600,
+                        cursor: cleaningImage ? 'not-allowed' : 'pointer'
+                      }}
+                      title="Automatically detect and crop bottom banner/competitor numbers"
+                    >
+                      <Sparkles size={15} />
+                      <span>{cleaningImage ? 'Cleaning Image...' : '⚡ Auto-Crop Banner'}</span>
+                    </button>
+                  )}
+                </div>
                 <div style={{ fontSize: '11px', color: '#64748b' }}>
-                  Supports PNG, JPG, WEBP, AVIF.
+                  Supports PNG, JPG, WEBP, AVIF. Click &quot;Auto-Crop Banner&quot; to clean competitor watermarks.
                 </div>
               </div>
             </div>
@@ -1053,6 +1104,23 @@ export const ProductEditorView: React.FC<ProductEditorViewProps> = ({
                       }}
                     >
                       Make Main
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => handleCleanImage(src, false, idx)}
+                      title="Auto-Crop Banner / Phone"
+                      style={{
+                        border: 'none',
+                        background: 'transparent',
+                        color: '#ea580c',
+                        cursor: 'pointer',
+                        padding: '2px',
+                        display: 'flex',
+                        alignItems: 'center'
+                      }}
+                    >
+                      <Sparkles size={11} />
                     </button>
 
                     <button

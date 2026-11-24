@@ -239,5 +239,12 @@ export const adminApi = {
       throw new Error(json.message || 'Image upload failed');
     }
     return json.data.url;
+  },
+
+  cleanImageBanner: (imageUrl: string): Promise<{ url: string; details?: string }> => {
+    return request<{ url: string; details?: string }>('/upload/clean-banner', {
+      method: 'POST',
+      body: JSON.stringify({ imageUrl })
+    });
   }
 };

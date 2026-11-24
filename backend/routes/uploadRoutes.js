@@ -108,4 +108,47 @@ router.post('/', requireAdminAuth, upload.single('image'), async (req, res, next
   }
 });
 
+// POST /api/v1/upload/clean-banner (Protected)
+router.post('/clean-banner', requireAdminAuth, async (req, res, next) => {
+  try {
+    const { imageUrl } = req.body;
+    if (!imageUrl || typeof imageUrl !== 'string') {
+      return errorResponse(res, 'imageUrl is required', 400);
+    }
+
+    const scriptPath = path.join(__dirname, '../../scripts/clean_single_image.py');
+    const { execFile } = require('child_process');
+
+    const filename = `clean_${Date.now()}_${Math.round(Math.random() * 1e6)}.jpg`;
+    const destPath = path.join(uploadDir, filename);
+
+    execFile('python3', [scriptPath, imageUrl, destPath], (err, stdout, stderr) => {
+      if (err) {
+        console.error('clean_single_image error:', err, stderr);
+        return errorResponse(res, 'Failed to clean image: ' + err.message, 500);
+      }
+
+      if (fs.existsSync(destPath) && fs.statSync(destPath).size > 0) {
+        const apiUploads = path.join(__dirname, '../../api/uploads', filename);
+        const storefrontUploads = path.join(__dirname, '../../storefront/public/uploads', filename);
+        const frontendUploads = path.join(__dirname, '../../frontend/public/uploads', filename);
+        for (const target of [apiUploads, storefrontUploads, frontendUploads]) {
+          try {
+            if (fs.existsSync(path.dirname(target))) {
+              fs.copyFileSync(destPath, target);
+            }
+          } catch (e) {}
+        }
+
+        const localUrl = `/uploads/${filename}`;
+        return successResponse(res, { url: localUrl, details: stdout.trim() }, 'Image cleaned successfully');
+      } else {
+        return successResponse(res, { url: imageUrl, details: 'Image was already clean' }, 'Image is already clean');
+      }
+    });
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = router;
