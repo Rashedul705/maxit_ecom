@@ -95,7 +95,7 @@ export const SellersView: React.FC = () => {
               <h3 style={{ fontSize: '17px', fontWeight: 600 }}>Register New Seller</h3>
               <button className="btn btn-secondary btn-sm" onClick={() => setShowAdd(false)}>✕</button>
             </div>
-            <form onSubmit={handleCreate}>
+            <form onSubmit={handleCreate} style={{ display: 'flex', flexDirection: 'column', flex: 1, minHeight: 0, overflow: 'hidden' }}>
               <div className="modal-body">
                 <div className="form-group">
                   <label className="form-label">Store / Company Name *</label>

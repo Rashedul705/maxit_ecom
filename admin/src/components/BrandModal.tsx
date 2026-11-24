@@ -54,7 +54,7 @@ export const BrandModal: React.FC<BrandModalProps> = ({ brand, onClose, onSave }
           <button className="btn btn-secondary btn-sm" onClick={onClose}><X size={16} /></button>
         </div>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', flex: 1, minHeight: 0, overflow: 'hidden' }}>
           <div className="modal-body">
             <div className="form-group">
               <label className="form-label">Brand Name *</label>

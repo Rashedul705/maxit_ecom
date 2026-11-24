@@ -62,7 +62,7 @@ export const CategoryModal: React.FC<CategoryModalProps> = ({ category, motherCa
           <button className="btn btn-secondary btn-sm" onClick={onClose}><X size={16} /></button>
         </div>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', flex: 1, minHeight: 0, overflow: 'hidden' }}>
           <div className="modal-body">
             <div className="form-group">
               <label className="form-label">Parent Category</label>
