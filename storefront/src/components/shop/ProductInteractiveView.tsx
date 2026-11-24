@@ -58,8 +58,21 @@ export function sanitizeDescriptionHtml(rawHtml?: string): string {
         lastIndex = tagRegex.lastIndex;
         continue;
       } else {
-        // Close matching tag
-        stack.splice(lastOpenIndex);
+        // Append text prior to this closing tag
+        cleaned += rawHtml.slice(lastIndex, match.index);
+
+        // If any child tags were opened inside tagName and haven't closed yet,
+        // close them first in reverse order so the HTML is properly balanced.
+        while (stack.length - 1 > lastOpenIndex) {
+          const childTag = stack.pop();
+          cleaned += `</${childTag}>`;
+        }
+
+        // Pop tagName itself from the stack and append its closing tag
+        stack.pop();
+        cleaned += fullTag;
+        lastIndex = tagRegex.lastIndex;
+        continue;
       }
     } else if (!isSelfClosing) {
       stack.push(tagName);
