@@ -122,7 +122,7 @@ router.post('/clean-banner', requireAdminAuth, async (req, res, next) => {
     const filename = `clean_${Date.now()}_${Math.round(Math.random() * 1e6)}.jpg`;
     const destPath = path.join(uploadDir, filename);
 
-    execFile('python3', [scriptPath, imageUrl, destPath], (err, stdout, stderr) => {
+    execFile('python3', [scriptPath, imageUrl, destPath], { timeout: 60000 }, (err, stdout, stderr) => {
       if (err) {
         console.error('clean_single_image error:', err, stderr);
         return errorResponse(res, 'Failed to clean image: ' + err.message, 500);
