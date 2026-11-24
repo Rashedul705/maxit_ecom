@@ -1,0 +1,67 @@
+{
+  "category": "ELECTRONICS PARTS",
+  "slug": "electronics-parts",
+  "total_images": 19,
+  "clean_count": 17,
+  "croppable_count": 1,
+  "elsewhere_count": 0,
+  "notsure_count": 1,
+  "group2_items": [
+    {
+      "url": "https://www.nanopowerbd.com/public/uploads/product/1779168648-lm358.jpg",
+      "local_backup_path": "/Users/rashedulislam/MAXIT/Maxit_Ecom/maxit_ecom/backups/product_images_backup/electronics-parts/55170d055074.jpg",
+      "products": [
+        "10K Resistor -1/4W - 100pcs.",
+        "1K Resistor - 1/4W - 100pcs.",
+        "10K VR - Screw Type -10pcs.",
+        "IR2110",
+        "IR2110 SMD Converter",
+        "4N35 Optocoupler",
+        "PC817",
+        "MOC3021",
+        "ZME1915007BF CT Coil",
+        "Illuminated Push Button Switch",
+        "Atmega328p",
+        "PIC16F73",
+        "DSPIC30F2010",
+        "PIC16F690",
+        "CD4049",
+        "Viper 12A",
+        "CD4094",
+        "LM358 OP-AMP",
+        "LM358 OP-AMP",
+        "SG3525 PWM"
+      ],
+      "details": {
+        "banner_boxes": [
+          [
+            113,
+            "www.nanopowerbd.com"
+          ]
+        ],
+        "green_top_y": null,
+        "orig_size": [
+          281,
+          128
+        ],
+        "crop_y": 103
+      },
+      "crop_y": 103
+    }
+  ],
+  "group3_items": [],
+  "group4_items": [
+    {
+      "url": "https://www.nanopowerbd.com/public/uploads/product/1783952392-ir2110-smd.jpg",
+      "local_backup_path": "/Users/rashedulislam/MAXIT/Maxit_Ecom/maxit_ecom/backups/product_images_backup/electronics-parts/5f3ba43600d3.jpg",
+      "products": [
+        "IR2110 SMD Converter",
+        "IR2110 SMD Converter"
+      ],
+      "details": {
+        "reason": "Green band detected but text inconclusive",
+        "green_top_y": 386
+      }
+    }
+  ]
+}

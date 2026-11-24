@@ -1,0 +1,102 @@
+{
+  "category": "BATTERY-BMS-CHARGER",
+  "slug": "battery-bms-charger",
+  "total_images": 10,
+  "clean_count": 6,
+  "croppable_count": 1,
+  "elsewhere_count": 2,
+  "notsure_count": 1,
+  "group2_items": [
+    {
+      "url": "https://www.nanopowerbd.com/public/uploads/product/1787075089-100ah-12v-lifepo4.jpg",
+      "local_backup_path": "/Users/rashedulislam/MAXIT/Maxit_Ecom/maxit_ecom/backups/product_images_backup/battery-bms-charger/fb5cd9cea793.jpg",
+      "products": [
+        "12V 100Ah LiFePO4 Lithium Battery with 6000+Deep Cycles,Smart 100A BMS"
+      ],
+      "details": {
+        "banner_boxes": [
+          [
+            319,
+            "www.nanopower.com.bd Authorize reseller in Bangladesh"
+          ]
+        ],
+        "green_top_y": null,
+        "orig_size": [
+          767,
+          396
+        ],
+        "crop_y": 309
+      },
+      "crop_y": 309
+    }
+  ],
+  "group3_items": [
+    {
+      "url": "https://www.nanopowerbd.com/public/uploads/product/1778314839-lipo4-cell.jpg",
+      "local_backup_path": "/Users/rashedulislam/MAXIT/Maxit_Ecom/maxit_ecom/backups/product_images_backup/battery-bms-charger/0209fb2b7dcc.jpg",
+      "products": [
+        "4A Active Balancing Current 4s 8s 16s 24s Active Equalizer BMS for Lithium Ion Battery",
+        "15Ah-3.2V Life Po4 Battery",
+        "Lifepo4 3.2V 173Ah Grade A Battery 6000+Cycle life Cells For DIY 12V 24V 36V 48V Solar RV EV",
+        "1.5V AAA rechargeable battery(2pcs pack)",
+        "EVE 230AH 3.2V LiFePO4 Battery Cells",
+        "EVE 230AH 3.2V LiFePO4 Battery Cells",
+        "12V 10A Digital Display Intelligent Battery Charger 100V-240V",
+        "12V 100Ah LiFePO4 Lithium Battery with 6000+Deep Cycles,Smart 100A BMS",
+        "JK Smart Bluetooth BMS 8S  - 20S 100A"
+      ],
+      "details": {
+        "other_boxes": [
+          [
+            241,
+            "www.nanopowerbd.com"
+          ]
+        ]
+      }
+    },
+    {
+      "url": "https://www.nanopowerbd.com/public/uploads/product/1787240689-3.2v-173a-ev-lifepo4.jpg",
+      "local_backup_path": "/Users/rashedulislam/MAXIT/Maxit_Ecom/maxit_ecom/backups/product_images_backup/battery-bms-charger/2c0ce2478cb9.jpg",
+      "products": [
+        "4A Active Balancing Current 4s 8s 16s 24s Active Equalizer BMS for Lithium Ion Battery",
+        "15Ah-3.2V Life Po4 Battery",
+        "Lifepo4 3.2V 173Ah Grade A Battery 6000+Cycle life Cells For DIY 12V 24V 36V 48V Solar RV EV",
+        "Lifepo4 3.2V 173Ah Grade A Battery 6000+Cycle life Cells For DIY 12V 24V 36V 48V Solar RV EV",
+        "1.5V AAA rechargeable battery(2pcs pack)",
+        "EVE 230AH 3.2V LiFePO4 Battery Cells",
+        "12V 10A Digital Display Intelligent Battery Charger 100V-240V",
+        "12V 100Ah LiFePO4 Lithium Battery with 6000+Deep Cycles,Smart 100A BMS",
+        "JK Smart Bluetooth BMS 8S  - 20S 100A"
+      ],
+      "details": {
+        "other_boxes": [
+          [
+            122,
+            "www.nanopower.com.bd"
+          ]
+        ]
+      }
+    }
+  ],
+  "group4_items": [
+    {
+      "url": "https://www.nanopowerbd.com/public/uploads/product/1787039236-15ah-3.2v-lifepo4.jpg",
+      "local_backup_path": "/Users/rashedulislam/MAXIT/Maxit_Ecom/maxit_ecom/backups/product_images_backup/battery-bms-charger/9d1a4f3792c2.jpg",
+      "products": [
+        "4A Active Balancing Current 4s 8s 16s 24s Active Equalizer BMS for Lithium Ion Battery",
+        "15Ah-3.2V Life Po4 Battery",
+        "15Ah-3.2V Life Po4 Battery",
+        "Lifepo4 3.2V 173Ah Grade A Battery 6000+Cycle life Cells For DIY 12V 24V 36V 48V Solar RV EV",
+        "1.5V AAA rechargeable battery(2pcs pack)",
+        "EVE 230AH 3.2V LiFePO4 Battery Cells",
+        "12V 10A Digital Display Intelligent Battery Charger 100V-240V",
+        "12V 100Ah LiFePO4 Lithium Battery with 6000+Deep Cycles,Smart 100A BMS",
+        "JK Smart Bluetooth BMS 8S  - 20S 100A"
+      ],
+      "details": {
+        "reason": "Green band detected but text inconclusive",
+        "green_top_y": 691
+      }
+    }
+  ]
+}

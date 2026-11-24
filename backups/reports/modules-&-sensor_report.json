@@ -1,0 +1,202 @@
+{
+  "category": "MODULES & SENSOR",
+  "slug": "modules-&-sensor",
+  "total_images": 22,
+  "clean_count": 15,
+  "croppable_count": 0,
+  "elsewhere_count": 0,
+  "notsure_count": 7,
+  "group2_items": [],
+  "group3_items": [],
+  "group4_items": [
+    {
+      "url": "https://www.nanopowerbd.com/public/uploads/product/1777651502-neo-6m-gps-module.jpg",
+      "local_backup_path": "/Users/rashedulislam/MAXIT/Maxit_Ecom/maxit_ecom/backups/product_images_backup/modules-&-sensor/eade80c32a66.jpg",
+      "products": [
+        "ESP32 NodeMCU",
+        "Arduino Uno R3 with cable",
+        "Arduino Pro Mini 328 5V 16MHz",
+        "ESP8266 CH340 NodeMCU Wifi Module Lua V3",
+        "STM32",
+        "ESP32-CAMERA WiFi + Bluetooth Camera Module",
+        "NEO 6M GPS Module",
+        "NEO 6M GPS Module",
+        "DS1302 RTC Module",
+        "Buck Converter LM2596",
+        "I2C 16X2 LCD Module",
+        "16X2 LCD display",
+        "PIR Motion Sensor Detector Module HC-SR501",
+        "IR Infrared Obstacle Avoidance Sensor",
+        "Microwave-Radar-Sensor-Module-(RCWL-0516)",
+        "Smart-Motion-Sensor-Light-Holder-for-Indoor-and-Outddor",
+        "HC-SR04",
+        "Touch Sensor",
+        "LDR - 5pcs.",
+        "ACS712 current sensor - 20A",
+        "10K Temp Sensor",
+        "FLOAT SWITCH Water Level Sensor",
+        "Rain drop detction sensor"
+      ],
+      "details": {
+        "reason": "Green band detected but text inconclusive",
+        "green_top_y": 699
+      }
+    },
+    {
+      "url": "https://www.nanopowerbd.com/public/uploads/product/1777827772-16x2-lcd.jpg",
+      "local_backup_path": "/Users/rashedulislam/MAXIT/Maxit_Ecom/maxit_ecom/backups/product_images_backup/modules-&-sensor/82f05fddf597.jpg",
+      "products": [
+        "ESP32 NodeMCU",
+        "Arduino Uno R3 with cable",
+        "Arduino Pro Mini 328 5V 16MHz",
+        "ESP8266 CH340 NodeMCU Wifi Module Lua V3",
+        "STM32",
+        "ESP32-CAMERA WiFi + Bluetooth Camera Module",
+        "NEO 6M GPS Module",
+        "DS1302 RTC Module",
+        "Buck Converter LM2596",
+        "I2C 16X2 LCD Module",
+        "16X2 LCD display",
+        "16X2 LCD display",
+        "PIR Motion Sensor Detector Module HC-SR501",
+        "IR Infrared Obstacle Avoidance Sensor",
+        "Microwave-Radar-Sensor-Module-(RCWL-0516)",
+        "Smart-Motion-Sensor-Light-Holder-for-Indoor-and-Outddor",
+        "HC-SR04",
+        "Touch Sensor",
+        "LDR - 5pcs.",
+        "ACS712 current sensor - 20A",
+        "10K Temp Sensor",
+        "FLOAT SWITCH Water Level Sensor",
+        "Rain drop detction sensor"
+      ],
+      "details": {
+        "reason": "Green band detected but text inconclusive",
+        "green_top_y": 114
+      }
+    },
+    {
+      "url": "https://www.nanopowerbd.com/public/uploads/product/1777828257-i2c-lcd-module.jpg",
+      "local_backup_path": "/Users/rashedulislam/MAXIT/Maxit_Ecom/maxit_ecom/backups/product_images_backup/modules-&-sensor/b40cb7188538.jpg",
+      "products": [
+        "ESP32 NodeMCU",
+        "Arduino Uno R3 with cable",
+        "Arduino Pro Mini 328 5V 16MHz",
+        "ESP8266 CH340 NodeMCU Wifi Module Lua V3",
+        "STM32",
+        "ESP32-CAMERA WiFi + Bluetooth Camera Module",
+        "NEO 6M GPS Module",
+        "DS1302 RTC Module",
+        "Buck Converter LM2596",
+        "I2C 16X2 LCD Module",
+        "I2C 16X2 LCD Module",
+        "16X2 LCD display",
+        "PIR Motion Sensor Detector Module HC-SR501",
+        "IR Infrared Obstacle Avoidance Sensor",
+        "Microwave-Radar-Sensor-Module-(RCWL-0516)",
+        "Smart-Motion-Sensor-Light-Holder-for-Indoor-and-Outddor",
+        "HC-SR04",
+        "Touch Sensor",
+        "LDR - 5pcs.",
+        "ACS712 current sensor - 20A",
+        "10K Temp Sensor",
+        "FLOAT SWITCH Water Level Sensor",
+        "Rain drop detction sensor"
+      ],
+      "details": {
+        "reason": "Green band detected but text inconclusive",
+        "green_top_y": 162
+      }
+    },
+    {
+      "url": "https://www.nanopowerbd.com/public/uploads/product/1778315428-hc-sr04.jpg",
+      "local_backup_path": "/Users/rashedulislam/MAXIT/Maxit_Ecom/maxit_ecom/backups/product_images_backup/modules-&-sensor/e409a7c2f0e0.jpg",
+      "products": [
+        "ESP32 NodeMCU",
+        "Arduino Uno R3 with cable",
+        "Arduino Pro Mini 328 5V 16MHz",
+        "ESP8266 CH340 NodeMCU Wifi Module Lua V3",
+        "STM32",
+        "ESP32-CAMERA WiFi + Bluetooth Camera Module",
+        "NEO 6M GPS Module",
+        "DS1302 RTC Module",
+        "Buck Converter LM2596",
+        "I2C 16X2 LCD Module",
+        "16X2 LCD display",
+        "PIR Motion Sensor Detector Module HC-SR501",
+        "IR Infrared Obstacle Avoidance Sensor",
+        "Microwave-Radar-Sensor-Module-(RCWL-0516)",
+        "Smart-Motion-Sensor-Light-Holder-for-Indoor-and-Outddor",
+        "HC-SR04",
+        "HC-SR04",
+        "Touch Sensor",
+        "LDR - 5pcs.",
+        "ACS712 current sensor - 20A",
+        "10K Temp Sensor",
+        "FLOAT SWITCH Water Level Sensor",
+        "Rain drop detction sensor"
+      ],
+      "details": {
+        "reason": "Green band detected but text inconclusive",
+        "green_top_y": 128
+      }
+    },
+    {
+      "url": "https://www.nanopowerbd.com/public/uploads/product/1782886987-acs712.jpg",
+      "local_backup_path": "/Users/rashedulislam/MAXIT/Maxit_Ecom/maxit_ecom/backups/product_images_backup/modules-&-sensor/280c8ef05399.jpg",
+      "products": [
+        "ESP32 NodeMCU",
+        "Arduino Uno R3 with cable",
+        "Arduino Pro Mini 328 5V 16MHz",
+        "ESP8266 CH340 NodeMCU Wifi Module Lua V3",
+        "STM32",
+        "ESP32-CAMERA WiFi + Bluetooth Camera Module",
+        "NEO 6M GPS Module",
+        "DS1302 RTC Module",
+        "Buck Converter LM2596",
+        "I2C 16X2 LCD Module",
+        "16X2 LCD display",
+        "PIR Motion Sensor Detector Module HC-SR501",
+        "IR Infrared Obstacle Avoidance Sensor",
+        "Microwave-Radar-Sensor-Module-(RCWL-0516)",
+        "Smart-Motion-Sensor-Light-Holder-for-Indoor-and-Outddor",
+        "HC-SR04",
+        "Touch Sensor",
+        "LDR - 5pcs.",
+        "ACS712 current sensor - 20A",
+        "ACS712 current sensor - 20A",
+        "10K Temp Sensor",
+        "FLOAT SWITCH Water Level Sensor",
+        "Rain drop detction sensor"
+      ],
+      "details": {
+        "reason": "Green band detected but text inconclusive",
+        "green_top_y": 262
+      }
+    },
+    {
+      "url": "https://www.nanopowerbd.com/public/uploads/product/1782894302-arduino-uno.jpg",
+      "local_backup_path": "/Users/rashedulislam/MAXIT/Maxit_Ecom/maxit_ecom/backups/product_images_backup/modules-&-sensor/50028fda8b54.jpg",
+      "products": [
+        "Arduino Uno R3 with cable",
+        "Arduino Uno R3 with cable"
+      ],
+      "details": {
+        "reason": "Green band detected but text inconclusive",
+        "green_top_y": 400
+      }
+    },
+    {
+      "url": "https://www.nanopowerbd.com/public/uploads/product/1787045218-stm32.jpg",
+      "local_backup_path": "/Users/rashedulislam/MAXIT/Maxit_Ecom/maxit_ecom/backups/product_images_backup/modules-&-sensor/568bf1bce163.jpg",
+      "products": [
+        "STM32",
+        "STM32"
+      ],
+      "details": {
+        "reason": "Green band detected but text inconclusive",
+        "green_top_y": 368
+      }
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "category": "IGBT-FET-DIODE-TRANSISTOR",
+  "slug": "igbt-fet-diode-transistor",
+  "total_images": 14,
+  "clean_count": 13,
+  "croppable_count": 0,
+  "elsewhere_count": 1,
+  "notsure_count": 0,
+  "group2_items": [],
+  "group3_items": [
+    {
+      "url": "https://www.nanopowerbd.com/public/uploads/product/1784365603-5n100.jfif",
+      "local_backup_path": "/Users/rashedulislam/MAXIT/Maxit_Ecom/maxit_ecom/backups/product_images_backup/igbt-fet-diode-transistor/bd7a489153e7.jfif",
+      "products": [
+        "MBR4060PT Schottky Diode",
+        "MBQ60T65PES - IGBT",
+        "IRFB4110",
+        "MS5N100FT MOSFET 1000V5A",
+        "IRFB4110",
+        "FQPF 5N100",
+        "FQPF 5N100",
+        "IRF3205",
+        "IRF2807",
+        "IRF2807",
+        "BC327 (100pcs pack)",
+        "BC337 (100pcs pack)",
+        "MBR20100C 20A 100V Schottky Diode",
+        "1N4007 (100pcs pack)",
+        "12V/13V - 1w zener diode(100pcs pack)"
+      ],
+      "details": {
+        "other_boxes": [
+          [
+            688,
+            "www.nanopowerbd.com"
+          ]
+        ]
+      }
+    }
+  ],
+  "group4_items": []
+}

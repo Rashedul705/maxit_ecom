@@ -1,0 +1,65 @@
+{
+  "category": "SERVICE & MAINTENANCE",
+  "slug": "service-&-maintenance",
+  "total_images": 12,
+  "clean_count": 10,
+  "croppable_count": 1,
+  "elsewhere_count": 1,
+  "notsure_count": 0,
+  "group2_items": [
+    {
+      "url": "https://www.nanopowerbd.com/public/uploads/product/1777471554-computer-repair-services-flyer-advertisement---made-with-postermywall.jpg",
+      "local_backup_path": "/Users/rashedulislam/MAXIT/Maxit_Ecom/maxit_ecom/backups/product_images_backup/service-&-maintenance/0249e27ddfa6.jpg",
+      "products": [
+        "Steel & Metal Fabrication",
+        "IPS-Inverter Service",
+        "DC AC Inverter Service & Maintenance",
+        "HT Distribution Transformer Service & Maintence",
+        "PC & Laptop Service & Maintenance",
+        "PC & Laptop Service & Maintenance",
+        "Servo Stabilizer/AVR Service & Maintenance(3Phase & Single Phase)",
+        "VFD - Motor drive repair"
+      ],
+      "details": {
+        "banner_boxes": [
+          [
+            796,
+            "CALL NOW: + 8801733115391"
+          ]
+        ],
+        "green_top_y": 774,
+        "orig_size": [
+          695,
+          900
+        ],
+        "crop_y": 769
+      },
+      "crop_y": 769
+    }
+  ],
+  "group3_items": [
+    {
+      "url": "https://www.nanopowerbd.com/public/uploads/product/1779291101-vfd-repair-1.jpg",
+      "local_backup_path": "/Users/rashedulislam/MAXIT/Maxit_Ecom/maxit_ecom/backups/product_images_backup/service-&-maintenance/f8b1113bcdb1.jpg",
+      "products": [
+        "Steel & Metal Fabrication",
+        "IPS-Inverter Service",
+        "DC AC Inverter Service & Maintenance",
+        "HT Distribution Transformer Service & Maintence",
+        "PC & Laptop Service & Maintenance",
+        "Servo Stabilizer/AVR Service & Maintenance(3Phase & Single Phase)",
+        "VFD - Motor drive repair",
+        "VFD - Motor drive repair"
+      ],
+      "details": {
+        "other_boxes": [
+          [
+            669,
+            "s\u00e9curit\u00e9 avant l'installation ou l'utilisation."
+          ]
+        ]
+      }
+    }
+  ],
+  "group4_items": []
+}

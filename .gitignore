@@ -30,3 +30,6 @@ api/output/
 Thumbs.db
 *.log
 backend/*.log
+backups/product_images_backup/
+backups/test_crops/
+scripts/ocr

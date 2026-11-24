@@ -1,0 +1,64 @@
+{
+  "category": "LT-HT POWER GOODS",
+  "slug": "lt-ht-power-goods",
+  "total_images": 25,
+  "clean_count": 23,
+  "croppable_count": 1,
+  "elsewhere_count": 1,
+  "notsure_count": 0,
+  "group2_items": [
+    {
+      "url": "https://www.nanopowerbd.com/public/uploads/product/1777310737-shrink-tube.jpg",
+      "local_backup_path": "/Users/rashedulislam/MAXIT/Maxit_Ecom/maxit_ecom/backups/product_images_backup/lt-ht-power-goods/73918797f26e.jpg",
+      "products": [
+        "heat-shrink-11kv-cable-termination-out-door"
+      ],
+      "details": {
+        "banner_boxes": [
+          [
+            477,
+            "www.nanopowerbd.com \u2022 www.shebaloy.com"
+          ]
+        ],
+        "green_top_y": null,
+        "orig_size": [
+          674,
+          507
+        ],
+        "crop_y": 467
+      },
+      "crop_y": 467
+    }
+  ],
+  "group3_items": [
+    {
+      "url": "https://www.nanopowerbd.com/public/uploads/product/1777309597-dropout-fuse-wire-cutout.jpg",
+      "local_backup_path": "/Users/rashedulislam/MAXIT/Maxit_Ecom/maxit_ecom/backups/product_images_backup/lt-ht-power-goods/315e81108cf0.jpg",
+      "products": [
+        "Single Phase Stabilizer - 1000VA - 220V",
+        "ACB",
+        "3Phase AVR/Stabilizer",
+        "DC Voltage Regulator 3V to 24V - 5A",
+        "Distribution Transformer 11KV/33KV - 440V - 220V",
+        "Step up & Step down Transformer",
+        "11KV Isolator",
+        "Dropout fuse wire-cutout",
+        "Dropout fuse wire-cutout",
+        "heat-shrink-11kv-cable-termination-out-door",
+        "PFI Plant",
+        "Electrical Distribution Panel",
+        "Lightening arrester",
+        "Dropout Fuse & Arrester"
+      ],
+      "details": {
+        "other_boxes": [
+          [
+            184,
+            "www.nanopowerbd.com"
+          ]
+        ]
+      }
+    }
+  ],
+  "group4_items": []
+}

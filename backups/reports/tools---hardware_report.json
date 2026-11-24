@@ -1,0 +1,55 @@
+{
+  "category": "TOOLS - HARDWARE",
+  "slug": "tools---hardware",
+  "total_images": 17,
+  "clean_count": 13,
+  "croppable_count": 0,
+  "elsewhere_count": 2,
+  "notsure_count": 1,
+  "group2_items": [],
+  "group3_items": [
+    {
+      "url": "https://www.nanopowerbd.com/public/uploads/product/1778314839-lipo4-cell.jpg",
+      "local_backup_path": "/Users/rashedulislam/MAXIT/Maxit_Ecom/maxit_ecom/backups/product_images_backup/tools---hardware/0209fb2b7dcc.jpg",
+      "products": [
+        "Handheld Spot Welding Machine Portable"
+      ],
+      "details": {
+        "other_boxes": [
+          [
+            241,
+            "www.nanopowerbd.com"
+          ]
+        ]
+      }
+    },
+    {
+      "url": "https://www.nanopowerbd.com/public/uploads/product/1787240689-3.2v-173a-ev-lifepo4.jpg",
+      "local_backup_path": "/Users/rashedulislam/MAXIT/Maxit_Ecom/maxit_ecom/backups/product_images_backup/tools---hardware/2c0ce2478cb9.jpg",
+      "products": [
+        "Handheld Spot Welding Machine Portable"
+      ],
+      "details": {
+        "other_boxes": [
+          [
+            122,
+            "www.nanopower.com.bd"
+          ]
+        ]
+      }
+    }
+  ],
+  "group4_items": [
+    {
+      "url": "https://www.nanopowerbd.com/public/uploads/product/1787039236-15ah-3.2v-lifepo4.jpg",
+      "local_backup_path": "/Users/rashedulislam/MAXIT/Maxit_Ecom/maxit_ecom/backups/product_images_backup/tools---hardware/9d1a4f3792c2.jpg",
+      "products": [
+        "Handheld Spot Welding Machine Portable"
+      ],
+      "details": {
+        "reason": "Green band detected but text inconclusive",
+        "green_top_y": 691
+      }
+    }
+  ]
+}

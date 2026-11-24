@@ -1,0 +1,58 @@
+{
+  "category": "CUSTOMIZED CIRCUIT - PCB",
+  "slug": "customized-circuit---pcb",
+  "total_images": 6,
+  "clean_count": 4,
+  "croppable_count": 2,
+  "elsewhere_count": 0,
+  "notsure_count": 0,
+  "group2_items": [
+    {
+      "url": "https://www.nanopowerbd.com/public/uploads/product/1777472207-chinese-sukam-board.jpg",
+      "local_backup_path": "/Users/rashedulislam/MAXIT/Maxit_Ecom/maxit_ecom/backups/product_images_backup/customized-circuit---pcb/6bf38ec73a69.jpg",
+      "products": [
+        "IPS-UPS Circuit Board (Modified sine wave)",
+        "IPS-UPS Circuit Board (Modified sine wave)",
+        "Servo AVR-stabilizer Control card",
+        "Solar VFD 1KW -10KW"
+      ],
+      "details": {
+        "banner_boxes": [],
+        "green_top_y": 1137,
+        "orig_size": [
+          1080,
+          1578
+        ],
+        "crop_y": 1132
+      },
+      "crop_y": 1132
+    },
+    {
+      "url": "https://www.nanopowerbd.com/public/uploads/product/1783951992-vfd.jpg",
+      "local_backup_path": "/Users/rashedulislam/MAXIT/Maxit_Ecom/maxit_ecom/backups/product_images_backup/customized-circuit---pcb/78ded4acb619.jpg",
+      "products": [
+        "IPS-UPS Circuit Board (Modified sine wave)",
+        "Servo AVR-stabilizer Control card",
+        "Solar VFD 1KW -10KW",
+        "Solar VFD 1KW -10KW"
+      ],
+      "details": {
+        "banner_boxes": [
+          [
+            1100,
+            "www.nanopower.com.bd"
+          ]
+        ],
+        "green_top_y": null,
+        "orig_size": [
+          1759,
+          1307
+        ],
+        "crop_y": 1090
+      },
+      "crop_y": 1090
+    }
+  ],
+  "group3_items": [],
+  "group4_items": []
+}
