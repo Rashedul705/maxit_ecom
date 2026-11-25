@@ -316,7 +316,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
               </Link>
             </div>
           ) : (
-            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3.5 sm:gap-4">
               {items.map(product => (
                 <ProductCard key={product.id} product={product} />
               ))}
