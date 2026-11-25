@@ -36,6 +36,7 @@ export const Header: React.FC<HeaderProps> = ({ categories = [], settings, onTog
   const { wishlistCount } = useWishlist();
 
   const [customer, setCustomer] = useState<{ name?: string; email?: string } | null>(null);
+  const [mounted, setMounted] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [suggestions, setSuggestions] = useState<SearchSuggestion[]>([]);
   const [isLoadingSuggestions, setIsLoadingSuggestions] = useState(false);
@@ -46,6 +47,7 @@ export const Header: React.FC<HeaderProps> = ({ categories = [], settings, onTog
   const catDropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    setMounted(true);
     try {
       const raw = localStorage.getItem('maxitshop_customer');
       if (raw) {
@@ -424,7 +426,7 @@ export const Header: React.FC<HeaderProps> = ({ categories = [], settings, onTog
             </div>
 
             {/* Dynamic Navigation Links (Admin Controlled) */}
-            <div className="flex items-center ml-2 overflow-x-auto scrollbar-none whitespace-nowrap">
+            <div className="flex items-center ml-2 overflow-x-auto scrollbar-none whitespace-nowrap" suppressHydrationWarning>
               {(settings?.navLinks && settings.navLinks.length > 0
                 ? settings.navLinks.filter(
                     (l) => l.label.toLowerCase() !== 'track order' && l.url !== '/track-order'
@@ -438,7 +440,7 @@ export const Header: React.FC<HeaderProps> = ({ categories = [], settings, onTog
               ).map((link, idx) => (
                 link.isExternal ? (
                   <a
-                    key={idx}
+                    key={`nav-link-${link.url}-${idx}`}
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -448,7 +450,7 @@ export const Header: React.FC<HeaderProps> = ({ categories = [], settings, onTog
                   </a>
                 ) : (
                   <Link
-                    key={idx}
+                    key={`nav-link-${link.url}-${idx}`}
                     href={link.url}
                     className="px-4 py-3 text-xs sm:text-sm font-semibold text-gray-200 hover:text-[#FF6600] transition-colors"
                   >
@@ -458,6 +460,7 @@ export const Header: React.FC<HeaderProps> = ({ categories = [], settings, onTog
               ))}
               {/* Solar System Builder highlighted tool button */}
               <Link
+                key="solar-builder-nav-btn"
                 href="/solar-system-builder"
                 className="ml-2 px-3 py-1.5 bg-[#FF6600] hover:bg-[#e55c00] text-white text-xs font-black rounded-md flex items-center gap-1.5 transition-all shadow-xs"
               >
