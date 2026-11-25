@@ -81,8 +81,7 @@ export const SOLAR_SLOTS: SolarSlotConfig[] = [
     description: 'Pure Sine Wave Hybrid, On-Grid, or Off-Grid Solar Power Inverter',
     iconName: 'Zap',
     defaultCategory: 'solar-inverter',
-    subCategory: 'hybrid-solar-inverter',
-    fallbackSearch: 'solar inverter',
+    fallbackSearch: 'inverter',
     defaultQty: 1,
     minQty: 1,
     maxQty: 4,
@@ -97,8 +96,7 @@ export const SOLAR_SLOTS: SolarSlotConfig[] = [
     description: 'LiFePO4 Lithium Battery, Wall-Mounted, Rack or Deep Cycle Bank',
     iconName: 'BatteryCharging',
     defaultCategory: 'solar-battery',
-    subCategory: 'lifepo4-battery',
-    fallbackSearch: 'battery lifepo4',
+    fallbackSearch: 'battery',
     defaultQty: 1,
     minQty: 1,
     maxQty: 16,
@@ -271,27 +269,39 @@ export const SolarSystemBuilder: React.FC = () => {
           search: modalSearch.trim() || undefined,
           brand: modalBrand !== 'all' ? modalBrand : undefined,
           inStock: modalInStockOnly ? 'true' : undefined,
-          limit: 36
+          limit: 48
         });
 
         if (!isCancelled) {
           let items = res.items || [];
-          // If subcategory has few or no items, fallback to searching with fallback query
-          if (items.length === 0 && activeSlot.fallbackSearch && !modalSearch) {
+          // If subcategory has few or no items, fallback to searching the whole category without subcategory
+          if (items.length === 0 && activeSlot.subCategory) {
             const fallbackRes = await api.getProducts({
               category: activeSlot.defaultCategory,
-              search: activeSlot.fallbackSearch,
+              search: modalSearch.trim() || undefined,
               brand: modalBrand !== 'all' ? modalBrand : undefined,
               inStock: modalInStockOnly ? 'true' : undefined,
-              limit: 36
+              limit: 48
             });
             items = fallbackRes.items || [];
           }
+
+          // If still no items and there is a fallback search query
+          if (items.length === 0 && activeSlot.fallbackSearch && !modalSearch.trim()) {
+            const fallbackSearchRes = await api.getProducts({
+              search: activeSlot.fallbackSearch,
+              brand: modalBrand !== 'all' ? modalBrand : undefined,
+              inStock: modalInStockOnly ? 'true' : undefined,
+              limit: 48
+            });
+            items = fallbackSearchRes.items || [];
+          }
+
           setModalProducts(items);
 
-          if (res.filterMeta?.availableBrands) {
-            setAvailableBrands(res.filterMeta.availableBrands);
-          }
+          // Extract brands dynamically from products to always provide accurate brand filters
+          const allBrands = Array.from(new Set(items.map(p => p.brand).filter(Boolean))) as string[];
+          setAvailableBrands(allBrands.length > 0 ? allBrands : (res.filterMeta?.availableBrands || []));
         }
       } catch (err) {
         console.error('Error fetching slot products:', err);
