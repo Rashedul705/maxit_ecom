@@ -16,7 +16,8 @@ import {
   User,
   LogIn,
   Heart,
-  Phone
+  Phone,
+  Sun
 } from 'lucide-react';
 import { useCart } from '@/lib/cartContext';
 import { useWishlist } from '@/lib/wishlistContext';
@@ -455,6 +456,14 @@ export const Header: React.FC<HeaderProps> = ({ categories = [], settings, onTog
                   </Link>
                 )
               ))}
+              {/* Solar System Builder highlighted tool button */}
+              <Link
+                href="/solar-system-builder"
+                className="ml-2 px-3 py-1.5 bg-[#FF6600] hover:bg-[#e55c00] text-white text-xs font-black rounded-md flex items-center gap-1.5 transition-all shadow-xs"
+              >
+                <Sun className="w-3.5 h-3.5" />
+                <span>SOLAR BUILDER</span>
+              </Link>
             </div>
           </div>
 

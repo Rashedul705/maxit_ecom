@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { X, ChevronRight, ChevronDown, Phone, MapPin, ShoppingBag, Truck, Sparkles } from 'lucide-react';
+import { X, ChevronRight, ChevronDown, Phone, MapPin, ShoppingBag, Truck, Sparkles, Sun } from 'lucide-react';
 import { Category, SiteSetting } from '@/lib/types';
 
 interface MobileDrawerProps {
@@ -58,9 +58,17 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, onClose, cat
         {/* Quick Highlights */}
         <div className="p-3 bg-slate-50 border-b border-slate-200 grid grid-cols-2 gap-2 text-xs font-semibold">
           <Link
+            href="/solar-system-builder"
+            onClick={onClose}
+            className="col-span-2 flex items-center justify-center gap-2 p-2.5 bg-orange-500 hover:bg-orange-600 text-white rounded-lg font-bold shadow-xs transition-colors"
+          >
+            <Sun className="w-4 h-4 text-white" />
+            <span>⚡ Solar System Builder</span>
+          </Link>
+          <Link
             href="/shop"
             onClick={onClose}
-            className="flex items-center justify-center gap-1.5 p-2 bg-orange-50 text-[#FF6600] rounded-lg border border-orange-200/60 hover:bg-orange-100 transition-colors"
+            className="flex items-center justify-center gap-1.5 p-2 bg-white text-slate-800 rounded-lg border border-slate-200 hover:text-[#FF6600] transition-colors"
           >
             <ShoppingBag className="w-4 h-4 text-[#FF6600]" />
             <span>Shop All</span>
@@ -68,7 +76,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, onClose, cat
           <Link
             href="/track-order"
             onClick={onClose}
-            className="flex items-center justify-center gap-1.5 p-2 bg-slate-100 text-slate-800 rounded-lg border border-slate-200 hover:text-[#FF6600] transition-colors"
+            className="flex items-center justify-center gap-1.5 p-2 bg-white text-slate-800 rounded-lg border border-slate-200 hover:text-[#FF6600] transition-colors"
           >
             <Truck className="w-4 h-4 text-[#FF6600]" />
             <span>Track Order</span>

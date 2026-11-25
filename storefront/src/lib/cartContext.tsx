@@ -7,6 +7,7 @@ import { CartItem, Product } from './types';
 interface CartContextType {
   items: CartItem[];
   addToCart: (product: Product, quantity?: number, openDrawer?: boolean) => void;
+  addMultipleToCart: (items: { product: Product; quantity: number }[], openDrawer?: boolean) => void;
   removeFromCart: (id: string) => void;
   updateQuantity: (id: string, quantity: number) => void;
   clearCart: () => void;
@@ -86,6 +87,38 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
+  const addMultipleToCart = (newItems: { product: Product; quantity: number }[], openDrawer = true) => {
+    if (!newItems || newItems.length === 0) return;
+    setItems(prev => {
+      const updated = [...prev];
+      for (const { product, quantity } of newItems) {
+        if (!product || quantity <= 0) continue;
+        const existingIdx = updated.findIndex(item => item.id === product.id);
+        if (existingIdx > -1) {
+          updated[existingIdx] = {
+            ...updated[existingIdx],
+            quantity: updated[existingIdx].quantity + quantity
+          };
+        } else {
+          updated.push({
+            id: product.id,
+            title: product.title,
+            slug: product.slug,
+            price: product.price,
+            oldPrice: product.oldPrice,
+            image: product.images[0] || 'https://images.unsplash.com/photo-1526738549149-8e07eca6c147?w=600&q=80',
+            quantity
+          });
+        }
+      }
+      return updated;
+    });
+    if (openDrawer) {
+      setCartView('cart');
+      setIsCartOpen(true);
+    }
+  };
+
   const removeFromCart = (id: string) => {
     setItems(prev => prev.filter(item => item.id !== id));
   };
@@ -129,6 +162,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
       value={{
         items,
         addToCart,
+        addMultipleToCart,
         removeFromCart,
         updateQuantity,
         clearCart,
