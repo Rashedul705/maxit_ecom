@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Product, Category, Brand } from '../types';
 import { adminApi } from '../api';
-import { Plus, Search, Edit2, Trash2, ChevronLeft, ChevronRight, Check, X, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { Plus, Search, Edit2, Trash2, ChevronLeft, ChevronRight, Check, X, AlertCircle, CheckCircle2, Scissors } from 'lucide-react';
 import { ProductModal } from '../components/ProductModal';
 import { ProductEditorView } from '../components/ProductEditorView';
+import { ImageCropperModal } from '../components/ImageCropperModal';
 import { Can } from '../components/Can';
 
 export const ProductsView: React.FC = () => {
@@ -18,6 +19,7 @@ export const ProductsView: React.FC = () => {
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
+  const [croppingProduct, setCroppingProduct] = useState<Product | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [viewMode, setViewMode] = useState<'list' | 'editor'>('list');
 
@@ -33,6 +35,21 @@ export const ProductsView: React.FC = () => {
   const showFeedback = (type: 'success' | 'error', text: string) => {
     setFeedbackMsg({ type, text });
     setTimeout(() => setFeedbackMsg(null), 3000);
+  };
+
+  const handleProductCropComplete = async (croppedUrl: string) => {
+    if (!croppingProduct) return;
+    try {
+      await adminApi.updateProduct(croppingProduct.id, {
+        image: croppedUrl
+      });
+      setProducts(prev => prev.map(p => p.id === croppingProduct.id ? { ...p, image: croppedUrl } : p));
+      showFeedback('success', 'Product image cropped and updated successfully!');
+    } catch (err: any) {
+      showFeedback('error', 'Failed to update cropped image: ' + err.message);
+    } finally {
+      setCroppingProduct(null);
+    }
   };
 
   const fetchAux = async () => {
@@ -504,16 +521,41 @@ export const ProductsView: React.FC = () => {
                         />
                       </td>
                       <td>
-                      <img
-                        src={p.image || p.images?.[0] || '/admin/product-placeholder.svg'}
-                        alt={p.title}
-                        onError={(e) => {
-                          e.currentTarget.onerror = null;
-                          e.currentTarget.src = '/admin/product-placeholder.svg';
-                        }}
-                        style={{ width: '48px', height: '48px', objectFit: 'contain', borderRadius: '6px', border: '1px solid #e2e8f0', background: '#fff' }}
-                      />
-                    </td>
+                        <div style={{ position: 'relative', width: '48px', height: '48px', display: 'inline-block' }}>
+                          <img
+                            src={p.image || p.images?.[0] || '/admin/product-placeholder.svg'}
+                            alt={p.title}
+                            onError={(e) => {
+                              e.currentTarget.onerror = null;
+                              e.currentTarget.src = '/admin/product-placeholder.svg';
+                            }}
+                            style={{ width: '48px', height: '48px', objectFit: 'contain', borderRadius: '6px', border: '1px solid #e2e8f0', background: '#fff' }}
+                          />
+                          <button
+                            type="button"
+                            onClick={() => setCroppingProduct(p)}
+                            title="Crop Image"
+                            style={{
+                              position: 'absolute',
+                              bottom: '-2px',
+                              right: '-2px',
+                              background: '#ff6600',
+                              color: '#fff',
+                              border: '1.5px solid #fff',
+                              borderRadius: '50%',
+                              width: '18px',
+                              height: '18px',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              cursor: 'pointer',
+                              boxShadow: '0 1px 3px rgba(0,0,0,0.3)'
+                            }}
+                          >
+                            <Scissors size={10} />
+                          </button>
+                        </div>
+                      </td>
                     <td>
                       <div style={{ fontWeight: 600, maxWidth: '280px' }}>{p.title}</div>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '3px' }}>
@@ -671,6 +713,14 @@ export const ProductsView: React.FC = () => {
                         <Can permission="products.edit">
                           <button
                             className="btn btn-secondary btn-sm"
+                            onClick={() => setCroppingProduct(p)}
+                            title="Crop Product Image"
+                            style={{ color: '#ea580c', borderColor: '#fed7aa', background: '#fff7ed' }}
+                          >
+                            <Scissors size={13} />
+                          </button>
+                          <button
+                            className="btn btn-secondary btn-sm"
                             onClick={() => { setEditingProduct(p); setViewMode('editor'); }}
                             title="Full Edit"
                           >
@@ -732,6 +782,15 @@ export const ProductsView: React.FC = () => {
           brands={brands}
           onClose={() => setIsModalOpen(false)}
           onSave={handleSaveProduct}
+        />
+      )}
+
+      {croppingProduct && (
+        <ImageCropperModal
+          imageUrl={croppingProduct.image || croppingProduct.images?.[0] || ''}
+          title={`Crop Product Image: ${croppingProduct.title}`}
+          onClose={() => setCroppingProduct(null)}
+          onCropComplete={handleProductCropComplete}
         />
       )}
     </div>

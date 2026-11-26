@@ -246,5 +246,23 @@ export const adminApi = {
       method: 'POST',
       body: JSON.stringify({ imageUrl })
     });
+  },
+
+  cropImageManual: (
+    imageUrl: string,
+    crop: { x: number; y: number; width: number; height: number; unit?: 'px' | 'percent' }
+  ): Promise<{ url: string; croppedWidth?: number; croppedHeight?: number }> => {
+    return request<{ url: string; croppedWidth?: number; croppedHeight?: number }>('/upload/crop-manual', {
+      method: 'POST',
+      body: JSON.stringify({ imageUrl, crop })
+    });
+  },
+
+  getProxyImageUrl: (url: string): string => {
+    if (!url) return '';
+    if (url.startsWith('/uploads/') || url.startsWith('http://localhost') || url.startsWith('http://127.0.0.1')) {
+      return url;
+    }
+    return `${API_BASE}/upload/proxy-image?url=${encodeURIComponent(url)}`;
   }
 };

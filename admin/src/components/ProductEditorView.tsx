@@ -20,10 +20,12 @@ import {
   Table as TableIcon,
   Sparkles,
   Code,
-  FileText
+  FileText,
+  Scissors
 } from 'lucide-react';
 import { adminApi } from '../api';
 import { htmlToCleanPlainText, plainTextToCleanHtml } from '../utils/htmlTextConverter';
+import { ImageCropperModal } from './ImageCropperModal';
 
 interface SpecItem {
   key: string;
@@ -74,6 +76,7 @@ export const ProductEditorView: React.FC<ProductEditorViewProps> = ({
   const [cleaningImage, setCleaningImage] = useState(false);
   const [mainUrlInput, setMainUrlInput] = useState('');
   const [showMainUrlInput, setShowMainUrlInput] = useState(false);
+  const [croppingTarget, setCroppingTarget] = useState<{ url: string; isMain: boolean; galleryIdx?: number } | null>(null);
 
   const handleCleanImage = async (imgUrl: string, isMain: boolean, galleryIdx?: number) => {
     if (!imgUrl) return;
@@ -925,32 +928,56 @@ export const ProductEditorView: React.FC<ProductEditorViewProps> = ({
                   </label>
 
                   {mainImage && (
-                    <button
-                      type="button"
-                      onClick={() => handleCleanImage(mainImage, true)}
-                      disabled={cleaningImage}
-                      style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '6px',
-                        padding: '10px 16px',
-                        borderRadius: '8px',
-                        border: '1px solid #ff6600',
-                        background: '#fff7ed',
-                        color: '#ea580c',
-                        fontSize: '13px',
-                        fontWeight: 600,
-                        cursor: cleaningImage ? 'not-allowed' : 'pointer'
-                      }}
-                      title="Automatically detect and crop bottom banner/competitor numbers"
-                    >
-                      <Sparkles size={15} />
-                      <span>{cleaningImage ? 'Cleaning Image...' : '⚡ Auto-Crop Banner'}</span>
-                    </button>
+                    <>
+                      <button
+                        type="button"
+                        onClick={() => setCroppingTarget({ url: mainImage, isMain: true })}
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '6px',
+                          padding: '10px 16px',
+                          borderRadius: '8px',
+                          border: '1px solid #ff6600',
+                          background: '#fff7ed',
+                          color: '#ea580c',
+                          fontSize: '13px',
+                          fontWeight: 700,
+                          cursor: 'pointer'
+                        }}
+                        title="Manually crop image and select exact area to keep"
+                      >
+                        <Scissors size={15} />
+                        <span>✂️ Crop Manually</span>
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => handleCleanImage(mainImage, true)}
+                        disabled={cleaningImage}
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '6px',
+                          padding: '10px 16px',
+                          borderRadius: '8px',
+                          border: '1px solid #cbd5e1',
+                          background: '#f8fafc',
+                          color: '#475569',
+                          fontSize: '13px',
+                          fontWeight: 600,
+                          cursor: cleaningImage ? 'not-allowed' : 'pointer'
+                        }}
+                        title="Automatically detect and crop bottom banner/competitor numbers"
+                      >
+                        <Sparkles size={15} />
+                        <span>{cleaningImage ? 'Cleaning Image...' : '⚡ Auto-Crop Banner'}</span>
+                      </button>
+                    </>
                   )}
                 </div>
                 <div style={{ fontSize: '11px', color: '#64748b' }}>
-                  Supports PNG, JPG, WEBP, AVIF. Click &quot;Auto-Crop Banner&quot; to clean competitor watermarks.
+                  Supports PNG, JPG, WEBP, AVIF. Use &quot;Crop Manually&quot; to select any custom area, or &quot;Auto-Crop Banner&quot; to remove watermarks automatically.
                 </div>
               </div>
             </div>
@@ -1104,6 +1131,23 @@ export const ProductEditorView: React.FC<ProductEditorViewProps> = ({
                       }}
                     >
                       Make Main
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => setCroppingTarget({ url: src, isMain: false, galleryIdx: idx })}
+                      title="Crop Manually (Select area to keep)"
+                      style={{
+                        border: 'none',
+                        background: 'transparent',
+                        color: '#ff6600',
+                        cursor: 'pointer',
+                        padding: '2px',
+                        display: 'flex',
+                        alignItems: 'center'
+                      }}
+                    >
+                      <Scissors size={11} />
                     </button>
 
                     <button
@@ -1870,6 +1914,24 @@ export const ProductEditorView: React.FC<ProductEditorViewProps> = ({
         </div>
 
       </div>
+
+      {croppingTarget && (
+        <ImageCropperModal
+          imageUrl={croppingTarget.url}
+          title={croppingTarget.isMain ? 'Crop Main Product Image' : `Crop Gallery Image #${(croppingTarget.galleryIdx || 0) + 1}`}
+          onClose={() => setCroppingTarget(null)}
+          onCropComplete={(newCroppedUrl) => {
+            if (croppingTarget.isMain) {
+              setMainImage(newCroppedUrl);
+            } else if (croppingTarget.galleryIdx !== undefined) {
+              const updated = [...galleryImages];
+              updated[croppingTarget.galleryIdx] = newCroppedUrl;
+              setGalleryImages(updated);
+            }
+            setCroppingTarget(null);
+          }}
+        />
+      )}
 
     </div>
   );
