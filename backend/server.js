@@ -74,7 +74,11 @@ const globalLimiter = rateLimit({
   max: 300,                   // 300 requests per minute per IP
   standardHeaders: true,
   legacyHeaders: false,
-  message: { success: false, message: 'Too many requests, please slow down.' }
+  message: { success: false, message: 'Too many requests, please slow down.' },
+  skip: (req) => {
+    const ip = req.ip || req.connection?.remoteAddress || '';
+    return ip === '127.0.0.1' || ip === '::1' || ip.includes('127.0.0.1');
+  }
 });
 const loginLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,  // 15 minutes

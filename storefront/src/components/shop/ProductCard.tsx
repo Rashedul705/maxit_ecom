@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
-import { ShoppingCart, Scale, Heart, Edit3 } from 'lucide-react';
+import { ShoppingCart, Zap, Check, Heart, Edit3 } from 'lucide-react';
 import { Product } from '@/lib/types';
 import { useCart } from '@/lib/cartContext';
 import { useWishlist } from '@/lib/wishlistContext';
@@ -17,47 +17,18 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const { addToCart, openCheckout } = useCart();
   const { isInWishlist, toggleWishlist } = useWishlist();
   const isAdmin = useAdminAuth();
-  const [isInCompare, setIsInCompare] = useState<boolean>(false);
+  const [isAdded, setIsAdded] = useState<boolean>(false);
 
-  // Sync compare status with localStorage
-  useEffect(() => {
-    const checkCompare = () => {
-      try {
-        const stored = localStorage.getItem('maxit_compare');
-        if (stored) {
-          const list: string[] = JSON.parse(stored);
-          setIsInCompare(list.includes(product.id));
-        } else {
-          setIsInCompare(false);
-        }
-      } catch {
-        // ignore storage errors
-      }
-    };
-
-    checkCompare();
-    window.addEventListener('maxit_compare_updated', checkCompare);
-    return () => window.removeEventListener('maxit_compare_updated', checkCompare);
-  }, [product.id]);
-
-  const handleToggleCompare = (e: React.MouseEvent) => {
+  const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    try {
-      const stored = localStorage.getItem('maxit_compare');
-      let list: string[] = stored ? JSON.parse(stored) : [];
-      if (list.includes(product.id)) {
-        list = list.filter(id => id !== product.id);
-        setIsInCompare(false);
-      } else {
-        list.push(product.id);
-        setIsInCompare(true);
-      }
-      localStorage.setItem('maxit_compare', JSON.stringify(list));
-      window.dispatchEvent(new Event('maxit_compare_updated'));
-    } catch {
-      // ignore
+    if (product.price === 0) {
+      window.location.href = 'tel:+8801733272445';
+      return;
     }
+    addToCart(product, 1, true);
+    setIsAdded(true);
+    setTimeout(() => setIsAdded(false), 1800);
   };
 
   const handleBuyNow = (e: React.MouseEvent) => {
@@ -205,32 +176,37 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           )}
         </div>
 
-        {/* Action Buttons: Buy Now & Add to Compare */}
+        {/* Action Buttons: Buy Now & Add to Cart */}
         <div className="flex items-center gap-1.5">
           {/* Buy Now Button */}
           <button
             type="button"
             onClick={handleBuyNow}
             disabled={product.stock <= 0}
-            className="flex-1 py-1.5 px-2 bg-[#FF6600] hover:bg-[#E65100] active:scale-[0.99] disabled:bg-gray-300 disabled:cursor-not-allowed text-white rounded-lg text-xs font-bold flex items-center justify-center gap-1 transition-all shadow-2xs cursor-pointer"
+            className="flex-1 py-1.5 px-2 bg-[#FF6600] hover:bg-[#E65100] active:scale-[0.99] disabled:bg-gray-300 disabled:cursor-not-allowed text-white rounded-lg text-[11px] sm:text-xs font-bold flex items-center justify-center gap-1 transition-all shadow-2xs cursor-pointer"
           >
-            <ShoppingCart className="w-3.5 h-3.5" />
-            <span>{product.price === 0 ? 'Call Now' : 'Buy Now'}</span>
+            <Zap className="w-3.5 h-3.5 fill-white shrink-0" />
+            <span className="truncate">{product.price === 0 ? 'Call Now' : 'Buy Now'}</span>
           </button>
 
-          {/* Add to Compare Button */}
+          {/* Add to Cart Button */}
           <button
             type="button"
-            onClick={handleToggleCompare}
-            className={`py-1.5 px-2 rounded-lg text-xs font-semibold border flex items-center justify-center gap-1 transition-all cursor-pointer shrink-0 ${
-              isInCompare
-                ? 'bg-orange-50 border-orange-200 text-[#FF6600]'
-                : 'bg-gray-50 border-gray-200 text-gray-600 hover:bg-gray-100 hover:text-gray-900'
-            }`}
-            title={isInCompare ? 'Remove from Compare' : 'Add to Compare'}
+            onClick={handleAddToCart}
+            disabled={product.stock <= 0}
+            className={`flex-1 py-1.5 px-2 rounded-lg text-[11px] sm:text-xs font-bold border flex items-center justify-center gap-1 transition-all cursor-pointer ${
+              isAdded
+                ? 'bg-emerald-50 border-emerald-300 text-emerald-700'
+                : 'bg-white hover:bg-orange-50 border-orange-200 text-[#FF6600] hover:border-[#FF6600]'
+            } disabled:bg-gray-100 disabled:border-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed shadow-2xs`}
+            title="Add to Cart"
           >
-            <Scale className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">{isInCompare ? 'Compared' : 'Compare'}</span>
+            {isAdded ? (
+              <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+            ) : (
+              <ShoppingCart className="w-3.5 h-3.5 text-[#FF6600] shrink-0" />
+            )}
+            <span className="truncate">{isAdded ? 'Added!' : 'Add to Cart'}</span>
           </button>
         </div>
 
