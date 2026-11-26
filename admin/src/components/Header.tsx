@@ -1,5 +1,6 @@
 import React from 'react';
 import { User, Bell, ExternalLink } from 'lucide-react';
+import { getLiveStorefrontUrl } from '../utils/url';
 
 interface HeaderProps {
   user: any;
@@ -37,11 +38,12 @@ export const Header: React.FC<HeaderProps> = ({ user, currentTab }) => {
 
       <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
         <a
-          href="http://localhost:3001"
+          href={getLiveStorefrontUrl()}
           target="_blank"
           rel="noreferrer"
           className="btn btn-secondary btn-sm"
           style={{ textDecoration: 'none' }}
+          title="Open Live Storefront"
         >
           <ExternalLink size={14} /> Open Store
         </a>

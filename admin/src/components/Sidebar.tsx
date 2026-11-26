@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import { usePermission } from '../context/PermissionContext';
 import { adminApi } from '../api';
+import { getLiveStorefrontUrl } from '../utils/url';
 import logoImg from '../assets/logo.png';
 
 interface SidebarProps {
@@ -107,11 +108,12 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentTab, onSelectTab, onLog
 
       <div style={{ padding: '16px 14px', borderTop: '1px solid rgba(255,255,255,0.08)', display: 'flex', flexDirection: 'column', gap: '8px' }}>
         <a
-          href="http://localhost:3001"
+          href={getLiveStorefrontUrl()}
           target="_blank"
           rel="noreferrer"
           className="nav-item"
           style={{ padding: '8px 12px', fontSize: '13px' }}
+          title="Open Live Storefront"
         >
           <ExternalLink size={16} /> Live Storefront
         </a>
