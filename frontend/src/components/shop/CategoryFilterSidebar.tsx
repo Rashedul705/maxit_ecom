@@ -43,9 +43,9 @@ export const CategoryFilterSidebar: React.FC<CategoryFilterSidebarProps> = ({
 
   const isShopMode = isShop || pathname === '/shop';
   const rawCategoryParam = searchParams.get('category');
-  // On shop page, default to 'solar-renewable-energy' if no category query param is present
+  // On shop page, default to 'all' if no category query param is present
   const currentCategoryParam = isShopMode
-    ? (rawCategoryParam === 'all' ? 'all' : (rawCategoryParam || currentCategory || 'solar-renewable-energy'))
+    ? (rawCategoryParam || 'all')
     : (rawCategoryParam || currentCategory || '');
 
   const currentBrand = searchParams.get('brand') || '';

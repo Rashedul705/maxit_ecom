@@ -142,47 +142,79 @@ router.post('/clean-banner', requireAdminAuth, async (req, res, next) => {
       return errorResponse(res, 'imageUrl is required', 400);
     }
 
-    const scriptPath = path.join(__dirname, '../../scripts/clean_single_image.py');
     const { execFile } = require('child_process');
-
+    const sharp = require('sharp');
     const filename = `clean_${Date.now()}_${Math.round(Math.random() * 1e6)}.jpg`;
     const destPath = path.join(uploadDir, filename);
 
-    execFile('python3', [scriptPath, imageUrl, destPath], { timeout: 35000 }, async (err, stdout, stderr) => {
-      if (err) {
-        // Fallback to sharp bottom-trim if python script fails, times out, or python3 is missing
-        try {
-          const sharp = require('sharp');
-          let imgBuf;
-          if (imageUrl.startsWith('/uploads/') || imageUrl.startsWith('uploads/')) {
-            imgBuf = fs.readFileSync(path.join(uploadDir, path.basename(imageUrl)));
-          } else {
-            const r = await fetch(imageUrl);
-            imgBuf = Buffer.from(await r.arrayBuffer());
-          }
-          const meta = await sharp(imgBuf).metadata();
-          const w = meta.width || 800;
-          const h = meta.height || 800;
-          const newH = Math.round(h * 0.85);
-          const cleanedBuffer = await sharp(imgBuf)
-            .extract({ left: 0, top: 0, width: w, height: newH })
-            .jpeg({ quality: 95 })
-            .toBuffer();
+    // Candidate paths for clean_single_image.py
+    const possibleScriptPaths = [
+      path.resolve(__dirname, '../../scripts/clean_single_image.py'),
+      path.resolve(__dirname, '../scripts/clean_single_image.py'),
+      path.resolve(process.cwd(), 'scripts/clean_single_image.py'),
+      path.resolve(process.cwd(), '../scripts/clean_single_image.py')
+    ];
+    const scriptPath = possibleScriptPaths.find(p => fs.existsSync(p));
 
-          // Try ImgBB if configured
-          const rawKeys = process.env.IMGBB_API_KEY || process.env.IMGBB_API_KEYS || '';
-          const imgbbKeys = rawKeys.split(',').map(k => k.trim()).filter(Boolean);
-          if (imgbbKeys.length > 0) {
-            const imgbbUrl = await uploadToImgBbApi(cleanedBuffer, imgbbKeys);
-            if (imgbbUrl) {
-              syncLocalFile(filename, cleanedBuffer);
-              return successResponse(res, { url: imgbbUrl, provider: 'imgbb', alreadyClean: false, details: 'Trimmed bottom banner via sharp' }, 'Image cleaned successfully');
-            }
-          }
+    // Helper function for sharp-based fallback
+    const runSharpFallback = async (reason = 'Fallback') => {
+      let imgBuf;
+      if (imageUrl.startsWith('/uploads/') || imageUrl.startsWith('uploads/')) {
+        const localRel = imageUrl.replace(/^\/?uploads\//, '');
+        const candidates = [
+          path.join(uploadDir, localRel),
+          path.join(uploadDir, path.basename(imageUrl)),
+          path.resolve(__dirname, '../../storefront/public/uploads', path.basename(imageUrl)),
+          path.resolve(__dirname, '../../frontend/public/uploads', path.basename(imageUrl))
+        ];
+        const found = candidates.find(p => fs.existsSync(p));
+        if (found) {
+          imgBuf = fs.readFileSync(found);
+        } else {
+          throw new Error('Local file not found: ' + imageUrl);
+        }
+      } else {
+        const r = await fetch(imageUrl, {
+          headers: { 'User-Agent': 'Mozilla/5.0 (compatible; MaxiTShopBot/1.0)' },
+          signal: AbortSignal.timeout(12000)
+        });
+        if (!r.ok) throw new Error(`Failed to download remote image: HTTP ${r.status}`);
+        imgBuf = Buffer.from(await r.arrayBuffer());
+      }
 
+      const meta = await sharp(imgBuf).metadata();
+      const w = meta.width || 800;
+      const h = meta.height || 800;
+      const newH = Math.max(100, Math.round(h * 0.85));
+      const cleanedBuffer = await sharp(imgBuf)
+        .extract({ left: 0, top: 0, width: w, height: newH })
+        .jpeg({ quality: 95 })
+        .toBuffer();
+
+      // Try ImgBB if configured
+      const rawKeys = process.env.IMGBB_API_KEY || process.env.IMGBB_API_KEYS || '';
+      const imgbbKeys = rawKeys.split(',').map(k => k.trim()).filter(Boolean);
+      if (imgbbKeys.length > 0) {
+        const imgbbUrl = await uploadToImgBbApi(cleanedBuffer, imgbbKeys);
+        if (imgbbUrl) {
           syncLocalFile(filename, cleanedBuffer);
-          const localUrl = `/uploads/${filename}`;
-          return successResponse(res, { url: localUrl, provider: 'local', alreadyClean: false, details: 'Trimmed bottom banner via sharp' }, 'Image cleaned successfully');
+          return successResponse(res, { url: imgbbUrl, provider: 'imgbb', alreadyClean: false, details: `Trimmed bottom banner via sharp (${reason})` }, 'Image cleaned successfully');
+        }
+      }
+
+      syncLocalFile(filename, cleanedBuffer);
+      const localUrl = `/uploads/${filename}`;
+      return successResponse(res, { url: localUrl, provider: 'local', alreadyClean: false, details: `Trimmed bottom banner via sharp (${reason})` }, 'Image cleaned successfully');
+    };
+
+    if (!scriptPath) {
+      return await runSharpFallback('Script clean_single_image.py not found');
+    }
+
+    execFile('python3', [scriptPath, imageUrl, destPath], { timeout: 12000 }, async (err, stdout, stderr) => {
+      if (err) {
+        try {
+          return await runSharpFallback(err.message || 'Python execution failed');
         } catch (sharpErr) {
           console.error('clean_single_image & sharp fallback error:', err, sharpErr);
           return errorResponse(res, 'Failed to clean image: ' + sharpErr.message, 500);
@@ -216,7 +248,7 @@ router.post('/clean-banner', requireAdminAuth, async (req, res, next) => {
       }
     });
   } catch (err) {
-    next(err);
+    return errorResponse(res, 'Clean image error: ' + err.message, 500);
   }
 });
 

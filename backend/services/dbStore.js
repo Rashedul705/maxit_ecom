@@ -819,7 +819,11 @@ const db = {
 
         let targetCatSlugs = [];
         let isSolarMotherCategory = false;
-        if (category) {
+        const isAllOrEmptyCategory = !category || category.trim() === 'all';
+        if (isAllOrEmptyCategory) {
+          // When browsing all products across the catalog, prioritize solar products first on default sort
+          isSolarMotherCategory = true;
+        } else if (category) {
           const c = category.trim();
           const cleanSlug = c.replace(/^cat-/, '');
           if (cleanSlug === 'solar-renewable-energy' || cleanSlug === 'solar-wind-energy' || cleanSlug === 'solar-green-energy' || /solar.*renewable/i.test(c)) {

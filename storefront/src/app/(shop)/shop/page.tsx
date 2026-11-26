@@ -40,10 +40,10 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
   const page = parseInt(search.page || '1', 10);
   const limit = 15;
 
-  // On the shop page, show the Solar category first by default!
-  // If search.category is 'all', show all categories across the store.
-  const isAllCategories = search.category === 'all';
-  const effectiveCategory = isAllCategories ? undefined : (search.category || 'solar-renewable-energy');
+  // On shop page: show all products across the catalog by default (with solar products prioritized first).
+  // If search.category is specified and not 'all', filter by that specific category.
+  const isAllCategories = !search.category || search.category === 'all';
+  const effectiveCategory = isAllCategories ? undefined : search.category;
 
   // Fetch categories and products concurrently
   const [categories, productsResponse] = await Promise.all([
@@ -89,10 +89,8 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
   // Helper to construct pagination URLs while preserving current filters
   const buildPageUrl = (targetPage: number) => {
     const p = new URLSearchParams();
-    if (search.category) {
+    if (search.category && search.category !== 'all') {
       p.set('category', search.category);
-    } else if (effectiveCategory) {
-      p.set('category', effectiveCategory);
     }
     if (search.brand) p.set('brand', search.brand);
     if (search.minPrice) p.set('minPrice', search.minPrice);
@@ -145,7 +143,9 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
           <div className="shrink-0 flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-xs text-slate-700">
             <Sparkles className="w-4 h-4 text-[#FF6600]" />
             <div>
-              <p className="font-bold text-slate-900">{total} Products Available</p>
+              <p className="font-bold text-slate-900">
+                {(isAllCategories ? totalAllCategoriesCount : total).toLocaleString()} Products Available
+              </p>
               <p className="text-[11px] text-slate-500">100% Genuine &amp; Brand Warranty</p>
             </div>
           </div>

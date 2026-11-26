@@ -18,7 +18,7 @@ import subprocess
 from PIL import Image
 import numpy as np
 
-WORKSPACE = "/Users/rashedulislam/MAXIT/Maxit_Ecom/maxit_ecom"
+WORKSPACE = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 OCR_BIN = os.path.join(WORKSPACE, "scripts/ocr")
 PHONE_REGEX = re.compile(r'(\+?880\d{8,10}|01[3-9]\d{8}|09\d{8})')
 BANNER_KEYWORDS = [

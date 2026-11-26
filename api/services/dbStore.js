@@ -818,9 +818,17 @@ const db = {
         const filter = {};
 
         let targetCatSlugs = [];
-        if (category) {
+        let isSolarMotherCategory = false;
+        const isAllOrEmptyCategory = !category || category.trim() === 'all';
+        if (isAllOrEmptyCategory) {
+          // When browsing all products across the catalog, prioritize solar products first on default sort
+          isSolarMotherCategory = true;
+        } else if (category) {
           const c = category.trim();
           const cleanSlug = c.replace(/^cat-/, '');
+          if (cleanSlug === 'solar-renewable-energy' || cleanSlug === 'solar-wind-energy' || cleanSlug === 'solar-green-energy' || /solar.*renewable/i.test(c)) {
+            isSolarMotherCategory = true;
+          }
 
           // Check if this category has child categories in the DB
           try {
@@ -832,6 +840,10 @@ const db = {
             }).lean();
 
             if (catDoc) {
+              const docSlug = (catDoc.slug || '').replace(/^cat-/, '');
+              if (docSlug === 'solar-renewable-energy' || docSlug === 'solar-wind-energy' || docSlug === 'solar-green-energy' || /solar.*renewable/i.test(catDoc.name)) {
+                isSolarMotherCategory = true;
+              }
               const childrenDocs = await Category.find({ parent: catDoc.slug, isActive: { $ne: false } }).lean();
               if (childrenDocs && childrenDocs.length > 0) {
                 targetCatSlugs = [catDoc.slug, ...childrenDocs.map(ch => ch.slug)];
@@ -992,14 +1004,30 @@ const db = {
         }
 
         if (search) {
-          const regex = { $regex: search.trim(), $options: 'i' };
+          const rawSearch = search.trim();
+          // Escape special regex characters
+          const escaped = rawSearch.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
+          const textRegex = new RegExp(escaped, 'i');
+
+          // Extract number part if user searched e.g. "18477", "BD-18477", or "MX-18477"
+          const numPart = rawSearch.replace(/^(BD|MX)-?/i, '');
+          const patterns = [
+            rawSearch,
+            ...(numPart && numPart !== rawSearch ? [numPart, `MX-${numPart}`, `BD-${numPart}`] : [`MX-${rawSearch}`])
+          ];
+          const codeRegexes = patterns.map(p => new RegExp(`^${p.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&')}$`, 'i'));
+
           const searchConditions = [
-            { title: regex },
-            { shortDescription: regex },
-            { description: regex },
-            { brand: regex },
-            { category: regex },
-            { categoryName: regex }
+            { productCode: { $in: codeRegexes } },
+            { productCode: textRegex },
+            { id: { $in: codeRegexes } },
+            { id: textRegex },
+            { title: textRegex },
+            { brand: textRegex },
+            { shortDescription: textRegex },
+            { description: textRegex },
+            { category: textRegex },
+            { categoryName: textRegex }
           ];
           if (filter.$or) {
             filter.$and = [{ $or: filter.$or }, { $or: searchConditions }];
@@ -1039,20 +1067,127 @@ const db = {
         }
 
         let sortObj = { _id: -1 };
-        if (sort === 'price-asc') sortObj = { price: 1 };
-        else if (sort === 'price-desc') sortObj = { price: -1 };
-        else if (sort === 'popular') sortObj = { reviewCount: -1, rating: -1 };
-        else if (sort === 'rating') sortObj = { rating: -1, reviewCount: -1 };
-        else if (sort === 'newest') sortObj = { createdAt: -1, _id: -1 };
+        if (sort === 'price-asc') sortObj = isSolarMotherCategory ? { solarPriority: 1, price: 1, _id: -1 } : { price: 1 };
+        else if (sort === 'price-desc') sortObj = isSolarMotherCategory ? { solarPriority: 1, price: -1, _id: -1 } : { price: -1 };
+        else if (sort === 'popular') sortObj = isSolarMotherCategory ? { solarPriority: 1, reviewCount: -1, rating: -1, _id: -1 } : { reviewCount: -1, rating: -1 };
+        else if (sort === 'rating') sortObj = isSolarMotherCategory ? { solarPriority: 1, rating: -1, reviewCount: -1, _id: -1 } : { rating: -1, reviewCount: -1 };
+        else if (sort === 'newest') sortObj = isSolarMotherCategory ? { solarPriority: 1, createdAt: -1, _id: -1 } : { createdAt: -1, _id: -1 };
+        else if (isSolarMotherCategory) sortObj = { solarPriority: 1, createdAt: -1, _id: -1 };
 
         const p = Math.max(1, Number(page));
         const l = Math.max(1, Number(limit));
         const skip = (p - 1) * l;
 
-        const [items, total] = await Promise.all([
-          Product.find(filter).sort(sortObj).skip(skip).limit(l).lean(),
-          Product.countDocuments(filter)
-        ]);
+        let items, total;
+        if (isSolarMotherCategory) {
+          const solarPriorityStage = {
+            $addFields: {
+              solarPriority: {
+                $switch: {
+                  branches: [
+                    // Priority 1: Solar PV Panels
+                    {
+                      case: {
+                        $or: [
+                          { $regexMatch: { input: { $ifNull: ["$subcategory", ""] }, regex: /^solar-pv(-panels)?$/i } },
+                          { $regexMatch: { input: { $ifNull: ["$subcategory", ""] }, regex: /solar-pv|solar-panel/i } },
+                          { $regexMatch: { input: { $ifNull: ["$subcategoryName", ""] }, regex: /solar.*panel|solar.*pv/i } },
+                          {
+                            $and: [
+                              { $regexMatch: { input: "$title", regex: /solar panel|solar pv/i } },
+                              { $not: { $regexMatch: { input: "$title", regex: /inverter|battery|connector|cable|clip|structure|breaker|fuse|distribution|busbar/i } } }
+                            ]
+                          }
+                        ]
+                      },
+                      then: 1
+                    },
+                    // Priority 2: Solar Energy child category (charge controllers, accessories, protection, cables)
+                    {
+                      case: {
+                        $or: [
+                          { $regexMatch: { input: { $ifNull: ["$category", ""] }, regex: /^(cat-)?solar-energy$/i } },
+                          { $regexMatch: { input: { $ifNull: ["$categoryName", ""] }, regex: /^SOLAR ENERGY$/i } }
+                        ]
+                      },
+                      then: 2
+                    },
+                    // Priority 3: Solar Inverter
+                    {
+                      case: {
+                        $or: [
+                          { $regexMatch: { input: { $ifNull: ["$category", ""] }, regex: /^(cat-)?solar-inverter$/i } },
+                          { $regexMatch: { input: { $ifNull: ["$categoryName", ""] }, regex: /SOLAR INVERTER/i } },
+                          { $regexMatch: { input: { $ifNull: ["$subcategory", ""] }, regex: /solar-inverter/i } }
+                        ]
+                      },
+                      then: 3
+                    },
+                    // Priority 4: Solar Battery
+                    {
+                      case: {
+                        $or: [
+                          { $regexMatch: { input: { $ifNull: ["$category", ""] }, regex: /^(cat-)?solar-battery$/i } },
+                          { $regexMatch: { input: { $ifNull: ["$categoryName", ""] }, regex: /SOLAR BATTERY/i } },
+                          { $regexMatch: { input: { $ifNull: ["$subcategory", ""] }, regex: /solar-battery/i } }
+                        ]
+                      },
+                      then: 4
+                    },
+                    // Priority 5: Solar Package
+                    {
+                      case: {
+                        $or: [
+                          { $regexMatch: { input: { $ifNull: ["$category", ""] }, regex: /^(cat-)?solar-package$/i } },
+                          { $regexMatch: { input: { $ifNull: ["$categoryName", ""] }, regex: /SOLAR PACKAGE/i } },
+                          { $regexMatch: { input: { $ifNull: ["$subcategory", ""] }, regex: /solar-package/i } }
+                        ]
+                      },
+                      then: 5
+                    },
+                    // Priority 6: Any other product mentioning solar
+                    {
+                      case: {
+                        $or: [
+                          { $regexMatch: { input: { $ifNull: ["$category", ""] }, regex: /solar/i } },
+                          { $regexMatch: { input: { $ifNull: ["$subcategory", ""] }, regex: /solar/i } },
+                          { $regexMatch: { input: "$title", regex: /solar/i } }
+                        ]
+                      },
+                      then: 6
+                    }
+                  ],
+                  default: 7
+                }
+              }
+            }
+          };
+
+          const facetResult = await Product.aggregate([
+            { $match: filter },
+            solarPriorityStage,
+            {
+              $facet: {
+                items: [
+                  { $sort: sortObj },
+                  { $skip: skip },
+                  { $limit: l }
+                ],
+                totalCount: [
+                  { $count: "count" }
+                ]
+              }
+            }
+          ]);
+
+          items = facetResult[0]?.items || [];
+          total = facetResult[0]?.totalCount[0]?.count || 0;
+        } else {
+          [items, total] = await Promise.all([
+            Product.find(filter).sort(sortObj).skip(skip).limit(l).lean(),
+            Product.countDocuments(filter)
+          ]);
+        }
 
         // Compute distinct brands for filter facet
         let availableBrands = [];
@@ -1136,7 +1271,42 @@ const db = {
     }
 
     // Sorting
-    if (sort === 'price-asc') {
+    const isSolarMotherFallback = category && (
+      category.toLowerCase().includes('solar-renewable-energy') ||
+      category.toLowerCase().includes('solar-wind-energy') ||
+      category.toLowerCase().includes('solar-green-energy') ||
+      /solar.*renewable/i.test(category)
+    );
+
+    const getSolarPriority = (p) => {
+      const cat = (p.category || '').toLowerCase();
+      const catName = (p.categoryName || '').toLowerCase();
+      const sub = (p.subcategory || p.subCategory || '').toLowerCase();
+      const subName = (p.subcategoryName || '').toLowerCase();
+      const title = (p.title || '').toLowerCase();
+
+      const isPureSolarPanelTitle = /solar panel|solar pv/i.test(title) && !/inverter|battery|connector|cable|clip|structure|breaker|fuse|distribution|busbar/i.test(title);
+      if (/^solar-pv(-panels)?$/i.test(sub) || /solar-pv|solar-panel/i.test(sub) || /solar.*panel|solar.*pv/i.test(subName) || isPureSolarPanelTitle) return 1;
+      if (/^(cat-)?solar-energy$/i.test(cat) || catName === 'solar energy') return 2;
+      if (/^(cat-)?solar-inverter$/i.test(cat) || catName.includes('solar inverter') || /solar-inverter/i.test(sub)) return 3;
+      if (/^(cat-)?solar-battery$/i.test(cat) || catName.includes('solar battery') || /solar-battery/i.test(sub)) return 4;
+      if (/^(cat-)?solar-package$/i.test(cat) || catName.includes('solar package') || /solar-package/i.test(sub)) return 5;
+      if (/solar/i.test(cat) || /solar/i.test(sub) || /solar/i.test(title)) return 6;
+      return 7;
+    };
+
+    if (isSolarMotherFallback) {
+      list.sort((a, b) => {
+        const pA = getSolarPriority(a);
+        const pB = getSolarPriority(b);
+        if (pA !== pB) return pA - pB;
+        if (sort === 'price-asc') return a.price - b.price;
+        if (sort === 'price-desc') return b.price - a.price;
+        if (sort === 'popular') return (b.reviewCount || 0) - (a.reviewCount || 0);
+        if (sort === 'rating') return (b.rating || 0) - (a.rating || 0);
+        return (new Date(b.createdAt || 0).getTime()) - (new Date(a.createdAt || 0).getTime()) || String(b.id).localeCompare(String(a.id));
+      });
+    } else if (sort === 'price-asc') {
       list.sort((a, b) => a.price - b.price);
     } else if (sort === 'price-desc') {
       list.sort((a, b) => b.price - a.price);
@@ -1234,8 +1404,27 @@ const db = {
   },
 
   async createProduct(data) {
+    let code = data.productCode ? String(data.productCode).trim() : '';
+    if (!code) {
+      if (isMongo()) {
+        try {
+          const lastProd = await Product.findOne({ productCode: /^MX-\d+$/ }).sort({ productCode: -1 }).lean();
+          if (lastProd && lastProd.productCode) {
+            const num = parseInt(lastProd.productCode.replace('MX-', ''), 10);
+            if (!isNaN(num)) code = `MX-${num + 1}`;
+          }
+        } catch (e) {}
+      }
+      if (!code) {
+        code = `MX-${Math.floor(70000 + Math.random() * 20000)}`;
+      }
+    } else if (!code.startsWith('MX-')) {
+      code = `MX-${code.replace(/^BD-/, '')}`;
+    }
+
     const prod = {
       id: `prod-${Date.now()}`,
+      productCode: code,
       slug: data.slug || (data.title || 'prod').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
       stock: data.stock !== undefined ? Number(data.stock) : 10,
       price: Number(data.price || 0),
@@ -1244,7 +1433,8 @@ const db = {
       specs: data.specs || {},
       rating: 5.0,
       reviewCount: 1,
-      ...data
+      ...data,
+      productCode: code
     };
 
     if (isMongo()) {
@@ -1465,15 +1655,27 @@ const db = {
 
     if (isMongo()) {
       try {
-        const regex = { $regex: term, $options: 'i' };
+        const escaped = term.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
+        const textRegex = new RegExp(escaped, 'i');
+        const numPart = term.replace(/^(BD|MX)-?/i, '');
+        const patterns = [
+          term,
+          ...(numPart && numPart !== term ? [numPart, `MX-${numPart}`, `BD-${numPart}`] : [`MX-${term}`])
+        ];
+        const codeRegexes = patterns.map(p => new RegExp(`^${p.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&')}$`, 'i'));
+
         const docs = await Product.find({
           $or: [
-            { title: regex },
-            { brand: regex },
-            { category: regex },
-            { categoryName: regex }
+            { productCode: { $in: codeRegexes } },
+            { productCode: textRegex },
+            { id: { $in: codeRegexes } },
+            { id: textRegex },
+            { title: textRegex },
+            { brand: textRegex },
+            { category: textRegex },
+            { categoryName: textRegex }
           ]
-        }).limit(6).lean();
+        }).limit(8).lean();
 
         return docs.map(p => ({
           id: p.id,
@@ -1483,7 +1685,9 @@ const db = {
           oldPrice: p.oldPrice,
           image: Array.isArray(p.images) && p.images.length > 0 ? p.images[0] : (p.image || ''),
           category: p.category,
-          brand: p.brand
+          categoryName: p.categoryName,
+          brand: p.brand,
+          productCode: p.productCode || ''
         }));
       } catch (err) {
         console.warn('Search suggestions Mongo error:', err.message);

@@ -50,7 +50,8 @@ async function request<T>(endpoint: string, options: RequestInit = {}): Promise<
   try {
     json = JSON.parse(rawText);
   } catch {
-    throw new Error(rawText.slice(0, 120) || `Request failed with status ${res.status}`);
+    const preview = rawText.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 120);
+    throw new Error(preview || `Server error (${res.status}: ${res.statusText})`);
   }
 
   if (!res.ok || !json.success) {
