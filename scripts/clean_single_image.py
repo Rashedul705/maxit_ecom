@@ -27,43 +27,21 @@ BANNER_KEYWORDS = [
 ]
 
 def download_remote_image(url, dest_path):
-    """Downloads remote image with unverified SSL context first, then curl fallback."""
-    # 1. Try urllib with unverified SSL context (very fast and reliable on macOS)
-    try:
-        ctx = ssl._create_unverified_context()
-    except Exception:
-        ctx = ssl.create_default_context()
-        ctx.check_hostname = False
-        ctx.verify_mode = ssl.CERT_NONE
-
-    for attempt in range(1, 3):
-        try:
-            req = urllib.request.Request(
-                url,
-                headers={'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'}
-            )
-            with urllib.request.urlopen(req, timeout=15, context=ctx) as r, open(dest_path, 'wb') as f:
-                f.write(r.read())
-            if os.path.exists(dest_path) and os.path.getsize(dest_path) > 0:
-                return True
-        except Exception:
-            time.sleep(0.5)
-
-    # 2. Fallback to curl
+    """Downloads remote image forcing IPv4 with curl for fast, reliable fetching."""
     try:
         res = subprocess.run(
             [
-                'curl', '-sSL', '--connect-timeout', '10', '-m', '25',
+                'curl', '-4', '-sSL', '--connect-timeout', '6', '-m', '20',
                 '-A', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)',
                 url, '-o', dest_path
             ],
             check=False,
-            timeout=30
+            timeout=25
         )
         if res.returncode == 0 and os.path.exists(dest_path) and os.path.getsize(dest_path) > 0:
             return True
     except Exception as e:
-        print(f"Notice: download fallback failed ({e})", file=sys.stderr)
+        print(f"Notice: curl download failed ({e})", file=sys.stderr)
 
     return False
 

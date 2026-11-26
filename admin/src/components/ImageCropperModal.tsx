@@ -1,12 +1,23 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { Crop, Check, X, RotateCcw, Sparkles, Move, Maximize2, Loader2, Scissors } from 'lucide-react';
+import {
+  Scissors,
+  Check,
+  X,
+  RotateCcw,
+  Move,
+  Loader2,
+  MousePointer,
+  Square,
+  Sliders,
+  Maximize2
+} from 'lucide-react';
 import { adminApi } from '../api';
 
 export interface CropRect {
-  x: number;      // percentage (0 - 100)
-  y: number;      // percentage (0 - 100)
-  width: number;  // percentage (0 - 100)
-  height: number; // percentage (0 - 100)
+  x: number;      // left percentage (0 - 100)
+  y: number;      // top percentage (0 - 100)
+  width: number;  // width percentage (0 - 100)
+  height: number; // height percentage (0 - 100)
 }
 
 interface ImageCropperModalProps {
@@ -17,6 +28,7 @@ interface ImageCropperModalProps {
 }
 
 type AspectRatioMode = 'free' | '1:1' | '4:3' | '16:9';
+type InteractionMode = 'adjust' | 'draw';
 
 export const ImageCropperModal: React.FC<ImageCropperModalProps> = ({
   imageUrl,
@@ -25,10 +37,12 @@ export const ImageCropperModal: React.FC<ImageCropperModalProps> = ({
   onCropComplete
 }) => {
   const [aspectMode, setAspectMode] = useState<AspectRatioMode>('free');
-  const [crop, setCrop] = useState<CropRect>({ x: 5, y: 5, width: 90, height: 90 });
+  const [interactionMode, setInteractionMode] = useState<InteractionMode>('adjust');
+  const [crop, setCrop] = useState<CropRect>({ x: 0, y: 0, width: 100, height: 100 });
   const [naturalSize, setNaturalSize] = useState<{ width: number; height: number }>({ width: 0, height: 0 });
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [imgSrc, setImgSrc] = useState(imageUrl);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
@@ -37,7 +51,7 @@ export const ImageCropperModal: React.FC<ImageCropperModalProps> = ({
   // Drag interaction state
   const dragRef = useRef<{
     isDragging: boolean;
-    dragType: 'move' | 'create' | 'nw' | 'ne' | 'sw' | 'se' | 'n' | 's' | 'w' | 'e' | null;
+    dragType: 'move' | 'draw' | 'nw' | 'ne' | 'sw' | 'se' | 'n' | 's' | 'w' | 'e' | null;
     startX: number;
     startY: number;
     initialCrop: CropRect;
@@ -46,8 +60,11 @@ export const ImageCropperModal: React.FC<ImageCropperModalProps> = ({
     dragType: null,
     startX: 0,
     startY: 0,
-    initialCrop: { x: 5, y: 5, width: 90, height: 90 }
+    initialCrop: { x: 0, y: 0, width: 100, height: 100 }
   });
+
+  // Clamp helper
+  const clamp = (val: number, min: number, max: number) => Math.max(min, Math.min(max, val));
 
   // Load natural dimensions of the image
   const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
@@ -57,22 +74,26 @@ export const ImageCropperModal: React.FC<ImageCropperModalProps> = ({
     setNaturalSize({ width: w, height: h });
   };
 
-  // Clamp helper
-  const clamp = (val: number, min: number, max: number) => Math.max(min, Math.min(max, val));
+  // If image fails to load directly (CORS / referrer), fallback to proxy
+  const handleImageError = () => {
+    if (imgSrc === imageUrl && !imageUrl.startsWith('/uploads/')) {
+      const proxyUrl = adminApi.getProxyImageUrl(imageUrl);
+      setImgSrc(proxyUrl);
+    } else {
+      setError('Failed to load image. Please verify image URL.');
+    }
+  };
 
-  // Quick preset: Select 1:1 square
+  // 1:1 Square Preset
   const applySquarePreset = () => {
     setAspectMode('1:1');
     if (naturalSize.width && naturalSize.height) {
-      // 1:1 in natural aspect ratio
       const imgRatio = naturalSize.width / naturalSize.height;
       if (imgRatio >= 1) {
-        // Image is wider than tall
         const targetWidthPercent = 100 / imgRatio;
         const xOffset = (100 - targetWidthPercent) / 2;
         setCrop({ x: clamp(xOffset, 0, 100), y: 0, width: clamp(targetWidthPercent, 10, 100), height: 100 });
       } else {
-        // Image is taller than wide
         const targetHeightPercent = 100 * imgRatio;
         const yOffset = (100 - targetHeightPercent) / 2;
         setCrop({ x: 0, y: clamp(yOffset, 0, 100), width: 100, height: clamp(targetHeightPercent, 10, 100) });
@@ -82,15 +103,15 @@ export const ImageCropperModal: React.FC<ImageCropperModalProps> = ({
     }
   };
 
-  // Quick preset: Cut Bottom Strip (e.g. 15% footer watermark)
-  const applyCutBottomPreset = (percentToKeep: number) => {
+  // Quick Preset: Cut bottom percent (e.g. 15% banner)
+  const applyCutBottom = (percentToCut: number) => {
     setAspectMode('free');
-    setCrop({
-      x: 0,
+    const newHeight = clamp(100 - percentToCut, 10, 100);
+    setCrop(prev => ({
+      ...prev,
       y: 0,
-      width: 100,
-      height: percentToKeep
-    });
+      height: newHeight
+    }));
   };
 
   // Reset to full image
@@ -111,17 +132,16 @@ export const ImageCropperModal: React.FC<ImageCropperModalProps> = ({
       const srcW = (crop.width / 100) * naturalSize.width;
       const srcH = (crop.height / 100) * naturalSize.height;
 
-      const targetSize = 160;
+      const targetSize = 180;
       canvas.width = targetSize;
       canvas.height = targetSize;
       const ctx = canvas.getContext('2d');
       if (!ctx) return;
 
       ctx.clearRect(0, 0, targetSize, targetSize);
-      ctx.fillStyle = '#ffffff';
+      ctx.fillStyle = '#f8fafc';
       ctx.fillRect(0, 0, targetSize, targetSize);
 
-      // Fit cropped area within square preview canvas (contain)
       const cropRatio = srcW / (srcH || 1);
       let renderW = targetSize;
       let renderH = targetSize;
@@ -138,7 +158,7 @@ export const ImageCropperModal: React.FC<ImageCropperModalProps> = ({
 
       ctx.drawImage(img, srcX, srcY, srcW, srcH, renderX, renderY, renderW, renderH);
     } catch {
-      // Cross-origin image might taint canvas for preview, which is ok - preview is non-critical
+      // Cross-origin image preview silently handled
     }
   }, [crop, naturalSize]);
 
@@ -146,10 +166,10 @@ export const ImageCropperModal: React.FC<ImageCropperModalProps> = ({
     updatePreview();
   }, [updatePreview]);
 
-  // Handle Drag / Resize events
+  // Handle Drag / Resize
   const startDrag = (
     e: React.MouseEvent | React.TouchEvent,
-    dragType: 'move' | 'create' | 'nw' | 'ne' | 'sw' | 'se' | 'n' | 's' | 'w' | 'e'
+    dragType: 'move' | 'draw' | 'nw' | 'ne' | 'sw' | 'se' | 'n' | 's' | 'w' | 'e'
   ) => {
     e.preventDefault();
     e.stopPropagation();
@@ -187,31 +207,35 @@ export const ImageCropperModal: React.FC<ImageCropperModalProps> = ({
     if (dragType === 'move') {
       nextCrop.x = clamp(initialCrop.x + deltaXPercent, 0, 100 - initialCrop.width);
       nextCrop.y = clamp(initialCrop.y + deltaYPercent, 0, 100 - initialCrop.height);
-    } else if (dragType === 'create') {
-      const startXPercent = ((dragRef.current.startX - rect.left) / rect.width) * 100;
-      const startYPercent = ((dragRef.current.startY - rect.top) / rect.height) * 100;
-      const currentXPercent = ((clientX - rect.left) / rect.width) * 100;
-      const currentYPercent = ((clientY - rect.top) / rect.height) * 100;
+    } else if (dragType === 'draw') {
+      const startXPercent = clamp(((dragRef.current.startX - rect.left) / rect.width) * 100, 0, 100);
+      const startYPercent = clamp(((dragRef.current.startY - rect.top) / rect.height) * 100, 0, 100);
+      const currentXPercent = clamp(((clientX - rect.left) / rect.width) * 100, 0, 100);
+      const currentYPercent = clamp(((clientY - rect.top) / rect.height) * 100, 0, 100);
 
       const left = Math.min(startXPercent, currentXPercent);
       const top = Math.min(startYPercent, currentYPercent);
-      const width = Math.abs(currentXPercent - startXPercent);
-      const height = Math.abs(currentYPercent - startYPercent);
+      let width = Math.abs(currentXPercent - startXPercent);
+      let height = Math.abs(currentYPercent - startYPercent);
+
+      if (aspectMode === '1:1' && naturalSize.width && naturalSize.height) {
+        const ratio = naturalSize.width / naturalSize.height;
+        height = clamp(width * ratio, 5, 100 - top);
+      }
 
       nextCrop = {
-        x: clamp(left, 0, 100),
-        y: clamp(top, 0, 100),
+        x: clamp(left, 0, 95),
+        y: clamp(top, 0, 95),
         width: clamp(width, 5, 100 - left),
         height: clamp(height, 5, 100 - top)
       };
     } else {
-      // Handles resize
+      // Handles
       let left = initialCrop.x;
       let top = initialCrop.y;
       let width = initialCrop.width;
       let height = initialCrop.height;
 
-      // Handle West / East
       if (dragType?.includes('w')) {
         const proposedX = initialCrop.x + deltaXPercent;
         const proposedW = initialCrop.width - deltaXPercent;
@@ -226,7 +250,6 @@ export const ImageCropperModal: React.FC<ImageCropperModalProps> = ({
         }
       }
 
-      // Handle North / South
       if (dragType?.includes('n')) {
         const proposedY = initialCrop.y + deltaYPercent;
         const proposedH = initialCrop.height - deltaYPercent;
@@ -241,11 +264,8 @@ export const ImageCropperModal: React.FC<ImageCropperModalProps> = ({
         }
       }
 
-      // Check aspect ratio constraint if 1:1
       if (aspectMode === '1:1' && naturalSize.width && naturalSize.height) {
         const ratio = naturalSize.width / naturalSize.height;
-        // pixel width / pixel height = (width * origW) / (height * origH) = 1
-        // height = width * ratio
         height = clamp(width * ratio, 5, 100 - top);
       }
 
@@ -275,7 +295,6 @@ export const ImageCropperModal: React.FC<ImageCropperModalProps> = ({
       setSaving(true);
       setError(null);
 
-      // Validate crop box
       if (crop.width < 1 || crop.height < 1) {
         throw new Error('Selection is too small. Please select a larger area to crop.');
       }
@@ -302,9 +321,11 @@ export const ImageCropperModal: React.FC<ImageCropperModalProps> = ({
     }
   };
 
-  // Calculate live pixel dimensions
+  // Dimension computations
   const pixelWidth = naturalSize.width ? Math.round((crop.width / 100) * naturalSize.width) : 0;
   const pixelHeight = naturalSize.height ? Math.round((crop.height / 100) * naturalSize.height) : 0;
+  const bottomCutPercent = Math.round(100 - (crop.y + crop.height));
+  const bottomCutPx = naturalSize.height ? Math.round((bottomCutPercent / 100) * naturalSize.height) : 0;
 
   return (
     <div
@@ -312,13 +333,12 @@ export const ImageCropperModal: React.FC<ImageCropperModalProps> = ({
         position: 'fixed',
         inset: 0,
         zIndex: 9999,
-        background: 'rgba(15, 23, 42, 0.85)',
-        backdropFilter: 'blur(4px)',
+        background: 'rgba(15, 23, 42, 0.88)',
+        backdropFilter: 'blur(5px)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '16px',
-        animation: 'fadeIn 0.15s ease-out'
+        padding: '12px'
       }}
       onClick={e => {
         if (e.target === e.currentTarget && !saving) onClose();
@@ -329,18 +349,18 @@ export const ImageCropperModal: React.FC<ImageCropperModalProps> = ({
           background: '#ffffff',
           borderRadius: '16px',
           width: '100%',
-          maxWidth: '1080px',
-          maxHeight: '94vh',
+          maxWidth: '1120px',
+          maxHeight: '96vh',
           display: 'flex',
           flexDirection: 'column',
-          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.35)',
+          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
           overflow: 'hidden'
         }}
       >
-        {/* Modal Header */}
+        {/* Header */}
         <div
           style={{
-            padding: '16px 24px',
+            padding: '14px 24px',
             borderBottom: '1px solid #e2e8f0',
             display: 'flex',
             alignItems: 'center',
@@ -364,11 +384,11 @@ export const ImageCropperModal: React.FC<ImageCropperModalProps> = ({
               <Scissors size={20} />
             </div>
             <div>
-              <h2 style={{ fontSize: '18px', fontWeight: 700, color: '#0f172a', margin: 0 }}>
+              <h2 style={{ fontSize: '17px', fontWeight: 700, color: '#0f172a', margin: 0 }}>
                 {title}
               </h2>
               <p style={{ fontSize: '12px', color: '#64748b', margin: 0 }}>
-                Drag the handles or select any custom area to keep only the clean product part.
+                Use the slider or drag the orange handles to select the clean product part.
               </p>
             </div>
           </div>
@@ -390,12 +410,12 @@ export const ImageCropperModal: React.FC<ImageCropperModalProps> = ({
           </button>
         </div>
 
-        {/* Toolbar: Aspect Ratio & Quick Crop Presets */}
+        {/* Top Control Bar: Quick Bottom Trim & Aspect Ratio */}
         <div
           style={{
             padding: '12px 24px',
             borderBottom: '1px solid #e2e8f0',
-            background: '#ffffff',
+            background: '#fff7ed',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
@@ -403,103 +423,97 @@ export const ImageCropperModal: React.FC<ImageCropperModalProps> = ({
             gap: '12px'
           }}
         >
-          {/* Quick Presets */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
-            <span style={{ fontSize: '12px', fontWeight: 700, color: '#475569', marginRight: '4px' }}>
-              Mode / Ratio:
+          {/* Quick Banner Cut Buttons */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
+            <span style={{ fontSize: '12px', fontWeight: 800, color: '#c2410c', display: 'flex', alignItems: 'center', gap: '4px' }}>
+              <Scissors size={14} /> Quick Remove Bottom Banner:
+            </span>
+
+            <button
+              type="button"
+              onClick={() => applyCutBottom(0)}
+              style={{
+                padding: '5px 10px',
+                borderRadius: '6px',
+                fontSize: '11px',
+                fontWeight: 600,
+                border: bottomCutPercent === 0 ? '2px solid #ff6600' : '1px solid #fed7aa',
+                background: bottomCutPercent === 0 ? '#ff6600' : '#ffffff',
+                color: bottomCutPercent === 0 ? '#ffffff' : '#9a3412',
+                cursor: 'pointer'
+              }}
+            >
+              Full (0%)
+            </button>
+
+            {[10, 15, 20, 25, 30].map(pct => (
+              <button
+                key={pct}
+                type="button"
+                onClick={() => applyCutBottom(pct)}
+                style={{
+                  padding: '5px 10px',
+                  borderRadius: '6px',
+                  fontSize: '11px',
+                  fontWeight: 700,
+                  border: bottomCutPercent === pct ? '2px solid #ea580c' : '1px solid #fed7aa',
+                  background: bottomCutPercent === pct ? '#ea580c' : '#ffffff',
+                  color: bottomCutPercent === pct ? '#ffffff' : '#c2410c',
+                  cursor: 'pointer'
+                }}
+              >
+                Trim -{pct}%
+              </button>
+            ))}
+          </div>
+
+          {/* Aspect Ratio Buttons */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <span style={{ fontSize: '12px', fontWeight: 700, color: '#475569' }}>
+              Mode:
             </span>
 
             <button
               type="button"
               onClick={() => setAspectMode('free')}
               style={{
-                padding: '6px 12px',
+                padding: '5px 10px',
                 borderRadius: '6px',
-                fontSize: '12px',
+                fontSize: '11px',
                 fontWeight: 600,
                 border: aspectMode === 'free' ? '2px solid #ff6600' : '1px solid #cbd5e1',
-                background: aspectMode === 'free' ? '#fff7ed' : '#ffffff',
-                color: aspectMode === 'free' ? '#ea580c' : '#334155',
+                background: aspectMode === 'free' ? '#ff6600' : '#ffffff',
+                color: aspectMode === 'free' ? '#ffffff' : '#334155',
                 cursor: 'pointer'
               }}
             >
-              Freeform (Any Size)
+              Freeform
             </button>
 
             <button
               type="button"
               onClick={applySquarePreset}
               style={{
-                padding: '6px 12px',
+                padding: '5px 10px',
                 borderRadius: '6px',
-                fontSize: '12px',
+                fontSize: '11px',
                 fontWeight: 600,
                 border: aspectMode === '1:1' ? '2px solid #ff6600' : '1px solid #cbd5e1',
-                background: aspectMode === '1:1' ? '#fff7ed' : '#ffffff',
-                color: aspectMode === '1:1' ? '#ea580c' : '#334155',
+                background: aspectMode === '1:1' ? '#ff6600' : '#ffffff',
+                color: aspectMode === '1:1' ? '#ffffff' : '#334155',
                 cursor: 'pointer'
               }}
             >
               1:1 Square
             </button>
 
-            <div style={{ height: '20px', width: '1px', background: '#e2e8f0', margin: '0 4px' }} />
-
-            <span style={{ fontSize: '12px', fontWeight: 700, color: '#475569', marginRight: '4px' }}>
-              ⚡ Quick Banner Trim:
-            </span>
-
-            <button
-              type="button"
-              onClick={() => applyCutBottomPreset(85)}
-              title="Cuts bottom 15% banner strip while keeping full width"
-              style={{
-                padding: '6px 12px',
-                borderRadius: '6px',
-                fontSize: '12px',
-                fontWeight: 600,
-                border: '1px solid #fed7aa',
-                background: '#fffaf5',
-                color: '#c2410c',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '5px'
-              }}
-            >
-              <Scissors size={13} />
-              <span>Trim Bottom 15%</span>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => applyCutBottomPreset(80)}
-              title="Cuts bottom 20% banner strip"
-              style={{
-                padding: '6px 12px',
-                borderRadius: '6px',
-                fontSize: '12px',
-                fontWeight: 600,
-                border: '1px solid #fed7aa',
-                background: '#fffaf5',
-                color: '#c2410c',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '5px'
-              }}
-            >
-              <Scissors size={13} />
-              <span>Trim Bottom 20%</span>
-            </button>
-
             <button
               type="button"
               onClick={handleReset}
               style={{
-                padding: '6px 10px',
+                padding: '5px 10px',
                 borderRadius: '6px',
-                fontSize: '12px',
+                fontSize: '11px',
                 fontWeight: 600,
                 border: '1px solid #cbd5e1',
                 background: '#ffffff',
@@ -509,30 +523,10 @@ export const ImageCropperModal: React.FC<ImageCropperModalProps> = ({
                 alignItems: 'center',
                 gap: '4px'
               }}
-              title="Reset selection to entire image"
             >
-              <RotateCcw size={13} />
-              <span>Reset</span>
+              <RotateCcw size={12} /> Reset
             </button>
           </div>
-
-          {/* Dimension indicator badge */}
-          {naturalSize.width > 0 && (
-            <div
-              style={{
-                fontSize: '12px',
-                color: '#334155',
-                background: '#f1f5f9',
-                padding: '4px 10px',
-                borderRadius: '6px',
-                fontWeight: 600
-              }}
-            >
-              Selection: <strong style={{ color: '#ea580c' }}>{pixelWidth} × {pixelHeight} px</strong>
-              <span style={{ color: '#94a3b8', margin: '0 6px' }}>|</span>
-              Original: {naturalSize.width} × {naturalSize.height} px
-            </div>
-          )}
         </div>
 
         {/* Workspace Body */}
@@ -545,7 +539,7 @@ export const ImageCropperModal: React.FC<ImageCropperModalProps> = ({
             position: 'relative'
           }}
         >
-          {/* Main Cropping Canvas Stage */}
+          {/* Main Visual Stage */}
           <div
             style={{
               flex: 1,
@@ -555,7 +549,7 @@ export const ImageCropperModal: React.FC<ImageCropperModalProps> = ({
               padding: '24px',
               userSelect: 'none',
               overflow: 'auto',
-              minHeight: '380px'
+              minHeight: '400px'
             }}
           >
             <div
@@ -565,27 +559,28 @@ export const ImageCropperModal: React.FC<ImageCropperModalProps> = ({
                 display: 'inline-block',
                 maxWidth: '100%',
                 maxHeight: '62vh',
-                boxShadow: '0 10px 25px rgba(0,0,0,0.5)',
-                cursor: 'crosshair'
+                boxShadow: '0 10px 30px rgba(0,0,0,0.6)',
+                cursor: interactionMode === 'draw' ? 'crosshair' : 'default'
               }}
               onMouseDown={e => {
-                if (e.target === containerRef.current || e.target === imageRef.current) {
-                  startDrag(e, 'create');
+                if (interactionMode === 'draw' || e.target === containerRef.current || e.target === imageRef.current) {
+                  startDrag(e, 'draw');
                 }
               }}
               onTouchStart={e => {
-                if (e.target === containerRef.current || e.target === imageRef.current) {
-                  startDrag(e, 'create');
+                if (interactionMode === 'draw' || e.target === containerRef.current || e.target === imageRef.current) {
+                  startDrag(e, 'draw');
                 }
               }}
             >
-              {/* Source Image */}
+              {/* Target Image */}
               <img
                 ref={imageRef}
-                src={imageUrl}
-                alt="Crop Target"
+                src={imgSrc}
+                alt="Target to Crop"
                 crossOrigin="anonymous"
                 onLoad={handleImageLoad}
+                onError={handleImageError}
                 style={{
                   display: 'block',
                   maxWidth: '100%',
@@ -595,57 +590,83 @@ export const ImageCropperModal: React.FC<ImageCropperModalProps> = ({
                 }}
               />
 
-              {/* Shaded Outside Overlays */}
-              {/* Top Mask */}
+              {/* Shaded Outside Overlays (Clickable to draw new selection) */}
               <div
+                onMouseDown={e => startDrag(e, 'draw')}
+                onTouchStart={e => startDrag(e, 'draw')}
                 style={{
                   position: 'absolute',
                   top: 0,
                   left: 0,
                   right: 0,
                   height: `${crop.y}%`,
-                  background: 'rgba(0, 0, 0, 0.65)',
-                  pointerEvents: 'none'
+                  background: 'rgba(0, 0, 0, 0.7)',
+                  cursor: 'crosshair'
                 }}
               />
-              {/* Bottom Mask */}
               <div
+                onMouseDown={e => startDrag(e, 'draw')}
+                onTouchStart={e => startDrag(e, 'draw')}
                 style={{
                   position: 'absolute',
                   bottom: 0,
                   left: 0,
                   right: 0,
                   height: `${100 - (crop.y + crop.height)}%`,
-                  background: 'rgba(0, 0, 0, 0.65)',
-                  pointerEvents: 'none'
+                  background: 'rgba(0, 0, 0, 0.7)',
+                  cursor: 'crosshair'
                 }}
-              />
-              {/* Left Mask */}
+              >
+                {/* Visual Banner Removal Banner Guide */}
+                {bottomCutPercent > 0 && (
+                  <div
+                    style={{
+                      position: 'absolute',
+                      top: '8px',
+                      left: '50%',
+                      transform: 'translateX(-50%)',
+                      background: 'rgba(239, 68, 68, 0.9)',
+                      color: '#ffffff',
+                      fontSize: '11px',
+                      fontWeight: 700,
+                      padding: '2px 8px',
+                      borderRadius: '4px',
+                      pointerEvents: 'none',
+                      whiteSpace: 'nowrap'
+                    }}
+                  >
+                    ✂️ Removing bottom {bottomCutPercent}% ({bottomCutPx}px banner)
+                  </div>
+                )}
+              </div>
               <div
+                onMouseDown={e => startDrag(e, 'draw')}
+                onTouchStart={e => startDrag(e, 'draw')}
                 style={{
                   position: 'absolute',
                   top: `${crop.y}%`,
                   left: 0,
                   width: `${crop.x}%`,
                   height: `${crop.height}%`,
-                  background: 'rgba(0, 0, 0, 0.65)',
-                  pointerEvents: 'none'
+                  background: 'rgba(0, 0, 0, 0.7)',
+                  cursor: 'crosshair'
                 }}
               />
-              {/* Right Mask */}
               <div
+                onMouseDown={e => startDrag(e, 'draw')}
+                onTouchStart={e => startDrag(e, 'draw')}
                 style={{
                   position: 'absolute',
                   top: `${crop.y}%`,
                   right: 0,
                   width: `${100 - (crop.x + crop.width)}%`,
                   height: `${crop.height}%`,
-                  background: 'rgba(0, 0, 0, 0.65)',
-                  pointerEvents: 'none'
+                  background: 'rgba(0, 0, 0, 0.7)',
+                  cursor: 'crosshair'
                 }}
               />
 
-              {/* The Active Crop Selection Box */}
+              {/* The Active Crop Box */}
               <div
                 style={{
                   position: 'absolute',
@@ -653,15 +674,15 @@ export const ImageCropperModal: React.FC<ImageCropperModalProps> = ({
                   left: `${crop.x}%`,
                   width: `${crop.width}%`,
                   height: `${crop.height}%`,
-                  border: '2px solid #ff6600',
-                  boxShadow: '0 0 0 1px rgba(255, 255, 255, 0.7), inset 0 0 10px rgba(255, 102, 0, 0.2)',
-                  cursor: 'move',
+                  border: '2.5px solid #ff6600',
+                  boxShadow: '0 0 0 1px rgba(255, 255, 255, 0.8), inset 0 0 12px rgba(255, 102, 0, 0.25)',
+                  cursor: 'grab',
                   boxSizing: 'border-box'
                 }}
                 onMouseDown={e => startDrag(e, 'move')}
                 onTouchStart={e => startDrag(e, 'move')}
               >
-                {/* 3x3 Grid Overlay */}
+                {/* 3x3 Grid */}
                 <div
                   style={{
                     position: 'absolute',
@@ -670,7 +691,7 @@ export const ImageCropperModal: React.FC<ImageCropperModalProps> = ({
                     display: 'grid',
                     gridTemplateColumns: '1fr 1fr 1fr',
                     gridTemplateRows: '1fr 1fr 1fr',
-                    opacity: 0.4
+                    opacity: 0.45
                   }}
                 >
                   <div style={{ borderRight: '1px dashed #ffffff', borderBottom: '1px dashed #ffffff' }} />
@@ -684,43 +705,47 @@ export const ImageCropperModal: React.FC<ImageCropperModalProps> = ({
                   <div />
                 </div>
 
-                {/* Move Center Icon Helper */}
+                {/* Center Move Pill */}
                 <div
                   style={{
                     position: 'absolute',
                     top: '50%',
                     left: '50%',
                     transform: 'translate(-50%, -50%)',
-                    background: 'rgba(15, 23, 42, 0.6)',
+                    background: 'rgba(15, 23, 42, 0.75)',
                     color: '#ffffff',
-                    borderRadius: '50%',
-                    width: '28px',
-                    height: '28px',
+                    borderRadius: '20px',
+                    padding: '4px 10px',
                     display: 'flex',
                     alignItems: 'center',
-                    justifyContent: 'center',
+                    gap: '4px',
+                    fontSize: '11px',
+                    fontWeight: 600,
                     pointerEvents: 'none',
-                    opacity: 0.85
+                    border: '1px solid rgba(255,255,255,0.2)'
                   }}
                 >
-                  <Move size={14} />
+                  <Move size={12} />
+                  <span>Drag to reposition</span>
                 </div>
 
-                {/* Corner Resize Handles */}
+                {/* 4 Chunky Corner Handles (Easy to click and grab) */}
                 {/* Top-Left */}
                 <div
                   onMouseDown={e => startDrag(e, 'nw')}
                   onTouchStart={e => startDrag(e, 'nw')}
                   style={{
                     position: 'absolute',
-                    top: '-6px',
-                    left: '-6px',
-                    width: '12px',
-                    height: '12px',
+                    top: '-12px',
+                    left: '-12px',
+                    width: '24px',
+                    height: '24px',
+                    borderRadius: '50%',
                     background: '#ff6600',
-                    border: '2px solid #ffffff',
-                    borderRadius: '2px',
-                    cursor: 'nwse-resize'
+                    border: '3px solid #ffffff',
+                    boxShadow: '0 2px 6px rgba(0,0,0,0.5)',
+                    cursor: 'nwse-resize',
+                    zIndex: 20
                   }}
                 />
                 {/* Top-Right */}
@@ -729,14 +754,16 @@ export const ImageCropperModal: React.FC<ImageCropperModalProps> = ({
                   onTouchStart={e => startDrag(e, 'ne')}
                   style={{
                     position: 'absolute',
-                    top: '-6px',
-                    right: '-6px',
-                    width: '12px',
-                    height: '12px',
+                    top: '-12px',
+                    right: '-12px',
+                    width: '24px',
+                    height: '24px',
+                    borderRadius: '50%',
                     background: '#ff6600',
-                    border: '2px solid #ffffff',
-                    borderRadius: '2px',
-                    cursor: 'nesw-resize'
+                    border: '3px solid #ffffff',
+                    boxShadow: '0 2px 6px rgba(0,0,0,0.5)',
+                    cursor: 'nesw-resize',
+                    zIndex: 20
                   }}
                 />
                 {/* Bottom-Left */}
@@ -745,14 +772,16 @@ export const ImageCropperModal: React.FC<ImageCropperModalProps> = ({
                   onTouchStart={e => startDrag(e, 'sw')}
                   style={{
                     position: 'absolute',
-                    bottom: '-6px',
-                    left: '-6px',
-                    width: '12px',
-                    height: '12px',
+                    bottom: '-12px',
+                    left: '-12px',
+                    width: '24px',
+                    height: '24px',
+                    borderRadius: '50%',
                     background: '#ff6600',
-                    border: '2px solid #ffffff',
-                    borderRadius: '2px',
-                    cursor: 'nesw-resize'
+                    border: '3px solid #ffffff',
+                    boxShadow: '0 2px 6px rgba(0,0,0,0.5)',
+                    cursor: 'nesw-resize',
+                    zIndex: 20
                   }}
                 />
                 {/* Bottom-Right */}
@@ -761,50 +790,56 @@ export const ImageCropperModal: React.FC<ImageCropperModalProps> = ({
                   onTouchStart={e => startDrag(e, 'se')}
                   style={{
                     position: 'absolute',
-                    bottom: '-6px',
-                    right: '-6px',
-                    width: '12px',
-                    height: '12px',
+                    bottom: '-12px',
+                    right: '-12px',
+                    width: '24px',
+                    height: '24px',
+                    borderRadius: '50%',
                     background: '#ff6600',
-                    border: '2px solid #ffffff',
-                    borderRadius: '2px',
-                    cursor: 'nwse-resize'
+                    border: '3px solid #ffffff',
+                    boxShadow: '0 2px 6px rgba(0,0,0,0.5)',
+                    cursor: 'nwse-resize',
+                    zIndex: 20
                   }}
                 />
 
-                {/* Edge Handles */}
+                {/* 4 Chunky Edge Handles */}
                 {/* Top Edge */}
                 <div
                   onMouseDown={e => startDrag(e, 'n')}
                   onTouchStart={e => startDrag(e, 'n')}
                   style={{
                     position: 'absolute',
-                    top: '-5px',
+                    top: '-8px',
                     left: '50%',
                     transform: 'translateX(-50%)',
-                    width: '20px',
-                    height: '8px',
+                    width: '42px',
+                    height: '14px',
+                    borderRadius: '8px',
                     background: '#ff6600',
-                    border: '1px solid #ffffff',
-                    borderRadius: '2px',
-                    cursor: 'ns-resize'
+                    border: '2px solid #ffffff',
+                    boxShadow: '0 2px 4px rgba(0,0,0,0.4)',
+                    cursor: 'ns-resize',
+                    zIndex: 20
                   }}
                 />
-                {/* Bottom Edge */}
+                {/* Bottom Edge (Banner Cut Handle) */}
                 <div
                   onMouseDown={e => startDrag(e, 's')}
                   onTouchStart={e => startDrag(e, 's')}
                   style={{
                     position: 'absolute',
-                    bottom: '-5px',
+                    bottom: '-8px',
                     left: '50%',
                     transform: 'translateX(-50%)',
-                    width: '20px',
-                    height: '8px',
+                    width: '42px',
+                    height: '14px',
+                    borderRadius: '8px',
                     background: '#ff6600',
-                    border: '1px solid #ffffff',
-                    borderRadius: '2px',
-                    cursor: 'ns-resize'
+                    border: '2px solid #ffffff',
+                    boxShadow: '0 2px 4px rgba(0,0,0,0.4)',
+                    cursor: 'ns-resize',
+                    zIndex: 20
                   }}
                 />
                 {/* Left Edge */}
@@ -813,15 +848,17 @@ export const ImageCropperModal: React.FC<ImageCropperModalProps> = ({
                   onTouchStart={e => startDrag(e, 'w')}
                   style={{
                     position: 'absolute',
-                    left: '-5px',
+                    left: '-8px',
                     top: '50%',
                     transform: 'translateY(-50%)',
-                    width: '8px',
-                    height: '20px',
+                    width: '14px',
+                    height: '42px',
+                    borderRadius: '8px',
                     background: '#ff6600',
-                    border: '1px solid #ffffff',
-                    borderRadius: '2px',
-                    cursor: 'ew-resize'
+                    border: '2px solid #ffffff',
+                    boxShadow: '0 2px 4px rgba(0,0,0,0.4)',
+                    cursor: 'ew-resize',
+                    zIndex: 20
                   }}
                 />
                 {/* Right Edge */}
@@ -830,83 +867,158 @@ export const ImageCropperModal: React.FC<ImageCropperModalProps> = ({
                   onTouchStart={e => startDrag(e, 'e')}
                   style={{
                     position: 'absolute',
-                    right: '-5px',
+                    right: '-8px',
                     top: '50%',
                     transform: 'translateY(-50%)',
-                    width: '8px',
-                    height: '20px',
+                    width: '14px',
+                    height: '42px',
+                    borderRadius: '8px',
                     background: '#ff6600',
-                    border: '1px solid #ffffff',
-                    borderRadius: '2px',
-                    cursor: 'ew-resize'
+                    border: '2px solid #ffffff',
+                    boxShadow: '0 2px 4px rgba(0,0,0,0.4)',
+                    cursor: 'ew-resize',
+                    zIndex: 20
                   }}
                 />
               </div>
             </div>
           </div>
 
-          {/* Right Sidebar: Live Preview & Instructions */}
+          {/* Right Sidebar: Easy Slider Controls & Live Preview */}
           <div
             style={{
-              width: '240px',
+              width: '280px',
               borderLeft: '1px solid rgba(255, 255, 255, 0.1)',
               background: '#1e293b',
               padding: '20px',
               display: 'flex',
               flexDirection: 'column',
-              gap: '16px'
+              gap: '18px',
+              overflowY: 'auto'
             }}
           >
+            {/* Live Result Preview */}
             <div>
-              <h3 style={{ fontSize: '13px', fontWeight: 700, color: '#f8fafc', margin: '0 0 4px 0' }}>
-                Live Result Preview
-              </h3>
-              <p style={{ fontSize: '11px', color: '#94a3b8', margin: 0 }}>
-                This is how the cropped image will appear on the storefront.
-              </p>
-            </div>
-
-            {/* Preview Box */}
-            <div
-              style={{
-                width: '160px',
-                height: '160px',
-                background: '#0f172a',
-                borderRadius: '10px',
-                border: '2px solid #334155',
-                overflow: 'hidden',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                margin: '0 auto',
-                boxShadow: '0 4px 12px rgba(0,0,0,0.3)'
-              }}
-            >
-              <canvas
-                ref={previewCanvasRef}
-                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-              />
-            </div>
-
-            {/* Tips / Instructions */}
-            <div
-              style={{
-                background: 'rgba(255, 255, 255, 0.05)',
-                borderRadius: '8px',
-                padding: '12px',
-                fontSize: '11px',
-                color: '#cbd5e1',
-                lineHeight: '1.5'
-              }}
-            >
-              <div style={{ fontWeight: 700, color: '#ff6600', marginBottom: '4px' }}>
-                💡 Pro Tips:
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                <h3 style={{ fontSize: '13px', fontWeight: 700, color: '#f8fafc', margin: 0 }}>
+                  Live Storefront Preview
+                </h3>
+                <span style={{ fontSize: '11px', color: '#38bdf8', fontWeight: 600 }}>
+                  {pixelWidth} × {pixelHeight} px
+                </span>
               </div>
-              <ul style={{ margin: 0, paddingLeft: '16px' }}>
-                <li>Drag from center to reposition</li>
-                <li>Drag corner/edge handles to resize</li>
-                <li>Use &quot;Trim Bottom&quot; to cut unwanted phone banners</li>
-              </ul>
+
+              <div
+                style={{
+                  width: '180px',
+                  height: '180px',
+                  background: '#0f172a',
+                  borderRadius: '12px',
+                  border: '2px solid #334155',
+                  overflow: 'hidden',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  margin: '0 auto',
+                  boxShadow: '0 6px 16px rgba(0,0,0,0.4)'
+                }}
+              >
+                <canvas
+                  ref={previewCanvasRef}
+                  style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                />
+              </div>
+            </div>
+
+            {/* Slider Control: Trim Bottom Banner */}
+            <div style={{ background: 'rgba(255,255,255,0.06)', borderRadius: '10px', padding: '14px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                <label style={{ fontSize: '12px', fontWeight: 700, color: '#ffedd5', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <Scissors size={14} style={{ color: '#ff6600' }} />
+                  <span>Cut Bottom Banner:</span>
+                </label>
+                <span style={{ fontSize: '12px', fontWeight: 800, color: '#ff6600' }}>
+                  {bottomCutPercent}% ({bottomCutPx}px)
+                </span>
+              </div>
+
+              <input
+                type="range"
+                min="0"
+                max="50"
+                step="1"
+                value={bottomCutPercent}
+                onChange={e => applyCutBottom(Number(e.target.value))}
+                style={{
+                  width: '100%',
+                  cursor: 'pointer',
+                  accentColor: '#ff6600'
+                }}
+              />
+
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px', color: '#94a3b8', marginTop: '4px' }}>
+                <span>0% (Full)</span>
+                <span>25% Cut</span>
+                <span>50% Cut</span>
+              </div>
+            </div>
+
+            {/* Selection Mode Helper */}
+            <div style={{ background: 'rgba(255,255,255,0.04)', borderRadius: '10px', padding: '12px' }}>
+              <div style={{ fontSize: '12px', fontWeight: 700, color: '#f1f5f9', marginBottom: '8px' }}>
+                How to select:
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                <button
+                  type="button"
+                  onClick={() => setInteractionMode('adjust')}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    padding: '8px 10px',
+                    borderRadius: '6px',
+                    fontSize: '11px',
+                    fontWeight: 600,
+                    border: interactionMode === 'adjust' ? '1.5px solid #ff6600' : '1px solid #475569',
+                    background: interactionMode === 'adjust' ? 'rgba(255,102,0,0.15)' : 'transparent',
+                    color: interactionMode === 'adjust' ? '#ffedd5' : '#cbd5e1',
+                    cursor: 'pointer',
+                    textAlign: 'left'
+                  }}
+                >
+                  <Move size={14} style={{ color: '#ff6600' }} />
+                  <span>Adjust with Orange Handles</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setInteractionMode('draw')}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    padding: '8px 10px',
+                    borderRadius: '6px',
+                    fontSize: '11px',
+                    fontWeight: 600,
+                    border: interactionMode === 'draw' ? '1.5px solid #ff6600' : '1px solid #475569',
+                    background: interactionMode === 'draw' ? 'rgba(255,102,0,0.15)' : 'transparent',
+                    color: interactionMode === 'draw' ? '#ffedd5' : '#cbd5e1',
+                    cursor: 'pointer',
+                    textAlign: 'left'
+                  }}
+                >
+                  <MousePointer size={14} style={{ color: '#38bdf8' }} />
+                  <span>Click & Drag to Draw New Box</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Information stats */}
+            <div style={{ fontSize: '11px', color: '#94a3b8', lineHeight: '1.5' }}>
+              <div>Original Image: <strong>{naturalSize.width} × {naturalSize.height} px</strong></div>
+              <div>Quality: <strong>95% High Fidelity</strong></div>
             </div>
           </div>
         </div>
@@ -939,7 +1051,9 @@ export const ImageCropperModal: React.FC<ImageCropperModalProps> = ({
           }}
         >
           <div style={{ fontSize: '12px', color: '#64748b' }}>
-            Retains high original resolution with 95% image quality.
+            {bottomCutPercent > 0
+              ? `Ready to crop: removing bottom ${bottomCutPercent}% banner strip.`
+              : `Ready to crop: keeping selected ${pixelWidth} × ${pixelHeight} px area.`}
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>

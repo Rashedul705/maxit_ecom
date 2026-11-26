@@ -148,19 +148,36 @@ router.post('/clean-banner', requireAdminAuth, async (req, res, next) => {
     const filename = `clean_${Date.now()}_${Math.round(Math.random() * 1e6)}.jpg`;
     const destPath = path.join(uploadDir, filename);
 
-    execFile('python3', [scriptPath, imageUrl, destPath], { timeout: 60000 }, (err, stdout, stderr) => {
+    execFile('python3', [scriptPath, imageUrl, destPath], { timeout: 35000 }, async (err, stdout, stderr) => {
       if (err) {
         console.error('clean_single_image error:', err, stderr);
-        return errorResponse(res, 'Failed to clean image: ' + err.message, 500);
+        return errorResponse(res, 'Failed to clean image: ' + (stderr || err.message), 500);
       }
 
-      if (fs.existsSync(destPath) && fs.statSync(destPath).size > 0) {
-        syncLocalFile(filename, destPath);
+      try {
+        if (fs.existsSync(destPath) && fs.statSync(destPath).size > 0) {
+          const cleanedBuffer = fs.readFileSync(destPath);
 
-        const localUrl = `/uploads/${filename}`;
-        return successResponse(res, { url: localUrl, details: stdout.trim() }, 'Image cleaned successfully');
-      } else {
-        return successResponse(res, { url: imageUrl, details: 'Image was already clean' }, 'Image is already clean');
+          // Try ImgBB if configured
+          const rawKeys = process.env.IMGBB_API_KEY || process.env.IMGBB_API_KEYS || '';
+          const imgbbKeys = rawKeys.split(',').map(k => k.trim()).filter(Boolean);
+
+          if (imgbbKeys.length > 0) {
+            const imgbbUrl = await uploadToImgBbApi(cleanedBuffer, imgbbKeys);
+            if (imgbbUrl) {
+              syncLocalFile(filename, destPath);
+              return successResponse(res, { url: imgbbUrl, provider: 'imgbb', alreadyClean: false, details: stdout.trim() }, 'Image cleaned and uploaded to ImgBB successfully');
+            }
+          }
+
+          syncLocalFile(filename, destPath);
+          const localUrl = `/uploads/${filename}`;
+          return successResponse(res, { url: localUrl, provider: 'local', alreadyClean: false, details: stdout.trim() }, 'Image cleaned successfully');
+        } else {
+          return successResponse(res, { url: imageUrl, alreadyClean: true, details: 'Image was already clean' }, 'Image is already clean');
+        }
+      } catch (postErr) {
+        return errorResponse(res, 'Error processing cleaned image: ' + postErr.message, 500);
       }
     });
   } catch (err) {

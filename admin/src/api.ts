@@ -45,7 +45,14 @@ async function request<T>(endpoint: string, options: RequestInit = {}): Promise<
     headers
   });
 
-  const json = await res.json();
+  const rawText = await res.text();
+  let json: any;
+  try {
+    json = JSON.parse(rawText);
+  } catch {
+    throw new Error(rawText.slice(0, 120) || `Request failed with status ${res.status}`);
+  }
+
   if (!res.ok || !json.success) {
     if (res.status === 401 && !endpoint.includes('/login')) {
       localStorage.removeItem('maxit_admin_token');
@@ -241,8 +248,8 @@ export const adminApi = {
     return json.data.url;
   },
 
-  cleanImageBanner: (imageUrl: string): Promise<{ url: string; details?: string }> => {
-    return request<{ url: string; details?: string }>('/upload/clean-banner', {
+  cleanImageBanner: (imageUrl: string): Promise<{ url: string; alreadyClean?: boolean; details?: string }> => {
+    return request<{ url: string; alreadyClean?: boolean; details?: string }>('/upload/clean-banner', {
       method: 'POST',
       body: JSON.stringify({ imageUrl })
     });

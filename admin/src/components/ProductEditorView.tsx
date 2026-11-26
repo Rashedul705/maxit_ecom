@@ -83,7 +83,7 @@ export const ProductEditorView: React.FC<ProductEditorViewProps> = ({
     try {
       setCleaningImage(true);
       const res = await adminApi.cleanImageBanner(imgUrl);
-      if (res.url && res.url !== imgUrl) {
+      if (res.url && res.url !== imgUrl && !res.alreadyClean) {
         if (isMain) {
           setMainImage(res.url);
         } else if (galleryIdx !== undefined) {
@@ -93,7 +93,7 @@ export const ProductEditorView: React.FC<ProductEditorViewProps> = ({
         }
         alert('Image cleaned successfully! Bottom banner and competitor phone numbers removed.');
       } else {
-        alert('Image is already clean! No banner or competitor phone was detected.');
+        alert('Image is already clean! No bottom banner or competitor phone numbers were detected.\n\nTip: You can use "✂️ Crop Manually" anytime to cut or trim any custom part of the image.');
       }
     } catch (e: any) {
       alert('Cleaning failed: ' + e.message);
