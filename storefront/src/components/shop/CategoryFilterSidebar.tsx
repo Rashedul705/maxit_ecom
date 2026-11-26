@@ -42,7 +42,12 @@ export const CategoryFilterSidebar: React.FC<CategoryFilterSidebarProps> = ({
   const searchParams = useSearchParams();
 
   const isShopMode = isShop || pathname === '/shop';
-  const currentCategoryParam = searchParams.get('category') || (!isShopMode ? currentCategory : '');
+  const rawCategoryParam = searchParams.get('category');
+  // On shop page, default to 'solar-renewable-energy' if no category query param is present
+  const currentCategoryParam = isShopMode
+    ? (rawCategoryParam === 'all' ? 'all' : (rawCategoryParam || currentCategory || 'solar-renewable-energy'))
+    : (rawCategoryParam || currentCategory || '');
+
   const currentBrand = searchParams.get('brand') || '';
   const currentMinPrice = searchParams.get('minPrice') || '';
   const currentMaxPrice = searchParams.get('maxPrice') || '';
@@ -89,7 +94,8 @@ export const CategoryFilterSidebar: React.FC<CategoryFilterSidebarProps> = ({
     if (isShopMode) {
       setMobileDrawerOpen(false);
       if (currentCategoryParam === subSlug) {
-        applyFilters({ category: null });
+        // Toggling off active category defaults to all categories
+        applyFilters({ category: 'all' });
       } else {
         applyFilters({ category: subSlug });
       }
@@ -148,7 +154,11 @@ export const CategoryFilterSidebar: React.FC<CategoryFilterSidebarProps> = ({
     params.delete('maxPrice');
     params.delete('inStock');
     params.delete('sub');
-    params.delete('category');
+    if (isShopMode) {
+      params.set('category', 'solar-renewable-energy');
+    } else {
+      params.delete('category');
+    }
     params.delete('page');
     const queryString = params.toString();
     router.push(queryString ? `${pathname}?${queryString}` : pathname);
@@ -162,7 +172,9 @@ export const CategoryFilterSidebar: React.FC<CategoryFilterSidebarProps> = ({
     : null;
 
   let activeFilterCount = 0;
-  if (isShopMode && currentCategoryParam) activeFilterCount += 1;
+  if (isShopMode && currentCategoryParam && currentCategoryParam !== 'all' && currentCategoryParam !== 'solar-renewable-energy') {
+    activeFilterCount += 1;
+  }
   if (!isShopMode && currentSub) activeFilterCount += 1;
   if (currentBrand) activeFilterCount += currentBrand.split(',').length;
   if (currentMinPrice || currentMaxPrice) activeFilterCount += 1;
@@ -205,16 +217,16 @@ export const CategoryFilterSidebar: React.FC<CategoryFilterSidebarProps> = ({
       {/* Active Filter Chips */}
       {hasActiveFilters && (
         <div className="flex flex-wrap gap-1.5 pb-2 border-b border-gray-100">
-          {isShopMode && currentCategoryParam && (
+          {isShopMode && currentCategoryParam && currentCategoryParam !== 'all' && (
             <span className="inline-flex items-center gap-1 text-[11px] font-semibold bg-orange-50 text-[#FF6600] border border-orange-200 px-2 py-0.5 rounded-md">
               <span className="truncate max-w-[140px]">
                 {activeMotherItem ? activeMotherItem.name : currentCategoryParam}
               </span>
               <button
                 type="button"
-                onClick={() => applyFilters({ category: null })}
+                onClick={() => applyFilters({ category: 'all' })}
                 className="hover:text-[#c44d00] cursor-pointer"
-                title="Remove category filter"
+                title="View all categories"
               >
                 <X className="w-3 h-3" />
               </button>
@@ -302,31 +314,31 @@ export const CategoryFilterSidebar: React.FC<CategoryFilterSidebarProps> = ({
           )}
 
           <div className="space-y-1 max-h-72 overflow-y-auto pr-1 scrollbar-thin">
-            {/* "All" Reset Option */}
+            {/* "All Categories" Option */}
             <button
               type="button"
               onClick={() => {
                 if (isShopMode) {
-                  applyFilters({ category: null });
+                  applyFilters({ category: 'all' });
                 } else {
                   applyFilters({ sub: null });
                 }
               }}
               className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-semibold transition-all text-left cursor-pointer ${
-                (isShopMode ? !currentCategoryParam : !currentSub)
+                (isShopMode ? currentCategoryParam === 'all' : !currentSub)
                   ? 'bg-orange-50 text-[#FF6600] border border-orange-200/80 font-bold'
                   : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900 border border-transparent'
               }`}
             >
               <div className="flex items-center gap-2">
                 <span className={`w-2 h-2 rounded-full shrink-0 ${
-                  (isShopMode ? !currentCategoryParam : !currentSub) ? 'bg-[#FF6600]' : 'bg-gray-300'
+                  (isShopMode ? currentCategoryParam === 'all' : !currentSub) ? 'bg-[#FF6600]' : 'bg-gray-300'
                 }`} />
                 <span>All {isShopMode ? 'Categories' : (isMother ? 'Categories' : (categoryName || 'Subcategories'))}</span>
               </div>
               {totalProducts !== undefined && (
                 <span className={`text-[10px] px-1.5 py-0.5 rounded-full shrink-0 ml-1.5 ${
-                  (isShopMode ? !currentCategoryParam : !currentSub) ? 'bg-orange-100 text-[#FF6600] font-bold' : 'bg-gray-100 text-gray-500'
+                  (isShopMode ? currentCategoryParam === 'all' : !currentSub) ? 'bg-orange-100 text-[#FF6600] font-bold' : 'bg-gray-100 text-gray-500'
                 }`}>
                   {totalProducts.toLocaleString()}
                 </span>
@@ -490,7 +502,7 @@ export const CategoryFilterSidebar: React.FC<CategoryFilterSidebarProps> = ({
             )}
           </div>
           <div className="flex items-center gap-1 text-[#FF6600] text-xs font-semibold">
-            {activeMotherItem ? (
+            {activeMotherItem && currentCategoryParam !== 'all' ? (
               <span className="truncate max-w-[140px] text-gray-600">{activeMotherItem.name}</span>
             ) : activeSubItem ? (
               <span className="truncate max-w-[140px] text-gray-600">{activeSubItem.name}</span>

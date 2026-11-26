@@ -40,11 +40,16 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
   const page = parseInt(search.page || '1', 10);
   const limit = 15;
 
+  // On the shop page, show the Solar category first by default!
+  // If search.category is 'all', show all categories across the store.
+  const isAllCategories = search.category === 'all';
+  const effectiveCategory = isAllCategories ? undefined : (search.category || 'solar-renewable-energy');
+
   // Fetch categories and products concurrently
   const [categories, productsResponse] = await Promise.all([
     api.getCategories().catch(() => []),
     api.getProducts({
-      category: search.category,
+      category: effectiveCategory,
       brand: search.brand,
       minPrice: search.minPrice,
       maxPrice: search.maxPrice,
@@ -66,8 +71,10 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
   const hasNext = page < totalPages;
   const availableBrands = productsResponse.filterMeta?.availableBrands || [];
 
-  const currentCategory = categories.find((c: any) => c.slug === search.category) ||
-    categories.flatMap((c: any) => c.children || []).find((c: any) => c.slug === search.category);
+  const currentCategory = effectiveCategory
+    ? (categories.find((c: any) => c.slug === effectiveCategory) ||
+       categories.flatMap((c: any) => c.children || []).find((c: any) => c.slug === effectiveCategory))
+    : null;
 
   const totalAllCategoriesCount = categories.reduce((acc: number, c: any) => acc + (c.productCount || 0), 0) || total;
 
@@ -82,7 +89,11 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
   // Helper to construct pagination URLs while preserving current filters
   const buildPageUrl = (targetPage: number) => {
     const p = new URLSearchParams();
-    if (search.category) p.set('category', search.category);
+    if (search.category) {
+      p.set('category', search.category);
+    } else if (effectiveCategory) {
+      p.set('category', effectiveCategory);
+    }
     if (search.brand) p.set('brand', search.brand);
     if (search.minPrice) p.set('minPrice', search.minPrice);
     if (search.maxPrice) p.set('maxPrice', search.maxPrice);
@@ -102,7 +113,7 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
           <span>Home</span>
         </Link>
         <ChevronRight className="w-3 h-3 text-gray-400" />
-        <Link href="/shop" className="hover:text-[#FF6600] transition-colors">
+        <Link href="/shop?category=all" className="hover:text-[#FF6600] transition-colors">
           Shop
         </Link>
         {currentCategory && (
@@ -125,7 +136,9 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
               {currentCategory ? currentCategory.name : 'All Products'}
             </h1>
             <p className="text-sm text-slate-600 mt-2 max-w-2xl leading-relaxed">
-              Explore our complete range of certified solar packages, on-grid &amp; hybrid inverters, industrial equipment, power protection, and electronic accessories with nationwide warranty.
+              {currentCategory
+                ? 'Explore certified solar packages, on-grid & hybrid solar inverters, solar panels, and lithium storage solutions with nationwide warranty.'
+                : 'Explore our complete range of certified solar packages, on-grid & hybrid inverters, industrial equipment, power protection, and electronic accessories with nationwide warranty.'}
             </p>
           </div>
 
@@ -142,11 +155,11 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
       {/* 2-Column Main Layout: Sidebar Filters + Products Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 items-start">
         
-        {/* Left Sidebar Filter (keeps all mother categories, counts, active filter indicator) */}
+        {/* Left Sidebar Filter (keeps all mother categories with Solar first and active by default) */}
         <div className="lg:col-span-1">
           <CategoryFilterSidebar
             availableBrands={availableBrands}
-            currentCategory={search.category}
+            currentCategory={effectiveCategory}
             subcategories={motherSubcategories}
             isShop={true}
             totalProducts={totalAllCategoriesCount}
@@ -165,10 +178,10 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
                 We couldn&apos;t find any items matching your selected criteria. Try resetting your filters.
               </p>
               <Link
-                href="/shop"
+                href="/shop?category=all"
                 className="px-4 py-2 bg-[#FF6600] text-white text-xs font-semibold rounded-lg hover:bg-[#e55c00] transition-colors"
               >
-                Clear All Filters
+                View All Categories
               </Link>
             </div>
           ) : (
