@@ -95,6 +95,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       .map(([k, v]) => `${k}: ${v}`);
   }
 
+  // Pick the best available non-placeholder image
+  const displayImage = (product.image && !product.image.includes('product-placeholder'))
+    ? product.image
+    : (Array.isArray(product.images) ? product.images.find(img => img && !img.includes('product-placeholder')) : null) || product.image || '';
+
   return (
     <div className="group relative flex flex-col justify-between h-full bg-white rounded-xl border border-gray-200 p-3 sm:p-3.5 hover:border-[#FF6600] hover:shadow-md transition-all duration-200">
       
@@ -104,7 +109,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <div className="relative block w-full aspect-square rounded-lg bg-gray-50 overflow-hidden mb-2.5">
           <Link href={`/product/${product.slug}`} className="block w-full h-full">
             <SafeImage
-              src={product.image || (product.images && product.images[0]) || ''}
+              src={displayImage}
               alt={product.title}
               fill
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"

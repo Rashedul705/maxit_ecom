@@ -39,7 +39,10 @@ const getProducts = async ({
   // Search filter
   if (search) {
     const q = search.toLowerCase().trim();
+    const numPart = q.replace(/^(bd|mx)-?/, '');
     result = result.filter(p =>
+      (p.productCode && (p.productCode.toLowerCase().includes(q) || (numPart && p.productCode.toLowerCase().includes(numPart)))) ||
+      (p.id && p.id.toLowerCase().includes(q)) ||
       p.title.toLowerCase().includes(q) ||
       p.brand.toLowerCase().includes(q) ||
       p.shortDescription.toLowerCase().includes(q) ||
@@ -166,13 +169,16 @@ const getSearchSuggestions = async (q) => {
     return [];
   }
   const term = q.toLowerCase().trim();
+  const numPart = term.replace(/^(bd|mx)-?/, '');
   const matched = products
     .filter(p =>
+      (p.productCode && (p.productCode.toLowerCase().includes(term) || (numPart && p.productCode.toLowerCase().includes(numPart)))) ||
+      (p.id && p.id.toLowerCase().includes(term)) ||
       p.title.toLowerCase().includes(term) ||
       p.brand.toLowerCase().includes(term) ||
       p.category.toLowerCase().includes(term)
     )
-    .slice(0, 6);
+    .slice(0, 8);
 
   return matched.map(p => ({
     id: p.id,
@@ -182,7 +188,8 @@ const getSearchSuggestions = async (q) => {
     oldPrice: p.oldPrice,
     image: p.images[0],
     category: p.category,
-    brand: p.brand
+    brand: p.brand,
+    productCode: p.productCode || ''
   }));
 };
 

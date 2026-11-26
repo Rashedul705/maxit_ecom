@@ -261,14 +261,32 @@ export const ProductInteractiveView: React.FC<ProductInteractiveViewProps> = ({
     }
   };
 
+  // Track any image URLs that fail to load at runtime
+  const [brokenImages, setBrokenImages] = useState<Set<string>>(new Set());
+
+  const handleImageError = (failedSrc: string) => {
+    if (!failedSrc) return;
+    setBrokenImages(prev => {
+      if (prev.has(failedSrc)) return prev;
+      const next = new Set(prev);
+      next.add(failedSrc);
+      return next;
+    });
+  };
+
   // Gallery images array: main image first, followed by additional gallery images
-  const mainImage = product.image || (product.images && product.images[0]) || '';
-  const rawGallery = Array.isArray(product.images) ? product.images : [];
-  const additionalImages = rawGallery.filter(img => img && img !== mainImage);
-  const galleryImages = [mainImage, ...additionalImages].filter(Boolean);
-  if (galleryImages.length === 0) {
-    galleryImages.push('/images/product-placeholder.svg');
-  }
+  const rawGallery = Array.isArray(product.images) ? product.images.filter(Boolean) : [];
+  const realGallery = rawGallery.filter(img => !img.includes('product-placeholder'));
+  const rawMain = product.image && !product.image.includes('product-placeholder') ? product.image : '';
+  const mainImage = rawMain || (realGallery.length > 0 ? realGallery[0] : (rawGallery[0] || ''));
+  const additionalImages = (realGallery.length > 0 ? realGallery : rawGallery).filter(img => img && img !== mainImage);
+  const allCandidateImages = [mainImage, ...additionalImages].filter(Boolean);
+
+  // Filter out any broken images if other working images exist
+  const uncorruptedImages = allCandidateImages.filter(img => !brokenImages.has(img));
+  const galleryImages = uncorruptedImages.length > 0
+    ? uncorruptedImages
+    : (allCandidateImages.length > 0 ? allCandidateImages : ['/images/product-placeholder.svg']);
 
   const activeImage = galleryImages[activeImageIndex] || galleryImages[0];
 
@@ -341,6 +359,7 @@ export const ProductInteractiveView: React.FC<ProductInteractiveViewProps> = ({
               priority
               sizes="(max-width: 768px) 100vw, 480px"
               className="object-contain transition-transform duration-300 hover:scale-105"
+              onError={() => handleImageError(activeImage)}
             />
           </div>
 
@@ -366,6 +385,7 @@ export const ProductInteractiveView: React.FC<ProductInteractiveViewProps> = ({
                       fill
                       sizes="72px"
                       className="object-contain"
+                      onError={() => handleImageError(src)}
                     />
                   </button>
                 );

@@ -248,7 +248,7 @@ export const ProductsView: React.FC = () => {
           <input
             type="text"
             className="form-input"
-            placeholder="Search products by title, category, brand..."
+            placeholder="Search by title, code (e.g. MX-18477), brand, category..."
             value={search}
             onChange={e => setSearch(e.target.value)}
           />
@@ -516,7 +516,22 @@ export const ProductsView: React.FC = () => {
                     </td>
                     <td>
                       <div style={{ fontWeight: 600, maxWidth: '280px' }}>{p.title}</div>
-                      <div style={{ fontSize: '11px', color: '#64748b' }}>Slug: {p.slug}</div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '3px' }}>
+                        {p.productCode && (
+                          <span style={{
+                            fontSize: '11px',
+                            fontWeight: 700,
+                            color: '#ea580c',
+                            background: '#fff7ed',
+                            border: '1px solid #fed7aa',
+                            padding: '1px 6px',
+                            borderRadius: '4px'
+                          }}>
+                            {p.productCode}
+                          </span>
+                        )}
+                        <span style={{ fontSize: '11px', color: '#64748b' }}>Slug: {p.slug}</span>
+                      </div>
                     </td>
                     <td style={{ fontSize: '12px', color: '#475569' }}>
                       <div style={{ textTransform: 'uppercase', fontWeight: 600 }}>{p.category}</div>

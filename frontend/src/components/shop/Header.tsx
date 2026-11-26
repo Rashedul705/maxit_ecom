@@ -230,9 +230,14 @@ export const Header: React.FC<HeaderProps> = ({ categories = [], settings, onTog
                           <p className="text-xs sm:text-sm font-semibold text-gray-800 line-clamp-1 group-hover:text-[#FF6600]">
                             {item.title}
                           </p>
-                          <p className="text-[11px] text-gray-400 capitalize">
-                            {item.brand} • {item.category.replace(/-/g, ' ')}
-                          </p>
+                          <div className="flex items-center gap-1.5 text-[11px] text-gray-400">
+                            {item.productCode && (
+                              <span className="font-bold text-[#FF6600] bg-orange-50 px-1.5 py-0.2 rounded border border-orange-200/60 uppercase shrink-0">
+                                {item.productCode}
+                              </span>
+                            )}
+                            <span className="capitalize truncate">{item.brand} • {item.category.replace(/-/g, ' ')}</span>
+                          </div>
                         </div>
                         <div className="text-right">
                           <span className="text-xs sm:text-sm font-bold text-[#FF6600]">

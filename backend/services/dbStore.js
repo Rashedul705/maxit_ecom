@@ -1000,14 +1000,30 @@ const db = {
         }
 
         if (search) {
-          const regex = { $regex: search.trim(), $options: 'i' };
+          const rawSearch = search.trim();
+          // Escape special regex characters
+          const escaped = rawSearch.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
+          const textRegex = new RegExp(escaped, 'i');
+
+          // Extract number part if user searched e.g. "18477", "BD-18477", or "MX-18477"
+          const numPart = rawSearch.replace(/^(BD|MX)-?/i, '');
+          const patterns = [
+            rawSearch,
+            ...(numPart && numPart !== rawSearch ? [numPart, `MX-${numPart}`, `BD-${numPart}`] : [`MX-${rawSearch}`])
+          ];
+          const codeRegexes = patterns.map(p => new RegExp(`^${p.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&')}$`, 'i'));
+
           const searchConditions = [
-            { title: regex },
-            { shortDescription: regex },
-            { description: regex },
-            { brand: regex },
-            { category: regex },
-            { categoryName: regex }
+            { productCode: { $in: codeRegexes } },
+            { productCode: textRegex },
+            { id: { $in: codeRegexes } },
+            { id: textRegex },
+            { title: textRegex },
+            { brand: textRegex },
+            { shortDescription: textRegex },
+            { description: textRegex },
+            { category: textRegex },
+            { categoryName: textRegex }
           ];
           if (filter.$or) {
             filter.$and = [{ $or: filter.$or }, { $or: searchConditions }];
@@ -1384,8 +1400,27 @@ const db = {
   },
 
   async createProduct(data) {
+    let code = data.productCode ? String(data.productCode).trim() : '';
+    if (!code) {
+      if (isMongo()) {
+        try {
+          const lastProd = await Product.findOne({ productCode: /^MX-\d+$/ }).sort({ productCode: -1 }).lean();
+          if (lastProd && lastProd.productCode) {
+            const num = parseInt(lastProd.productCode.replace('MX-', ''), 10);
+            if (!isNaN(num)) code = `MX-${num + 1}`;
+          }
+        } catch (e) {}
+      }
+      if (!code) {
+        code = `MX-${Math.floor(70000 + Math.random() * 20000)}`;
+      }
+    } else if (!code.startsWith('MX-')) {
+      code = `MX-${code.replace(/^BD-/, '')}`;
+    }
+
     const prod = {
       id: `prod-${Date.now()}`,
+      productCode: code,
       slug: data.slug || (data.title || 'prod').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
       stock: data.stock !== undefined ? Number(data.stock) : 10,
       price: Number(data.price || 0),
@@ -1394,7 +1429,8 @@ const db = {
       specs: data.specs || {},
       rating: 5.0,
       reviewCount: 1,
-      ...data
+      ...data,
+      productCode: code
     };
 
     if (isMongo()) {
@@ -1615,15 +1651,27 @@ const db = {
 
     if (isMongo()) {
       try {
-        const regex = { $regex: term, $options: 'i' };
+        const escaped = term.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
+        const textRegex = new RegExp(escaped, 'i');
+        const numPart = term.replace(/^(BD|MX)-?/i, '');
+        const patterns = [
+          term,
+          ...(numPart && numPart !== term ? [numPart, `MX-${numPart}`, `BD-${numPart}`] : [`MX-${term}`])
+        ];
+        const codeRegexes = patterns.map(p => new RegExp(`^${p.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&')}$`, 'i'));
+
         const docs = await Product.find({
           $or: [
-            { title: regex },
-            { brand: regex },
-            { category: regex },
-            { categoryName: regex }
+            { productCode: { $in: codeRegexes } },
+            { productCode: textRegex },
+            { id: { $in: codeRegexes } },
+            { id: textRegex },
+            { title: textRegex },
+            { brand: textRegex },
+            { category: textRegex },
+            { categoryName: textRegex }
           ]
-        }).limit(6).lean();
+        }).limit(8).lean();
 
         return docs.map(p => ({
           id: p.id,
@@ -1633,7 +1681,9 @@ const db = {
           oldPrice: p.oldPrice,
           image: Array.isArray(p.images) && p.images.length > 0 ? p.images[0] : (p.image || ''),
           category: p.category,
-          brand: p.brand
+          categoryName: p.categoryName,
+          brand: p.brand,
+          productCode: p.productCode || ''
         }));
       } catch (err) {
         console.warn('Search suggestions Mongo error:', err.message);

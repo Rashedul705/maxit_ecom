@@ -597,7 +597,7 @@ export const ProductEditorView: React.FC<ProductEditorViewProps> = ({
                 <input
                   type="text"
                   className="form-input"
-                  placeholder="51939"
+                  placeholder="e.g. MX-18477"
                   value={productCode}
                   onChange={e => setProductCode(e.target.value)}
                 />

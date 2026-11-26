@@ -242,6 +242,7 @@ export interface SearchSuggestion {
   subcategory?: string;
   subcategoryName?: string;
   brand: string;
+  productCode?: string;
 }
 
 export interface CartItem {
