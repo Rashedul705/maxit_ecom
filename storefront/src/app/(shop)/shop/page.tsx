@@ -4,7 +4,27 @@ import { api } from '@/lib/api';
 import { ProductCard } from '@/components/shop/ProductCard';
 import { CategoryFilterSidebar } from '@/components/shop/CategoryFilterSidebar';
 import { CategorySortBar } from '@/components/shop/CategorySortBar';
-import { ChevronRight, Home, ArrowLeft, ArrowRight, PackageX, ShoppingBag, Sparkles, Filter } from 'lucide-react';
+import {
+  ChevronRight,
+  Home,
+  ArrowLeft,
+  ArrowRight,
+  PackageX,
+  ShoppingBag,
+  Sparkles,
+  Sun,
+  BatteryCharging,
+  Zap,
+  Cpu,
+  Bot,
+  Radio,
+  Layers,
+  Wrench,
+  ShieldCheck,
+  Monitor,
+  Package,
+  LayoutGrid
+} from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -26,6 +46,37 @@ interface ShopPageProps {
 
 export const revalidate = 0;
 export const dynamic = 'force-dynamic';
+
+const getCategoryIcon = (slug: string) => {
+  switch (slug) {
+    case 'solar-renewable-energy':
+      return Sun;
+    case 'batteries-portable-power':
+      return BatteryCharging;
+    case 'ups-power-protection':
+      return Zap;
+    case 'smart-home-automation':
+      return Home;
+    case 'microcontrollers-dev-boards':
+      return Cpu;
+    case 'robotics-drone-kits':
+      return Bot;
+    case 'sensors-modules-wireless':
+      return Radio;
+    case 'electronic-components':
+      return Layers;
+    case 'tools-instruments':
+      return Wrench;
+    case 'security-safety':
+      return ShieldCheck;
+    case 'computer-networking-office':
+      return Monitor;
+    case 'accessories-services':
+      return Package;
+    default:
+      return LayoutGrid;
+  }
+};
 
 export default async function ShopPage({ searchParams }: ShopPageProps) {
   const search = await searchParams;
@@ -61,6 +112,16 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
   const currentCategory = categories.find((c: any) => c.slug === search.category) ||
     categories.flatMap((c: any) => c.children || []).find((c: any) => c.slug === search.category);
 
+  const totalAllCategoriesCount = categories.reduce((acc: number, c: any) => acc + (c.productCount || 0), 0) || total;
+
+  // Prepare mother category items for sidebar
+  const motherSubcategories = categories.map((c: any) => ({
+    id: c._id || c.id,
+    name: c.name,
+    slug: c.slug,
+    productCount: c.productCount
+  }));
+
   // Helper to construct pagination URLs while preserving current filters
   const buildPageUrl = (targetPage: number) => {
     const p = new URLSearchParams();
@@ -74,7 +135,7 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
     return `/shop?${p.toString()}`;
   };
 
-  // Helper for category pill filter
+  // Helper for category URLs
   const buildCategoryUrl = (slug?: string) => {
     const p = new URLSearchParams();
     if (slug) p.set('category', slug);
@@ -119,7 +180,7 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
               {currentCategory ? currentCategory.name : 'All Products'}
             </h1>
             <p className="text-sm text-slate-600 mt-2 max-w-2xl leading-relaxed">
-              Explore our complete range of certified solar packages, on-grid & hybrid inverters, industrial equipment, power protection, and electronic accessories with nationwide warranty.
+              Explore our complete range of certified solar packages, on-grid &amp; hybrid inverters, industrial equipment, power protection, and electronic accessories with nationwide warranty.
             </p>
           </div>
 
@@ -127,43 +188,148 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
             <Sparkles className="w-4 h-4 text-[#FF6600]" />
             <div>
               <p className="font-bold text-slate-900">{total} Products Available</p>
-              <p className="text-[11px] text-slate-500">100% Genuine & Brand Warranty</p>
+              <p className="text-[11px] text-slate-500">100% Genuine &amp; Brand Warranty</p>
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Category Filter Pills */}
-        {categories.length > 0 && (
-          <div className="mt-6 pt-5 border-t border-gray-100 flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
+      {/* ─── MOTHER CATEGORIES SHOWCASE SECTION ─── */}
+      {categories.length > 0 && (
+        <div className="bg-white rounded-2xl border border-gray-200 p-5 sm:p-6 mb-6 shadow-xs">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 pb-3 border-b border-gray-100">
+            <div>
+              <h2 className="text-base sm:text-lg font-black text-gray-900 flex items-center gap-2">
+                <LayoutGrid className="w-5 h-5 text-[#FF6600]" />
+                <span>Browse by Mother Category</span>
+              </h2>
+              <p className="text-xs text-gray-500 mt-0.5">
+                Select any of our 12 primary divisions to view specialized components and turnkey systems
+              </p>
+            </div>
+            {search.category && (
+              <Link
+                href="/shop"
+                className="text-xs font-bold text-[#FF6600] hover:text-[#e55c00] flex items-center gap-1 self-start sm:self-auto px-2.5 py-1 rounded-lg bg-orange-50 border border-orange-200"
+              >
+                <span>View All Products</span>
+                <ChevronRight className="w-3.5 h-3.5" />
+              </Link>
+            )}
+          </div>
+
+          {/* 12 Mother Categories Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2.5 sm:gap-3">
+            {/* "All Categories" Tile */}
             <Link
               href={buildCategoryUrl()}
-              className={`text-xs px-3.5 py-1.5 rounded-full border transition-all whitespace-nowrap ${
+              className={`group relative p-3 rounded-xl border transition-all flex flex-col justify-between ${
                 !search.category
-                  ? 'bg-[#FF6600] text-white border-[#FF6600] font-semibold shadow-xs'
-                  : 'bg-white text-slate-700 border-slate-200 hover:border-[#FF6600] hover:text-[#FF6600] font-medium'
+                  ? 'bg-gradient-to-br from-orange-50 to-amber-50/50 border-[#FF6600] shadow-xs ring-1 ring-[#FF6600]'
+                  : 'bg-white border-gray-200 hover:border-gray-300 hover:shadow-xs hover:-translate-y-0.5'
               }`}
             >
-              All Categories
+              <div className="flex items-center justify-between mb-2">
+                <div className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors ${
+                  !search.category ? 'bg-[#FF6600] text-white' : 'bg-gray-100 text-gray-600 group-hover:bg-orange-100 group-hover:text-[#FF6600]'
+                }`}>
+                  <LayoutGrid className="w-4 h-4" />
+                </div>
+                <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-full ${
+                  !search.category ? 'bg-orange-200/60 text-[#b54800]' : 'bg-gray-100 text-gray-500'
+                }`}>
+                  All
+                </span>
+              </div>
+              <div>
+                <span className={`block text-xs font-bold leading-tight mb-0.5 ${
+                  !search.category ? 'text-[#FF6600]' : 'text-gray-900 group-hover:text-[#FF6600]'
+                }`}>
+                  All Products
+                </span>
+                <span className="text-[11px] text-gray-400">
+                  {totalAllCategoriesCount.toLocaleString()} items
+                </span>
+              </div>
             </Link>
+
+            {/* 12 Mother Categories */}
             {categories.map((cat: any) => {
+              const IconComponent = getCategoryIcon(cat.slug);
               const isActive = search.category === cat.slug;
               return (
                 <Link
                   key={cat.id || cat.slug}
-                  href={buildCategoryUrl(cat.slug)}
-                  className={`text-xs px-3.5 py-1.5 rounded-full border transition-all whitespace-nowrap ${
+                  href={isActive ? buildCategoryUrl() : buildCategoryUrl(cat.slug)}
+                  className={`group relative p-3 rounded-xl border transition-all flex flex-col justify-between ${
                     isActive
-                      ? 'bg-[#FF6600] text-white border-[#FF6600] font-semibold shadow-xs'
-                      : 'bg-white text-slate-700 border-slate-200 hover:border-[#FF6600] hover:text-[#FF6600] font-medium'
+                      ? 'bg-gradient-to-br from-orange-50 to-amber-50/50 border-[#FF6600] shadow-xs ring-1 ring-[#FF6600]'
+                      : 'bg-white border-gray-200 hover:border-gray-300 hover:shadow-xs hover:-translate-y-0.5'
                   }`}
                 >
-                  {cat.name}
+                  <div className="flex items-center justify-between mb-2">
+                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors ${
+                      isActive ? 'bg-[#FF6600] text-white' : 'bg-gray-100 text-gray-600 group-hover:bg-orange-100 group-hover:text-[#FF6600]'
+                    }`}>
+                      <IconComponent className="w-4 h-4" />
+                    </div>
+                    {cat.productCount !== undefined && (
+                      <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-full ${
+                        isActive ? 'bg-orange-200/60 text-[#b54800]' : 'bg-gray-100 text-gray-500'
+                      }`}>
+                        {cat.productCount}
+                      </span>
+                    )}
+                  </div>
+                  <div>
+                    <span className={`block text-xs font-bold leading-tight mb-0.5 line-clamp-2 ${
+                      isActive ? 'text-[#FF6600]' : 'text-gray-900 group-hover:text-[#FF6600]'
+                    }`}>
+                      {cat.name}
+                    </span>
+                    <span className="text-[11px] text-gray-400">
+                      {cat.children?.length ? `${cat.children.length} subcategories` : 'Explore'}
+                    </span>
+                  </div>
                 </Link>
               );
             })}
           </div>
-        )}
-      </div>
+
+          {/* If a Mother Category is selected and has children, show its subcategories right below */}
+          {currentCategory && currentCategory.children && currentCategory.children.length > 0 && (
+            <div className="mt-4 pt-3.5 border-t border-gray-100">
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <span className="text-xs font-bold text-gray-700">
+                  Subcategories in <span className="text-[#FF6600]">{currentCategory.name}</span>:
+                </span>
+                <Link
+                  href={`/category/${currentCategory.slug}`}
+                  className="text-xs text-[#FF6600] hover:underline font-semibold flex items-center gap-1"
+                >
+                  Open Category Page <ChevronRight className="w-3 h-3" />
+                </Link>
+              </div>
+              <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
+                {currentCategory.children.map((sub: any) => (
+                  <Link
+                    key={sub._id || sub.id || sub.slug}
+                    href={`/category/${sub.slug}`}
+                    className="px-3 py-1.5 rounded-lg bg-gray-50 hover:bg-orange-50 border border-gray-200 hover:border-orange-200 text-xs font-medium text-gray-700 hover:text-[#FF6600] transition-all whitespace-nowrap flex items-center gap-1.5"
+                  >
+                    <span>{sub.name}</span>
+                    {sub.productCount !== undefined && (
+                      <span className="text-[10px] bg-white text-gray-500 px-1.5 py-0.2 rounded-full border border-gray-200">
+                        {sub.productCount}
+                      </span>
+                    )}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
 
       {/* 2-Column Main Layout: Sidebar Filters + Products Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 items-start">
@@ -173,6 +339,9 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
           <CategoryFilterSidebar
             availableBrands={availableBrands}
             currentCategory={search.category}
+            subcategories={motherSubcategories}
+            isShop={true}
+            totalProducts={totalAllCategoriesCount}
           />
         </div>
 
@@ -275,4 +444,3 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
     </div>
   );
 }
-

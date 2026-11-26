@@ -299,19 +299,54 @@ export const ImageCropperModal: React.FC<ImageCropperModalProps> = ({
         throw new Error('Selection is too small. Please select a larger area to crop.');
       }
 
-      const res = await adminApi.cropImageManual(imageUrl, {
-        x: crop.x,
-        y: crop.y,
-        width: crop.width,
-        height: crop.height,
-        unit: 'percent'
-      });
+      // 1. Try server-side crop (fast, high-resolution Sharp)
+      try {
+        const res = await adminApi.cropImageManual(imageUrl, {
+          x: crop.x,
+          y: crop.y,
+          width: crop.width,
+          height: crop.height,
+          unit: 'percent'
+        });
 
-      if (!res.url) {
-        throw new Error('Server returned an empty image URL.');
+        if (res.url) {
+          onCropComplete(res.url);
+          onClose();
+          return;
+        }
+      } catch (serverErr: any) {
+        console.warn('Server crop notice, attempting client-side canvas crop:', serverErr?.message || serverErr);
       }
 
-      onCropComplete(res.url);
+      // 2. Client-side canvas fallback: crops directly in browser & uploads blob
+      const img = imageRef.current;
+      if (!img || !naturalSize.width || !naturalSize.height) {
+        throw new Error('Image reference not ready for canvas crop.');
+      }
+
+      const srcX = Math.round((crop.x / 100) * naturalSize.width);
+      const srcY = Math.round((crop.y / 100) * naturalSize.height);
+      const srcW = Math.round((crop.width / 100) * naturalSize.width);
+      const srcH = Math.round((crop.height / 100) * naturalSize.height);
+
+      const cropCanvas = document.createElement('canvas');
+      cropCanvas.width = srcW;
+      cropCanvas.height = srcH;
+      const ctx = cropCanvas.getContext('2d');
+      if (!ctx) throw new Error('Canvas 2D context unavailable.');
+
+      ctx.drawImage(img, srcX, srcY, srcW, srcH, 0, 0, srcW, srcH);
+
+      const blob = await new Promise<Blob | null>(resolve => {
+        cropCanvas.toBlob(resolve, 'image/jpeg', 0.95);
+      });
+
+      if (!blob) throw new Error('Failed to generate image file.');
+
+      const file = new File([blob], `crop_${Date.now()}.jpg`, { type: 'image/jpeg' });
+      const uploadedUrl = await adminApi.uploadImage(file);
+
+      onCropComplete(uploadedUrl);
       onClose();
     } catch (err: any) {
       console.error('Manual crop error:', err);

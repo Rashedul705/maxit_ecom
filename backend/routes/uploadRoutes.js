@@ -150,8 +150,43 @@ router.post('/clean-banner', requireAdminAuth, async (req, res, next) => {
 
     execFile('python3', [scriptPath, imageUrl, destPath], { timeout: 35000 }, async (err, stdout, stderr) => {
       if (err) {
-        console.error('clean_single_image error:', err, stderr);
-        return errorResponse(res, 'Failed to clean image: ' + (stderr || err.message), 500);
+        // Fallback to sharp bottom-trim if python script fails, times out, or python3 is missing
+        try {
+          const sharp = require('sharp');
+          let imgBuf;
+          if (imageUrl.startsWith('/uploads/') || imageUrl.startsWith('uploads/')) {
+            imgBuf = fs.readFileSync(path.join(uploadDir, path.basename(imageUrl)));
+          } else {
+            const r = await fetch(imageUrl);
+            imgBuf = Buffer.from(await r.arrayBuffer());
+          }
+          const meta = await sharp(imgBuf).metadata();
+          const w = meta.width || 800;
+          const h = meta.height || 800;
+          const newH = Math.round(h * 0.85);
+          const cleanedBuffer = await sharp(imgBuf)
+            .extract({ left: 0, top: 0, width: w, height: newH })
+            .jpeg({ quality: 95 })
+            .toBuffer();
+
+          // Try ImgBB if configured
+          const rawKeys = process.env.IMGBB_API_KEY || process.env.IMGBB_API_KEYS || '';
+          const imgbbKeys = rawKeys.split(',').map(k => k.trim()).filter(Boolean);
+          if (imgbbKeys.length > 0) {
+            const imgbbUrl = await uploadToImgBbApi(cleanedBuffer, imgbbKeys);
+            if (imgbbUrl) {
+              syncLocalFile(filename, cleanedBuffer);
+              return successResponse(res, { url: imgbbUrl, provider: 'imgbb', alreadyClean: false, details: 'Trimmed bottom banner via sharp' }, 'Image cleaned successfully');
+            }
+          }
+
+          syncLocalFile(filename, cleanedBuffer);
+          const localUrl = `/uploads/${filename}`;
+          return successResponse(res, { url: localUrl, provider: 'local', alreadyClean: false, details: 'Trimmed bottom banner via sharp' }, 'Image cleaned successfully');
+        } catch (sharpErr) {
+          console.error('clean_single_image & sharp fallback error:', err, sharpErr);
+          return errorResponse(res, 'Failed to clean image: ' + sharpErr.message, 500);
+        }
       }
 
       try {
@@ -185,7 +220,7 @@ router.post('/clean-banner', requireAdminAuth, async (req, res, next) => {
   }
 });
 
-// POST /api/v1/upload/crop-manual (Protected)
+// POST /api/v1/upload/crop-manual (Protected) - Powered by Sharp (Zero Python required!)
 router.post('/crop-manual', requireAdminAuth, async (req, res, next) => {
   try {
     const { imageUrl, crop } = req.body;
@@ -196,70 +231,119 @@ router.post('/crop-manual', requireAdminAuth, async (req, res, next) => {
       return errorResponse(res, 'crop parameters are required', 400);
     }
 
-    const scriptPath = path.join(__dirname, '../../scripts/crop_manual.py');
-    const { execFile } = require('child_process');
+    // 1. Resolve image buffer (local file or remote fetch)
+    let inputBuffer = null;
+    const parsedSource = imageUrl.trim();
+
+    if (parsedSource.startsWith('/uploads/') || parsedSource.startsWith('uploads/')) {
+      const filename = path.basename(parsedSource);
+      const candidates = [
+        path.join(uploadDir, filename),
+        path.join(__dirname, '../../storefront/public/uploads', filename),
+        path.join(__dirname, '../../frontend/public/uploads', filename),
+        path.join(__dirname, '../uploads', filename)
+      ];
+      for (const c of candidates) {
+        if (fs.existsSync(c)) {
+          inputBuffer = fs.readFileSync(c);
+          break;
+        }
+      }
+    } else if (parsedSource.startsWith('http://localhost') || parsedSource.startsWith('http://127.0.0.1')) {
+      const urlPath = new URL(parsedSource).pathname;
+      const filename = path.basename(urlPath);
+      const candidates = [
+        path.join(uploadDir, filename),
+        path.join(__dirname, '../../storefront/public/uploads', filename),
+        path.join(__dirname, '../../frontend/public/uploads', filename),
+        path.join(__dirname, '../uploads', filename)
+      ];
+      for (const c of candidates) {
+        if (fs.existsSync(c)) {
+          inputBuffer = fs.readFileSync(c);
+          break;
+        }
+      }
+    }
+
+    if (!inputBuffer) {
+      // Fetch remote image
+      const fetchRes = await fetch(parsedSource);
+      if (!fetchRes.ok) {
+        return errorResponse(res, `Failed to download remote image: HTTP ${fetchRes.status}`, 500);
+      }
+      const arrayBuf = await fetchRes.arrayBuffer();
+      inputBuffer = Buffer.from(arrayBuf);
+    }
+
+    // 2. Crop with Sharp (native Node.js, 100% reliable on Linux/Docker/Cloud)
+    const sharp = require('sharp');
+    const image = sharp(inputBuffer);
+    const meta = await image.metadata();
+
+    const origW = meta.width || 800;
+    const origH = meta.height || 800;
+
+    const unit = crop.unit || 'px';
+    const xVal = parseFloat(crop.x) || 0;
+    const yVal = parseFloat(crop.y) || 0;
+    const wVal = parseFloat(crop.width) || origW;
+    const hVal = parseFloat(crop.height) || origH;
+
+    let left, top, width, height;
+
+    if (unit === 'percent' || (wVal <= 1.0 && hVal <= 1.0 && (wVal > 0 || hVal > 0))) {
+      const factor = (wVal <= 1.0 && hVal <= 1.0) ? 1.0 : 100.0;
+      left = Math.round((xVal / factor) * origW);
+      top = Math.round((yVal / factor) * origH);
+      width = Math.round((wVal / factor) * origW);
+      height = Math.round((hVal / factor) * origH);
+    } else {
+      left = Math.round(xVal);
+      top = Math.round(yVal);
+      width = Math.round(wVal);
+      height = Math.round(hVal);
+    }
+
+    left = Math.max(0, Math.min(origW - 1, left));
+    top = Math.max(0, Math.min(origH - 1, top));
+    width = Math.max(1, Math.min(origW - left, width));
+    height = Math.max(1, Math.min(origH - top, height));
+
+    const croppedBuffer = await sharp(inputBuffer)
+      .extract({ left, top, width, height })
+      .jpeg({ quality: 95 })
+      .toBuffer();
 
     const filename = `crop_${Date.now()}_${Math.round(Math.random() * 1e6)}.jpg`;
-    const destPath = path.join(uploadDir, filename);
 
-    const payload = JSON.stringify({
-      source: imageUrl,
-      outputPath: destPath,
-      crop: crop
-    });
+    // 3. Try ImgBB if configured
+    const rawKeys = process.env.IMGBB_API_KEY || process.env.IMGBB_API_KEYS || '';
+    const imgbbKeys = rawKeys.split(',').map(k => k.trim()).filter(Boolean);
 
-    execFile('python3', [scriptPath, payload], { timeout: 35000 }, async (err, stdout, stderr) => {
-      if (err) {
-        console.error('crop_manual error:', err, stderr);
-        return errorResponse(res, 'Failed to crop image: ' + (stderr || err.message), 500);
-      }
-
-      try {
-        const result = JSON.parse(stdout.trim());
-        if (!result.success) {
-          return errorResponse(res, result.error || 'Cropping failed', 500);
-        }
-
-        if (!fs.existsSync(destPath) || fs.statSync(destPath).size === 0) {
-          return errorResponse(res, 'Cropped file was not generated', 500);
-        }
-
-        const croppedBuffer = fs.readFileSync(destPath);
-
-        // 1. Try ImgBB if keys are configured
-        const rawKeys = process.env.IMGBB_API_KEY || process.env.IMGBB_API_KEYS || '';
-        const imgbbKeys = rawKeys
-          .split(',')
-          .map(k => k.trim())
-          .filter(Boolean);
-
-        if (imgbbKeys.length > 0) {
-          const imgbbUrl = await uploadToImgBbApi(croppedBuffer, imgbbKeys);
-          if (imgbbUrl) {
-            syncLocalFile(filename, destPath);
-            return successResponse(res, {
-              url: imgbbUrl,
-              provider: 'imgbb',
-              croppedWidth: result.croppedWidth,
-              croppedHeight: result.croppedHeight
-            }, 'Image cropped and uploaded to ImgBB successfully');
-          }
-        }
-
-        // 2. Save locally and sync across directories
-        syncLocalFile(filename, destPath);
-        const localUrl = `/uploads/${filename}`;
+    if (imgbbKeys.length > 0) {
+      const imgbbUrl = await uploadToImgBbApi(croppedBuffer, imgbbKeys);
+      if (imgbbUrl) {
+        syncLocalFile(filename, croppedBuffer);
         return successResponse(res, {
-          url: localUrl,
-          provider: 'local',
-          croppedWidth: result.croppedWidth,
-          croppedHeight: result.croppedHeight
-        }, 'Image cropped and saved successfully');
-
-      } catch (parseErr) {
-        return errorResponse(res, 'Failed to parse crop response: ' + parseErr.message, 500);
+          url: imgbbUrl,
+          provider: 'imgbb',
+          croppedWidth: width,
+          croppedHeight: height
+        }, 'Image cropped and uploaded to ImgBB successfully');
       }
-    });
+    }
+
+    // 4. Save locally and sync across directories
+    syncLocalFile(filename, croppedBuffer);
+    const localUrl = `/uploads/${filename}`;
+    return successResponse(res, {
+      url: localUrl,
+      provider: 'local',
+      croppedWidth: width,
+      croppedHeight: height
+    }, 'Image cropped and saved successfully');
+
   } catch (err) {
     next(err);
   }
@@ -273,17 +357,20 @@ router.get('/proxy-image', async (req, res, next) => {
       return res.status(400).send('url is required');
     }
 
-    const { spawn } = require('child_process');
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Cache-Control', 'public, max-age=86400');
 
-    const curl = spawn('curl', ['-4', '-sSL', '--connect-timeout', '6', '-m', '25', targetUrl]);
-    curl.stdout.pipe(res);
-    curl.on('error', (err) => {
-      if (!res.headersSent) res.status(502).send(err.message);
-    });
+    const fetchRes = await fetch(targetUrl);
+    if (!fetchRes.ok) {
+      return res.status(fetchRes.status).send('Failed to fetch image');
+    }
+    const contentType = fetchRes.headers.get('content-type') || 'image/jpeg';
+    res.setHeader('Content-Type', contentType);
+
+    const arrayBuffer = await fetchRes.arrayBuffer();
+    return res.send(Buffer.from(arrayBuffer));
   } catch (err) {
-    next(err);
+    if (!res.headersSent) res.status(502).send(err.message);
   }
 });
 
