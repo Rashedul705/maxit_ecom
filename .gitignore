@@ -33,3 +33,5 @@ backend/*.log
 backups/product_images_backup/
 backups/test_crops/
 scripts/ocr
+backend/uploads/proxy-cache/
+api/uploads/proxy-cache/

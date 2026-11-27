@@ -381,6 +381,40 @@ router.post('/crop-manual', requireAdminAuth, async (req, res, next) => {
   }
 });
 
+// Proxy cache directory
+const proxyCacheDir = path.join(uploadDir, 'proxy-cache');
+if (!fs.existsSync(proxyCacheDir)) {
+  fs.mkdirSync(proxyCacheDir, { recursive: true });
+}
+
+// Detect ImgBB's blue "imgbb.com service unavailable" placeholder image using sharp pixel sampling
+async function isImgBbUnavailablePlaceholder(buf) {
+  try {
+    const sharp = require('sharp');
+    const { data, info } = await sharp(buf)
+      .resize(8, 8, { fit: 'fill' })
+      .removeAlpha()
+      .raw()
+      .toBuffer({ resolveWithObject: true });
+
+    if (!data || data.length < 192) return false;
+
+    // Sample top 2 rows (16 pixels) — ImgBB's unavailable banner has a uniform sky-blue background (~#2795e9)
+    let blueMatches = 0;
+    for (let i = 0; i < 16; i++) {
+      const r = data[i * 3];
+      const g = data[i * 3 + 1];
+      const b = data[i * 3 + 2];
+      if (r < 95 && g >= 110 && g <= 195 && b >= 185) {
+        blueMatches++;
+      }
+    }
+    return blueMatches >= 12; // >= 75% of top band is ImgBB unavailable blue
+  } catch {
+    return false;
+  }
+}
+
 // GET /api/v1/upload/proxy-image?url=...
 router.get('/proxy-image', async (req, res) => {
   try {
@@ -389,50 +423,91 @@ router.get('/proxy-image', async (req, res) => {
       return res.status(400).send('Valid http(s) url is required');
     }
 
+    const crypto = require('crypto');
+    const cacheKey = crypto.createHash('sha1').update(targetUrl).digest('hex');
+    const cacheBinPath = path.join(proxyCacheDir, `${cacheKey}.bin`);
+    const cacheMimePath = path.join(proxyCacheDir, `${cacheKey}.mime`);
+
+    // 1. Serve immediately from disk cache if available
+    if (fs.existsSync(cacheBinPath) && fs.existsSync(cacheMimePath)) {
+      const cachedMime = fs.readFileSync(cacheMimePath, 'utf8').trim() || 'image/jpeg';
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.setHeader('Cache-Control', 'public, max-age=604800, stale-while-revalidate=86400');
+      res.setHeader('Content-Type', cachedMime);
+      res.setHeader('X-Proxy-Cache', 'HIT');
+      return res.sendFile(cacheBinPath);
+    }
+
+    const isImgBb = /^https?:\/\/([^/]+\.)?ibb\.co(\.com)?\//i.test(targetUrl);
     let origin = '';
     try {
       origin = new URL(targetUrl).origin + '/';
     } catch {}
 
-    const fetchWithRetry = async () => {
-      const headers = {
-        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
-        'Accept': 'image/avif,image/webp,image/apng,image/*,*/*;q=0.8',
-        ...(origin ? { 'Referer': origin } : {})
-      };
-      for (let attempt = 0; attempt < 2; attempt++) {
-        try {
-          const r = await fetch(targetUrl, {
-            headers,
-            signal: AbortSignal.timeout(12000)
-          });
-          if (r.ok) return r;
-          if (attempt === 1) return r;
-        } catch (e) {
-          if (attempt === 1) throw e;
-        }
-      }
-      throw new Error('Failed to fetch image');
+    const headers = {
+      'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
+      'Accept': 'image/avif,image/webp,image/apng,image/*,*/*;q=0.8',
+      ...(!isImgBb && origin ? { 'Referer': origin } : {})
     };
 
-    const fetchRes = await fetchWithRetry();
-    if (!fetchRes.ok) {
-      res.setHeader('Cache-Control', 'no-store');
-      return res.status(fetchRes.status).send('Failed to fetch image');
+    let validBuffer = null;
+    let validContentType = 'image/jpeg';
+    let lastStatus = 502;
+
+    for (let attempt = 0; attempt < 2; attempt++) {
+      try {
+        const fetchRes = await fetch(targetUrl, {
+          headers,
+          signal: AbortSignal.timeout(12000)
+        });
+        lastStatus = fetchRes.status;
+        if (!fetchRes.ok) {
+          if (attempt === 0) await new Promise(r => setTimeout(r, 350));
+          continue;
+        }
+
+        const ct = fetchRes.headers.get('content-type') || 'image/jpeg';
+        if (ct.includes('text/html')) {
+          if (attempt === 0) await new Promise(r => setTimeout(r, 350));
+          continue;
+        }
+
+        const buf = Buffer.from(await fetchRes.arrayBuffer());
+        if (buf.length < 100) {
+          if (attempt === 0) await new Promise(r => setTimeout(r, 350));
+          continue;
+        }
+
+        if (isImgBb && await isImgBbUnavailablePlaceholder(buf)) {
+          console.warn(`[proxy-image] Detected ImgBB unavailable placeholder for ${targetUrl} (attempt ${attempt + 1})`);
+          if (attempt === 0) await new Promise(r => setTimeout(r, 450));
+          continue;
+        }
+
+        validBuffer = buf;
+        validContentType = ct;
+        break;
+      } catch (err) {
+        if (attempt === 1) throw err;
+        await new Promise(r => setTimeout(r, 350));
+      }
     }
 
-    const contentType = fetchRes.headers.get('content-type') || 'image/jpeg';
-    if (contentType.includes('text/html')) {
+    if (!validBuffer) {
       res.setHeader('Cache-Control', 'no-store');
-      return res.status(502).send('Upstream returned HTML instead of an image');
+      return res.status(lastStatus >= 400 ? lastStatus : 502).send('Image unavailable from upstream');
     }
+
+    // Persist validated image to disk cache asynchronously
+    fs.promises.writeFile(cacheBinPath, validBuffer)
+      .then(() => fs.promises.writeFile(cacheMimePath, validContentType))
+      .catch(() => {});
 
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Cache-Control', 'public, max-age=604800, stale-while-revalidate=86400');
-    res.setHeader('Content-Type', contentType);
-
-    const arrayBuffer = await fetchRes.arrayBuffer();
-    return res.send(Buffer.from(arrayBuffer));
+    res.setHeader('Content-Type', validContentType);
+    res.setHeader('X-Proxy-Cache', 'MISS');
+    return res.send(validBuffer);
   } catch (err) {
     if (!res.headersSent) {
       res.setHeader('Cache-Control', 'no-store');
