@@ -76,6 +76,7 @@ const globalLimiter = rateLimit({
   legacyHeaders: false,
   message: { success: false, message: 'Too many requests, please slow down.' },
   skip: (req) => {
+    if (req.path === '/upload/proxy-image') return true;
     const ip = req.ip || req.connection?.remoteAddress || '';
     return ip === '127.0.0.1' || ip === '::1' || ip.includes('127.0.0.1');
   }

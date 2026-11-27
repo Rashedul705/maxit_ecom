@@ -10,6 +10,21 @@ export interface SafeImageProps extends Omit<ImageProps, 'src'> {
   fallbackSrc?: string;
 }
 
+type LoadStage = 'direct' | 'proxy' | 'fallback';
+
+function normalizeInitialSrc(inputSrc?: string | null): string {
+  if (!inputSrc || typeof inputSrc !== 'string' || inputSrc.trim() === '') {
+    return '';
+  }
+  const trimmed = inputSrc.trim();
+  // Normalize localhost URLs that point to backend port 5002 to relative /uploads/
+  return trimmed.replace(/^https?:\/\/(localhost|127\.0\.0\.1)(:5002)?\/uploads\//i, '/uploads/');
+}
+
+function isRemoteHttpUrl(url: string): boolean {
+  return /^https?:\/\//i.test(url) && !/^https?:\/\/(localhost|127\.0\.0\.1)/i.test(url);
+}
+
 export const SafeImage: React.FC<SafeImageProps> = ({
   src,
   alt,
@@ -23,35 +38,31 @@ export const SafeImage: React.FC<SafeImageProps> = ({
   loading,
   ...rest
 }) => {
-  const getInitialSrc = (inputSrc?: string | null) => {
-    if (!inputSrc || typeof inputSrc !== 'string' || inputSrc.trim() === '') {
-      return fallbackSrc;
-    }
-    const trimmed = inputSrc.trim();
-    // Normalize localhost URLs that point to backend port 5002 to relative /uploads/
-    const normalized = trimmed.replace(/^https?:\/\/(localhost|127\.0\.0\.1)(:5002)?\/uploads\//i, '/uploads/');
-    return normalized;
-  };
+  const normalized = normalizeInitialSrc(src);
+  const initialIsEmpty = !normalized || normalized === fallbackSrc || normalized === PLACEHOLDER_PRODUCT_IMAGE;
 
-  const [currentSrc, setCurrentSrc] = useState<string>(() => getInitialSrc(src));
-  const [hasError, setHasError] = useState<boolean>(false);
+  const [stage, setStage] = useState<LoadStage>(initialIsEmpty ? 'fallback' : 'direct');
 
   useEffect(() => {
-    setCurrentSrc(getInitialSrc(src));
-    setHasError(false);
+    const nextNormalized = normalizeInitialSrc(src);
+    const nextEmpty = !nextNormalized || nextNormalized === fallbackSrc || nextNormalized === PLACEHOLDER_PRODUCT_IMAGE;
+    setStage(nextEmpty ? 'fallback' : 'direct');
   }, [src, fallbackSrc]);
 
+  const currentSrc =
+    stage === 'direct' && normalized
+      ? normalized
+      : stage === 'proxy' && normalized && isRemoteHttpUrl(normalized)
+        ? `/api/v1/upload/proxy-image?url=${encodeURIComponent(normalized)}`
+        : fallbackSrc;
+
   const handleError = () => {
-    if (!hasError) {
-      setHasError(true);
-      setCurrentSrc(fallbackSrc);
+    if (stage === 'direct' && normalized && isRemoteHttpUrl(normalized)) {
+      setStage('proxy');
+    } else if (stage !== 'fallback') {
+      setStage('fallback');
     }
   };
-
-  const isSvgOrPlaceholder =
-    currentSrc.includes('.svg') ||
-    currentSrc === fallbackSrc ||
-    currentSrc === PLACEHOLDER_PRODUCT_IMAGE;
 
   return (
     <Image
@@ -65,7 +76,7 @@ export const SafeImage: React.FC<SafeImageProps> = ({
       loading={priority ? undefined : loading || 'lazy'}
       className={className}
       onError={handleError}
-      unoptimized={hasError || isSvgOrPlaceholder}
+      unoptimized={true}
       {...rest}
     />
   );

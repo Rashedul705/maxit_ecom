@@ -382,27 +382,62 @@ router.post('/crop-manual', requireAdminAuth, async (req, res, next) => {
 });
 
 // GET /api/v1/upload/proxy-image?url=...
-router.get('/proxy-image', async (req, res, next) => {
+router.get('/proxy-image', async (req, res) => {
   try {
     const targetUrl = req.query.url;
-    if (!targetUrl || typeof targetUrl !== 'string') {
-      return res.status(400).send('url is required');
+    if (!targetUrl || typeof targetUrl !== 'string' || !/^https?:\/\//i.test(targetUrl)) {
+      return res.status(400).send('Valid http(s) url is required');
+    }
+
+    let origin = '';
+    try {
+      origin = new URL(targetUrl).origin + '/';
+    } catch {}
+
+    const fetchWithRetry = async () => {
+      const headers = {
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
+        'Accept': 'image/avif,image/webp,image/apng,image/*,*/*;q=0.8',
+        ...(origin ? { 'Referer': origin } : {})
+      };
+      for (let attempt = 0; attempt < 2; attempt++) {
+        try {
+          const r = await fetch(targetUrl, {
+            headers,
+            signal: AbortSignal.timeout(12000)
+          });
+          if (r.ok) return r;
+          if (attempt === 1) return r;
+        } catch (e) {
+          if (attempt === 1) throw e;
+        }
+      }
+      throw new Error('Failed to fetch image');
+    };
+
+    const fetchRes = await fetchWithRetry();
+    if (!fetchRes.ok) {
+      res.setHeader('Cache-Control', 'no-store');
+      return res.status(fetchRes.status).send('Failed to fetch image');
+    }
+
+    const contentType = fetchRes.headers.get('content-type') || 'image/jpeg';
+    if (contentType.includes('text/html')) {
+      res.setHeader('Cache-Control', 'no-store');
+      return res.status(502).send('Upstream returned HTML instead of an image');
     }
 
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Cache-Control', 'public, max-age=86400');
-
-    const fetchRes = await fetch(targetUrl);
-    if (!fetchRes.ok) {
-      return res.status(fetchRes.status).send('Failed to fetch image');
-    }
-    const contentType = fetchRes.headers.get('content-type') || 'image/jpeg';
+    res.setHeader('Cache-Control', 'public, max-age=604800, stale-while-revalidate=86400');
     res.setHeader('Content-Type', contentType);
 
     const arrayBuffer = await fetchRes.arrayBuffer();
     return res.send(Buffer.from(arrayBuffer));
   } catch (err) {
-    if (!res.headersSent) res.status(502).send(err.message);
+    if (!res.headersSent) {
+      res.setHeader('Cache-Control', 'no-store');
+      res.status(502).send(err.message);
+    }
   }
 });
 

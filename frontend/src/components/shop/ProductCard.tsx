@@ -83,7 +83,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       <div>
         {/* Product Image Area */}
         <div className="relative block w-full aspect-square rounded-lg bg-gray-50 overflow-hidden mb-2.5">
-          <Link href={`/product/${product.slug}`} className="block w-full h-full">
+          <Link href={`/product/${product.slug}`} className="relative block w-full h-full">
             <SafeImage
               src={displayImage}
               alt={product.title}
