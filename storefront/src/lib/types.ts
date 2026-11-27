@@ -32,6 +32,8 @@ export interface Brand {
   logo: string;
   description?: string;
   isPopular?: boolean;
+  productCount?: number;
+  products?: Product[];
 }
 
 export interface Seller {

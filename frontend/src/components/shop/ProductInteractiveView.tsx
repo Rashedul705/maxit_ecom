@@ -489,7 +489,9 @@ export const ProductInteractiveView: React.FC<ProductInteractiveViewProps> = ({
               <div className="text-gray-500 font-medium">Brand:</div>
               <div className="font-semibold text-gray-800">
                 <Link
-                  href={`/brand/${encodeURIComponent(product.brand.toLowerCase())}`}
+                  href={`/brand/${encodeURIComponent(
+                    product.brand.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || product.brand.toLowerCase()
+                  )}`}
                   className="text-[#FF6600] hover:underline"
                 >
                   {product.brand}

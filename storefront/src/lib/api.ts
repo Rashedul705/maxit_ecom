@@ -71,6 +71,7 @@ export const api = {
 
   // Brands
   getBrands: () => fetchJson<Brand[]>(`${API_BASE}/brands`),
+  getAllBrands: () => fetchJson<Brand[]>(`${API_BASE}/brands?all=true`),
   getBrand: (slug: string) => fetchJson<Brand>(`${API_BASE}/brands/${slug}`),
 
   // Sellers

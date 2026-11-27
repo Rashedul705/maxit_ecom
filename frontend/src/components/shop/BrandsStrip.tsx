@@ -15,11 +15,19 @@ export const BrandsStrip: React.FC<BrandsStripProps> = ({ brands }) => {
 
   return (
     <section className="max-w-7xl mx-auto px-4 py-4 sm:py-6">
-      <div className="flex items-center gap-2 mb-4 pb-2 border-b border-gray-200">
-        <div className="w-1.5 h-5 bg-[#FF6600] rounded-full" />
-        <h2 className="text-lg sm:text-xl font-black text-gray-900 uppercase tracking-tight">
-          Brands
-        </h2>
+      <div className="flex items-center justify-between gap-2 mb-4 pb-2 border-b border-gray-200">
+        <div className="flex items-center gap-2">
+          <div className="w-1.5 h-5 bg-[#FF6600] rounded-full" />
+          <h2 className="text-lg sm:text-xl font-black text-gray-900 uppercase tracking-tight">
+            Brands
+          </h2>
+        </div>
+        <Link
+          href="/brands"
+          className="text-xs sm:text-sm font-bold text-[#FF6600] hover:text-[#e55c00] hover:underline transition-colors"
+        >
+          View All Brands &rarr;
+        </Link>
       </div>
 
       <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-10 gap-3">

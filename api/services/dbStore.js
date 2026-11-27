@@ -23,6 +23,18 @@ const Wishlist = require('../models/Wishlist');
 const ActivityLog = require('../models/ActivityLog');
 const { isAssignablePermissionKey } = require('../lib/permissions');
 
+function escapeRegExp(str) {
+  return String(str || '').replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
+}
+
+function toBrandSlug(name) {
+  return String(name || '')
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
 const JWT_SECRET = process.env.JWT_SECRET || 'supersecretjwtkey_maxitshop_2026';
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'admin@maxitshop.com';
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123456';
@@ -996,10 +1008,18 @@ const db = {
 
         if (brand) {
           const brandList = brand.split(',').map(b => b.trim()).filter(Boolean);
-          if (brandList.length === 1) {
-            filter.brand = { $regex: new RegExp(`^${brandList[0]}$`, 'i') };
-          } else if (brandList.length > 1) {
-            filter.brand = { $in: brandList.map(b => new RegExp(`^${b}$`, 'i')) };
+          const buildBrandRegexes = (b) => {
+            const escaped = escapeRegExp(b);
+            const spaceVariant = escapeRegExp(b.replace(/-/g, ' '));
+            return b.includes('-') && spaceVariant !== escaped
+              ? [new RegExp(`^${escaped}$`, 'i'), new RegExp(`^${spaceVariant}$`, 'i')]
+              : [new RegExp(`^${escaped}$`, 'i')];
+          };
+          const allBrandRegexes = brandList.flatMap(buildBrandRegexes);
+          if (allBrandRegexes.length === 1) {
+            filter.brand = { $regex: allBrandRegexes[0] };
+          } else if (allBrandRegexes.length > 1) {
+            filter.brand = { $in: allBrandRegexes };
           }
         }
 
@@ -1715,27 +1735,171 @@ const db = {
   },
 
   // --- BRANDS ---
-  async getBrands() {
+  async getBrands({ includeAll = false } = {}) {
     if (isMongo()) {
-      const docs = await Brand.find().sort({ name: 1 }).lean();
-      if (docs && docs.length) return docs;
+      const curatedDocs = await Brand.find().sort({ name: 1 }).lean();
+      if (!includeAll) {
+        if (curatedDocs && curatedDocs.length) return curatedDocs;
+      } else {
+        const agg = await Product.aggregate([
+          { $match: { brand: { $exists: true, $nin: ['', 'None', 'N/A', null] } } },
+          { $group: { _id: { $trim: { input: '$brand' } }, productCount: { $sum: 1 } } },
+          { $sort: { productCount: -1, _id: 1 } }
+        ]);
+        const curatedBySlug = new Map();
+        (curatedDocs || []).forEach(b => {
+          const s = toBrandSlug(b.slug || b.name);
+          curatedBySlug.set(s, b);
+        });
+        const merged = [];
+        const seenSlugs = new Set();
+        for (const row of agg) {
+          const name = row._id;
+          const slug = toBrandSlug(name);
+          if (!slug || seenSlugs.has(slug)) {
+            // Merge count if exact slug duplicate with different casing
+            const existing = merged.find(m => m.slug === slug);
+            if (existing) existing.productCount += row.productCount;
+            continue;
+          }
+          seenSlugs.add(slug);
+          const curated = curatedBySlug.get(slug);
+          merged.push({
+            id: curated?.id || `brand-${slug}`,
+            name: curated?.name || name,
+            slug: curated?.slug || slug,
+            logo: curated?.logo || '',
+            description: curated?.description || '',
+            productCount: row.productCount
+          });
+        }
+        // Include any curated brands that have 0 products
+        for (const b of (curatedDocs || [])) {
+          const slug = toBrandSlug(b.slug || b.name);
+          if (!seenSlugs.has(slug)) {
+            seenSlugs.add(slug);
+            merged.push({ ...b, slug: b.slug || slug, productCount: 0 });
+          }
+        }
+        return merged;
+      }
     }
-    return memoryStore.brands;
+    if (!includeAll) return memoryStore.brands;
+    const countMap = new Map();
+    memoryStore.products.forEach(p => {
+      if (p.brand && !['None', 'N/A'].includes(p.brand.trim())) {
+        const b = p.brand.trim();
+        countMap.set(b, (countMap.get(b) || 0) + 1);
+      }
+    });
+    const seen = new Set();
+    const list = [];
+    memoryStore.brands.forEach(b => {
+      const slug = toBrandSlug(b.slug || b.name);
+      seen.add(slug);
+      list.push({ ...b, productCount: countMap.get(b.name) || 0 });
+    });
+    countMap.forEach((productCount, name) => {
+      const slug = toBrandSlug(name);
+      if (!seen.has(slug)) {
+        seen.add(slug);
+        list.push({ id: `brand-${slug}`, name, slug, logo: '', description: '', productCount });
+      }
+    });
+    return list.sort((a, b) => (b.productCount || 0) - (a.productCount || 0));
   },
 
   async getBrandBySlug(slug) {
     if (!slug) return null;
+    let raw = String(slug).trim();
+    try { raw = decodeURIComponent(raw).trim(); } catch {}
+    const normalizedSlug = toBrandSlug(raw);
+    const spaceVariant = raw.replace(/-/g, ' ');
+
     if (isMongo()) {
-      const brand = await Brand.findOne({ $or: [{ slug }, { id: slug }] }).lean();
+      const brand = await Brand.findOne({
+        $or: [
+          { slug: raw },
+          { slug: normalizedSlug },
+          { id: raw },
+          { name: { $regex: new RegExp(`^${escapeRegExp(raw)}$`, 'i') } },
+          { name: { $regex: new RegExp(`^${escapeRegExp(spaceVariant)}$`, 'i') } }
+        ]
+      }).lean();
+
       if (brand) {
-        const products = await Product.find({ brand: { $regex: new RegExp(`^${brand.name}$`, 'i') } }).lean();
-        return { ...brand, products };
+        const products = await Product.find({
+          brand: { $regex: new RegExp(`^${escapeRegExp(brand.name)}$`, 'i') }
+        }).sort({ createdAt: -1 }).lean();
+        return { ...brand, products, productCount: products.length };
       }
+
+      // Dynamic lookup across all product brands
+      const distinctBrands = await Product.distinct('brand');
+      const matchedNames = (distinctBrands || []).filter(b => {
+        if (!b || typeof b !== 'string') return false;
+        const trimmed = b.trim();
+        return (
+          trimmed.toLowerCase() === raw.toLowerCase() ||
+          trimmed.toLowerCase() === spaceVariant.toLowerCase() ||
+          toBrandSlug(trimmed) === normalizedSlug
+        );
+      });
+
+      if (matchedNames.length > 0) {
+        const products = await Product.find({ brand: { $in: matchedNames } })
+          .sort({ createdAt: -1 })
+          .lean();
+        if (products.length > 0) {
+          const canonicalName = matchedNames[0].trim();
+          return {
+            id: `brand-${normalizedSlug}`,
+            name: canonicalName,
+            slug: normalizedSlug,
+            logo: '',
+            description: `Explore 100% genuine ${canonicalName} devices, spares, and accessories with official warranty and fast delivery across Bangladesh.`,
+            productCount: products.length,
+            products
+          };
+        }
+      }
+      return null;
     }
-    const brand = memoryStore.brands.find(b => b.slug === slug || b.id === slug);
-    if (!brand) return null;
-    const products = memoryStore.products.filter(p => p.brand && p.brand.toLowerCase() === brand.name.toLowerCase());
-    return { ...brand, products };
+
+    const brand = memoryStore.brands.find(
+      b =>
+        b.slug === raw ||
+        b.slug === normalizedSlug ||
+        b.id === raw ||
+        (b.name && b.name.toLowerCase() === raw.toLowerCase()) ||
+        (b.name && toBrandSlug(b.name) === normalizedSlug)
+    );
+    if (brand) {
+      const products = memoryStore.products.filter(
+        p => p.brand && p.brand.toLowerCase() === brand.name.toLowerCase()
+      );
+      return { ...brand, products, productCount: products.length };
+    }
+    const products = memoryStore.products.filter(
+      p =>
+        p.brand &&
+        (p.brand.trim().toLowerCase() === raw.toLowerCase() ||
+          p.brand.trim().toLowerCase() === spaceVariant.toLowerCase() ||
+          toBrandSlug(p.brand) === normalizedSlug)
+    );
+    if (products.length > 0) {
+      const canonicalName = products[0].brand.trim();
+      return {
+        id: `brand-${normalizedSlug}`,
+        name: canonicalName,
+        slug: normalizedSlug,
+        logo: '',
+        description: `Explore 100% genuine ${canonicalName} devices, spares, and accessories with official warranty and fast delivery across Bangladesh.`,
+        productCount: products.length,
+        products
+      };
+    }
+    return null;
   },
 
   async createBrand(data) {

@@ -7,7 +7,8 @@ const { requireAdminAuth } = require('../middleware/auth');
 // GET /api/v1/brands
 router.get('/', async (req, res, next) => {
   try {
-    const brands = await db.getBrands();
+    const includeAll = req.query.all === 'true' || req.query.all === '1';
+    const brands = await db.getBrands({ includeAll });
     return successResponse(res, brands);
   } catch (err) {
     next(err);
