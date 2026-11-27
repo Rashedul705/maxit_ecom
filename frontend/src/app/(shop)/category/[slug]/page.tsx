@@ -298,7 +298,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
         </div>
 
         {/* Right Main Grid */}
-        <div className="lg:col-span-3 space-y-4">
+        <div className="lg:col-span-3 space-y-4 min-w-0">
           <CategorySortBar total={total} />
 
           {items.length === 0 ? (
@@ -316,7 +316,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
               </Link>
             </div>
           ) : (
-            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3.5 sm:gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-2.5 sm:gap-4">
               {items.map(product => (
                 <ProductCard key={product.id} product={product} />
               ))}

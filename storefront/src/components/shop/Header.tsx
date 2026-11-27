@@ -106,9 +106,9 @@ export const Header: React.FC<HeaderProps> = ({ categories = [], settings, onTog
     <header className="sticky top-0 z-40 bg-white border-b border-gray-200 shadow-xs">
       {/* 0. TOP ANNOUNCEMENT BAR (Editable from Admin) */}
       {settings?.header?.showAnnouncement && settings.header.announcementText && (
-        <div className="bg-[#0B1528] text-white text-[11px] sm:text-xs py-2 px-4 border-b border-[#1C2739] select-none">
-          <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
-            <div className="flex-1 text-center font-medium truncate">
+        <div className="bg-[#0B1528] text-white text-[11px] sm:text-xs py-2 px-3 sm:px-4 border-b border-[#1C2739] select-none overflow-hidden">
+          <div className="max-w-7xl mx-auto flex items-center justify-between gap-4 min-w-0">
+            <div className="flex-1 min-w-0 text-center font-medium truncate">
               {settings.header.announcementLink ? (
                 <Link
                   href={settings.header.announcementLink}

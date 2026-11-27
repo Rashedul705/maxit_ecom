@@ -77,10 +77,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     : (Array.isArray(product.images) ? product.images.find(img => img && !img.includes('product-placeholder')) : null) || product.image || '';
 
   return (
-    <div className="group relative flex flex-col justify-between h-full bg-white rounded-xl border border-gray-200 p-3 sm:p-3.5 hover:border-[#FF6600] hover:shadow-md transition-all duration-200">
+    <div className="group relative flex flex-col justify-between h-full min-w-0 overflow-hidden bg-white rounded-xl border border-gray-200 p-2.5 sm:p-3.5 hover:border-[#FF6600] hover:shadow-md transition-all duration-200">
       
       {/* Top Part: Image, Badges, Title, Key Features */}
-      <div>
+      <div className="min-w-0">
         {/* Product Image Area */}
         <div className="relative block w-full aspect-square rounded-lg bg-gray-50 overflow-hidden mb-2.5">
           <Link href={`/product/${product.slug}`} className="relative block w-full h-full">
@@ -143,11 +143,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
         {/* Key Feature Bullets (3 to 4 bullets with uniform height) */}
         {bullets.length > 0 ? (
-          <ul className="space-y-1 mb-2.5 text-[11px] text-gray-600 h-[64px] overflow-hidden">
+          <ul className="space-y-1 mb-2.5 text-[11px] text-gray-600 h-[64px] overflow-hidden min-w-0">
             {bullets.map((b, i) => (
-              <li key={i} className="flex items-start gap-1.5 leading-tight">
+              <li key={i} className="flex items-start gap-1.5 leading-tight min-w-0">
                 <span className="w-1 h-1 rounded-full bg-gray-400 mt-1 shrink-0" />
-                <span className="line-clamp-1">{b}</span>
+                <span className="line-clamp-1 min-w-0">{b}</span>
               </li>
             ))}
           </ul>
@@ -159,21 +159,21 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       </div>
 
       {/* Bottom Part: Price & Action Buttons */}
-      <div className="mt-auto pt-2 border-t border-gray-100">
+      <div className="mt-auto pt-2 border-t border-gray-100 min-w-0">
         
         {/* Pricing display */}
-        <div className="flex items-baseline justify-between gap-2 mb-2.5">
+        <div className="flex flex-wrap items-baseline justify-between gap-1.5 mb-2.5 min-w-0">
           {product.price === 0 ? (
             <span className="text-xs sm:text-sm font-bold text-[#FF6600]">
               Call for Price
             </span>
           ) : (
-            <div className="flex items-baseline gap-2">
+            <div className="flex flex-wrap items-baseline gap-1.5 min-w-0">
               <span className="text-sm sm:text-base font-bold text-[#FF6600]">
                 ৳{product.price.toLocaleString()}
               </span>
               {hasDiscount && (
-                <del className="text-xs text-gray-400 font-medium">
+                <del className="text-[11px] sm:text-xs text-gray-400 font-medium">
                   ৳{product.oldPrice!.toLocaleString()}
                 </del>
               )}
@@ -191,19 +191,19 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <a
             href={telHref}
             onClick={(e) => e.stopPropagation()}
-            className="w-full py-1.5 px-3 bg-[#FF6600] hover:bg-[#E65100] active:scale-[0.99] text-white rounded-lg text-[11px] sm:text-xs font-bold flex items-center justify-center gap-1.5 transition-all shadow-2xs cursor-pointer"
+            className="w-full py-1.5 px-2.5 bg-[#FF6600] hover:bg-[#E65100] active:scale-[0.99] text-white rounded-lg text-[11px] sm:text-xs font-bold flex items-center justify-center gap-1.5 transition-all shadow-2xs cursor-pointer"
             title={`Call ${hotline} for price & availability`}
           >
             <PhoneCall className="w-3.5 h-3.5 shrink-0" />
             <span className="truncate">Call for Price</span>
           </a>
         ) : (
-          <div className="flex items-center gap-1.5">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-1.5 min-w-0">
             {/* Buy Now Button */}
             <button
               type="button"
               onClick={handleBuyNow}
-              className="flex-1 py-1.5 px-2 bg-[#FF6600] hover:bg-[#E65100] active:scale-[0.99] text-white rounded-lg text-[11px] sm:text-xs font-bold flex items-center justify-center gap-1 transition-all shadow-2xs cursor-pointer"
+              className="w-full sm:flex-1 min-w-0 py-1.5 px-2 bg-[#FF6600] hover:bg-[#E65100] active:scale-[0.99] text-white rounded-lg text-[11px] sm:text-xs font-bold flex items-center justify-center gap-1 transition-all shadow-2xs cursor-pointer"
             >
               <Zap className="w-3.5 h-3.5 fill-white shrink-0" />
               <span className="truncate">Buy Now</span>
@@ -213,7 +213,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             <button
               type="button"
               onClick={handleAddToCart}
-              className={`flex-1 py-1.5 px-2 rounded-lg text-[11px] sm:text-xs font-bold border flex items-center justify-center gap-1 transition-all cursor-pointer ${
+              className={`w-full sm:flex-1 min-w-0 py-1.5 px-2 rounded-lg text-[11px] sm:text-xs font-bold border flex items-center justify-center gap-1 transition-all cursor-pointer ${
                 isAdded
                   ? 'bg-emerald-50 border-emerald-300 text-emerald-700'
                   : 'bg-white hover:bg-orange-50 border-orange-200 text-[#FF6600] hover:border-[#FF6600]'

@@ -25,7 +25,7 @@ export const ShopLayoutClient: React.FC<ShopLayoutClientProps> = ({ children, ca
     <SettingsProvider settings={settings}>
       <CartProvider>
         <WishlistProvider>
-        <div className="min-h-screen flex flex-col bg-[#F8F9FA] text-gray-900 font-sans">
+        <div className="min-h-screen w-full overflow-x-hidden flex flex-col bg-[#F8F9FA] text-gray-900 font-sans">
           {/* Main Header with Top Header & Main Nav Bar */}
           <Header
             categories={categories}

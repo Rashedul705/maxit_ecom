@@ -23,7 +23,7 @@ export const FloatingSupport: React.FC<FloatingSupportProps> = ({ settings }) =>
   return (
     <aside
       aria-label="Floating Chat Support"
-      className="fixed bottom-16 lg:bottom-6 right-4 sm:right-6 z-40 flex flex-col items-end gap-3 select-none"
+      className="fixed bottom-18 lg:bottom-6 right-3 sm:right-6 z-40 flex flex-col items-end gap-2.5 select-none"
     >
       {/* WhatsApp Button */}
       {whatsappDigits && (
@@ -31,12 +31,12 @@ export const FloatingSupport: React.FC<FloatingSupportProps> = ({ settings }) =>
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white px-4 py-2.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 group font-bold text-xs sm:text-sm"
+          className="flex items-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white p-2.5 sm:px-4 sm:py-2.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 group font-bold text-xs sm:text-sm"
           title={`Chat on WhatsApp (${rawWhatsapp})`}
           aria-label="Chat on WhatsApp"
         >
           <MessageCircle className="w-5 h-5 fill-current shrink-0" />
-          <span>Chat on WhatsApp</span>
+          <span className="hidden sm:inline">Chat on WhatsApp</span>
         </a>
       )}
 
@@ -46,7 +46,7 @@ export const FloatingSupport: React.FC<FloatingSupportProps> = ({ settings }) =>
           href={messengerUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2 bg-[#0084FF] hover:bg-[#0074e0] text-white px-3.5 py-2.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 group"
+          className="flex items-center gap-2 bg-[#0084FF] hover:bg-[#0074e0] text-white p-2.5 sm:px-3.5 sm:py-2.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 group"
           title="Chat on Messenger"
           aria-label="Chat on Messenger"
         >
