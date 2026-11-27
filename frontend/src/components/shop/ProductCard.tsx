@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { ShoppingCart, Zap, Check, Heart, Edit3, PhoneCall } from 'lucide-react';
+import { Heart, Edit3, PhoneCall } from 'lucide-react';
 import { Product } from '@/lib/types';
 import { useCart } from '@/lib/cartContext';
 import { useWishlist } from '@/lib/wishlistContext';
@@ -198,14 +198,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             <span className="truncate">Call for Price</span>
           </a>
         ) : (
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-1.5 min-w-0">
+          <div className="grid grid-cols-2 gap-1 sm:gap-1.5 min-w-0">
             {/* Buy Now Button */}
             <button
               type="button"
               onClick={handleBuyNow}
-              className="w-full sm:flex-1 min-w-0 py-1.5 px-2 bg-[#FF6600] hover:bg-[#E65100] active:scale-[0.99] text-white rounded-lg text-[11px] sm:text-xs font-bold flex items-center justify-center gap-1 transition-all shadow-2xs cursor-pointer"
+              className="w-full min-w-0 py-1.5 px-1 sm:px-2 bg-[#FF6600] hover:bg-[#E65100] active:scale-[0.99] text-white rounded-lg text-[10.5px] sm:text-xs font-bold flex items-center justify-center transition-all shadow-2xs cursor-pointer"
             >
-              <Zap className="w-3.5 h-3.5 fill-white shrink-0" />
               <span className="truncate">Buy Now</span>
             </button>
 
@@ -213,18 +212,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             <button
               type="button"
               onClick={handleAddToCart}
-              className={`w-full sm:flex-1 min-w-0 py-1.5 px-2 rounded-lg text-[11px] sm:text-xs font-bold border flex items-center justify-center gap-1 transition-all cursor-pointer ${
+              className={`w-full min-w-0 py-1.5 px-1 sm:px-2 rounded-lg text-[10.5px] sm:text-xs font-bold border flex items-center justify-center transition-all cursor-pointer ${
                 isAdded
                   ? 'bg-emerald-50 border-emerald-300 text-emerald-700'
                   : 'bg-white hover:bg-orange-50 border-orange-200 text-[#FF6600] hover:border-[#FF6600]'
               } shadow-2xs`}
               title="Add to Cart"
             >
-              {isAdded ? (
-                <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-              ) : (
-                <ShoppingCart className="w-3.5 h-3.5 text-[#FF6600] shrink-0" />
-              )}
               <span className="truncate">{isAdded ? 'Added!' : 'Add to Cart'}</span>
             </button>
           </div>
