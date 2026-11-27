@@ -2,11 +2,12 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { ShoppingCart, Zap, Check, Heart, Edit3 } from 'lucide-react';
+import { ShoppingCart, Zap, Check, Heart, Edit3, PhoneCall } from 'lucide-react';
 import { Product } from '@/lib/types';
 import { useCart } from '@/lib/cartContext';
 import { useWishlist } from '@/lib/wishlistContext';
 import { useAdminAuth } from '@/lib/useAdminAuth';
+import { useSettings } from '@/lib/settingsContext';
 import { SafeImage } from '@/components/common/SafeImage';
 
 interface ProductCardProps {
@@ -16,14 +17,18 @@ interface ProductCardProps {
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const { addToCart, openCheckout } = useCart();
   const { isInWishlist, toggleWishlist } = useWishlist();
+  const { hotline, telHref } = useSettings();
   const isAdmin = useAdminAuth();
   const [isAdded, setIsAdded] = useState<boolean>(false);
+
+  const isOutOfStock = (product.stock ?? 0) <= 0;
+  const isCallForPrice = product.price === 0 || isOutOfStock;
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    if (product.price === 0) {
-      window.location.href = 'tel:+8801733272445';
+    if (isCallForPrice) {
+      window.location.href = telHref;
       return;
     }
     addToCart(product, 1, true);
@@ -34,8 +39,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const handleBuyNow = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    if (product.price === 0) {
-      window.location.href = 'tel:+8801733272445';
+    if (isCallForPrice) {
+      window.location.href = telHref;
       return;
     }
     addToCart(product, 1, false);
@@ -157,13 +162,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       <div className="mt-auto pt-2 border-t border-gray-100">
         
         {/* Pricing display */}
-        <div className="flex items-baseline gap-2 mb-2.5">
+        <div className="flex items-baseline justify-between gap-2 mb-2.5">
           {product.price === 0 ? (
             <span className="text-xs sm:text-sm font-bold text-[#FF6600]">
               Call for Price
             </span>
           ) : (
-            <>
+            <div className="flex items-baseline gap-2">
               <span className="text-sm sm:text-base font-bold text-[#FF6600]">
                 ৳{product.price.toLocaleString()}
               </span>
@@ -172,43 +177,58 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                   ৳{product.oldPrice!.toLocaleString()}
                 </del>
               )}
-            </>
+            </div>
+          )}
+          {isOutOfStock && (
+            <span className="text-[10px] font-bold text-red-600 bg-red-50 border border-red-100 px-1.5 py-0.5 rounded shrink-0">
+              Out of Stock
+            </span>
           )}
         </div>
 
-        {/* Action Buttons: Buy Now & Add to Cart */}
-        <div className="flex items-center gap-1.5">
-          {/* Buy Now Button */}
-          <button
-            type="button"
-            onClick={handleBuyNow}
-            disabled={product.stock <= 0}
-            className="flex-1 py-1.5 px-2 bg-[#FF6600] hover:bg-[#E65100] active:scale-[0.99] disabled:bg-gray-300 disabled:cursor-not-allowed text-white rounded-lg text-[11px] sm:text-xs font-bold flex items-center justify-center gap-1 transition-all shadow-2xs cursor-pointer"
+        {/* Action Buttons: Active Call for Price when out of stock / price 0, otherwise Buy Now & Add to Cart */}
+        {isCallForPrice ? (
+          <a
+            href={telHref}
+            onClick={(e) => e.stopPropagation()}
+            className="w-full py-1.5 px-3 bg-[#FF6600] hover:bg-[#E65100] active:scale-[0.99] text-white rounded-lg text-[11px] sm:text-xs font-bold flex items-center justify-center gap-1.5 transition-all shadow-2xs cursor-pointer"
+            title={`Call ${hotline} for price & availability`}
           >
-            <Zap className="w-3.5 h-3.5 fill-white shrink-0" />
-            <span className="truncate">{product.price === 0 ? 'Call Now' : 'Buy Now'}</span>
-          </button>
+            <PhoneCall className="w-3.5 h-3.5 shrink-0" />
+            <span className="truncate">Call for Price</span>
+          </a>
+        ) : (
+          <div className="flex items-center gap-1.5">
+            {/* Buy Now Button */}
+            <button
+              type="button"
+              onClick={handleBuyNow}
+              className="flex-1 py-1.5 px-2 bg-[#FF6600] hover:bg-[#E65100] active:scale-[0.99] text-white rounded-lg text-[11px] sm:text-xs font-bold flex items-center justify-center gap-1 transition-all shadow-2xs cursor-pointer"
+            >
+              <Zap className="w-3.5 h-3.5 fill-white shrink-0" />
+              <span className="truncate">Buy Now</span>
+            </button>
 
-          {/* Add to Cart Button */}
-          <button
-            type="button"
-            onClick={handleAddToCart}
-            disabled={product.stock <= 0}
-            className={`flex-1 py-1.5 px-2 rounded-lg text-[11px] sm:text-xs font-bold border flex items-center justify-center gap-1 transition-all cursor-pointer ${
-              isAdded
-                ? 'bg-emerald-50 border-emerald-300 text-emerald-700'
-                : 'bg-white hover:bg-orange-50 border-orange-200 text-[#FF6600] hover:border-[#FF6600]'
-            } disabled:bg-gray-100 disabled:border-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed shadow-2xs`}
-            title="Add to Cart"
-          >
-            {isAdded ? (
-              <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-            ) : (
-              <ShoppingCart className="w-3.5 h-3.5 text-[#FF6600] shrink-0" />
-            )}
-            <span className="truncate">{isAdded ? 'Added!' : 'Add to Cart'}</span>
-          </button>
-        </div>
+            {/* Add to Cart Button */}
+            <button
+              type="button"
+              onClick={handleAddToCart}
+              className={`flex-1 py-1.5 px-2 rounded-lg text-[11px] sm:text-xs font-bold border flex items-center justify-center gap-1 transition-all cursor-pointer ${
+                isAdded
+                  ? 'bg-emerald-50 border-emerald-300 text-emerald-700'
+                  : 'bg-white hover:bg-orange-50 border-orange-200 text-[#FF6600] hover:border-[#FF6600]'
+              } shadow-2xs`}
+              title="Add to Cart"
+            >
+              {isAdded ? (
+                <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+              ) : (
+                <ShoppingCart className="w-3.5 h-3.5 text-[#FF6600] shrink-0" />
+              )}
+              <span className="truncate">{isAdded ? 'Added!' : 'Add to Cart'}</span>
+            </button>
+          </div>
+        )}
 
       </div>
 

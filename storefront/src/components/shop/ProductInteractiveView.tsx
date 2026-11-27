@@ -565,64 +565,74 @@ export const ProductInteractiveView: React.FC<ProductInteractiveViewProps> = ({
             ) : null}
           </div>
 
-          {/* 6. Action Buttons: Quantity, Add to Cart, Order Now */}
+          {/* 6. Action Buttons: Call for Price when out of stock / price 0, otherwise Quantity, Add to Cart, Order Now */}
           <div className="space-y-3">
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-              {/* Quantity Selector */}
-              <div className="inline-flex items-center justify-between sm:justify-start border border-gray-200 rounded-xl overflow-hidden bg-white shadow-2xs shrink-0">
+            {product.stock <= 0 || product.price === 0 ? (
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                <a
+                  href={`tel:${hotline.replace(/[^0-9+]/g, '')}`}
+                  className="flex-1 h-11 px-5 bg-[#FF6600] hover:bg-[#E65100] active:scale-[0.99] text-white font-bold text-sm sm:text-base rounded-xl shadow-md shadow-[#FF6600]/25 flex items-center justify-center gap-2 cursor-pointer transition-all"
+                >
+                  <PhoneCall className="w-4 h-4 shrink-0" />
+                  <span>Call for Price ({hotline})</span>
+                </a>
+              </div>
+            ) : (
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                {/* Quantity Selector */}
+                <div className="inline-flex items-center justify-between sm:justify-start border border-gray-200 rounded-xl overflow-hidden bg-white shadow-2xs shrink-0">
+                  <button
+                    type="button"
+                    onClick={() => setQuantity(q => Math.max(1, q - 1))}
+                    disabled={quantity <= 1}
+                    className="w-11 h-11 flex items-center justify-center text-gray-600 hover:bg-gray-100 disabled:opacity-40 cursor-pointer transition-colors"
+                    aria-label="Decrease quantity"
+                  >
+                    <Minus className="w-4 h-4" />
+                  </button>
+                  <input
+                    type="number"
+                    min={1}
+                    max={product.stock || 99}
+                    value={quantity}
+                    onChange={(e) => {
+                      const val = parseInt(e.target.value, 10);
+                      if (!isNaN(val)) setQuantity(Math.max(1, Math.min(val, product.stock || 99)));
+                    }}
+                    className="w-14 h-11 text-center font-bold text-sm text-gray-900 border-x border-gray-200 focus:outline-hidden"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setQuantity(q => q + 1)}
+                    disabled={product.stock > 0 && quantity >= product.stock}
+                    className="w-11 h-11 flex items-center justify-center text-gray-600 hover:bg-gray-100 disabled:opacity-40 cursor-pointer transition-colors"
+                    aria-label="Increase quantity"
+                  >
+                    <Plus className="w-4 h-4" />
+                  </button>
+                </div>
+
+                {/* Add to Cart Button */}
                 <button
                   type="button"
-                  onClick={() => setQuantity(q => Math.max(1, q - 1))}
-                  disabled={quantity <= 1}
-                  className="w-11 h-11 flex items-center justify-center text-gray-600 hover:bg-gray-100 disabled:opacity-40 cursor-pointer transition-colors"
-                  aria-label="Decrease quantity"
+                  onClick={handleAddToCart}
+                  className="flex-1 h-11 px-4 bg-white hover:bg-orange-50 border-2 border-[#FF6600] active:scale-[0.99] text-[#FF6600] font-bold text-sm sm:text-base rounded-xl flex items-center justify-center gap-2 cursor-pointer transition-all shadow-2xs"
                 >
-                  <Minus className="w-4 h-4" />
+                  <ShoppingCart className="w-4 h-4" />
+                  <span>Add to Cart</span>
                 </button>
-                <input
-                  type="number"
-                  min={1}
-                  max={product.stock || 99}
-                  value={quantity}
-                  onChange={(e) => {
-                    const val = parseInt(e.target.value, 10);
-                    if (!isNaN(val)) setQuantity(Math.max(1, Math.min(val, product.stock || 99)));
-                  }}
-                  className="w-14 h-11 text-center font-bold text-sm text-gray-900 border-x border-gray-200 focus:outline-hidden"
-                />
+
+                {/* Order Now Button */}
                 <button
                   type="button"
-                  onClick={() => setQuantity(q => q + 1)}
-                  disabled={product.stock > 0 && quantity >= product.stock}
-                  className="w-11 h-11 flex items-center justify-center text-gray-600 hover:bg-gray-100 disabled:opacity-40 cursor-pointer transition-colors"
-                  aria-label="Increase quantity"
+                  onClick={handleBuyNow}
+                  className="flex-1 h-11 px-5 bg-[#FF6600] hover:bg-[#E65100] active:scale-[0.99] text-white font-bold text-sm sm:text-base rounded-xl shadow-md shadow-[#FF6600]/25 flex items-center justify-center gap-2 cursor-pointer transition-all"
                 >
-                  <Plus className="w-4 h-4" />
+                  <Zap className="w-4 h-4 fill-white" />
+                  <span>Order Now</span>
                 </button>
               </div>
-
-              {/* Add to Cart Button */}
-              <button
-                type="button"
-                onClick={handleAddToCart}
-                disabled={product.stock <= 0}
-                className="flex-1 h-11 px-4 bg-white hover:bg-orange-50 border-2 border-[#FF6600] active:scale-[0.99] disabled:bg-gray-100 disabled:border-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed text-[#FF6600] font-bold text-sm sm:text-base rounded-xl flex items-center justify-center gap-2 cursor-pointer transition-all shadow-2xs"
-              >
-                <ShoppingCart className="w-4 h-4" />
-                <span>Add to Cart</span>
-              </button>
-
-              {/* Order Now Button */}
-              <button
-                type="button"
-                onClick={handleBuyNow}
-                disabled={product.stock <= 0}
-                className="flex-1 h-11 px-5 bg-[#FF6600] hover:bg-[#E65100] active:scale-[0.99] disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-bold text-sm sm:text-base rounded-xl shadow-md shadow-[#FF6600]/25 flex items-center justify-center gap-2 cursor-pointer transition-all"
-              >
-                <Zap className="w-4 h-4 fill-white" />
-                <span>{product.price === 0 ? 'Call for Price' : 'Order Now'}</span>
-              </button>
-            </div>
+            )}
 
             {/* STEP 6: Support Phone Number Bar directly below Add to Cart and Order Now buttons */}
             <div className="p-3 sm:p-3.5 bg-orange-50/70 border border-orange-200/90 rounded-xl flex items-center justify-between gap-3 shadow-2xs">

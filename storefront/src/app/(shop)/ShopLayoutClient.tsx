@@ -10,6 +10,7 @@ import { Footer } from '@/components/shop/Footer';
 import { Category, SiteSetting } from '@/lib/types';
 import { CartProvider } from '@/lib/cartContext';
 import { WishlistProvider } from '@/lib/wishlistContext';
+import { SettingsProvider } from '@/lib/settingsContext';
 
 interface ShopLayoutClientProps {
   children: React.ReactNode;
@@ -21,8 +22,9 @@ export const ShopLayoutClient: React.FC<ShopLayoutClientProps> = ({ children, ca
   const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
 
   return (
-    <CartProvider>
-      <WishlistProvider>
+    <SettingsProvider settings={settings}>
+      <CartProvider>
+        <WishlistProvider>
         <div className="min-h-screen flex flex-col bg-[#F8F9FA] text-gray-900 font-sans">
           {/* Main Header with Top Header & Main Nav Bar */}
           <Header
@@ -58,5 +60,6 @@ export const ShopLayoutClient: React.FC<ShopLayoutClientProps> = ({ children, ca
         </div>
       </WishlistProvider>
     </CartProvider>
+    </SettingsProvider>
   );
 };
