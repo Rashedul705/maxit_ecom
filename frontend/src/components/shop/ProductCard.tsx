@@ -198,12 +198,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             <span className="truncate">Call for Price</span>
           </a>
         ) : (
-          <div className="grid grid-cols-2 gap-1 sm:gap-1.5 min-w-0">
+          <div className="flex items-center gap-1 sm:gap-1.5 min-w-0">
             {/* Buy Now Button */}
             <button
               type="button"
               onClick={handleBuyNow}
-              className="w-full min-w-0 py-1.5 px-1 sm:px-2 bg-[#FF6600] hover:bg-[#E65100] active:scale-[0.99] text-white rounded-lg text-[10.5px] sm:text-xs font-bold flex items-center justify-center transition-all shadow-2xs cursor-pointer"
+              className="flex-[0.85] sm:flex-1 min-w-0 py-1.5 px-1 sm:px-2 bg-[#FF6600] hover:bg-[#E65100] active:scale-[0.99] text-white rounded-lg text-[10px] sm:text-xs font-bold flex items-center justify-center whitespace-nowrap transition-all shadow-2xs cursor-pointer"
             >
               <span className="truncate">Buy Now</span>
             </button>
@@ -212,7 +212,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             <button
               type="button"
               onClick={handleAddToCart}
-              className={`w-full min-w-0 py-1.5 px-1 sm:px-2 rounded-lg text-[10.5px] sm:text-xs font-bold border flex items-center justify-center transition-all cursor-pointer ${
+              className={`flex-[1.15] sm:flex-1 min-w-0 py-1.5 px-1 sm:px-2 rounded-lg text-[10px] sm:text-xs font-bold border flex items-center justify-center whitespace-nowrap transition-all cursor-pointer ${
                 isAdded
                   ? 'bg-emerald-50 border-emerald-300 text-emerald-700'
                   : 'bg-white hover:bg-orange-50 border-orange-200 text-[#FF6600] hover:border-[#FF6600]'
