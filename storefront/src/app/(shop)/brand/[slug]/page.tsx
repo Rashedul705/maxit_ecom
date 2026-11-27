@@ -35,7 +35,7 @@ export default async function BrandPage({ params, searchParams }: BrandPageProps
   const { slug } = await params;
   const search = await searchParams;
   const page = Math.max(1, parseInt(search.page || '1', 10));
-  const limit = 20;
+  const limit = 50;
   const sort = search.sort || 'newest';
 
   let brand: any = null;

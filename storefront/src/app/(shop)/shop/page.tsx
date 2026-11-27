@@ -38,7 +38,7 @@ export const dynamic = 'force-dynamic';
 export default async function ShopPage({ searchParams }: ShopPageProps) {
   const search = await searchParams;
   const page = parseInt(search.page || '1', 10);
-  const limit = 15;
+  const limit = 50;
 
   // On shop page: show all products across the catalog by default (with solar products prioritized first).
   // If search.category is specified and not 'all', filter by that specific category.

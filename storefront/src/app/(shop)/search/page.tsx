@@ -31,7 +31,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
   const params = await searchParams;
   const query = params.q || '';
   const page = parseInt(params.page || '1', 10);
-  const limit = 15;
+  const limit = 50;
 
   const fallbackResponse = {
     items: [],
