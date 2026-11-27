@@ -62,7 +62,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
     inStock: search.inStock,
     sort: search.sort || 'newest',
     page,
-    limit: 12
+    limit: 50
   });
 
   const items = productsResponse.items || [];
